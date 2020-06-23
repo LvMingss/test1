@@ -1,0 +1,120 @@
+﻿@model PagedList.IPagedList<urban_archive.Models.vw_projectList>
+@using PagedList.Mvc;
+<link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
+
+@{
+    ViewBag.Title = "PaperSettle";
+}
+
+<h2>个人领取整理情况统计</h2>
+
+<table class="table">
+    <tr>
+
+        <th>
+            工程名称
+        </th>
+        <th>
+            工程序号
+        </th>
+        <th>
+            工程顺序号
+        </th>
+        <th>
+            设计单位
+        </th>
+        <th>
+            施工单位
+        </th>
+        <th>
+            接收人
+        </th>
+        <th>
+            整理人
+        </th>
+        <th>
+            整理日期
+        </th>
+        <th>
+            起始档号
+        </th>
+        <th>
+            终止档号
+        </th>
+        <th>
+            文字卷数
+        </th>
+        @*<th>
+            文字总厚度（cm）
+        </th>*@
+        <th>
+        图纸卷数
+        </th>
+        @*<th>
+            图纸总厚度（cm）
+        </th>*@
+        <th>
+            状态
+        </th>
+       
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.projectName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.projectNo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.paperProjectSeqNo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.disignOrganization)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.constructionOrganization)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.recipient)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.collator)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.lqDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.startArchiveNo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.endArchiveNo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.characterVolumeCount)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.drawingVolumeCount)
+            </td>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.statusName)
+            </td>
+            
+
+        </tr>
+    }
+</table>
+@(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) / @Model.PageCount
+
+@Html.PagedListPager(Model, page => Url.Action("zhenglicount",
+ new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))
+
+
+
+
+
+

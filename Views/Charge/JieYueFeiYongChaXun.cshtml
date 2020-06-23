@@ -1,0 +1,102 @@
+﻿
+@model  PagedList.IPagedList<urban_archive.Models.vw_charge>
+@using PagedList.Mvc;
+@{
+    ViewBag.Title = "借阅收费查询";
+}
+<script>
+    function opencharge()
+    {
+        window.showModalDialog('../ProjectCharge/charge',"", 'dialogWidth=650px;dialogHeight=500px');
+    }
+</script>
+<h2>借阅收费查询</h2>
+@using (Html.BeginForm())
+{
+    <p>
+        检索条件： @Html.DropDownList("dropdowmlist", null, "请选择检索条件")   检索内容：<input type="text" name="search" id="serach"><input type="submit" name="action" value="查询">
+        <input type="button" name="action" onclick="opencharge()" value="打印收费详细报表">
+     </p>
+}
+
+<table class="table">
+    <tr>
+        <th>
+            科室
+        </th>
+        <th>
+            收费编号
+        </th>
+        <th>
+            金额
+        </th>
+        <th>
+            收费事项
+        </th>
+        <th>
+            缴费单位/缴费人
+        </th>
+        <th>
+            收费类别
+        </th>
+        <th>
+            是否缴费
+        </th>
+        <th>
+            收费日期
+        </th>
+        <th>
+            是否驳回
+        <th>
+            驳回原因
+        </th>
+
+
+
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.text)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.seqNo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.totalExpense)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.itemName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.unitName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.chargeType)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.isCharge)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.chargeTime)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.isBack)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.backNote)
+            </td>
+
+            <td>
+                @Html.ActionLink("费用修改", "Edit", new { id = item.ID }) |
+            </td>
+        </tr>
+    }
+
+</table>
+@(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) / @Model.PageCount
+
+@Html.PagedListPager(Model, page => Url.Action("JieYueFeiYongChaXun", new { page }))

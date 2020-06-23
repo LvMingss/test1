@@ -1,0 +1,194 @@
+﻿@model urban_archive.Models.vw_charge
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>vw_charge</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.fromDepartment)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.fromDepartment)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.text)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.text)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.chargeClassify)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.chargeClassify)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.chargeType)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.chargeType)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.itemName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.itemName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.chargeExtra)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.chargeExtra)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.searchNo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.searchNo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.unitName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.unitName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.buildingArea)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.buildingArea)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.chargeDetail)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.chargeDetail)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.operator)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.operator)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.charger)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.charger)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.chargeTime)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.chargeTime)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.isCharge)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.isCharge)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.totalExpense)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.totalExpense)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.remarks)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.remarks)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.seqNo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.seqNo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.theoryExpense)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.theoryExpense)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.whereTransfer)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.whereTransfer)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.isBack)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.isBack)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.centiCnt)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.centiCnt)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.backNote)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.backNote)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

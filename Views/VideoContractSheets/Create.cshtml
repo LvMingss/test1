@@ -1,0 +1,469 @@
+﻿@model urban_archive.Models.VideoContractSheet
+
+@{
+    ViewBag.Title = "声像档案联系单";
+}
+<style type="text/css">
+    .jubu {
+        max-width: 100%;
+    }
+    .jubu1 {
+        width: 100%;
+    }
+</style>
+<link type="text/css" rel="stylesheet" href="~/Scripts/jquery/jquery-ui.css">
+
+<script type="text/javascript" src="~/Scripts/jquery/jquery-1.8.3.js"></script>
+<script type="text/javascript" src="~/Scripts/jquery/jquery.ui.core.js"></script>
+<script type="text/javascript" src="~/Scripts/jquery/jquery.ui.datepicker.js"></script>
+<script type="text/javascript" src="~/Scripts/jquery/jquery.ui.widget.js"></script>
+<script type="text/javascript" src="~/Scripts/jquery/jquery-ui-timepicker-addon.js"></script>
+
+<script>
+        $(function () {
+            $("#fillDate").datepicker({
+                changeMonth: true,
+                changeYear: true
+            });
+        });
+        function saveok() {
+            var msg = "确认提交保存吗?";
+            if (confirm(msg) == true) {
+                return true;
+            } else {
+                return false;
+            }
+        }
+        $(function () {
+            $("#dateSigned").datepicker({
+                changeMonth: true,
+                changeYear: true
+            });
+        });
+        $(function () {
+            $("#planningStartDate").datepicker({
+                changeMonth: true,
+                changeYear: true
+            });
+        });
+        $(function () {
+            $("#planningEndDate").datepicker({
+                changeMonth: true,
+                changeYear: true
+            });
+        });
+</script>
+
+<section>
+    <h2 style="float:left;"><i class="fa fa-tags kongge"></i>声像档案联系单</h2>
+    <ol class="breadcrumb">
+        <li class="active">声像档案</li>
+        <li class="active">工作联系单</li>
+        <li>直接签订工作联系单</li>
+    </ol>
+    <div style="clear:both;"></div>
+</section>
+<hr style="margin-top:0px;"/>
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    @Html.Hidden("contractNo")
+    @Html.Hidden("ID")
+    <div class="form-horizontal">
+        @*<h4>签订联系单</h4>
+            <hr />*@
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="panel panel-default">
+            <table class="table table-bordered @*table-striped*@" style="background-color:#f9f9f9;">
+                <tr>
+                    <td style="background-color:#f9f9f9;width:10%;">
+                        年份
+                    </td>
+                    <td>
+                        @Html.EditorFor(model => model.year, new { htmlAttributes = new { @class = "form-control", @Value = ViewBag.year } })
+                        @Html.ValidationMessageFor(model => model.year, "", new { @class = "text-danger" })
+                    </td>
+                    <td style="background-color:#f9f9f9;width:13%;">
+                        联系单单号
+                    </td>
+                    <td>
+                        @Html.EditorFor(model => model.sheetNo, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.sheetNo, "", new { @class = "text-danger" })
+                        <span style="color:blue;">注意格式：No2017001</span>
+                    </td>
+                    <td style="background-color:#f9f9f9;width:10%;">
+                        保管期限
+                    </td>
+                    <td>
+                        @Html.DropDownList("retentionPeriodNo",null,"", new { @class = "form-control" })
+                    </td>
+
+                </tr>
+                <tr>
+                    <td style="background-color:#f9f9f9;width:10%;">
+                        建设单位名称
+                    </td>
+                    <td colspan="5">
+                        @Html.EditorFor(model => model.developmentOrgnization, new { htmlAttributes = new { @class = "form-control jubu" } })
+                        @Html.ValidationMessageFor(model => model.developmentOrgnization, "", new { @class = "text-danger" })
+                    </td>
+
+                </tr>
+                <tr>
+                    <td style="background-color:#f9f9f9;width:10%;">
+                        工程名称
+                    </td>
+                    <td colspan="5">
+                        @Html.EditorFor(model => model.projectName, new { htmlAttributes = new { @class = "form-control jubu" } })
+                        @Html.ValidationMessageFor(model => model.projectName, "", new { @class = "text-danger" })
+                    </td>
+
+                </tr>
+                <tr>
+                    <td style="background-color:#f9f9f9;width:10%;">
+                        工程地点
+                    </td>
+                    <td colspan="5">
+                        @Html.EditorFor(model => model.location, new { htmlAttributes = new { @class = "form-control jubu" } })
+                        @Html.ValidationMessageFor(model => model.location, "", new { @class = "text-danger" })
+                    </td>
+                </tr>
+                <tr>
+                    <td style="background-color:#f9f9f9;width:10%;">
+                        工程地点分区
+                    </td>
+                    <td>
+                        @Html.DropDownList("constructArea1", null, new { @class = "form-control" })
+                    </td>
+                    <td colspan="2">
+                        <input type="text" id="constructArea" name="constructArea" value="@ViewData["constructArea"]" class="form-control">
+                        <script>
+                            document.getElementById("constructArea1").onchange = function () {
+                                document.getElementById("constructArea").value = this.options[this.options.selectedIndex].text;
+                            }
+                        </script>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="background-color:#f9f9f9;width:10%;">
+                        档案密级
+                    </td>
+                    <td>
+                        @Html.DropDownList("securityID", null,"", new { @class = "form-control" })
+                    </td>
+                    <td style="background-color:#f9f9f9;width:10%;">
+                        建筑面积
+                    </td>
+                    <td>
+                        @Html.EditorFor(model => model.buildingArea, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.buildingArea, "", new { @class = "text-danger" })
+                    </td>
+                    <td style="background-color:#f9f9f9;width:10%;">
+                        总造价
+                    </td>
+                    <td>
+                        @Html.EditorFor(model => model.totalCost, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.totalCost, "", new { @class = "text-danger" })
+                    </td>
+                </tr>
+                <tr>
+                    <td style="background-color:#f9f9f9;width:180px;">
+                        计划开工时间
+                    </td>
+                    <td style="background-color:#f9f9f9;">
+                        <input type="text" id="planningStartDate" name="planningStartDate" value="@ViewBag.planningStartDate" class="form-control">
+                        @Html.ValidationMessageFor(model => model.planningStartDate, "", new { @class = "text-danger" })
+                    </td>
+                    <td style="background-color:#f9f9f9;width:180px;">
+                        计划竣工时间
+                    </td>
+                    <td style="background-color:#f9f9f9;">
+                        <input type="text" id="planningEndDate" name="planningEndDate" value="@ViewBag.planningEndDate" class="form-control">
+                        @Html.ValidationMessageFor(model => model.planningEndDate, "", new { @class = "text-danger" })
+                    </td>
+                </tr>
+                <tr>
+                    <td style="background-color:#f9f9f9;width:10%;">
+                        建设单位负责人
+                    </td>
+                    <td>
+                        @Html.EditorFor(model => model.projectResponsible, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.projectResponsible, "", new { @class = "text-danger" })
+                    </td>
+                    <td style="background-color:#f9f9f9;width:10%;">
+                        固定电话
+                    </td>
+                    <td>
+                        @Html.EditorFor(model => model.telephoneNo, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.telephoneNo, "", new { @class = "text-danger" })
+                    </td>
+                    <td style="background-color:#f9f9f9;width:10%;">
+                        手机
+                    </td>
+                    <td>
+                        @Html.EditorFor(model => model.mobilephoneNo, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.mobilephoneNo, "", new { @class = "text-danger" })
+                    </td>
+                </tr>
+            </table>
+        </div>
+
+                @*<div class="form-group">
+                    @Html.LabelFor(model => model.year, "年份:", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.year, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.year, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(model => model.sheetNo, "联系单单号:注意格式：No2017001", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.sheetNo, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.sheetNo, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.developmentOrgnization, "建设单位名称", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.developmentOrgnization, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.developmentOrgnization, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.projectName, "工程名称", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.projectName, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.projectName, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.location, "工程地点", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.location, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.location, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.retentionPeriodNo, "保管期限", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.DropDownList("retentionPeriodNo")
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.securityID, "档案密级", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.DropDownList("securityID")
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.buildingArea, "建筑面积", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.buildingArea, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.buildingArea, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.totalCost, "总造价", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.totalCost, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.totalCost, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.projectResponsible, "工程项目负责人", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.projectResponsible, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.projectResponsible, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.telephoneNo, "固定电话", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.telephoneNo, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.telephoneNo, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.mobilephoneNo, "手机", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.mobilephoneNo, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.mobilephoneNo, "", new { @class = "text-danger" })
+                    </div>
+                </div>*@
+        <div class="panel panel-default">
+            <table class="table table-bordered @*table-striped*@" style="background-color:#f9f9f9;">
+                <tr>
+                    <td style="background-color:#f9f9f9;width:10%;">
+                        声像科指导人
+                    </td>
+                    <td>
+                        @Html.DropDownList("instructor1", null, new { @class = "form-control" })
+                    </td>
+                    <td colspan="2">
+                        <input type="text" id="instructor" name="instructor" @*value="@ViewData["instructor"]"*@ class="form-control">
+                        <script>
+                            document.getElementById("instructor1").onchange = function () {
+                                document.getElementById("instructor").value = this.options[this.options.selectedIndex].text;                         
+                            }
+                        </script>
+                    </td>
+
+                   
+                    <td style="background-color:#f9f9f9;width:5%;"rowspan="4">
+                        说明
+                    </td>
+                    <td rowspan="4">
+                        @Html.TextArea("introduction", "1、根据青岛市建委青建发（2005）130号文件、（2015）42号文件要求，为改善工程声像档案的拍摄质量，在工程声像档案进行拍摄时，建设方可提前通知本馆工程师进行现场指导。\n2、本馆工程师在该项目施工过程中可随机抽查声像档案拍摄情况。\n3、拍摄的工程声像档案资料，工程完工后，按文件要求建立标准的声像档案案卷，并移交至本馆。"
+               , 10, 30,  new { @class = "form-control jubu" } )
+                        @* @Html.TextBoxFor(model => model.introduction, "", new { htmlAttributes = new { @class = "form-control" }, @Value = @ViewBag.planproject })*@
+                        @Html.ValidationMessageFor(model => model.introduction, "", new { @class = "text-danger" })
+                    </td>
+
+
+                </tr>
+                <tr>
+                    <td style="background-color:#f9f9f9;width:10%;">
+                        固定电话
+                    </td>
+                    <td>
+                        @Html.EditorFor(model => model.contractTel, new { htmlAttributes = new { @class = "form-control",@Value="82882207" } })
+                        @Html.ValidationMessageFor(model => model.contractTel, "", new { @class = "text-danger" })
+                    </td>
+                    <td style="background-color:#f9f9f9;width:10%;">
+                        手机
+                    </td>
+                    <td>
+                        @Html.EditorFor(model => model.contractMobileNo, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.contractMobileNo, "", new { @class = "text-danger" })
+                    </td>
+                    
+
+
+                </tr>
+                <tr>
+                    <td style="background-color:#f9f9f9;width:10%;">
+                        邮箱
+                    </td>
+                    <td>
+                        @Html.TextArea("email", "qd82879324@163.com", 1, 100, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.email, "", new { @class = "text-danger" })
+                    </td>
+                    <td style="background-color:#f9f9f9;width:10%;">
+                        地址
+                    </td>
+                    <td>
+                        @Html.TextArea("address", "市南区黄县路一号", 1, 100, new { @class = "form-control" } )
+                        @Html.ValidationMessageFor(model => model.address, "", new { @class = "text-danger" })
+                    </td>
+                </tr>
+                <tr>
+
+                    <td style="background-color:#f9f9f9;width:10%;">
+                        声像科责任人
+                    </td>
+                    <td>
+                        @*@Html.EditorFor(model => model.videoResponsible, new { htmlAttributes = new { @class = "form-control", @Value = "李德林" } })*@
+                        @Html.DropDownList("videoResponsible", null, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.videoResponsible, "", new { @class = "text-danger" })                       
+                    </td>
+                    <td style="background-color:#f9f9f9;width:10%;">
+                        填表日期
+                    </td>
+                    <td>
+                        @Html.EditorFor(model => model.fillDate, new { htmlAttributes = new { @class = "form-control",@Value= @ViewBag.tianbiaoDate } })
+                        @Html.ValidationMessageFor(model => model.fillDate, "", new { @class = "text-danger" })
+                    </td>
+
+                </tr>
+
+            </table>
+        </div>
+
+                @*<div class="form-group">
+                    @Html.LabelFor(model => model.instructor, "声像科指导人", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.DropDownList("instructor")
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.contractTel, "固定电话", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.contractTel, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.contractTel, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.contractMobileNo, "手机", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.contractMobileNo, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.contractMobileNo, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.address, "地址：", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.TextArea("address", "市南区黄县路一号", new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.address, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.email, "邮箱：", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.TextArea("email", "8066677@163.com", new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.email, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.videoResponsible, "声像科负责人", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.DropDownList("videoResponsible")
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.fillDate, "填表日期：（加个控件）", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.fillDate, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.fillDate, "", new { @class = "text-danger" })
+                    </div>
+                </div>*@
+
+                @*<div class="form-group">
+                    @Html.LabelFor(model => model.introduction, "说明：", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.TextArea("introduction", "1、根据青岛市建委青建发（2005）130号文件要求，为使该工程声像档案的手机更加完整准确，对工程开发前原貌的拍摄，建设方必须提前通知本馆工程师进行现场指导。2、本馆工程师在该工程施工过程中可随机抽查声像档案拍摄情况。3、工作单请妥善保管，工程完工后随声像档案移交本馆。"
+               , 12, 200, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.introduction, "", new { @class = "text-danger" })
+                    </div>
+                </div>*@
+        <div style="text-align:center;">
+            <p>
+                <input type="submit" value="保存"  onclick="return saveok()" class="btn btn-default" />
+                @Html.ActionLink("返回联系单列表", "Index", new { }, new { @class = "btn btn-default" })
+            </p>
+            <div style="height:20px;">
+            </div>
+        </div>
+
+        </div>
+        }
+
+        @*<div>
+            @Html.ActionLink("返回联系单列表", "Index")
+        </div>*@

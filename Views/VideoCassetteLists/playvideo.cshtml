@@ -1,0 +1,215 @@
+﻿
+
+<link href="~/Content/medieplay/video-js.min.css" rel="stylesheet" />
+<script src="~/Content/medieplay/video.min.js"></script>
+<link href="~/Content/jwplayer-7.9.3/jw-icons.ttf" rel="stylesheet" />
+<link href="~/Content/jwplayer-7.9.3/jw-icons.woff" rel="stylesheet" />
+
+<script src="~/Content/jwplayer-7.9.3/jwplayer.js"></script>
+
+<script src="~/Content/jwplayer-7.9.3/polyfills.base64.js"></script>
+<script src="~/Content/jwplayer-7.9.3/polyfills.intersection-observer.js"></script>
+<script src="~/Content/jwplayer-7.9.3/polyfills.promise.js"></script>
+<script src="~/Content/jwplayer-7.9.3/polyfills.vttrenderer.js"></script>
+<script src="~/Content/jwplayer-7.9.3/provider.airplay.js"></script>
+<script src="~/Content/jwplayer-7.9.3/provider.cast.js"></script>
+<script src="~/Content/jwplayer-7.9.3/provider.flash.js"></script>
+<script src="~/Content/jwplayer-7.9.3/provider.hlsjs.js"></script>
+<script src="~/Content/jwplayer-7.9.3/provider.html5.js"></script>
+<script src="~/Content/jwplayer-7.9.3/provider.shaka.js"></script>
+<script src="~/Content/jwplayer-7.9.3/provider.youtube.js"></script>
+<script src="~/Content/jwplayer-7.9.3/vttparser.js"></script>
+<script src="~/Content/jwplayer-7.9.3/related.js"></script>
+<script src="~/Content/jwplayer-7.9.3/jwpsrv.js"></script>
+<script>jwplayer.key="ciQLtZmx31UxycumCEcv4hzazRWgx7gNBcuwNg==";</script>
+<script type='text/javascript'>
+    $().ready(function () {//在页面加载完成之后用，为了保证js能完整的执行。
+        str = "@ViewBag.result";
+        var result = str.split(";");  
+        for (i = 0; i < result.length - 1 ; i++) {
+            var fileurl = result[i] ;
+            var namelist = result[i].split("/");
+            var name = namelist[namelist.length - 1];
+            str1 ='<div style="float:left;padding:20px;"><div id="myplayer' + (i + 1) + '"></div>' + '<p><a href="' + fileurl + '" download>' +name + '</a></p> </div>';
+            //$(str1).appendTo("#dowebok");
+            $("#dowebok").append(str1);
+            var id = 'myplayer' + (i + 1);
+            jwplayer(id).setup({
+                flashplayer: '/Content/jwplayer-7.9.3/jwplayer.flash.swf',
+                file: fileurl,
+                width: '320',
+                height: '240'
+            });
+        }
+        //str = "";
+        //$(str).appendTo("#dowebok");
+        //for (i = 0; i < result.length - 1 ; i++) {
+
+        //}
+    })
+</script>
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+    }
+
+    #dowebok {
+        width: 1200px;
+        margin: 0 auto;
+        font-size: 0;
+    }
+
+        #dowebok p {
+            width: 320px;
+            text-align: center;
+        }
+
+    .file-preview {
+        border-radius: 5px;
+        border: 1px solid #ddd;
+        padding: 5px;
+        width: 100%;
+        margin-bottom: 5px;
+    }
+</style>
+
+<h2 style="font-size:24.5px"><i class="fa fa-tags kongge"></i>浏览视频</h2>
+<hr />
+<div class="panel panel-default">
+    <table class="table table-bordered @*table-striped*@" style="font-size:16px">
+        <tr>
+            <td style="background-color:#f9f9f9;width:10%;">
+                所属工程
+            </td>
+            <td>
+                @ViewBag.projectName
+            </td>
+            <td style="background-color:#f9f9f9;width:10%;">
+                工程名称
+            </td>
+            <td>
+                @ViewBag.projectName
+            </td>
+            <td style="background-color:#f9f9f9;width:10%;">
+                文件类别
+            </td>
+            <td>
+                @ViewBag.filingDesc
+            </td>
+        </tr>
+        <tr>
+            <td style="background-color:#f9f9f9;width:10%;">
+                文件描述
+            </td>
+            <td colspan="5">
+                @ViewBag.videoContent
+            </td>
+        </tr>
+    </table>
+</div>
+@*<h4>所属工程：@ViewBag.projectName</h4>
+    <h4>工程序号：@ViewBag.videoProjectSeqNo</h4>
+    <h4>文件类别：@ViewBag.filingDesc</h4>
+    <h4>文件描述：@ViewBag.videoContent</h4>*@
+<hr />
+<div class="file-preview">
+    <div id="dowebok">
+        @*<div style="float:left;padding:20px;">
+                <div id="myplayer"></div>
+
+            </div>*@
+        @*<div style="clear:both"></div>*@
+
+    </div>
+    <div style="clear:both"></div>
+</div>
+
+<div style="text-align:center;">
+    <div style="height:20px;"></div>
+    <p>
+        @Html.ActionLink("返回案卷录入", "Index", "VideoCassetteLists", new { videoProjectSeqNo = @ViewBag.videoProjectSeqNo }, new { @class = "btn btn-primary btn-file", @style = "font-size:16px;" })
+    </p>
+    <div style="height:20px;">
+    </div>
+</div>
+
+@*<body>
+
+        <div class="m">
+            <video id="my-player"
+                   class="video-js"
+                   controls
+                   preload="auto"
+                   poster="//vjs.zencdn.net/v/oceans.png"
+                   data-setup='{}'>
+                <source src="/声像视频/20170002/工程前期/test.mp4" type='video/mp4'>
+                <source src="http://vjs.zencdn.net/v/oceans.webm" type="video/webm">
+                <source src="http://vjs.zencdn.net/v/oceans.ogv" type="video/ogg">
+                <p class="vjs-no-js">
+                    To view this video please enable JavaScript, and consider upgrading to a
+                    web browser that
+                    <a href="http://videojs.com/html5-video-support/" target="_blank">
+                        supports HTML5 video
+                    </a>
+                </p>
+            </video>
+        </div>
+
+        <script type="text/javascript">
+        //打开自动播放
+        var myPlayer = videojs('my-player');
+        videojs("my-player").ready(function(){
+            var myPlayer = this;
+            myPlayer.play();
+        });
+        </script>
+
+    </body>*@
+@*<body>
+    <object id="MediaPlayer" classid="clsid:22D6F312-B0F6-11D0-94AB-0080C74C7E95" width="1000" height="600" standby="Loading Windows Media Player components…" type="application/x-oleobject" codebase="http://activex.microsoft.com/activex/controls/mplayer/en/nsmp2inf.cab#Version=6,4,7,1112">
+        <param name="FileName" value="./../声像资料/20170007/声像视频/1、工程前期/1.原貌20141018.mpg">
+        <param name="AutoStart" value="true">
+        <param name="ShowControls" value="true">
+        <param name="BufferingTime" value="2">
+        <param name="ShowStatusBar" value="true">
+        <param name="AutoSize" value="true">
+        <param name="InvokeURLs" value="false">
+        <param name="AnimationatStart" value="1">
+        <param name="TransparentatStart" value="1">
+        <param name="Loop" value="1">
+        <embed type="application/x-mplayer2" src="./../声像资料/20170007/声像视频/1、工程前期/1.原貌20141018.mpg" name="MediaPlayer" autostart="1" showstatusbar="1" showdisplay="1" showcontrols="1" loop="0" videoborder3d="0" pluginspage="http://www.microsoft.com/Windows/MediaPlayer/" width="800" height="600"></embed>
+    </object>
+</body>*@
+@*<body>
+
+        <div class="m">
+            <video id="my-player"
+                   class="video-js"
+                   controls
+                   preload="auto"
+                   poster="//vjs.zencdn.net/v/oceans.png"
+                   data-setup='{}'>
+                <source src="/声像视频/20170002/工程前期/test.mp4" type='video/mp4'>
+                <source src="http://vjs.zencdn.net/v/oceans.webm" type="video/webm">
+                <source src="http://vjs.zencdn.net/v/oceans.ogv" type="video/ogg">
+                <p class="vjs-no-js">
+                    To view this video please enable JavaScript, and consider upgrading to a
+                    web browser that
+                    <a href="http://videojs.com/html5-video-support/" target="_blank">
+                        supports HTML5 video
+                    </a>
+                </p>
+            </video>
+        </div>
+
+        <script type="text/javascript">
+        //打开自动播放
+        var myPlayer = videojs('my-player');
+        videojs("my-player").ready(function(){
+            var myPlayer = this;
+            myPlayer.play();
+        });
+        </script>
+
+    </body>*@

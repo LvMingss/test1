@@ -1,0 +1,226 @@
+﻿@model urban_archive.Models.VideoCassetteList
+
+@{
+    ViewBag.Title = "添加信息表";
+}
+<style type="text/css">
+    .jubu {
+        max-width: 100%;
+    }
+    /*.ziti {
+     font-family:"Open Sans", helvetica, arial, sans-serif
+    }*/
+</style>
+<link type="text/css" rel="stylesheet" href="~/Scripts/jquery/jquery-ui.css">
+@*<link href="~/Content/bootstrap.min.css" rel="stylesheet" />*@
+<link href="~/Content/upload/fileinput.min.css" rel="stylesheet" />
+
+<script type="text/javascript" src="~/Scripts/jquery/jquery-1.8.3.js"></script>
+<script src="~/Content/upload/canvas-to-blob.min.js"></script>
+<script src="~/Content/upload/sortable.min.js"></script>
+<script src="~/Content/upload/purify.min.js"></script>
+<script src="~/Content/upload/fileinput.min.js"></script>
+<script src="~/Content/upload/zh.js"></script>
+
+<script src="~/Scripts/bootstrap.min.js"></script>
+
+@*<script src="~/Content/upload/fa.js"></script>*@
+
+
+<script type="text/javascript" src="~/Scripts/jquery/jquery.ui.core.js"></script>
+<script type="text/javascript" src="~/Scripts/jquery/jquery.ui.datepicker.js"></script>
+<script type="text/javascript" src="~/Scripts/jquery/jquery.ui.widget.js"></script>
+<script type="text/javascript" src="~/Scripts/jquery/jquery-ui-timepicker-addon.js"></script>
+
+
+<script>
+    $(function () {
+        $("#date").datepicker({
+            changeMonth: true,
+            changeYear: true,
+
+        });
+    });
+    function OK()//获取文件名
+    {
+        var filename = document.getElementById("MyUploadile").value;
+        var pos = filename.lastIndexOf("\\");
+        document.getElementById("name").value = filename.substring(pos + 1);
+    }
+</script>
+<hr />
+@*<h3 style="font-family:'Open Sans'"><i class="fa fa-chain-broken kongge"></i>工程信息</h3>*@
+<div class="panel panel-default" style="border:1px solid #408cca">
+    <table class="table table-bordered @*table-striped*@" style="font-size:16px;">
+        <tr>
+            <td class="linear" style="font-size: 18px;color:white;" colspan="6">
+                <i class="fa fa-check-square-o"></i>工程信息
+            </td>
+        </tr>
+        <tr>
+            <td style="background-color:#f9f9f9;width:10%;">
+                所属工程
+            </td>
+            <td>
+                @ViewBag.videoProjectSeqNo
+            </td>
+            <td style="background-color:#f9f9f9;width:10%;">
+                工程名称
+            </td>
+            <td>
+                @ViewBag.projectName
+            </td>
+            <td style="background-color:#f9f9f9;width:10%;">
+                文件类别
+            </td>
+            <td>
+                @ViewBag.filingDesc
+            </td>
+        </tr>
+        <tr>
+            <td style="background-color:#f9f9f9;width:10%;">
+                文件描述
+            </td>
+            <td colspan="5">
+                @ViewBag.videoContent
+            </td>
+        </tr>
+    </table>
+</div>
+<hr />
+
+@using (Html.BeginForm("UpLoadFiles", "VideoCassetteLists", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+    <div class="panel panel-default" style="border:1px solid #408cca">
+        <table class="table table-bordered @*table-striped*@" style="font-size:16px">
+            <tr>
+                <td class="linear" style="font-size: 18px;color:white;">
+                    <i class="fa fa-check-square-o"></i>文件内容审核（视频数、照片数、以及具体内容描述等）
+                </td>
+            </tr>
+            @*<h3 style="font-family:'Open Sans';font-size:20px;">文件内容审核（视频数、照片数、以及具体内容描述等）</h3>*@
+            <tr>
+                <td style="font-size: 16px;">
+                    @Html.TextArea("videoContent", new { @class = "form-control jubu", @rows = 10 ,@style= "font-size:16px;"})
+                    @Html.ValidationMessageFor(model => model.videoContent, "", new { @class = "text-danger" })
+                </td>
+            </tr>
+            <tr>
+                <td style="text-align:center">
+                    <input type="submit" name="action" value="统计文件数" class="btn btn-default" style="font-size: 16px;"/>
+                    <input type="submit" name="action" value="通过" class="btn btn-default" style="font-size: 16px;"/>
+                </td>
+            </tr>
+        </table>
+    </div>
+
+    @*<div style="text-align:center">
+            <input type="submit" name="action" value="通过" class="btn btn-default" />
+            <input type="submit" name="action" value="不通过" class="btn btn-default" />
+        </div>*@
+    <div class="form-horizontal">
+       
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+        <div class="form-group" style="display:none">
+            @Html.LabelFor(model => model.ID, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <input type="text" name="id" id="id" value="@ViewBag.id">
+            </div>
+        </div>
+    </div>
+}
+<hr />
+
+<div class="panel panel-default" style="border:1px solid #408cca">
+    <table class="table table-bordered @*table-striped*@" style="font-size:16px">
+        <tr>
+            <td class="linear" style="font-size: 18px;color:white;">
+                <i class="fa fa-check-square-o"></i>上传视频
+            </td>
+        </tr>
+        <tr>
+            <td style="border-bottom:0px;font-weight:bold;">
+                选择文件
+            </td>
+        </tr>
+        <tr>
+            <td style="border-top:0px;">
+                <input id="video" name="video" type="file" multiple class="file-loading">
+            </td>
+        </tr>
+    </table>
+</div>
+
+        @*<div style="border:1px solid #408cca;border-top-color:#00c0ef;margin-bottom:10px;">
+            <h3 class="linear" style="background:#3c8dbc;color:#fff;font-size:20px; margin-bottom:0px;margin-top:0px;padding-bottom:10px;padding-top:10px;"><i class="fa fa-check-square-o"></i>上传视频</h3>
+            <div style="height:5px;"></div>
+            <label class="control-label" style="font-family:'Open Sans'">选择文件</label>
+            <input id="video" name="video" type="file" multiple class="file-loading">
+        </div>*@
+        <script>
+            $(document).on('ready', function() {
+                $("#video").fileinput({
+                    uploadUrl:"/VideoCassetteLists/UpLoad?id="+@ViewBag.id, // server upload action
+                    uploadAsync: true,
+                    preview:false,
+                    showUpload: true,
+                    maxFileCount: 20,
+                    //allowedFileTypes: ["video"],
+                });
+            });
+        </script>
+<hr />
+
+<div class="panel panel-default" style="border:1px solid #408cca">
+    <table class="table table-bordered @*table-striped*@" style="font-size:16px">
+        <tr>
+            <td class="linear" style="font-size: 18px;color:white;">
+                <i class="fa fa-check-square-o"></i>上传图片
+            </td>
+        </tr>
+        <tr>
+            <td style="border-bottom:0px;font-weight:bold;">
+                选择文件
+            </td>
+        </tr>
+        <tr>
+            <td style="border-top:0px;">
+                <input id="photo" name="photo" type="file" multiple class="file-loading">
+            </td>
+        </tr>
+    </table>
+</div>
+        @*<div style="border:1px solid #408cca;border-top-color:#00c0ef">
+            <h3 style="background:#3c8dbc;color:#fff;font-size:20px; margin-bottom:0px;margin-top:0px;padding-bottom:10px;padding-top:10px;"><i class="fa fa-check-square-o"></i>上传图片</h3>
+            <div style="height:5px;"></div>
+            <label class="control-label" style="font-family:'Open Sans'">选择文件</label>
+            <input id="photo" name="photo" type="file" multiple class="file-loading">
+        </div>*@
+        <script>
+            $(document).on('ready', function() {
+                $("#photo").fileinput({
+                    uploadUrl: "/VideoCassetteLists/UpLoad?id="+@ViewBag.id, // server upload action
+                    uploadAsync: true,
+                    preview:false,
+                    showUpload: true,
+                    maxFileCount:100,
+                    allowedFileExtensions: ["JPEG","TIFF","jpg", "gif","tif"]
+                    //minImageWidth: 2400,
+                    //minImageHeight: 1920
+                });
+            });
+        </script>
+        <div style="text-align:center;">
+            <div style="height:20px;"></div>
+            <p>
+                @Html.ActionLink("返回案卷录入", "Index", "VideoCassetteLists", new { videoProjectSeqNo = @ViewBag.videoProjectSeqNo }, new { @class = "btn btn-primary btn-file", @style = "font-size:16px;" })
+            </p>
+            <div style="height:20px;">
+            </div>
+        </div>
+        @*<div style="text-align:center">
+                @Html.ActionLink("返回案卷录入", "Index", "VideoCassetteLists", new { videoProjectSeqNo = @ViewBag.videoProjectSeqNo }, "")
+            </div>
+            <hr />*@

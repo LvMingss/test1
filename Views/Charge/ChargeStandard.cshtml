@@ -1,0 +1,119 @@
+﻿
+@{
+    ViewBag.Title = "收费标准";
+}
+<section>
+    <h2 style="float:left;"><i class="fa fa-tags kongge"></i>收费标准</h2>
+    <ol class="breadcrumb">
+        <li class="active">财务收费</li>
+        <li>收费标准</li>
+    </ol>
+    <div style="clear:both;"></div>
+</section>
+<hr style="margin-top:0px;" />
+
+        <div class="panel panel-default" >
+            <table class="table table-bordered dl-horizontal">
+                <tr>
+                    <td class="linear" style="font-size: 18px;color:white;text-align: center;letter-spacing:5px;" colspan="4">
+                        <i class="fa fa-check-square-o"></i>业务科收费标准
+                    </td>
+                </tr>
+                <tr>
+                    <td style="background-color:#f9f9f9;width:180px;text-align:center;font-weight:bold;" colspan="2">
+                        档案馆整理收费标准
+                    </td>
+                    <td style="background-color:#f9f9f9;width:180px;text-align:center;font-weight:bold;" colspan="2">
+                        报送人整理收费标准
+                    </td>
+                </tr>
+                <tr>
+                    <td style="width:180px;">
+                        面积小于3000平方米：
+                    </td>
+                    <td>
+                        <input type="text" id="belowArea3K" name="belowArea3K" value="1800" class="form-control" style="display:inline">元
+                    </td>
+                    <td style="width:180px;">
+                        档案厚度：
+                    </td>
+                    <td >
+                        <input type="text" id="archiveThickness" name="archiveThickness" value="30" class="form-control" style="display:inline">元/公分
+                    </td>
+                    
+                </tr>
+                
+                <tr>
+                    <td style="width:180px;">
+                        面积大于3000平方米：
+                    </td>
+                    <td>
+                        <input type="text" id="aboveArea3K" name="aboveArea3K" value="0.6" class="form-control" style="display:inline">元/平方米
+                    </td>
+                    <td colspan="2"></td>
+                </tr>
+            </table>
+        </div>
+<hr />
+        <div class="panel panel-default">
+            <table class="table table-bordered dl-horizontal">
+                <tr>
+                    <td class="linear" style="font-size: 18px;color:white;text-align: center;letter-spacing:5px;" colspan="4">
+                        <i class="fa fa-check-square-o"></i>声像科收费标准
+                    </td>
+                </tr>
+                <tr>
+                    <td style="background-color:#f9f9f9;width:180px;text-align:center;font-weight:bold;" colspan="2">
+                       录制工本费收费标准
+                    </td>
+                    <td style="background-color:#f9f9f9;width:180px;text-align:center;font-weight:bold;" colspan="2">
+                        档案盒资料费收费标准
+                    </td>
+                </tr>
+                <tr>
+                    <td style="width:180px;">
+                        面积：
+                    </td>
+                    <td >
+                        <input type="text" id="videoArea" name="videoArea" value="0.2" class="form-control" style="display:inline">元/平方米
+                    </td>
+                    <td style="width:180px;">
+                        档案盒单价：
+                    </td>
+                    <td>
+                        <input type="text" id="videoArchiveBox" name="videoArchiveBox" value="5" class="form-control" style="display:inline">元/个
+                    </td>
+                </tr>
+               
+            </table>
+        </div>
+        @*<h2>业务科收费标准</h2>
+            <p>档案馆整理收费标准</p>
+            面积小于3000平方米：
+            <input type="text" id="belowArea3K" name="belowArea3K" value="1800">元
+            <br>
+            面积大于3000平方米：
+            <input type="text" id="aboveArea3K" name="aboveArea3K" value="0.6">元/平方米
+            <br>
+            <br>
+            <p>报送人整理收费标准</p>
+            档案厚度：
+            <input type="text" id="archiveThickness" name="archiveThickness" value="30">元/公分
+            <br>
+            <br>
+            <h2>声像科收费标准</h2>
+            <p>录制工本费收费标准</p>
+            面积：
+            <input type="text" id="videoArea" name="videoArea" value="0.2">元/平方米
+            <br>
+            <br>
+            <p>档案盒资料费收费标准</p>
+            档案盒单价：
+            <input type="text" id="videoArchiveBox" name="videoArchiveBox" value="5">元/个
+            <br>
+            <br>
+            <input type="button" id="ok" name="ok" value="修改" class="btn btn-default">*@
+        <div style="text-align:center;">
+            <input type="button" id="ok" name="ok" value="修改" class="btn btn-default">
+            <div style="height:20px;"></div>
+        </div>

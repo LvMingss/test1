@@ -1,0 +1,300 @@
+﻿@model urban_archive.Models.vw_gxprojectList
+
+@{
+    ViewBag.Title = "Coding";
+}
+<style type="text/css">
+    .jubu {
+        max-width: 100%;
+    }
+
+    .jubu1 {
+        float: left;
+    }
+
+    .form-control1 {
+        cursor: not-allowed;
+        background-color: #eee;
+        opacity: 1;
+        width: 100%;
+        height: 34px;
+        padding: 6px 12px;
+        font-size: 16px;
+        line-height: 1.42857143;
+        color: #555;
+        background-image: none;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+        box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+        -webkit-transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+        transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+    }
+
+        .form-control1:focus {
+            border-color: #66afe9;
+            outline: 0;
+            -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(102, 175, 233, .6);
+            box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(102, 175, 233, .6);
+        }
+</style>
+@section css{
+    <link type="text/css" rel="stylesheet" href="~/Scripts/jquery/jquery-ui.css">
+}
+@section scripts{
+    <script type="text/javascript" src="~/Scripts/jquery/jquery-1.8.3.js"></script>
+    <script type="text/javascript" src="~/Scripts/jquery/jquery.ui.core.js"></script>
+    <script type="text/javascript" src="~/Scripts/jquery/jquery.ui.datepicker.js"></script>
+    <script type="text/javascript" src="~/Scripts/jquery/jquery.ui.widget.js"></script>
+    <script>
+
+        function saveok() {
+        var msg = "确认提交修改吗?";
+        if (confirm(msg) == true) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    </script>
+}
+
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.projectID)
+        <div class="panel panel-default" style="border-top:3px solid #408cca;margin-bottom:0px;">
+            <table class="table table-bordered dl-horizontal" style="text-align:center">
+                <tr>
+                    <td style="font-size:18px;color:#408cca;" colspan="4">
+                        <i class="fa fa-check-square-o"></i>业务科填写资料
+                    </td>
+
+                </tr>
+
+                <tr>
+                    <td style="min-width:130px;width:6%;">
+                        工程序号
+                    </td>
+                    <td style="width:55%">
+                        @Html.EditorFor(model => model.projectNo, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly", @style = "display:inline;height:28px;padding:0px 5px;" } })
+                        @Html.ValidationMessageFor(model => model.projectNo, "", new { @class = "text-danger" })
+                    </td>
+                    <td style="min-width:130px;width:6%;">
+                        档案报送人
+                    </td>
+                    <td style="width:33%">
+                        @Html.EditorFor(model => model.submitPerson, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly", @style = "display:inline;height:28px;padding:0px 5px;" } })
+                        @Html.ValidationMessageFor(model => model.submitPerson, "", new { @class = "text-danger" })
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        工程名称
+                    </td>
+                    <td>
+                        @Html.EditorFor(model => model.projectName, new { htmlAttributes = new { @class = "form-control", @style = "display:inline;height:28px;padding:0px 5px;max-width:100%;width:80%;", @readonly = "readonly" } })
+                        @Html.ValidationMessageFor(model => model.projectName, "", new { @class = "text-danger" })
+                    </td>
+                    <td>
+                        档案整理人
+                    </td>
+                    <td>
+                        @Html.EditorFor(model => model.collator, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly", @style = "display:inline;height:28px;padding:0px 5px;" } })
+                        @Html.ValidationMessageFor(model => model.collator, "", new { @class = "text-danger" })
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        建设单位
+                    </td>
+                    <td>
+                        @Html.EditorFor(model => model.developmentOrganization, new { htmlAttributes = new { @class = "form-control", @style = "display:inline;height:28px;padding:0px 5px;max-width:100%;width:80%;", @readonly = "readonly" } })
+                        @Html.ValidationMessageFor(model => model.developmentOrganization, "", new { @class = "text-danger" })
+                    </td>
+                    <td>
+                        施工单位
+                    </td>
+                    <td>
+                        @Html.EditorFor(model => model.constructionOrganization, new { htmlAttributes = new { @class = "form-control jubu", @readonly = "readonly" } })
+                        @Html.ValidationMessageFor(model => model.constructionOrganization, "", new { @class = "text-danger" })
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        验收意见书编号
+                    </td>
+
+                    <td>
+                        青建档验 @Html.EditorFor(model => model.qjdyYear, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly", @style = "display:inline;height:28px;padding:0px 5px;width:50px;height:28px;padding:0px 5px;" } })年第 @Html.EditorFor(model => model.qjdyNo, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly", @style = "display:inline;height:28px;padding:0px 5px;width:50px;height:28px;padding:0px 5px;" } })号
+                    </td>
+                    <td>
+                        接收日期
+                    </td>
+                    <td>
+                        @Html.EditorFor(model => model.dateReceived, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly", @style = "display:inline;height:28px;padding:0px 5px;" } })
+                        @Html.ValidationMessageFor(model => model.dateReceived, "", new { @class = "text-danger" })
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        整理要求
+                    </td>
+
+                    <td>
+                        @Html.EditorFor(model => model.collationRequirement, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly", @style = "display:inline;height:28px;padding:0px 5px;" } })
+                        @Html.ValidationMessageFor(model => model.collationRequirement, "", new { @class = "text-danger" })
+
+
+                    </td>
+                    <td>
+                        档案接收人
+                    </td>
+                    <td>
+                        @Html.EditorFor(model => model.recipient, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly", @style = "display:inline;height:28px;padding:0px 5px;" } })
+                        @Html.ValidationMessageFor(model => model.recipient, "", new { @class = "text-danger" })
+                    </td>
+
+                </tr>
+
+            </table>
+        </div>
+       
+        <div class="panel panel-default" style="border-top:3px solid #00a65a;margin-bottom:0px;">
+            <table class="table table-bordered dl-horizontal" style="text-align:center;">
+                <tr>
+                    <td style="color:#00a65a;font-size:18px;" colspan="4">
+                        <i class="fa fa-check-square-o"></i>整理人填写资料
+                    </td>
+
+                </tr>
+                <tr>
+                    <td style="width:20%;">
+                        文字：共
+                        @Html.EditorFor(model => model.characterVolumeCount, new { htmlAttributes = new { @class = "form-control1", @style = "width:50px;height:28px;padding:0px 5px;", @readonly = "readonly" } })
+                        @Html.ValidationMessageFor(model => model.characterVolumeCount, "", new { @class = "text-danger" }) 卷
+                    </td>
+                    <td style="width:30%;">
+                        一厘米：
+                        @Html.EditorFor(model => model.character1cm, new { htmlAttributes = new { @class = "form-control1", @style = "width:50px;height:28px;padding:0px 5px;", @readonly = "readonly" } })
+                        @Html.ValidationMessageFor(model => model.character1cm, "", new { @class = "text-danger" }) 卷,
+                        二厘米：
+                        @Html.EditorFor(model => model.character2cm, new { htmlAttributes = new { @class = "form-control1", @style = "width:50px;height:28px;padding:0px 5px;", @readonly = "readonly" } })
+                        @Html.ValidationMessageFor(model => model.character2cm, "", new { @class = "text-danger" }) 卷,<br>
+                        三厘米：
+                        @Html.EditorFor(model => model.character3cm, new { htmlAttributes = new { @class = "form-control1", @style = "width:50px;height:28px;padding:0px 5px;", @readonly = "readonly" } })
+                        @Html.ValidationMessageFor(model => model.character3cm, "", new { @class = "text-danger" }) 卷,
+                        四厘米：
+                        @Html.EditorFor(model => model.character4cm, new { htmlAttributes = new { @class = "form-control1", @style = "width:50px;height:28px;padding:0px 5px;", @readonly = "readonly" } })
+                        @Html.ValidationMessageFor(model => model.character4cm, "", new { @class = "text-danger" }) 卷,<br>
+                        五厘米：
+                        @Html.EditorFor(model => model.character5cm, new { htmlAttributes = new { @class = "form-control1", @style = "width:50px;height:28px;padding:0px 5px;", @readonly = "readonly" } })
+                        @Html.ValidationMessageFor(model => model.character5cm, "", new { @class = "text-danger" }) 卷
+                    </td>
+                    <td style="width:20%;">
+                        图纸：共
+                        @Html.EditorFor(model => model.drawingVolumeCount, new { htmlAttributes = new { @class = "form-control1", @style = "width:50px;height:28px;padding:0px 5px;", @readonly = "readonly" } })
+                        @Html.ValidationMessageFor(model => model.drawingVolumeCount, "", new { @class = "text-danger" }) 卷
+                    </td>
+                    <td style="width:30%;">
+                        一厘米：
+                        @Html.EditorFor(model => model.character1cm, new { htmlAttributes = new { @class = "form-control1", @style = "width:50px;height:28px;padding:0px 5px;", @readonly = "readonly" } })
+                        @Html.ValidationMessageFor(model => model.character1cm, "", new { @class = "text-danger" }) 卷,
+                        二厘米：
+                        @Html.EditorFor(model => model.drawing2cm, new { htmlAttributes = new { @class = "form-control1", @style = "width:50px;height:28px;padding:0px 5px;", @readonly = "readonly" } })
+                        @Html.ValidationMessageFor(model => model.drawing2cm, "", new { @class = "text-danger" }) 卷,<br>
+                        三厘米：
+                        @Html.EditorFor(model => model.drawing3cm, new { htmlAttributes = new { @class = "form-control1", @style = "width:50px;height:28px;padding:0px 5px;", @readonly = "readonly" } })
+                        @Html.ValidationMessageFor(model => model.drawing3cm, "", new { @class = "text-danger" }) 卷,
+                        四厘米：
+                        @Html.EditorFor(model => model.drawing4cm, new { htmlAttributes = new { @class = "form-control1", @style = "width:50px;height:28px;padding:0px 5px;", @readonly = "readonly" } })
+                        @Html.ValidationMessageFor(model => model.drawing4cm, "", new { @class = "text-danger" }) 卷,<br>
+                        五厘米：
+                        @Html.EditorFor(model => model.drawing5cm, new { htmlAttributes = new { @class = "form-control1", @style = "width:50px;height:28px;padding:0px 5px;", @readonly = "readonly" } })
+                        @Html.ValidationMessageFor(model => model.drawing5cm, "", new { @class = "text-danger" }) 卷
+                    </td>
+
+                </tr>
+                <tr>
+                    <td>
+                        公分明细数
+                    </td>
+                    <td colspan="3">
+                        @Html.EditorFor(model => model.InchCountDetail, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly", @style = "max-width:70%;display:inline;height:28px;padding:0px 5px;" } })
+                        @Html.ValidationMessageFor(model => model.InchCountDetail, "", new { @class = "text-danger" })
+                        <span style="color:blue;">按照 公分数 * 卷数 顺序填写</span>
+
+                    </td>
+
+                </tr>
+                <tr>
+                    <td>
+                        原件数目：
+                        @Html.EditorFor(model => model.archivesCount, new { htmlAttributes = new { @class = "form-control1", @style = "width:50px;height:28px;padding:0px 5px;", @readonly = "readonly" } })
+                        @Html.ValidationMessageFor(model => model.archivesCount, "", new { @class = "text-danger" })
+                    </td>
+                    <td>
+                        复印公分数：
+                        @Html.EditorFor(model => model.copyInchCount, new { htmlAttributes = new { @class = "form-control1", @style = "width:50px;height:28px;padding:0px 5px;", @readonly = "readonly" } })
+                        @Html.ValidationMessageFor(model => model.copyInchCount, "", new { @class = "text-danger" })
+                    </td>
+                    <td>
+                        原件公分数：
+                        @Html.EditorFor(model => model.originalInchCount, new { htmlAttributes = new { @class = "form-control1", @style = "width:50px;height:28px;padding:0px 5px;", @readonly = "readonly" } })
+                        @Html.ValidationMessageFor(model => model.originalInchCount, "", new { @class = "text-danger" })
+                    </td>
+                    <td>
+                        领取日期：
+                        @Html.EditorFor(model => model.lqDate, new { htmlAttributes = new { @class = "form-control1", @style = "width:80px;height:28px;padding:0px 5px;", @readonly = "readonly" } })
+                        @Html.ValidationMessageFor(model => model.lqDate, "", new { @class = "text-danger" })
+                    </td>
+                </tr>
+            </table>
+        </div>
+       
+        <div class="panel panel-default" style="border-top:3px solid #00c0ef;margin-bottom:0px;">
+            <table class="table table-bordered dl-horizontal" style="text-align:center">
+                <tr>
+                    <td style="color:#00c0ef;font-size:18px;" colspan="4">
+                        <i class="fa fa-check-square-o"></i>分类编号
+                    </td>
+                </tr>
+                <tr>
+                    <td style="width:25%">
+                        项目顺序号：
+                        @Html.EditorFor(model => model.paperProjectSeqNo, new { htmlAttributes = new { @class = "form-control", @style = "display:inline;height:28px;padding:0px 5px;width:130px;" } })
+                        @Html.ValidationMessageFor(model => model.paperProjectSeqNo, "", new { @class = "text-danger" })
+                    </td>
+                    <td style="width:25%">
+                        盒号：
+                        <input type="text" id="boxNo" name="boxNo" class="form-control" style="display:inline;height:28px;padding:0px 5px;width:130px;" />
+                        <label id="tishi" style="display:none;color:crimson">拟分类号不能为空</label>
+                    </td>
+                    <td style="width:25%">
+                        件数：
+                        <input type="text" id="Number" name="Number" class="form-control" style="display:inline;height:28px;padding:0px 5px;width:130px;" />
+                    </td>
+                    </tr>
+            </table>
+        </div>
+
+        <div style="text-align:center;">
+            <input type="submit" value="提交" name="action" class="btn btn-default">
+            <input type="submit" value="返回" name="action" class="btn btn-default">
+            <div style="height:20px;">
+            </div>
+        </div>
+    </div>
+
+}
+
+
+

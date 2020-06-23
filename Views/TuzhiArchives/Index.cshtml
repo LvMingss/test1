@@ -1,0 +1,304 @@
+﻿@model IEnumerable<urban_archive.Models.TuzhiArchives>
+@*@using PagedList.Mvc;
+<link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />*@
+<link href="~/Content/jquery-ui.theme.css" rel="stylesheet" />
+<link href="~/Content/Tabulator/version3.0/tabulator.css" rel="stylesheet" />
+@{
+    ViewBag.Title = "图纸档案管理";
+}
+
+
+<script src="~/Scripts/jquery-2.1.1.min.js" type="text/javascript"></script>
+<script src="~/Scripts/jquery-ui.min.js"></script>
+@*<script src="~/Scripts/tabulator.js"></script>*@
+<script src="~/Content/Tabulator/version3.0/tabulator.js"></script>
+<script type="text/javascript">
+    var l = function (value, data, cell, row, options) { //plain text value
+        return "<i class='fa fa-search-plus' style='color:#428bca;vertical-align:middle; padding:2px 0;'></i>"
+    };
+    var k = function (value, data, cell, row, options) { //plain text value
+        return "<i class='fa fa-edit' style='color:#428bca;vertical-align:middle; padding:2px 0;'></i>"
+    };
+    var n = function (value, data, cell, row, options) { //plain text value
+        return "<i class='glyphicon glyphicon-trash' style='color:#428bca;vertical-align:middle; padding:2px 0;'></i>"
+    };
+    $().ready(function () {//在页面加载完成之后用，为了保证js能完整的执行。
+        $(document).ready(function () {
+            var a = $(window).height();
+            var hh = a-160;
+            $(".box-h").height(hh)  // 高度加在类名为box的DIV 上
+        })
+            $("#example-table-2").tabulator({
+                height:"100%",
+                virtualDom:false,
+                //minWidth
+                fitColumns:true,
+                selectable:true, //make rows selectable
+                pagination:"local",
+                paginationSize:50,
+                columns: [
+                    {
+                        title: "查看", field: "k", width: 50 ,formatter: k,  align: "center", headerSort: false,cellClick: function (e, cell) {
+                            var url = '/TuzhiArchives/Details/?id=' + cell.getValue();
+                            window.location.href = url;
+                        }
+                    },
+                    {
+                        title: "修改", field: "1", width: 50 ,formatter: l,  align: "center",headerSort: false, cellClick: function (e, cell) {
+                            var url = '/TuzhiArchives/Edit/?id=' + cell.getValue();
+                            //window.location.href = url;
+                            window.open(url);
+                        }
+                    },
+                    {
+                        title: "删除", field: "n", width: 50 ,formatter: n,  align: "center", headerSort: false,cellClick: function (e, cell) {
+                            if(del()){
+                                var url = '/TuzhiArchives/Delete/?id=' + cell.getValue();
+                                window.location.href = url;
+                            }
+                        }
+                    },
+                { title: "序号", field: "a",headerSort: false, width: 100, },
+                { title: "案卷题名", field: "b", headerSort: false,width: 200 },
+                { title: "编制单位", field: "c",headerSort: false, width: 200},
+                { title: "图纸年代", field: "d",headerSort: false, width: 100 },
+                { title: "比例", field: "e",headerSort: false, width: 100 },
+                { title: "图幅", field: "f",headerSort: false, width: 100 },
+                { title: "图纸状况", field: "g",headerSort: false, width: 100 },
+                { title: "排架号", field: "h",headerSort: false, width: 100},
+                { title: "分类号", field: "i", headerSort: false,width: 100 },
+                { title: "档号", field: "j",headerSort: false, width: 100},
+                { title: "总登记号", headerSort: false,field: "m",minWidth: 100},
+                ],
+            });
+            var temp = new Array();
+            var data=@(new HtmlString(@ViewBag.result));
+            for (var i = 0; i < data.length;i++) {
+                temp.push({ "id": i + 1, "a": data[i].seqNo, "b": data[i].archiveTitle, "c": data[i].bianzhiUnit, "d": data[i].tuzhiYear,"e": data[i].bilichi,"f": data[i].tufu, "g": data[i].tuzhiStatus, "h": data[i].paijiaNo, "i": data[i].classNo, "j": data[i].archiveNo,"m": data[i].registrationNo,"k": data[i].seqNo,"1": data[i].seqNo,"n": data[i].seqNo,});
+    }
+            $("#example-table-2").tabulator("setData", temp);
+            $(window).resize(function () {
+                var a = $(window).height();
+                var hh = a-160;
+                $(".box-h").height(hh)  // 高度加在类名为box的DIV 上
+                $("#example-table-2").tabulator("redraw",true);
+            })
+
+    });
+    function del() {
+        var msg = "确认要删除吗?";
+        if (confirm(msg) == true) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+    function openTuzhi()
+    {
+        window.showModalDialog('../TuzhiArchives/TuZhiMuLu',"", 'dialogWidth=650px;dialogHeight=500px');
+    }
+    $(document).ready(function () {
+        $("#action").click(function () {
+            var type = document.getElementById("Selected").value;
+            var content = document.getElementById("search").value;
+            var Url = "";
+
+            Url = "/TuzhiArchives/Index1/" + "?type=" + type + "&search=" + encodeURI(content);
+            window.location.href = Url;
+
+        });
+    });
+</script>
+<section>
+    <h2 style="float:left;"><i class="fa fa-tags kongge"></i>图纸档案管理</h2>
+    <ol class="breadcrumb">
+        <li class="active">图纸档案</li>
+        <li>档案管理</li>
+    </ol>
+    <div style="clear:both;"></div>
+</section>
+@using (Html.BeginForm())
+{
+    <div class="form-inline">
+        <p>
+            检索条件 : @Html.DropDownList("Selected", null, new { @class = "form-control" })&nbsp;&nbsp;检索内容：@Html.TextBox("search", ViewBag.CurrentFilter as string, new { @class = "form-control" })  <input type="submit" id="action" name="action" value="查询" class="btn btn-default">
+            <input type="button" value="打印图纸目录" class="btn btn-default" onclick="openTuzhi()">
+            @Html.ActionLink("图纸档案添加", "Create", new { }, new { @class = "btn btn-default" })
+        </p>
+    </div>
+}
+
+        <div id="example-table-2" class="box-h" > </div>
+
+
+        @*@model IEnumerable<urban_archive.Models.TuzhiArchives>
+
+            @{
+                ViewBag.Title = "Index";
+            }
+
+            <h2>Index</h2>
+
+            <p>
+                @Html.ActionLink("Create New", "Create")
+            </p>
+            <table class="table">
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.seqNo)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.classNo)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.archiveNo)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.registrationNo)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.paijiaNo)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.archivesTitle)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.bianzhiUnit)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.tuzhiYear)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.jgDate)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.tuzhiStatus)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.isBiaohu)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.measureUnit)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.tuzhiCount)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.securityID)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.retentionPeriodNo)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.neirongTiyao)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.storeLocation)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.transferUnit)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.bilichi)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.tufu)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.archiveCode)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.luruTime)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.isImageExist)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.isYD)
+                    </th>
+                    <th></th>
+                </tr>
+
+            @foreach (var item in Model) {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.seqNo)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.classNo)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.archiveNo)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.registrationNo)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.paijiaNo)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.archivesTitle)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.bianzhiUnit)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.tuzhiYear)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.jgDate)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.tuzhiStatus)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.isBiaohu)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.measureUnit)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.tuzhiCount)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.securityID)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.retentionPeriodNo)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.neirongTiyao)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.storeLocation)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.transferUnit)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.bilichi)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.tufu)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.archiveCode)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.luruTime)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.isImageExist)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.isYD)
+                    </td>
+                    <td>
+                        @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |
+                        @Html.ActionLink("Details", "Details", new { id=item.ID }) |
+                        @Html.ActionLink("Delete", "Delete", new { id=item.ID })
+                    </td>
+                </tr>
+            }
+
+            </table>*@

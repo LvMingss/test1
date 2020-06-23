@@ -1,0 +1,283 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+<link href="~/Content/home.css" rel="stylesheet" />
+<style type="text/css">
+    .timu {
+        
+        font-weight: bold;
+        font-size: 1.8em;
+        margin-top: 20px;
+        margin-bottom: 10px;
+        font-family:YouYuan;
+        text-align:center;
+        padding-bottom:10px;
+    }
+    .box-shadow-3{  
+  -webkit-box-shadow:0 0 15px #808080;  
+  -moz-box-shadow:0 0 15px #808080;  
+  box-shadow:0 0 15px #808080;  
+}  
+</style>
+<div>
+    <p class="timu"><i class="fa fa-tags kongge"></i>业务科工作流程</p>
+</div>
+<hr />
+<div class="container features">
+    
+    <!-- Title -->
+    
+    <!-- /.row -->
+    <!-- Page Features -->
+    <div class="row text-center tiles">
+        <div class="col-md-3 col-sm-6 tile" >
+            <a href="/ContractInfoes/Create" >
+                <div class="frame box-shadow-3" style="background-color:#fff;">
+                    <i class="fa fa-files-o"></i>
+                    <div class="caption">
+                        <h3  style="font-family:YouYuan;">签订移交责任书</h3>
+                        @*<p>Filter data to display only what you need to</p>*@
+                    </div>
+                </div>
+            </a>
+        </div>
+        <div class="col-md-3 col-sm-6 tile">
+            <a href="/ContractInfoes/Index">
+                <div class="frame box-shadow-3" style="background-color:#fff;">
+                    <i class="fa fa-download"></i>
+                    <div class="caption" >
+                        <h3  style="font-family:YouYuan;">接收工程</h3>
+                        @*<p>Sort data however you like, by any value or data type</p>*@
+                    </div>
+                </div>
+            </a>
+        </div>
+        @*<div class="col-md-3 col-sm-6 tile">
+            <a href="docs#formatting">
+                <div class="frame box-shadow-3" style="background-color:#fff;">
+                    <i class="fa fa-check-square-o"></i>
+                    <div class="caption">
+                        <h3  style="font-family:YouYuan;">科长审核</h3>
+                    </div>
+                </div>
+            </a>
+        </div>*@
+        <div class="col-md-3 col-sm-6 tile">
+            <a href="/ProjectCharge/Create">
+                <div class="frame box-shadow-3" style="background-color:#fff;">
+                    <i class="fa fa-universal-access"></i>
+                    <div class="caption">
+                        <h3  style="font-family:YouYuan;">工程收费</h3>
+                        @*<p>Graphically group rows by any specified data</p>*@
+                    </div>
+                </div>
+            </a>
+        </div>
+        <div class="col-md-3 col-sm-6 tile">
+            <a href="/PaperSettle/linquzhengli">
+                <div class="frame box-shadow-3" style="background-color:#fff;">
+                    <i class="fa fa-language"></i>
+                    <div class="caption">
+                        <h3 style="font-family:YouYuan;">领取整理</h3>
+                        @*<p>Asynchronously load data into your table via Ajax requests</p>*@
+                    </div>
+                </div>
+            </a>
+        </div>
+    </div>
+    <div class="row text-center">
+        
+        <div class="col-md-3 col-sm-6 tile">
+            <a href="/ArchivesEnter/ArchiveEnter">
+                <div class="frame box-shadow-3" style="background-color:#fff;">
+                    <i class="fa fa-edit"></i>
+                    <div class="caption" >
+                        <h3  style="font-family:YouYuan;">录入档案</h3>
+                        @*<p>Edit table data directly in the table. Then return the result</p>*@
+                    </div>
+                </div>
+            </a>
+        </div>
+        <div class="col-md-3 col-sm-6 tile">
+            <a href="/LaterMaterials/MeterialsSend">
+                <div class="frame box-shadow-3" style="background-color:#fff;">
+                    <i class="fa fa-random"></i>
+                    <div class="caption">
+                        <h3  style="font-family:YouYuan;">发放材料</h3>
+                        @*<p>Interact with Tabulator through a selection of callbacks</p>*@
+                    </div>
+                </div>
+            </a>
+        </div>
+        <div class="col-md-3 col-sm-6 tile">
+            <a href="/StatisticalAndRetrieval/AllArchives">
+                <div class="frame box-shadow-3" style="background-color:#fff;">
+                    <i class="fa fa-list-alt"></i>
+                    <div class="caption">
+                        <h3  style="font-family:YouYuan;">检索统计</h3>
+                        @*<p>Customise the layout of Tabulator to meet your needs</p>*@
+                    </div>
+                </div>
+            </a>
+        </div>       
+        <div class="col-md-3 col-sm-6 tile">
+            <a href="/dayin/Home">
+                <div class="frame box-shadow-3" style="background-color:#fff;">
+                    <i class="fa fa-print"></i>
+                    <div class="caption">
+                        <h3 style="font-family:YouYuan;">打印</h3>
+                        @*<p>Graphically group rows by any specified data</p>*@
+                    </div>
+                </div>
+            </a>
+        </div>
+    </div>
+    <div class="row text-center">
+        
+            <div class="row">
+                <div class="col-lg-12">
+                    <a href="123">
+                        <h3 style="font-family:YouYuan;font-size:24px;font-weight:500;color:#0099CC;margin-top:20px;"><i class="fa fa-users"></i>管理外聘人员</h3>
+                        @*<p>Customise the layout of Tabulator to meet your needs</p>*@
+
+                    </a>
+                </div>
+            </div>
+        
+    </div>
+        @*<div class="row text-center">
+                <div class="col-md-3 col-sm-6 tile">
+                    <a href="docs#css">
+                        <div class="frame">
+                            <i class="fa fa-css3"></i>
+                            <div class="caption">
+                                <h3>CSS Styling</h3>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+
+                <div class="col-md-3 col-sm-6 tile">
+                    <a href="docs#pagination">
+                        <div class="frame">
+                            <i class="fa fa-files-o"></i>
+                            <div class="caption">
+                                <h3>Pagination</h3>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-md-3 col-sm-6 tile">
+                    <a href="docs#css">
+                        <div class="frame">
+                            <i class="fa fa-dropbox"></i>
+                            <div class="caption">
+                                <h3>Packaged Themes</h3>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-md-3 col-sm-6 tile">
+                    <a href="docs#get-set">
+                        <div class="frame">
+                            <i class="fa fa-gears"></i>
+                            <div class="caption">
+                                <h3>Mutators</h3>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+            <div class="row text-center">
+                <div class="col-md-3 col-sm-6 tile">
+                    <a href="docs#accessibility">
+                        <div class="frame">
+                            <i class="fa fa-universal-access"></i>
+                            <div class="caption">
+                                <h3>Accessibility</h3>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-md-3 col-sm-6 tile">
+                    <a href="docs#frozen-col">
+                        <div class="frame">
+                            <i class="fa fa-columns"></i>
+                            <div class="caption">
+                                <h3>Freeze Columns</h3>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-md-3 col-sm-6 tile">
+                    <a href="docs#selectable">
+                        <div class="frame">
+                            <i class="fa fa-check-square-o"></i>
+                            <div class="caption">
+                                <h3>Row Selection</h3>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-md-3 col-sm-6 tile">
+                    <a href="docs#localization">
+                        <div class="frame">
+                            <i class="fa fa-language"></i>
+                            <div class="caption">
+                                <h3>Localization</h3>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+            <div class="row text-center">
+                <div class="col-md-3 col-sm-6 tile">
+                    <a href="docs#download">
+                        <div class="frame">
+                            <i class="fa fa-download"></i>
+                            <div class="caption">
+                                <h3>Download Data</h3>
+                                <p>Download data directly from the table to a CSV File.</p>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-md-3 col-sm-6 tile">
+                    <a href="docs#progressive-render">
+                        <div class="frame">
+                            <i class="fa fa-cubes"></i>
+                            <div class="caption">
+                                <h3>Progressive Rendering</h3>
+                                <p>Progressively render large datasets to prevent UI blocking</p>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-md-3 col-sm-6 tile">
+                    <a href="docs#persistant-columns">
+                        <div class="frame">
+                            <i class="fa fa-floppy-o"></i>
+                            <div class="caption">
+                                <h3>Persistent Formatting</h3>
+                                <p>Remember user layout preferences between visits</p>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-md-3 col-sm-6 tile">
+                    <a href="docs#responsive-layout">
+                        <div class="frame">
+                            <i class="fa fa-arrows-alt"></i>
+                            <div class="caption">
+                                <h3>Responsive Layout</h3>
+                                <p>Automatically hide &amp; show data to fit table size</p>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div>*@
+        <!-- /.row -->
+        <!-- Footer -->
+
+    </div>
+

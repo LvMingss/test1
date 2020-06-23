@@ -1,0 +1,100 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="PlanArchiveGHDataSet" targetNamespace="http://tempuri.org/PlanArchiveGHDataSet.xsd" xmlns:mstns="http://tempuri.org/PlanArchiveGHDataSet.xsd" xmlns="http://tempuri.org/PlanArchiveGHDataSet.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections>
+          <Connection AppSettingsObjectName="Web.config" AppSettingsPropertyName="UrbanConConnectionString" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="UrbanConConnectionString (Web.config)" ParameterPrefix="@" PropertyReference="AppConfig.System.Configuration.ConfigurationManager.0.ConnectionStrings.UrbanConConnectionString.ConnectionString" Provider="System.Data.SqlClient" />
+        </Connections>
+        <Tables>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="vw_PlanArchiveGHTableAdapter" GeneratorDataComponentClassName="vw_PlanArchiveGHTableAdapter" Name="vw_PlanArchiveGH" UserDataComponentName="vw_PlanArchiveGHTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="UrbanConConnectionString (Web.config)" DbObjectName="UrbanCon.dbo.vw_PlanArchiveGH" DbObjectType="View" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>SELECT seqNo1, classifyName, boxNo, archiveTitle, bianzhiUnit, securityName, retentionPeriodName, projectname FROM dbo.vw_PlanArchiveGH</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="seqNo1" DataSetColumn="seqNo1" />
+              <Mapping SourceColumn="classifyName" DataSetColumn="classifyName" />
+              <Mapping SourceColumn="boxNo" DataSetColumn="boxNo" />
+              <Mapping SourceColumn="archiveTitle" DataSetColumn="archiveTitle" />
+              <Mapping SourceColumn="bianzhiUnit" DataSetColumn="bianzhiUnit" />
+              <Mapping SourceColumn="securityName" DataSetColumn="securityName" />
+              <Mapping SourceColumn="retentionPeriodName" DataSetColumn="retentionPeriodName" />
+              <Mapping SourceColumn="projectname" DataSetColumn="projectname" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+        </Tables>
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="PlanArchiveGHDataSet" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="True" msprop:Generator_DataSetName="PlanArchiveGHDataSet" msprop:Generator_UserDSName="PlanArchiveGHDataSet">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="vw_PlanArchiveGH" msprop:Generator_TableClassName="vw_PlanArchiveGHDataTable" msprop:Generator_TableVarName="tablevw_PlanArchiveGH" msprop:Generator_TablePropName="vw_PlanArchiveGH" msprop:Generator_RowDeletingName="vw_PlanArchiveGHRowDeleting" msprop:Generator_RowChangingName="vw_PlanArchiveGHRowChanging" msprop:Generator_RowEvHandlerName="vw_PlanArchiveGHRowChangeEventHandler" msprop:Generator_RowDeletedName="vw_PlanArchiveGHRowDeleted" msprop:Generator_UserTableName="vw_PlanArchiveGH" msprop:Generator_RowChangedName="vw_PlanArchiveGHRowChanged" msprop:Generator_RowEvArgName="vw_PlanArchiveGHRowChangeEvent" msprop:Generator_RowClassName="vw_PlanArchiveGHRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="seqNo1" msprop:Generator_ColumnVarNameInTable="columnseqNo1" msprop:Generator_ColumnPropNameInRow="seqNo1" msprop:Generator_ColumnPropNameInTable="seqNo1Column" msprop:Generator_UserColumnName="seqNo1" type="xs:int" minOccurs="0" />
+              <xs:element name="classifyName" msprop:Generator_ColumnVarNameInTable="columnclassifyName" msprop:Generator_ColumnPropNameInRow="classifyName" msprop:Generator_ColumnPropNameInTable="classifyNameColumn" msprop:Generator_UserColumnName="classifyName" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="20" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="boxNo" msprop:Generator_ColumnVarNameInTable="columnboxNo" msprop:Generator_ColumnPropNameInRow="boxNo" msprop:Generator_ColumnPropNameInTable="boxNoColumn" msprop:Generator_UserColumnName="boxNo" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="500" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="archiveTitle" msprop:Generator_ColumnVarNameInTable="columnarchiveTitle" msprop:Generator_ColumnPropNameInRow="archiveTitle" msprop:Generator_ColumnPropNameInTable="archiveTitleColumn" msprop:Generator_UserColumnName="archiveTitle" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="2147483647" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="bianzhiUnit" msprop:Generator_ColumnVarNameInTable="columnbianzhiUnit" msprop:Generator_ColumnPropNameInRow="bianzhiUnit" msprop:Generator_ColumnPropNameInTable="bianzhiUnitColumn" msprop:Generator_UserColumnName="bianzhiUnit" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="100" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="securityName" msprop:Generator_ColumnVarNameInTable="columnsecurityName" msprop:Generator_ColumnPropNameInRow="securityName" msprop:Generator_ColumnPropNameInTable="securityNameColumn" msprop:Generator_UserColumnName="securityName">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="10" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="retentionPeriodName" msprop:Generator_ColumnVarNameInTable="columnretentionPeriodName" msprop:Generator_ColumnPropNameInRow="retentionPeriodName" msprop:Generator_ColumnPropNameInTable="retentionPeriodNameColumn" msprop:Generator_UserColumnName="retentionPeriodName">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="10" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="projectname" msprop:Generator_ColumnVarNameInTable="columnprojectname" msprop:Generator_ColumnPropNameInRow="projectname" msprop:Generator_ColumnPropNameInTable="projectnameColumn" msprop:Generator_UserColumnName="projectname" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="2147483647" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

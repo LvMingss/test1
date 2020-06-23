@@ -1,0 +1,64 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+<link href="~/Content/home.css" rel="stylesheet" />
+<style type="text/css">
+    .timu {
+        font-weight: bold;
+        font-size: 1.8em;
+        margin-top: 20px;
+        margin-bottom: 10px;
+        font-family: YouYuan;
+        text-align: center;
+        padding-bottom: 10px;
+    }
+
+    .box-shadow-3 {
+        -webkit-box-shadow: 0 0 15px #808080;
+        -moz-box-shadow: 0 0 15px #808080;
+        box-shadow: 0 0 15px #808080;
+    }
+</style>
+<div>
+    <p class="timu"><i class="fa fa-tags kongge"></i>管理科业务索引</p>
+</div>
+<hr />
+<div class="container features">
+
+    <!-- Title -->
+    <!-- /.row -->
+    <!-- Page Features -->
+    <div class="row text-center tiles">
+        <div class="col-md-3 col-sm-6 tile">
+            
+        </div>
+        <div class="col-md-3 col-sm-6 tile">
+            <a href="/ArchivesCode/ClassCode">
+                <div class="frame box-shadow-3" style="background-color:#fff;">
+                    <i class="fa fa-list-ol"></i>
+                    <div class="caption">
+                        <h3 style="font-family:YouYuan;">档案编号</h3>
+                        @*<p>Sort data however you like, by any value or data type</p>*@
+                    </div>
+                </div>
+            </a>
+        </div>
+        <div class="col-md-3 col-sm-6 tile">
+            <a href="/ArchiveSearch/ArchiveSearchMainWindow">
+                <div class="frame box-shadow-3" style="background-color:#fff;">
+                    <i class="fa fa-search-plus"></i>
+                    <div class="caption">
+                        <h3 style="font-family:YouYuan;">档案借阅</h3>
+                        @*<p>Create custom formatters to graphically display data</p>*@
+                    </div>
+                </div>
+            </a>
+        </div>
+        <div class="col-md-3 col-sm-6 tile">
+            
+        </div>
+    </div>
+   
+
+</div>
+

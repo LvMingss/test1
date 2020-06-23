@@ -1,0 +1,118 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="JGyijiaoTongjiDataSet" targetNamespace="http://tempuri.org/JGyijiaoTongjiDataSet.xsd" xmlns:mstns="http://tempuri.org/JGyijiaoTongjiDataSet.xsd" xmlns="http://tempuri.org/JGyijiaoTongjiDataSet.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections>
+          <Connection AppSettingsObjectName="Web.config" AppSettingsPropertyName="UrbanConConnectionString" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="UrbanConConnectionString (Web.config)" ParameterPrefix="@" PropertyReference="AppConfig.System.Configuration.ConfigurationManager.0.ConnectionStrings.UrbanConConnectionString.ConnectionString" Provider="System.Data.SqlClient" />
+        </Connections>
+        <Tables>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="vw_transferStatisTableAdapter" GeneratorDataComponentClassName="vw_transferStatisTableAdapter" Name="vw_transferStatis" UserDataComponentName="vw_transferStatisTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="UrbanConConnectionString (Web.config)" DbObjectName="UrbanCon.dbo.vw_transferStatis" DbObjectType="View" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>SELECT projectNo, paperProjectSeqNo, startArchiveNo, endArchiveNo, developmentOrganization, projectName, recipient, collator, archivesCount, dateArchive, archiveCertificateNo, typerDate, originalInchCount, archiveThickness FROM dbo.vw_transferStatis</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="projectNo" DataSetColumn="projectNo" />
+              <Mapping SourceColumn="paperProjectSeqNo" DataSetColumn="paperProjectSeqNo" />
+              <Mapping SourceColumn="startArchiveNo" DataSetColumn="startArchiveNo" />
+              <Mapping SourceColumn="endArchiveNo" DataSetColumn="endArchiveNo" />
+              <Mapping SourceColumn="developmentOrganization" DataSetColumn="developmentOrganization" />
+              <Mapping SourceColumn="projectName" DataSetColumn="projectName" />
+              <Mapping SourceColumn="recipient" DataSetColumn="recipient" />
+              <Mapping SourceColumn="collator" DataSetColumn="collator" />
+              <Mapping SourceColumn="archivesCount" DataSetColumn="archivesCount" />
+              <Mapping SourceColumn="dateArchive" DataSetColumn="dateArchive" />
+              <Mapping SourceColumn="archiveCertificateNo" DataSetColumn="archiveCertificateNo" />
+              <Mapping SourceColumn="typerDate" DataSetColumn="typerDate" />
+              <Mapping SourceColumn="originalInchCount" DataSetColumn="originalInchCount" />
+              <Mapping SourceColumn="archiveThickness" DataSetColumn="archiveThickness" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+        </Tables>
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="JGyijiaoTongjiDataSet" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="True" msprop:Generator_DataSetName="JGyijiaoTongjiDataSet" msprop:Generator_UserDSName="JGyijiaoTongjiDataSet">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="vw_transferStatis" msprop:Generator_TableClassName="vw_transferStatisDataTable" msprop:Generator_TableVarName="tablevw_transferStatis" msprop:Generator_TablePropName="vw_transferStatis" msprop:Generator_RowDeletingName="vw_transferStatisRowDeleting" msprop:Generator_RowChangingName="vw_transferStatisRowChanging" msprop:Generator_RowEvHandlerName="vw_transferStatisRowChangeEventHandler" msprop:Generator_RowDeletedName="vw_transferStatisRowDeleted" msprop:Generator_UserTableName="vw_transferStatis" msprop:Generator_RowChangedName="vw_transferStatisRowChanged" msprop:Generator_RowEvArgName="vw_transferStatisRowChangeEvent" msprop:Generator_RowClassName="vw_transferStatisRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="projectNo" msprop:Generator_ColumnVarNameInTable="columnprojectNo" msprop:Generator_ColumnPropNameInRow="projectNo" msprop:Generator_ColumnPropNameInTable="projectNoColumn" msprop:Generator_UserColumnName="projectNo" type="xs:long" minOccurs="0" />
+              <xs:element name="paperProjectSeqNo" msprop:Generator_ColumnVarNameInTable="columnpaperProjectSeqNo" msprop:Generator_ColumnPropNameInRow="paperProjectSeqNo" msprop:Generator_ColumnPropNameInTable="paperProjectSeqNoColumn" msprop:Generator_UserColumnName="paperProjectSeqNo" type="xs:long" />
+              <xs:element name="startArchiveNo" msprop:Generator_ColumnVarNameInTable="columnstartArchiveNo" msprop:Generator_ColumnPropNameInRow="startArchiveNo" msprop:Generator_ColumnPropNameInTable="startArchiveNoColumn" msprop:Generator_UserColumnName="startArchiveNo" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="20" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="endArchiveNo" msprop:Generator_ColumnVarNameInTable="columnendArchiveNo" msprop:Generator_ColumnPropNameInRow="endArchiveNo" msprop:Generator_ColumnPropNameInTable="endArchiveNoColumn" msprop:Generator_UserColumnName="endArchiveNo" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="20" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="developmentOrganization" msprop:Generator_ColumnVarNameInTable="columndevelopmentOrganization" msprop:Generator_ColumnPropNameInRow="developmentOrganization" msprop:Generator_ColumnPropNameInTable="developmentOrganizationColumn" msprop:Generator_UserColumnName="developmentOrganization" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="500" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="projectName" msprop:Generator_ColumnVarNameInTable="columnprojectName" msprop:Generator_ColumnPropNameInRow="projectName" msprop:Generator_ColumnPropNameInTable="projectNameColumn" msprop:Generator_UserColumnName="projectName" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="500" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="recipient" msprop:Generator_ColumnVarNameInTable="columnrecipient" msprop:Generator_ColumnPropNameInRow="recipient" msprop:Generator_ColumnPropNameInTable="recipientColumn" msprop:Generator_UserColumnName="recipient" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="collator" msprop:Generator_ColumnVarNameInTable="columncollator" msprop:Generator_ColumnPropNameInRow="collator" msprop:Generator_ColumnPropNameInTable="collatorColumn" msprop:Generator_UserColumnName="collator" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="10" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="archivesCount" msprop:Generator_ColumnVarNameInTable="columnarchivesCount" msprop:Generator_ColumnPropNameInRow="archivesCount" msprop:Generator_ColumnPropNameInTable="archivesCountColumn" msprop:Generator_UserColumnName="archivesCount" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="dateArchive" msprop:Generator_ColumnVarNameInTable="columndateArchive" msprop:Generator_ColumnPropNameInRow="dateArchive" msprop:Generator_ColumnPropNameInTable="dateArchiveColumn" msprop:Generator_UserColumnName="dateArchive" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="archiveCertificateNo" msprop:Generator_ColumnVarNameInTable="columnarchiveCertificateNo" msprop:Generator_ColumnPropNameInRow="archiveCertificateNo" msprop:Generator_ColumnPropNameInTable="archiveCertificateNoColumn" msprop:Generator_UserColumnName="archiveCertificateNo" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="typerDate" msprop:Generator_ColumnVarNameInTable="columntyperDate" msprop:Generator_ColumnPropNameInRow="typerDate" msprop:Generator_ColumnPropNameInTable="typerDateColumn" msprop:Generator_UserColumnName="typerDate" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="originalInchCount" msprop:Generator_ColumnVarNameInTable="columnoriginalInchCount" msprop:Generator_ColumnPropNameInRow="originalInchCount" msprop:Generator_ColumnPropNameInTable="originalInchCountColumn" msprop:Generator_UserColumnName="originalInchCount" type="xs:long" minOccurs="0" />
+              <xs:element name="archiveThickness" msprop:Generator_ColumnVarNameInTable="columnarchiveThickness" msprop:Generator_ColumnPropNameInRow="archiveThickness" msprop:Generator_ColumnPropNameInTable="archiveThicknessColumn" msprop:Generator_UserColumnName="archiveThickness" type="xs:long" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

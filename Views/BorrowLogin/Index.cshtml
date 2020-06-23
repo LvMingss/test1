@@ -1,0 +1,157 @@
+﻿@model PagedList.IPagedList<urban_archive.Models.BindUserAndArchives>
+@using PagedList.Mvc;
+<link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
+<link href="~/Content/jquery-ui.theme.css" rel="stylesheet" />
+<link href="~/Content/Tabulator/tabulator.css" rel="stylesheet" />
+
+<script src="~/Scripts/jquery-2.1.1.min.js" type="text/javascript"></script>
+<script src="~/Scripts/jquery-ui.min.js"></script>
+<script src="~/Content/Tabulator/tabulator.js"></script>
+
+@*<script type="text/javascript" src="~/Scripts/jquery/jquery-1.8.3.js"></script>
+<script type="text/javascript" src="~/Scripts/jquery/jquery.ui.core.js"></script>
+<script type="text/javascript" src="~/Scripts/jquery/jquery.ui.datepicker.js"></script>
+<script type="text/javascript" src="~/Scripts/jquery/jquery.ui.widget.js"></script>
+<script type="text/javascript" src="~/Scripts/jquery/jquery-ui-timepicker-addon.js"></script>*@
+<script>
+    var chakan = function (value, data, cell, row, options) { //plain text value
+        return "<i class='fa fa-search-plus' style='color:#428bca;vertical-align:middle; padding:2px 0;'></i>"
+    };
+$().ready(function () {
+
+
+    //$("#checkname").ready(function () {
+
+    //    var s = $("#checkname").val();
+
+    //    if (s == 1) {
+    //        $("#message").val("该借阅人没有可以打印的图纸");
+    //    }
+        $(document).ready(function () {
+            var height = $(window).height();
+            var a = height - 110;
+            var hh = a-212;
+            $(".box-h").height(hh)  // 高度加在类名为box的DIV 上
+
+       })
+
+        $("#example-table-2").tabulator({
+            fitColumns:true,
+            height: "100%",
+           
+            sortable: false,
+            pagination:"local",
+            paginationSize:50,
+          
+            columns: [
+            {
+                title: "查阅", field: "g", width: 100 ,formatter: chakan, sorter: "string", align: "center", onClick: function (e, val, cell, row) {
+
+                    var url = '/BorrowLogin/Details/?id=' + row.m+'&id2='+row.n;
+                    window.open(url);
+                }
+            },
+
+            { title: "工程ID/档号", field: "a", width: 100, },
+            { title: "类型", field: "b", width: 100,},
+            { title: "借阅时间", field: "c" },
+
+
+
+
+            ],
+
+
+        });
+
+
+
+        var temp = new Array();
+        var data=@(new HtmlString(@ViewBag.result1));
+        for (var i = 0; i < data.length;i++) {
+            var b = data[i].bindDate
+            
+            if(b!=null){
+                var date =b.split("-"); 
+                var day=date[2].substring(0,2);
+                var result = date[0]+'-'+date[1]+'-'+day;
+            }
+           
+
+            temp.push({ "id": i + 1, "a": data[i].archiveNo, "b": data[i].type, "c": result, "m": data[i].type,"n": data[i].archiveNo});
+        }
+
+
+        $("#example-table-2").tabulator("setData", temp);
+        $(window).resize(function () {
+            $("#example-table-2").tabulator("redraw",true);
+            var height = $(window).height();
+            var a = height - 110;
+            var hh = a-212;
+            $(".box-h").height(hh)  // 高度加在类名为box的DIV 上
+            $("#example-table-2").tabulator("redraw",true);
+        })
+
+
+    });
+    function FeeJiesun()
+    {
+        var ID=document.getElementById('fenID').value;
+        window.open('/BorrowLogin/Index1/?id='+ID);
+    }
+</script>
+
+
+<h2><i class="fa fa-tags"></i>档案查阅</h2>
+
+
+
+<input name="message" id="message" style="background: transparent;border:none;color:Red;width:300px;font-size:20px"> @*隐藏文本域，用于显示提示消息*@
+    <p>
+        <div class="panel panel-default">
+            <table class="table table-bordered dl-horizontal">
+
+                <tr>
+                    <td style="background-color:#f9f9f9;width:10%;">
+                        借阅人分配ID
+                    </td>
+                    <td>
+                        <input type="text" id="fenID" name="fenID" value="@ViewData["fenID"]" class="form-control" />
+                    </td>
+                    <td style="background-color:#f9f9f9;width:10%;">
+                        借阅人姓名
+                    </td>
+                    <td>
+                        <input type="text" id="name" name="name" value="@ViewData["name"]" class="form-control" />
+                    </td>
+                    <td>
+                        <input type="button" value="查阅完毕-费用结算" id="FeeJiesun" name="FeeJiesun" onclick="FeeJiesun()" class="btn btn-default">
+                    </td>
+                </tr>
+            </table>
+        </div>
+            
+
+                
+    </p>
+
+
+<div id="example-table-2" class="box-h" style="overflow:auto"> </div>
+
+<p>
+    
+        <input type="text" value="档案类型注释:" class="control-label col-md-1" style="border:0px;width:150px;" />
+  </p>
+<div>
+    <p>
+        1:竣工档案    2:声像视频档案    3:声像照片档案    4.规划档案
+        5.其他档案（执照、道路、分类）    6.征地档案    7.图纸档案
+    </p>
+</div>
+
+
+
+
+
+
+

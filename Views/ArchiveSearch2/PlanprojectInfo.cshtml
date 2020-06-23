@@ -1,0 +1,178 @@
+﻿
+@model urban_archive.Models.vw_PlanProjectBoxList
+
+<div class="form-horizontal">
+    <div class="panel panel-default">
+       
+        <table class="table table-bordered dl-horizontal">
+            @*<tr>
+                <td class="linear" style="color:white;font-size:18px;" colspan="4">
+                    <i class="fa fa-check-square-o"></i>规划档案工程著录单
+                </td>
+
+            </tr>*@
+            <tr>
+                <td style="background-color:#f9f9f9;width:10%;">
+                    规划档案顺序号
+                </td>
+                <td colspan="3">
+                    @Html.DisplayFor(model => model.seqNo, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.seqNo, "", new { @class = "text-danger" })
+                </td>
+            </tr>
+            <tr>
+                <td style="background-color:#f9f9f9;width:10%;">
+                    档案馆代号
+                </td>
+                <td style="width:40%">
+                    @Html.DisplayFor(model => model.archiveCode, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.archiveCode, "", new { @class = "text-danger" })
+                </td>
+                <td style="background-color:#f9f9f9;width:10%;">
+                    盒号
+                </td>
+                <td style="width:40%">
+                    @Html.DisplayFor(model => model.boxNo, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.boxNo, "", new { @class = "text-danger" })
+                </td>
+            </tr>
+            
+            <tr>
+                <td style="background-color:#f9f9f9;width:10%;">
+                    档号
+                </td>
+                <td>
+                    @Html.DisplayFor(model => model.archiveNo, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.archiveNo, "", new { @class = "text-danger" })
+                </td>
+                <td style="background-color:#f9f9f9;width:10%;">
+                    总登记号
+                </td>
+                <td>
+                    @Html.DisplayFor(model => model.regisNo, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.regisNo, "", new { @class = "text-danger" })
+                </td>
+            </tr>
+            
+            <tr>
+                <td style="background-color:#f9f9f9;width:10%;">
+                    案卷题名
+                </td>
+                
+                <td colspan="3">
+                    @Html.TextArea("archiveTitle", null, 3, 100,  new { @class = "form-control", @style = "width:100%;max-width:100%;" } )
+                    @Html.ValidationMessageFor(model => model.archiveTitle, "", new { @class = "text-danger" })
+                </td>
+             
+            </tr>
+
+            <tr>
+                <td style="background-color:#f9f9f9;width:10%;">
+                    编制单位
+                </td>
+                <td colspan="3">
+                    @Html.DisplayFor(model => model.bianzhiUnit, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.bianzhiUnit, "", new { @class = "text-danger" })
+                </td>
+            </tr>
+
+
+            <tr>
+                <td style="background-color:#f9f9f9;width:10%;">
+                    编制日期
+                </td>
+                <td>
+                    @Html.DisplayFor(model => model.bianzhiDate, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.bianzhiDate, "", new { @class = "text-danger" })
+                </td>
+                <td style="background-color:#f9f9f9;width:10%;">
+                    档案密级
+                </td>
+                <td>
+                    @Html.DropDownList("securityID", null, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.securityID, "", new { @class = "text-danger" })
+                </td>
+            </tr>
+            
+            <tr>
+                <td style="background-color:#f9f9f9;width:10%;">
+                    保管期限
+                </td>
+                <td>
+                    @Html.DropDownList("retentionPeriodNo", null, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.retentionPeriodID, "", new { @class = "text-danger" })
+                </td>
+                <td style="background-color:#f9f9f9;width:10%;">
+                    是否异地存放
+                </td>
+                <td>
+                    @Html.DisplayFor(model => model.isYD, new { htmlAttributes = new { @class = "form-control" } }) 
+                    @Html.ValidationMessageFor(model => model.isYD, "", new { @class = "text-danger" })
+                </td>
+            </tr>
+            
+            <tr>
+               
+                <td colspan="2">
+                    共 @Html.DisplayFor(model => model.archiveBoxCnt, new { htmlAttributes = new { @class = "form-control",@style="display:inline" } }) 卷,
+                    @Html.ValidationMessageFor(model => model.archiveBoxCnt, "", new { @class = "text-danger" })
+                
+                    第 @Html.DisplayFor(model => model.archiveBoxNo, new { htmlAttributes = new { @class = "form-control", @style = "display:inline" } }) 卷,
+                    @Html.ValidationMessageFor(model => model.archiveBoxNo, "", new { @class = "text-danger" })
+                
+                    本卷共 @Html.DisplayFor(model => model.Expr4, new { htmlAttributes = new { @class = "form-control", @style = "display:inline" } }) 页
+                    @Html.ValidationMessageFor(model => model.Expr4, "", new { @class = "text-danger" })
+
+                    
+
+
+                </td>
+                <td style="background-color:#f9f9f9;width:10%;">
+                    案卷厚度
+                </td>
+                <td>
+                    @Html.DisplayFor(model => model.ArchiveThick, new { htmlAttributes = new { @class = "form-control", @style = "display:inline" } }) 厘米
+                    @Html.ValidationMessageFor(model => model.ArchiveThick, "", new { @class = "text-danger" })
+                </td>
+                
+            </tr>
+           
+               
+         
+            <tr>
+                <td colspan="2">
+                    共 @Html.DisplayFor(model => model.projectCnt, new { htmlAttributes = new { @class = "form-control", @style = "display:inline" } }) 工程
+                    @Html.ValidationMessageFor(model => model.projectCnt, "", new { @class = "text-danger" })
+                </td>
+                <td style="background-color:#f9f9f9;width:10%;">
+                    排架号
+                </td>
+                <td >
+                    @Html.DisplayFor(model => model.paijiaNo, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.paijiaNo, "", new { @class = "text-danger" })
+                </td>
+            </tr>
+            <tr>
+                <td style="background-color:#f9f9f9;width:10%;">
+                    接收日期
+                </td>
+                <td >
+                    @Html.DisplayFor(model => model.receiveTime, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.receiveTime, "", new { @class = "text-danger" })
+                </td>
+                <td style="background-color:#f9f9f9;width:10%;">
+                    录入日期
+                </td>
+                <td>
+                    @Html.DisplayFor(model => model.luruTime, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.luruTime, "", new { @class = "text-danger" })
+                </td>
+            </tr>
+           
+           
+        </table>
+    </div>
+
+
+</div>
+

@@ -1,0 +1,318 @@
+﻿@{
+    Layout = null;
+}
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>@ViewBag.Title - 青岛市多维城市建设档案数字化管理系统</title>
+    <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link href="~/Content/font-awesome-4.7.0/css/font-awesome.css" rel="stylesheet" />
+    <link href="~/Content/new.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/stylesheets/theme.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/stylesheets/premium.css" rel="stylesheet" />
+
+    <style type="text/css">
+        #line-chart {
+            height: 300px;
+            width: 800px;
+            margin: 0px auto;
+            margin-top: 1em;
+        }
+
+        .navbar-default .navbar-brand, .navbar-default .navbar-brand:hover {
+            color: #fff;
+        }
+    </style>
+    <style>
+        .loader {
+            box-sizing: border-box;
+            height: 100%;
+            width: 100%;
+            padding-top: 100px;
+            background-color: #ddd;
+            color: #fff;
+            font-size: 30px;
+            font-weight: bold;
+            text-align: center;
+        }
+
+            .loader i {
+                margin-bottom: 20px;
+                font-size: 60px;
+            }
+    </style>
+    <link href="~/Content/AdminLTE-2.3.7/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+
+
+    <link href="~/Content/AdminLTE-2.3.7/dist/css/AdminLTE.min.css" rel="stylesheet" />
+
+    <link href="~/Content/AdminLTE-2.3.7/dist/css/skins/_all-skins.min.css" rel="stylesheet" />
+
+    @*<script src="~/Content/AdminLTE-2.3.7/plugins/jQuery/jquery-2.2.3.min.js"></script>
+    <!-- Bootstrap 3.3.6 -->
+    <script src="~/Content/AdminLTE-2.3.7/bootstrap/js/bootstrap.min.js"></script>
+    <!-- SlimScroll -->
+    <script src="~/Content/AdminLTE-2.3.7/plugins/slimScroll/jquery.slimscroll.min.js"></script>
+    <!-- FastClick -->
+    <script src="~/Content/AdminLTE-2.3.7/plugins/fastclick/fastclick.js"></script>
+    <!-- AdminLTE App -->
+    <script src="~/Content/AdminLTE-2.3.7/dist/js/app.min.js"></script>
+    <!-- AdminLTE for demo purposes -->
+    <script src="~/Content/AdminLTE-2.3.7/dist/js/demo.js"></script>*@
+    
+    <link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/jquery-ui.theme.css" rel="stylesheet" />
+    <link href="~/Content/Tabulator/version3.0/tabulator.css" rel="stylesheet" />
+
+
+    <script src="~/Scripts/jquery-ui.min.js"></script>
+    <script src="~/Content/Tabulator/version3.0/tabulator.js"></script>
+    <script type="text/javascript">
+        var details = function (value, data, cell, row, options) { //plain text value
+            return "<i class='fa fa-search-plus' style='color:#428bca;;vertical-align:middle; padding:2px 0;'></i> "
+        };
+       
+        $().ready(function () {//在页面加载完成之后用，为了保证js能完整的执行。
+            $(document).ready(function () {
+                document.getElementById('PlanArchiveIinfoList').style.color="red"
+
+                var a = $(window).height();
+                var hh = a-160;
+                $(".box-h").height(hh)  // 高度加在类名为box的DIV 上
+
+            })
+            $("#example-table-2").tabulator({
+                height: "100%",
+                virtualDom:false,
+                selectable:true,               
+                fitColumns:true,
+                pagination:"local",
+                paginationSize:50,
+                columns: [
+{
+    title: "查看", field: "caozuo1",width: 50 ,formatter: details, headerSort: false, align: "center", cellClick: function (e,cell) {
+       
+
+        $("#checkname1").val(cell.getValue());
+
+    }
+},
+
+
+
+                { title: "案卷顺序号", field: "1", headerSort: false,width: 200 },
+                { title: "案卷题名", field: "2",headerSort: false, width: 200 },
+                { title: "盒号", field: "3",headerSort: false, width: 300 },
+                { title: "档号", field: "a",headerSort: false, width: 200 },
+                { title: "总登记号", field: "c", headerSort: false,width: 200 },
+                { title: "年度", field: "4",headerSort: false, width: 100 },
+                { title: "排架号", field: "5",headerSort: false, width: 200 },
+                { title: "ID", field: "b",sortable: false,width: 100 },
+                { title: "索引", field: "7", headerSort: false,width: 200 },
+               
+               
+
+
+
+                ],
+            });
+
+            var temp = new Array();
+            var data=@(new HtmlString(@ViewBag.result1));
+            var result="";
+
+
+
+            for (var i = 0; i < data.length;i++) {
+               
+                temp.push({ "id": i + 1, "caozuo1": data[i].ID, "1": data[i].seqNo, "2": data[i].archiveTitle, "3": data[i].boxNo,"a": data[i].archiveNo, "c": data[i].regisNo,
+                    "4": data[i].yearNo, "5": data[i].paijiaNo,"b": data[i].ID,"7":i+1
+                });
+            }
+
+            $("#example-table-2").tabulator("setData", temp);
+            $(window).resize(function () {
+                $(document).ready(function () {
+                    var a = $(window).height();
+                    var hh = a-160;
+                    $(".box-h").height(hh)  // 高度加在类名为box的DIV 上
+                    $("#example-table-2").tabulator("redraw",true);
+
+                })
+            });
+
+        });
+
+
+        function createIframe3(url) {
+
+            document.getElementById("checkname1").value=document.getElementById("123").contentWindow.document.getElementById("checkname1").value;
+            
+            var ch=document.getElementById("checkname1").value;
+            document.getElementById("example-table-2").style.display = "none";
+            document.getElementById('PlanArchiveIinfoList').style.color="black";
+            document.getElementById('Allarchivejilu').style.color="black";
+            document.getElementById('Projectzhulu').style.color="red";
+            document.getElementById("CurUser").style.display="none";
+            document.getElementById("NoCurUser").style.display="none"
+            document.getElementById("div-that-holds-the-iframe").style.display = "block";
+            document.getElementById('Archivezhulu').style.color="black";
+            
+
+            var i=document.getElementById("123");
+            i.contentWindow.location.href=url+ch;
+            i.scrolling ="auto";
+            i.frameborder ="0";
+            i.width ="100%";
+
+
+        };
+      
+        function createIframe2() {
+            if(document.getElementById("example-table-2").style.display =="none")
+            {
+                document.getElementById("example-table-2").style.display = "block";
+            }
+            if(document.getElementById("CurUser").style.display=="block"&&document.getElementById("NoCurUser").style.display =="block")
+            {
+                document.getElementById("CurUser").style.display="none";
+                document.getElementById("NoCurUser").style.display="none";
+            }
+            if( document.getElementById("div-that-holds-the-iframe").style.display=="block")
+            {
+                document.getElementById("div-that-holds-the-iframe").style.display = "none";
+            }
+
+            var selectedData = $("#example-table-2").tabulator("getSelectedData");
+            document.getElementById("checkname1").value= selectedData[0].b;
+            document.getElementById('PlanArchiveIinfoList').style.color="red";
+            document.getElementById('Allarchivejilu').style.color="black";
+            document.getElementById('Projectzhulu').style.color="black";
+      
+            document.getElementById("div-that-holds-the-iframe").style.display = "block";
+            document.getElementById('Archivezhulu').style.color="red";
+
+        };
+        function createIframe(url) {
+
+
+         
+            var ch=document.getElementById("checkname1").value;
+            document.getElementById("example-table-2").style.display = "none";
+            document.getElementById('PlanArchiveIinfoList').style.color="black";
+            document.getElementById('Allarchivejilu').style.color="black";
+            document.getElementById('Projectzhulu').style.color="black";
+            document.getElementById("CurUser").style.display="none";
+            document.getElementById("NoCurUser").style.display="none"
+            document.getElementById("div-that-holds-the-iframe").style.display = "block";
+            document.getElementById('Archivezhulu').style.color="red";
+
+            var i=document.getElementById("123");
+            i.contentWindow.location.href=url+'?id='+ch;
+            i.scrolling ="auto";
+            i.frameborder ="0";
+            i.width ="100%";
+
+
+
+
+        };
+
+
+        function createIframe4(url) {
+
+            var ch=document.getElementById("checkname1").value;
+         
+            var ch=document.getElementById("checkname1").value;
+            document.getElementById("example-table-2").style.display = "none";
+            document.getElementById('PlanArchiveIinfoList').style.color="black";
+            document.getElementById('Allarchivejilu').style.color="red";
+            document.getElementById('Projectzhulu').style.color="black";
+            document.getElementById("CurUser").style.display="block";
+            document.getElementById("NoCurUser").style.display="block"
+            document.getElementById("div-that-holds-the-iframe").style.display = "block";
+            document.getElementById('Archivezhulu').style.color="black";
+
+            var i=document.getElementById("123");
+            i.contentWindow.location.href=url+'?id='+ch;
+            i.scrolling ="auto";
+            i.frameborder ="0";
+            i.width ="100%";
+
+
+
+        };
+        function createIframe7() {
+
+
+
+            document.getElementById("123").contentWindow.createIframe6();//调用子窗体的函数
+            document.getElementById("checkname1").value=document.getElementById("123").contentWindow.document.getElementById("checkname1").value;
+            var name=document.getElementById("checkname1").value;
+            window.open("/ArchiveSearch/CurUserAdd/?id3="+name+"&type="+"4");
+        };
+        function createIframe8()
+        {
+            document.getElementById("123").contentWindow.createIframe7();
+            document.getElementById("checkname1").value=document.getElementById("123").contentWindow.document.getElementById("checkname1").value;
+            var name=document.getElementById("checkname1").value;
+            window.open("/ArchiveSearch/NoCurUser/?id3="+name+"&type="+"4");
+        };
+       
+
+
+    </script>
+</head>
+<body style="background:#ecf0f5;padding:15px;padding-bottom:0px;">
+
+
+    <div style="overflow-y:auto;overflow-x:hidden; height:100%;">
+
+
+        @using (Html.BeginForm())
+        {
+
+
+            <div class="nav-tabs-custom">
+                <ul class="nav nav-tabs" style="cursor:pointer;">
+                    <li><a onclick="return createIframe('/ArchiveSearch2/PlanprojectInfo2/')" id="Archivezhulu" data-toggle="tab">案卷著录单</a></li>
+                    <li><a onclick="return createIframe2()" id="PlanArchiveIinfoList" data-toggle="tab">案卷信息列表</a></li>
+                    <li><a onclick="return createIframe4('/ArchiveSearch2/PlanArchiveInProject2/')" id="Allarchivejilu" data-toggle="tab">案卷内工程</a></li>
+                    <li><a onclick="return createIframe3('/ArchiveSearch2/PlanArchivesInfoes/')" id="Projectzhulu" data-toggle="tab">案卷内工程著录单</a></li>
+                  
+                    <li><a onclick="return createIframe7()" style="display:none;" id="CurUser" data-toggle="tab">当前用户添加</a></li>
+                    <li><a onclick="return createIframe8()" style="display:none;" id="NoCurUser" data-toggle="tab">非当前用户添加</a></li>
+
+                </ul>
+                <div class="tab-content">
+
+
+
+
+                    <input name="checkname1" id="checkname1" hidden="hidden">
+                    <input name="url" id="url" hidden="hidden" value="@Request.Url.ToString()">
+                    <div id="example-table-2" class="box-h">
+                        <div class="loader"><i class="fa fa-spinner fa-pulse fa-fw"></i><div>数据加载中...</div></div> 
+                    </div>
+                    <div id="div-that-holds-the-iframe" style="display:none;border:0px">
+                        <iframe id="123" name="123" class="box-h" style="border:2px solid #ddd"></iframe>
+                    </div>
+                    <input value="@ViewData["checkname"]" name="checkname" id="checkname" hidden="hidden"> @*从后台传来数据，进行ajax判断*@
+
+                </div>
+            </div>
+        }
+
+
+    </div>
+
+
+
+</body>
+</html>
+
+

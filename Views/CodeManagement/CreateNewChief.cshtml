@@ -1,0 +1,142 @@
+﻿
+@model  urban_archive.Models.CabinetInfo
+
+
+@{
+    ViewBag.Title = "Create";
+}
+<h2 style="margin-top:0;"><i class="fa fa-tags kongge"></i>添加新柜子</h2>
+
+
+@using (Html.BeginForm("CreateNewChief", "CodeManagement", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+
+   <div class="form-horizontal">
+        @*<h4></h4>*@
+        <hr />
+       <div class="panel panel-default">
+           <table class="table table-bordered dl-horizontal" style="background-color:#f9f9f9;">
+               <tr>
+                   <td style="background-color:#f9f9f9;width:10%;">
+                       柜号
+                   </td>
+                   <td>
+                       @Html.EditorFor(model => model.cabinetNo, new { htmlAttributes = new { @class = "form-control" } })
+                       @Html.ValidationMessageFor(model => model.cabinetNo, "", new { @class = "text-danger" })
+                   </td>
+                   <td style="background-color:#f9f9f9;width:10%;">
+                       宽度
+                   </td>
+                   <td>
+                       @Html.EditorFor(model => model.width, new { htmlAttributes = new { @class = "form-control" } })
+                       @Html.ValidationMessageFor(model => model.width, "", new { @class = "text-danger" })
+                   </td>
+               </tr>
+               <tr>
+                   <td style="background-color:#f9f9f9;width:10%;">
+                       起始层次
+                   </td>
+                   <td>
+                       @Html.EditorFor(model => model.cengRangeA, new { htmlAttributes = new { @class = "form-control" } })
+                       @Html.ValidationMessageFor(model => model.cengRangeA, "", new { @class = "text-danger" })
+                   </td>
+                   <td style="background-color:#f9f9f9;width:10%;">
+                       终止层次
+                   </td>
+                   <td>
+                       @Html.EditorFor(model => model.cengRangeB, new { htmlAttributes = new { @class = "form-control" } })
+                       @Html.ValidationMessageFor(model => model.cengRangeB, "", new { @class = "text-danger" })
+                   </td>
+               </tr>
+               <tr>
+                   <td style="background-color:#f9f9f9;width:10%;">
+                       剩余宽度
+                   </td>
+                   <td>
+                       @Html.EditorFor(model => model.remainWidth, new { htmlAttributes = new { @class = "form-control" } })
+                       @Html.ValidationMessageFor(model => model.remainWidth, "", new { @class = "text-danger" })
+                   </td>
+                   <td style="background-color:#f9f9f9;width:10%;">
+                       终止排架号
+                   </td>
+                   <td>
+                       @Html.EditorFor(model => model.startPaijiaNo, new { htmlAttributes = new { @class = "form-control" } })
+                       @Html.ValidationMessageFor(model => model.startPaijiaNo, "", new { @class = "text-danger" })
+                   </td>
+               </tr>
+           </table>
+        </div>
+
+           @*<div class="form-group">
+               @Html.LabelFor(model => model.cabinetNo, "柜号", htmlAttributes: new { @class = "control-label col-md-2" })
+               <div class="col-md-10">
+                   @Html.EditorFor(model => model.cabinetNo, new { htmlAttributes = new { @class = "form-control" } })
+                   @Html.ValidationMessageFor(model => model.cabinetNo, "", new { @class = "text-danger" })
+               </div>
+           </div>
+
+           <div class="form-group">
+               @Html.LabelFor(model => model.width, "宽度", htmlAttributes: new { @class = "control-label col-md-2" })
+               <div class="col-md-10">
+                   @Html.EditorFor(model => model.width, new { htmlAttributes = new { @class = "form-control" } })
+                   @Html.ValidationMessageFor(model => model.width, "", new { @class = "text-danger" })
+               </div>
+           </div>
+           <div class="form-group">
+               @Html.LabelFor(model => model.cengRangeA, "起始层次", htmlAttributes: new { @class = "control-label col-md-2" })
+               <div class="col-md-10">
+                   @Html.EditorFor(model => model.cengRangeA, new { htmlAttributes = new { @class = "form-control" } })
+                   @Html.ValidationMessageFor(model => model.cengRangeA, "", new { @class = "text-danger" })
+               </div>
+           </div>
+
+           <div class="form-group">
+               @Html.LabelFor(model => model.cengRangeB, "终止层次", htmlAttributes: new { @class = "control-label col-md-2" })
+               <div class="col-md-10">
+                   @Html.EditorFor(model => model.cengRangeB, new { htmlAttributes = new { @class = "form-control" } })
+                   @Html.ValidationMessageFor(model => model.cengRangeB, "", new { @class = "text-danger" })
+               </div>
+           </div>
+           <div class="form-group">
+               @Html.LabelFor(model => model.remainWidth, "剩余宽度", htmlAttributes: new { @class = "control-label col-md-2" })
+               <div class="col-md-10">
+                   @Html.EditorFor(model => model.remainWidth, new { htmlAttributes = new { @class = "form-control" } })
+                   @Html.ValidationMessageFor(model => model.remainWidth, "", new { @class = "text-danger" })
+               </div>
+           </div>
+           <div class="form-group">
+               @Html.LabelFor(model => model.startPaijiaNo, "终止排架号", htmlAttributes: new { @class = "control-label col-md-2" })
+               <div class="col-md-10">
+                   @Html.EditorFor(model => model.startPaijiaNo, new { htmlAttributes = new { @class = "form-control" } })
+                   @Html.ValidationMessageFor(model => model.startPaijiaNo, "", new { @class = "text-danger" })
+               </div>
+           </div>*@
+
+       <div style="text-align:center;">
+           <p>
+               <input type="submit" value="添加" name="action" class="btn btn-default"> |
+
+               <input type="submit" value="返回" name="action" class="btn btn-default">
+           <p>
+               <div style="height:5px;">
+               </div>
+       </div> 
+           @*<input type="submit" value="添加" name="action" class="btn btn-default">
+
+           <input type="submit" value="返回" name="action" class="btn btn-default">*@
+
+
+
+
+
+
+
+
+
+       </div>
+}
+@*<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>*@
+

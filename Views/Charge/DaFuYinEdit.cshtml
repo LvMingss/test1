@@ -1,0 +1,321 @@
+﻿@model urban_archive.Models.FuyinFeeDetail
+
+@{
+    ViewBag.Title = "打印收费——清单 ";
+}
+
+<h2><i class="fa fa-tags kongge"></i>打印收费——清单 </h2>
+<link type="text/css" rel="stylesheet" href="~/Scripts/jquery/jquery-ui.css">
+<script type="text/javascript" src="~/Scripts/jquery/jquery-1.8.3.js"></script>
+<script type="text/javascript" src="~/Scripts/jquery/jquery.ui.core.js"></script>
+<script type="text/javascript" src="~/Scripts/jquery/jquery.ui.datepicker.js"></script>
+<script type="text/javascript" src="~/Scripts/jquery/jquery.ui.widget.js"></script>
+<script type="text/javascript" src="~/Scripts/jquery/jquery-ui-timepicker-addon.js"></script>
+<script>
+            $(function () {
+                $("#dateCharged").datepicker({
+                    changeMonth: true,
+                    changeYear: true
+                });
+            });
+
+            function jiesuan() {
+                var a4p = document.getElementById("A4DrawingCnt").value;
+                var a4pfei = document.getElementById("A4DrawingUnitPrice").value;
+                document.getElementById("A4DrawingFee").value = a4p * a4pfei;
+                var a4t = document.getElementById("A4TextCnt").value;
+                var a4tfei = document.getElementById("A4TextUnitPrice").value;
+                document.getElementById("A4TextFee").value = (a4tfei * a4t).toFixed(1);
+                document.getElementById("A4PageCnt").value = a4p * 1 + a4t * 1;
+                var a3p = document.getElementById("A3DrawingCnt").value;
+                var a3pfei = document.getElementById("A3DrawingUnitPrice").value;
+                document.getElementById("A3DrawingFee").value = a3p * a3pfei;
+                var a3t = document.getElementById("A3TextCnt").value;
+                var a3tfei = document.getElementById("A3TextUnitPrice").value;
+                document.getElementById("A3TextFee").value = (a3t * a3tfei).toFixed(1);
+                document.getElementById("A3PageCnt").value = a3p * 1 + a3t * 1;
+                var a2p = document.getElementById("A2DrawingCnt").value;
+                var a2pfei = document.getElementById("A2DrawingUnitPrice").value;
+                document.getElementById("A2DrawingFee").value = a2p * a2pfei;
+                document.getElementById("A2PageCnt").value = a2p;
+                var a1p = document.getElementById("A1DrawingCnt").value;
+                var a1pfei = document.getElementById("A1DrawingUnitPrice").value;
+                document.getElementById("A1DrawingFee").value = a1p * a1pfei;
+                document.getElementById("A1PageCnt").value = a1p;
+                var a0p = document.getElementById("A0DrawingCnt").value;
+                var a0pfei = document.getElementById("A0DrawingUnitPrice").value;
+                document.getElementById("A0DrawingFee").value = a0p * a0pfei;
+                document.getElementById("A0PageCnt").value = a0p;
+                var a1l = document.getElementById("A1AddDrawingCnt").value;
+                var a1lfei = document.getElementById("A1AddDrawingUnitPrice").value;
+                document.getElementById("A1AddDrawingFee").value = a1l * a1lfei;
+                document.getElementById("A1AddPageCnt").value = a1l;
+                var a0l = document.getElementById("A0AddDrawingCnt").value;
+                var a0lfei = document.getElementById("A0AddDrawingUnitPrice").value;
+                document.getElementById("A0AddDrawingFee").value = a0l * a0lfei;
+                document.getElementById("A0AddPageCnt").value = a0l;
+                document.getElementById("totalFee").value = (a0l * a0lfei + a1l * a1lfei + a0p * a0pfei + a1p * a1pfei + a2p * a2pfei + a3t * a3tfei + a3p * a3pfei + a4tfei * a4t + a4p * a4pfei).toFixed(1);
+                document.getElementById("theoryFee").value = (a0l * a0lfei + a1l * a1lfei + a0p * a0pfei + a1p * a1pfei + a2p * a2pfei + a3t * a3tfei + a3p * a3pfei + a4tfei * a4t + a4p * a4pfei).toFixed(1);
+            }
+            function UpOrClose() {
+                if (document.getElementById("tongji").style.display != "block") {
+                    document.getElementById("tongji").style.display = "block";
+                }
+                else {
+                    document.getElementById("tongji").style.display = "none";
+                }
+            }
+</script>
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @*@Html.EditorFor(model => model.ID)*@
+        <input type="text" id="ID" name="ID" value="@ViewBag.id" style="display:none">
+        <div class="panel panel-default">
+            <table class="table table-bordered dl-horizontal" style="background-color:#f9f9f9;">
+                <tr>
+                    <td class="linear" style="color:white;font-size:18px;" colspan="4">
+                        <i class="fa fa-check-square-o"></i>个人信息
+                    </td>
+
+                </tr>
+                @*<tr>
+                        <td style="background-color:#f9f9f9;font-weight:bold;font-size: 18px;" colspan="2">
+                            个人信息<i class="fa fa-caret-down"></i>
+                        </td>
+                    </tr>*@
+                <tr>
+                    <td style="background-color:#f9f9f9;font-weight:bold;min-width:100px;width:6%;">
+                        编号
+                    </td>
+                    <td style="width:25%;">
+                        <input type="text" id="feeListNo" name="feeListNo" value="@ViewBag.no" class="form-control">
+                        @*@Html.EditorFor(model => model.feeListNo, new { htmlAttributes = new { @class = "form-control" } })*@
+                        @Html.ValidationMessageFor(model => model.feeListNo, "", new { @class = "text-danger" })
+                    </td>
+                
+                    <td style="background-color:#f9f9f9;font-weight:bold;min-width:100px;width:6%;">
+                        单位/姓名
+                    </td>
+                    <td sstyle="width:63%;">
+                        <input type="text" id="name" name="name" value="@ViewBag.name" class="form-control" style="max-width:90%;">
+                        @*@Html.EditorFor(model => model.feeListNo, new { htmlAttributes = new { @class = "form-control" } })*@
+                        @*@Html.ValidationMessageFor(model => model.feeListNo, "", new { @class = "text-danger" })*@
+                    </td>
+                </tr>
+                <tr>
+                    <td style="text-align:center" colspan="4">
+                        <input class="btn btn-default" type="button" name="action" value="纸张费用统计" onclick="UpOrClose()" />
+                    </td>
+                </tr>
+            </table>
+        </div>
+
+        @*<div class="form-group">
+                @Html.LabelFor(model => model.feeListNo, "编号", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    <input type="text" id="feeListNo" name="feeListNo" value="@ViewBag.no" class="form-control">
+                    @Html.ValidationMessageFor(model => model.feeListNo, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <label class="control-label col-md-2">单位/姓名：</label>
+            <input class="form-control" type="text" id="name" name="name" value="@ViewBag.unitname">
+            <br>
+            <input class="col-md-offset-2 col-md-10 btn btn-default" type="button" name="action" value="纸张费用统计" onclick="UpOrClose()" />
+            <br>*@
+        <div id="tongji" class="panel panel-default" style="display:none;text-align:center;font-weight:bold;">
+            <table class="table table-bordered dl-horizontal" style="background-color:#f9f9f9;">
+                <tr>
+                    <td rowspan="2" style="width:31%;">
+                        A4：
+                        @Html.EditorFor(model => model.A4PageCnt, new { htmlAttributes = new { @class = "form-control", @style = "width:80px;display:inline;" } })
+                        张
+                    </td>
+                    <td style="min-width:150px;width:6%;">
+                        图纸：
+                    </td>
+                    <td style="width:31%;">
+                        @Html.EditorFor(model => model.A4DrawingCnt, new { htmlAttributes = new { @onblur = "jiesuan()", @class = "form-control", @style = "width:80px;display:inline;" } })张*<input type="text" class="form-control" id="A4DrawingUnitPrice" name="A4DrawingUnitPrice" value="4" style="width: 50px;display:inline;">元/张
+                    </td>
+                    <td style="width:32%;">
+                        =@Html.EditorFor(model => model.A4DrawingFee, new { htmlAttributes = new { @class = "form-control", @style = "width:80px;display:inline;" } }) 元
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        文字：
+                    </td>
+                    <td>
+                        @Html.EditorFor(model => model.A4TextCnt, new { htmlAttributes = new { @onblur = "jiesuan()", @class = "form-control", @style = "width:80px;display:inline;" } })张*<input type="text" id="A4TextUnitPrice" name="A4TextUnitPrice" class="form-control" value="0.4" style="width: 50px;display:inline;">元/张
+                    </td>
+                    <td >
+                        =@Html.EditorFor(model => model.A4TextFee, new { htmlAttributes = new { @class = "form-control", @style = "width:80px;display:inline;" } }) 元
+                    </td>
+                </tr>
+                <tr>
+                    <td rowspan="2">
+                        A3：
+                        @Html.EditorFor(model => model.A3PageCnt, new { htmlAttributes = new { @class = "form-control", @style = "width:80px;display:inline;" } })张
+                    </td>
+                    <td>
+                        图纸：
+                    </td>
+                    <td>
+                        @Html.EditorFor(model => model.A3DrawingCnt, new { htmlAttributes = new { @onblur = "jiesuan()", @class = "form-control", @style = "width:80px;display:inline;" } })张*<input type="text" id="A3DrawingUnitPrice" name="A3DrawingUnitPrice" class="form-control" value="8" style="width: 50px;display:inline;">元/张
+                    </td>
+                    <td>
+                        =@Html.EditorFor(model => model.A3DrawingFee, new { htmlAttributes = new { @class = "form-control", @style = "width:80px;display:inline;" } })元
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        文字：
+                    </td>
+                    <td >
+                        @Html.EditorFor(model => model.A3TextCnt, new { htmlAttributes = new { @onblur = "jiesuan()", @class = "form-control", @style = "width:80px;display:inline;" } })张 *<input type="text" id="A3TextUnitPrice" name="A3TextUnitPrice" class="form-control" value="0.8" style="width: 50px;display:inline;">元/张
+                    </td>
+                    <td >
+                        =@Html.EditorFor(model => model.A3TextFee, new { htmlAttributes = new { @class = "form-control", @style = "width:80px;display:inline;" } })元
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        A2：
+                        @Html.EditorFor(model => model.A2PageCnt, new { htmlAttributes = new { @class = "form-control", @style = "width:80px;display:inline;" } }) 张
+                    </td>
+                    <td>
+                        图纸：
+                    </td>
+                    <td>
+                        @Html.EditorFor(model => model.A2DrawingCnt, new { htmlAttributes = new { @onblur = "jiesuan()", @class = "form-control", @style = "width:80px;display:inline;" } })张 *<input type="text" id="A2DrawingUnitPrice" name="A2DrawingUnitPrice" class="form-control" value="12" style="width: 50px;display:inline;">元/张
+                    </td>
+                    <td>
+                        =@Html.EditorFor(model => model.A2DrawingFee, new { htmlAttributes = new { @class = "form-control", @style = "width:80px;display:inline;" } })元
+                    </td>
+                </tr>
+                <tr>
+                    <td >
+                        A1：
+                        @Html.EditorFor(model => model.A1PageCnt, new { htmlAttributes = new { @class = "form-control", @style = "width:80px;display:inline;" } })张
+                    </td>
+                    <td>
+                        图纸：
+                    </td>
+                    <td >
+                        @Html.EditorFor(model => model.A1DrawingCnt, new { htmlAttributes = new { @onblur = "jiesuan()", @class = "form-control", @style = "width:80px;display:inline;" } })张 *<input type="text" id="A1DrawingUnitPrice" name="A1DrawingUnitPrice" value="15" class="form-control" style="width: 50px;display:inline;">元/张
+                    </td>
+                    <td >
+                        =@Html.EditorFor(model => model.A1DrawingFee, new { htmlAttributes = new { @class = "form-control", @style = "width:80px;display:inline;" } })元
+                    </td>
+                </tr>
+
+                <tr>
+                    <td >
+                        A0：
+                        @Html.EditorFor(model => model.A0PageCnt, new { htmlAttributes = new { @class = "form-control", @style = "width:80px;display:inline;" } })张
+                    </td>
+                    <td>
+                        图纸：
+                    </td>
+                    <td >
+                        @Html.EditorFor(model => model.A0DrawingCnt, new { htmlAttributes = new { @onblur = "jiesuan()", @class = "form-control", @style = "width:80px;display:inline;" } })张 *<input type="text" id="A0DrawingUnitPrice" name="A0DrawingUnitPrice" value="20" class="form-control" style="width: 50px;display:inline;">元/张
+                    </td>
+                    <td >
+                        =@Html.EditorFor(model => model.A0DrawingFee, new { htmlAttributes = new { @class = "form-control", @style = "width:80px;display:inline;" } }) 元
+                    </td>
+                </tr>
+                <tr>
+                    <td >
+                        A1加长：
+                        @Html.EditorFor(model => model.A1AddPageCnt, new { htmlAttributes = new { @class = "form-control", @style = "width:80px;display:inline;" } })张
+                    </td>
+                    <td style="height: 56px; ">
+                        图纸：
+                    </td>
+                    <td >
+                        @Html.EditorFor(model => model.A1AddDrawingCnt, new { htmlAttributes = new { @onblur = "jiesuan()", @class = "form-control", @style = "width:80px;display:inline;" } })张 *<input type="text" id="A1AddDrawingUnitPrice" name="A1AddDrawingUnitPrice" class="form-control" value="20" style="width: 50px;display:inline;">元/张
+                    </td>
+                    <td >
+                        =@Html.EditorFor(model => model.A1AddDrawingFee, new { htmlAttributes = new { @class = "form-control", @style = "width:80px;display:inline;" } })元
+                    </td>
+                </tr>
+
+                <tr>
+                    <td >
+                        A0加长：
+                        @Html.EditorFor(model => model.A0AddPageCnt, new { htmlAttributes = new { @class = "form-control", @style = "width:80px;display:inline;" } })张
+                    </td>
+                    <td >
+                        图纸：
+                    </td>
+                    <td >
+                        @Html.EditorFor(model => model.A0AddDrawingCnt, new { htmlAttributes = new { @onblur = "jiesuan()", @class = "form-control", @style = "width:80px;display:inline;" } })张 *<input type="text" id="A0AddDrawingUnitPrice" name="A0AddDrawingUnitPrice" class="form-control" value="30" style="width: 50px;display:inline;">元/张
+                    </td>
+                    <td >
+                        =@Html.EditorFor(model => model.A0AddDrawingFee, new { htmlAttributes = new { @class = "form-control", @style = "width:80px;display:inline;" } })元
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        实际收费:
+                        @Html.EditorFor(model => model.theoryFee, new { htmlAttributes = new { @class = "form-control", @style = "display:inline;" } })
+                        @Html.ValidationMessageFor(model => model.theoryFee, "", new { @class = "text-danger" })
+                    </td>
+                    
+                    <td colspan="2">
+                        费用总计:
+                        @Html.EditorFor(model => model.totalFee, new { htmlAttributes = new { @class = "form-control", @style = "display:inline;" } })
+                        @Html.ValidationMessageFor(model => model.totalFee, "", new { @class = "text-danger" })
+                    </td>
+                    
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        日期:
+                        @Html.EditorFor(model => model.dateCharged, new { htmlAttributes = new { @class = "form-control", @Vlaue = "@ViewBag.date", @style = "display:inline;" } })
+                        @Html.ValidationMessageFor(model => model.dateCharged, "", new { @class = "text-danger" })
+                    </td>
+                   
+                    <td colspan="2">
+                        制单人:
+                        <input type="text" id="unitCharged" name="unitCharged" value="打印室" class="form-control" style="display:inline;">
+                        @*@Html.EditorFor(model => model.unitCharged, new { htmlAttributes = new { @Vlaue = "打印室", @class = "form-control",} })*@
+                        @Html.ValidationMessageFor(model => model.unitCharged, "", new { @class = "text-danger" })
+                    </td>
+                   
+                </tr>
+                <tr>
+                    <td style="text-align:center" colspan="4">
+                        @*<input type="submit" name="action" value="保存" class="btn btn-default" />*@
+                        <input class="btn btn-default" type="button" name="action" value="收起" onclick="UpOrClose()" />
+                        @*<input class="btn btn-default" type="submit" name="action" value="打印" />*@
+                    </td>
+                </tr>
+            </table>
+        </div>
+
+        @*<div class="form-group"style="display:none">
+                @Html.LabelFor(model => model.searchNo, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.searchNo, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.searchNo, "", new { @class = "text-danger" })
+                </div>
+            </div>*@
+
+        <div>
+            <div style="text-align:center;">
+                <input type="submit" name="action" value="修改" class="btn btn-default" />
+                <input type="submit" name="action" value="返回" class="btn btn-default" />
+            </div>
+            <div style="height:20px;"></div>
+        </div>
+    </div>
+}
+
+        @*<div>
+                @Html.ActionLink("返回", "DaFuYinFeiYongChaXun")
+            </div>*@

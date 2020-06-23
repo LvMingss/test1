@@ -1,0 +1,511 @@
+﻿@model urban_archive.Models.vw_charge
+
+@{
+    ViewBag.Title = "Edit";
+}
+@section css{
+    <link type="text/css" rel="stylesheet" href="~/Scripts/jquery/jquery-ui.css">
+}
+<style type="text/css">
+    .jubu {
+        max-width: 100%;
+    }
+    .jubu1{
+        float:left;
+    }
+</style>
+
+
+    <script type="text/javascript" src="~/Scripts/jquery/jquery-1.8.3.js"></script>
+    <script type="text/javascript" src="~/Scripts/jquery/jquery.ui.core.js"></script>
+    <script type="text/javascript" src="~/Scripts/jquery/jquery.ui.datepicker.js"></script>
+    <script type="text/javascript" src="~/Scripts/jquery/jquery.ui.widget.js"></script>
+    <script type="text/javascript" src="~/Scripts/jquery/jquery-ui-timepicker-addon.js"></script>
+    @*<script type="text/javascript" src="~/Scripts/jquery/jquery-ui-timepicker-zh-CN.js"></script>*@
+    <script>
+            $(function () {
+                $("#chargeTime").datepicker({
+                    changeMonth: true,
+                    changeYear: true
+                });
+            });
+    </script>
+
+<script src="@Url.Content("~/Scripts/jquery.validate.min.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Scripts/jquery.validate.unobtrusive.min.js")" type="text/javascript"></script>
+<script>
+function click_a(divDisplay) {
+        if (document.getElementById(divDisplay).style.display != "block") {
+            document.getElementById(divDisplay).style.display = "block";
+        }
+        else {
+            document.getElementById(divDisplay).style.display = "none";
+        }
+}
+function click_b(divDisplay) {
+        document.getElementById(divDisplay).style.display = "none";
+}
+function click_c(divDisplay) {
+    document.getElementById(divDisplay).style.display = "block";
+}
+function InputIntegerAndComma() //整数和小数点
+{
+    if ((event.keyCode == 13) || (event.keyCode == 9))    //Tab Enter
+    {
+        event.keyCode = 9;
+        return true;
+    }
+    if (event.keyCode == 8)   //backspace ' %
+    {
+        return true;
+    }
+    if (event.keyCode == 46)//comma
+    {
+        return true;
+    }
+    if (event.keyCode < 46 || event.keyCode == 47 || event.keyCode > 57) // 0:48 9:57
+    {
+        event.keyCode = 0;
+        return false;
+    }
+}
+function regIsNumber(obj) {
+    //var reg = new RegExp("^[-]?[0-9]+[\.]?[0-9]+$");
+    var reg = new RegExp("^(-?\\d+)(\\.\\d+)?$");
+    if (obj.value != "") {
+        if (!reg.test(obj.value)) {
+            obj.value =0;
+        }
+    }
+}
+function js1()//计算总价
+{
+    var total = 0;
+    var fee;
+    fee = document.getElementById("a4picTotalFee").value;
+    if (fee != "") {
+        total += parseFloat(fee);
+    }
+    fee = document.getElementById("a4wordTotalFee").value;
+    if (fee != "") {
+        total += parseFloat(fee);
+    }
+    fee = document.getElementById("a3picTotalFee").value;
+    if (fee != "") {
+        total += parseFloat(fee);
+    }
+    fee = document.getElementById("a3wordTotalFee").value;
+    if (fee != "") {
+        total += parseFloat(fee);
+    }
+    fee = document.getElementById("a2picTotalFee").value;
+    if (fee != "") {
+        total += parseFloat(fee);
+    }
+    fee = document.getElementById("a1picTotalFee").value;
+    if (fee != "") {
+        total += parseFloat(fee);
+    }
+    fee = document.getElementById("a0picTotalFee").value;
+    if (fee != "") {
+        total += parseFloat(fee);
+    }
+    fee = document.getElementById("a1picTotalFeeLonger").value;
+    if (fee != "") {
+        total += parseFloat(fee);
+    }
+    fee = document.getElementById("a0picTotalFeeLonger").value;
+    if (fee != "") {
+        total += parseFloat(fee);
+    }
+    var i = total.toString().indexOf(".");
+
+    var a1 = total.toString();
+    if (i != -1) {
+        a1 = total.toString().substring(0, i + 3)
+    }
+    //document.getElementById("txtCaculateCharge").value=a1;
+    //document.getElementById("txtRealCharge").value=a1;
+    document.getElementById("totalExpense").value = a1;
+    document.getElementById("theoryExpense").value = a1;
+}
+function regIsNumberAndJS1(obj0, obj1, obj2, obj3, obj4, obj5, obj6) {//a3total,a3pic,a3picPricePer,a3picTotalFee,a3word,a3wordPricePer,a3wordTotalFee
+    var fee;
+    var reg = new RegExp("^(-?\\d+)(\\.\\d+)?$");
+    if (!reg.test(obj1.value) || obj1.value=="")
+    {
+        obj1.value = 0;
+    }
+    fee = (parseFloat(obj1.value)) * (parseFloat(obj2.value));
+    var j = fee.toString().indexOf(".");
+    var aj = fee.toString();
+    if (j != -1) {
+        aj = fee.toString().substring(0, j + 3);
+    }
+    obj3.value = aj;
+    //obj0.value=(obj0.value<obj1.value?obj1.value:obj0.value);
+    if (obj1.value != "")
+        obj0.value = obj1.value;
+    if (obj4.value != "")
+        obj0.value = obj4.value;
+    if (obj1.value != "" && obj4.value != "")
+        obj0.value = parseInt(obj1.value) + parseInt(obj4.value);
+    fee = parseFloat(obj4.value) * parseFloat(obj5.value);
+    var i = fee.toString().indexOf(".");
+    var a1 = fee;
+    if (i != -1) {
+        a1 = fee.toString().substring(0, i + 3)
+    }
+    obj6.value = a1;
+    js1();
+}
+function regIsNumberAndJS2(obj0, obj1, obj2, obj3) {
+    var fee;
+    var reg = new RegExp("^(-?\\d+)(\\.\\d+)?$");
+    if (!reg.test(obj1.value) || obj1.value == "") {
+        obj1.value = 0;
+    }
+    fee = parseFloat(obj1.value) * parseFloat(obj2.value);
+    obj3.value = fee;
+    obj0.value = obj1.value;
+    js1();
+}
+function regIsNumberAndJS3(obj0, obj1) {
+    obj1.value = obj0.value;
+}
+$().ready(function () {
+    $("#totalExpense").blur(function () {
+        var ss = $("#totalExpense").val();
+        if (ss.length == 0) {
+            alert("实际收费不能为空");
+        }
+    });
+});
+</script>
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    @Html.HiddenFor(model => model.ID)
+
+    <div class="form-horizontal">
+        <h2 style="margin-top:0;"><i class="fa fa-tags kongge"></i>收费事项修改</h2>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+        <div class="panel panel-default" >
+            <table class="table table-bordered dl-horizontal" style="background-color:#f9f9f9;">
+                <tr>
+                    <td style="background-color:#f9f9f9;min-width:100px;width:6%;font-weight:bold;">
+                        收费编号
+                    </td>
+                    <td style="width:44%;">
+                        @Html.EditorFor(model => model.seqNo, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.seqNo, "", new { @class = "text-danger" })
+                    </td>
+                    <td style="background-color:#f9f9f9;min-width:100px;width:6%;font-weight:bold;display:@ViewData["lbProjectNo"];">
+                        工程序号
+                    </td>
+                    <td style="width:44%;display:@ViewData["txtProjectNo"];">
+                        @Html.EditorFor(model => model.searchNo, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.searchNo, "", new { @class = "text-danger" })
+                    </td>
+                </tr>
+                <tr>
+                    <td style="background-color:#f9f9f9;font-weight:bold;">
+                        单位/姓名
+                    </td>
+                    <td colspan="3">
+                        @Html.EditorFor(model => model.unitName, new { htmlAttributes = new { @class = "form-control jubu" } })
+                        @Html.ValidationMessageFor(model => model.unitName, "", new { @class = "text-danger" })
+                    </td>
+                </tr>
+                <tr>
+                    <td style="background-color:#f9f9f9;font-weight:bold;">
+                        收费事项
+                    </td>
+                    <td colspan="3" >
+                        @Html.EditorFor(model => model.itemName, new { htmlAttributes = new { @class = "form-control jubu" } })
+                        @Html.ValidationMessageFor(model => model.itemName, "", new { @class = "text-danger" })
+                    </td>
+                </tr>
+                <tr>
+                    <td style="background-color:#f9f9f9;font-weight:bold;">
+                        收费种类
+                    </td>
+                    <td>
+                       @Html.DropDownList("chargeClassify",null, new { @class = "form-control" })
+                       @Html.ValidationMessageFor(model => model.chargeClassify, "", new { @class = "text-danger" })
+                    </td>
+                    <td style="background-color:#f9f9f9;font-weight:bold;">
+                        收费日期
+                    </td>
+                    <td>
+                        @Html.EditorFor(model => model.chargeTime, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.chargeTime, "", new { @class = "text-danger" })
+                    </td>
+                </tr>
+                <tr>
+                    <td style="background-color:#f9f9f9;font-weight:bold;">
+                        实际金额
+                    </td>
+                    <td>
+                        @Html.EditorFor(model => model.totalExpense, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.totalExpense, "", new { @class = "text-danger" })
+                    </td>
+                    <td style="background-color:#f9f9f9;font-weight:bold;">
+                        理论金额
+                    </td>
+                    <td>
+                        @Html.EditorFor(model => model.theoryExpense, new { htmlAttributes = new { @class = "form-control jubu1" } })
+                        @Html.ValidationMessageFor(model => model.theoryExpense, "", new { @class = "text-danger" })
+                        <input type="button" value="纸张费用修改" name="paychange" id="paychange" onclick="return click_a('divOne_1')" style="cursor:pointer;" class="btn btn-default jubu1">
+
+                    </td>
+                    
+                </tr>
+            </table>
+            </div>
+            
+        <div id="divOne_1" class="panel panel-default" style="display:none;">
+            <table  class="table table-bordered dl-horizontal" style="background-color:#f9f9f9;text-align:center">
+                <tr>
+                    <td rowspan="2" style="width:20%">
+                        A4&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;：<input id="a4total" name="a4total" style="width: 80px;display:inline;" onkeypress="javascript:InputFloat();" type="text" class="form-control"
+                                  value="@ViewData["a4total"]" onblur="javascript:regIsNumberAndJS3(this,a4pic);" readonly="readonly" />
+                        张
+                    </td>
+                    <td style="width:10%">
+                        图纸：
+                    </td>
+                    <td style="width:35%">
+                        <input id="a4pic" type="text" class="form-control" style="width: 80px;display:inline;" onkeypress="javascript:InputIntager();"
+                               value="@ViewData["a4pic"]" onblur="javascript:regIsNumberAndJS1(a4total,this,a4picPricePer,a4picTotalFee,a4word,a4wordPricePer,a4wordTotalFee);" />张*<input id="a4picPricePer" name="4" value="4" type="text" class="form-control"
+                                                                                                                                                                                           style="width: 80px;display:inline;" onblur="javascript:regIsNumberAndJS1(a4total,a4pic,this,a4picTotalFee,a4word,a4wordPricePer,a4wordTotalFee);" />元/张
+                    </td>
+                    <td style="width:35%">
+                        =<input id="a4picTotalFee" value="@ViewData["a4picTotalFee"]" style="width: 110px;display:inline;" class="form-control" onkeypress="javascript:InputIntager();" />元
+                    </td>
+                </tr>
+                <tr>
+                    <td >
+                        文字：
+                    </td>
+                    <td>
+                        <input id="a4word" type="text" class="form-control" style="width: 80px;display:inline;" onkeypress="javascript:InputIntager();"
+                               value="@ViewData["a4word"]" onblur="javascript:regIsNumberAndJS1(a4total,a4word,a4wordPricePer,a4wordTotalFee,a4pic,a4picPricePer,a4picTotalFee);" />张*<input type="text" class="form-control" id="a4wordPricePer" value="0.4"
+                                                                                                                                                                                             style="width: 80px;display:inline;" onblur="javascript:regIsNumberAndJS1(a4total,a4word,a4wordPricePer,a4wordTotalFee,a4pic,a4picPricePer,a4picTotalFee);" />元/张
+                    </td>
+                    <td>
+                        =<input id="a4wordTotalFee" value="@ViewData["a4wordTotalFee"]" style="width: 110px;display:inline;" class="form-control" onkeypress="javascript:InputIntager();" />元
+                    </td>
+                </tr>
+                <tr>
+                    <td rowspan="2">
+                        A3&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;：<input id="a3total" name="a3total" style="width: 80px;display:inline;" onkeypress="javascript:InputFloat();" type="text" class="form-control"
+                                  value="@ViewData["a3total"]" onblur="javascript:regIsNumberAndJS3(this,a3pic);" readonly="readonly" />
+                        张
+                    </td>
+                    <td>
+                        图纸：
+                    </td>
+                    <td>
+                        <input id="a3pic" type="text" class="form-control" style="width: 80px;display:inline;" onkeypress="javascript:InputIntager();"
+                               value="@ViewData["a3pic"]" onblur="javascript:regIsNumberAndJS1(a3total,a3pic,a3picPricePer,a3picTotalFee,a3word,a3wordPricePer,a3wordTotalFee);" />张*<input type="text" class="form-control" id="a3picPricePer" value="8"
+                                                                                                                                                                                            style="width: 80px;display:inline;" onblur="javascript:regIsNumberAndJS1(a3total,a3pic,a3picPricePer,a3picTotalFee,a3word,a3wordPricePer,a3wordTotalFee);" />元/张
+                    </td>
+                    <td>
+                        =<input id="a3picTotalFee" value="@ViewData["a3picTotalFee"]" style="width: 110px;display:inline;" class="form-control" onkeypress="javascript:InputIntager();" />元
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        文字：
+                    </td>
+                    <td>
+                        <input id="a3word" type="text" class="form-control" style="width: 80px;display:inline;" onkeypress="javascript:InputIntager();"
+                               value="@ViewData["a3word"]" onblur="javascript:regIsNumberAndJS1(a3total,a3word,a3wordPricePer,a3wordTotalFee,a3pic,a3picPricePer,a3picTotalFee);" />张*<input type="text" class="form-control" id="a3wordPricePer" value="0.8"
+                                                                                                                                                                                             style="width: 80px;display:inline;" onblur="javascript:regIsNumberAndJS1(a3total,a3pic,a3picPricePer,a3picTotalFee,a3word,a3wordPricePer,a3wordTotalFee);" />元/张
+                    </td>
+                    <td>
+                        =<input id="a3wordTotalFee" value="@ViewData["a3wordTotalFee"]" style="width: 110px;display:inline;" class="form-control" onkeypress="javascript:InputIntager();" />元
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        A2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;：<input id="a2total" name="a2total" style="width: 80px;display:inline;" onkeypress="javascript:InputFloat();" type="text" class="form-control"
+                                  value="@ViewData["a2total"]" onblur="javascript:regIsNumberAndJS3(this,a2pic);" readonly="readonly" />
+                        张
+                    </td>
+                    <td>
+                        图纸：
+                    </td>
+                    <td>
+                        <input id="a2pic" type="text" class="form-control" style="width: 80px;display:inline;" onkeypress="javascript:InputIntager();"
+                               value="@ViewData["a2pic"]" onblur="javascript:regIsNumberAndJS2(a2total,a2pic,a2picPricePer,a2picTotalFee);" />张*<input type="text" class="form-control" id="a2picPricePer" value="12"
+                                                                                                                                                       style="width: 80px;display:inline;" onblur="javascript:regIsNumberAndJS2(a2total,a2pic,a2picPricePer,a2picTotalFee);" />元/张
+                    </td>
+                    <td>
+                        =<input id="a2picTotalFee" value="@ViewData["a2picTotalFee"]" style="width: 110px;display:inline;" class="form-control" onkeypress="javascript:InputIntager();" />元
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        A1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;：<input id="a1total" name="a1total" style="width: 80px;display:inline;" onkeypress="javascript:InputFloat();"
+                                  value="@ViewData["a1total"]" onblur="javascript:regIsNumberAndJS3(this,a1pic);" type="text" class="form-control" readonly="readonly" />
+                        张
+                    </td>
+                    <td>
+                        图纸：
+                    </td>
+                    <td>
+                        <input id="a1pic" type="text" class="form-control" style="width: 80px;display:inline;" onkeypress="javascript:InputIntager();"
+                               value="@ViewData["a1pic"]" onblur="javascript:regIsNumberAndJS2(a1total,a1pic,a1picPricePer,a1picTotalFee);" />张*<input type="text" class="form-control" id="a1picPricePer" value="15"
+                                                                                                                                                       style="width: 80px;display:inline;" onblur="javascript:regIsNumberAndJS2(a1total,a1pic,a1picPricePer,a1picTotalFee);" />元/张
+                    </td>
+                    <td>
+                        =<input id="a1picTotalFee" value="@ViewData["a1picTotalFee"]" style="width: 110px;display:inline;" class="form-control" onkeypress="javascript:InputIntager();" />元
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        A0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;：<input id="a0total" name="a0total" style="width: 80px;display:inline;" onkeypress="javascript:InputFloat();" type="text" class="form-control"
+                                  value="@ViewData["a0tota"]" onblur="javascript:regIsNumberAndJS3(this,a0pic);" readonly="readonly" />
+                        张
+                    </td>
+                    <td>
+                        图纸：
+                    </td>
+                    <td>
+                        <input id="a0pic" type="text" class="form-control" style="width: 80px;display:inline;" onkeypress="javascript:InputIntager();"
+                               value="@ViewData["a0pic"]" onblur="javascript:regIsNumberAndJS2(a0total,a0pic,a0picPricePer,a0picTotalFee);" />张*<input type="text" class="form-control" id="a0picPricePer" value="20"
+                                                                                                                                                       style="width: 80px;display:inline;" onblur="javascript:regIsNumberAndJS2(a1total,a1pic,a1picPricePer,a1picTotalFee);" />元/张
+                    </td>
+                    <td>
+                        =<input id="a0picTotalFee" value="@ViewData["a0picTotalFee"]" style="width: 110px;display:inline;" class="form-control" onkeypress="javascript:InputIntager();" />元
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        A1加长：<input id="a1totalLonger" name="a1totalLonger" style="width: 80px;display:inline;" onkeypress="javascript:InputFloat();"
+                                    value="@ViewData["a1totalLonger"]" onblur="javascript:regIsNumberAndJS3(this,a1picLonger);" type="text" class="form-control" readonly="readonly" />
+                        张
+                    </td>
+                    <td>
+                        图纸：
+                    </td>
+                    <td>
+                        <input id="a1picLonger" type="text" class="form-control" style="width: 80px;display:inline;" onkeypress="javascript:InputIntager();"
+                               value="@ViewData["a1picLonger"]" onblur="javascript:regIsNumberAndJS2(a1totalLonger,a1picLonger,a1picPricePerLonger,a1picTotalFeeLonger);" />张*<input type="text" class="form-control" id="a1picPricePerLonger" value="20"
+                                                                                                                                                                                     style="width: 80px;display:inline;" onblur="javascript:regIsNumberAndJS2(a1totalLonger,a1picLonger,a1picLongerPricePer,a1picTotalFeeLonger);" />元/张
+                    </td>
+                    <td>
+                        =<input id="a1picTotalFeeLonger" value="@ViewData["a1picTotalFeeLonger"]" style="width: 110px;display:inline;" class="form-control" onkeypress="javascript:InputIntager();" />元
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        A0加长：<input id="a0totalLonger" name="a0totalLonger" style="width: 80px;display:inline;" onkeypress="javascript:InputFloat();" type="text" class="form-control"
+                                    value="@ViewData["a0totalLonger"]" onblur="javascript:regIsNumberAndJS3(this,a0pic);" readonly="readonly" />
+                        张
+                    </td>
+                    <td>
+                        图纸：
+                    </td>
+                    <td style="height: 56px; width: 25%">
+                        <input id="a0picLonger" type="text" class="form-control" style="width: 80px;display:inline;" onkeypress="javascript:InputIntager();"
+                               value="@ViewData["a0picLonger"]" onblur="javascript:regIsNumberAndJS2(a0totalLonger,a0picLonger,a0picPricePerLonger,a0picTotalFeeLonger);" />张*<input type="text" class="form-control" id="a0picPricePerLonger" value="30"
+                                                                                                                                                                                     style="width: 80px;display:inline;" onblur="javascript:regIsNumberAndJS2(a0totalLonger,a0picLonger,a0picPricePerLonger,a0picTotalFeeLonger);" />元/张
+                    </td>
+                    <td>
+                        =<input id="a0picTotalFeeLonger" value="@ViewData["a0picTotalFeeLonger"]" style="width: 110px;display:inline;" class="form-control" onkeypress="javascript:InputIntager();" />元
+                    </td>
+                </tr>
+            </table>
+            </div>
+        <div class="panel panel-default" >
+            <table class="table table-bordered dl-horizontal" style="background-color:#f9f9f9;">
+                <tr>
+                    <td style="background-color:#f9f9f9;min-width:100px;width:6%;border-right:1px;font-weight:bold;">
+                        来自科室
+                    </td>
+                    <td style="width:44%;">
+                        @Html.DropDownList("fromDepartment", null, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.fromDepartment, "", new { @class = "text-danger" })
+                    </td>
+                    <td style="background-color:#f9f9f9;min-width:100px;width:6%;font-weight:bold;">
+                        操作人
+                    </td>
+                    <td>
+                        @Html.DropDownList("operator1", null, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.@operator, "", new { @class = "text-danger" })
+                    </td>
+                </tr>
+                <tr>
+                    <td style="background-color:#f9f9f9;min-width:100px;width:6%;font-weight:bold;">
+                        备注
+                    </td>
+                    <td colspan="3">
+                        @Html.EditorFor(model => model.remarks, new { htmlAttributes = new { @class = "form-control jubu" } })
+                        @Html.ValidationMessageFor(model => model.remarks, "", new { @class = "text-danger" })
+                    </td>
+                </tr>
+                <tr style="display:@ViewData["shoufeiTypedisplay"]">
+                    <td style="background-color:#f9f9f9;min-width:100px;width:6%;font-weight:bold;">
+                        收费类型
+                    </td>
+                    <td >
+                        @Html.RadioButtonFor(m => m.chargeExtra, 1, new { @id = "radio1", @name = "rdolstState", @onclick = "return click_b('divOne_2')", @style = "cursor:pointer;" })档案馆整理
+                        @Html.RadioButtonFor(m => m.chargeExtra, 2, new { @id = "radio2", @name = "rdolstState", @onclick = "return click_c('divOne_2')", @style = "cursor:pointer;" })报送单位整理
+                        @Html.ValidationMessageFor(model => model.chargeType, "", new { @class = "text-danger" })
+                    </td>                    
+                    <td colspan="2" style="padding:0;width:50%;">
+                        <div style="height:50px;">
+                            <div style="padding:12px 5px;min-width:100px;width:3%;background-color:#f9f9f9;height:50px;line-height:1.4285;vertical-align:top;float:left;border-right:1px solid #ddd;font-weight:bold;">建设面积</div>
+                            <div style="padding:5px;width:70%;float:left;">
+                                @Html.EditorFor(model => model.buildingArea, new { htmlAttributes = new { @class = "form-control",@style="display:inline;width:80%;" } })
+                                @Html.ValidationMessageFor(model => model.buildingArea, "", new { @class = "text-danger" }) 平方米
+                            </div>
+                            
+                            
+                        </div>
+                        <div id="divOne_2" style="display:@ViewData["centiCntdisplay"];height:50px;">
+                            <div style="padding:12px 5px;min-width:100px;width:3%;background-color:#f9f9f9;height:50px;line-height:1.4285;vertical-align:top;float:left;border-right:1px solid #ddd;font-weight:bold;">公分数</div>
+                            <div style="padding:5px;width:70%;float:left;">
+                                @Html.EditorFor(model => model.centiCnt, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.centiCnt, "", new { @class = "text-danger" })
+                            </div>
+                            
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="background-color:#f9f9f9;min-width:100px;width:6%;font-weight:bold;">
+                        费用转向
+                    </td>
+                    <td>
+                        @Html.DropDownList("whereTransfer", null, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.whereTransfer, "", new { @class = "text-danger" })
+                    </td>
+                </tr>
+            </table>
+</div>               
+
+
+        <div style="text-align:center;">
+            <p>
+                <input type="submit" value="修改" name="action" disabled="@ViewData["xiugai"]" class="btn btn-default"> &nbsp;
+                <input type="submit" value="返回" name="action" class="btn btn-default">
+                @*<input type="button" value="纸张费用修改" name="paychange" id="paychange" onclick="return click_a('divOne_1')" style="cursor:pointer;" class="btn btn-default">*@
+            <p>
+                <div style="height:5px;">
+                </div>
+        </div>        
+    </div>
+}
+            @*<div>
+                @Html.ActionLink("Back to List", "Index")
+            </div>*@
+
+

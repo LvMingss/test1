@@ -1,0 +1,79 @@
+﻿@model urban_archive.Models.Briefing
+
+@{
+    ViewBag.Title = "删除信息";
+}
+
+<h2>删除信息</h2>
+
+<h3>你是否确认删除该信息?</h3>
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            文章标题
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.briefTitle)
+        </dd>
+
+        <dt>
+            文章副标题
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.briefCoTitle)
+        </dd>
+        <dt>
+            资料来源
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.paperName)
+        </dd>
+
+        <dt>
+            编辑人
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.maker)
+        </dd>
+
+        <dt>
+            备注
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.remarks)
+        </dd>
+
+        <dt>
+            文件名
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.fileName)
+        </dd>
+
+        <dt>
+            报刊日期
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.briefTime)
+        </dd>
+
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="删除" class="btn btn-default" /> |
+            @Html.ActionLink("返回", "Index")
+        </div>
+    }
+</div>

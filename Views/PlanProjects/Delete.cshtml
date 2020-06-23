@@ -1,0 +1,248 @@
+﻿@model urban_archive.Models.PlanProject
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>PlanProject</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.seqNo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.seqNo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.developmentUnit)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.developmentUnit)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.projectContent)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.projectContent)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.projectLocation)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.projectLocation)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.yearNo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.yearNo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.pageCnt)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.pageCnt)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.classifyID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.classifyID)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.projectID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.projectID)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.fileNo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.fileNo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.dateReceived)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.dateReceived)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.boxNo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.boxNo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.status)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.status)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.remarks)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.remarks)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.archiveBoxCnt)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.archiveBoxCnt)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.mapScale)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.mapScale)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.storeLocation)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.storeLocation)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.bianzhiUnit)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.bianzhiUnit)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.fileNoTou)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.fileNoTou)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.luruPerson)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.luruPerson)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.seqNo1)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.seqNo1)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.juanneiSeqNo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.juanneiSeqNo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.bianzhiTime)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.bianzhiTime)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.pageNo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.pageNo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.totalSeqNo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.totalSeqNo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.archiveID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.archiveID)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.photoCnt)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.photoCnt)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.shenhePerson)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.shenhePerson)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.isImageExist)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.isImageExist)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index", new { archiveID = Model.archiveID, classifyID = Model.classifyID })
+        </div>
+    }
+</div>

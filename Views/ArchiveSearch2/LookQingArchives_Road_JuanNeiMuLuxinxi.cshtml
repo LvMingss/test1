@@ -1,0 +1,70 @@
+﻿@model urban_archive.Models.RoadJuannei
+
+@*<h2><i class="fa fa-tags kongge"></i>卷内目录</h2>*@
+
+<div>
+    <div class="panel panel-default">
+        <table class="table table-bordered ">
+            <tr>
+                <td style="background-color:#f9f9f9;width:10%;">
+                    案卷序号
+                </td>
+                <td width="40%">
+                    @Html.DisplayFor(model => model.archiveID)
+                </td>
+                <td style="background-color:#f9f9f9;width:10%;">
+                    卷内序号
+                </td>
+                <td width="40%">
+                    @Html.DisplayFor(model => model.seqNo)
+                </td>
+            </tr>
+            <tr>
+                <td style="background-color:#f9f9f9;width:10%;">
+                    文件编号
+                </td>
+                <td colspan="3">
+                    @Html.DisplayFor(model => model.fileNo)
+                </td>
+            </tr>
+            <tr>
+                <td style="background-color:#f9f9f9;width:10%;">
+                    文件材料题名
+                </td>
+                <td colspan="3">
+                    @Html.DisplayFor(model => model.fileName)
+                </td>
+            </tr>
+            <tr>
+                <td style="background-color:#f9f9f9;width:10%;">
+                    责任者
+                </td>
+                <td colspan="3">
+                    @Html.DisplayFor(model => model.responsible)
+                </td>
+            </tr>
+            <tr>
+                <td style="background-color:#f9f9f9;width:10%;">
+                    起止页次
+                </td>
+                <td width="40%">
+                    @Html.DisplayFor(model => model.pageNo)
+                </td>
+                <td style="background-color:#f9f9f9;width:10%;">
+                    编制日期
+                </td>
+                <td width="40%">
+                    @Html.DisplayFor(model => model.bianzhiDate)
+                </td>
+            </tr>
+            <tr>
+                <td style="background-color:#f9f9f9;width:10%;">
+                    备注
+                </td>
+                <td colspan="3">
+                    @Html.DisplayFor(model => model.remarks)
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>

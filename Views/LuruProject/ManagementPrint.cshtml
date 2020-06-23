@@ -1,0 +1,136 @@
+﻿@model IEnumerable<urban_archive.Models.vw_ProjectStatus>
+<link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
+<link href="~/Content/jquery-ui.theme.css" rel="stylesheet" />
+<link href="~/Content/Tabulator/version3.0/tabulator.css" rel="stylesheet" />
+@{
+    ViewBag.Title = "ManagementPrint";
+}
+
+
+    <script src="~/Scripts/jquery-2.1.1.min.js" type="text/javascript"></script>
+    <script src="~/Scripts/jquery-ui.min.js"></script>
+    @*<script src="~/Scripts/bootstrap.min.js"></script>*@
+<script src="~/Content/Tabulator/version3.0/tabulator.js"></script>
+    
+  
+
+    <script type="text/javascript">
+        var details = function (value, data, cell, row, options) { //plain text value
+            return "<i class='fa fa-search-plus' style='color:#428bca;vertical-align:middle; padding:2px 0;'></i> "
+        };
+        var edit = function (value, data, cell, row, options) { //plain text value
+            return "<i class='fa fa-pencil-square-o' style='color:#428bca;vertical-align:middle; padding:2px 0;'></i> "
+        };
+        var chushenyijian = function (value, data, cell, row, options) { //plain text value
+            return "<i class='fa fa-print' style='color:#428bca;vertical-align:middle; padding:2px 0;'></i> "
+        };
+        var hegezhengming = function (value, data, cell, row, options) { //plain text value
+            return "<i class='fa fa-print' style='color:#428bca;vertical-align:middle; padding:2px 0;'></i> "
+        };
+        var hegezhengqianfa = function (value, data, cell, row, options) { //plain text value
+            return "<i class='fa fa-print' style='color:#428bca;vertical-align:middle; padding:2px 0;'></i> "
+        };
+        $().ready(function () {//在页面加载完成之后用，为了保证js能完整的执行。
+            $(document).ready(function () {
+                var a = $(window).height();
+                var hh = a-160;
+                $(".box-h").height(hh)  // 高度加在类名为box的DIV 上
+
+            })
+            $("#example-table-2").tabulator({
+                height:"100%",
+                virtualDom:false,
+                //minWidth
+                fitColumns:true,
+                selectable:true, //make rows selectable
+                pagination:"local",
+                paginationSize:50,
+                columns: [
+                {
+                    title: "查看", field: "1", width: 50 ,formatter: details, headerSort: false, align: "center", cellClick: function (e,cell) {
+                        var url = '/LuruProject/Details?id=' + cell.getValue();
+                        window.location.href = url;
+                    }
+                },
+                {
+                    title: "修改", field: "2", width: 50 ,formatter: edit, headerSort: false, align: "center", cellClick: function (e,cell) {
+                        var url = '/LuruProject/Edit?id=' + cell.getValue();
+                        window.location.href = url;
+                    }
+                },
+                {
+                    title: "合格证签发审批表", field: "3", formatter: hegezhengqianfa, width: 130,headerSort: false, align: "center", cellClick: function (e,cell) {
+                        var url = '/LuruProject/hegezhengqianfa?id=' + cell.getValue();
+                        window.location.href = url;
+                    }
+                },
+                    {
+                        title: "预验收意见书", field: "4", formatter: chushenyijian, width: 100,headerSort: false, align: "center", cellClick: function (e,cell) {
+                            var url = '/LuruProject/chushenyijian?id=' + cell.getValue();
+                            window.location.href = url;
+                        }
+                    },
+                    {
+                        title: "合格证", field: "5", formatter: hegezhengming, width: 60,headerSort: false,sorter: "string", align: "center", cellClick: function (e,cell) {
+                            var url = '/LuruProject/hegezhengming?id=' + cell.getValue();
+                            window.location.href = url;
+                        }
+                    },
+
+                { title: "工程名称", field: "a",headerSort: false, width: 400 },
+                { title: "项目顺序号", field: "b",headerSort: false, width: 100 },
+                { title: "工程序号", field: "c", headerSort: false,width: 100 },
+                { title: "建设单位", field: "d", headerSort: false,width: 400 },
+                { title: "工程地点", field: "e", headerSort: false,width: 400 },
+                { title: "责任书编号", field: "f", headerSort: false,width: 100 },
+                { title: "状态", field: "g",headerSort: false, width: 100 },
+                { title: "工程ID", field: "h", headerSort: false,minWidth: 100 },
+                ],
+            });
+
+            var temp = new Array();
+            var data=@(new HtmlString(@ViewBag.result));
+            for (var i = 0; i < data.length;i++) {
+                temp.push({ "id": i + 1, "a": data[i].projectName, "b": data[i].paperProjectSeqNo, "c": data[i].projectNo, "d": data[i].developmentOrganization,"e": data[i].location,"f": data[i].contractNo,"g": data[i].status,"h": data[i].projectID,"1": data[i].projectID,"2": data[i].projectID,"3": data[i].projectID,"4": data[i].projectID,"5": data[i].projectID });
+            }
+
+            $("#example-table-2").tabulator("setData", temp);
+            $(window).resize(function () {
+                var a = $(window).height();
+                var hh = a-160;
+                $(".box-h").height(hh)  // 高度加在类名为box的DIV 上
+                $("#example-table-2").tabulator("redraw",true);
+            });
+
+        });
+            function openmingxi()
+            {
+                window.showModalDialog('./danganjieshoumingxi',"" ,'dialogWidth=650px;dialogHeight=500px');
+            }
+    </script>
+        <h2 style="float:left;"><i class="fa fa-tags kongge"></i>工程管理</h2>
+<section>
+    <ol class="breadcrumb">
+        <li>竣工档案</li>
+        <li>工程接收</li>
+        <li class="active">工程管理与打印</li>
+    </ol>
+    <div style="clear:both;"></div>
+</section>
+        @using (Html.BeginForm())
+        {
+            <p>
+                    检索条件: @Html.DropDownList("SelectedID", null, new { @class = "form-control", @style = "display:inline" })=@Html.TextBox("SearchString", ViewBag.CurrentFilter as string, new { @class = "form-control", @style = "display:inline" })
+                    <input type="submit" value="查找" class="btn btn-default" />
+                    @*<i class="glyphicon glyphicon-print"style='color:#428bca;'></i>@Html.ActionLink("打印城建档案接收明细", "danganjieshoumingxi", "dayin")*@
+                    @*<i class="glyphicon glyphicon-print" style='color:#428bca;'></i>*@<input type="submit" value="打印城建档案接收明细" onclick="openmingxi()" class="btn btn-default" />
+
+            </p>            
+        }
+<div id="example-table-2" class="box-h" > </div>
+@*<div style="text-align:right;font-size:16px;">
+    @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) / @Model.PageCount 页
+</div>
+<div style="text-align:center;margin-top:0;">
+    @Html.PagedListPager(Model, page => Url.Action("ManagementPrint",new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))
+</div>*@

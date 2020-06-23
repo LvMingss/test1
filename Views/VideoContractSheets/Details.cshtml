@@ -1,0 +1,373 @@
+﻿@model urban_archive.Models.VideoContractSheet
+
+@{
+    ViewBag.Title = "Details";
+}
+<style type="text/css">
+    .jubu {
+        max-width: 100%;
+    }
+</style>
+<h2><i class="fa fa-tags kongge"></i>声像档案工作联系单</h2>
+
+    @*<h4>VideoContractSheet</h4>*@
+    <hr />
+    <div class="panel panel-default">
+        <table class="table table-bordered @*table-striped*@">
+            <tr>
+                <td style="background-color:#f9f9f9;width:10%;">
+                    年份
+                </td>
+                <td style="width:23%">
+                    @Html.DisplayFor(model => model.year)
+                    @*@Html.EditorFor(model => model.year, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.year, "", new { @class = "text-danger" })*@
+                </td>
+                <td style="background-color:#f9f9f9;width:10%;">
+                    联系单单号
+                </td>
+                <td style="width:23%">
+                    @Html.DisplayFor(model => model.sheetNo)
+                </td>
+                <td style="background-color:#f9f9f9;width:10%;">
+                    保管期限
+                </td>
+                <td>
+                    @Html.DisplayFor(model => model.retentionPeriodNo)
+                </td>
+
+            </tr>
+            <tr>
+                <td style="background-color:#f9f9f9;width:10%;">
+                    建设单位名称
+                </td>
+                <td colspan="5">
+                    @Html.DisplayFor(model => model.developmentOrgnization)
+                </td>
+
+            </tr>
+            <tr>
+                <td style="background-color:#f9f9f9;width:10%;">
+                    工程名称
+                </td>
+                <td colspan="5">
+                    @Html.DisplayFor(model => model.projectName)
+                </td>
+
+            </tr>
+            <tr>
+                <td style="background-color:#f9f9f9;width:10%;">
+                    工程地点分区
+                </td>
+                <td colspan="5">
+                    @Html.DisplayFor(model => model.constructArea)
+                </td>
+            </tr>
+            <tr>
+                <td style="background-color:#f9f9f9;width:10%;">
+                    工程地点
+                </td>
+                <td colspan="5">
+                    @Html.DisplayFor(model => model.location)
+                </td>
+            </tr>
+            <tr>
+                <td style="background-color:#f9f9f9;width:10%;">
+                    档案密级
+                </td>
+                <td>
+                    @Html.DisplayFor(model => model.securityID)
+                </td>
+                <td style="background-color:#f9f9f9;width:10%;">
+                    建筑面积
+                </td>
+                <td>
+                    @Html.DisplayFor(model => model.buildingArea)
+                </td>
+                <td style="background-color:#f9f9f9;width:10%;">
+                    总造价
+                </td>
+                <td>
+                    @Html.DisplayFor(model => model.totalCost)
+                </td>
+            </tr>
+            <tr>
+                <td style="background-color:#f9f9f9;width:10%;">
+                    建设单位负责人
+                </td>
+                <td>
+                    @Html.DisplayFor(model => model.projectResponsible)
+                </td>
+                <td style="background-color:#f9f9f9;width:10%;">
+                    固定电话
+                </td>
+                <td>
+                    @Html.DisplayFor(model => model.telephoneNo)
+                </td>
+                <td style="background-color:#f9f9f9;width:10%;">
+                    手机
+                </td>
+                <td>
+                    @Html.DisplayFor(model => model.mobilephoneNo)
+                </td>
+            </tr>
+            <tr>
+                <td style="background-color:#f9f9f9;">
+                    计划开工时间
+                </td>
+                <td>
+                    @Html.DisplayFor(model => model.planningStartDate)
+                </td>
+                <td style="background-color:#f9f9f9;">
+                    计划竣工时间
+                </td>
+                <td>
+                    @Html.DisplayFor(model => model.planningEndDate)
+                </td>
+            </tr>
+</table>
+    </div>
+    <div class="panel panel-default">
+        <table class="table table-bordered @*table-striped*@" >
+            <tr>
+                <td style="background-color:#f9f9f9;width:10%;">
+                    声像科指导人
+                </td>
+                <td style="width:23%">
+                    @Html.DisplayFor(model => model.instructor)
+                </td>
+                <td style="background-color:#f9f9f9;width:10%;">
+                    固定电话
+                </td>
+                <td style="width:23%">
+                    @Html.DisplayFor(model => model.contractTel)
+                </td>
+                <td style="background-color:#f9f9f9;width:5%;" rowspan="4">
+                    说明
+                </td>
+                <td rowspan="4">
+                    @Html.DisplayFor(model => model.introduction)
+                    @*@Html.TextArea("introduction", "1、根据青岛市建委青建发（2005）130号文件要求，为使该工程声像档案的手机更加完整准确，对工程开发前原貌的拍摄，建设方必须提前通知本馆工程师进行现场指导。2、本馆工程师在该工程施工过程中可随机抽查声像档案拍摄情况。3、工作单请妥善保管，工程完工后随声像档案移交本馆。"
+               , 7, 30, new { @class = "form-control jubu" })
+                    @Html.ValidationMessageFor(model => model.introduction, "", new { @class = "text-danger" })*@
+                </td>
+
+
+            </tr>
+            <tr>
+                <td style="background-color:#f9f9f9;width:10%;">
+                    手机
+                </td>
+                <td>
+                    @Html.DisplayFor(model => model.contractMobileNo)
+                </td>
+                <td style="background-color:#f9f9f9;width:10%;">
+                    邮箱
+                </td>
+                <td>
+                    @Html.DisplayFor(model => model.email)
+                </td>
+
+
+            </tr>
+            <tr>
+                <td style="background-color:#f9f9f9;width:10%;">
+                    地址
+                </td>
+                <td colspan="3">
+                    @Html.DisplayFor(model => model.address)
+                </td>
+            </tr>
+            <tr>
+
+                <td style="background-color:#f9f9f9;width:10%;">
+                    声像科责任人
+                </td>
+                <td>
+                    @Html.DisplayFor(model => model.videoResponsible)
+                </td>
+                <td style="background-color:#f9f9f9;width:10%;">
+                    填表日期
+                </td>
+                <td>
+                    @Html.DisplayFor(model => model.fillDate)
+                </td>
+
+            </tr>
+
+        </table>
+    </div>
+    <div style="text-align:center;">
+        <p>
+            @Html.ActionLink("返回", "Index", new { }, new { @class = "btn btn-default" })
+        </p>
+        <div style="height:20px;">
+        </div>
+    </div>
+
+    @*<dl class="dl-horizontal">
+        <dt>
+           表单编号：
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.sheetNo)
+        </dd>
+
+        <dt>
+            移交责任书号
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.contractNo)
+        </dd>
+
+        <dt>
+            建设单位名称：
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.developmentOrgnization)
+        </dd>
+
+        <dt>
+           工程项目名称：
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.projectName)
+        </dd>
+
+        <dt>
+           工程地点：
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.location)
+        </dd>
+
+
+        <dt>
+           建筑面积：
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.buildingArea)
+        </dd>
+
+        <dt>
+            总造价：
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.totalCost)
+        </dd>
+
+        <dt>
+            密级：
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.securityID)
+        </dd>
+
+        <dt>
+            保存期限：：
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.retentionPeriodNo)
+        </dd>
+
+        <dt>
+            工程项目负责人：
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.projectResponsible)
+        </dd>
+
+        <dt>
+           单位电话：
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.telephoneNo)
+        </dd>
+
+        <dt>
+            手机：
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.mobilephoneNo)
+        </dd>
+
+        <dt>
+           声像科指导人：
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.instructor)
+        </dd>
+
+        <dt>
+           联系电话：
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.contractTel)
+        </dd>
+
+        <dt>
+           声像科（手机）：
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.contractMobileNo)
+        </dd>
+
+        <dt>
+            地址：
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.address)
+        </dd>
+
+        <dt>
+           电子邮箱：
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.email)
+        </dd>
+
+        <dt>
+            声像负责人：
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.videoResponsible)
+        </dd>
+
+       
+        <dt>
+            日期：
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.fillDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.introduction)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.introduction)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("返回", "Index")
+</p>*@

@@ -1,0 +1,63 @@
+﻿
+
+<h2 style="font-size:24.5px"><i class="fa fa-tags kongge"></i>浏览视频</h2>
+<hr />
+<div class="panel panel-default">
+    <table class="table table-bordered @*table-striped*@" style="font-size:16px">
+        <tr>
+            <td style="background-color:#f9f9f9;width:10%;">
+                所属工程
+            </td>
+            <td>
+                @ViewBag.projectName
+            </td>
+            <td style="background-color:#f9f9f9;width:10%;">
+                工程名称
+            </td>
+            <td>
+                @ViewBag.projectName
+            </td>
+            <td style="background-color:#f9f9f9;width:10%;">
+                文件类别
+            </td>
+            <td>
+                @ViewBag.filingDesc
+            </td>
+        </tr>
+        <tr>
+            <td style="background-color:#f9f9f9;width:10%;">
+                文件描述
+            </td>
+            <td colspan="5">
+                @ViewBag.videoContent
+            </td>
+        </tr>
+    </table>
+</div>
+
+<div style="text-align:center;">
+    <div style="height:20px;"></div>
+    <p>
+        @Html.ActionLink("返回案卷录入", "Index", "VideoCassetteLists", new { videoProjectSeqNo = @ViewBag.videoProjectSeqNo }, new { @class = "btn btn-primary btn-file", @style = "font-size:16px;" })
+    @Html.ActionLink("视频下载", "Index", "VideoCassetteLists", new { path1 = @ViewBag.result}, new { @class = "btn btn-primary btn-file", @style = "font-size:16px;" })
+    </p>
+    <div style="height:20px;">
+    </div>
+</div>
+<body>
+    <object id="MediaPlayer" classid="clsid:22D6F312-B0F6-11D0-94AB-0080C74C7E95" width="1000" height="600" standby="Loading Windows Media Player components…" type="application/x-oleobject" codebase="http://activex.microsoft.com/activex/controls/mplayer/en/nsmp2inf.cab#Version=6,4,7,1112">
+        <param name="FileName" value="@ViewBag.result55 ">
+        <param name="AutoStart" value="true">
+        <param name="ShowControls" value="true">
+        <param name="BufferingTime" value="2">
+        <param name="ShowStatusBar" value="true">
+        <param name="AutoSize" value="true">
+        <param name="InvokeURLs" value="false">
+        <param name="AnimationatStart" value="1">
+        <param name="TransparentatStart" value="1">
+        <param name="Loop" value="1">
+        <embed type="application/x-mplayer2" src="./../声像资料/20170007/声像视频/1、工程前期/1.原貌20141018.mpg" name="MediaPlayer" autostart="1" showstatusbar="1" showdisplay="1" showcontrols="1" loop="0" videoborder3d="0" pluginspage="http://www.microsoft.com/Windows/MediaPlayer/" width="800" height="600"></embed>
+    </object>
+</body>
+
+    

@@ -1,0 +1,116 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="jungongtongjiDataSet" targetNamespace="http://tempuri.org/jungongtongjiDataSet.xsd" xmlns:mstns="http://tempuri.org/jungongtongjiDataSet.xsd" xmlns="http://tempuri.org/jungongtongjiDataSet.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections>
+          <Connection AppSettingsObjectName="Web.config" AppSettingsPropertyName="UrbanConConnectionString" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="UrbanConConnectionString (Web.config)" ParameterPrefix="@" PropertyReference="AppConfig.System.Configuration.ConfigurationManager.0.ConnectionStrings.UrbanConConnectionString.ConnectionString" Provider="System.Data.SqlClient" />
+        </Connections>
+        <Tables>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="vw_printTongjiTableAdapter" GeneratorDataComponentClassName="vw_printTongjiTableAdapter" Name="vw_printTongji" UserDataComponentName="vw_printTongjiTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="UrbanConConnectionString (Web.config)" DbObjectName="UrbanCon.dbo.vw_printTongji" DbObjectType="View" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>SELECT projectName, developmentOrganization, paperProjectSeqNo, recipient, dateReceived, totalExpense, buildingArea, isCharge, centiCnt, constructionOrganization, jianliUnit, projectNo, theoryExpense, seqNo, searchNo, chargeExtra FROM dbo.vw_printTongji</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="projectName" DataSetColumn="projectName" />
+              <Mapping SourceColumn="developmentOrganization" DataSetColumn="developmentOrganization" />
+              <Mapping SourceColumn="paperProjectSeqNo" DataSetColumn="paperProjectSeqNo" />
+              <Mapping SourceColumn="recipient" DataSetColumn="recipient" />
+              <Mapping SourceColumn="dateReceived" DataSetColumn="dateReceived" />
+              <Mapping SourceColumn="totalExpense" DataSetColumn="totalExpense" />
+              <Mapping SourceColumn="buildingArea" DataSetColumn="buildingArea" />
+              <Mapping SourceColumn="isCharge" DataSetColumn="isCharge" />
+              <Mapping SourceColumn="centiCnt" DataSetColumn="centiCnt" />
+              <Mapping SourceColumn="constructionOrganization" DataSetColumn="constructionOrganization" />
+              <Mapping SourceColumn="jianliUnit" DataSetColumn="jianliUnit" />
+              <Mapping SourceColumn="projectNo" DataSetColumn="projectNo" />
+              <Mapping SourceColumn="theoryExpense" DataSetColumn="theoryExpense" />
+              <Mapping SourceColumn="seqNo" DataSetColumn="seqNo" />
+              <Mapping SourceColumn="searchNo" DataSetColumn="searchNo" />
+              <Mapping SourceColumn="chargeExtra" DataSetColumn="chargeExtra" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+        </Tables>
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="jungongtongjiDataSet" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="True" msprop:Generator_DataSetName="jungongtongjiDataSet" msprop:Generator_UserDSName="jungongtongjiDataSet">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="vw_printTongji" msprop:Generator_TableClassName="vw_printTongjiDataTable" msprop:Generator_TableVarName="tablevw_printTongji" msprop:Generator_TablePropName="vw_printTongji" msprop:Generator_RowDeletingName="vw_printTongjiRowDeleting" msprop:Generator_RowChangingName="vw_printTongjiRowChanging" msprop:Generator_RowEvHandlerName="vw_printTongjiRowChangeEventHandler" msprop:Generator_RowDeletedName="vw_printTongjiRowDeleted" msprop:Generator_UserTableName="vw_printTongji" msprop:Generator_RowChangedName="vw_printTongjiRowChanged" msprop:Generator_RowEvArgName="vw_printTongjiRowChangeEvent" msprop:Generator_RowClassName="vw_printTongjiRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="projectName" msprop:Generator_ColumnVarNameInTable="columnprojectName" msprop:Generator_ColumnPropNameInRow="projectName" msprop:Generator_ColumnPropNameInTable="projectNameColumn" msprop:Generator_UserColumnName="projectName" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="500" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="developmentOrganization" msprop:Generator_ColumnVarNameInTable="columndevelopmentOrganization" msprop:Generator_ColumnPropNameInRow="developmentOrganization" msprop:Generator_ColumnPropNameInTable="developmentOrganizationColumn" msprop:Generator_UserColumnName="developmentOrganization" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="100" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="paperProjectSeqNo" msprop:Generator_ColumnVarNameInTable="columnpaperProjectSeqNo" msprop:Generator_ColumnPropNameInRow="paperProjectSeqNo" msprop:Generator_ColumnPropNameInTable="paperProjectSeqNoColumn" msprop:Generator_UserColumnName="paperProjectSeqNo" type="xs:long" />
+              <xs:element name="recipient" msprop:Generator_ColumnVarNameInTable="columnrecipient" msprop:Generator_ColumnPropNameInRow="recipient" msprop:Generator_ColumnPropNameInTable="recipientColumn" msprop:Generator_UserColumnName="recipient" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="dateReceived" msprop:Generator_ColumnVarNameInTable="columndateReceived" msprop:Generator_ColumnPropNameInRow="dateReceived" msprop:Generator_ColumnPropNameInTable="dateReceivedColumn" msprop:Generator_UserColumnName="dateReceived" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="totalExpense" msprop:Generator_ColumnVarNameInTable="columntotalExpense" msprop:Generator_ColumnPropNameInRow="totalExpense" msprop:Generator_ColumnPropNameInTable="totalExpenseColumn" msprop:Generator_UserColumnName="totalExpense" type="xs:decimal" minOccurs="0" />
+              <xs:element name="buildingArea" msprop:Generator_ColumnVarNameInTable="columnbuildingArea" msprop:Generator_ColumnPropNameInRow="buildingArea" msprop:Generator_ColumnPropNameInTable="buildingAreaColumn" msprop:Generator_UserColumnName="buildingArea" type="xs:double" minOccurs="0" />
+              <xs:element name="isCharge" msprop:Generator_ColumnVarNameInTable="columnisCharge" msprop:Generator_ColumnPropNameInRow="isCharge" msprop:Generator_ColumnPropNameInTable="isChargeColumn" msprop:Generator_UserColumnName="isCharge" type="xs:boolean" minOccurs="0" />
+              <xs:element name="centiCnt" msprop:Generator_ColumnVarNameInTable="columncentiCnt" msprop:Generator_ColumnPropNameInRow="centiCnt" msprop:Generator_ColumnPropNameInTable="centiCntColumn" msprop:Generator_UserColumnName="centiCnt" type="xs:double" minOccurs="0" />
+              <xs:element name="constructionOrganization" msprop:Generator_ColumnVarNameInTable="columnconstructionOrganization" msprop:Generator_ColumnPropNameInRow="constructionOrganization" msprop:Generator_ColumnPropNameInTable="constructionOrganizationColumn" msprop:Generator_UserColumnName="constructionOrganization" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="100" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="jianliUnit" msprop:Generator_ColumnVarNameInTable="columnjianliUnit" msprop:Generator_ColumnPropNameInRow="jianliUnit" msprop:Generator_ColumnPropNameInTable="jianliUnitColumn" msprop:Generator_UserColumnName="jianliUnit" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="100" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="projectNo" msprop:Generator_ColumnVarNameInTable="columnprojectNo" msprop:Generator_ColumnPropNameInRow="projectNo" msprop:Generator_ColumnPropNameInTable="projectNoColumn" msprop:Generator_UserColumnName="projectNo" type="xs:long" minOccurs="0" />
+              <xs:element name="theoryExpense" msprop:Generator_ColumnVarNameInTable="columntheoryExpense" msprop:Generator_ColumnPropNameInRow="theoryExpense" msprop:Generator_ColumnPropNameInTable="theoryExpenseColumn" msprop:Generator_UserColumnName="theoryExpense" type="xs:decimal" minOccurs="0" />
+              <xs:element name="seqNo" msprop:Generator_ColumnVarNameInTable="columnseqNo" msprop:Generator_ColumnPropNameInRow="seqNo" msprop:Generator_ColumnPropNameInTable="seqNoColumn" msprop:Generator_UserColumnName="seqNo" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="11" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="searchNo" msprop:Generator_ColumnVarNameInTable="columnsearchNo" msprop:Generator_ColumnPropNameInRow="searchNo" msprop:Generator_ColumnPropNameInTable="searchNoColumn" msprop:Generator_UserColumnName="searchNo" type="xs:long" minOccurs="0" />
+              <xs:element name="chargeExtra" msprop:Generator_ColumnVarNameInTable="columnchargeExtra" msprop:Generator_ColumnPropNameInRow="chargeExtra" msprop:Generator_ColumnPropNameInTable="chargeExtraColumn" msprop:Generator_UserColumnName="chargeExtra" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

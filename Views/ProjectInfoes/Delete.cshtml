@@ -1,0 +1,288 @@
+﻿@model urban_archive.Models.vw_projectProfile
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+<div class="form-horizontal">
+    <div>
+        <h4>业务科：工程信息</h4>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                工程名称
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.projectName)
+            </dd>
+
+            <dt>
+                工程地点
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.location)
+            </dd>
+
+            <dt>
+                最新工程地点
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.newLocation)
+            </dd>
+
+
+            <dt>
+                报送人
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.submitPerson)
+            </dd>
+            <dt>报送人手机</dt>
+            <dd>
+                @Html.DisplayFor(model => model.mobilephoneSubmitPerson)
+            </dd>
+            <dt>报送人固话</dt>
+            <dd>
+                @Html.DisplayFor(model => model.telphoneSubmitPerson)
+            </dd>
+
+            <dt>
+                项目序号
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.paperProjectSeqNo)
+            </dd>
+
+            <dt>
+                工程序号
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.projectNo)
+            </dd>
+
+            <dt>
+                建筑面积
+            </dt>
+            @Html.DisplayFor(model => model.buildingArea)
+            <dd>
+
+            </dd>
+
+            <dt>
+                档案密级
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.securityID)
+            </dd>
+
+            <dt>
+                保存期限
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.retentionPeriodNo)
+            </dd>
+
+            <dt>
+                异地存放
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.isYD)
+            </dd>
+
+            <dt>
+                档案状态
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.status)
+            </dd>
+
+            <dt>
+                建设单位
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.developmentOrganization)
+            </dd>
+
+            <dt>
+                建设单位联系人
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.devolonpentOrgContacter)
+            </dd>
+
+            <dt>
+                固定电话
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.telphoneNoDevelopment)
+            </dd>
+
+            <dt>
+                手机电话
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.mobilephoneNoDevelopment)
+            </dd>
+
+            <dt>
+                监理单位
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.jianliUnit)
+            </dd>
+
+            <dt>
+                监理单位负责人
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.jianliUnitContacter)
+            </dd>
+
+            <dt>
+                监理者
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.telphoneNoJianliUnit)
+            </dd>
+
+            <dt>
+                施工单位
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.constructionOrganization)
+            </dd>
+
+            <dt>
+                施工单位法人
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.constructionOrgContacter)
+            </dd>
+
+            <dt>
+                技术员
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.telphoneNoConstruction)
+            </dd>
+
+            <dt>
+                设计单位
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.disignOrganization)
+            </dd>
+
+            <dt>
+                设计单位负责人
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.designOrgaContacter)
+            </dd>
+
+            <dt>
+                设计者
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.telphoneNoDesignOrga)
+            </dd>
+
+            <dt>
+                档案接收日期
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.dateReceived)
+            </dd>
+
+            <dt>
+                档案接收人
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.recipient)
+            </dd>
+
+            <dt>
+                项目概况
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.projectProfile)
+            </dd>
+
+            <dt>
+                整理要求
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.collationRequirement)
+            </dd>
+
+            <dt>
+                初审意见
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.csyj)
+            </dd>
+            <dt>
+                初审意见人
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.csyjPerson)
+            </dd>
+            <dt>
+                初审意见日期
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.csyjDate)
+            </dd>
+            <dt>
+                备忘录
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.memo)
+            </dd>
+
+
+        </dl>
+    </div>
+    <div class="form-actions no-color">
+        <input type="submit" value="Delete" class="btn btn-default" /> |
+        @Html.ActionLink("Back to List", "Index")
+    </div>
+    </div>
+}

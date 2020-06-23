@@ -1,0 +1,52 @@
+﻿@model IEnumerable<urban_archive.Models.gxProjectInfo>
+
+@{
+    ViewBag.Title = "Index";
+}
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "gxCreate")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            工程项目题名
+        </th>
+        <th>
+            建设单位
+        </th>
+        <th>
+             联系人
+        </th>
+        <th>
+           移动电话
+        </th>
+        
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.projectName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.developmentOrganization)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.devolonpentOrgContacter)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.mobilephoneNoDevelopment)
+ 
+        </td>
+    
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.projectID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.projectID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.projectID })
+        </td>
+    </tr>
+}
+
+</table>

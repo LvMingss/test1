@@ -1,0 +1,276 @@
+﻿@model urban_archive.Models.vw_archiveQueryList
+
+@{
+    ViewBag.Title = "Edit";
+}
+<style type="text/css">
+    .jubu {
+        max-width: 100%;
+    }
+    .jubu1 {
+        max-width: 100%;
+        height: 85px;
+    }
+</style>
+<script>
+    function dayin()//弹出对话框1
+    {
+        //window.open('./../zhenglidayin');
+        window.showModalDialog('./zhenglidayin',null, 'dialogWidth=500px;dialogHeight=500px');
+        //弹出模型对话框，obj为传值参数,name为子页面返回参数
+    }
+    function add() {
+        var text1 = document.getElementById("character2cm").value;//获取ID为landNo文本框的值.
+        var text2 = document.getElementById("character3cm").value;
+        var text3 = document.getElementById("character4cm").value;
+        var text4 = document.getElementById("character5cm").value;
+        var text0 = document.getElementById("character1cm").value;
+        document.getElementById("characterVolumeCount").value = text1 * 1 + text2 * 1 + text3 * 1 + text4 * 1+text0*1;//并放入文本框
+        var text5 = document.getElementById("drawing2cm").value;//获取ID为landNo文本框的值.
+        var text6 = document.getElementById("drawing3cm").value;
+        var text7 = document.getElementById("drawing4cm").value;
+        var text8 = document.getElementById("drawing5cm").value;
+        var text9 = document.getElementById("drawing1cm").value;
+        document.getElementById("drawingVolumeCount").value = text5 * 1 + text6 * 1 + text7 * 1 + text8 * 1 + text9 * 1;//并放入文本框
+        document.getElementById("originalVolumeCount").value = document.getElementById("characterVolumeCount").value * 1 + document.getElementById("drawingVolumeCount").value * 1;
+        document.getElementById("originalInchCount").value = text0 * 1 + text1 * 2 + text2 * 3 + text3 * 4 + text4 * 5 + text5 * 2 + text6 * 3 + text7 * 4 + text8 * 5 + text9 *1 ;
+        var text25 = "1" + "*" + text0;
+        var text11 = ","+"2" + "*" + text1;
+        var text12 = ","+"3" + "*" + text2;
+        var text13 = "," + "4" + "*" + text3;
+        var text14 = "," + "5" + "*" + text4;
+        var text26 = "," + "1" + "*" + text9;
+        var text21 = "," + "2" + "*" + text5;
+        var text22 = "," + "3" + "*" + text6;
+        var text23 = "," + "4" + "*" + text7;
+        var text24 = "," + "5" + "*" + text8;
+        document.getElementById("InchCountDetail").value = text25 +text11 + text12 + text13 + text14 +text23+ text21 + text22 + text23 + text24;
+    }
+    $(document).ready(function () {
+        $("#back").click(function () {
+            window.close();
+        });
+    });
+</script>
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    @Html.HiddenFor(model => model.projectID)
+    <div class="form-horizontal">
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="panel panel-default">
+            <table class="table table-bordered ">
+                <tr>
+                    <td class="linear" style="color:white;font-size:18px;" colspan="8">
+                        <i class="fa fa-check-square-o"></i>领取信息
+                    </td>
+
+                </tr>
+           
+                <tr>
+                    <td style="background-color:#f9f9f9;width:100px;">
+                        工程序号
+                    </td>
+                    <td style="width:20%;">
+                        @Html.EditorFor(model => model.projectNo, new { htmlAttributes = new { @class = "form-control", @readOnly = "readOnly" } })
+                        @Html.ValidationMessageFor(model => model.projectNo, "", new { @class = "text-danger" })
+                    </td>
+                    <td style="background-color:#f9f9f9;width:100px;">
+                        工程名称
+                    </td>
+                    <td colspan="3">
+                        @Html.EditorFor(model => model.projectName, new { htmlAttributes = new { @class = "form-control jubu", @readOnly = "readOnly" } })
+                        @Html.ValidationMessageFor(model => model.projectName, "", new { @class = "text-danger" })
+                    </td>
+                </tr>
+                <tr>
+                    <td style="background-color:#f9f9f9;width:100px;">
+                        整理人
+                    </td>
+                    <td>
+                        @Html.EditorFor(model => model.collator, new { htmlAttributes = new { @class = "form-control", @readOnly = "readOnly" } })
+                        @Html.ValidationMessageFor(model => model.collator, "", new { @class = "text-danger" })
+                    </td>
+
+                    <td style="background-color:#f9f9f9;width:100px;" rowspan="2">
+                        整理要求
+                    </td>
+                    <td rowspan="2">
+                        @Html.EditorFor(model => model.collationRequirement, new { htmlAttributes = new { @class = "form-control jubu jubu1", @readOnly = "readOnly" } })
+                        @Html.ValidationMessageFor(model => model.collationRequirement, "", new { @class = "text-danger" })
+                    </td>
+                </tr>
+                <tr>
+                    <td style="background-color:#f9f9f9;width:100px;">
+                        整理日期
+                    </td>
+                    <td>
+                        @Html.EditorFor(model => model.lqDate, new { htmlAttributes = new { @class = "form-control", @readOnly = "readOnly" } })
+                        @Html.ValidationMessageFor(model => model.lqDate, "", new { @class = "text-danger" })
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <div class="panel panel-default">
+            <table class="table table-bordered ">
+                <tr>
+                    <td class="linear" style="color:white;font-size:18px;" colspan="8">
+                        <i class="fa fa-check-square-o"></i>档案整理信息
+                    </td>
+
+                </tr>
+              
+                <tr>
+                    <td style="background-color:#f9f9f9;width:100px;" colspan="3">
+                        公分数明细<br />
+                        （请按照 公分数×卷数 来填写,卷之间以,分割;例如：2*2,3*1）
+                    </td>
+                    <td colspan="5">
+                        @Html.EditorFor(model => model.InchCountDetail, new { htmlAttributes = new { @class = "form-control jubu" } })
+                        @Html.ValidationMessageFor(model => model.InchCountDetail, "", new { @class = "text-danger" })
+                        
+                    </td>
+                </tr>
+                <tr>
+                    <td style="background-color:#f9f9f9;width:100px;" rowspan="2">
+                        文字
+                    </td>
+                    <td rowspan="2">
+                        @Html.EditorFor(model => model.characterVolumeCount, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.characterVolumeCount, "", new { @class = "text-danger" })
+                    </td>
+                    <td style="background-color:#f9f9f9;width:100px;">
+                        一厘米
+                    </td>
+                    <td>
+                        <input type="text" id="character1cm" value="@ViewData["character1cm"]" name="character1cm" onblur="add()" class="form-control">
+                        @Html.ValidationMessageFor(model => model.character1cm, "", new { @class = "text-danger" })
+                    </td>
+                    <td style="background-color:#f9f9f9;width:100px;">
+                        二厘米
+                    </td>
+                    <td>
+                        <input type="text" id="character2cm" value="@ViewData["character2cm"]" name="character2cm" onblur="add()" class="form-control">
+                        @Html.ValidationMessageFor(model => model.character2cm, "", new { @class = "text-danger" })
+                    </td>
+                    <td style="background-color:#f9f9f9;width:100px;">
+                        三厘米
+                    </td>
+                    <td>
+                        <input type="text" id="character3cm"value="@ViewData["character3cm"]" name="character3cm" value=@ViewBag.character3cm onblur="add()" class="form-control">
+                        @*<input type="text" id="character3cm" name="character3cm" onblur="add()" class="form-control">*@
+                        @Html.ValidationMessageFor(model => model.character3cm, "", new { @class = "text-danger" })
+                    </td>
+                    
+                </tr>
+                <tr>
+                    <td style="background-color:#f9f9f9;width:100px;">
+                        四厘米
+                    </td>
+                    <td>
+                        <input type="text" id="character4cm" value="@ViewData["character4cm"]" name="character4cm" onblur="add()" class="form-control">
+                        @Html.ValidationMessageFor(model => model.character4cm, "", new { @class = "text-danger" })
+                    </td>
+                    <td style="background-color:#f9f9f9;width:100px;">
+                        五厘米
+                    </td>
+                    <td>
+                        <input type="text" id="character5cm"value="@ViewData["character5cm"]" name="character5cm" onblur="add()" class="form-control">
+                        @Html.ValidationMessageFor(model => model.character5cm, "", new { @class = "text-danger" })
+                    </td>
+                    <td colspan="2"></td>
+                </tr>
+                <tr>  
+                    <td style="background-color:#f9f9f9;" rowspan="2">
+                        图纸
+                    </td>
+                    <td rowspan="2">
+                        @Html.EditorFor(model => model.drawingVolumeCount, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.drawingVolumeCount, "", new { @class = "text-danger" })
+                    </td>  
+                    <td style="background-color:#f9f9f9;">
+                        一厘米
+                    </td>
+                    <td>
+                        <input type="text" id="drawing1cm"value="@ViewData["drawing1cm"]" name="drawing1cm" onblur="add()" class="form-control">
+                        @Html.ValidationMessageFor(model => model.drawing1cm, "", new { @class = "text-danger" })
+                    </td>
+                    <td style="background-color:#f9f9f9;">
+                        二厘米
+                    </td>
+                    <td>
+                        <input type="text" id="drawing2cm" value="@ViewData["drawing2cm"]" name="drawing2cm" onblur="add()" class="form-control">
+                        @Html.ValidationMessageFor(model => model.drawing2cm, "", new { @class = "text-danger" })
+                    </td>
+                    <td style="background-color:#f9f9f9;">
+                        三厘米
+                    </td>
+                    <td>
+                        <input type="text" id="drawing3cm" value="@ViewData["drawing3cm"]"name="drawing3cm" onblur="add()" class="form-control">
+                        @Html.ValidationMessageFor(model => model.drawing3cm, "", new { @class = "text-danger" })
+                    </td>
+                    
+                </tr>
+                <tr>
+                    <td style="background-color:#f9f9f9;">
+                        四厘米
+                    </td>
+                    <td>
+                        <input type="text" id="drawing4cm" value="@ViewData["drawing4cm"]" name="drawing4cm" onblur="add()" class="form-control">
+                        @Html.ValidationMessageFor(model => model.drawing4cm, "", new { @class = "text-danger" })
+                    </td>
+                    <td style="background-color:#f9f9f9;">
+                        五厘米
+                    </td>
+                    <td>
+                        <input type="text" id="drawing5cm"value="@ViewData["drawing5cm"]" name="drawing5cm" onblur="add()" class="form-control">
+                        @Html.ValidationMessageFor(model => model.drawing5cm, "", new { @class = "text-danger" })
+                    </td>
+                    <td colspan="2"></td>
+                </tr>
+                <tr>
+                    <td style="background-color:#f9f9f9;width:100px;">
+                        原件件数
+                    </td>
+                    <td >
+                        @Html.EditorFor(model => model.originalVolumeCount, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.originalVolumeCount, "", new { @class = "text-danger" })
+                    </td>
+                    <td style="background-color:#f9f9f9;width:100px;">
+                        原件公分数
+                    </td>
+                    <td>
+                        @Html.EditorFor(model => model.originalInchCount, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.originalInchCount, "", new { @class = "text-danger" })
+                    </td>
+                    <td style="background-color:#f9f9f9;width:100px;">
+                        复印公分数
+                    </td>
+                    <td>
+                        @Html.EditorFor(model => model.copyInchCount, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.copyInchCount, "", new { @class = "text-danger" })
+                    </td>
+                    <td colspan="2"></td>
+                </tr>
+            </table>
+        </div>
+        <div style="text-align:center;">
+            <input type="submit" value="修改" name="action" class="btn btn-default"> |
+            <input type="button" value="打印个人整理档案统计表" class="btn btn-default" onclick="dayin()"> |
+            <input type="submit" value="返回" id="back" name="action" class="btn btn-default">
+            <div style="height:20px;"></div>
+        </div>
+
+    </div>
+
+   
+   
+
+
+
+}
+
+
+

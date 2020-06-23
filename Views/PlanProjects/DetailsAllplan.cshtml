@@ -1,0 +1,364 @@
+﻿@model urban_archive.Models.PlanProject
+
+@{
+    ViewBag.Title = "Create";
+}
+<style type="text/css">
+    .dangqianzhuangtai {
+        color: blue;
+        text-decoration: underline;
+    }
+</style>
+<link type="text/css" rel="stylesheet" href="~/Scripts/jquery/jquery-ui.css">
+
+<script type="text/javascript" src="~/Scripts/jquery/jquery-1.8.3.js"></script>
+<script type="text/javascript" src="~/Scripts/jquery/jquery.ui.core.js"></script>
+<script type="text/javascript" src="~/Scripts/jquery/jquery.ui.datepicker.js"></script>
+<script type="text/javascript" src="~/Scripts/jquery/jquery.ui.widget.js"></script>
+<script type="text/javascript" src="~/Scripts/jquery/jquery-ui-timepicker-addon.js"></script>
+
+<script>
+    $(document).ready(function () {
+        $("#fengpiG").click(function () {
+            var a = document.getElementById("ID").value * 1;
+            window.open('/PlanProjects/GuiHuaGongChengFengPi/?id=' + a + "&id1=0");
+        });
+    });
+    $(document).ready(function () {
+        $("#beikaobiaoG").click(function () {
+            var b = document.getElementById("ID").value * 1;
+            window.open('/PlanProjects/beikaobiao/?id=' + b + "&id1=0");
+        });
+    }); $(document).ready(function () {
+        $("#fengpiN").click(function () {
+            var c = document.getElementById("ID").value * 1;
+            window.open('/PlanProjects/GuiHuaGongChengFengPi/?id=' + c + "&id1=1");
+        });
+    }); $(document).ready(function () {
+        $("#beikaobiaoN").click(function () {
+            var d = document.getElementById("ID").value * 1;
+            window.open('/PlanProjects/beikaobiao/?id=' + d + "&id1=1");
+        });
+    });
+    $(document).ready(function () {
+        $("#ProjectContent").click(function () {
+            var e = document.getElementById("seqNo1").value * 1;
+            window.open('/PlanProjects/GuiHuaGongChengMuLu/?id=' + e);
+        });
+    });
+    $(document).ready(function () {
+        $("#back").click(function () {
+            var url = '/PlanProjects/AllPlanProject/';
+            window.location.href = url;
+        });
+    });
+</script>
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <h2 style="margin:0px;"><i class="fa fa-tags kongge"></i>工程种类： @ViewBag.classifyName</h2>
+
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.Hidden("classifyID")
+        @* @Html.Hidden("classifyID", (int)ViewBag.classifyID)*@
+        @*<input type="text" id="ID" name="ID" value="@ViewBag.ID" class="hidden" />*@
+        @Html.HiddenFor(model => model.ID)
+        @Html.HiddenFor(model => model.seqNo1)
+        <div class="panel panel-default">
+            <table class="table table-bordered dl-horizontal">
+                <tr>
+
+                    <td style="background-color:#f9f9f9;font-weight:bold;min-width:130px;width:6%;">
+                        盒名
+                    </td>
+                    <td colspan="3">
+
+                        <input type="text" id="year" name="year" style="display:inline" value="@ViewBag.year" class="form-control" />年
+                        <input type="text" id="box" name="box" style="display:inline" class="form-control" value="@ViewBag.box" />@*数据库里并没有这个字段，为了方便录入合成盒号*@
+
+
+                        第 <input type="text" id="boxID" style="display:inline" class="form-control" name="boxID" value="@ViewBag.boxid" />号文件
+                        <label id="tishi" style="display:none;color:crimson">盒号不能为空！</label>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="background-color:#f9f9f9;font-weight:bold;min-width:130px;width:6%;">
+                        盒名
+                    </td>
+                    <td colspan="3">
+                        @Html.DisplayFor(model => model.boxNo, new { htmlAttributes = new { @class = "form-control", @style = "max-width:100%;padding:0px 5px;height:28px;" } })
+                        @*@Html.EditorFor(model => model.boxNo, new { htmlAttributes = new { @class = "form-control jubu" } })*@
+                        @Html.ValidationMessageFor(model => model.boxNo, "", new { @class = "text-danger" })
+                    </td>
+                </tr>
+                <tr>
+
+                    <td style="background-color:#f9f9f9;min-width:130px;font-weight:bold;width:6%;">
+                        文件编号
+                    </td>
+                    <td style="width:44%;">
+
+                        @*@Html.DisplayFor(model => model.boxNo, "", new { htmlAttributes = new { @style = "width:150px;display:inline", @class = "form-control", @onblur = "add()" } })
+                            字(
+                            @Html.DisplayFor(model => model.yearNo, "", new { htmlAttributes = new { @style = "width:100px;display:inline", @class = "form-control", @onblur = "add()" } }))
+                            第
+                            @Html.DisplayFor(model => model.projectID, new { htmlAttributes = new { @style = "width:100px;display:inline", @class = "form-control", @onblur = "add()" } })
+
+                            号*@
+                        @Html.DisplayFor(model => model.fileNo, new { htmlAttributes = new { @class = "form-control", @style = "width:100px;display:inline" } })
+                    </td>
+                    <td style="background-color:#f9f9f9;font-weight:bold;min-width:130px;width:6%;">
+                        文号
+                    </td>
+                    <td style="width:44%;">
+                        @Html.DisplayFor(model => model.fileNo, new { htmlAttributes = new { @class = "form-control", @style = "width:100px;display:inline" } })
+                    </td>
+                </tr>
+
+
+                <tr>
+                    <td style="background-color:#f9f9f9;font-weight:bold;min-width:130px;width:6%;">
+                        工程总顺序号
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => model.totalSeqNo, new { htmlAttributes = new { @class = "form-control", @style = "max-width:100%;padding:0px 5px;height:28px;", @onblur = "add()" } })
+                        @Html.ValidationMessageFor(model => model.totalSeqNo, "", new { @class = "text-danger" })
+                    </td>
+                    <td style="background-color:#f9f9f9;font-weight:bold;min-width:130px;width:6%;">
+                        盒号
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => model.seqNo1, new { htmlAttributes = new { @class = "form-control", @style = "max-width:100%;padding:0px 5px;height:28px;", @onblur = "add()" } })
+                        @Html.ValidationMessageFor(model => model.seqNo1, "", new { @class = "text-danger" })
+                    </td>
+
+
+                </tr>
+
+
+
+
+                <tr>
+                    <td style="background-color:#f9f9f9;font-weight:bold;min-width:130px;width:6%;">
+                        工程名称
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => model.projectname, new { htmlAttributes = new { @class = "form-control", @style = "max-width:100%;padding:0px 5px;height:28px;", @onblur = "add()" } })
+                        @Html.ValidationMessageFor(model => model.projectname, "", new { @class = "text-danger" })
+                    </td>
+                    <td style="background-color:#f9f9f9;font-weight:bold;min-width:130px;width:6%;">
+                        工程地点
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => model.projectLocation, new { htmlAttributes = new { @class = "form-control", @style = "max-width:100%;padding:0px 5px;height:28px;", @onblur = "add()" } })
+                        @Html.ValidationMessageFor(model => model.projectLocation, "", new { @class = "text-danger" })
+                    </td>
+
+
+                </tr>
+                <tr>
+                    <td style="background-color:#f9f9f9;font-weight:bold;min-width:130px;width:6%;">
+                        建设单位
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => model.developmentUnit, new { htmlAttributes = new { @class = "form-control", @style = "max-width:100%;padding:0px 5px;height:28px;" } })
+                        @Html.ValidationMessageFor(model => model.developmentUnit, "", new { @class = "text-danger" })
+                    </td>
+                    <td style="background-color:#f9f9f9;font-weight:bold;min-width:130px;width:6%;">
+                        保管年限
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => model.retentionPeriodID, new { htmlAttributes = new { @class = "form-control", @style = "max-width:100%;padding:0px 5px;height:28px;" } })
+                        @*@Html.DropDownList("retentionPeriodID", null, new { @class = "form-control", @style = "padding:0px 5px;height:28px;" })*@
+                    </td>
+
+                </tr>
+                <tr>
+
+                    <td style="background-color:#f9f9f9;font-weight:bold;min-width:130px;width:6%;">
+                        是否为内部
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => model.isNeibu, new { htmlAttributes = new { @class = "form-control", @style = "max-width:100%;padding:0px 5px;height:28px;" } })
+                        @*@Html.DropDownList("isNeibu", null, new { @class = "form-control", @style = "padding:0px 5px;height:28px;" })*@
+                    </td>
+                    <td style="background-color:#f9f9f9;font-weight:bold;min-width:130px;width:6%;">
+                        档案密级
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => model.securityID, new { htmlAttributes = new { @class = "form-control", @style = "max-width:100%;padding:0px 5px;height:28px;" } })
+                        @*@Html.DropDownList("securityID", null, new { @class = "form-control", @style = "padding:0px 5px;height:28px;" })*@
+                    </td>
+                </tr>
+                <tr>
+                    <td style="background-color:#f9f9f9;font-weight:bold;min-width:130px;width:6%;">
+                        文件材料题名<br />(公开)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => model.projectContent, new { htmlAttributes = new { @class = "form-control", @style = "max-width:100%;padding:0px 5px;height:28px;" } })
+                        @*@Html.TextAreaFor(model => model.projectContent, new { @class = "form-control", @onblur = "add()", @style = "max-width:100%;padding:0px 5px;height:56px;" })
+                            @Html.ValidationMessageFor(model => model.projectContent, "", new { @class = "text-danger" })*@
+                    </td>
+                    <td style="background-color:#f9f9f9;font-weight:bold;min-width:130px;width:6%;">
+                        文件材料题名<br />(内部)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => model.projectContent_neibu, new { htmlAttributes = new { @class = "form-control", @style = "max-width:100%;padding:0px 5px;height:28px;" } })
+                        @*@Html.TextAreaFor(model => model.projectContent_neibu, new { @class = "form-control", @onblur = "add_neibu()", @style = "max-width:100%;padding:0px 5px;height:56px;" })
+                            @Html.ValidationMessageFor(model => model.projectContent_neibu, "", new { @class = "text-danger" })*@
+                    </td>
+                </tr>
+
+                <tr>
+                    <td style="background-color:#f9f9f9;font-weight:bold;min-width:130px;width:6%;">
+                        案卷题名(公开)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => model.archiveTitle, new { htmlAttributes = new { @class = "form-control", @style = "max-width:100%;padding:0px 5px;height:28px;" } })
+                        @*@Html.TextAreaFor(model => model.archiveTitle, new { @class = "form-control", @onblur = "add()", @style = "max-width:100%;padding:0px 5px;height:56px;" })
+                            @Html.ValidationMessageFor(model => model.archiveTitle, "", new { @class = "text-danger" })*@
+                    </td>
+                    <td style="background-color:#f9f9f9;font-weight:bold;min-width:130px;width:6%;">
+                        案卷题名(内部)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => model.archiveTitle_neibu, new { htmlAttributes = new { @class = "form-control", @style = "max-width:100%;padding:0px 5px;height:28px;" } })
+                        @*@Html.TextAreaFor(model => model.archiveTitle_neibu, new { @class = "form-control", @onblur = "add_neibu()", @style = "max-width:100%;padding:0px 5px;height:56px;" })
+                            @Html.ValidationMessageFor(model => model.archiveTitle_neibu, "", new { @class = "text-danger" })*@
+                    </td>
+                </tr>
+
+                <tr>
+                    <td style="background-color:#f9f9f9;font-weight:bold;min-width:130px;width:6%;">
+                        页次(公开)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => model.pageNo, new { htmlAttributes = new { @class = "form-control", @style = "padding:0px 5px;height:28px;" } })
+                        @Html.ValidationMessageFor(model => model.pageNo, "", new { @class = "text-danger" })
+                    </td>
+                    <td style="background-color:#f9f9f9;font-weight:bold;min-width:130px;width:6%;">
+                        页次(内部)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => model.pageNo_neibu, new { htmlAttributes = new { @class = "form-control", @style = "padding:0px 5px;height:28px;" } })
+                        @Html.ValidationMessageFor(model => model.pageNo_neibu, "", new { @class = "text-danger" })
+                    </td>
+                </tr>
+                <tr>
+                    <td style="background-color:#f9f9f9;font-weight:bold;min-width:130px;width:6%;">
+                        文字材料(公开)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => model.wenziCnt, new { htmlAttributes = new { @class = "form-control", @style = "padding:0px 5px;height:28px;" } })
+                        @Html.ValidationMessageFor(model => model.wenziCnt, "", new { @class = "text-danger" })
+                    </td>
+                    <td style="background-color:#f9f9f9;font-weight:bold;min-width:130px;width:6%;">
+                        文字材料(内部)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => model.wenziCnt_neibu, new { htmlAttributes = new { @class = "form-control", @style = "padding:0px 5px;height:28px;" } })
+                        @Html.ValidationMessageFor(model => model.wenziCnt_neibu, "", new { @class = "text-danger" })
+                    </td>
+                </tr>
+                <tr>
+                    <td style="background-color:#f9f9f9;font-weight:bold;min-width:130px;width:6%;">
+                        图纸(公开)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => model.photoCnt, new { htmlAttributes = new { @class = "form-control", @style = "padding:0px 5px;height:28px;" } })
+                        @Html.ValidationMessageFor(model => model.photoCnt, "", new { @class = "text-danger" })
+                    </td>
+                    <td style="background-color:#f9f9f9;font-weight:bold;min-width:130px;width:6%;">
+                        图纸(内部)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => model.photoCnt_neibu, new { htmlAttributes = new { @class = "form-control", @style = "padding:0px 5px;height:28px;" } })
+                        @Html.ValidationMessageFor(model => model.photoCnt_neibu, "", new { @class = "text-danger" })
+                    </td>
+                </tr>
+                <tr>
+                    <td style="text-align:center;" colspan="4">
+                        共 @Html.DisplayFor(model => model.gongjijuan, new { htmlAttributes = new { @class = "form-control1" } })
+                        @Html.ValidationMessageFor(model => model.gongjijuan, "", new { @class = "text-danger" })卷,
+                        第 @Html.DisplayFor(model => model.dijijuan, new { htmlAttributes = new { @class = "form-control1" } })
+                        @Html.ValidationMessageFor(model => model.dijijuan, "", new { @class = "text-danger" })卷
+                    </td>
+                </tr>
+                <tr>
+                    <td style="background-color:#f9f9f9;font-weight:bold;min-width:130px;width:6%;">
+                        录入人员
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => model.luruPerson, new { htmlAttributes = new { @class = "form-control", @Value = @ViewBag.luruPerson, @style = "padding:0px 5px;height:28px;" } })
+                        @Html.ValidationMessageFor(model => model.luruPerson, "", new { @class = "text-danger" })
+                    </td>
+                    <td style="background-color:#f9f9f9;font-weight:bold;min-width:130px;width:6%;">
+                        接收日期
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => model.dateReceived, new { htmlAttributes = new { @class = "form-control", @style = "padding:0px 5px;height:28px;" } })
+                        @Html.ValidationMessageFor(model => model.dateReceived, "", new { @class = "text-danger" })
+                    </td>
+                </tr>
+                <tr>
+                    <td style="background-color:#f9f9f9;font-weight:bold;min-width:130px;width:6%;">
+                        编制单位
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => model.bianzhiUnit, new { htmlAttributes = new { @class = "form-control", @style = "padding:0px 5px;height:28px;", @Value = "青岛市规划局" } })
+                        @Html.ValidationMessageFor(model => model.bianzhiUnit, "", new { @class = "text-danger" })
+                    </td>
+                    <td style="background-color:#f9f9f9;font-weight:bold;min-width:130px;width:6%;">
+                        编制日期
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => model.bianzhiTime, new { htmlAttributes = new { @class = "form-control", @style = "padding:0px 5px;height:28px;" } })
+                        @Html.ValidationMessageFor(model => model.bianzhiTime, "", new { @class = "text-danger" })
+                    </td>
+
+                </tr>
+                <tr>
+
+                    <td style="background-color:#f9f9f9;font-weight:bold;min-width:130px;width:6%;">
+                        审核人
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => model.shenhePerson, new { htmlAttributes = new { @class = "form-control", @style = "max-width:100%;padding:0px 5px;height:28px;" } })
+
+
+                    </td>
+                    <td colspan="2"></td>
+                </tr>
+                <tr>
+                    <td style="background-color:#f9f9f9;font-weight:bold;min-width:130px;width:6%;">
+                        备注
+                    </td>
+                    <td colspan="3">
+                        @Html.DisplayFor(model => model.remarks, new { htmlAttributes = new { @class = "form-control", @style = "max-width:100%;padding:0px 5px;height:28px;" } })
+                        @Html.ValidationMessageFor(model => model.remarks, "", new { @class = "text-danger" })
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <div style="text-align:center;">
+            <p>
+                @*@Html.ActionLink("编辑", "Edit", new { id = Model.ID }, new { @class = "btn btn-default" })*@
+                <input type="button" id="back" value="返回" class="btn btn-default"  />
+                <input type="button" id="ProjectContent" value="打印工程目录" class="btn btn-default" style="@ViewData["ProjectContent"]" />
+
+                <input type="button" id="fengpiG" value="打印工程封皮(公开)" class="btn btn-default" style="@ViewData["fengpiG"]" />
+                <input type="button" id="beikaobiaoG" value="打印备考表(公开)" class="btn btn-default" style="@ViewData["beikaobiaoG"]" />
+
+                <input type="button" id="fengpiN" value="打印工程封皮(内部)" class="btn btn-default" style="@ViewData["fengpiN"]" />
+              
+                <input type="button" id="beikaobiaoN" value="打印备考表(内部)" class="btn btn-default" style="@ViewData["beikaobiaoN"]" />
+                @* @Html.ActionLink("返回", "ViewBag.fanhui", new {classifyID = Model.classifyID }, new { @class = "btn btn-default" })*@
+            </p>
+        </div>
+    </div>
+}
+
+
+

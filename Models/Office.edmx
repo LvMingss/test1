@@ -1,0 +1,2739 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="OfficeModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="ArchivesContainer">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="bigint" Nullable="false" />
+          <Property Name="twoCentiCnt" Type="int" />
+          <Property Name="thrCentiCnt" Type="int" />
+          <Property Name="fourCentiCnt" Type="int" />
+          <Property Name="fiveCentiCnt" Type="int" />
+          <Property Name="coverCnt" Type="int" />
+          <Property Name="catalogueCnt" Type="int" />
+          <Property Name="proformaCnt" Type="int" />
+          <Property Name="DepartName" Type="nvarchar" MaxLength="100" />
+          <Property Name="submitDate" Type="datetime" />
+          <Property Name="submitPerson" Type="nvarchar" MaxLength="50" />
+          <Property Name="archiveBoxFee" Type="decimal" Precision="18" Scale="4" />
+          <Property Name="archiveCataLogFee" Type="decimal" Precision="18" Scale="4" />
+          <Property Name="singleBoxFee" Type="decimal" Precision="18" Scale="4" />
+          <Property Name="singleCatalogFee" Type="decimal" Precision="18" Scale="4" />
+          <Property Name="seqNo" Type="varchar" MaxLength="20" />
+        </EntityType>
+        <EntityType Name="BaowenFileType">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="类别" Type="nvarchar" MaxLength="2" />
+          <Property Name="说明" Type="nvarchar" MaxLength="50" />
+          <Property Name="ID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+        </EntityType>
+        <EntityType Name="BaowenLeaderList">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="顺序" Type="int" />
+          <Property Name="姓名" Type="nvarchar" MaxLength="10" />
+          <Property Name="ID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+        </EntityType>
+        <EntityType Name="BaowenMainTable">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="leibie" Type="nvarchar" MaxLength="50" />
+          <Property Name="shunxuhao" Type="char" MaxLength="8" />
+          <Property Name="shouwenriqi" Type="datetime" />
+          <Property Name="wenjianzihao" Type="nvarchar" MaxLength="60" />
+          <Property Name="laiwendanwei" Type="nvarchar" MaxLength="160" />
+          <Property Name="wenjianbiaoti" Type="nvarchar" MaxLength="220" />
+          <Property Name="chengwenriqi" Type="datetime" />
+          <Property Name="fenshu" Type="int" />
+          <Property Name="guidangjuanbie" Type="nvarchar" MaxLength="4" />
+          <Property Name="nibanyijian" Type="nvarchar" MaxLength="150" />
+          <Property Name="yiyue" Type="nvarchar" MaxLength="160" />
+          <Property Name="zhengchuli" Type="nvarchar" MaxLength="16" />
+          <Property Name="lingdaopishi" Type="ntext" />
+          <Property Name="banliqingkuang" Type="nvarchar" MaxLength="160" />
+          <Property Name="chengbandanwei" Type="nvarchar" MaxLength="50" />
+          <Property Name="fankuaiqingkuang" Type="nvarchar" MaxLength="255" />
+          <Property Name="banjie" Type="bit" />
+          <Property Name="banjieriqi" Type="datetime" />
+          <Property Name="beizhu" Type="nvarchar" MaxLength="50" />
+          <Property Name="wenjianyaoqiu" Type="nvarchar(max)" />
+          <Property Name="banjietime" Type="nchar" MaxLength="10" />
+        </EntityType>
+        <EntityType Name="BindUserAndImage">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="userID" Type="varchar" MaxLength="15" />
+          <Property Name="ImageAddress" Type="varchar" MaxLength="100" />
+          <Property Name="imageTime" Type="datetime" />
+          <Property Name="imageSize" Type="varchar" MaxLength="2" />
+          <Property Name="isWordOrPic" Type="varchar" MaxLength="5" />
+          <Property Name="archivesNo" Type="varchar" MaxLength="100" />
+          <Property Name="realuserID" Type="bigint" />
+          <Property Name="recordID" Type="int" />
+        </EntityType>
+        <EntityType Name="BorrowRegistration">
+          <Key>
+            <PropertyRef Name="borrowSeqNoN" />
+          </Key>
+          <Property Name="ID" Type="bigint" Nullable="false" />
+          <Property Name="borrowDate" Type="datetime" />
+          <Property Name="borrowUnit" Type="varchar" MaxLength="100" />
+          <Property Name="borrower" Type="varchar(max)" />
+          <Property Name="borrowerTel" Type="char" MaxLength="12" />
+          <Property Name="consultFilePersonTime" Type="varchar" MaxLength="10" />
+          <Property Name="consultVolumeCount" Type="varchar" MaxLength="10" />
+          <Property Name="precisionVolumeCount" Type="varchar" MaxLength="10" />
+          <Property Name="copyPageCount" Type="varchar" MaxLength="10" />
+          <Property Name="application1" Type="bit" />
+          <Property Name="application2" Type="bit" />
+          <Property Name="application3" Type="bit" />
+          <Property Name="application4" Type="bit" />
+          <Property Name="application5" Type="bit" />
+          <Property Name="application6" Type="bit" />
+          <Property Name="application7" Type="bit" />
+          <Property Name="application8" Type="bit" />
+          <Property Name="userEffects1" Type="bit" />
+          <Property Name="userEffects2" Type="bit" />
+          <Property Name="userEffects3" Type="bit" />
+          <Property Name="userEffects4" Type="bit" />
+          <Property Name="userEffects5" Type="bit" />
+          <Property Name="userEffects6" Type="bit" />
+          <Property Name="userEffects7" Type="bit" />
+          <Property Name="archiveSerialNo" Type="varchar(max)" />
+          <Property Name="operator1" Type="varchar" MaxLength="100" />
+          <Property Name="consultFee" Type="decimal" Precision="18" Scale="4" />
+          <Property Name="certificationFee" Type="decimal" Precision="18" Scale="4" />
+          <Property Name="copyFee" Type="decimal" Precision="18" Scale="4" />
+          <Property Name="operator2" Type="varchar" MaxLength="100" />
+          <Property Name="remarks" Type="varchar" MaxLength="100" />
+          <Property Name="paoKufangRen" Type="varchar" MaxLength="100" />
+          <Property Name="chargeFlag" Type="varchar" MaxLength="5" />
+          <Property Name="singleOrDepart" Type="char" MaxLength="10" />
+          <Property Name="realFees" Type="decimal" Precision="18" Scale="4" />
+          <Property Name="isJiesuanFee" Type="int" />
+          <Property Name="password" Type="char" MaxLength="10" Nullable="false" />
+          <Property Name="userEffectDetail" Type="varchar" MaxLength="400" />
+          <Property Name="ecnomicBenefit" Type="varchar" MaxLength="400" />
+          <Property Name="seqNo" Type="varchar" MaxLength="15" />
+          <Property Name="goal1" Type="bit" />
+          <Property Name="goal2" Type="bit" />
+          <Property Name="goal3" Type="bit" />
+          <Property Name="goal4" Type="bit" />
+          <Property Name="goal5" Type="bit" />
+          <Property Name="goal6" Type="bit" />
+          <Property Name="goal7" Type="bit" />
+          <Property Name="goal8" Type="bit" />
+          <Property Name="borrowSeqNo" Type="nchar" MaxLength="10" />
+          <Property Name="loginUser" Type="varchar" MaxLength="10" />
+          <Property Name="borrowSeqNoN" Type="nchar" MaxLength="10" Nullable="false" />
+        </EntityType>
+        <EntityType Name="InformationContent">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="title" Type="varchar" MaxLength="150" />
+          <Property Name="author" Type="varchar" MaxLength="20" />
+          <Property Name="date" Type="datetime" />
+          <Property Name="content" Type="varchar" MaxLength="3000" />
+          <Property Name="subCategoryID" Type="int" />
+          <Property Name="ClickTimes" Type="int" />
+          <Property Name="filename" Type="varchar" MaxLength="100" />
+          <Property Name="filetype" Type="char" MaxLength="10" />
+        </EntityType>
+        <EntityType Name="InformationSubCategory">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="20" />
+          <Property Name="Description" Type="varchar" MaxLength="150" />
+          <Property Name="parentID" Type="int" />
+        </EntityType>
+        <EntityType Name="OtherArchives">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="bigint" Nullable="false" />
+          <Property Name="registrationNo" Type="varchar" MaxLength="15" />
+          <Property Name="doorplate" Type="varchar" MaxLength="20" />
+          <Property Name="landNo" Type="varchar" MaxLength="10" />
+          <Property Name="projectRange" Type="nvarchar" MaxLength="200" />
+          <Property Name="year" Type="varchar" MaxLength="5" />
+          <Property Name="volNo" Type="varchar" MaxLength="20" />
+          <Property Name="classNo" Type="varchar" MaxLength="10" />
+          <Property Name="archiveNo" Type="varchar" MaxLength="20" />
+          <Property Name="paijiaNo" Type="varchar" MaxLength="20" />
+          <Property Name="archiveTitle" Type="varchar" MaxLength="250" />
+          <Property Name="bianzhiUnit" Type="varchar" MaxLength="50" />
+          <Property Name="bianzhiTime" Type="varchar" MaxLength="100" />
+          <Property Name="inHouseTime" Type="datetime" />
+          <Property Name="measureUnit" Type="varchar" MaxLength="50" />
+          <Property Name="count" Type="int" />
+          <Property Name="securityID" Type="char" MaxLength="1" />
+          <Property Name="retentionPeriodNo" Type="char" MaxLength="1" Nullable="false" />
+          <Property Name="licenceNo" Type="varchar" MaxLength="100" />
+          <Property Name="applyUnit" Type="varchar" MaxLength="250" />
+          <Property Name="location" Type="nvarchar" MaxLength="100" />
+          <Property Name="note" Type="varchar" MaxLength="50" />
+          <Property Name="classTypeID" Type="int" Nullable="false" />
+          <Property Name="ArchiveThick" Type="int" />
+          <Property Name="proSeqNo" Type="int" />
+          <Property Name="urbanID" Type="varchar" MaxLength="12" />
+          <Property Name="firstResponsible" Type="varchar" MaxLength="200" />
+          <Property Name="otherResponsible" Type="varchar" MaxLength="200" />
+          <Property Name="developUnit" Type="varchar" MaxLength="250" />
+          <Property Name="tranferUnit" Type="varchar" MaxLength="250" />
+          <Property Name="designUnit" Type="varchar" MaxLength="250" />
+          <Property Name="constructionUnit" Type="varchar" MaxLength="250" />
+          <Property Name="textMaterial" Type="int" />
+          <Property Name="drawing" Type="int" />
+          <Property Name="licenceTime" Type="varchar" MaxLength="50" />
+          <Property Name="kaigongTime" Type="varchar" MaxLength="50" />
+          <Property Name="jungongTime" Type="varchar" MaxLength="50" />
+          <Property Name="jianzhuArea" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="bilichi" Type="varchar" MaxLength="150" />
+          <Property Name="biaoyinPerson" Type="varchar" MaxLength="20" />
+          <Property Name="biaoyinTime" Type="varchar" MaxLength="20" />
+          <Property Name="shenhePerson" Type="varchar" MaxLength="20" />
+          <Property Name="shenheTime" Type="varchar" MaxLength="20" />
+          <Property Name="luruPerson" Type="varchar" MaxLength="20" />
+          <Property Name="luruTime" Type="varchar" MaxLength="20" />
+          <Property Name="tuzhiniandai" Type="varchar" MaxLength="20" />
+          <Property Name="tufu" Type="varchar" MaxLength="20" />
+          <Property Name="tuzhiStatus" Type="varchar" MaxLength="50" />
+          <Property Name="newLocation" Type="varchar" MaxLength="250" />
+          <Property Name="cunfangLocation" Type="varchar" MaxLength="250" />
+          <Property Name="neirongTiyao" Type="varchar" MaxLength="5000" />
+          <Property Name="isImageExist" Type="varchar" MaxLength="10" />
+          <Property Name="isJungongArch" Type="int" />
+          <Property Name="status" Type="varchar" MaxLength="50" />
+          <Property Name="areaProSeqNo" Type="varchar" MaxLength="50" />
+          <Property Name="areaNo" Type="int" />
+          <Property Name="areaStatus" Type="varchar" MaxLength="50" />
+          <Property Name="isYD" Type="bit" />
+          <Property Name="isNeibu" Type="nchar" MaxLength="20" Nullable="false" />
+          <Property Name="rukutime" Type="datetime" />
+          <Property Name="coordinate" Type="nvarchar(max)" />
+          <Property Name="archiveTitle_neibu" Type="varchar" MaxLength="250" />
+          <Property Name="drawing_neibu" Type="int" />
+          <Property Name="textMaterial_neibu" Type="int" />
+          <Property Name="projectContent_neibu" Type="nvarchar" MaxLength="200" />
+          <Property Name="projectContent" Type="nvarchar" MaxLength="200" />
+          <Property Name="urban_type" Type="int" />
+          <Property Name="isguajie" Type="int" />
+        </EntityType>
+        <EntityType Name="PlanArchiveClassify">
+          <Key>
+            <PropertyRef Name="classifyID" />
+          </Key>
+          <Property Name="classifyID" Type="int" Nullable="false" />
+          <Property Name="classifySX" Type="char" MaxLength="10" />
+          <Property Name="classifyName" Type="char" MaxLength="20" />
+        </EntityType>
+        <!--生成过程中发现错误:
+警告 6002: 表/视图“UrbanCon.dbo.View_PlanProjectWithBox”未定义主键。已推断出该键，并将定义创建为只读的表/视图。-->
+        <EntityType Name="View_PlanProjectWithBox">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="seqNo" Type="int" />
+          <Property Name="boxNo" Type="varchar" MaxLength="100" />
+          <Property Name="archiveNo" Type="char" MaxLength="50" />
+          <Property Name="regisNo" Type="varchar" MaxLength="20" />
+          <Property Name="paijiaNo" Type="varchar" MaxLength="15" />
+          <Property Name="archiveTitle" Type="varchar" MaxLength="300" />
+          <Property Name="archiveCode" Type="char" MaxLength="10" />
+          <Property Name="bianzhiUnit" Type="varchar" MaxLength="50" />
+          <Property Name="bianzhiDate" Type="varchar" MaxLength="50" />
+          <Property Name="securityID" Type="char" MaxLength="1" />
+          <Property Name="retentionPeriodID" Type="char" MaxLength="1" />
+          <Property Name="archiveBoxCnt" Type="int" />
+          <Property Name="archiveBoxNo" Type="int" />
+          <Property Name="pageCnt" Type="int" />
+          <Property Name="inchCnt" Type="int" />
+          <Property Name="classifyID" Type="int" />
+          <Property Name="isArchive" Type="bit" />
+          <Property Name="textMatirial" Type="int" />
+          <Property Name="drawing" Type="int" />
+          <Property Name="photo" Type="int" />
+          <Property Name="status" Type="char" MaxLength="10" />
+          <Property Name="yearNo" Type="char" MaxLength="4" />
+          <Property Name="classify" Type="char" MaxLength="16" />
+          <Property Name="boxID" Type="char" MaxLength="100" />
+          <Property Name="projectCnt" Type="int" />
+          <Property Name="projectNo" Type="char" MaxLength="10" />
+          <Property Name="ArchiveThick" Type="int" />
+          <Property Name="storeLocation" Type="varchar" MaxLength="250" />
+          <Property Name="receiveTime" Type="varchar" MaxLength="50" />
+          <Property Name="luruTime" Type="varchar" MaxLength="50" />
+          <Property Name="classSeqNo" Type="int" />
+          <Property Name="developmentUnit" Type="varchar" MaxLength="100" />
+          <Property Name="projectContent" Type="varchar" MaxLength="100" />
+          <Property Name="juanneiSeqNo" Type="int" />
+          <Property Name="totalSeqNo" Type="varchar" MaxLength="50" />
+          <Property Name="fileNo" Type="char" MaxLength="100" />
+          <Property Name="bianzhiTime" Type="varchar" MaxLength="50" />
+          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="Expr1" Type="int" />
+        </EntityType>
+        <!--生成过程中发现错误:
+警告 6002: 表/视图“UrbanCon.dbo.vw_archiveClassi”未定义主键。已推断出该键，并将定义创建为只读的表/视图。-->
+        <EntityType Name="vw_archiveClassi">
+          <Key>
+            <PropertyRef Name="paperProjectSeqNo" />
+            <PropertyRef Name="projectName" />
+          </Key>
+          <Property Name="paperProjectSeqNo" Type="bigint" Nullable="false" />
+          <Property Name="collator" Type="varchar" MaxLength="10" />
+          <Property Name="projectName" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="originalVolumeCount" Type="bigint" />
+          <Property Name="copyInchCount" Type="bigint" />
+          <Property Name="InchCountDetail" Type="varchar" MaxLength="50" />
+          <Property Name="startArchiveNo" Type="varchar" MaxLength="20" />
+          <Property Name="endArchiveNo" Type="varchar" MaxLength="20" />
+          <Property Name="startPaijiaNo" Type="varchar" MaxLength="20" />
+          <Property Name="endPaijiaNo" Type="varchar" MaxLength="20" />
+          <Property Name="startRegisNo" Type="varchar" MaxLength="20" />
+          <Property Name="endRegisNo" Type="varchar" MaxLength="20" />
+          <Property Name="dateArchive" Type="datetime" />
+        </EntityType>
+        <!--生成过程中发现错误:
+警告 6002: 表/视图“UrbanCon.dbo.vw_archiveMainList”未定义主键。已推断出该键，并将定义创建为只读的表/视图。-->
+        <EntityType Name="vw_archiveMainList">
+          <Key>
+            <PropertyRef Name="paperProjectSeqNo" />
+            <PropertyRef Name="archivesNo" />
+          </Key>
+          <Property Name="paperProjectSeqNo" Type="bigint" Nullable="false" />
+          <Property Name="volNo" Type="int" />
+          <Property Name="archivesNo" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="paijiaNo" Type="varchar" MaxLength="15" />
+          <Property Name="archivesTitle" Type="varchar" MaxLength="180" />
+          <Property Name="licenseNo" Type="char" MaxLength="50" />
+          <Property Name="developmentOrganization" Type="varchar" MaxLength="100" />
+          <Property Name="constructionOrganization" Type="varchar" MaxLength="100" />
+          <Property Name="jgDate" Type="datetime" />
+          <Property Name="remarks" Type="varchar" MaxLength="150" />
+          <Property Name="changeLog" Type="char" MaxLength="2" />
+          <Property Name="location" Type="varchar" MaxLength="100" />
+          <Property Name="registrationNo" Type="varchar" MaxLength="15" />
+        </EntityType>
+        <!--生成过程中发现错误:
+警告 6002: 表/视图“UrbanCon.dbo.vw_categoryList”未定义主键。已推断出该键，并将定义创建为只读的表/视图。-->
+        <EntityType Name="vw_categoryList">
+          <Key>
+            <PropertyRef Name="archivesNo" />
+            <PropertyRef Name="paperProjectSeqNo" />
+          </Key>
+          <Property Name="mainCategoryID" Type="char" MaxLength="1" />
+          <Property Name="subDictionaryID" Type="char" MaxLength="2" />
+          <Property Name="minorDictionaryID" Type="char" MaxLength="2" />
+          <Property Name="archivesNo" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="paperProjectSeqNo" Type="bigint" Nullable="false" />
+          <Property Name="registrationNo" Type="varchar" MaxLength="15" />
+          <Property Name="paijiaNo" Type="varchar" MaxLength="15" />
+          <Property Name="archivesTitle" Type="nvarchar" MaxLength="200" />
+          <Property Name="developmentOrganization" Type="varchar" MaxLength="100" />
+          <Property Name="typerDate" Type="datetime" />
+          <Property Name="volNo" Type="int" />
+          <Property Name="shizhengNo" Type="varchar" MaxLength="100" />
+          <Property Name="status" Type="char" MaxLength="2" />
+        </EntityType>
+        <!--生成过程中发现错误:
+警告 6002: 表/视图“UrbanCon.dbo.vw_ClassArchives”未定义主键。已推断出该键，并将定义创建为只读的表/视图。-->
+        <EntityType Name="vw_ClassArchives">
+          <Key>
+            <PropertyRef Name="retentionPeriodName" />
+            <PropertyRef Name="securityName" />
+            <PropertyRef Name="ID" />
+            <PropertyRef Name="classTypeID" />
+            <PropertyRef Name="retentionPeriodNo" />
+          </Key>
+          <Property Name="classNo" Type="nchar" MaxLength="10" />
+          <Property Name="archiveNo" Type="nvarchar" MaxLength="20" />
+          <Property Name="archiveStr" Type="nvarchar" MaxLength="20" />
+          <Property Name="countInt" Type="int" />
+          <Property Name="archiveTitle" Type="nchar" MaxLength="250" />
+          <Property Name="bianzhiUnit" Type="nchar" MaxLength="30" />
+          <Property Name="bianzhiTime" Type="varchar" MaxLength="100" />
+          <Property Name="inHouseTime" Type="datetime" />
+          <Property Name="measureUnit" Type="nchar" MaxLength="10" />
+          <Property Name="count" Type="int" />
+          <Property Name="retentionPeriodName" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="securityName" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="note" Type="nchar" MaxLength="30" />
+          <Property Name="ID" Type="bigint" Nullable="false" />
+          <Property Name="paijiaNo" Type="nchar" MaxLength="20" />
+          <Property Name="registrationNo" Type="nchar" MaxLength="15" />
+          <Property Name="classTypeID" Type="int" Nullable="false" />
+          <Property Name="retentionPeriodNo" Type="char" MaxLength="1" Nullable="false" />
+          <Property Name="proSeqNo" Type="int" />
+          <Property Name="urbanID" Type="varchar" MaxLength="12" />
+          <Property Name="firstResponsible" Type="varchar" MaxLength="200" />
+          <Property Name="otherResponsible" Type="varchar" MaxLength="200" />
+          <Property Name="tranferUnit" Type="varchar" MaxLength="250" />
+          <Property Name="developUnit" Type="varchar" MaxLength="250" />
+          <Property Name="designUnit" Type="varchar" MaxLength="250" />
+          <Property Name="constructionUnit" Type="varchar" MaxLength="250" />
+          <Property Name="textMaterial" Type="int" />
+          <Property Name="drawing" Type="int" />
+          <Property Name="licenceTime" Type="varchar" MaxLength="50" />
+          <Property Name="kaigongTime" Type="varchar" MaxLength="50" />
+          <Property Name="jungongTime" Type="varchar" MaxLength="50" />
+          <Property Name="jianzhuArea" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="bilichi" Type="varchar" MaxLength="150" />
+          <Property Name="biaoyinPerson" Type="varchar" MaxLength="20" />
+          <Property Name="biaoyinTime" Type="varchar" MaxLength="20" />
+          <Property Name="shenhePerson" Type="varchar" MaxLength="20" />
+          <Property Name="shenheTime" Type="varchar" MaxLength="20" />
+          <Property Name="luruPerson" Type="varchar" MaxLength="20" />
+          <Property Name="luruTime" Type="varchar" MaxLength="20" />
+          <Property Name="tuzhiniandai" Type="varchar" MaxLength="20" />
+          <Property Name="tufu" Type="varchar" MaxLength="20" />
+          <Property Name="tuzhiStatus" Type="varchar" MaxLength="50" />
+          <Property Name="ArchiveThick" Type="int" />
+          <Property Name="neirongTiyao" Type="varchar" MaxLength="5000" />
+          <Property Name="isJungongArch" Type="int" />
+        </EntityType>
+        <!--生成过程中发现错误:
+警告 6002: 表/视图“UrbanCon.dbo.vw_licenceArchive”未定义主键。已推断出该键，并将定义创建为只读的表/视图。-->
+        <EntityType Name="vw_licenceArchive">
+          <Key>
+            <PropertyRef Name="ID" />
+            <PropertyRef Name="classTypeID" />
+            <PropertyRef Name="retentionPeriodNo" />
+          </Key>
+          <Property Name="ID" Type="bigint" Nullable="false" />
+          <Property Name="registrationNo" Type="nchar" MaxLength="15" />
+          <Property Name="applyUnit" Type="nchar" MaxLength="100" />
+          <Property Name="location" Type="nchar" MaxLength="50" />
+          <Property Name="classTypeID" Type="int" Nullable="false" />
+          <Property Name="note" Type="nchar" MaxLength="30" />
+          <Property Name="licenceNo" Type="varchar" MaxLength="80" />
+          <Property Name="projectRange" Type="nchar" MaxLength="150" />
+          <Property Name="paijiaNo" Type="nchar" MaxLength="20" />
+          <Property Name="archiveNo" Type="nchar" MaxLength="20" />
+          <Property Name="retentionPeriodNo" Type="char" MaxLength="1" Nullable="false" />
+          <Property Name="year" Type="nchar" MaxLength="5" />
+          <Property Name="isImageExist" Type="varchar" MaxLength="10" />
+          <Property Name="archiveTitle" Type="nchar" MaxLength="250" />
+          <Property Name="bianzhiTime" Type="varchar" MaxLength="100" />
+          <Property Name="tranferUnit" Type="varchar" MaxLength="250" />
+          <Property Name="cunfangLocation" Type="varchar" MaxLength="250" />
+          <Property Name="areaProSeqNo" Type="varchar" MaxLength="50" />
+          <Property Name="areaNo" Type="int" />
+          <Property Name="areaStatus" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <!--生成过程中发现错误:
+警告 6002: 表/视图“UrbanCon.dbo.vw_planarchiveBoxInfo”未定义主键。已推断出该键，并将定义创建为只读的表/视图。-->
+        <EntityType Name="vw_planarchiveBoxInfo">
+          <Key>
+            <PropertyRef Name="retentionPeriodName" />
+            <PropertyRef Name="securityName" />
+            <PropertyRef Name="seqNo" />
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="boxNo" Type="varchar" MaxLength="100" />
+          <Property Name="regisNo" Type="varchar" MaxLength="20" />
+          <Property Name="archiveTitle" Type="varchar" MaxLength="300" />
+          <Property Name="archiveCode" Type="char" MaxLength="10" />
+          <Property Name="bianzhiUnit" Type="varchar" MaxLength="50" />
+          <Property Name="bianzhiDate" Type="varchar" MaxLength="50" />
+          <Property Name="archiveBoxCnt" Type="int" />
+          <Property Name="archiveBoxNo" Type="int" />
+          <Property Name="pageCnt" Type="int" />
+          <Property Name="retentionPeriodName" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="securityName" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="seqNo" Type="int" Nullable="false" />
+          <Property Name="archiveNo" Type="char" MaxLength="50" />
+          <Property Name="paijiaNo" Type="varchar" MaxLength="15" />
+          <Property Name="inchCnt" Type="int" />
+          <Property Name="classifyID" Type="int" />
+          <Property Name="isArchive" Type="bit" />
+          <Property Name="textMatirial" Type="int" />
+          <Property Name="drawing" Type="int" />
+          <Property Name="status" Type="char" MaxLength="10" />
+          <Property Name="photo" Type="int" />
+          <Property Name="yearNo" Type="char" MaxLength="4" />
+          <Property Name="classify" Type="char" MaxLength="16" />
+          <Property Name="boxID" Type="char" MaxLength="100" />
+          <Property Name="projectCnt" Type="int" />
+          <Property Name="projectNo" Type="char" MaxLength="10" />
+          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="ArchiveThick" Type="int" />
+        </EntityType>
+        <!--生成过程中发现错误:
+警告 6002: 表/视图“UrbanCon.dbo.vw_PlanArchiveGH”未定义主键。已推断出该键，并将定义创建为只读的表/视图。-->
+        <!--生成过程中发现错误:
+警告 6002: 表/视图“UrbanCon.dbo.vw_planArchives”未定义主键。已推断出该键，并将定义创建为只读的表/视图。-->
+        <EntityType Name="vw_planArchives">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="seqNo" Type="int" />
+          <Property Name="developmentUnit" Type="varchar" MaxLength="100" />
+          <Property Name="projectContent" Type="varchar" MaxLength="100" />
+          <Property Name="projectLocation" Type="varchar" MaxLength="100" />
+          <Property Name="dateReceived" Type="datetime" />
+          <Property Name="remarks" Type="varchar" MaxLength="100" />
+          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="classifyID" Type="int" />
+          <Property Name="yearNo" Type="char" MaxLength="4" />
+          <Property Name="projectID" Type="int" />
+          <Property Name="classifyName" Type="char" MaxLength="16" />
+          <Property Name="juanneiSeqNo" Type="int" />
+          <Property Name="fileNo" Type="char" MaxLength="100" />
+          <Property Name="boxNo" Type="char" MaxLength="100" />
+          <Property Name="totalSeqNo" Type="varchar" MaxLength="50" />
+          <Property Name="shenhePerson" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <!--生成过程中发现错误:
+警告 6002: 表/视图“UrbanCon.dbo.vw_PlanProjectList”未定义主键。已推断出该键，并将定义创建为只读的表/视图。-->
+        <EntityType Name="vw_PlanProjectList">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="seqNo" Type="int" />
+          <Property Name="developmentUnit" Type="varchar" MaxLength="100" />
+          <Property Name="projectContent" Type="varchar" MaxLength="100" />
+          <Property Name="projectLocation" Type="varchar" MaxLength="100" />
+          <Property Name="yearNo" Type="char" MaxLength="4" />
+          <Property Name="pageCnt" Type="int" />
+          <Property Name="classifyID" Type="int" />
+          <Property Name="projectID" Type="int" />
+          <Property Name="fileNo" Type="char" MaxLength="100" />
+          <Property Name="dateReceived" Type="datetime" />
+          <Property Name="boxNo" Type="char" MaxLength="100" />
+          <Property Name="status" Type="char" MaxLength="10" />
+          <Property Name="remarks" Type="varchar" MaxLength="100" />
+          <Property Name="archiveBoxCnt" Type="int" />
+          <Property Name="mapScale" Type="char" MaxLength="20" />
+          <Property Name="classifySX" Type="char" MaxLength="10" />
+          <Property Name="classifyName" Type="char" MaxLength="16" />
+          <Property Name="storeLocation" Type="varchar" MaxLength="100" />
+          <Property Name="bianzhiUnit" Type="varchar" MaxLength="100" />
+          <Property Name="fileNoTou" Type="char" MaxLength="20" />
+          <Property Name="luruPerson" Type="varchar" MaxLength="50" />
+          <Property Name="seqNo1" Type="int" />
+          <Property Name="juanneiSeqNo" Type="int" />
+          <Property Name="totalSeqNo" Type="varchar" MaxLength="50" />
+          <Property Name="archiveID" Type="int" />
+          <Property Name="pageNo" Type="varchar" MaxLength="50" />
+          <Property Name="bianzhiTime" Type="varchar" MaxLength="50" />
+          <Property Name="projectno" Type="varchar" MaxLength="50" />
+          <Property Name="projectname" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <!--生成过程中发现错误:
+警告 6002: 表/视图“UrbanCon.dbo.vw_projectRecordList”未定义主键。已推断出该键，并将定义创建为只读的表/视图。-->
+        <EntityType Name="vw_projectRecordList">
+          <Key>
+            <PropertyRef Name="paperProjectSeqNo" />
+          </Key>
+          <Property Name="mainCategoryID" Type="char" MaxLength="1" />
+          <Property Name="subDictionaryID" Type="char" MaxLength="2" />
+          <Property Name="minorDictionaryID" Type="char" MaxLength="2" />
+          <Property Name="paperProjectSeqNo" Type="bigint" Nullable="false" />
+          <Property Name="startArchiveNo" Type="varchar" MaxLength="20" />
+          <Property Name="endArchiveNo" Type="varchar" MaxLength="20" />
+          <Property Name="startPaijiaNo" Type="varchar" MaxLength="8" />
+          <Property Name="endPaijiaNo" Type="varchar" MaxLength="8" />
+          <Property Name="licenseNo" Type="char" MaxLength="50" />
+          <Property Name="contractName" Type="varchar" MaxLength="100" />
+          <Property Name="transferUnit" Type="varchar" MaxLength="100" />
+          <Property Name="projectName" Type="varchar" MaxLength="500" />
+          <Property Name="typerDate" Type="datetime" />
+          <Property Name="disignOrganization" Type="varchar" MaxLength="100" />
+          <Property Name="constructionOrganization" Type="varchar" MaxLength="100" />
+          <Property Name="buildingArea" Type="float" />
+          <Property Name="shizhengNo" Type="varchar" MaxLength="100" />
+          <Property Name="shizhengNoStart" Type="varchar" MaxLength="100" />
+          <Property Name="shizhengNoEnd" Type="varchar" MaxLength="100" />
+        </EntityType>
+        <!--生成过程中发现错误:
+警告 6002: 表/视图“UrbanCon.dbo.vw_projectRecordList1”未定义主键。已推断出该键，并将定义创建为只读的表/视图。-->
+        <EntityType Name="vw_projectRecordList1">
+          <Key>
+            <PropertyRef Name="paperProjectSeqNo" />
+          </Key>
+          <Property Name="mainCategoryID" Type="char" MaxLength="1" />
+          <Property Name="subDictionaryID" Type="char" MaxLength="2" />
+          <Property Name="minorDictionaryID" Type="char" MaxLength="2" />
+          <Property Name="paperProjectSeqNo" Type="bigint" Nullable="false" />
+          <Property Name="startArchiveNo" Type="varchar" MaxLength="20" />
+          <Property Name="endArchiveNo" Type="varchar" MaxLength="20" />
+          <Property Name="startPaijiaNo" Type="varchar" MaxLength="8" />
+          <Property Name="endPaijiaNo" Type="varchar" MaxLength="8" />
+          <Property Name="licenseNo" Type="char" MaxLength="50" />
+          <Property Name="contractName" Type="varchar" MaxLength="100" />
+          <Property Name="transferUnit" Type="varchar" MaxLength="100" />
+          <Property Name="projectName" Type="varchar" MaxLength="500" />
+          <Property Name="disignOrganization" Type="varchar" MaxLength="500" />
+          <Property Name="constructionOrganization" Type="varchar" MaxLength="500" />
+          <Property Name="buildingArea" Type="float" />
+          <Property Name="shizhengNoStart" Type="varchar" MaxLength="100" />
+          <Property Name="shizhengNoEnd" Type="varchar" MaxLength="100" />
+        </EntityType>
+        <!--生成过程中发现错误:
+警告 6002: 表/视图“UrbanCon.dbo.vw_projectTypelist”未定义主键。已推断出该键，并将定义创建为只读的表/视图。-->
+        <EntityType Name="vw_projectTypelist">
+          <Key>
+            <PropertyRef Name="paperProjectSeqNo" />
+            <PropertyRef Name="retentionPeriodName" />
+            <PropertyRef Name="securityName" />
+          </Key>
+          <Property Name="paperProjectSeqNo" Type="bigint" Nullable="false" />
+          <Property Name="projectNo" Type="bigint" />
+          <Property Name="projectID" Type="bigint" />
+          <Property Name="mainCategoryID" Type="char" MaxLength="1" />
+          <Property Name="subDictionaryID" Type="char" MaxLength="2" />
+          <Property Name="minorDictionaryID" Type="char" MaxLength="2" />
+          <Property Name="transferPerson" Type="varchar" MaxLength="50" />
+          <Property Name="archivesCount" Type="varchar" MaxLength="50" />
+          <Property Name="InchCountDetail" Type="varchar" MaxLength="500" />
+          <Property Name="originalInchCount" Type="bigint" />
+          <Property Name="originalMoneyAmount" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="copyInchCount" Type="bigint" />
+          <Property Name="copyMoneyCount" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="totalMoney" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="startArchiveNo" Type="varchar" MaxLength="20" />
+          <Property Name="endArchiveNo" Type="varchar" MaxLength="20" />
+          <Property Name="startPaijiaNo" Type="varchar" MaxLength="8" />
+          <Property Name="endPaijiaNo" Type="varchar" MaxLength="8" />
+          <Property Name="startRegisNo" Type="varchar" MaxLength="10" />
+          <Property Name="endRegisNo" Type="varchar" MaxLength="10" />
+          <Property Name="licenseNo" Type="char" MaxLength="50" />
+          <Property Name="jgDate" Type="datetime" />
+          <Property Name="changeLog" Type="char" MaxLength="10" />
+          <Property Name="keyWords" Type="varchar" MaxLength="150" />
+          <Property Name="notearea" Type="varchar" MaxLength="200" />
+          <Property Name="remarks" Type="varchar" MaxLength="150" />
+          <Property Name="buildingArea" Type="float" />
+          <Property Name="height" Type="float" />
+          <Property Name="underground" Type="varchar" MaxLength="5" />
+          <Property Name="overground" Type="varchar" MaxLength="5" />
+          <Property Name="PhotoCount" Type="bigint" />
+          <Property Name="projectName" Type="varchar" MaxLength="500" />
+          <Property Name="developmentOrganization" Type="varchar" MaxLength="100" />
+          <Property Name="constructionOrganization" Type="varchar" MaxLength="100" />
+          <Property Name="constructionOrgContacter" Type="char" MaxLength="10" />
+          <Property Name="disignOrganization" Type="varchar" MaxLength="100" />
+          <Property Name="jianliUnit" Type="varchar" MaxLength="100" />
+          <Property Name="location" Type="varchar" MaxLength="100" />
+          <Property Name="securityID" Type="char" MaxLength="1" />
+          <Property Name="retentionPeriodNo" Type="char" MaxLength="1" />
+          <Property Name="contractNo" Type="char" MaxLength="8" />
+          <Property Name="status" Type="char" MaxLength="2" />
+          <Property Name="storagePath" Type="varchar" MaxLength="200" />
+          <Property Name="archivesCode" Type="char" MaxLength="10" />
+          <Property Name="memo" Type="varchar" MaxLength="100" />
+          <Property Name="Expr4" Type="varchar" MaxLength="2" />
+          <Property Name="structureTypeName" Type="varchar" MaxLength="12" />
+          <Property Name="mapsheetNo" Type="varchar" MaxLength="10" />
+          <Property Name="microNo" Type="varchar" MaxLength="10" />
+          <Property Name="checker" Type="varchar" MaxLength="20" />
+          <Property Name="checkDate" Type="datetime" />
+          <Property Name="indexer" Type="varchar" MaxLength="20" />
+          <Property Name="indexDate" Type="datetime" />
+          <Property Name="typist" Type="varchar" MaxLength="20" />
+          <Property Name="typerDate" Type="datetime" />
+          <Property Name="firstResponsible" Type="varchar" MaxLength="100" />
+          <Property Name="responsibleOther" Type="varchar" MaxLength="100" />
+          <Property Name="transferUnit" Type="varchar" MaxLength="100" />
+          <Property Name="AlicenseNo" Type="varchar" MaxLength="50" />
+          <Property Name="kaigongTime" Type="varchar" MaxLength="20" />
+          <Property Name="jungongTime" Type="varchar" MaxLength="20" />
+          <Property Name="drawing" Type="bigint" />
+          <Property Name="textMaterial" Type="bigint" />
+          <Property Name="retentionPeriodName" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="securityName" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="licenseDate" Type="varchar" MaxLength="50" />
+          <Property Name="shizhengNo" Type="varchar" MaxLength="100" />
+        </EntityType>
+        <!--生成过程中发现错误:
+警告 6002: 表/视图“UrbanCon.dbo.vw_receiveArchiveDetail”未定义主键。已推断出该键，并将定义创建为只读的表/视图。-->
+        <EntityType Name="vw_receiveArchiveDetail">
+          <Key>
+            <PropertyRef Name="paperProjectSeqNo" />
+          </Key>
+          <Property Name="projectNo" Type="bigint" />
+          <Property Name="projectName" Type="varchar" MaxLength="100" />
+          <Property Name="developmentOrganization" Type="varchar" MaxLength="100" />
+          <Property Name="constructionOrganization" Type="varchar" MaxLength="100" />
+          <Property Name="mobilephoneNoDevelopment" Type="varchar" MaxLength="30" />
+          <Property Name="mobilephoneNoConstruction" Type="nvarchar" MaxLength="30" />
+          <Property Name="submitPerson" Type="varchar" MaxLength="10" />
+          <Property Name="recipient" Type="varchar" MaxLength="50" />
+          <Property Name="dateReceived" Type="datetime" />
+          <Property Name="collator" Type="varchar" MaxLength="10" />
+          <Property Name="lqDate" Type="datetime" />
+          <Property Name="dateArchive" Type="datetime" />
+          <Property Name="paperProjectSeqNo" Type="bigint" Nullable="false" />
+        </EntityType>
+        <!--生成过程中发现错误:
+警告 6002: 表/视图“UrbanCon.dbo.vw_roadArchive”未定义主键。已推断出该键，并将定义创建为只读的表/视图。-->
+        <EntityType Name="vw_roadArchive">
+          <Key>
+            <PropertyRef Name="ID" />
+            <PropertyRef Name="classTypeID" />
+            <PropertyRef Name="retentionPeriodNo" />
+          </Key>
+          <Property Name="ID" Type="bigint" Nullable="false" />
+          <Property Name="doorplate" Type="nchar" MaxLength="20" />
+          <Property Name="landNo" Type="nchar" MaxLength="10" />
+          <Property Name="year" Type="nchar" MaxLength="5" />
+          <Property Name="volNo" Type="nchar" MaxLength="10" />
+          <Property Name="classTypeID" Type="int" Nullable="false" />
+          <Property Name="projectRange" Type="nchar" MaxLength="150" />
+          <Property Name="registrationNo" Type="nchar" MaxLength="15" />
+          <Property Name="paijiaNo" Type="nchar" MaxLength="20" />
+          <Property Name="archiveNo" Type="nchar" MaxLength="20" />
+          <Property Name="retentionPeriodNo" Type="char" MaxLength="1" Nullable="false" />
+          <Property Name="applyUnit" Type="nchar" MaxLength="100" />
+          <Property Name="location" Type="nchar" MaxLength="50" />
+          <Property Name="isImageExist" Type="varchar" MaxLength="10" />
+          <Property Name="newLocation" Type="varchar" MaxLength="250" />
+        </EntityType>
+        <!--生成过程中发现错误:
+警告 6002: 表/视图“UrbanCon.dbo.vw_YuanChuancategoryList”未定义主键。已推断出该键，并将定义创建为只读的表/视图。-->
+        <EntityType Name="vw_YuanChuancategoryList">
+          <Key>
+            <PropertyRef Name="archivesNo" />
+            <PropertyRef Name="paperProjectSeqNo" />
+          </Key>
+          <Property Name="mainCategoryID" Type="char" MaxLength="1" />
+          <Property Name="subDictionaryID" Type="char" MaxLength="2" />
+          <Property Name="minorDictionaryID" Type="char" MaxLength="2" />
+          <Property Name="archivesNo" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="paperProjectSeqNo" Type="bigint" Nullable="false" />
+          <Property Name="registrationNo" Type="varchar" MaxLength="15" />
+          <Property Name="paijiaNo" Type="varchar" MaxLength="15" />
+          <Property Name="archivesTitle" Type="varchar" MaxLength="180" />
+          <Property Name="developmentOrganization" Type="varchar" MaxLength="100" />
+          <Property Name="typerDate" Type="datetime" />
+          <Property Name="volNo" Type="int" />
+          <Property Name="status" Type="char" MaxLength="2" />
+        </EntityType>
+        <!--生成过程中发现错误:
+警告 6002: 表/视图“UrbanCon.dbo.vw_zdArchives”未定义主键。已推断出该键，并将定义创建为只读的表/视图。-->
+        <EntityType Name="vw_zdArchives">
+          <Key>
+            <PropertyRef Name="securityName" />
+            <PropertyRef Name="retentionPeriodName" />
+            <PropertyRef Name="regisNo" />
+          </Key>
+          <Property Name="securityName" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="retentionPeriodName" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="seqNo" Type="int" />
+          <Property Name="archiveNo" Type="varchar" MaxLength="15" />
+          <Property Name="archiveTitle" Type="varchar" MaxLength="200" />
+          <Property Name="textPageCnt" Type="int" />
+          <Property Name="drawingPageCnt" Type="int" />
+          <Property Name="photoCnt" Type="int" />
+          <Property Name="zdwh" Type="varchar" MaxLength="50" />
+          <Property Name="bdzh" Type="varchar" MaxLength="50" />
+          <Property Name="zhuluDate" Type="datetime" />
+          <Property Name="leibie" Type="varchar" MaxLength="8" />
+          <Property Name="regisNo" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="paijiaNo" Type="varchar" MaxLength="10" />
+          <Property Name="hbLocation" Type="varchar" MaxLength="200" />
+          <Property Name="firstResponsible" Type="varchar" MaxLength="150" />
+          <Property Name="hbDate" Type="varchar" MaxLength="100" />
+        </EntityType>
+        <Association Name="FK_InformationContent_InformationSubCategory">
+          <End Role="InformationSubCategory" Type="Self.InformationSubCategory" Multiplicity="0..1" />
+          <End Role="InformationContent" Type="Self.InformationContent" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="InformationSubCategory">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="InformationContent">
+              <PropertyRef Name="subCategoryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="OfficeModelStoreContainer">
+          <EntitySet Name="ArchivesContainer" EntityType="Self.ArchivesContainer" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="BaowenFileType" EntityType="Self.BaowenFileType" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="BaowenLeaderList" EntityType="Self.BaowenLeaderList" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="BaowenMainTable" EntityType="Self.BaowenMainTable" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="BindUserAndImage" EntityType="Self.BindUserAndImage" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="BorrowRegistration" EntityType="Self.BorrowRegistration" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="InformationContent" EntityType="Self.InformationContent" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="InformationSubCategory" EntityType="Self.InformationSubCategory" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="OtherArchives" EntityType="Self.OtherArchives" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PlanArchiveClassify" EntityType="Self.PlanArchiveClassify" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="View_PlanProjectWithBox" EntityType="Self.View_PlanProjectWithBox" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [View_PlanProjectWithBox].[seqNo] AS [seqNo], 
+    [View_PlanProjectWithBox].[boxNo] AS [boxNo], 
+    [View_PlanProjectWithBox].[archiveNo] AS [archiveNo], 
+    [View_PlanProjectWithBox].[regisNo] AS [regisNo], 
+    [View_PlanProjectWithBox].[paijiaNo] AS [paijiaNo], 
+    [View_PlanProjectWithBox].[archiveTitle] AS [archiveTitle], 
+    [View_PlanProjectWithBox].[archiveCode] AS [archiveCode], 
+    [View_PlanProjectWithBox].[bianzhiUnit] AS [bianzhiUnit], 
+    [View_PlanProjectWithBox].[bianzhiDate] AS [bianzhiDate], 
+    [View_PlanProjectWithBox].[securityID] AS [securityID], 
+    [View_PlanProjectWithBox].[retentionPeriodID] AS [retentionPeriodID], 
+    [View_PlanProjectWithBox].[archiveBoxCnt] AS [archiveBoxCnt], 
+    [View_PlanProjectWithBox].[archiveBoxNo] AS [archiveBoxNo], 
+    [View_PlanProjectWithBox].[pageCnt] AS [pageCnt], 
+    [View_PlanProjectWithBox].[inchCnt] AS [inchCnt], 
+    [View_PlanProjectWithBox].[classifyID] AS [classifyID], 
+    [View_PlanProjectWithBox].[isArchive] AS [isArchive], 
+    [View_PlanProjectWithBox].[textMatirial] AS [textMatirial], 
+    [View_PlanProjectWithBox].[drawing] AS [drawing], 
+    [View_PlanProjectWithBox].[photo] AS [photo], 
+    [View_PlanProjectWithBox].[status] AS [status], 
+    [View_PlanProjectWithBox].[yearNo] AS [yearNo], 
+    [View_PlanProjectWithBox].[classify] AS [classify], 
+    [View_PlanProjectWithBox].[boxID] AS [boxID], 
+    [View_PlanProjectWithBox].[projectCnt] AS [projectCnt], 
+    [View_PlanProjectWithBox].[projectNo] AS [projectNo], 
+    [View_PlanProjectWithBox].[ArchiveThick] AS [ArchiveThick], 
+    [View_PlanProjectWithBox].[storeLocation] AS [storeLocation], 
+    [View_PlanProjectWithBox].[receiveTime] AS [receiveTime], 
+    [View_PlanProjectWithBox].[luruTime] AS [luruTime], 
+    [View_PlanProjectWithBox].[classSeqNo] AS [classSeqNo], 
+    [View_PlanProjectWithBox].[developmentUnit] AS [developmentUnit], 
+    [View_PlanProjectWithBox].[projectContent] AS [projectContent], 
+    [View_PlanProjectWithBox].[juanneiSeqNo] AS [juanneiSeqNo], 
+    [View_PlanProjectWithBox].[totalSeqNo] AS [totalSeqNo], 
+    [View_PlanProjectWithBox].[fileNo] AS [fileNo], 
+    [View_PlanProjectWithBox].[bianzhiTime] AS [bianzhiTime], 
+    [View_PlanProjectWithBox].[ID] AS [ID], 
+    [View_PlanProjectWithBox].[Expr1] AS [Expr1]
+    FROM [dbo].[View_PlanProjectWithBox] AS [View_PlanProjectWithBox]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="vw_archiveClassi" EntityType="Self.vw_archiveClassi" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [vw_archiveClassi].[paperProjectSeqNo] AS [paperProjectSeqNo], 
+    [vw_archiveClassi].[collator] AS [collator], 
+    [vw_archiveClassi].[projectName] AS [projectName], 
+    [vw_archiveClassi].[originalVolumeCount] AS [originalVolumeCount], 
+    [vw_archiveClassi].[copyInchCount] AS [copyInchCount], 
+    [vw_archiveClassi].[InchCountDetail] AS [InchCountDetail], 
+    [vw_archiveClassi].[startArchiveNo] AS [startArchiveNo], 
+    [vw_archiveClassi].[endArchiveNo] AS [endArchiveNo], 
+    [vw_archiveClassi].[startPaijiaNo] AS [startPaijiaNo], 
+    [vw_archiveClassi].[endPaijiaNo] AS [endPaijiaNo], 
+    [vw_archiveClassi].[startRegisNo] AS [startRegisNo], 
+    [vw_archiveClassi].[endRegisNo] AS [endRegisNo], 
+    [vw_archiveClassi].[dateArchive] AS [dateArchive]
+    FROM [dbo].[vw_archiveClassi] AS [vw_archiveClassi]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="vw_archiveMainList" EntityType="Self.vw_archiveMainList" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [vw_archiveMainList].[paperProjectSeqNo] AS [paperProjectSeqNo], 
+    [vw_archiveMainList].[volNo] AS [volNo], 
+    [vw_archiveMainList].[archivesNo] AS [archivesNo], 
+    [vw_archiveMainList].[paijiaNo] AS [paijiaNo], 
+    [vw_archiveMainList].[archivesTitle] AS [archivesTitle], 
+    [vw_archiveMainList].[licenseNo] AS [licenseNo], 
+    [vw_archiveMainList].[developmentOrganization] AS [developmentOrganization], 
+    [vw_archiveMainList].[constructionOrganization] AS [constructionOrganization], 
+    [vw_archiveMainList].[jgDate] AS [jgDate], 
+    [vw_archiveMainList].[remarks] AS [remarks], 
+    [vw_archiveMainList].[changeLog] AS [changeLog], 
+    [vw_archiveMainList].[location] AS [location], 
+    [vw_archiveMainList].[registrationNo] AS [registrationNo]
+    FROM [dbo].[vw_archiveMainList] AS [vw_archiveMainList]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="vw_categoryList" EntityType="Self.vw_categoryList" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [vw_categoryList].[mainCategoryID] AS [mainCategoryID], 
+    [vw_categoryList].[subDictionaryID] AS [subDictionaryID], 
+    [vw_categoryList].[minorDictionaryID] AS [minorDictionaryID], 
+    [vw_categoryList].[archivesNo] AS [archivesNo], 
+    [vw_categoryList].[paperProjectSeqNo] AS [paperProjectSeqNo], 
+    [vw_categoryList].[registrationNo] AS [registrationNo], 
+    [vw_categoryList].[paijiaNo] AS [paijiaNo], 
+    [vw_categoryList].[archivesTitle] AS [archivesTitle], 
+    [vw_categoryList].[developmentOrganization] AS [developmentOrganization], 
+    [vw_categoryList].[typerDate] AS [typerDate], 
+    [vw_categoryList].[volNo] AS [volNo], 
+    [vw_categoryList].[shizhengNo] AS [shizhengNo], 
+    [vw_categoryList].[status] AS [status]
+    FROM [dbo].[vw_categoryList] AS [vw_categoryList]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="vw_ClassArchives" EntityType="Self.vw_ClassArchives" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [vw_ClassArchives].[classNo] AS [classNo], 
+    [vw_ClassArchives].[archiveNo] AS [archiveNo], 
+    [vw_ClassArchives].[archiveStr] AS [archiveStr], 
+    [vw_ClassArchives].[countInt] AS [countInt], 
+    [vw_ClassArchives].[archiveTitle] AS [archiveTitle], 
+    [vw_ClassArchives].[bianzhiUnit] AS [bianzhiUnit], 
+    [vw_ClassArchives].[bianzhiTime] AS [bianzhiTime], 
+    [vw_ClassArchives].[inHouseTime] AS [inHouseTime], 
+    [vw_ClassArchives].[measureUnit] AS [measureUnit], 
+    [vw_ClassArchives].[count] AS [count], 
+    [vw_ClassArchives].[retentionPeriodName] AS [retentionPeriodName], 
+    [vw_ClassArchives].[securityName] AS [securityName], 
+    [vw_ClassArchives].[note] AS [note], 
+    [vw_ClassArchives].[ID] AS [ID], 
+    [vw_ClassArchives].[paijiaNo] AS [paijiaNo], 
+    [vw_ClassArchives].[registrationNo] AS [registrationNo], 
+    [vw_ClassArchives].[classTypeID] AS [classTypeID], 
+    [vw_ClassArchives].[retentionPeriodNo] AS [retentionPeriodNo], 
+    [vw_ClassArchives].[proSeqNo] AS [proSeqNo], 
+    [vw_ClassArchives].[urbanID] AS [urbanID], 
+    [vw_ClassArchives].[firstResponsible] AS [firstResponsible], 
+    [vw_ClassArchives].[otherResponsible] AS [otherResponsible], 
+    [vw_ClassArchives].[tranferUnit] AS [tranferUnit], 
+    [vw_ClassArchives].[developUnit] AS [developUnit], 
+    [vw_ClassArchives].[designUnit] AS [designUnit], 
+    [vw_ClassArchives].[constructionUnit] AS [constructionUnit], 
+    [vw_ClassArchives].[textMaterial] AS [textMaterial], 
+    [vw_ClassArchives].[drawing] AS [drawing], 
+    [vw_ClassArchives].[licenceTime] AS [licenceTime], 
+    [vw_ClassArchives].[kaigongTime] AS [kaigongTime], 
+    [vw_ClassArchives].[jungongTime] AS [jungongTime], 
+    [vw_ClassArchives].[jianzhuArea] AS [jianzhuArea], 
+    [vw_ClassArchives].[bilichi] AS [bilichi], 
+    [vw_ClassArchives].[biaoyinPerson] AS [biaoyinPerson], 
+    [vw_ClassArchives].[biaoyinTime] AS [biaoyinTime], 
+    [vw_ClassArchives].[shenhePerson] AS [shenhePerson], 
+    [vw_ClassArchives].[shenheTime] AS [shenheTime], 
+    [vw_ClassArchives].[luruPerson] AS [luruPerson], 
+    [vw_ClassArchives].[luruTime] AS [luruTime], 
+    [vw_ClassArchives].[tuzhiniandai] AS [tuzhiniandai], 
+    [vw_ClassArchives].[tufu] AS [tufu], 
+    [vw_ClassArchives].[tuzhiStatus] AS [tuzhiStatus], 
+    [vw_ClassArchives].[ArchiveThick] AS [ArchiveThick], 
+    [vw_ClassArchives].[neirongTiyao] AS [neirongTiyao], 
+    [vw_ClassArchives].[isJungongArch] AS [isJungongArch]
+    FROM [dbo].[vw_ClassArchives] AS [vw_ClassArchives]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="vw_licenceArchive" EntityType="Self.vw_licenceArchive" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [vw_licenceArchive].[ID] AS [ID], 
+    [vw_licenceArchive].[registrationNo] AS [registrationNo], 
+    [vw_licenceArchive].[applyUnit] AS [applyUnit], 
+    [vw_licenceArchive].[location] AS [location], 
+    [vw_licenceArchive].[classTypeID] AS [classTypeID], 
+    [vw_licenceArchive].[note] AS [note], 
+    [vw_licenceArchive].[licenceNo] AS [licenceNo], 
+    [vw_licenceArchive].[projectRange] AS [projectRange], 
+    [vw_licenceArchive].[paijiaNo] AS [paijiaNo], 
+    [vw_licenceArchive].[archiveNo] AS [archiveNo], 
+    [vw_licenceArchive].[retentionPeriodNo] AS [retentionPeriodNo], 
+    [vw_licenceArchive].[year] AS [year], 
+    [vw_licenceArchive].[isImageExist] AS [isImageExist], 
+    [vw_licenceArchive].[archiveTitle] AS [archiveTitle], 
+    [vw_licenceArchive].[bianzhiTime] AS [bianzhiTime], 
+    [vw_licenceArchive].[tranferUnit] AS [tranferUnit], 
+    [vw_licenceArchive].[cunfangLocation] AS [cunfangLocation], 
+    [vw_licenceArchive].[areaProSeqNo] AS [areaProSeqNo], 
+    [vw_licenceArchive].[areaNo] AS [areaNo], 
+    [vw_licenceArchive].[areaStatus] AS [areaStatus]
+    FROM [dbo].[vw_licenceArchive] AS [vw_licenceArchive]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="vw_planarchiveBoxInfo" EntityType="Self.vw_planarchiveBoxInfo" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [vw_planarchiveBoxInfo].[boxNo] AS [boxNo], 
+    [vw_planarchiveBoxInfo].[regisNo] AS [regisNo], 
+    [vw_planarchiveBoxInfo].[archiveTitle] AS [archiveTitle], 
+    [vw_planarchiveBoxInfo].[archiveCode] AS [archiveCode], 
+    [vw_planarchiveBoxInfo].[bianzhiUnit] AS [bianzhiUnit], 
+    [vw_planarchiveBoxInfo].[bianzhiDate] AS [bianzhiDate], 
+    [vw_planarchiveBoxInfo].[archiveBoxCnt] AS [archiveBoxCnt], 
+    [vw_planarchiveBoxInfo].[archiveBoxNo] AS [archiveBoxNo], 
+    [vw_planarchiveBoxInfo].[pageCnt] AS [pageCnt], 
+    [vw_planarchiveBoxInfo].[retentionPeriodName] AS [retentionPeriodName], 
+    [vw_planarchiveBoxInfo].[securityName] AS [securityName], 
+    [vw_planarchiveBoxInfo].[seqNo] AS [seqNo], 
+    [vw_planarchiveBoxInfo].[archiveNo] AS [archiveNo], 
+    [vw_planarchiveBoxInfo].[paijiaNo] AS [paijiaNo], 
+    [vw_planarchiveBoxInfo].[inchCnt] AS [inchCnt], 
+    [vw_planarchiveBoxInfo].[classifyID] AS [classifyID], 
+    [vw_planarchiveBoxInfo].[isArchive] AS [isArchive], 
+    [vw_planarchiveBoxInfo].[textMatirial] AS [textMatirial], 
+    [vw_planarchiveBoxInfo].[drawing] AS [drawing], 
+    [vw_planarchiveBoxInfo].[status] AS [status], 
+    [vw_planarchiveBoxInfo].[photo] AS [photo], 
+    [vw_planarchiveBoxInfo].[yearNo] AS [yearNo], 
+    [vw_planarchiveBoxInfo].[classify] AS [classify], 
+    [vw_planarchiveBoxInfo].[boxID] AS [boxID], 
+    [vw_planarchiveBoxInfo].[projectCnt] AS [projectCnt], 
+    [vw_planarchiveBoxInfo].[projectNo] AS [projectNo], 
+    [vw_planarchiveBoxInfo].[ID] AS [ID], 
+    [vw_planarchiveBoxInfo].[ArchiveThick] AS [ArchiveThick]
+    FROM [dbo].[vw_planarchiveBoxInfo] AS [vw_planarchiveBoxInfo]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="vw_planArchives" EntityType="Self.vw_planArchives" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [vw_planArchives].[seqNo] AS [seqNo], 
+    [vw_planArchives].[developmentUnit] AS [developmentUnit], 
+    [vw_planArchives].[projectContent] AS [projectContent], 
+    [vw_planArchives].[projectLocation] AS [projectLocation], 
+    [vw_planArchives].[dateReceived] AS [dateReceived], 
+    [vw_planArchives].[remarks] AS [remarks], 
+    [vw_planArchives].[ID] AS [ID], 
+    [vw_planArchives].[classifyID] AS [classifyID], 
+    [vw_planArchives].[yearNo] AS [yearNo], 
+    [vw_planArchives].[projectID] AS [projectID], 
+    [vw_planArchives].[classifyName] AS [classifyName], 
+    [vw_planArchives].[juanneiSeqNo] AS [juanneiSeqNo], 
+    [vw_planArchives].[fileNo] AS [fileNo], 
+    [vw_planArchives].[boxNo] AS [boxNo], 
+    [vw_planArchives].[totalSeqNo] AS [totalSeqNo], 
+    [vw_planArchives].[shenhePerson] AS [shenhePerson]
+    FROM [dbo].[vw_planArchives] AS [vw_planArchives]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="vw_PlanProjectList" EntityType="Self.vw_PlanProjectList" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [vw_PlanProjectList].[ID] AS [ID], 
+    [vw_PlanProjectList].[seqNo] AS [seqNo], 
+    [vw_PlanProjectList].[developmentUnit] AS [developmentUnit], 
+    [vw_PlanProjectList].[projectContent] AS [projectContent], 
+    [vw_PlanProjectList].[projectLocation] AS [projectLocation], 
+    [vw_PlanProjectList].[yearNo] AS [yearNo], 
+    [vw_PlanProjectList].[pageCnt] AS [pageCnt], 
+    [vw_PlanProjectList].[classifyID] AS [classifyID], 
+    [vw_PlanProjectList].[projectID] AS [projectID], 
+    [vw_PlanProjectList].[fileNo] AS [fileNo], 
+    [vw_PlanProjectList].[dateReceived] AS [dateReceived], 
+    [vw_PlanProjectList].[boxNo] AS [boxNo], 
+    [vw_PlanProjectList].[status] AS [status], 
+    [vw_PlanProjectList].[remarks] AS [remarks], 
+    [vw_PlanProjectList].[archiveBoxCnt] AS [archiveBoxCnt], 
+    [vw_PlanProjectList].[mapScale] AS [mapScale], 
+    [vw_PlanProjectList].[classifySX] AS [classifySX], 
+    [vw_PlanProjectList].[classifyName] AS [classifyName], 
+    [vw_PlanProjectList].[storeLocation] AS [storeLocation], 
+    [vw_PlanProjectList].[bianzhiUnit] AS [bianzhiUnit], 
+    [vw_PlanProjectList].[fileNoTou] AS [fileNoTou], 
+    [vw_PlanProjectList].[luruPerson] AS [luruPerson], 
+    [vw_PlanProjectList].[seqNo1] AS [seqNo1], 
+    [vw_PlanProjectList].[juanneiSeqNo] AS [juanneiSeqNo], 
+    [vw_PlanProjectList].[totalSeqNo] AS [totalSeqNo], 
+    [vw_PlanProjectList].[archiveID] AS [archiveID], 
+    [vw_PlanProjectList].[pageNo] AS [pageNo], 
+    [vw_PlanProjectList].[bianzhiTime] AS [bianzhiTime], 
+    [vw_PlanProjectList].[projectno] AS [projectno], 
+    [vw_PlanProjectList].[projectname] AS [projectname]
+    FROM [dbo].[vw_PlanProjectList] AS [vw_PlanProjectList]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="vw_projectRecordList" EntityType="Self.vw_projectRecordList" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [vw_projectRecordList].[mainCategoryID] AS [mainCategoryID], 
+    [vw_projectRecordList].[subDictionaryID] AS [subDictionaryID], 
+    [vw_projectRecordList].[minorDictionaryID] AS [minorDictionaryID], 
+    [vw_projectRecordList].[paperProjectSeqNo] AS [paperProjectSeqNo], 
+    [vw_projectRecordList].[startArchiveNo] AS [startArchiveNo], 
+    [vw_projectRecordList].[endArchiveNo] AS [endArchiveNo], 
+    [vw_projectRecordList].[startPaijiaNo] AS [startPaijiaNo], 
+    [vw_projectRecordList].[endPaijiaNo] AS [endPaijiaNo], 
+    [vw_projectRecordList].[licenseNo] AS [licenseNo], 
+    [vw_projectRecordList].[contractName] AS [contractName], 
+    [vw_projectRecordList].[transferUnit] AS [transferUnit], 
+    [vw_projectRecordList].[projectName] AS [projectName], 
+    [vw_projectRecordList].[typerDate] AS [typerDate], 
+    [vw_projectRecordList].[disignOrganization] AS [disignOrganization], 
+    [vw_projectRecordList].[constructionOrganization] AS [constructionOrganization], 
+    [vw_projectRecordList].[buildingArea] AS [buildingArea], 
+    [vw_projectRecordList].[shizhengNo] AS [shizhengNo], 
+    [vw_projectRecordList].[shizhengNoStart] AS [shizhengNoStart], 
+    [vw_projectRecordList].[shizhengNoEnd] AS [shizhengNoEnd]
+    FROM [dbo].[vw_projectRecordList] AS [vw_projectRecordList]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="vw_projectRecordList1" EntityType="Self.vw_projectRecordList1" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [vw_projectRecordList1].[mainCategoryID] AS [mainCategoryID], 
+    [vw_projectRecordList1].[subDictionaryID] AS [subDictionaryID], 
+    [vw_projectRecordList1].[minorDictionaryID] AS [minorDictionaryID], 
+    [vw_projectRecordList1].[paperProjectSeqNo] AS [paperProjectSeqNo], 
+    [vw_projectRecordList1].[startArchiveNo] AS [startArchiveNo], 
+    [vw_projectRecordList1].[endArchiveNo] AS [endArchiveNo], 
+    [vw_projectRecordList1].[startPaijiaNo] AS [startPaijiaNo], 
+    [vw_projectRecordList1].[endPaijiaNo] AS [endPaijiaNo], 
+    [vw_projectRecordList1].[licenseNo] AS [licenseNo], 
+    [vw_projectRecordList1].[contractName] AS [contractName], 
+    [vw_projectRecordList1].[transferUnit] AS [transferUnit], 
+    [vw_projectRecordList1].[projectName] AS [projectName], 
+    [vw_projectRecordList1].[disignOrganization] AS [disignOrganization], 
+    [vw_projectRecordList1].[constructionOrganization] AS [constructionOrganization], 
+    [vw_projectRecordList1].[buildingArea] AS [buildingArea], 
+    [vw_projectRecordList1].[shizhengNoStart] AS [shizhengNoStart], 
+    [vw_projectRecordList1].[shizhengNoEnd] AS [shizhengNoEnd]
+    FROM [dbo].[vw_projectRecordList1] AS [vw_projectRecordList1]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="vw_projectTypelist" EntityType="Self.vw_projectTypelist" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [vw_projectTypelist].[paperProjectSeqNo] AS [paperProjectSeqNo], 
+    [vw_projectTypelist].[projectNo] AS [projectNo], 
+    [vw_projectTypelist].[projectID] AS [projectID], 
+    [vw_projectTypelist].[mainCategoryID] AS [mainCategoryID], 
+    [vw_projectTypelist].[subDictionaryID] AS [subDictionaryID], 
+    [vw_projectTypelist].[minorDictionaryID] AS [minorDictionaryID], 
+    [vw_projectTypelist].[transferPerson] AS [transferPerson], 
+    [vw_projectTypelist].[archivesCount] AS [archivesCount], 
+    [vw_projectTypelist].[InchCountDetail] AS [InchCountDetail], 
+    [vw_projectTypelist].[originalInchCount] AS [originalInchCount], 
+    [vw_projectTypelist].[originalMoneyAmount] AS [originalMoneyAmount], 
+    [vw_projectTypelist].[copyInchCount] AS [copyInchCount], 
+    [vw_projectTypelist].[copyMoneyCount] AS [copyMoneyCount], 
+    [vw_projectTypelist].[totalMoney] AS [totalMoney], 
+    [vw_projectTypelist].[startArchiveNo] AS [startArchiveNo], 
+    [vw_projectTypelist].[endArchiveNo] AS [endArchiveNo], 
+    [vw_projectTypelist].[startPaijiaNo] AS [startPaijiaNo], 
+    [vw_projectTypelist].[endPaijiaNo] AS [endPaijiaNo], 
+    [vw_projectTypelist].[startRegisNo] AS [startRegisNo], 
+    [vw_projectTypelist].[endRegisNo] AS [endRegisNo], 
+    [vw_projectTypelist].[licenseNo] AS [licenseNo], 
+    [vw_projectTypelist].[jgDate] AS [jgDate], 
+    [vw_projectTypelist].[changeLog] AS [changeLog], 
+    [vw_projectTypelist].[keyWords] AS [keyWords], 
+    [vw_projectTypelist].[notearea] AS [notearea], 
+    [vw_projectTypelist].[remarks] AS [remarks], 
+    [vw_projectTypelist].[buildingArea] AS [buildingArea], 
+    [vw_projectTypelist].[height] AS [height], 
+    [vw_projectTypelist].[underground] AS [underground], 
+    [vw_projectTypelist].[overground] AS [overground], 
+    [vw_projectTypelist].[PhotoCount] AS [PhotoCount], 
+    [vw_projectTypelist].[projectName] AS [projectName], 
+    [vw_projectTypelist].[developmentOrganization] AS [developmentOrganization], 
+    [vw_projectTypelist].[constructionOrganization] AS [constructionOrganization], 
+    [vw_projectTypelist].[constructionOrgContacter] AS [constructionOrgContacter], 
+    [vw_projectTypelist].[disignOrganization] AS [disignOrganization], 
+    [vw_projectTypelist].[jianliUnit] AS [jianliUnit], 
+    [vw_projectTypelist].[location] AS [location], 
+    [vw_projectTypelist].[securityID] AS [securityID], 
+    [vw_projectTypelist].[retentionPeriodNo] AS [retentionPeriodNo], 
+    [vw_projectTypelist].[contractNo] AS [contractNo], 
+    [vw_projectTypelist].[status] AS [status], 
+    [vw_projectTypelist].[storagePath] AS [storagePath], 
+    [vw_projectTypelist].[archivesCode] AS [archivesCode], 
+    [vw_projectTypelist].[memo] AS [memo], 
+    [vw_projectTypelist].[Expr4] AS [Expr4], 
+    [vw_projectTypelist].[structureTypeName] AS [structureTypeName], 
+    [vw_projectTypelist].[mapsheetNo] AS [mapsheetNo], 
+    [vw_projectTypelist].[microNo] AS [microNo], 
+    [vw_projectTypelist].[checker] AS [checker], 
+    [vw_projectTypelist].[checkDate] AS [checkDate], 
+    [vw_projectTypelist].[indexer] AS [indexer], 
+    [vw_projectTypelist].[indexDate] AS [indexDate], 
+    [vw_projectTypelist].[typist] AS [typist], 
+    [vw_projectTypelist].[typerDate] AS [typerDate], 
+    [vw_projectTypelist].[firstResponsible] AS [firstResponsible], 
+    [vw_projectTypelist].[responsibleOther] AS [responsibleOther], 
+    [vw_projectTypelist].[transferUnit] AS [transferUnit], 
+    [vw_projectTypelist].[AlicenseNo] AS [AlicenseNo], 
+    [vw_projectTypelist].[kaigongTime] AS [kaigongTime], 
+    [vw_projectTypelist].[jungongTime] AS [jungongTime], 
+    [vw_projectTypelist].[drawing] AS [drawing], 
+    [vw_projectTypelist].[textMaterial] AS [textMaterial], 
+    [vw_projectTypelist].[retentionPeriodName] AS [retentionPeriodName], 
+    [vw_projectTypelist].[securityName] AS [securityName], 
+    [vw_projectTypelist].[licenseDate] AS [licenseDate], 
+    [vw_projectTypelist].[shizhengNo] AS [shizhengNo]
+    FROM [dbo].[vw_projectTypelist] AS [vw_projectTypelist]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="vw_receiveArchiveDetail" EntityType="Self.vw_receiveArchiveDetail" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [vw_receiveArchiveDetail].[projectNo] AS [projectNo], 
+    [vw_receiveArchiveDetail].[projectName] AS [projectName], 
+    [vw_receiveArchiveDetail].[developmentOrganization] AS [developmentOrganization], 
+    [vw_receiveArchiveDetail].[constructionOrganization] AS [constructionOrganization], 
+    [vw_receiveArchiveDetail].[mobilephoneNoDevelopment] AS [mobilephoneNoDevelopment], 
+    [vw_receiveArchiveDetail].[mobilephoneNoConstruction] AS [mobilephoneNoConstruction], 
+    [vw_receiveArchiveDetail].[submitPerson] AS [submitPerson], 
+    [vw_receiveArchiveDetail].[recipient] AS [recipient], 
+    [vw_receiveArchiveDetail].[dateReceived] AS [dateReceived], 
+    [vw_receiveArchiveDetail].[collator] AS [collator], 
+    [vw_receiveArchiveDetail].[lqDate] AS [lqDate], 
+    [vw_receiveArchiveDetail].[dateArchive] AS [dateArchive], 
+    [vw_receiveArchiveDetail].[paperProjectSeqNo] AS [paperProjectSeqNo]
+    FROM [dbo].[vw_receiveArchiveDetail] AS [vw_receiveArchiveDetail]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="vw_roadArchive" EntityType="Self.vw_roadArchive" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [vw_roadArchive].[ID] AS [ID], 
+    [vw_roadArchive].[doorplate] AS [doorplate], 
+    [vw_roadArchive].[landNo] AS [landNo], 
+    [vw_roadArchive].[year] AS [year], 
+    [vw_roadArchive].[volNo] AS [volNo], 
+    [vw_roadArchive].[classTypeID] AS [classTypeID], 
+    [vw_roadArchive].[projectRange] AS [projectRange], 
+    [vw_roadArchive].[registrationNo] AS [registrationNo], 
+    [vw_roadArchive].[paijiaNo] AS [paijiaNo], 
+    [vw_roadArchive].[archiveNo] AS [archiveNo], 
+    [vw_roadArchive].[retentionPeriodNo] AS [retentionPeriodNo], 
+    [vw_roadArchive].[applyUnit] AS [applyUnit], 
+    [vw_roadArchive].[location] AS [location], 
+    [vw_roadArchive].[isImageExist] AS [isImageExist], 
+    [vw_roadArchive].[newLocation] AS [newLocation]
+    FROM [dbo].[vw_roadArchive] AS [vw_roadArchive]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="vw_YuanChuancategoryList" EntityType="Self.vw_YuanChuancategoryList" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [vw_YuanChuancategoryList].[mainCategoryID] AS [mainCategoryID], 
+    [vw_YuanChuancategoryList].[subDictionaryID] AS [subDictionaryID], 
+    [vw_YuanChuancategoryList].[minorDictionaryID] AS [minorDictionaryID], 
+    [vw_YuanChuancategoryList].[archivesNo] AS [archivesNo], 
+    [vw_YuanChuancategoryList].[paperProjectSeqNo] AS [paperProjectSeqNo], 
+    [vw_YuanChuancategoryList].[registrationNo] AS [registrationNo], 
+    [vw_YuanChuancategoryList].[paijiaNo] AS [paijiaNo], 
+    [vw_YuanChuancategoryList].[archivesTitle] AS [archivesTitle], 
+    [vw_YuanChuancategoryList].[developmentOrganization] AS [developmentOrganization], 
+    [vw_YuanChuancategoryList].[typerDate] AS [typerDate], 
+    [vw_YuanChuancategoryList].[volNo] AS [volNo], 
+    [vw_YuanChuancategoryList].[status] AS [status]
+    FROM [dbo].[vw_YuanChuancategoryList] AS [vw_YuanChuancategoryList]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="vw_zdArchives" EntityType="Self.vw_zdArchives" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [vw_zdArchives].[securityName] AS [securityName], 
+    [vw_zdArchives].[retentionPeriodName] AS [retentionPeriodName], 
+    [vw_zdArchives].[seqNo] AS [seqNo], 
+    [vw_zdArchives].[archiveNo] AS [archiveNo], 
+    [vw_zdArchives].[archiveTitle] AS [archiveTitle], 
+    [vw_zdArchives].[textPageCnt] AS [textPageCnt], 
+    [vw_zdArchives].[drawingPageCnt] AS [drawingPageCnt], 
+    [vw_zdArchives].[photoCnt] AS [photoCnt], 
+    [vw_zdArchives].[zdwh] AS [zdwh], 
+    [vw_zdArchives].[bdzh] AS [bdzh], 
+    [vw_zdArchives].[zhuluDate] AS [zhuluDate], 
+    [vw_zdArchives].[leibie] AS [leibie], 
+    [vw_zdArchives].[regisNo] AS [regisNo], 
+    [vw_zdArchives].[paijiaNo] AS [paijiaNo], 
+    [vw_zdArchives].[hbLocation] AS [hbLocation], 
+    [vw_zdArchives].[firstResponsible] AS [firstResponsible], 
+    [vw_zdArchives].[hbDate] AS [hbDate]
+    FROM [dbo].[vw_zdArchives] AS [vw_zdArchives]</DefiningQuery>
+          </EntitySet>
+          <AssociationSet Name="FK_InformationContent_InformationSubCategory" Association="Self.FK_InformationContent_InformationSubCategory">
+            <End Role="InformationSubCategory" EntitySet="InformationSubCategory" />
+            <End Role="InformationContent" EntitySet="InformationContent" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="OfficeModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="OfficeEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="InformationContent" EntityType="OfficeModel.InformationContent" />
+          <EntitySet Name="InformationSubCategory" EntityType="OfficeModel.InformationSubCategory" />
+          <AssociationSet Name="FK_InformationContent_InformationSubCategory" Association="OfficeModel.FK_InformationContent_InformationSubCategory">
+            <End Role="InformationSubCategory" EntitySet="InformationSubCategory" />
+            <End Role="InformationContent" EntitySet="InformationContent" />
+          </AssociationSet>
+          <EntitySet Name="BaowenFileType" EntityType="OfficeModel.BaowenFileType" />
+          <EntitySet Name="vw_receiveArchiveDetail" EntityType="OfficeModel.vw_receiveArchiveDetail" />
+          <EntitySet Name="vw_archiveMainList" EntityType="OfficeModel.vw_archiveMainList" />
+          <EntitySet Name="ArchivesContainer" EntityType="OfficeModel.ArchivesContainer" />
+          <EntitySet Name="vw_categoryList" EntityType="OfficeModel.vw_categoryList" />
+          <EntitySet Name="vw_roadArchive" EntityType="OfficeModel.vw_roadArchive" />
+          <EntitySet Name="vw_licenceArchive" EntityType="OfficeModel.vw_licenceArchive" />
+          <EntitySet Name="vw_planArchives" EntityType="OfficeModel.vw_planArchives" />
+          <EntitySet Name="PlanArchiveClassify" EntityType="OfficeModel.PlanArchiveClassify" />
+          <EntitySet Name="vw_planarchiveBoxInfo" EntityType="OfficeModel.vw_planarchiveBoxInfo" />
+          <EntitySet Name="vw_zdArchives" EntityType="OfficeModel.vw_zdArchives" />
+          <EntitySet Name="vw_ClassArchives" EntityType="OfficeModel.vw_ClassArchives" />
+          <EntitySet Name="vw_archiveClassi" EntityType="OfficeModel.vw_archiveClassi" />
+          <EntitySet Name="View_PlanProjectWithBox" EntityType="OfficeModel.View_PlanProjectWithBox" />
+          <EntitySet Name="vw_projectTypelist" EntityType="OfficeModel.vw_projectTypelist" />
+          <EntitySet Name="OtherArchives" EntityType="OfficeModel.OtherArchives" />
+          <EntitySet Name="BindUserAndImage" EntityType="OfficeModel.BindUserAndImage" />
+          <EntitySet Name="vw_PlanProjectList" EntityType="OfficeModel.vw_PlanProjectList" />
+          <EntitySet Name="vw_YuanChuancategoryList" EntityType="OfficeModel.vw_YuanChuancategoryList" />
+          <EntitySet Name="BorrowRegistration" EntityType="OfficeModel.BorrowRegistration" />
+          <EntitySet Name="BaowenLeaderList" EntityType="OfficeModel.BaowenLeaderList" />
+          <EntitySet Name="BaowenMainTable" EntityType="OfficeModel.BaowenMainTable" />
+          <EntitySet Name="vw_projectRecordList" EntityType="OfficeModel.vw_projectRecordList" />
+          <EntitySet Name="vw_projectRecordList1" EntityType="OfficeModel.vw_projectRecordList1" />
+        </EntityContainer>
+        <EntityType Name="InformationContent">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="title" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="author" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="date" Type="DateTime" Precision="3" />
+          <Property Name="content" Type="String" MaxLength="3000" FixedLength="false" Unicode="false" />
+          <Property Name="subCategoryID" Type="Int32" />
+          <Property Name="ClickTimes" Type="Int32" />
+          <Property Name="filename" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="filetype" Type="String" MaxLength="10" FixedLength="true" Unicode="false" />
+          <NavigationProperty Name="InformationSubCategory" Relationship="OfficeModel.FK_InformationContent_InformationSubCategory" FromRole="InformationContent" ToRole="InformationSubCategory" />
+        </EntityType>
+        <EntityType Name="InformationSubCategory">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Description" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="parentID" Type="Int32" />
+          <NavigationProperty Name="InformationContent" Relationship="OfficeModel.FK_InformationContent_InformationSubCategory" FromRole="InformationSubCategory" ToRole="InformationContent" />
+        </EntityType>
+        <Association Name="FK_InformationContent_InformationSubCategory">
+          <End Type="OfficeModel.InformationSubCategory" Role="InformationSubCategory" Multiplicity="0..1" />
+          <End Type="OfficeModel.InformationContent" Role="InformationContent" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="InformationSubCategory">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="InformationContent">
+              <PropertyRef Name="subCategoryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="BaowenFileType">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="类别" Type="String" MaxLength="2" FixedLength="false" Unicode="true" />
+          <Property Name="说明" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+        </EntityType>
+        <EntityType Name="vw_receiveArchiveDetail">
+          <Key>
+            <PropertyRef Name="paperProjectSeqNo" />
+          </Key>
+          <Property Name="projectNo" Type="Int64" />
+          <Property Name="projectName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="developmentOrganization" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="constructionOrganization" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="mobilephoneNoDevelopment" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="mobilephoneNoConstruction" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="submitPerson" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="recipient" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="dateReceived" Type="DateTime" Precision="3" />
+          <Property Name="collator" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="lqDate" Type="DateTime" Precision="3" />
+          <Property Name="dateArchive" Type="DateTime" Precision="3" />
+          <Property Name="paperProjectSeqNo" Type="Int64" Nullable="false" />
+        </EntityType>
+        <EntityType Name="vw_archiveMainList">
+          <Key>
+            <PropertyRef Name="paperProjectSeqNo" />
+            <PropertyRef Name="archivesNo" />
+          </Key>
+          <Property Name="paperProjectSeqNo" Type="Int64" Nullable="false" />
+          <Property Name="volNo" Type="Int32" />
+          <Property Name="archivesNo" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="paijiaNo" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="archivesTitle" Type="String" MaxLength="180" FixedLength="false" Unicode="false" />
+          <Property Name="licenseNo" Type="String" MaxLength="50" FixedLength="true" Unicode="false" />
+          <Property Name="developmentOrganization" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="constructionOrganization" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="jgDate" Type="DateTime" Precision="3" />
+          <Property Name="remarks" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="changeLog" Type="String" MaxLength="2" FixedLength="true" Unicode="false" />
+          <Property Name="location" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="registrationNo" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="ArchivesContainer">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int64" Nullable="false" />
+          <Property Name="twoCentiCnt" Type="Int32" />
+          <Property Name="thrCentiCnt" Type="Int32" />
+          <Property Name="fourCentiCnt" Type="Int32" />
+          <Property Name="fiveCentiCnt" Type="Int32" />
+          <Property Name="coverCnt" Type="Int32" />
+          <Property Name="catalogueCnt" Type="Int32" />
+          <Property Name="proformaCnt" Type="Int32" />
+          <Property Name="DepartName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="submitDate" Type="DateTime" Precision="3" />
+          <Property Name="submitPerson" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="archiveBoxFee" Type="Decimal" Precision="18" Scale="4" />
+          <Property Name="archiveCataLogFee" Type="Decimal" Precision="18" Scale="4" />
+          <Property Name="singleBoxFee" Type="Decimal" Precision="18" Scale="4" />
+          <Property Name="singleCatalogFee" Type="Decimal" Precision="18" Scale="4" />
+          <Property Name="seqNo" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="vw_categoryList">
+          <Key>
+            <PropertyRef Name="archivesNo" />
+            <PropertyRef Name="paperProjectSeqNo" />
+          </Key>
+          <Property Name="mainCategoryID" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="subDictionaryID" Type="String" MaxLength="2" FixedLength="true" Unicode="false" />
+          <Property Name="minorDictionaryID" Type="String" MaxLength="2" FixedLength="true" Unicode="false" />
+          <Property Name="archivesNo" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="paperProjectSeqNo" Type="Int64" Nullable="false" />
+          <Property Name="registrationNo" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="paijiaNo" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="archivesTitle" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="developmentOrganization" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="typerDate" Type="DateTime" Precision="3" />
+          <Property Name="volNo" Type="Int32" />
+          <Property Name="shizhengNo" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="status" Type="String" MaxLength="2" FixedLength="true" Unicode="false" />
+        </EntityType>
+        <EntityType Name="vw_roadArchive">
+          <Key>
+            <PropertyRef Name="ID" />
+            <PropertyRef Name="classTypeID" />
+            <PropertyRef Name="retentionPeriodNo" />
+          </Key>
+          <Property Name="ID" Type="Int64" Nullable="false" />
+          <Property Name="doorplate" Type="String" MaxLength="20" FixedLength="true" Unicode="true" />
+          <Property Name="landNo" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="year" Type="String" MaxLength="5" FixedLength="true" Unicode="true" />
+          <Property Name="volNo" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="classTypeID" Type="Int32" Nullable="false" />
+          <Property Name="projectRange" Type="String" MaxLength="150" FixedLength="true" Unicode="true" />
+          <Property Name="registrationNo" Type="String" MaxLength="15" FixedLength="true" Unicode="true" />
+          <Property Name="paijiaNo" Type="String" MaxLength="20" FixedLength="true" Unicode="true" />
+          <Property Name="archiveNo" Type="String" MaxLength="20" FixedLength="true" Unicode="true" />
+          <Property Name="retentionPeriodNo" Type="String" Nullable="false" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="applyUnit" Type="String" MaxLength="100" FixedLength="true" Unicode="true" />
+          <Property Name="location" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
+          <Property Name="isImageExist" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="newLocation" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="vw_licenceArchive">
+          <Key>
+            <PropertyRef Name="ID" />
+            <PropertyRef Name="classTypeID" />
+            <PropertyRef Name="retentionPeriodNo" />
+          </Key>
+          <Property Name="ID" Type="Int64" Nullable="false" />
+          <Property Name="registrationNo" Type="String" MaxLength="15" FixedLength="true" Unicode="true" />
+          <Property Name="applyUnit" Type="String" MaxLength="100" FixedLength="true" Unicode="true" />
+          <Property Name="location" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
+          <Property Name="classTypeID" Type="Int32" Nullable="false" />
+          <Property Name="note" Type="String" MaxLength="30" FixedLength="true" Unicode="true" />
+          <Property Name="licenceNo" Type="String" MaxLength="80" FixedLength="false" Unicode="false" />
+          <Property Name="projectRange" Type="String" MaxLength="150" FixedLength="true" Unicode="true" />
+          <Property Name="paijiaNo" Type="String" MaxLength="20" FixedLength="true" Unicode="true" />
+          <Property Name="archiveNo" Type="String" MaxLength="20" FixedLength="true" Unicode="true" />
+          <Property Name="retentionPeriodNo" Type="String" Nullable="false" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="year" Type="String" MaxLength="5" FixedLength="true" Unicode="true" />
+          <Property Name="isImageExist" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="archiveTitle" Type="String" MaxLength="250" FixedLength="true" Unicode="true" />
+          <Property Name="bianzhiTime" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="tranferUnit" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="cunfangLocation" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="areaProSeqNo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="areaNo" Type="Int32" />
+          <Property Name="areaStatus" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="vw_planArchives">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="seqNo" Type="Int32" />
+          <Property Name="developmentUnit" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="projectContent" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="projectLocation" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="dateReceived" Type="DateTime" Precision="3" />
+          <Property Name="remarks" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="classifyID" Type="Int32" />
+          <Property Name="yearNo" Type="String" MaxLength="4" FixedLength="true" Unicode="false" />
+          <Property Name="projectID" Type="Int32" />
+          <Property Name="classifyName" Type="String" MaxLength="16" FixedLength="true" Unicode="false" />
+          <Property Name="juanneiSeqNo" Type="Int32" />
+          <Property Name="fileNo" Type="String" MaxLength="100" FixedLength="true" Unicode="false" />
+          <Property Name="boxNo" Type="String" MaxLength="100" FixedLength="true" Unicode="false" />
+          <Property Name="totalSeqNo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="shenhePerson" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="PlanArchiveClassify">
+          <Key>
+            <PropertyRef Name="classifyID" />
+          </Key>
+          <Property Name="classifyID" Type="Int32" Nullable="false" />
+          <Property Name="classifySX" Type="String" MaxLength="10" FixedLength="true" Unicode="false" />
+          <Property Name="classifyName" Type="String" MaxLength="20" FixedLength="true" Unicode="false" />
+        </EntityType>
+        <EntityType Name="vw_planarchiveBoxInfo">
+          <Key>
+            <PropertyRef Name="retentionPeriodName" />
+            <PropertyRef Name="securityName" />
+            <PropertyRef Name="seqNo" />
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="boxNo" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="regisNo" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="archiveTitle" Type="String" MaxLength="300" FixedLength="false" Unicode="false" />
+          <Property Name="archiveCode" Type="String" MaxLength="10" FixedLength="true" Unicode="false" />
+          <Property Name="bianzhiUnit" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="bianzhiDate" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="archiveBoxCnt" Type="Int32" />
+          <Property Name="archiveBoxNo" Type="Int32" />
+          <Property Name="pageCnt" Type="Int32" />
+          <Property Name="retentionPeriodName" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="securityName" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="seqNo" Type="Int32" Nullable="false" />
+          <Property Name="archiveNo" Type="String" MaxLength="50" FixedLength="true" Unicode="false" />
+          <Property Name="paijiaNo" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="inchCnt" Type="Int32" />
+          <Property Name="classifyID" Type="Int32" />
+          <Property Name="isArchive" Type="Boolean" />
+          <Property Name="textMatirial" Type="Int32" />
+          <Property Name="drawing" Type="Int32" />
+          <Property Name="status" Type="String" MaxLength="10" FixedLength="true" Unicode="false" />
+          <Property Name="photo" Type="Int32" />
+          <Property Name="yearNo" Type="String" MaxLength="4" FixedLength="true" Unicode="false" />
+          <Property Name="classify" Type="String" MaxLength="16" FixedLength="true" Unicode="false" />
+          <Property Name="boxID" Type="String" MaxLength="100" FixedLength="true" Unicode="false" />
+          <Property Name="projectCnt" Type="Int32" />
+          <Property Name="projectNo" Type="String" MaxLength="10" FixedLength="true" Unicode="false" />
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="ArchiveThick" Type="Int32" />
+        </EntityType>
+        <EntityType Name="vw_zdArchives">
+          <Key>
+            <PropertyRef Name="securityName" />
+            <PropertyRef Name="retentionPeriodName" />
+            <PropertyRef Name="regisNo" />
+          </Key>
+          <Property Name="securityName" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="retentionPeriodName" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="seqNo" Type="Int32" />
+          <Property Name="archiveNo" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="archiveTitle" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="textPageCnt" Type="Int32" />
+          <Property Name="drawingPageCnt" Type="Int32" />
+          <Property Name="photoCnt" Type="Int32" />
+          <Property Name="zdwh" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="bdzh" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="zhuluDate" Type="DateTime" Precision="3" />
+          <Property Name="leibie" Type="String" MaxLength="8" FixedLength="false" Unicode="false" />
+          <Property Name="regisNo" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="paijiaNo" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="hbLocation" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="firstResponsible" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="hbDate" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="vw_ClassArchives">
+          <Key>
+            <PropertyRef Name="retentionPeriodName" />
+            <PropertyRef Name="securityName" />
+            <PropertyRef Name="ID" />
+            <PropertyRef Name="classTypeID" />
+            <PropertyRef Name="retentionPeriodNo" />
+          </Key>
+          <Property Name="classNo" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="archiveNo" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="archiveStr" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="countInt" Type="Int32" />
+          <Property Name="archiveTitle" Type="String" MaxLength="250" FixedLength="true" Unicode="true" />
+          <Property Name="bianzhiUnit" Type="String" MaxLength="30" FixedLength="true" Unicode="true" />
+          <Property Name="bianzhiTime" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="inHouseTime" Type="DateTime" Precision="3" />
+          <Property Name="measureUnit" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="count" Type="Int32" />
+          <Property Name="retentionPeriodName" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="securityName" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="note" Type="String" MaxLength="30" FixedLength="true" Unicode="true" />
+          <Property Name="ID" Type="Int64" Nullable="false" />
+          <Property Name="paijiaNo" Type="String" MaxLength="20" FixedLength="true" Unicode="true" />
+          <Property Name="registrationNo" Type="String" MaxLength="15" FixedLength="true" Unicode="true" />
+          <Property Name="classTypeID" Type="Int32" Nullable="false" />
+          <Property Name="retentionPeriodNo" Type="String" Nullable="false" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="proSeqNo" Type="Int32" />
+          <Property Name="urbanID" Type="String" MaxLength="12" FixedLength="false" Unicode="false" />
+          <Property Name="firstResponsible" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="otherResponsible" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="tranferUnit" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="developUnit" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="designUnit" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="constructionUnit" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="textMaterial" Type="Int32" />
+          <Property Name="drawing" Type="Int32" />
+          <Property Name="licenceTime" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="kaigongTime" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="jungongTime" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="jianzhuArea" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="bilichi" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="biaoyinPerson" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="biaoyinTime" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="shenhePerson" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="shenheTime" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="luruPerson" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="luruTime" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="tuzhiniandai" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="tufu" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="tuzhiStatus" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ArchiveThick" Type="Int32" />
+          <Property Name="neirongTiyao" Type="String" MaxLength="5000" FixedLength="false" Unicode="false" />
+          <Property Name="isJungongArch" Type="Int32" />
+        </EntityType>
+        <EntityType Name="vw_archiveClassi">
+          <Key>
+            <PropertyRef Name="paperProjectSeqNo" />
+            <PropertyRef Name="projectName" />
+          </Key>
+          <Property Name="paperProjectSeqNo" Type="Int64" Nullable="false" />
+          <Property Name="collator" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="projectName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="originalVolumeCount" Type="Int64" />
+          <Property Name="copyInchCount" Type="Int64" />
+          <Property Name="InchCountDetail" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="startArchiveNo" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="endArchiveNo" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="startPaijiaNo" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="endPaijiaNo" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="startRegisNo" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="endRegisNo" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="dateArchive" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="View_PlanProjectWithBox">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="seqNo" Type="Int32" />
+          <Property Name="boxNo" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="archiveNo" Type="String" MaxLength="50" FixedLength="true" Unicode="false" />
+          <Property Name="regisNo" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="paijiaNo" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="archiveTitle" Type="String" MaxLength="300" FixedLength="false" Unicode="false" />
+          <Property Name="archiveCode" Type="String" MaxLength="10" FixedLength="true" Unicode="false" />
+          <Property Name="bianzhiUnit" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="bianzhiDate" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="securityID" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="retentionPeriodID" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="archiveBoxCnt" Type="Int32" />
+          <Property Name="archiveBoxNo" Type="Int32" />
+          <Property Name="pageCnt" Type="Int32" />
+          <Property Name="inchCnt" Type="Int32" />
+          <Property Name="classifyID" Type="Int32" />
+          <Property Name="isArchive" Type="Boolean" />
+          <Property Name="textMatirial" Type="Int32" />
+          <Property Name="drawing" Type="Int32" />
+          <Property Name="photo" Type="Int32" />
+          <Property Name="status" Type="String" MaxLength="10" FixedLength="true" Unicode="false" />
+          <Property Name="yearNo" Type="String" MaxLength="4" FixedLength="true" Unicode="false" />
+          <Property Name="classify" Type="String" MaxLength="16" FixedLength="true" Unicode="false" />
+          <Property Name="boxID" Type="String" MaxLength="100" FixedLength="true" Unicode="false" />
+          <Property Name="projectCnt" Type="Int32" />
+          <Property Name="projectNo" Type="String" MaxLength="10" FixedLength="true" Unicode="false" />
+          <Property Name="ArchiveThick" Type="Int32" />
+          <Property Name="storeLocation" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="receiveTime" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="luruTime" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="classSeqNo" Type="Int32" />
+          <Property Name="developmentUnit" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="projectContent" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="juanneiSeqNo" Type="Int32" />
+          <Property Name="totalSeqNo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="fileNo" Type="String" MaxLength="100" FixedLength="true" Unicode="false" />
+          <Property Name="bianzhiTime" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="Expr1" Type="Int32" />
+        </EntityType>
+        <EntityType Name="vw_projectTypelist">
+          <Key>
+            <PropertyRef Name="paperProjectSeqNo" />
+            <PropertyRef Name="retentionPeriodName" />
+            <PropertyRef Name="securityName" />
+          </Key>
+          <Property Name="paperProjectSeqNo" Type="Int64" Nullable="false" />
+          <Property Name="projectNo" Type="Int64" />
+          <Property Name="projectID" Type="Int64" />
+          <Property Name="mainCategoryID" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="subDictionaryID" Type="String" MaxLength="2" FixedLength="true" Unicode="false" />
+          <Property Name="minorDictionaryID" Type="String" MaxLength="2" FixedLength="true" Unicode="false" />
+          <Property Name="transferPerson" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="archivesCount" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="InchCountDetail" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="originalInchCount" Type="Int64" />
+          <Property Name="originalMoneyAmount" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="copyInchCount" Type="Int64" />
+          <Property Name="copyMoneyCount" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="totalMoney" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="startArchiveNo" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="endArchiveNo" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="startPaijiaNo" Type="String" MaxLength="8" FixedLength="false" Unicode="false" />
+          <Property Name="endPaijiaNo" Type="String" MaxLength="8" FixedLength="false" Unicode="false" />
+          <Property Name="startRegisNo" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="endRegisNo" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="licenseNo" Type="String" MaxLength="50" FixedLength="true" Unicode="false" />
+          <Property Name="jgDate" Type="DateTime" Precision="3" />
+          <Property Name="changeLog" Type="String" MaxLength="10" FixedLength="true" Unicode="false" />
+          <Property Name="keyWords" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="notearea" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="remarks" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="buildingArea" Type="Double" />
+          <Property Name="height" Type="Double" />
+          <Property Name="underground" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+          <Property Name="overground" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+          <Property Name="PhotoCount" Type="Int64" />
+          <Property Name="projectName" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="developmentOrganization" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="constructionOrganization" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="constructionOrgContacter" Type="String" MaxLength="10" FixedLength="true" Unicode="false" />
+          <Property Name="disignOrganization" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="jianliUnit" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="location" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="securityID" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="retentionPeriodNo" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="contractNo" Type="String" MaxLength="8" FixedLength="true" Unicode="false" />
+          <Property Name="status" Type="String" MaxLength="2" FixedLength="true" Unicode="false" />
+          <Property Name="storagePath" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="archivesCode" Type="String" MaxLength="10" FixedLength="true" Unicode="false" />
+          <Property Name="memo" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Expr4" Type="String" MaxLength="2" FixedLength="false" Unicode="false" />
+          <Property Name="structureTypeName" Type="String" MaxLength="12" FixedLength="false" Unicode="false" />
+          <Property Name="mapsheetNo" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="microNo" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="checker" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="checkDate" Type="DateTime" Precision="3" />
+          <Property Name="indexer" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="indexDate" Type="DateTime" Precision="3" />
+          <Property Name="typist" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="typerDate" Type="DateTime" Precision="3" />
+          <Property Name="firstResponsible" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="responsibleOther" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="transferUnit" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="AlicenseNo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="kaigongTime" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="jungongTime" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="drawing" Type="Int64" />
+          <Property Name="textMaterial" Type="Int64" />
+          <Property Name="retentionPeriodName" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="securityName" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="licenseDate" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="shizhengNo" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="OtherArchives">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int64" Nullable="false" />
+          <Property Name="registrationNo" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="doorplate" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="landNo" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="projectRange" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="year" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+          <Property Name="volNo" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="classNo" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="archiveNo" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="paijiaNo" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="archiveTitle" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="bianzhiUnit" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="bianzhiTime" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="inHouseTime" Type="DateTime" Precision="3" />
+          <Property Name="measureUnit" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="count" Type="Int32" />
+          <Property Name="securityID" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="retentionPeriodNo" Type="String" Nullable="false" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="licenceNo" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="applyUnit" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="location" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="note" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="classTypeID" Type="Int32" Nullable="false" />
+          <Property Name="ArchiveThick" Type="Int32" />
+          <Property Name="proSeqNo" Type="Int32" />
+          <Property Name="urbanID" Type="String" MaxLength="12" FixedLength="false" Unicode="false" />
+          <Property Name="firstResponsible" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="otherResponsible" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="developUnit" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="tranferUnit" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="designUnit" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="constructionUnit" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="textMaterial" Type="Int32" />
+          <Property Name="drawing" Type="Int32" />
+          <Property Name="licenceTime" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="kaigongTime" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="jungongTime" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="jianzhuArea" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="bilichi" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="biaoyinPerson" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="biaoyinTime" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="shenhePerson" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="shenheTime" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="luruPerson" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="luruTime" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="tuzhiniandai" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="tufu" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="tuzhiStatus" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="newLocation" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="cunfangLocation" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="neirongTiyao" Type="String" MaxLength="5000" FixedLength="false" Unicode="false" />
+          <Property Name="isImageExist" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="isJungongArch" Type="Int32" />
+          <Property Name="status" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="areaProSeqNo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="areaNo" Type="Int32" />
+          <Property Name="areaStatus" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="isYD" Type="Boolean" />
+          <Property Name="isNeibu" Type="String" Nullable="false" MaxLength="20" FixedLength="true" Unicode="true" />
+          <Property Name="rukutime" Type="DateTime" Precision="3" />
+          <Property Name="coordinate" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="archiveTitle_neibu" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="drawing_neibu" Type="Int32" />
+          <Property Name="textMaterial_neibu" Type="Int32" />
+          <Property Name="projectContent_neibu" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="projectContent" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="urban_type" Type="Int32" />
+          <Property Name="isguajie" Type="Int32" />
+        </EntityType>
+        <EntityType Name="BindUserAndImage">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="userID" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="ImageAddress" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="imageTime" Type="DateTime" Precision="3" />
+          <Property Name="imageSize" Type="String" MaxLength="2" FixedLength="false" Unicode="false" />
+          <Property Name="isWordOrPic" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+          <Property Name="archivesNo" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="realuserID" Type="Int64" />
+          <Property Name="recordID" Type="Int32" />
+        </EntityType>
+        <EntityType Name="vw_PlanProjectList">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="seqNo" Type="Int32" />
+          <Property Name="developmentUnit" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="projectContent" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="projectLocation" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="yearNo" Type="String" MaxLength="4" FixedLength="true" Unicode="false" />
+          <Property Name="pageCnt" Type="Int32" />
+          <Property Name="classifyID" Type="Int32" />
+          <Property Name="projectID" Type="Int32" />
+          <Property Name="fileNo" Type="String" MaxLength="100" FixedLength="true" Unicode="false" />
+          <Property Name="dateReceived" Type="DateTime" Precision="3" />
+          <Property Name="boxNo" Type="String" MaxLength="100" FixedLength="true" Unicode="false" />
+          <Property Name="status" Type="String" MaxLength="10" FixedLength="true" Unicode="false" />
+          <Property Name="remarks" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="archiveBoxCnt" Type="Int32" />
+          <Property Name="mapScale" Type="String" MaxLength="20" FixedLength="true" Unicode="false" />
+          <Property Name="classifySX" Type="String" MaxLength="10" FixedLength="true" Unicode="false" />
+          <Property Name="classifyName" Type="String" MaxLength="16" FixedLength="true" Unicode="false" />
+          <Property Name="storeLocation" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="bianzhiUnit" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="fileNoTou" Type="String" MaxLength="20" FixedLength="true" Unicode="false" />
+          <Property Name="luruPerson" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="seqNo1" Type="Int32" />
+          <Property Name="juanneiSeqNo" Type="Int32" />
+          <Property Name="totalSeqNo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="archiveID" Type="Int32" />
+          <Property Name="pageNo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="bianzhiTime" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="projectno" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="projectname" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="vw_YuanChuancategoryList">
+          <Key>
+            <PropertyRef Name="archivesNo" />
+            <PropertyRef Name="paperProjectSeqNo" />
+          </Key>
+          <Property Name="mainCategoryID" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="subDictionaryID" Type="String" MaxLength="2" FixedLength="true" Unicode="false" />
+          <Property Name="minorDictionaryID" Type="String" MaxLength="2" FixedLength="true" Unicode="false" />
+          <Property Name="archivesNo" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="paperProjectSeqNo" Type="Int64" Nullable="false" />
+          <Property Name="registrationNo" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="paijiaNo" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="archivesTitle" Type="String" MaxLength="180" FixedLength="false" Unicode="false" />
+          <Property Name="developmentOrganization" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="typerDate" Type="DateTime" Precision="3" />
+          <Property Name="volNo" Type="Int32" />
+          <Property Name="status" Type="String" MaxLength="2" FixedLength="true" Unicode="false" />
+        </EntityType>
+        <EntityType Name="BorrowRegistration">
+          <Key>
+            <PropertyRef Name="borrowSeqNoN" />
+          </Key>
+          <Property Name="ID" Type="Int64" Nullable="false" />
+          <Property Name="borrowDate" Type="DateTime" Precision="3" />
+          <Property Name="borrowUnit" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="borrower" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="borrowerTel" Type="String" MaxLength="12" FixedLength="true" Unicode="false" />
+          <Property Name="consultFilePersonTime" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="consultVolumeCount" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="precisionVolumeCount" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="copyPageCount" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="application1" Type="Boolean" />
+          <Property Name="application2" Type="Boolean" />
+          <Property Name="application3" Type="Boolean" />
+          <Property Name="application4" Type="Boolean" />
+          <Property Name="application5" Type="Boolean" />
+          <Property Name="application6" Type="Boolean" />
+          <Property Name="application7" Type="Boolean" />
+          <Property Name="application8" Type="Boolean" />
+          <Property Name="userEffects1" Type="Boolean" />
+          <Property Name="userEffects2" Type="Boolean" />
+          <Property Name="userEffects3" Type="Boolean" />
+          <Property Name="userEffects4" Type="Boolean" />
+          <Property Name="userEffects5" Type="Boolean" />
+          <Property Name="userEffects6" Type="Boolean" />
+          <Property Name="userEffects7" Type="Boolean" />
+          <Property Name="archiveSerialNo" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="operator1" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="consultFee" Type="Decimal" Precision="18" Scale="4" />
+          <Property Name="certificationFee" Type="Decimal" Precision="18" Scale="4" />
+          <Property Name="copyFee" Type="Decimal" Precision="18" Scale="4" />
+          <Property Name="operator2" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="remarks" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="paoKufangRen" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="chargeFlag" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+          <Property Name="singleOrDepart" Type="String" MaxLength="10" FixedLength="true" Unicode="false" />
+          <Property Name="realFees" Type="Decimal" Precision="18" Scale="4" />
+          <Property Name="isJiesuanFee" Type="Int32" />
+          <Property Name="password" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="false" />
+          <Property Name="userEffectDetail" Type="String" MaxLength="400" FixedLength="false" Unicode="false" />
+          <Property Name="ecnomicBenefit" Type="String" MaxLength="400" FixedLength="false" Unicode="false" />
+          <Property Name="seqNo" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="goal1" Type="Boolean" />
+          <Property Name="goal2" Type="Boolean" />
+          <Property Name="goal3" Type="Boolean" />
+          <Property Name="goal4" Type="Boolean" />
+          <Property Name="goal5" Type="Boolean" />
+          <Property Name="goal6" Type="Boolean" />
+          <Property Name="goal7" Type="Boolean" />
+          <Property Name="goal8" Type="Boolean" />
+          <Property Name="borrowSeqNo" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="loginUser" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="borrowSeqNoN" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="true" />
+        </EntityType>
+        <EntityType Name="BaowenLeaderList">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="顺序" Type="Int32" />
+          <Property Name="姓名" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+        </EntityType>
+        <EntityType Name="BaowenMainTable">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="leibie" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="shunxuhao" Type="String" MaxLength="8" FixedLength="true" Unicode="false" />
+          <Property Name="shouwenriqi" Type="DateTime" Precision="3" />
+          <Property Name="wenjianzihao" Type="String" MaxLength="60" FixedLength="false" Unicode="true" />
+          <Property Name="laiwendanwei" Type="String" MaxLength="160" FixedLength="false" Unicode="true" />
+          <Property Name="wenjianbiaoti" Type="String" MaxLength="220" FixedLength="false" Unicode="true" />
+          <Property Name="chengwenriqi" Type="DateTime" Precision="3" />
+          <Property Name="fenshu" Type="Int32" />
+          <Property Name="guidangjuanbie" Type="String" MaxLength="4" FixedLength="false" Unicode="true" />
+          <Property Name="nibanyijian" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="yiyue" Type="String" MaxLength="160" FixedLength="false" Unicode="true" />
+          <Property Name="zhengchuli" Type="String" MaxLength="16" FixedLength="false" Unicode="true" />
+          <Property Name="lingdaopishi" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="banliqingkuang" Type="String" MaxLength="160" FixedLength="false" Unicode="true" />
+          <Property Name="chengbandanwei" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="fankuaiqingkuang" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="banjie" Type="Boolean" />
+          <Property Name="banjieriqi" Type="DateTime" Precision="3" />
+          <Property Name="beizhu" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="wenjianyaoqiu" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="banjietime" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+        </EntityType>
+        <EntityType Name="vw_projectRecordList">
+          <Key>
+            <PropertyRef Name="paperProjectSeqNo" />
+          </Key>
+          <Property Name="mainCategoryID" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="subDictionaryID" Type="String" MaxLength="2" FixedLength="true" Unicode="false" />
+          <Property Name="minorDictionaryID" Type="String" MaxLength="2" FixedLength="true" Unicode="false" />
+          <Property Name="paperProjectSeqNo" Type="Int64" Nullable="false" />
+          <Property Name="startArchiveNo" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="endArchiveNo" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="startPaijiaNo" Type="String" MaxLength="8" FixedLength="false" Unicode="false" />
+          <Property Name="endPaijiaNo" Type="String" MaxLength="8" FixedLength="false" Unicode="false" />
+          <Property Name="licenseNo" Type="String" MaxLength="50" FixedLength="true" Unicode="false" />
+          <Property Name="contractName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="transferUnit" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="projectName" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="disignOrganization" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="constructionOrganization" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="buildingArea" Type="Double" />
+          <Property Name="shizhengNoStart" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="shizhengNoEnd" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="shizhengNo" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="typerDate" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="vw_projectRecordList1">
+          <Key>
+            <PropertyRef Name="paperProjectSeqNo" />
+          </Key>
+          <Property Name="mainCategoryID" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="subDictionaryID" Type="String" MaxLength="2" FixedLength="true" Unicode="false" />
+          <Property Name="minorDictionaryID" Type="String" MaxLength="2" FixedLength="true" Unicode="false" />
+          <Property Name="paperProjectSeqNo" Type="Int64" Nullable="false" />
+          <Property Name="startArchiveNo" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="endArchiveNo" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="startPaijiaNo" Type="String" MaxLength="8" FixedLength="false" Unicode="false" />
+          <Property Name="endPaijiaNo" Type="String" MaxLength="8" FixedLength="false" Unicode="false" />
+          <Property Name="licenseNo" Type="String" MaxLength="50" FixedLength="true" Unicode="false" />
+          <Property Name="contractName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="transferUnit" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="projectName" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="disignOrganization" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="constructionOrganization" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="buildingArea" Type="Double" />
+          <Property Name="shizhengNoStart" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="shizhengNoEnd" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="OfficeModelStoreContainer" CdmEntityContainer="OfficeEntities">
+          <EntitySetMapping Name="InformationContent">
+            <EntityTypeMapping TypeName="OfficeModel.InformationContent">
+              <MappingFragment StoreEntitySet="InformationContent">
+                <ScalarProperty Name="filetype" ColumnName="filetype" />
+                <ScalarProperty Name="filename" ColumnName="filename" />
+                <ScalarProperty Name="ClickTimes" ColumnName="ClickTimes" />
+                <ScalarProperty Name="subCategoryID" ColumnName="subCategoryID" />
+                <ScalarProperty Name="content" ColumnName="content" />
+                <ScalarProperty Name="date" ColumnName="date" />
+                <ScalarProperty Name="author" ColumnName="author" />
+                <ScalarProperty Name="title" ColumnName="title" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="InformationSubCategory">
+            <EntityTypeMapping TypeName="OfficeModel.InformationSubCategory">
+              <MappingFragment StoreEntitySet="InformationSubCategory">
+                <ScalarProperty Name="parentID" ColumnName="parentID" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="BaowenFileType">
+            <EntityTypeMapping TypeName="OfficeModel.BaowenFileType">
+              <MappingFragment StoreEntitySet="BaowenFileType">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="说明" ColumnName="说明" />
+                <ScalarProperty Name="类别" ColumnName="类别" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="vw_receiveArchiveDetail">
+            <EntityTypeMapping TypeName="OfficeModel.vw_receiveArchiveDetail">
+              <MappingFragment StoreEntitySet="vw_receiveArchiveDetail">
+                <ScalarProperty Name="paperProjectSeqNo" ColumnName="paperProjectSeqNo" />
+                <ScalarProperty Name="dateArchive" ColumnName="dateArchive" />
+                <ScalarProperty Name="lqDate" ColumnName="lqDate" />
+                <ScalarProperty Name="collator" ColumnName="collator" />
+                <ScalarProperty Name="dateReceived" ColumnName="dateReceived" />
+                <ScalarProperty Name="recipient" ColumnName="recipient" />
+                <ScalarProperty Name="submitPerson" ColumnName="submitPerson" />
+                <ScalarProperty Name="mobilephoneNoConstruction" ColumnName="mobilephoneNoConstruction" />
+                <ScalarProperty Name="mobilephoneNoDevelopment" ColumnName="mobilephoneNoDevelopment" />
+                <ScalarProperty Name="constructionOrganization" ColumnName="constructionOrganization" />
+                <ScalarProperty Name="developmentOrganization" ColumnName="developmentOrganization" />
+                <ScalarProperty Name="projectName" ColumnName="projectName" />
+                <ScalarProperty Name="projectNo" ColumnName="projectNo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="vw_archiveMainList">
+            <EntityTypeMapping TypeName="OfficeModel.vw_archiveMainList">
+              <MappingFragment StoreEntitySet="vw_archiveMainList">
+                <ScalarProperty Name="registrationNo" ColumnName="registrationNo" />
+                <ScalarProperty Name="location" ColumnName="location" />
+                <ScalarProperty Name="changeLog" ColumnName="changeLog" />
+                <ScalarProperty Name="remarks" ColumnName="remarks" />
+                <ScalarProperty Name="jgDate" ColumnName="jgDate" />
+                <ScalarProperty Name="constructionOrganization" ColumnName="constructionOrganization" />
+                <ScalarProperty Name="developmentOrganization" ColumnName="developmentOrganization" />
+                <ScalarProperty Name="licenseNo" ColumnName="licenseNo" />
+                <ScalarProperty Name="archivesTitle" ColumnName="archivesTitle" />
+                <ScalarProperty Name="paijiaNo" ColumnName="paijiaNo" />
+                <ScalarProperty Name="archivesNo" ColumnName="archivesNo" />
+                <ScalarProperty Name="volNo" ColumnName="volNo" />
+                <ScalarProperty Name="paperProjectSeqNo" ColumnName="paperProjectSeqNo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ArchivesContainer">
+            <EntityTypeMapping TypeName="OfficeModel.ArchivesContainer">
+              <MappingFragment StoreEntitySet="ArchivesContainer">
+                <ScalarProperty Name="seqNo" ColumnName="seqNo" />
+                <ScalarProperty Name="singleCatalogFee" ColumnName="singleCatalogFee" />
+                <ScalarProperty Name="singleBoxFee" ColumnName="singleBoxFee" />
+                <ScalarProperty Name="archiveCataLogFee" ColumnName="archiveCataLogFee" />
+                <ScalarProperty Name="archiveBoxFee" ColumnName="archiveBoxFee" />
+                <ScalarProperty Name="submitPerson" ColumnName="submitPerson" />
+                <ScalarProperty Name="submitDate" ColumnName="submitDate" />
+                <ScalarProperty Name="DepartName" ColumnName="DepartName" />
+                <ScalarProperty Name="proformaCnt" ColumnName="proformaCnt" />
+                <ScalarProperty Name="catalogueCnt" ColumnName="catalogueCnt" />
+                <ScalarProperty Name="coverCnt" ColumnName="coverCnt" />
+                <ScalarProperty Name="fiveCentiCnt" ColumnName="fiveCentiCnt" />
+                <ScalarProperty Name="fourCentiCnt" ColumnName="fourCentiCnt" />
+                <ScalarProperty Name="thrCentiCnt" ColumnName="thrCentiCnt" />
+                <ScalarProperty Name="twoCentiCnt" ColumnName="twoCentiCnt" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="vw_categoryList">
+            <EntityTypeMapping TypeName="OfficeModel.vw_categoryList">
+              <MappingFragment StoreEntitySet="vw_categoryList">
+                <ScalarProperty Name="status" ColumnName="status" />
+                <ScalarProperty Name="shizhengNo" ColumnName="shizhengNo" />
+                <ScalarProperty Name="volNo" ColumnName="volNo" />
+                <ScalarProperty Name="typerDate" ColumnName="typerDate" />
+                <ScalarProperty Name="developmentOrganization" ColumnName="developmentOrganization" />
+                <ScalarProperty Name="archivesTitle" ColumnName="archivesTitle" />
+                <ScalarProperty Name="paijiaNo" ColumnName="paijiaNo" />
+                <ScalarProperty Name="registrationNo" ColumnName="registrationNo" />
+                <ScalarProperty Name="paperProjectSeqNo" ColumnName="paperProjectSeqNo" />
+                <ScalarProperty Name="archivesNo" ColumnName="archivesNo" />
+                <ScalarProperty Name="minorDictionaryID" ColumnName="minorDictionaryID" />
+                <ScalarProperty Name="subDictionaryID" ColumnName="subDictionaryID" />
+                <ScalarProperty Name="mainCategoryID" ColumnName="mainCategoryID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="vw_roadArchive">
+            <EntityTypeMapping TypeName="OfficeModel.vw_roadArchive">
+              <MappingFragment StoreEntitySet="vw_roadArchive">
+                <ScalarProperty Name="newLocation" ColumnName="newLocation" />
+                <ScalarProperty Name="isImageExist" ColumnName="isImageExist" />
+                <ScalarProperty Name="location" ColumnName="location" />
+                <ScalarProperty Name="applyUnit" ColumnName="applyUnit" />
+                <ScalarProperty Name="retentionPeriodNo" ColumnName="retentionPeriodNo" />
+                <ScalarProperty Name="archiveNo" ColumnName="archiveNo" />
+                <ScalarProperty Name="paijiaNo" ColumnName="paijiaNo" />
+                <ScalarProperty Name="registrationNo" ColumnName="registrationNo" />
+                <ScalarProperty Name="projectRange" ColumnName="projectRange" />
+                <ScalarProperty Name="classTypeID" ColumnName="classTypeID" />
+                <ScalarProperty Name="volNo" ColumnName="volNo" />
+                <ScalarProperty Name="year" ColumnName="year" />
+                <ScalarProperty Name="landNo" ColumnName="landNo" />
+                <ScalarProperty Name="doorplate" ColumnName="doorplate" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="vw_licenceArchive">
+            <EntityTypeMapping TypeName="OfficeModel.vw_licenceArchive">
+              <MappingFragment StoreEntitySet="vw_licenceArchive">
+                <ScalarProperty Name="areaStatus" ColumnName="areaStatus" />
+                <ScalarProperty Name="areaNo" ColumnName="areaNo" />
+                <ScalarProperty Name="areaProSeqNo" ColumnName="areaProSeqNo" />
+                <ScalarProperty Name="cunfangLocation" ColumnName="cunfangLocation" />
+                <ScalarProperty Name="tranferUnit" ColumnName="tranferUnit" />
+                <ScalarProperty Name="bianzhiTime" ColumnName="bianzhiTime" />
+                <ScalarProperty Name="archiveTitle" ColumnName="archiveTitle" />
+                <ScalarProperty Name="isImageExist" ColumnName="isImageExist" />
+                <ScalarProperty Name="year" ColumnName="year" />
+                <ScalarProperty Name="retentionPeriodNo" ColumnName="retentionPeriodNo" />
+                <ScalarProperty Name="archiveNo" ColumnName="archiveNo" />
+                <ScalarProperty Name="paijiaNo" ColumnName="paijiaNo" />
+                <ScalarProperty Name="projectRange" ColumnName="projectRange" />
+                <ScalarProperty Name="licenceNo" ColumnName="licenceNo" />
+                <ScalarProperty Name="note" ColumnName="note" />
+                <ScalarProperty Name="classTypeID" ColumnName="classTypeID" />
+                <ScalarProperty Name="location" ColumnName="location" />
+                <ScalarProperty Name="applyUnit" ColumnName="applyUnit" />
+                <ScalarProperty Name="registrationNo" ColumnName="registrationNo" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="vw_planArchives">
+            <EntityTypeMapping TypeName="OfficeModel.vw_planArchives">
+              <MappingFragment StoreEntitySet="vw_planArchives">
+                <ScalarProperty Name="shenhePerson" ColumnName="shenhePerson" />
+                <ScalarProperty Name="totalSeqNo" ColumnName="totalSeqNo" />
+                <ScalarProperty Name="boxNo" ColumnName="boxNo" />
+                <ScalarProperty Name="fileNo" ColumnName="fileNo" />
+                <ScalarProperty Name="juanneiSeqNo" ColumnName="juanneiSeqNo" />
+                <ScalarProperty Name="classifyName" ColumnName="classifyName" />
+                <ScalarProperty Name="projectID" ColumnName="projectID" />
+                <ScalarProperty Name="yearNo" ColumnName="yearNo" />
+                <ScalarProperty Name="classifyID" ColumnName="classifyID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="remarks" ColumnName="remarks" />
+                <ScalarProperty Name="dateReceived" ColumnName="dateReceived" />
+                <ScalarProperty Name="projectLocation" ColumnName="projectLocation" />
+                <ScalarProperty Name="projectContent" ColumnName="projectContent" />
+                <ScalarProperty Name="developmentUnit" ColumnName="developmentUnit" />
+                <ScalarProperty Name="seqNo" ColumnName="seqNo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PlanArchiveClassify">
+            <EntityTypeMapping TypeName="OfficeModel.PlanArchiveClassify">
+              <MappingFragment StoreEntitySet="PlanArchiveClassify">
+                <ScalarProperty Name="classifyName" ColumnName="classifyName" />
+                <ScalarProperty Name="classifySX" ColumnName="classifySX" />
+                <ScalarProperty Name="classifyID" ColumnName="classifyID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="vw_planarchiveBoxInfo">
+            <EntityTypeMapping TypeName="OfficeModel.vw_planarchiveBoxInfo">
+              <MappingFragment StoreEntitySet="vw_planarchiveBoxInfo">
+                <ScalarProperty Name="ArchiveThick" ColumnName="ArchiveThick" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="projectNo" ColumnName="projectNo" />
+                <ScalarProperty Name="projectCnt" ColumnName="projectCnt" />
+                <ScalarProperty Name="boxID" ColumnName="boxID" />
+                <ScalarProperty Name="classify" ColumnName="classify" />
+                <ScalarProperty Name="yearNo" ColumnName="yearNo" />
+                <ScalarProperty Name="photo" ColumnName="photo" />
+                <ScalarProperty Name="status" ColumnName="status" />
+                <ScalarProperty Name="drawing" ColumnName="drawing" />
+                <ScalarProperty Name="textMatirial" ColumnName="textMatirial" />
+                <ScalarProperty Name="isArchive" ColumnName="isArchive" />
+                <ScalarProperty Name="classifyID" ColumnName="classifyID" />
+                <ScalarProperty Name="inchCnt" ColumnName="inchCnt" />
+                <ScalarProperty Name="paijiaNo" ColumnName="paijiaNo" />
+                <ScalarProperty Name="archiveNo" ColumnName="archiveNo" />
+                <ScalarProperty Name="seqNo" ColumnName="seqNo" />
+                <ScalarProperty Name="securityName" ColumnName="securityName" />
+                <ScalarProperty Name="retentionPeriodName" ColumnName="retentionPeriodName" />
+                <ScalarProperty Name="pageCnt" ColumnName="pageCnt" />
+                <ScalarProperty Name="archiveBoxNo" ColumnName="archiveBoxNo" />
+                <ScalarProperty Name="archiveBoxCnt" ColumnName="archiveBoxCnt" />
+                <ScalarProperty Name="bianzhiDate" ColumnName="bianzhiDate" />
+                <ScalarProperty Name="bianzhiUnit" ColumnName="bianzhiUnit" />
+                <ScalarProperty Name="archiveCode" ColumnName="archiveCode" />
+                <ScalarProperty Name="archiveTitle" ColumnName="archiveTitle" />
+                <ScalarProperty Name="regisNo" ColumnName="regisNo" />
+                <ScalarProperty Name="boxNo" ColumnName="boxNo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="vw_zdArchives">
+            <EntityTypeMapping TypeName="OfficeModel.vw_zdArchives">
+              <MappingFragment StoreEntitySet="vw_zdArchives">
+                <ScalarProperty Name="hbDate" ColumnName="hbDate" />
+                <ScalarProperty Name="firstResponsible" ColumnName="firstResponsible" />
+                <ScalarProperty Name="hbLocation" ColumnName="hbLocation" />
+                <ScalarProperty Name="paijiaNo" ColumnName="paijiaNo" />
+                <ScalarProperty Name="regisNo" ColumnName="regisNo" />
+                <ScalarProperty Name="leibie" ColumnName="leibie" />
+                <ScalarProperty Name="zhuluDate" ColumnName="zhuluDate" />
+                <ScalarProperty Name="bdzh" ColumnName="bdzh" />
+                <ScalarProperty Name="zdwh" ColumnName="zdwh" />
+                <ScalarProperty Name="photoCnt" ColumnName="photoCnt" />
+                <ScalarProperty Name="drawingPageCnt" ColumnName="drawingPageCnt" />
+                <ScalarProperty Name="textPageCnt" ColumnName="textPageCnt" />
+                <ScalarProperty Name="archiveTitle" ColumnName="archiveTitle" />
+                <ScalarProperty Name="archiveNo" ColumnName="archiveNo" />
+                <ScalarProperty Name="seqNo" ColumnName="seqNo" />
+                <ScalarProperty Name="retentionPeriodName" ColumnName="retentionPeriodName" />
+                <ScalarProperty Name="securityName" ColumnName="securityName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="vw_ClassArchives">
+            <EntityTypeMapping TypeName="OfficeModel.vw_ClassArchives">
+              <MappingFragment StoreEntitySet="vw_ClassArchives">
+                <ScalarProperty Name="isJungongArch" ColumnName="isJungongArch" />
+                <ScalarProperty Name="neirongTiyao" ColumnName="neirongTiyao" />
+                <ScalarProperty Name="ArchiveThick" ColumnName="ArchiveThick" />
+                <ScalarProperty Name="tuzhiStatus" ColumnName="tuzhiStatus" />
+                <ScalarProperty Name="tufu" ColumnName="tufu" />
+                <ScalarProperty Name="tuzhiniandai" ColumnName="tuzhiniandai" />
+                <ScalarProperty Name="luruTime" ColumnName="luruTime" />
+                <ScalarProperty Name="luruPerson" ColumnName="luruPerson" />
+                <ScalarProperty Name="shenheTime" ColumnName="shenheTime" />
+                <ScalarProperty Name="shenhePerson" ColumnName="shenhePerson" />
+                <ScalarProperty Name="biaoyinTime" ColumnName="biaoyinTime" />
+                <ScalarProperty Name="biaoyinPerson" ColumnName="biaoyinPerson" />
+                <ScalarProperty Name="bilichi" ColumnName="bilichi" />
+                <ScalarProperty Name="jianzhuArea" ColumnName="jianzhuArea" />
+                <ScalarProperty Name="jungongTime" ColumnName="jungongTime" />
+                <ScalarProperty Name="kaigongTime" ColumnName="kaigongTime" />
+                <ScalarProperty Name="licenceTime" ColumnName="licenceTime" />
+                <ScalarProperty Name="drawing" ColumnName="drawing" />
+                <ScalarProperty Name="textMaterial" ColumnName="textMaterial" />
+                <ScalarProperty Name="constructionUnit" ColumnName="constructionUnit" />
+                <ScalarProperty Name="designUnit" ColumnName="designUnit" />
+                <ScalarProperty Name="developUnit" ColumnName="developUnit" />
+                <ScalarProperty Name="tranferUnit" ColumnName="tranferUnit" />
+                <ScalarProperty Name="otherResponsible" ColumnName="otherResponsible" />
+                <ScalarProperty Name="firstResponsible" ColumnName="firstResponsible" />
+                <ScalarProperty Name="urbanID" ColumnName="urbanID" />
+                <ScalarProperty Name="proSeqNo" ColumnName="proSeqNo" />
+                <ScalarProperty Name="retentionPeriodNo" ColumnName="retentionPeriodNo" />
+                <ScalarProperty Name="classTypeID" ColumnName="classTypeID" />
+                <ScalarProperty Name="registrationNo" ColumnName="registrationNo" />
+                <ScalarProperty Name="paijiaNo" ColumnName="paijiaNo" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="note" ColumnName="note" />
+                <ScalarProperty Name="securityName" ColumnName="securityName" />
+                <ScalarProperty Name="retentionPeriodName" ColumnName="retentionPeriodName" />
+                <ScalarProperty Name="count" ColumnName="count" />
+                <ScalarProperty Name="measureUnit" ColumnName="measureUnit" />
+                <ScalarProperty Name="inHouseTime" ColumnName="inHouseTime" />
+                <ScalarProperty Name="bianzhiTime" ColumnName="bianzhiTime" />
+                <ScalarProperty Name="bianzhiUnit" ColumnName="bianzhiUnit" />
+                <ScalarProperty Name="archiveTitle" ColumnName="archiveTitle" />
+                <ScalarProperty Name="countInt" ColumnName="countInt" />
+                <ScalarProperty Name="archiveStr" ColumnName="archiveStr" />
+                <ScalarProperty Name="archiveNo" ColumnName="archiveNo" />
+                <ScalarProperty Name="classNo" ColumnName="classNo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="vw_archiveClassi">
+            <EntityTypeMapping TypeName="OfficeModel.vw_archiveClassi">
+              <MappingFragment StoreEntitySet="vw_archiveClassi">
+                <ScalarProperty Name="dateArchive" ColumnName="dateArchive" />
+                <ScalarProperty Name="endRegisNo" ColumnName="endRegisNo" />
+                <ScalarProperty Name="startRegisNo" ColumnName="startRegisNo" />
+                <ScalarProperty Name="endPaijiaNo" ColumnName="endPaijiaNo" />
+                <ScalarProperty Name="startPaijiaNo" ColumnName="startPaijiaNo" />
+                <ScalarProperty Name="endArchiveNo" ColumnName="endArchiveNo" />
+                <ScalarProperty Name="startArchiveNo" ColumnName="startArchiveNo" />
+                <ScalarProperty Name="InchCountDetail" ColumnName="InchCountDetail" />
+                <ScalarProperty Name="copyInchCount" ColumnName="copyInchCount" />
+                <ScalarProperty Name="originalVolumeCount" ColumnName="originalVolumeCount" />
+                <ScalarProperty Name="projectName" ColumnName="projectName" />
+                <ScalarProperty Name="collator" ColumnName="collator" />
+                <ScalarProperty Name="paperProjectSeqNo" ColumnName="paperProjectSeqNo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="View_PlanProjectWithBox">
+            <EntityTypeMapping TypeName="OfficeModel.View_PlanProjectWithBox">
+              <MappingFragment StoreEntitySet="View_PlanProjectWithBox">
+                <ScalarProperty Name="Expr1" ColumnName="Expr1" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="bianzhiTime" ColumnName="bianzhiTime" />
+                <ScalarProperty Name="fileNo" ColumnName="fileNo" />
+                <ScalarProperty Name="totalSeqNo" ColumnName="totalSeqNo" />
+                <ScalarProperty Name="juanneiSeqNo" ColumnName="juanneiSeqNo" />
+                <ScalarProperty Name="projectContent" ColumnName="projectContent" />
+                <ScalarProperty Name="developmentUnit" ColumnName="developmentUnit" />
+                <ScalarProperty Name="classSeqNo" ColumnName="classSeqNo" />
+                <ScalarProperty Name="luruTime" ColumnName="luruTime" />
+                <ScalarProperty Name="receiveTime" ColumnName="receiveTime" />
+                <ScalarProperty Name="storeLocation" ColumnName="storeLocation" />
+                <ScalarProperty Name="ArchiveThick" ColumnName="ArchiveThick" />
+                <ScalarProperty Name="projectNo" ColumnName="projectNo" />
+                <ScalarProperty Name="projectCnt" ColumnName="projectCnt" />
+                <ScalarProperty Name="boxID" ColumnName="boxID" />
+                <ScalarProperty Name="classify" ColumnName="classify" />
+                <ScalarProperty Name="yearNo" ColumnName="yearNo" />
+                <ScalarProperty Name="status" ColumnName="status" />
+                <ScalarProperty Name="photo" ColumnName="photo" />
+                <ScalarProperty Name="drawing" ColumnName="drawing" />
+                <ScalarProperty Name="textMatirial" ColumnName="textMatirial" />
+                <ScalarProperty Name="isArchive" ColumnName="isArchive" />
+                <ScalarProperty Name="classifyID" ColumnName="classifyID" />
+                <ScalarProperty Name="inchCnt" ColumnName="inchCnt" />
+                <ScalarProperty Name="pageCnt" ColumnName="pageCnt" />
+                <ScalarProperty Name="archiveBoxNo" ColumnName="archiveBoxNo" />
+                <ScalarProperty Name="archiveBoxCnt" ColumnName="archiveBoxCnt" />
+                <ScalarProperty Name="retentionPeriodID" ColumnName="retentionPeriodID" />
+                <ScalarProperty Name="securityID" ColumnName="securityID" />
+                <ScalarProperty Name="bianzhiDate" ColumnName="bianzhiDate" />
+                <ScalarProperty Name="bianzhiUnit" ColumnName="bianzhiUnit" />
+                <ScalarProperty Name="archiveCode" ColumnName="archiveCode" />
+                <ScalarProperty Name="archiveTitle" ColumnName="archiveTitle" />
+                <ScalarProperty Name="paijiaNo" ColumnName="paijiaNo" />
+                <ScalarProperty Name="regisNo" ColumnName="regisNo" />
+                <ScalarProperty Name="archiveNo" ColumnName="archiveNo" />
+                <ScalarProperty Name="boxNo" ColumnName="boxNo" />
+                <ScalarProperty Name="seqNo" ColumnName="seqNo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="vw_projectTypelist">
+            <EntityTypeMapping TypeName="OfficeModel.vw_projectTypelist">
+              <MappingFragment StoreEntitySet="vw_projectTypelist">
+                <ScalarProperty Name="shizhengNo" ColumnName="shizhengNo" />
+                <ScalarProperty Name="licenseDate" ColumnName="licenseDate" />
+                <ScalarProperty Name="securityName" ColumnName="securityName" />
+                <ScalarProperty Name="retentionPeriodName" ColumnName="retentionPeriodName" />
+                <ScalarProperty Name="textMaterial" ColumnName="textMaterial" />
+                <ScalarProperty Name="drawing" ColumnName="drawing" />
+                <ScalarProperty Name="jungongTime" ColumnName="jungongTime" />
+                <ScalarProperty Name="kaigongTime" ColumnName="kaigongTime" />
+                <ScalarProperty Name="AlicenseNo" ColumnName="AlicenseNo" />
+                <ScalarProperty Name="transferUnit" ColumnName="transferUnit" />
+                <ScalarProperty Name="responsibleOther" ColumnName="responsibleOther" />
+                <ScalarProperty Name="firstResponsible" ColumnName="firstResponsible" />
+                <ScalarProperty Name="typerDate" ColumnName="typerDate" />
+                <ScalarProperty Name="typist" ColumnName="typist" />
+                <ScalarProperty Name="indexDate" ColumnName="indexDate" />
+                <ScalarProperty Name="indexer" ColumnName="indexer" />
+                <ScalarProperty Name="checkDate" ColumnName="checkDate" />
+                <ScalarProperty Name="checker" ColumnName="checker" />
+                <ScalarProperty Name="microNo" ColumnName="microNo" />
+                <ScalarProperty Name="mapsheetNo" ColumnName="mapsheetNo" />
+                <ScalarProperty Name="structureTypeName" ColumnName="structureTypeName" />
+                <ScalarProperty Name="Expr4" ColumnName="Expr4" />
+                <ScalarProperty Name="memo" ColumnName="memo" />
+                <ScalarProperty Name="archivesCode" ColumnName="archivesCode" />
+                <ScalarProperty Name="storagePath" ColumnName="storagePath" />
+                <ScalarProperty Name="status" ColumnName="status" />
+                <ScalarProperty Name="contractNo" ColumnName="contractNo" />
+                <ScalarProperty Name="retentionPeriodNo" ColumnName="retentionPeriodNo" />
+                <ScalarProperty Name="securityID" ColumnName="securityID" />
+                <ScalarProperty Name="location" ColumnName="location" />
+                <ScalarProperty Name="jianliUnit" ColumnName="jianliUnit" />
+                <ScalarProperty Name="disignOrganization" ColumnName="disignOrganization" />
+                <ScalarProperty Name="constructionOrgContacter" ColumnName="constructionOrgContacter" />
+                <ScalarProperty Name="constructionOrganization" ColumnName="constructionOrganization" />
+                <ScalarProperty Name="developmentOrganization" ColumnName="developmentOrganization" />
+                <ScalarProperty Name="projectName" ColumnName="projectName" />
+                <ScalarProperty Name="PhotoCount" ColumnName="PhotoCount" />
+                <ScalarProperty Name="overground" ColumnName="overground" />
+                <ScalarProperty Name="underground" ColumnName="underground" />
+                <ScalarProperty Name="height" ColumnName="height" />
+                <ScalarProperty Name="buildingArea" ColumnName="buildingArea" />
+                <ScalarProperty Name="remarks" ColumnName="remarks" />
+                <ScalarProperty Name="notearea" ColumnName="notearea" />
+                <ScalarProperty Name="keyWords" ColumnName="keyWords" />
+                <ScalarProperty Name="changeLog" ColumnName="changeLog" />
+                <ScalarProperty Name="jgDate" ColumnName="jgDate" />
+                <ScalarProperty Name="licenseNo" ColumnName="licenseNo" />
+                <ScalarProperty Name="endRegisNo" ColumnName="endRegisNo" />
+                <ScalarProperty Name="startRegisNo" ColumnName="startRegisNo" />
+                <ScalarProperty Name="endPaijiaNo" ColumnName="endPaijiaNo" />
+                <ScalarProperty Name="startPaijiaNo" ColumnName="startPaijiaNo" />
+                <ScalarProperty Name="endArchiveNo" ColumnName="endArchiveNo" />
+                <ScalarProperty Name="startArchiveNo" ColumnName="startArchiveNo" />
+                <ScalarProperty Name="totalMoney" ColumnName="totalMoney" />
+                <ScalarProperty Name="copyMoneyCount" ColumnName="copyMoneyCount" />
+                <ScalarProperty Name="copyInchCount" ColumnName="copyInchCount" />
+                <ScalarProperty Name="originalMoneyAmount" ColumnName="originalMoneyAmount" />
+                <ScalarProperty Name="originalInchCount" ColumnName="originalInchCount" />
+                <ScalarProperty Name="InchCountDetail" ColumnName="InchCountDetail" />
+                <ScalarProperty Name="archivesCount" ColumnName="archivesCount" />
+                <ScalarProperty Name="transferPerson" ColumnName="transferPerson" />
+                <ScalarProperty Name="minorDictionaryID" ColumnName="minorDictionaryID" />
+                <ScalarProperty Name="subDictionaryID" ColumnName="subDictionaryID" />
+                <ScalarProperty Name="mainCategoryID" ColumnName="mainCategoryID" />
+                <ScalarProperty Name="projectID" ColumnName="projectID" />
+                <ScalarProperty Name="projectNo" ColumnName="projectNo" />
+                <ScalarProperty Name="paperProjectSeqNo" ColumnName="paperProjectSeqNo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="OtherArchives">
+            <EntityTypeMapping TypeName="OfficeModel.OtherArchives">
+              <MappingFragment StoreEntitySet="OtherArchives">
+                <ScalarProperty Name="isguajie" ColumnName="isguajie" />
+                <ScalarProperty Name="urban_type" ColumnName="urban_type" />
+                <ScalarProperty Name="projectContent" ColumnName="projectContent" />
+                <ScalarProperty Name="projectContent_neibu" ColumnName="projectContent_neibu" />
+                <ScalarProperty Name="textMaterial_neibu" ColumnName="textMaterial_neibu" />
+                <ScalarProperty Name="drawing_neibu" ColumnName="drawing_neibu" />
+                <ScalarProperty Name="archiveTitle_neibu" ColumnName="archiveTitle_neibu" />
+                <ScalarProperty Name="coordinate" ColumnName="coordinate" />
+                <ScalarProperty Name="rukutime" ColumnName="rukutime" />
+                <ScalarProperty Name="isNeibu" ColumnName="isNeibu" />
+                <ScalarProperty Name="isYD" ColumnName="isYD" />
+                <ScalarProperty Name="areaStatus" ColumnName="areaStatus" />
+                <ScalarProperty Name="areaNo" ColumnName="areaNo" />
+                <ScalarProperty Name="areaProSeqNo" ColumnName="areaProSeqNo" />
+                <ScalarProperty Name="status" ColumnName="status" />
+                <ScalarProperty Name="isJungongArch" ColumnName="isJungongArch" />
+                <ScalarProperty Name="isImageExist" ColumnName="isImageExist" />
+                <ScalarProperty Name="neirongTiyao" ColumnName="neirongTiyao" />
+                <ScalarProperty Name="cunfangLocation" ColumnName="cunfangLocation" />
+                <ScalarProperty Name="newLocation" ColumnName="newLocation" />
+                <ScalarProperty Name="tuzhiStatus" ColumnName="tuzhiStatus" />
+                <ScalarProperty Name="tufu" ColumnName="tufu" />
+                <ScalarProperty Name="tuzhiniandai" ColumnName="tuzhiniandai" />
+                <ScalarProperty Name="luruTime" ColumnName="luruTime" />
+                <ScalarProperty Name="luruPerson" ColumnName="luruPerson" />
+                <ScalarProperty Name="shenheTime" ColumnName="shenheTime" />
+                <ScalarProperty Name="shenhePerson" ColumnName="shenhePerson" />
+                <ScalarProperty Name="biaoyinTime" ColumnName="biaoyinTime" />
+                <ScalarProperty Name="biaoyinPerson" ColumnName="biaoyinPerson" />
+                <ScalarProperty Name="bilichi" ColumnName="bilichi" />
+                <ScalarProperty Name="jianzhuArea" ColumnName="jianzhuArea" />
+                <ScalarProperty Name="jungongTime" ColumnName="jungongTime" />
+                <ScalarProperty Name="kaigongTime" ColumnName="kaigongTime" />
+                <ScalarProperty Name="licenceTime" ColumnName="licenceTime" />
+                <ScalarProperty Name="drawing" ColumnName="drawing" />
+                <ScalarProperty Name="textMaterial" ColumnName="textMaterial" />
+                <ScalarProperty Name="constructionUnit" ColumnName="constructionUnit" />
+                <ScalarProperty Name="designUnit" ColumnName="designUnit" />
+                <ScalarProperty Name="tranferUnit" ColumnName="tranferUnit" />
+                <ScalarProperty Name="developUnit" ColumnName="developUnit" />
+                <ScalarProperty Name="otherResponsible" ColumnName="otherResponsible" />
+                <ScalarProperty Name="firstResponsible" ColumnName="firstResponsible" />
+                <ScalarProperty Name="urbanID" ColumnName="urbanID" />
+                <ScalarProperty Name="proSeqNo" ColumnName="proSeqNo" />
+                <ScalarProperty Name="ArchiveThick" ColumnName="ArchiveThick" />
+                <ScalarProperty Name="classTypeID" ColumnName="classTypeID" />
+                <ScalarProperty Name="note" ColumnName="note" />
+                <ScalarProperty Name="location" ColumnName="location" />
+                <ScalarProperty Name="applyUnit" ColumnName="applyUnit" />
+                <ScalarProperty Name="licenceNo" ColumnName="licenceNo" />
+                <ScalarProperty Name="retentionPeriodNo" ColumnName="retentionPeriodNo" />
+                <ScalarProperty Name="securityID" ColumnName="securityID" />
+                <ScalarProperty Name="count" ColumnName="count" />
+                <ScalarProperty Name="measureUnit" ColumnName="measureUnit" />
+                <ScalarProperty Name="inHouseTime" ColumnName="inHouseTime" />
+                <ScalarProperty Name="bianzhiTime" ColumnName="bianzhiTime" />
+                <ScalarProperty Name="bianzhiUnit" ColumnName="bianzhiUnit" />
+                <ScalarProperty Name="archiveTitle" ColumnName="archiveTitle" />
+                <ScalarProperty Name="paijiaNo" ColumnName="paijiaNo" />
+                <ScalarProperty Name="archiveNo" ColumnName="archiveNo" />
+                <ScalarProperty Name="classNo" ColumnName="classNo" />
+                <ScalarProperty Name="volNo" ColumnName="volNo" />
+                <ScalarProperty Name="year" ColumnName="year" />
+                <ScalarProperty Name="projectRange" ColumnName="projectRange" />
+                <ScalarProperty Name="landNo" ColumnName="landNo" />
+                <ScalarProperty Name="doorplate" ColumnName="doorplate" />
+                <ScalarProperty Name="registrationNo" ColumnName="registrationNo" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="BindUserAndImage">
+            <EntityTypeMapping TypeName="OfficeModel.BindUserAndImage">
+              <MappingFragment StoreEntitySet="BindUserAndImage">
+                <ScalarProperty Name="recordID" ColumnName="recordID" />
+                <ScalarProperty Name="realuserID" ColumnName="realuserID" />
+                <ScalarProperty Name="archivesNo" ColumnName="archivesNo" />
+                <ScalarProperty Name="isWordOrPic" ColumnName="isWordOrPic" />
+                <ScalarProperty Name="imageSize" ColumnName="imageSize" />
+                <ScalarProperty Name="imageTime" ColumnName="imageTime" />
+                <ScalarProperty Name="ImageAddress" ColumnName="ImageAddress" />
+                <ScalarProperty Name="userID" ColumnName="userID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="vw_PlanProjectList">
+            <EntityTypeMapping TypeName="OfficeModel.vw_PlanProjectList">
+              <MappingFragment StoreEntitySet="vw_PlanProjectList">
+                <ScalarProperty Name="projectname" ColumnName="projectname" />
+                <ScalarProperty Name="projectno" ColumnName="projectno" />
+                <ScalarProperty Name="bianzhiTime" ColumnName="bianzhiTime" />
+                <ScalarProperty Name="pageNo" ColumnName="pageNo" />
+                <ScalarProperty Name="archiveID" ColumnName="archiveID" />
+                <ScalarProperty Name="totalSeqNo" ColumnName="totalSeqNo" />
+                <ScalarProperty Name="juanneiSeqNo" ColumnName="juanneiSeqNo" />
+                <ScalarProperty Name="seqNo1" ColumnName="seqNo1" />
+                <ScalarProperty Name="luruPerson" ColumnName="luruPerson" />
+                <ScalarProperty Name="fileNoTou" ColumnName="fileNoTou" />
+                <ScalarProperty Name="bianzhiUnit" ColumnName="bianzhiUnit" />
+                <ScalarProperty Name="storeLocation" ColumnName="storeLocation" />
+                <ScalarProperty Name="classifyName" ColumnName="classifyName" />
+                <ScalarProperty Name="classifySX" ColumnName="classifySX" />
+                <ScalarProperty Name="mapScale" ColumnName="mapScale" />
+                <ScalarProperty Name="archiveBoxCnt" ColumnName="archiveBoxCnt" />
+                <ScalarProperty Name="remarks" ColumnName="remarks" />
+                <ScalarProperty Name="status" ColumnName="status" />
+                <ScalarProperty Name="boxNo" ColumnName="boxNo" />
+                <ScalarProperty Name="dateReceived" ColumnName="dateReceived" />
+                <ScalarProperty Name="fileNo" ColumnName="fileNo" />
+                <ScalarProperty Name="projectID" ColumnName="projectID" />
+                <ScalarProperty Name="classifyID" ColumnName="classifyID" />
+                <ScalarProperty Name="pageCnt" ColumnName="pageCnt" />
+                <ScalarProperty Name="yearNo" ColumnName="yearNo" />
+                <ScalarProperty Name="projectLocation" ColumnName="projectLocation" />
+                <ScalarProperty Name="projectContent" ColumnName="projectContent" />
+                <ScalarProperty Name="developmentUnit" ColumnName="developmentUnit" />
+                <ScalarProperty Name="seqNo" ColumnName="seqNo" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="vw_YuanChuancategoryList">
+            <EntityTypeMapping TypeName="OfficeModel.vw_YuanChuancategoryList">
+              <MappingFragment StoreEntitySet="vw_YuanChuancategoryList">
+                <ScalarProperty Name="status" ColumnName="status" />
+                <ScalarProperty Name="volNo" ColumnName="volNo" />
+                <ScalarProperty Name="typerDate" ColumnName="typerDate" />
+                <ScalarProperty Name="developmentOrganization" ColumnName="developmentOrganization" />
+                <ScalarProperty Name="archivesTitle" ColumnName="archivesTitle" />
+                <ScalarProperty Name="paijiaNo" ColumnName="paijiaNo" />
+                <ScalarProperty Name="registrationNo" ColumnName="registrationNo" />
+                <ScalarProperty Name="paperProjectSeqNo" ColumnName="paperProjectSeqNo" />
+                <ScalarProperty Name="archivesNo" ColumnName="archivesNo" />
+                <ScalarProperty Name="minorDictionaryID" ColumnName="minorDictionaryID" />
+                <ScalarProperty Name="subDictionaryID" ColumnName="subDictionaryID" />
+                <ScalarProperty Name="mainCategoryID" ColumnName="mainCategoryID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="BorrowRegistration">
+            <EntityTypeMapping TypeName="OfficeModel.BorrowRegistration">
+              <MappingFragment StoreEntitySet="BorrowRegistration">
+                <ScalarProperty Name="borrowSeqNoN" ColumnName="borrowSeqNoN" />
+                <ScalarProperty Name="loginUser" ColumnName="loginUser" />
+                <ScalarProperty Name="borrowSeqNo" ColumnName="borrowSeqNo" />
+                <ScalarProperty Name="goal8" ColumnName="goal8" />
+                <ScalarProperty Name="goal7" ColumnName="goal7" />
+                <ScalarProperty Name="goal6" ColumnName="goal6" />
+                <ScalarProperty Name="goal5" ColumnName="goal5" />
+                <ScalarProperty Name="goal4" ColumnName="goal4" />
+                <ScalarProperty Name="goal3" ColumnName="goal3" />
+                <ScalarProperty Name="goal2" ColumnName="goal2" />
+                <ScalarProperty Name="goal1" ColumnName="goal1" />
+                <ScalarProperty Name="seqNo" ColumnName="seqNo" />
+                <ScalarProperty Name="ecnomicBenefit" ColumnName="ecnomicBenefit" />
+                <ScalarProperty Name="userEffectDetail" ColumnName="userEffectDetail" />
+                <ScalarProperty Name="password" ColumnName="password" />
+                <ScalarProperty Name="isJiesuanFee" ColumnName="isJiesuanFee" />
+                <ScalarProperty Name="realFees" ColumnName="realFees" />
+                <ScalarProperty Name="singleOrDepart" ColumnName="singleOrDepart" />
+                <ScalarProperty Name="chargeFlag" ColumnName="chargeFlag" />
+                <ScalarProperty Name="paoKufangRen" ColumnName="paoKufangRen" />
+                <ScalarProperty Name="remarks" ColumnName="remarks" />
+                <ScalarProperty Name="operator2" ColumnName="operator2" />
+                <ScalarProperty Name="copyFee" ColumnName="copyFee" />
+                <ScalarProperty Name="certificationFee" ColumnName="certificationFee" />
+                <ScalarProperty Name="consultFee" ColumnName="consultFee" />
+                <ScalarProperty Name="operator1" ColumnName="operator1" />
+                <ScalarProperty Name="archiveSerialNo" ColumnName="archiveSerialNo" />
+                <ScalarProperty Name="userEffects7" ColumnName="userEffects7" />
+                <ScalarProperty Name="userEffects6" ColumnName="userEffects6" />
+                <ScalarProperty Name="userEffects5" ColumnName="userEffects5" />
+                <ScalarProperty Name="userEffects4" ColumnName="userEffects4" />
+                <ScalarProperty Name="userEffects3" ColumnName="userEffects3" />
+                <ScalarProperty Name="userEffects2" ColumnName="userEffects2" />
+                <ScalarProperty Name="userEffects1" ColumnName="userEffects1" />
+                <ScalarProperty Name="application8" ColumnName="application8" />
+                <ScalarProperty Name="application7" ColumnName="application7" />
+                <ScalarProperty Name="application6" ColumnName="application6" />
+                <ScalarProperty Name="application5" ColumnName="application5" />
+                <ScalarProperty Name="application4" ColumnName="application4" />
+                <ScalarProperty Name="application3" ColumnName="application3" />
+                <ScalarProperty Name="application2" ColumnName="application2" />
+                <ScalarProperty Name="application1" ColumnName="application1" />
+                <ScalarProperty Name="copyPageCount" ColumnName="copyPageCount" />
+                <ScalarProperty Name="precisionVolumeCount" ColumnName="precisionVolumeCount" />
+                <ScalarProperty Name="consultVolumeCount" ColumnName="consultVolumeCount" />
+                <ScalarProperty Name="consultFilePersonTime" ColumnName="consultFilePersonTime" />
+                <ScalarProperty Name="borrowerTel" ColumnName="borrowerTel" />
+                <ScalarProperty Name="borrower" ColumnName="borrower" />
+                <ScalarProperty Name="borrowUnit" ColumnName="borrowUnit" />
+                <ScalarProperty Name="borrowDate" ColumnName="borrowDate" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="BaowenLeaderList">
+            <EntityTypeMapping TypeName="OfficeModel.BaowenLeaderList">
+              <MappingFragment StoreEntitySet="BaowenLeaderList">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="姓名" ColumnName="姓名" />
+                <ScalarProperty Name="顺序" ColumnName="顺序" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="BaowenMainTable">
+            <EntityTypeMapping TypeName="OfficeModel.BaowenMainTable">
+              <MappingFragment StoreEntitySet="BaowenMainTable">
+                <ScalarProperty Name="banjietime" ColumnName="banjietime" />
+                <ScalarProperty Name="wenjianyaoqiu" ColumnName="wenjianyaoqiu" />
+                <ScalarProperty Name="beizhu" ColumnName="beizhu" />
+                <ScalarProperty Name="banjieriqi" ColumnName="banjieriqi" />
+                <ScalarProperty Name="banjie" ColumnName="banjie" />
+                <ScalarProperty Name="fankuaiqingkuang" ColumnName="fankuaiqingkuang" />
+                <ScalarProperty Name="chengbandanwei" ColumnName="chengbandanwei" />
+                <ScalarProperty Name="banliqingkuang" ColumnName="banliqingkuang" />
+                <ScalarProperty Name="lingdaopishi" ColumnName="lingdaopishi" />
+                <ScalarProperty Name="zhengchuli" ColumnName="zhengchuli" />
+                <ScalarProperty Name="yiyue" ColumnName="yiyue" />
+                <ScalarProperty Name="nibanyijian" ColumnName="nibanyijian" />
+                <ScalarProperty Name="guidangjuanbie" ColumnName="guidangjuanbie" />
+                <ScalarProperty Name="fenshu" ColumnName="fenshu" />
+                <ScalarProperty Name="chengwenriqi" ColumnName="chengwenriqi" />
+                <ScalarProperty Name="wenjianbiaoti" ColumnName="wenjianbiaoti" />
+                <ScalarProperty Name="laiwendanwei" ColumnName="laiwendanwei" />
+                <ScalarProperty Name="wenjianzihao" ColumnName="wenjianzihao" />
+                <ScalarProperty Name="shouwenriqi" ColumnName="shouwenriqi" />
+                <ScalarProperty Name="shunxuhao" ColumnName="shunxuhao" />
+                <ScalarProperty Name="leibie" ColumnName="leibie" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="vw_projectRecordList">
+            <EntityTypeMapping TypeName="OfficeModel.vw_projectRecordList">
+              <MappingFragment StoreEntitySet="vw_projectRecordList">
+                <ScalarProperty Name="typerDate" ColumnName="typerDate" />
+                <ScalarProperty Name="shizhengNo" ColumnName="shizhengNo" />
+                <ScalarProperty Name="shizhengNoEnd" ColumnName="shizhengNoEnd" />
+                <ScalarProperty Name="shizhengNoStart" ColumnName="shizhengNoStart" />
+                <ScalarProperty Name="buildingArea" ColumnName="buildingArea" />
+                <ScalarProperty Name="constructionOrganization" ColumnName="constructionOrganization" />
+                <ScalarProperty Name="disignOrganization" ColumnName="disignOrganization" />
+                <ScalarProperty Name="projectName" ColumnName="projectName" />
+                <ScalarProperty Name="transferUnit" ColumnName="transferUnit" />
+                <ScalarProperty Name="contractName" ColumnName="contractName" />
+                <ScalarProperty Name="licenseNo" ColumnName="licenseNo" />
+                <ScalarProperty Name="endPaijiaNo" ColumnName="endPaijiaNo" />
+                <ScalarProperty Name="startPaijiaNo" ColumnName="startPaijiaNo" />
+                <ScalarProperty Name="endArchiveNo" ColumnName="endArchiveNo" />
+                <ScalarProperty Name="startArchiveNo" ColumnName="startArchiveNo" />
+                <ScalarProperty Name="paperProjectSeqNo" ColumnName="paperProjectSeqNo" />
+                <ScalarProperty Name="minorDictionaryID" ColumnName="minorDictionaryID" />
+                <ScalarProperty Name="subDictionaryID" ColumnName="subDictionaryID" />
+                <ScalarProperty Name="mainCategoryID" ColumnName="mainCategoryID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="vw_projectRecordList1">
+            <EntityTypeMapping TypeName="OfficeModel.vw_projectRecordList1">
+              <MappingFragment StoreEntitySet="vw_projectRecordList1">
+                <ScalarProperty Name="shizhengNoEnd" ColumnName="shizhengNoEnd" />
+                <ScalarProperty Name="shizhengNoStart" ColumnName="shizhengNoStart" />
+                <ScalarProperty Name="buildingArea" ColumnName="buildingArea" />
+                <ScalarProperty Name="constructionOrganization" ColumnName="constructionOrganization" />
+                <ScalarProperty Name="disignOrganization" ColumnName="disignOrganization" />
+                <ScalarProperty Name="projectName" ColumnName="projectName" />
+                <ScalarProperty Name="transferUnit" ColumnName="transferUnit" />
+                <ScalarProperty Name="contractName" ColumnName="contractName" />
+                <ScalarProperty Name="licenseNo" ColumnName="licenseNo" />
+                <ScalarProperty Name="endPaijiaNo" ColumnName="endPaijiaNo" />
+                <ScalarProperty Name="startPaijiaNo" ColumnName="startPaijiaNo" />
+                <ScalarProperty Name="endArchiveNo" ColumnName="endArchiveNo" />
+                <ScalarProperty Name="startArchiveNo" ColumnName="startArchiveNo" />
+                <ScalarProperty Name="paperProjectSeqNo" ColumnName="paperProjectSeqNo" />
+                <ScalarProperty Name="minorDictionaryID" ColumnName="minorDictionaryID" />
+                <ScalarProperty Name="subDictionaryID" ColumnName="subDictionaryID" />
+                <ScalarProperty Name="mainCategoryID" ColumnName="mainCategoryID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="False" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="无" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

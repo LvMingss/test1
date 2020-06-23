@@ -1,0 +1,1372 @@
+﻿@{ 
+    Layout = null;
+ }
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>@ViewBag.Title - 青岛市多维城市建设档案数字化管理系统</title>
+    <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    @*@Styles.Render("~/Content/css")*@
+    @*<link href='http://fonts.useso.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>*@
+    @*<link href="~/Content/lib/font-awesome/css/font-awesome.css" rel="stylesheet" />*@
+    <link href="~/Content/font-awesome-4.7.0/css/font-awesome.css" rel="stylesheet" />
+    <link href="~/Content/new.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/stylesheets/theme.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/stylesheets/premium.css" rel="stylesheet" />
+    <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <!-- Le fav and touch icons -->
+    @*<link rel="shortcut icon" href="../assets/ico/favicon.ico">
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="../assets/ico/apple-touch-icon-144-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="../assets/ico/apple-touch-icon-114-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="../assets/ico/apple-touch-icon-72-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" href="../assets/ico/apple-touch-icon-57-precomposed.png">*@
+    <!--[if lt IE 7 ]> <body class="ie ie6"> <![endif]-->
+    <!--[if IE 7 ]> <body class="ie ie7 "> <![endif]-->
+    <!--[if IE 8 ]> <body class="ie ie8 "> <![endif]-->
+    <!--[if IE 9 ]> <body class="ie ie9 "> <![endif]-->
+    <!--[if (gt IE 9)|!(IE)]><!-->
+    <!--<![endif]-->
+    <style type="text/css">
+        #line-chart {
+            height: 300px;
+            width: 800px;
+            margin: 0px auto;
+            margin-top: 1em;
+        }
+
+        .navbar-default .navbar-brand, .navbar-default .navbar-brand:hover {
+            color: #fff;
+        }
+    </style>
+
+    <link href="~/Content/AdminLTE-2.3.7/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+
+    @*<!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
+    <!-- Ionicons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">*@
+    <!-- Theme style -->
+    <link href="~/Content/AdminLTE-2.3.7/dist/css/AdminLTE.min.css" rel="stylesheet" />
+    <!-- AdminLTE Skins. Choose a skin from the css/skins
+         folder instead of downloading all of them to reduce the load. -->
+    <link href="~/Content/AdminLTE-2.3.7/dist/css/skins/_all-skins.min.css" rel="stylesheet" />
+    @*<script type="text/javascript" src="~/Scripts/jquery/jquery-1.8.3.js"></script>
+        <script type="text/javascript" src="~/Scripts/jquery/jquery.ui.core.js"></script>
+        <script type="text/javascript" src="~/Scripts/jquery/jquery.ui.datepicker.js"></script>
+        <script type="text/javascript" src="~/Scripts/jquery/jquery.ui.widget.js"></script>
+        <script type="text/javascript" src="~/Scripts/jquery/jquery-ui-timepicker-addon.js"></script>*@
+    <!-- jQuery 2.2.3 -->
+    <script src="~/Content/AdminLTE-2.3.7/plugins/jQuery/jquery-2.2.3.min.js"></script>
+    <!-- Bootstrap 3.3.6 -->
+    <script src="~/Content/AdminLTE-2.3.7/bootstrap/js/bootstrap.min.js"></script>
+    <!-- SlimScroll -->
+    <script src="~/Content/AdminLTE-2.3.7/plugins/slimScroll/jquery.slimscroll.min.js"></script>
+    <!-- FastClick -->
+    <script src="~/Content/AdminLTE-2.3.7/plugins/fastclick/fastclick.js"></script>
+    <!-- AdminLTE App -->
+    <script src="~/Content/AdminLTE-2.3.7/dist/js/app.min.js"></script>
+    <!-- AdminLTE for demo purposes -->
+    <script src="~/Content/AdminLTE-2.3.7/dist/js/demo.js"></script>
+    @*<script src="~/Scripts/jquery-2.1.1.min.js" type="text/javascript"></script>*@
+
+    <style type="text/css">
+        .jubu {
+            max-width: 100%;
+        }
+    </style>
+    <script type="text/javascript">
+    function lookfinsh(part)
+    {
+
+        var div = $("#" + part);
+        var Sele = document.getElementById("SearchArear");
+        document.getElementById("SearchArear1").value = "";
+        document.getElementById('LookFinsh1').style.background = "#dd4b39"
+        //document.getElementById('LookFinsh1').style.border = "#d73925"
+
+        if (document.getElementById('LookFinsh2').style.background = "#dd4b39") {
+            document.getElementById('LookFinsh2').style.background = "#3c8dbc";
+        }
+        for (var i = 0; i < Sele.length; i++)
+        {
+
+           document.getElementById("SearchArear1").value= document.getElementById("SearchArear1").value+Sele.options[i].text+",";
+        }
+        var coent = document.getElementById('SearchArear1').value;
+
+        var act = "查看竣工档案（工程）";
+
+
+        //document.getElementById("button").style.display = "block"
+        $("#part").load("/ArchiveSearch/ArchiveSearchMainWindow", {"SearchArear":coent, "action":act });
+
+    }
+    function lookfinsh2(part)
+    {
+
+        var div = $("#" + part);
+        var Sele = document.getElementById("SearchArear");
+        document.getElementById("SearchArear1").value = "";
+        if (document.getElementById('LookFinsh1').style.background = "#dd4b39")
+        {
+            document.getElementById('LookFinsh1').style.background = "#3c8dbc";
+        }
+        document.getElementById('LookFinsh2').style.background = "#dd4b39"
+        for (var i = 0; i < Sele.length; i++)
+        {
+
+            document.getElementById("SearchArear1").value= document.getElementById("SearchArear1").value+Sele.options[i].text+",";
+        }
+
+        var coent = document.getElementById('SearchArear1').value;
+
+        var act = "查看竣工档案（案卷）";
+
+
+
+        $("#part").load("/ArchiveSearch/ArchiveSearchMainWindow", { "SearchArear": coent, "action": act });
+
+    }
+    function lookfinsh3(part) {
+
+        var div = $("#" + part);
+        var Sele = document.getElementById("SearchArear");
+        document.getElementById("SearchArear1").value = "";
+        if (document.getElementById('LookFinsh1').style.background = "#dd4b39") {
+            document.getElementById('LookFinsh1').style.background = "#3c8dbc";
+        }
+        if (document.getElementById('LookFinsh2').style.background = "#dd4b39") {
+            document.getElementById('LookFinsh2').style.background = "#3c8dbc";
+        }
+        document.getElementById('LookFinsh3').style.background = "#dd4b39"
+        for (var i = 0; i < Sele.length; i++) {
+
+            document.getElementById("SearchArear1").value = document.getElementById("SearchArear1").value + Sele.options[i].text + ",";
+        }
+
+        var coent = document.getElementById('SearchArear1').value;
+
+        var act = "查看竣工档案（卷内）";
+
+
+
+        $("#part").load("/ArchiveSearch/ArchiveSearchMainWindow", { "SearchArear": coent, "action": act });
+
+    }
+
+    function lookqing(part) {
+
+     
+        var Sele = document.getElementById("SearchArear");
+ 
+        document.getElementById("SearchArear1").value = "";
+
+        document.getElementById('LookQingzhzo').style.background = "#dd4b39"
+        for (var i = 0; i < Sele.length; i++) {
+
+            document.getElementById("SearchArear1").value = document.getElementById("SearchArear1").value + Sele.options[i].text + ",";
+        }
+
+        var coent = document.getElementById('SearchArear1').value;
+        var classno = document.getElementById('qingzhaotype').value;
+        var act = "查看请照档案";
+     
+        
+
+
+
+
+        $("#part").load("/ArchiveSearch/ArchiveSearchMainWindow", { "SearchArear": coent, "action": act, "qingzhaotype": classno });
+
+    }
+    function lookGuihua(part)
+    {
+        
+        var div = $("#" + part);
+        var Sele = document.getElementById("SearchArear");
+        document.getElementById("SearchArear1").value = "";
+        document.getElementById('LookPlan1').style.background = "#dd4b39"
+        //document.getElementById('LookFinsh1').style.border = "#d73925"
+
+        //if (document.getElementById('LookPlan2').style.background = "#dd4b39") {
+        //    document.getElementById('LookPlan2').style.background = "#3c8dbc";
+        //}
+        for (var i = 0; i < Sele.length; i++) {
+
+            document.getElementById("SearchArear1").value = document.getElementById("SearchArear1").value + Sele.options[i].text + ",";
+        }
+        var coent = document.getElementById('SearchArear1').value;
+        var classno2 = document.getElementById('Plantype').value;
+        var act = "查看规划档案（工程)"; 
+
+
+        //document.getElementById("button").style.display = "block"
+        $("#part").load("/ArchiveSearch/ArchiveSearchMainWindow", { "SearchArear": coent, "action": act, "Plantype": classno2 });
+    }
+    function lookGuihua2(part) {
+
+        var div = $("#" + part);
+        var Sele = document.getElementById("SearchArear");
+        document.getElementById("SearchArear1").value = "";
+        //document.getElementById('LookPlan2').style.background = "#dd4b39"
+        //document.getElementById('LookFinsh1').style.border = "#d73925"
+
+        if (document.getElementById('LookPlan1').style.background = "#dd4b39") {
+            document.getElementById('LookPlan1').style.background = "#3c8dbc";
+        }
+        for (var i = 0; i < Sele.length; i++) {
+
+            document.getElementById("SearchArear1").value = document.getElementById("SearchArear1").value + Sele.options[i].text + ",";
+        }
+        var coent = document.getElementById('SearchArear1').value;
+        var classno2 = document.getElementById('Plantype').value;
+        var act = "查看规划档案(案卷)";
+
+        //alert(classno2);
+        //document.getElementById("button").style.display = "block"
+        $("#part").load("/ArchiveSearch/ArchiveSearchMainWindow", { "SearchArear": coent, "action": act, "Plantype": classno2 });
+    }
+
+    function lookVideo(part) {
+
+        var div = $("#" + part);
+        var Sele = document.getElementById("SearchArear");
+        document.getElementById("SearchArear1").value = "";
+        document.getElementById('LookVideo').style.background = "#dd4b39"
+      
+        for (var i = 0; i < Sele.length; i++) {
+
+            document.getElementById("SearchArear1").value = document.getElementById("SearchArear1").value + Sele.options[i].text + ",";
+        }
+        var coent = document.getElementById('SearchArear1').value;
+       
+        var act = "查看声像档案";
+
+    
+        
+        $("#part").load("/ArchiveSearch/ArchiveSearchMainWindow", { "SearchArear": coent, "action": act});
+    }
+    function LookGuanxian1(part) {
+ 
+        var div = $("#" + part);
+        var Sele = document.getElementById("SearchArear");
+        document.getElementById("SearchArear1").value = "";
+        document.getElementById('LookGuanxain1').style.background = "#dd4b39"
+        
+
+        if (document.getElementById('LookGuanxain2').style.background = "#dd4b39") {
+            document.getElementById('LookGuanxain2').style.background = "#3c8dbc";
+        }
+        for (var i = 0; i < Sele.length; i++) {
+
+            document.getElementById("SearchArear1").value = document.getElementById("SearchArear1").value + Sele.options[i].text + ",";
+        }
+        var coent = document.getElementById('SearchArear1').value;
+
+        var act = "查看管线档案（工程）";
+
+
+        //document.getElementById("button").style.display = "block"
+        $("#part").load("/ArchiveSearch/ArchiveSearchMainWindow", { "SearchArear": coent, "action": act });
+
+    }
+    function LookGuanxian2(part) {
+
+        var div = $("#" + part);
+        var Sele = document.getElementById("SearchArear");
+        document.getElementById("SearchArear1").value = "";
+        document.getElementById('LookGuanxain2').style.background = "#dd4b39"
+       
+
+        if (document.getElementById('LookGuanxain1').style.background = "#dd4b39") {
+            document.getElementById('LookGuanxain1').style.background = "#3c8dbc";
+        }
+        for (var i = 0; i < Sele.length; i++) {
+
+            document.getElementById("SearchArear1").value = document.getElementById("SearchArear1").value + Sele.options[i].text + ",";
+        }
+        var coent = document.getElementById('SearchArear1').value;
+
+        var act = "查看管线档案（案卷）";
+
+
+        $("#part").load("/ArchiveSearch/ArchiveSearchMainWindow", { "SearchArear": coent, "action": act });
+
+    }
+    function LookGuanxian3(part) {
+        var div = $("#" + part);
+        var Sele = document.getElementById("SearchArear");
+        document.getElementById("SearchArear1").value = "";
+        document.getElementById('LookGuanxain3').style.background = "#dd4b39"
+
+
+        if (document.getElementById('LookGuanxain1').style.background = "#dd4b39") {
+            document.getElementById('LookGuanxain1').style.background = "#3c8dbc";
+        }
+
+        if (document.getElementById('LookGuanxain2').style.background = "#dd4b39") {
+            document.getElementById('LookGuanxain2').style.background = "#3c8dbc";
+        }
+
+        for (var i = 0; i < Sele.length; i++) {
+
+            document.getElementById("SearchArear1").value = document.getElementById("SearchArear1").value + Sele.options[i].text + ",";
+        }
+        var coent = document.getElementById('SearchArear1').value;
+
+        var act = "查看管线档案（卷内）";
+
+
+        $("#part").load("/ArchiveSearch/ArchiveSearchMainWindow", { "SearchArear": coent, "action": act });
+
+    }
+
+
+    function lookYuanchuan1(part) {
+      
+        var div = $("#" + part);
+        var Sele = document.getElementById("SearchArear");
+        document.getElementById("SearchArear1").value = "";
+        document.getElementById('LookYuanchuan1').style.background = "#dd4b39"
+
+ 
+        if (document.getElementById('LookYuanchuan2').style.background = "#dd4b39") {
+            document.getElementById('LookYuanchuan2').style.background = "#3c8dbc";
+        }
+        for (var i = 0; i < Sele.length; i++) {
+
+            document.getElementById("SearchArear1").value = document.getElementById("SearchArear1").value + Sele.options[i].text + ",";
+        }
+        var coent = document.getElementById('SearchArear1').value;
+
+        var act = "查看援川档案（工程）";
+       
+        $("#part").load("/ArchiveSearch/ArchiveSearchMainWindow", { "SearchArear": coent, "action": act });
+
+    }
+    function lookYuanchuan2(part) {
+
+        var div = $("#" + part);
+        var Sele = document.getElementById("SearchArear");
+        document.getElementById("SearchArear1").value = "";
+        document.getElementById('LookYuanchuan2').style.background = "#dd4b39"
+
+
+        if (document.getElementById('LookYuanchuan1').style.background = "#dd4b39") {
+            document.getElementById('LookYuanchuan1').style.background = "#3c8dbc";
+        }
+        for (var i = 0; i < Sele.length; i++) {
+
+            document.getElementById("SearchArear1").value = document.getElementById("SearchArear1").value + Sele.options[i].text + ",";
+        }
+        var coent = document.getElementById('SearchArear1').value;
+
+        var act = "查看援川档案（案卷）";
+
+
+        $("#part").load("/ArchiveSearch/ArchiveSearchMainWindow", { "SearchArear": coent, "action": act });
+
+    }
+    function Lookzhengdi(part) {
+
+        var div = $("#" + part);
+        var Sele = document.getElementById("SearchArear");
+        document.getElementById("SearchArear1").value = "";
+        document.getElementById('LookZhengdi').style.background = "#dd4b39"
+        
+        for (var i = 0; i < Sele.length; i++) {
+
+            document.getElementById("SearchArear1").value = document.getElementById("SearchArear1").value + Sele.options[i].text + ",";
+        }
+        var coent = document.getElementById('SearchArear1').value;
+        
+        var act = "查看征地档案";
+
+
+     
+        $("#part").load("/ArchiveSearch/ArchiveSearchMainWindow", { "SearchArear": coent, "action": act});
+
+    }
+        $().ready(function () {
+
+
+            $("#checkname").ready(function () {
+
+                var s = $("#checkname").val();
+
+                if (s == 1) {
+                    $("#message").val("检索条件与档案类型不一致");
+                }
+            });
+        });
+
+
+        function lookYeWu(part) {
+
+            var div = $("#" + part);
+            var Sele = document.getElementById("SearchArear");
+            document.getElementById("SearchArear1").value = "";
+            document.getElementById('LookYeWu').style.background = "#dd4b39"
+            //document.getElementById('LookFinsh1').style.border = "#d73925"
+
+            //if (document.getElementById('LookPlan2').style.background = "#dd4b39") {
+            //    document.getElementById('LookPlan2').style.background = "#3c8dbc";
+            //}
+            for (var i = 0; i < Sele.length; i++) {
+
+                document.getElementById("SearchArear1").value = document.getElementById("SearchArear1").value + Sele.options[i].text + ",";
+            }
+            var coent = document.getElementById('SearchArear1').value;
+            //var classno2 = document.getElementById('Plantype').value;
+            var act = "查看业务档案";
+
+
+            //document.getElementById("button").style.display = "block"
+            $("#part").load("/ArchiveSearch/ArchiveSearchMainWindow", { "SearchArear": coent, "action": act });
+        }
+
+
+
+
+        //检索结果显示页面
+        function click_a(divDisplay) {
+            if (document.getElementById(divDisplay).style.display =="block") {
+                document.getElementById(divDisplay).style.display = "none";
+            }
+            else
+            {
+                document.getElementById(divDisplay).style.display = "block";
+            }
+        }
+        //请照档案种类
+        function click_b() {
+            
+            document.getElementById('SearchContent').value = "";
+            if (document.all("SearchArear").options.length != 0) {
+                document.all("SearchArear").options.length = 0;
+
+            }
+
+            document.getElementById('LookQingzhzo').disabled = true;
+            var rad0 = document.getElementById("radio0");
+            if (rad0.checked) {
+                document.getElementById('KindQingzhao').style.display = "table-row";
+                document.getElementById('LookQingzhzo').style.display = "inline";
+                document.getElementById('LookGuanxain1').style.display = "none";
+                document.getElementById('LookGuanxain2').style.display = "none";
+                document.getElementById('LookYuanchuan1').style.display = "none";
+                document.getElementById('LookYuanchuan2').style.display = "none";
+                document.getElementById('LookZhengdi').style.display = "none";
+                document.getElementById("qingzhaotype").value = "";
+
+                document.getElementById('LookVideo').style.display = "none";
+                document.getElementById('LookFinsh1').style.display = "none";
+                document.getElementById('LookFinsh2').style.display = "none";
+                document.getElementById('LookFinsh3').style.display = "none";
+                document.getElementById('LookYeWu').style.display = "none";
+
+                document.getElementById('KindGuihua').style.display = "none";
+                document.getElementById('LookPlan1').style.display = "none";
+                //document.getElementById('LookPlan2').style.display = "none";
+
+              
+               
+            }
+            else {
+                document.getElementById('KindQingzhao').style.display = "none";
+                document.getElementById('LookQingzhzo').style.display = "none";
+            }
+
+            $.ajax({
+                type: "POST",
+                url: "/ArchiveSearch/ArchiveSearchMainWindowList/?name=" + "QingzhaoList" + "&classNo=" + encodeURI("1-执照档案,"),
+                contentType: "application/json",
+                data: "",
+                dataType: "json",
+                success: function (Data) {
+                    onSuccess(Data);
+
+                }
+            });
+        }
+        function choose() {
+
+            var number = window.showModalDialog('./QingZhaoDia', "", 'dialogWidth=200px;dialogHeight=300px');
+
+            document.getElementById("qingzhaotype").value = number;
+            if (number != undefined && number != "") {
+
+
+                $.ajax({
+                    type: "POST",
+                    url: "/ArchiveSearch/ArchiveSearchMainWindowList/?name=" + "QingzhaoList" + "&classNo=" + encodeURI(number),
+                    contentType: "application/json",
+                    data: "",
+                    dataType: "json",
+                    success: function (Data) {
+                        onSuccess(Data);
+
+                    }
+                });
+            }
+            else {
+                alert("请选择[其他档案]种类!");
+            }
+        }
+
+        //执照档案种类
+        function click_j() {
+            
+            document.getElementById('SearchContent').value = "";
+            if (document.all("SearchArear").options.length != 0) {
+                document.all("SearchArear").options.length = 0;
+
+            }
+
+            document.getElementById('LookQingzhzo').disabled = true;
+            var rad8 = document.getElementById("radio8");
+            if (rad8.checked) {
+                document.getElementById('KindQingzhao').style.display = "table-row";
+                document.getElementById('LookQingzhzo').style.display = "inline";
+                document.getElementById('LookGuanxain1').style.display = "none";
+                document.getElementById('LookGuanxain2').style.display = "none";
+                document.getElementById('LookYuanchuan1').style.display = "none";
+                document.getElementById('LookYuanchuan2').style.display = "none";
+                document.getElementById('LookZhengdi').style.display = "none";
+                document.getElementById("qingzhaotype").value = "";
+
+                document.getElementById('LookVideo').style.display = "none";
+                document.getElementById('LookFinsh1').style.display = "none";
+                document.getElementById('LookFinsh2').style.display = "none";
+                document.getElementById('LookFinsh3').style.display = "none";
+                document.getElementById('LookYeWu').style.display = "none";
+
+                document.getElementById('KindGuihua').style.display = "none";
+                document.getElementById('LookPlan1').style.display = "none";
+                //document.getElementById('LookPlan2').style.display = "none";
+
+              
+               
+            }
+            else {
+                document.getElementById('KindQingzhao').style.display = "none";
+                document.getElementById('LookQingzhzo').style.display = "none";
+            }
+
+            $.ajax({
+                type: "POST",
+                url: "/ArchiveSearch/ArchiveSearchMainWindowList/?name=" + "QingzhaoList" + "&classNo=" + encodeURI("1-执照档案,"),
+                contentType: "application/json",
+                data: "",
+                dataType: "json",
+                success: function (Data) {
+                    onSuccess(Data);
+
+                }
+            });
+            choose2();
+        }
+        
+         function choose2() {
+
+            //var number = window.showModalDialog('./QingZhaoDia', "", 'dialogWidth=200px;dialogHeight=300px');
+            var number = "1-执照档案,"
+            document.getElementById("qingzhaotype").value = number;
+            if (number != undefined && number != "") {
+
+
+                $.ajax({
+                    type: "POST",
+                    url: "/ArchiveSearch/ArchiveSearchMainWindowList/?name=" + "QingzhaoList" + "&classNo=" + encodeURI(number),
+                    contentType: "application/json",
+                    data: "",
+                    dataType: "json",
+                    success: function (Data) {
+                        onSuccess(Data);
+
+                    }
+                });
+            }
+            else {
+                alert("请选择[其他档案]种类!");
+            }
+        }
+
+
+
+
+
+        //规划档案种类
+        function click_c() {
+            var rad5 = document.getElementById("radio5");
+            document.getElementById('SearchContent').value = "";
+            if (document.all("SearchArear").options.length != 0) {
+                document.all("SearchArear").options.length = 0;
+
+            }
+            document.getElementById('LookPlan1').disabled = true;
+            //document.getElementById('LookPlan2').disabled = true;
+            if (rad5.checked == true) {
+                document.getElementById('KindGuihua').style.display = "table-row";
+
+                document.getElementById('LookPlan1').style.display = "inline";
+                //document.getElementById('LookPlan2').style.display = "inline";
+                document.getElementById('LookGuanxain1').style.display = "none";
+                document.getElementById('LookGuanxain2').style.display = "none";
+                document.getElementById('LookYuanchuan1').style.display = "none";
+                document.getElementById('LookYuanchuan2').style.display = "none";
+                document.getElementById('LookZhengdi').style.display = "none";
+
+                document.getElementById('LookVideo').style.display = "none";
+                document.getElementById('LookFinsh1').style.display = "none";
+                document.getElementById('LookFinsh2').style.display = "none";
+                document.getElementById('LookFinsh3').style.display = "none";
+                document.getElementById('LookYeWu').style.display = "none";
+
+                document.getElementById('KindQingzhao').style.display = "none";
+                document.getElementById('LookQingzhzo').style.display = "none"
+                document.getElementById('Plantype').value = "";
+              
+                   
+                
+
+            }
+            else {
+                document.getElementById('KindGuihua').style.display = "none";
+                document.getElementById('LookPlan1').style.display = "none";
+                //document.getElementById('LookPlan2').style.display = "none";
+            }
+            $.ajax({
+                type: "POST",
+                url: "/ArchiveSearch/ArchiveSearchMainWindowList/?name=" + "LookPlanList",
+                contentType: "application/json",
+                data: "",
+                dataType: "json",
+                success: function (Data) {
+                    onSuccess(Data);
+
+                }
+            });
+        }
+
+
+
+
+        //业务档案种类  
+        function click_i() {
+            var rad7 = document.getElementById("radio7");
+            document.getElementById('SearchContent').value = "";
+            if (document.all("SearchArear").options.length != 0) {
+                document.all("SearchArear").options.length = 0;
+
+            }
+            document.getElementById('LookYeWu').disabled = true;
+            //document.getElementById('LookPlan2').disabled = true;
+            if (rad7.checked == true) {
+                //document.getElementById('KindGuihua').style.display = "table-row";
+                document.getElementById('KindGuihua').style.display = "none";
+                document.getElementById('LookYeWu').style.display = "inline";
+                document.getElementById('LookPlan1').style.display = "none";
+                //document.getElementById('LookPlan2').style.display = "inline";
+                document.getElementById('LookGuanxain1').style.display = "none";
+                document.getElementById('LookGuanxain2').style.display = "none";
+                document.getElementById('LookYuanchuan1').style.display = "none";
+                document.getElementById('LookYuanchuan2').style.display = "none";
+                document.getElementById('LookZhengdi').style.display = "none";
+                document.getElementById('LookVideo').style.display = "none";
+                document.getElementById('LookFinsh1').style.display = "none";
+                document.getElementById('LookFinsh2').style.display = "none";
+                document.getElementById('LookFinsh3').style.display = "none";
+
+                document.getElementById('KindQingzhao').style.display = "none";
+                document.getElementById('LookQingzhzo').style.display = "none"
+                //document.getElementById('Plantype').value = "";
+
+
+
+
+            }
+            else {
+                //document.getElementById('KindGuihua').style.display = "none";
+                document.getElementById('LookYeWu').style.display = "none";
+                //document.getElementById('LookPlan2').style.display = "none";
+            }
+            $.ajax({
+                type: "POST",
+                url: "/ArchiveSearch/ArchiveSearchMainWindowList/?name=" + "LookYeWu",
+                contentType: "application/json",
+                data: "",
+                dataType: "json",
+                success: function (Data) {
+                    onSuccess(Data);
+
+                }
+            });
+        }
+
+
+
+        
+        function choose1() {
+
+            var number1 = window.showModalDialog('./KindGuihuaDia', "", 'dialogWidth=300px;dialogHeight=600px');
+
+            document.getElementById("Plantype").value = number1;
+
+        }
+        //查看竣工档案按钮
+        function click_d() {
+            var rad4 = document.getElementById("radio4");
+            document.getElementById('SearchContent').value = "";
+            if (document.all("SearchArear").options.length != 0) {
+                document.all("SearchArear").options.length = 0;
+
+            }
+            document.getElementById('LookFinsh1').disabled = true;
+            document.getElementById('LookFinsh2').disabled = true;
+            if (rad4.checked == true) {
+                document.getElementById('LookFinsh1').style.display = "inline";
+                document.getElementById('LookFinsh2').style.display = "inline";
+
+                document.getElementById('LookFinsh3').style.display = "inline";
+
+                document.getElementById('LookGuanxain1').style.display = "none";
+                document.getElementById('LookGuanxain2').style.display = "none";
+                document.getElementById('LookYuanchuan1').style.display = "none";
+                document.getElementById('LookYuanchuan2').style.display = "none";
+                document.getElementById('LookZhengdi').style.display = "none";
+                document.getElementById('LookVideo').style.display = "none";
+                document.getElementById('KindGuihua').style.display = "none";
+                document.getElementById('LookPlan1').style.display = "none";
+                //document.getElementById('LookPlan2').style.display = "none";
+                document.getElementById('KindQingzhao').style.display = "none";
+                document.getElementById('LookQingzhzo').style.display = "none";
+                document.getElementById('LookYeWu').style.display = "none";
+
+
+
+
+               
+                $.ajax({
+                    type: "POST",
+                    url: "/ArchiveSearch/ArchiveSearchMainWindowList/?name=" + "FinshList",
+                    contentType: "application/json",
+                    data: "",
+                    dataType: "json",
+                    success: function (Data) {
+                        onSuccess(Data);
+
+                    }
+                });
+            }
+            else {
+                document.getElementById('LookFinsh1').style.display = "none";
+                document.getElementById('LookFinsh2').style.display = "none";
+                document.getElementById('LookFinsh3').style.display = "none";
+            }
+        }
+        function onSuccess(Data) {
+            var Requie = document.getElementById('Require');
+
+            Requie.options.length = 0;
+            for (var i = 0; i < Data.length; i++) {
+
+                Requie.options.add(new Option(Data[i].Text, Data[i].value));
+            }
+        }
+        //查看声像档案按钮
+        function click_e() {
+            var rad6 = document.getElementById("radio6");
+            document.getElementById('SearchContent').value = "";
+            if (document.all("SearchArear").options.length != 0) {
+                document.all("SearchArear").options.length = 0;
+
+            }
+            document.getElementById('LookVideo').disabled = true;
+            if (rad6.checked == true) {
+                document.getElementById('LookVideo').style.display = "inline";
+           
+                document.getElementById('LookGuanxain1').style.display = "none";
+                document.getElementById('LookGuanxain2').style.display = "none";
+                document.getElementById('LookYuanchuan1').style.display = "none";
+                document.getElementById('LookYuanchuan2').style.display = "none";
+                document.getElementById('LookZhengdi').style.display = "none";
+
+                document.getElementById('LookFinsh1').style.display = "none";
+                document.getElementById('LookFinsh2').style.display = "none";
+                document.getElementById('LookFinsh3').style.display = "none";
+                document.getElementById('LookYeWu').style.display = "none";
+
+                document.getElementById('KindGuihua').style.display = "none";
+                document.getElementById('LookPlan1').style.display = "none";
+                //document.getElementById('LookPlan2').style.display = "none";
+                document.getElementById('KindQingzhao').style.display = "none";
+                document.getElementById('LookQingzhzo').style.display = "none"
+               
+                
+                 
+         
+                $.ajax({
+                    type: "POST",
+                    url: "/ArchiveSearch/ArchiveSearchMainWindowList/?name=" + "LookViedoList",
+                    contentType: "application/json",
+                    data: "",
+                    dataType: "json",
+                    success: function (Data) {
+                        onSuccess(Data);
+
+                    }
+                });
+            }
+            else {
+                document.getElementById('LookVideo').style.display = "none";
+
+            }
+        }
+        //查看管线档案按钮
+        function click_f() {
+
+            var value5 = document.getElementById('radio1');
+            document.getElementById('SearchContent').value = "";
+            if (document.all("SearchArear").options.length != 0) {
+                document.all("SearchArear").options.length = 0;
+
+            }
+            document.getElementById('LookGuanxain1').disabled = true;
+            document.getElementById('LookGuanxain2').disabled = true;
+            document.getElementById('LookGuanxain3').disabled = true;
+            if (value5.checked) {
+                document.getElementById('LookGuanxain1').style.display = "inline";
+                document.getElementById('LookGuanxain2').style.display = "inline";
+                document.getElementById('LookGuanxain3').style.display = "inline";
+                document.getElementById('LookYuanchuan1').style.display = "none";
+                document.getElementById('LookYuanchuan2').style.display = "none";
+                document.getElementById('LookZhengdi').style.display = "none";
+                document.getElementById('LookVideo').style.display = "none";
+                document.getElementById('LookFinsh1').style.display = "none";
+                document.getElementById('LookFinsh2').style.display = "none";
+                document.getElementById('LookFinsh3').style.display = "none";
+                document.getElementById('LookYeWu').style.display = "none";
+                document.getElementById('KindGuihua').style.display = "none";
+                document.getElementById('LookPlan1').style.display = "none";
+                //document.getElementById('LookPlan2').style.display = "none";
+                document.getElementById('KindQingzhao').style.display = "none";
+                document.getElementById('LookQingzhzo').style.display = "none";
+                //cbOtherArchive.checked = false; cbFinishArchive.checked = false;
+                //cbPlanArchive.checked = false; cbVideoArchive.checked = false;
+              
+               
+                    
+              
+                $.ajax({
+                    type: "POST",
+                    url: "/ArchiveSearch/ArchiveSearchMainWindowList/?name=" + "LookGuanXianList",
+                    contentType: "application/json",
+                    data: "",
+                    dataType: "json",
+                    success: function (Data) {
+                        onSuccess(Data);
+
+                    }
+                });
+            }
+            else {
+                document.getElementById('LookGuanxain1').style.display = "none";
+                document.getElementById('LookGuanxain2').style.display = "none";
+
+            }
+
+        }
+        //查看援川档案按钮
+        function click_g() {
+            var value6 = document.getElementById('radio2');
+            document.getElementById('SearchContent').value = "";
+            if (document.all("SearchArear").options.length != 0) {
+                document.all("SearchArear").options.length = 0;
+
+            }
+            document.getElementById('LookYuanchuan1').disabled = true;
+            document.getElementById('LookYuanchuan2').disabled = true;
+            if (value6.checked ) {
+                document.getElementById('LookYuanchuan1').style.display = "inline";
+                document.getElementById('LookYuanchuan2').style.display = "inline";
+                document.getElementById('LookGuanxain1').style.display = "none";
+                document.getElementById('LookGuanxain2').style.display = "none";
+                document.getElementById('LookGuanxain3').style.display = "none";
+                document.getElementById('LookZhengdi').style.display = "none";
+                document.getElementById('LookVideo').style.display = "none";
+                document.getElementById('LookFinsh1').style.display = "none";
+                document.getElementById('LookFinsh2').style.display = "none";
+                document.getElementById('LookFinsh3').style.display = "none";
+                document.getElementById('LookYeWu').style.display = "none";
+                document.getElementById('KindGuihua').style.display = "none";
+                document.getElementById('LookPlan1').style.display = "none";
+                //document.getElementById('LookPlan2').style.display = "none";
+                document.getElementById('KindQingzhao').style.display = "none";
+                document.getElementById('LookQingzhzo').style.display = "none";
+
+              
+              
+                   
+            
+                $.ajax({
+                    type: "POST",
+                    url: "/ArchiveSearch/ArchiveSearchMainWindowList/?name=" + "LookYuanChuanList",
+                    contentType: "application/json",
+                    data: "",
+                    dataType: "json",
+                    success: function (Data) {
+                        onSuccess(Data);
+
+                    }
+                });
+            }
+            else {
+                document.getElementById('LookYuanchuan1').style.display = "none";
+                document.getElementById('LookYuanchuan2').style.display = "none";
+
+            }
+        }
+        //查看征地档案按钮
+        function click_h() {
+            var value7 = document.getElementById('radio3');
+            document.getElementById('SearchContent').value = "";
+            if (document.all("SearchArear").options.length != 0) {
+                document.all("SearchArear").options.length = 0;
+
+            }
+            document.getElementById('LookZhengdi').disabled = true;
+            if (value7.checked) {
+                document.getElementById('LookZhengdi').style.display = "inline";
+                document.getElementById('LookYuanchuan1').style.display = "none";
+                document.getElementById('LookYuanchuan2').style.display = "none";
+                document.getElementById('LookGuanxain1').style.display = "none";
+                document.getElementById('LookGuanxain2').style.display = "none";
+                document.getElementById('LookGuanxain3').style.display = "none";
+                document.getElementById('LookVideo').style.display = "none";
+                document.getElementById('LookFinsh1').style.display = "none";
+                document.getElementById('LookFinsh2').style.display = "none";
+                document.getElementById('LookFinsh3').style.display = "none";
+                document.getElementById('LookYeWu').style.display = "none";
+
+                document.getElementById('LookYeWu').style.display = "none";
+                document.getElementById('KindGuihua').style.display = "none";
+                document.getElementById('LookPlan1').style.display = "none";
+                //document.getElementById('LookPlan2').style.display = "none";
+                document.getElementById('KindQingzhao').style.display = "none";
+                document.getElementById('LookQingzhzo').style.display = "none";
+              
+                   
+            
+                $.ajax({
+                    type: "POST",
+                    url: "/ArchiveSearch/ArchiveSearchMainWindowList/?name=" + "LookZhengDiList",
+                    contentType: "application/json",
+                    data: "",
+                    dataType: "json",
+                    success: function (Data) {
+                        onSuccess(Data);
+
+                    }
+                });
+            }
+            else {
+                document.getElementById('LookZhengdi').style.display = "none";
+
+            }
+        }
+        function Add() {
+
+            var value1 = document.getElementById("Orand");
+            var index1 = value1.selectedIndex;
+            var value2 = document.getElementById("Require");
+            var index2 = value2.selectedIndex;
+            var value3 = document.getElementById("Opter");
+            var index3 = value3.selectedIndex;
+            var value4 = document.getElementById("SearchContent").value;
+            var value5=null;
+            if (value1.options[value1.selectedIndex].value==0)
+            {
+                value5 = value2.options[index2].text + "——" + value3.options[index3].text + "——" + value4;
+            }
+            else
+            {
+                value5 = value1.options[index1].text + "——" + value2.options[index2].text + "——" + value3.options[index3].text + "——" + value4;
+
+            }
+            var value7=document.getElementById("SearchArear");
+            var value8 = value7.options.length;
+            var value9 = value8;
+            value7.options.add(new Option(value5,value9));
+           
+
+            if (document.getElementById('radio0').checked ==true) {
+                document.getElementById('LookQingzhzo').disabled =false;
+            }
+
+            if (document.getElementById('radio5').checked ==true) {
+
+                document.getElementById('LookPlan1').disabled =false;
+                //document.getElementById('LookPlan2').disabled =false;
+            }
+
+            if (document.getElementById('radio4').checked == true) {
+                document.getElementById('LookFinsh1').disabled =false;
+                document.getElementById('LookFinsh2').disabled =false;
+                document.getElementById('LookFinsh3').disabled = false;
+            }
+            if (document.getElementById('radio6').checked ==true) {
+                document.getElementById('LookVideo').disabled =false;
+            }
+
+
+
+            if (document.getElementById('radio1').checked) {
+
+                document.getElementById('LookGuanxain1').disabled =false;
+                document.getElementById('LookGuanxain2').disabled = false;
+                document.getElementById('LookGuanxain3').disabled = false;
+            }
+
+            if (document.getElementById('radio2').checked) {
+                document.getElementById('LookYuanchuan1').disabled =false;
+                document.getElementById('LookYuanchuan2').disabled =false;
+            }
+
+
+            if (document.getElementById('radio3').checked) {
+
+                document.getElementById('LookZhengdi').disabled =false;
+
+
+            }
+            if (document.getElementById('radio7').checked) {
+
+                document.getElementById('LookYeWu').disabled = false;
+
+
+            }
+            if (document.getElementById('radio8').checked) {
+
+                document.getElementById('LookQingzhzo').disabled = false;
+
+
+            }
+        }
+        function Clear() {
+            document.all("SearchArear").options.length = 0;
+            if (document.getElementById('radio0').checked ==true) {
+                document.getElementById('LookQingzhzo').disabled =true;
+            }
+            if (document.getElementById('radio5').checked ==true) {
+                document.getElementById('LookPlan1').disabled =true;
+                //document.getElementById('LookPlan2').disabled =true;
+            }
+            if (document.getElementById('radio4').checked ==true)
+            {
+                document.getElementById('LookFinsh1').disabled =true;
+                document.getElementById('LookFinsh2').disabled =true;
+            }
+            if (document.getElementById('radio6').checked ==true) {
+                document.getElementById('LookVideo').disabled =true;
+            }
+            if (document.getElementById('radio1').checked) {
+                document.getElementById('LookGuanxain1').disabled =true;
+                document.getElementById('LookGuanxain2').disabled = true;
+                document.getElementById('LookGuanxain3').disabled = true;
+            }
+            if (document.getElementById('radio2').checked)
+            {
+                document.getElementById('LookYuanchuan1').disabled =true;
+                document.getElementById('LookYuanchuan2').disabled =true;
+            }
+            if (document.getElementById('radio3').checked) {
+                document.getElementById('LookZhengdi').disabled =true;
+            }
+
+
+        }
+        function dele()
+        {
+            var Sele=document.getElementById("SearchArear");
+            for (var i = 0; i < Sele.length;i++)
+            {
+                if(Sele.options[i].selected==true)
+                {
+                    Sele.options.remove(i);
+                }
+            }
+        }
+        document.onkeydown = function (e) {
+            if (!e) e = window.event;
+            if ((e.keyCode || e.which) == 13) {
+                var obtnLogin = document.getElementById("Ad");   //submit_btn为按钮ID
+                obtnLogin.focus();
+                //Add();//提交按钮触发的方法
+            }
+        }
+        //$(document).ready(function () {
+        //    alert(1);
+        //    $("#LookUser").click(function () {
+        //        window.open("/ArchiveSearch/ArchiveSearchMainWindow/?action=查看当前用户绑定内容");
+
+        //    });
+        //});
+    </script>
+
+   
+
+</head>
+
+<body style="background:#ecf0f5;padding:15px;padding-bottom:0px;">
+
+    <div>
+        <div style="overflow-y:auto;overflow-x:hidden; height:100%;">
+            @*@using (Html.BeginForm())
+            {*@
+                <from>
+                    <div style="background:#ecf0f5;">
+
+                        <div class="box box-primary">
+                            <div class="box-header with-border">
+                                <h3 class="box-title" style="font-weight:bold;">档案检索</h3>
+                                <div class="box-tools pull-right">
+                                    <button class="btn btn-box-tool" type="button" data-widget="collapse">
+                                        <i class="fa fa-minus"></i>
+                                    </button>
+                                    <button class="btn btn-box-tool" type="button" data-widget="remove"><i class="fa fa-times"></i></button>
+                                </div>
+                            </div>
+                            <div class="box-body">
+                                <table class="table table-bordered dl-horizontal" style="background-color:#f0f0f0;margin-bottom:0px;">
+                                    <tr>
+                                        <td style="width:6%;text-align:center;font-weight:bold;vertical-align:middle">
+                                            档案类型
+                                        </td>
+                                        <td colspan="4">
+                                            <input type="radio" ID="radio0" name="radio" value="0" onclick="return click_b()" />请照
+                                            &nbsp;&nbsp;
+
+                                            <input type="radio" ID="radio4" checked="checked" name="radio" value="4" onclick="return click_d()" />竣工
+                                            &nbsp;&nbsp;
+                                            <input type="radio" ID="radio5" name="radio" value="5" onclick="return click_c()" />规划
+                                            &nbsp; &nbsp;
+                                            <input type="radio" ID="radio8" name="radio" value="8" onclick="return click_j()" />执照
+                                            &nbsp; &nbsp;
+                                            <input type="radio" ID="radio6" name="radio" value="6" onclick="return click_e()" />声像
+                                            &nbsp; &nbsp;
+                                            <input type="radio" ID="radio1" name="radio" value="1" onclick="return click_f()" />管线
+                                            &nbsp; &nbsp;
+                                            <input type="radio" ID="radio2" name="radio" value="2" onclick="return click_g()" />援川
+                                            &nbsp; &nbsp;
+                                            <input type="radio" ID="radio3" name="radio" value="3" onclick="return click_h()" />征地
+                                            &nbsp; &nbsp;
+                                            <input type="radio" ID="radio7" name="radio" value="7" onclick="return click_i()" />业务
+                                        </td>
+                                    </tr>
+                                    <tr id="KindQingzhao" style="display:none;">
+
+                                        <td style="width:6%;text-align:center;font-weight:bold;vertical-align:middle">
+                                            请照种类
+                                         
+
+                                        </td>
+                                        <td colspan="4" style="width:90%;">
+                                            <input type="text" id="qingzhaotype" name="qingzhaotype" readonly="readonly" />
+                                            <input type="button" value="选择" name="action" onclick="choose()" class="btn btn-primary">
+
+
+                                        </td>
+                                      
+                                    </tr>
+
+
+                                    <tr id="KindGuihua" style="display:none;">
+
+                                        <td style="width:6%;text-align:center;font-weight:bold;vertical-align:middle">
+                                         
+                                            规划种类
+                                        </td>
+                                        <td colspan="4" style="width:90%;">
+                                            <input type="text" id="Plantype" name="Plantype" readonly="readonly" />
+                                            <input type="button" value="选择" name="action" onclick="choose1()" class="btn btn-primary">
+
+
+                                        </td>
+                                       
+                                    </tr>
+                                    @*<tr id="KindGuihua" style="display:none;">
+
+                                        <td style="width:6%;text-align:center;font-weight:bold;vertical-align:middle">
+
+                                            规划种类
+                                        </td>
+                                        <td colspan="4" style="width:90%;">
+                                            <input type="text" id="Plantype" name="Plantype" readonly="readonly" />
+                                            <input type="button" value="选择" name="action" onclick="choose1()" class="btn btn-primary">
+
+
+                                        </td>
+
+                                    </tr>*@
+                                    <tr>
+                                        <td style="width:6%;text-align:center;font-weight:bold;vertical-align:middle">
+                                            条件
+                                           
+
+
+                                        </td>
+                                        <td style="width:16%;">
+                                            <select name="Require" id="Require" style="width:70%;padding:2px;">
+                                                <option value="1" selected="selected">案卷题名</option>
+                                                <option value="2">项目顺序号</option>
+                                                <option value="3">执照号</option>
+                                                <option value="4">工程地点</option>
+                                                <option value="5">最新工程地点</option>
+                                                <option value="6">档号</option>
+                                                <option value="7">分类号</option>
+                                                <option value="8">工程名称</option>
+                                                <option value="9">建设单位</option>
+                                                <option value="10">施工单位</option>
+                                                <option value="11">设计单位</option>
+                                                @*<option value="12">合同名称</option>*@
+                                                <option value="12">移交单位</option>
+                                                <option value="13">建筑面积</option>
+                                                <option value="14">有无扫描件</option>
+                                                <option value="15">市政档案号</option>
+                                                <option value="16">总登记号</option>
+                                                <option value="17">排架号</option>
+                                                <option value="18">文件材料题名(卷内)</option>
+                                                @*<option value="15">签订日期</option>
+                                                <option value="16">计划开工日期</option>
+                                                <option value="17">计划竣工日期</option>
+                                                <option value="18">负责人</option>
+                                                <option value="19">联系人</option>
+                                                <option value="20">合同联系电话</option>
+                                                <option value="21">建设单位手机</option>
+                                                <option value="22">建设单位座机</option>
+                                                <option value="23">建设单位联系人</option>
+                                                <option value="24">施工单位联系人</option>
+                                                <option value="25">市政档案号</option>
+                                                <option value="26">有无声像</option>*@
+                                            </select>
+                                        </td>
+                                        <td style="width:16%;">
+                                            <select name="Opter" id="Opter" style="width:70%;padding:2px;">
+                                                <option value="1" selected="selected">包含</option>
+                                                <option value="2">模糊包含</option>
+                                                <option value="3">等于</option>
+                                                <option value="4">前方一致</option>
+                                                <option value="6">大于</option>
+                                                <option value="7">小于</option>
+                                                <option value="8">为空格</option>
+                                                <option value="9">为NULL</option>
+                                                <option value="10">在……之中</option>
+                                                <option value="11">在……之间</option>
+                                                <option value="12">不等于</option>
+                                            </select>
+                                        </td>
+                                        <td style="width:16%;text-align:center;font-weight:bold;vertical-align:middle">
+                                            且/或
+                                            <select name="Orand" id="Orand" style="width:50%;padding:2px;">
+                                                <option value="0" selected="selected">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</option>
+                                                <option value="1">而且</option>
+                                                <option value="2">或者</option>
+                                            </select>
+
+                                        </td>
+                                        
+                                     
+                                        
+                                        <td rowspan="2" style="width:32%;">
+                                            <input id="SearchArear1" hidden="hidden">
+                                            <select name="SearchArear" id="SearchArear" multiple="multiple" style="width:100%;max-width:100%"></select>
+
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td style="width:6%;text-align:center;font-weight:bold;vertical-align:middle">
+                                            检索内容
+                                       
+                                        </td>
+                                        <td colspan="3" style="width:90%;">
+                                            <input type="text" name="SearchContent" id="SearchContent" style="width:57%;max-width:100%;padding:3px;">
+                                            <input type="button" value="添加" id="Ad" name="Ad" onclick="Add()" class="btn btn-primary">
+
+                                        </td>
+                                      
+                                    </tr>
+                                 
+
+
+
+@using (Html.BeginForm())
+{
+                                    <tr>
+
+                                        <td colspan="4" style="text-align:center">
+                                            <input type="button" name="action" id="LookQingzhzo" value="查看请照档案" style="display:none;" onclick="return lookqing('part')" disabled="disabled" class="btn btn-primary">
+                                            <input type="button" name="action" id="LookFinsh1" value="查看竣工档案（工程）" onclick="return lookfinsh('part')" disabled="disabled" class="btn btn-primary" style="display:inline;">
+                                            <input type="button" name="action" id="LookFinsh2" value="查看竣工档案（案卷）" onclick="return lookfinsh2('part')" disabled="disabled" class="btn btn-primary">
+                                            <input type="button" name="action" id="LookFinsh3" value="查看竣工档案（卷内）" onclick="return lookfinsh3('part')" disabled="disabled" class="btn btn-primary">
+                                            <input type="button" name="action" id="LookPlan1" value="查看规划档案" disabled="disabled" style="display:none;" onclick="return lookGuihua('part')" class="btn btn-primary">
+                                            @*<input type="button" name="action" id="LookPlan2" value="查看规划档案(案卷)" disabled="disabled" style="display:none;"onclick="return lookGuihua2('part')" class="btn btn-primary">*@
+                                            <input type="button" name="action" id="LookVideo" value="查看声像档案" disabled="disabled" style="display:none;"onclick="return lookVideo('part')" class="btn btn-primary">
+                                            <input type="button" name="action" id="LookGuanxain1" value="查看管线档案（工程）" disabled="disabled" style="display:none;"onclick="return LookGuanxian1('part')" class="btn btn-primary">
+                                            <input type="button" name="action" id="LookGuanxain2" value="查看管线档案（案卷）" disabled="disabled" style="display:none;"onclick="return LookGuanxian2('part')"  class="btn btn-primary">
+                                            <input type="button" name="action" id="LookGuanxain3" value="查看管线档案（卷内）" disabled="disabled" style="display:none;" onclick="return LookGuanxian3('part')" class="btn btn-primary">
+                                            <input type="button" name="action" id="LookYuanchuan1" value="查看援川档案（工程）"style="display:none;" onclick="return lookYuanchuan1('part')" disabled="disabled" class="btn btn-primary" >
+                                            <input type="button" name="action" id="LookYuanchuan2" value="查看援川档案（案卷）"style="display:none;" onclick="return lookYuanchuan2('part')" disabled="disabled" class="btn btn-primary" >
+                                            <input type="button" name="action" id="LookZhengdi" value="查看征地档案" style="display:none;" disabled="disabled"onclick="return Lookzhengdi('part')" class="btn btn-primary">
+                                            <input type="button" name="action" id="LookYeWu" value="查看业务档案"  disabled="disabled" style="display:none;" onclick="return lookYeWu('part')" class="btn btn-primary">
+                                          
+                                              @*<input type="submit" value="查看当前用户绑定内容" name="action" id="LookUser" class="btn btn-primary">*@
+                                            
+                                            @*<input name="message" id="message" style="background:transparent;border:none;color:Red;width:300px;font-size:20px;"> //隐藏文本域，用于显示提示消息*@
+                                        </td>
+                                        <td style="text-align:center">
+                                          
+                                            <input type="button" value="删除" name="De" id="De" onclick="dele()" class="btn btn-primary">
+                                            <input type="button" value="清空" name="Cl" id="Cl" onclick="Clear()" class="btn btn-primary">
+
+                                        </td>
+
+                                    </tr>
+}
+                                   
+
+                                </table>
+                                <input value="@ViewData["checkname"]" name="checkname" id="checkname" hidden="hidden" />
+
+
+                            </div>
+                         
+                        </div>
+
+
+
+
+                  
+
+                        <div id="part">
+                            
+                        </div>
+                    </div>
+                </from>
+
+          
+        </div>
+    </div>
+
+
+  
+</body>
+</html>
+

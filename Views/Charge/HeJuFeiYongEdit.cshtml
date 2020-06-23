@@ -1,0 +1,256 @@
+﻿@model urban_archive.Models.ArchivesContainer
+
+@{
+    ViewBag.Title = "修改档案装具";
+}
+
+<h2><i class="fa fa-tags kongge"></i>修改档案装具</h2>
+<hr />
+<style type="text/css">
+    .jubu {
+        max-width: 100%;
+    }
+</style>
+<link type="text/css" rel="stylesheet" href="~/Scripts/jquery/jquery-ui.css">
+<script type="text/javascript" src="~/Scripts/jquery/jquery-1.8.3.js"></script>
+<script type="text/javascript" src="~/Scripts/jquery/jquery.ui.core.js"></script>
+<script type="text/javascript" src="~/Scripts/jquery/jquery.ui.datepicker.js"></script>
+<script type="text/javascript" src="~/Scripts/jquery/jquery.ui.widget.js"></script>
+<script type="text/javascript" src="~/Scripts/jquery/jquery-ui-timepicker-addon.js"></script>
+@*<script type="text/javascript" src="~/Scripts/jquery/jquery-ui-timepicker-zh-CN.js"></script>*@
+<script>
+            $(function () {
+                $("#submitDate").datepicker({
+                    changeMonth: true,
+                    changeYear: true
+                });
+            });
+            function add()
+            {
+                var twocm = document.getElementById("twoCentiCnt").value;
+                var threecm = document.getElementById("thrCentiCnt").value;
+                var fourcm = document.getElementById("fourCentiCnt").value;
+                var fivecm = document.getElementById("fiveCentiCnt").value;
+                var danjia = document.getElementById("singleBoxFee").value;
+                document.getElementById("archiveBoxFee").value = (twocm * 1 + threecm * 1 + fourcm * 1 + fivecm * 1) * danjia;
+                var text1 = document.getElementById("coverCnt").value;
+                var text2 = document.getElementById("catalogueCnt").value;
+                var text3 = document.getElementById("proformaCnt").value;
+                var danjia1 = document.getElementById("singleCatalogFee").value;
+                document.getElementById("archiveCataLogFee").value = (text1 * 1 + text2 * 1 + text3 * 1) * danjia1;
+                var total1 = document.getElementById("archiveBoxFee").value;
+                var total2 = document.getElementById("archiveCataLogFee").value;
+                document.getElementById("total").value = total1 * 1 + total2 * 1;
+            }
+            function ok() {
+                var twocm = document.getElementById("twoCentiCnt").value;
+                var threecm = document.getElementById("thrCentiCnt").value;
+                var fourcm = document.getElementById("fourCentiCnt").value;
+                var fivecm = document.getElementById("fiveCentiCnt").value;
+                var text1 = document.getElementById("coverCnt").value;
+                var text2 = document.getElementById("catalogueCnt").value;
+                var text3 = document.getElementById("proformaCnt").value;
+                if (twocm == "") {
+                    document.getElementById("twoCentiCnt").value = 0
+                }
+                if (threecm == "") {
+                    document.getElementById("thrCentiCnt").value = 0
+                }
+                if (fourcm == "") {
+                    document.getElementById("fourCentiCnt").value = 0
+                }
+                if (fivecm == "") {
+                    document.getElementById("fiveCentiCnt").value = 0
+                }
+                if (text1 == "") {
+                    document.getElementById("coverCnt").value = 0
+                }
+                if (text2 == "") {
+                    document.getElementById("catalogueCnt").value = 0
+                }
+                if (text3 == "") {
+                    document.getElementById("proformaCnt").value = 0
+                }
+            }
+
+</script>
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.ID)
+
+        <div class="panel panel-default">
+            <table class="table table-bordered dl-horizontal">
+                <tr>
+                    <td style="background-color:#f9f9f9;width:10%;">
+                        收费编号
+                    </td>
+                    <td colspan="4">
+                        <input type="text" name="seqNo" id="seqNo" value="@ViewBag.seqNo" class="form-control">
+                        @Html.ValidationMessageFor(model => model.seqNo, "", new { @class = "text-danger" })
+                        <input type="submit" name="action" id="maxNo" value="生成最大收费编号">
+                    </td>
+                </tr>
+                <tr>
+                    <td style="background-color:#f9f9f9;width:10%;">
+                        单位名称
+                    </td>
+                    <td colspan="4">
+                        @Html.EditorFor(model => model.DepartName, new { htmlAttributes = new { @class = "form-control jubu" } })
+                        @Html.ValidationMessageFor(model => model.DepartName, "", new { @class = "text-danger" })
+                    </td>
+                </tr>
+                <tr>
+                    <td style="background-color:#f9f9f9;width:10%;" rowspan="2">
+                        档案盒：<br />
+                        单价（元）：
+                        <input type="text" name="singleBoxFee" id="singleBoxFee" value="4" class="form-control">
+                        @*@Html.EditorFor(model => model.singleBoxFee,"4", new { htmlAttributes = new { @class = "form-control" } })*@
+                        @Html.ValidationMessageFor(model => model.singleBoxFee, "", new { @class = "text-danger" })
+                    </td>
+                    <td style="background-color:#f9f9f9;width:10%;">
+                        二厘米（个）
+                    </td>
+                    <td>
+                        @*<input type="text" name="twoCentiCnt" id="twoCentiCnt" class="form-control" onblur="add()">*@
+                        @Html.EditorFor(model => model.twoCentiCnt, new { htmlAttributes = new { @class = "form-control", @onblur = "add()" } })
+                        @Html.ValidationMessageFor(model => model.twoCentiCnt, "", new { @class = "text-danger" })
+                    </td>
+                    <td style="background-color:#f9f9f9;width:10%;">
+                        三厘米（个）
+                    </td>
+                    <td>
+                        @*<input type="text" name="thrCentiCnt" id="thrCentiCnt" class="form-control" onblur="add()">*@
+                        @Html.EditorFor(model => model.thrCentiCnt, new { htmlAttributes = new { @class = "form-control", @onblur = "add()" } })
+                        @Html.ValidationMessageFor(model => model.thrCentiCnt, "", new { @class = "text-danger" })
+                    </td>
+                </tr>
+                <tr>
+
+                    <td style="background-color:#f9f9f9;width:10%;">
+                        四厘米（个）
+                    </td>
+                    <td>
+                        @*<input type="text" name="fourCentiCnt" id="fourCentiCnt" class="form-control" onblur="add()">*@
+                        @Html.EditorFor(model => model.fourCentiCnt, new { htmlAttributes = new { @class = "form-control", @onblur = "add()" } })
+                        @Html.ValidationMessageFor(model => model.fourCentiCnt, "", new { @class = "text-danger" })
+                    </td>
+                    <td style="background-color:#f9f9f9;width:10%;">
+                        五厘米（个）
+                    </td>
+                    <td>
+                        @*<input type="text" name="fiveCentiCnt" id="fiveCentiCnt" class="form-control" onblur="add()">*@
+                        @Html.EditorFor(model => model.fiveCentiCnt, new { htmlAttributes = new { @class = "form-control", @onblur = "add()" } })
+                        @Html.ValidationMessageFor(model => model.fiveCentiCnt, "", new { @class = "text-danger" })
+                    </td>
+                </tr>
+                <tr>
+                    <td style="background-color:#f9f9f9;width:10%;" rowspan="2">
+                        档案盒：<br />
+                        单价（元）
+                        <input type="text" name="singleCatalogFee" id="singleCatalogFee" value="7" class="form-control">
+                        @*@Html.EditorFor(model => model.singleCatalogFee, new { htmlAttributes = new { @class = "form-control", @onblur = "add()" } })*@
+                        @Html.ValidationMessageFor(model => model.singleCatalogFee, "", new { @class = "text-danger" })
+                    </td>
+                    <td style="background-color:#f9f9f9;width:10%;">
+                        封面（个）
+                    </td>
+                    <td>
+                        @*<input type="text" name="coverCnt" id="coverCnt" class="form-control" onblur="add()">*@
+                        @Html.EditorFor(model => model.coverCnt, new { htmlAttributes = new { @class = "form-control", @onblur = "add()" } })
+                        @Html.ValidationMessageFor(model => model.coverCnt, "", new { @class = "text-danger" })
+                    </td>
+                    <td style="background-color:#f9f9f9;width:10%;">
+                        目录（个）
+                    </td>
+                    <td>
+                        @*<input type="text" name="catalogueCnt" id="catalogueCnt" class="form-control" onblur="add()">*@
+                        @Html.EditorFor(model => model.catalogueCnt, new { htmlAttributes = new { @class = "form-control", @onblur = "add()" } })
+                        @Html.ValidationMessageFor(model => model.catalogueCnt, "", new { @class = "text-danger" })
+                    </td>
+                </tr>
+                <tr>
+
+                    <td style="background-color:#f9f9f9;width:10%;">
+                        备考表（个）
+                    </td>
+                    <td colspan="3">
+                        @*<input type="text" name="proformaCnt" id="proformaCnt" class="form-control" onblur="add()">*@
+                        @Html.EditorFor(model => model.proformaCnt, new { htmlAttributes = new { @class = "form-control", @onblur = "add()" } })
+                        @Html.ValidationMessageFor(model => model.proformaCnt, "", new { @class = "text-danger" })
+                    </td>
+
+                </tr>
+                <tr>
+                    <td style="background-color:#f9f9f9;width:10%;" rowspan="2">
+                        费用总计：<br />
+                        总计（元）
+                        <input type="text" name="total" id="total" value="@ViewBag.total" class="form-control">
+                    </td>
+                    <td style="background-color:#f9f9f9;width:10%;">
+                        档案盒费用
+                    </td>
+                    <td>
+                        @Html.EditorFor(model => model.archiveBoxFee, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.archiveBoxFee, "", new { @class = "text-danger" })
+                    </td>
+                    <td style="background-color:#f9f9f9;width:10%;">
+                        档案目录费用
+                    </td>
+                    <td>
+                        @Html.EditorFor(model => model.archiveCataLogFee, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.archiveCataLogFee, "", new { @class = "text-danger" })
+                    </td>
+                </tr>
+                <tr>
+
+                    <td style="background-color:#f9f9f9;width:10%;">
+                        日期
+                    </td>
+                    <td>
+                        @Html.EditorFor(model => model.submitDate, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.submitDate, "", new { @class = "text-danger" })
+                    </td>
+                    <td style="background-color:#f9f9f9;width:10%;">
+                        录入人
+                    </td>
+                    <td>
+                        @Html.DropDownList("Selected", null, "请选择录入人", new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.submitPerson, "", new { @class = "text-danger" })
+                    </td>
+                </tr>
+                <tr>
+
+                    <td style="background-color:#f9f9f9;width:10%;">
+                        转向
+                    </td>
+                    <td colspan="3">
+                        @Html.DropDownList("Selected1", null, "请选择转向科室", new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.submitPerson, "", new { @class = "text-danger" })
+                    </td>
+
+                </tr>
+
+            </table>
+        </div>
+
+        <div style="text-align:center;">
+            <p>
+                <input type="submit" name="action" value="保存" onclick="ok()" class="btn btn-default" />
+                <a href="/Charge/HeJuFeiYongChaXun" class="btn btn-default">返回</a>
+            </p>
+            <div style="height:5px;">
+            </div>
+        </div>
+    </div>
+
+
+}
+
+@*<div>
+        @Html.ActionLink("返回", "Index")
+    </div>*@

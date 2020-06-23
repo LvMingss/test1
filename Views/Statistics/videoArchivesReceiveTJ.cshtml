@@ -1,0 +1,118 @@
+﻿
+@model IEnumerable<urban_archive.Models.VideoArchives>
+<link href="~/Content/jquery-ui.theme.css" rel="stylesheet" />
+<link href="~/Content/Tabulator/version3.0/tabulator.css" rel="stylesheet" />
+<link type="text/css" rel="stylesheet" href="~/Scripts/jquery/jquery-ui.css">
+
+@{
+    ViewBag.Title = "videoArchivesReceiveTJ";
+}
+<script src="~/Scripts/jquery-2.1.1.min.js" type="text/javascript"></script>
+<script type="text/javascript" src="~/Scripts/jquery/jquery-1.8.3.js"></script>
+
+<script src="~/Scripts/jquery-ui.min.js"></script>
+<script type="text/javascript" src="~/Scripts/jquery/jquery.ui.core.js"></script>
+<script type="text/javascript" src="~/Scripts/jquery/jquery.ui.datepicker.js"></script>
+<script type="text/javascript" src="~/Scripts/jquery/jquery.ui.widget.js"></script>
+<script type="text/javascript" src="~/Scripts/jquery/jquery-ui-timepicker-addon.js"></script>
+
+<script src="~/Content/Tabulator/version3.0/tabulator.js"></script>
+<script src="~/Scripts/xlsx.full.min.js"></script>
+<script>
+            $(function () {
+                $("#startdate").datepicker({
+                    changeMonth: true,
+                    changeYear: true
+                });
+            });
+            $(function () {
+                $("#enddate").datepicker({
+                    changeMonth: true,
+                    changeYear: true
+                });
+            });
+</script>
+<script type="text/javascript">
+        
+
+
+
+        $().ready(function () {//在页面加载完成之后用，为了保证js能完整的执行。
+            $(document).ready(function () {
+                var a = $(window).height();
+                var hh = a-180;
+                $(".box-h").height(hh)  // 高度加在类名为box的DIV 上
+
+            })
+            $("#example-table-2").tabulator({
+                height: "100%",
+                virtualDom:false,
+                fitColumns:true,
+                selectable:true,
+                pagination:"local",
+                paginationSize:50,
+                columns: [
+                    
+                { title: "序号", field: "id", headerSort: false,width: 50 },
+                { title: "联系单序号", field: "SheetID", headerSort: false,width: 100 },
+                { title: "项目顺序号", field: "videoProjectSeqNo",headerSort: false, width: 100 },
+                { title: "工程名称", field: "projectName",headerSort: false, width: 300 },
+                { title: "工程地点", field: "location",headerSort: false, width: 300 },
+                { title: "经办人", field: "operater",headerSort: false, },
+                { title: "接收日期", field: "dateReceived",headerSort: false,  },
+                { title: "档案状态", field: "videoStatus",headerSort: false, },
+                ],
+            });
+            //trigger download of data.xlsx file
+            $("#download-xlsx").click(function(){
+                $("#example-table-2").tabulator("download", "xlsx", "声像档案接收统计.xlsx");
+            });
+            var temp = new Array();
+            var data=@(new HtmlString(@ViewBag.result));
+            for (var i = 0; i < data.length;i++) {
+                var a = data[i].dateReceived
+                if(a!=null){
+                    var result = a.slice(0,10)
+                }
+                //var b = data[i].dateReceived
+                //if(b!=null){
+                //    var date = new Date(parseInt(b.slice(6)))
+                //    var result = date.getFullYear()+'/'+(parseInt(date.getMonth())+1)+'/'+date.getDate()
+                //}
+                temp.push({ "id": i + 1,"ID":data[i].ID,"videoStatus":data[i].videoStatus,"SheetID":data[i].SheetID,"videoProjectSeqNo":data[i].videoProjectSeqNo, "projectName": data[i].projectName, "location": data[i].location, "operater": data[i].operater, "dateReceived":result,   });
+            }
+
+            $("#example-table-2").tabulator("setData", temp);
+            $(window).resize(function () {
+                $(document).ready(function () {
+                    var a = $(window).height();
+                    var hh = a-180;
+                    $(".box-h").height(hh)  // 高度加在类名为box的DIV 上
+                $("#example-table-2").tabulator("redraw",true);
+
+                })
+            });
+
+        });
+</script>
+
+<section>
+    <h2 style="float:left;"><i class="fa fa-tags kongge"></i>声像档案接收统计</h2>
+    <ol class="breadcrumb">
+        <li class="active">档案统计</li>
+        <li class="active">档案接收统计</li>
+        <li>声像档案</li>
+    </ol>
+    <div style="clear:both;"></div>
+</section>
+@using (Html.BeginForm())
+{
+    <div class="form-inline">
+        <p>
+            接收日期：<input type="text" name="startdate" id="startdate" value="@ViewData["start"]" class="form-control" style="display:inline">至<input type="text" value="@ViewData["end"]" name="enddate" id="enddate" class="form-control" style="display:inline">
+            <input type="submit" class="btn btn-default" value="查找" />
+        </p>
+    </div>
+}
+<div id="example-table-2" class="box-h"> </div>
+<div style="text-align:center;margin-top:5px;"><button id="download-xlsx" class="btn btn-default">下载表格</button></div>

@@ -1,0 +1,242 @@
+﻿@using urban_archive.Models
+@model LoginViewModel
+
+@{
+    Layout = null;
+    //要使视图不使用布局或模板页，那么需要把Layout赋值为空
+}
+<meta http-equiv="X-UA-Compatible" content="IE=10,chrome=1" /> 
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>@ViewBag.Title 登录-青岛市多维城市建设档案数字化管理系统</title>
+    <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    @*<link href='http://fonts.useso.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>*@
+    @*<link href="~/Content/lib/bootstrap/css/bootstrap.css" rel="stylesheet" type="text/css" />*@
+    <link href="~/Content/lib/font-awesome/css/font-awesome.css" rel="stylesheet" />
+    <link href="~/Content/stylesheets/theme.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/stylesheets/premium.css" rel="stylesheet" type="text/css" />
+
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+    <style type="text/css">
+        .yibai{width:100%;}
+    </style>
+    <script src="~/Scripts/jquery-2.1.1.min.js"></script>
+    <script type="text/javascript"> 
+        $(document).ready(function () {
+            var height = $(window).height();   // 浏览器的高度
+            var width = $(window).width();   // 浏览器的高度
+            var a = (height - 360) / 2;
+            $(".box").height(a)
+            $(".box-w").width(width)
+
+        });
+        $(window).resize(function () {   //窗口大小变化自动执行
+            var height = $(window).height();   // 浏览器的高度
+            var width = $(window).width();   // 浏览器的高度
+            var a = (height - 360) / 2;
+            $(".box").height(a)
+            $(".box-w").width(width)
+        });
+        //设置记住我
+        function getCookie(c_name)      //根据分隔符每个变量的值
+            {
+                     if (document.cookie.length > 0) {
+                            c_start = document.cookie.indexOf(c_name + "=")
+                             if (c_start != -1) { 
+                                     c_start = c_start + c_name.length + 1;
+                                    c_end = document.cookie.indexOf("^",c_start);
+                                    if (c_end==-1)
+                                            c_end=document.cookie.length;
+                                     return unescape(document.cookie.substring(c_start,c_end));
+                            } 
+                      }
+                     return "";
+              }
+
+        function setCookie()        //设置cookie
+        {
+                     //获取下拉框的值
+                     var select = document.getElementById('Name');
+                     var index = select.selectedIndex;
+                     var exdate = new Date();
+                     var n_value = select.options[index].text;
+                     var p_value = document.getElementById('Password').value;
+                     var expiredays = 365;
+                    
+                     exdate.setDate(exdate.getDate() + expiredays);
+                     document.cookie = 'username' + "=" + escape(n_value) + "^" + 'password' + "=" + escape(p_value) + ((expiredays == null) ? "" : "^;expires=" + exdate.toGMTString());
+                    
+             }
+        function cleanCookie () {     //使cookie过期
+            document.cookie = 'username' + "=" + ";" + 'password' + "=" + ";expires=Thu, 01-Jan-70 00:00:01 GMT";
+             }
+
+        //页面一加载进来，首先判断功能有无Cookie,若有，加载之
+        $(document).ready(function () {
+                
+            
+                 var username = getCookie('username');
+                 var password = getCookie('password');
+                 if (username != null && username != "" && password != null && password != "")
+                 {
+                    
+                     document.getElementById('Name').value = username;
+                     document.getElementById('Password').value = password;
+                     document.getElementById('remember').checked = true;
+                 }
+                
+            
+
+        });
+        function onSubmit()
+        {
+            if( document.getElementById('remember').checked == true)
+            {
+                setCookie();
+            }
+            else
+            {
+                cleanCookie();
+            }
+        }
+    </script>    
+    @*<script>
+    //$(function () {
+    //    //判断之前是否有设置cookie，如果有，则设置【记住我】选择框
+    //    var Website_username = Cookies.get('Website_username');
+    //    var Website_password = Cookies.get('Website_password');
+    //    if (Website_username != undefined) {
+    //        $("#RememberMe").attr("checked", "checked");
+    //    }
+    //    else {
+    //        $("#RememberMe").removeAttr("checked");
+    //    }
+    //    //读取cookie
+    //    if ($("#RememberMe:checked").length > 0) {
+    //        $("#Name").val(Website_username);
+    //        $("#Password").val(Website_password);
+    //    }
+    //});
+    ////根据是否勾选记住我记录或清除cookie
+    //function onSubmit() {
+    //    if ($("#RememberMe:checked").length > 0) {
+    //        //设置cookie
+    //        Cookies.set('Website_username', $("#Name").val(), { expires: 1, path: '/' });
+    //        Cookies.set('Website_password', $("#Password").val(), { expires: 1, path: '/' });
+    //    } else {
+    //        //清除cookie
+    //        Cookies.remove('Website_username', { path: '/' });
+    //        Cookies.remove('Website_password', { path: '/' });
+    //    }
+    //};
+    </script>*@
+
+    @*@section Scripts {
+        @Scripts.Render("~/bundles/jqueryval")
+    }*@
+</head>
+<body style="overflow:hidden;background-color:white;background-image:none;">
+    <div class="box box-w" style="text-align:center;display:table;">
+        <div style="display:table-cell;vertical-align:middle;padding-top:5%;">
+            <h1 style="margin-top:0px;font-family:'Microsoft YaHei';
+    font-size: 2.5em; 
+	color:#015e9a;
+    font-weight:bold;
+    text-shadow: 1px 2px 1px #b1b1b1,1px 1px #333,-1px -1px 2px #FFFFFF;">
+                青岛市多维城市建设档案数字化管理系统
+            </h1>
+            <img src="~/Content/images/line.png" alt="line" width="100%"/>
+        </div>              
+    </div>
+    <div style="height: 360px; background-image: url('../../Content/images/qingdao.png'); background-size: 100% 100%";>
+        <div class="dialog" style="height:360px;padding-top:50px;margin-top:0px;">
+            <div class="panel panel-default">
+                <p class="panel-heading no-collapse" style="text-align:center;font-size:16px;">登&nbsp;&nbsp;录</p>
+                <div class="panel-body" >
+                    <section id="loginForm">
+                        @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+                        {
+
+                            @Html.AntiForgeryToken()
+                            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+                            <div class="form-group" style="margin-left:1px;margin-right:1px;">
+                                @*<label>Username</label>*@
+                                <div style="height:12px;"></div>
+                                <div>
+                                    <i class='fa fa-user' style='color:#428bca;vertical-align:middle; padding:2px 0;'></i> 
+                                    
+                                        @Html.DropDownList("Name", null, "请选择用户名", htmlAttributes: new { @style = "display:inline;width:93%;", @class = "form-control" })
+                                        @Html.ValidationMessageFor(m => m.Name, "", new { @class = "text-danger" })
+
+
+                                    
+                                </div>     
+                            </div>
+
+                            <div class="form-group" style="margin-left:1px;margin-right:1px;margin-bottom:5px;">
+                                @*<label>Password</label>*@
+                                <div style="height:12px;"></div>
+                                @*<input type="password" class="form-controlspan12 form-control">*@
+                                <div>
+                                    <i class='fa fa-lock' style='color:#428bca;vertical-align:middle; padding:2px 0;'></i> 
+                                    @Html.PasswordFor(m => m.Password, new { @style = "display:inline;width:93%;", @class = "form-control" })
+                                    @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            @*<div class="form-group"style="display:inline">
+                            <div class="form-group"style="display:inline">
+                            @*<div class="form-group"style="display:inline">
+                                @Html.LabelFor(model => model.RememberMe, "记住我", new { @class = "control-label col-md-2", @style = "float:right;font-weight:normal;padding:0px 10px 0px 0px;" })
+                                <div class="col-md-10">
+                                    @Html.EditorFor(model => model.RememberMe, new { htmlAttributes = new {@style = "float:right;font-weight:normal;padding:0px 10px 0px 0px;" } })
+                                    @Html.ValidationMessageFor(model => model.RememberMe)
+                                </div>
+                            </div>*@
+
+                            <label class="remember-me" id="RememberMe" style="float:right;font-weight:normal;padding:0px 10px 0px 0px;"><input type="checkbox" id="remember"> 记住我</label>
+
+                            <div class="form-group" style="margin-left:1px;margin-right:1px;text-align:center;">
+                                <input type="submit" onclick="onSubmit()" value="登 录" class="btn btn-primary yibai" />
+                            </div>
+                            <div class="clearfix"></div>
+                            <input  id="username" name="username"  hidden="hidden">
+                            @*<script>
+                                document.getElementById("Name").onchange = function ()
+                            {
+                                document.getElementById("username").value = this.options[this.options.selectedIndex].text;
+                                
+                             }
+                                document.getElementById("Name").onselect = function () {
+                                    document.getElementById("username").value = this.options[this.options.selectedIndex].text;
+
+                                }
+                            </script>*@
+                        }
+                    </section>
+
+
+                </div>
+            </div>
+        </div>
+        
+        @*<p class="pull-right" style=""><a href="#" target="blank" style="font-size: .75em; margin-top: .25em;">Design by Portnine</a></p>*@
+        @*<p><a href="reset-password.html">Forgot your password?</a></p>*@
+    </div>
+    <div class="box box-w" style="text-align:center;display:table;">
+        <div style="display:table-cell;vertical-align:middle;font-family:'Microsoft YaHei'">
+            <p>@*Copyright © 2017 All Rights Reserved.*@版权所有：青岛市城市建设档案馆</p>
+            <p>技术支持：青岛经纬蓝图信息技术有限公司</p>
+        </div>
+
+    </div>  
+</body>
+</html>
+
+

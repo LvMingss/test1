@@ -1,0 +1,41 @@
+﻿
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>预验收意见编号</title>
+
+    <script>
+        function closewindow() {
+            window.close()
+        }
+    </script>
+</head>
+@using (Html.BeginForm())
+{
+<body>
+    <div class="panel panel-default">
+        <table class="table table-bordered dl-horizontal">
+            <tr>
+                <td style="background-color:#f9f9f9;width:25%;">
+                    请输入预验收意见编号:
+                </td>
+                <td>
+                    <input type="text" name="yuyanshgouNo" id="yuyanshgouNo" class="form-control " />
+                </td>
+                
+            </tr>
+            <tr>
+                <td colspan="4" style="text-align:center;">
+                    <input type="submit" name="action" class="btn btn-default" id="ok" value="确认编号并打印预验收意见书" />
+                    <input type="button" class="btn btn-default" id="cancel" value="取消" onclick="closewindow()" />
+
+                </td>
+
+            </tr>
+        </table>
+        </div>
+</body>
+}
+</html>

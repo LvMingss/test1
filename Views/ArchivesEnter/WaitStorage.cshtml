@@ -1,0 +1,214 @@
+﻿@model IEnumerable<urban_archive.Models.vw_projectList>
+@*@using PagedList.Mvc;
+<link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />*@
+@*<link href="~/Content/jquery-ui.theme.css" rel="stylesheet" />*@
+<link href="~/Content/Tabulator/version3.0/tabulator.css" rel="stylesheet" />
+@{
+    ViewBag.Title = "Index";
+}
+<script src="~/Scripts/jquery-2.1.1.min.js" type="text/javascript"></script>
+<script src="~/Scripts/jquery-ui.min.js"></script>
+<script src="~/Content/Tabulator/version3.0/tabulator.js"></script>
+<script type="text/javascript">
+    function del() {
+        var msg = "确认要入库吗?";
+        if (confirm(msg) == true) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+    var j = function (value, data, cell, row, options) { //plain text value
+        return "<i class='fa fa-pencil-square-o' style='color:#428bca;;vertical-align:middle; padding:2px 0;'></i> "
+    };
+    var k = function (value, data, cell, row, options) { //plain text value
+        return "<i class='glyphicon glyphicon-download-alt' style='color:#428bca;;vertical-align:middle; padding:2px 0;'></i> "
+        };
+
+
+    $().ready(function () {//在页面加载完成之后用，为了保证js能完整的执行。
+        $(document).ready(function () {
+            var a = $(window).height();
+            var hh = a-160;
+            $(".box-h").height(hh)  // 高度加在类名为box的DIV 上
+
+        })
+            $("#example-table-2").tabulator({
+                height:"100%",
+                virtualDom:false,
+                
+                //columnMinWidth:100,
+                //minWidth
+                fitColumns:true,                
+                selectable:true, //make rows selectable
+                pagination:"local",
+                paginationSize:50,
+                columns: [
+                {
+                    title: "修改", field: "j", width: 50 ,formatter: j,headerSort: false, align: "center", cellClick: function (e,cell) {
+                        var url = '/ArchivesEnter/Enter?id=' + cell.getValue();
+                        window.location.href = url;
+                        //alert("您没有此权限!")
+                    }
+                },
+                {
+                    title: "入库", field: "k", width:50 ,formatter: k, headerSort: false,align: "center", cellClick: function (e,cell) {
+                        if(del()){
+                            var url = '/ArchivesEnter/EnterStorage?id=' + cell.getValue();
+                            window.location.href = url;
+
+                            //alert("您没有此权限!")
+                        }}
+                },
+                { title: "工程名称", field: "a", headerSort: false,width: 200 },
+                { title: "工程序号", field: "b", headerSort: false,width: 100 },
+                { title: "项目顺序号", field: "c",headerSort: false, width: 100 },
+                { title: "整理人", field: "d",headerSort: false, width: 80 },
+                { title: "整理日期", field: "e",headerSort: false, width: 100 },
+                { title: "设计单位", field: "f", headerSort: false,width: 200 },
+                { title: "施工单位", field: "g", headerSort: false,width: 200 },
+                { title: "档号", field: "h",headerSort: false, width: 200 },
+                { title: "起始排架号", field: "i",headerSort: false,minWidth:100 },
+
+
+
+                ],
+            });
+
+            var temp = new Array();
+            var data=@(new HtmlString(@ViewBag.result));
+            for (var i = 0; i < data.length;i++) {
+                var b = data[i].lqDate
+                if(b!=null){
+                    var result1 = b.slice(0,10)
+                }
+                var h = data[i].startArchiveNo+"—"+data[i].endArchiveNo
+                temp.push({ "id": i + 1, "a": data[i].projectName, "b": data[i].projectNo, "c": data[i].paperProjectSeqNo, "d": data[i].collator,"e":result1,"f":data[i].disignOrganization,"g": data[i].constructionOrganization, "h":h, "i":data[i].startPaijiaNo, "j": data[i].paperProjectSeqNo,"k": data[i].paperProjectSeqNo,"n": data[i].projectID});
+            }
+
+            $("#example-table-2").tabulator("setData", temp);
+            $(window).resize(function () {
+                $("#example-table-2").tabulator("redraw",true);
+                var a = $(window).height();
+                var hh = a-160;
+                $(".box-h").height(hh)  // 高度加在类名为box的DIV 上
+                $("#example-table-2").tabulator("redraw",true);
+            });
+
+        });
+</script>
+<section>
+    <h2 style="float:left;"><i class="fa fa-tags kongge"></i>等待入库</h2>
+    <ol class="breadcrumb">
+        <li class="active">竣工档案</li>
+        <li class="active">档案录入</li>
+        <li>等待入库</li>
+    </ol>
+    <div style="clear:both;"></div>
+</section>
+    @using (Html.BeginForm("WaitStorage", "ArchivesEnter", FormMethod.Get))
+    {
+        <p>
+                检索条件：@Html.DropDownList("SelectedID", null, new { @class = "form-control", @style = "display:inline" })  检索内容：@Html.TextBox("SearchString", ViewBag.CurrentFilter as string, new { @class = "form-control", @style = "display:inline" })
+                <input type="submit" value="查找" class="btn btn-default" />
+</p>
+
+    }
+    <div id="example-table-2" class="box-h" > </div>
+    @*<table class="table table-bordered table-striped">
+            <tr>
+
+                <th>
+                    工程名称
+                </th>
+
+                <th>
+                    工程序号
+                </th>
+
+                <th>
+                    项目顺序号
+                </th>
+
+                <th>
+                    整理人
+                </th>
+
+                <th>
+                    整理日期
+                </th>
+
+                <th>
+                    设计单位
+                </th>
+
+                <th>
+                    施工单位
+                </th>
+
+                <th>
+                    档号
+                </th>
+
+                <th>
+                    起始排架号
+                </th>
+
+
+
+                <th>
+                    修改
+                </th>
+                <th>
+                    入库
+                </th>
+            </tr>
+
+            @foreach (var item in Model)
+            {
+                <tr>
+
+                    <td style="width:25%;">
+                        @Html.DisplayFor(modelItem => item.projectName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.projectNo)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.paperProjectSeqNo)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.collator)
+                    </td>
+
+                    <td>
+                        @Html.DisplayFor(modelItem => item.lqDate)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.disignOrganization)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.constructionOrganization)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.startArchiveNo)-@Html.DisplayFor(modelItem => item.endArchiveNo)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.startPaijiaNo)
+                    </td>
+
+                    <td>
+                        @Html.ActionLink("修改", "Enter", "ArchivesEnter", new { id = item.paperProjectSeqNo }, new { style = "color:red" })
+                    </td>
+
+                    <td>
+                        @Html.ActionLink("入库", "EnterStorage", "ArchivesEnter", new { id = item.paperProjectSeqNo }, new { style = "color:red" })
+                    </td>
+
+
+                </tr>
+            }
+        </table>*@
+
+
+

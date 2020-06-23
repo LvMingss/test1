@@ -1,0 +1,365 @@
+﻿
+@{
+    Layout = null;
+    //要使视图不使用布局或模板页，那么需要把Layout赋值为空
+}
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>@ViewBag.Title - 青岛市多维城市建设档案数字化管理系统</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link href="~/Content/font-awesome-4.7.0/css/font-awesome.css" rel="stylesheet" />
+    <link href="~/Content/new.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/stylesheets/theme.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/stylesheets/premium.css" rel="stylesheet" />
+
+    <style type="text/css">
+        #line-chart {
+            height: 300px;
+            width: 800px;
+            margin: 0px auto;
+            margin-top: 1em;
+        }
+
+        .navbar-default .navbar-brand, .navbar-default .navbar-brand:hover {
+            color: #fff;
+        }
+    </style>
+    <style>
+        .loader {
+            box-sizing: border-box;
+            height: 100%;
+            width: 100%;
+            padding-top: 100px;
+            background-color: #ddd;
+            color: #fff;
+            font-size: 30px;
+            font-weight: bold;
+            text-align: center;
+        }
+
+            .loader i {
+                margin-bottom: 20px;
+                font-size: 60px;
+            }
+    </style>
+
+    <link href="~/Content/AdminLTE-2.3.7/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+
+
+
+    <link href="~/Content/AdminLTE-2.3.7/dist/css/AdminLTE.min.css" rel="stylesheet" />
+
+    <link href="~/Content/AdminLTE-2.3.7/dist/css/skins/_all-skins.min.css" rel="stylesheet" />
+
+
+
+    <link href="~/Content/Tabulator/version3.0/tabulator.css" rel="stylesheet" />
+    <script src="~/Scripts/jquery-2.1.1.min.js" type="text/javascript"></script>
+
+    <script src="~/Scripts/jquery-ui.min.js"></script>
+    <script src="~/Content/Tabulator/version3.0/tabulator.js"></script>
+    <script type="text/javascript">
+
+
+        var chec=function(value,data,cell,row,options){
+
+            return "<i class='fa fa-search-plus' style='color:#428bca;;vertical-align:middle; padding:2px 0;'></i> "
+
+        };
+        $().ready(function () {//在页面加载完成之后用，为了保证js能完整的执行。
+            $(document).ready(function () {
+
+                document.getElementById('juanneiquanbumulu').style.color = "red";
+                var a = $(window).height();
+                var hh = a-160;
+                $(".box-h").height(hh)  // 高度加在类名为box的DIV 上
+            })
+            $("#example-table-2").tabulator({
+                height:"100%",
+                virtualDom:false,
+                fitColumns:false,
+                selectable:1, //make rows selectable
+                pagination: "remote",
+                ajaxURL: "/ArchiveSearch2/LookGuanXianFinshFilesData/",
+                paginator: function (url, pageNo, pageSize, ajaxParams) {
+                var SerachText= document.getElementById("SerachText").value;
+                Url = url + "?page=" + pageNo + "&SerachText=" + encodeURI(SerachText);
+
+
+                    return Url; //must return the string of the page request URL
+                },
+                columns: [
+{
+    title: "查看", field: "dengjihao", width: 50, formatter: chec, headerSort: false, sorter: "string", align: "center", cellClick: function (e, cell) {
+
+        $("#checkname1").val(cell.getValue());
+
+    }
+},
+
+
+                { title: "登记号", field: "dengjihao", headerSort: false, align: "center", width: 110 },
+                { title: "文件编号", field: "fileNo", headerSort: false, align: "center", width: 180 },
+                { title: "文件材料题名", field: "fileName", headerSort: false, align: "center", width: 400 },
+                { title: "责任者", field: "responsible", headerSort: false, align: "center", width: 350 },
+                { title: "类型", field: "type", headerSort: false, width: 100 },
+                { title: "起页", field: "startPageNo", headerSort: false, width: 80 },
+                ],
+
+            });
+            });
+        function createIframe0(url) {
+            document.getElementById("checkname2").value=document.getElementById("123").contentWindow.document.getElementById("checkname1").value;
+            var ch=document.getElementById("checkname2").value;
+            document.getElementById("example-table-2").style.display = "none";
+            document.getElementById("CurUser").style.display="none";
+            document.getElementById("NoCurUser").style.display="none";
+            document.getElementById("div-that-holds-the-iframe").style.display="block";
+            document.getElementById('Projectzhulu').style.color="red";
+            document.getElementById('Allprojectjilu').style.color="black";
+            document.getElementById('Allarchivejilu').style.color="black";
+            document.getElementById('Archivezhulu').style.color="black";
+            document.getElementById('juanneiquanbumulu').style.color="black";
+            document.getElementById('juneixinxi').style.color="black";
+            var i=document.getElementById("123");
+            i.contentWindow.location.href=url+ch;
+            i.scrolling ="auto";
+            i.frameborder ="0";
+            i.width ="100%";
+            //i.height ="1000px";
+
+
+        };
+        function createIframe(url) {
+
+
+            var selectedData = $("#example-table-2").tabulator("getSelectedData");
+
+            var ch = selectedData[0].dengjihao;
+            //alert(ch);
+
+            document.getElementById("example-table-2").style.display = "none";
+            document.getElementById("CurUser").style.display="none";
+            document.getElementById("NoCurUser").style.display ="none";
+            document.getElementById("div-that-holds-the-iframe").style.display = "block";
+
+            document.getElementById('Projectzhulu').style.color="black";
+            document.getElementById('Allprojectjilu').style.color="red";
+            document.getElementById('Allarchivejilu').style.color="black";
+            document.getElementById('Archivezhulu').style.color="black";
+            document.getElementById('juanneiquanbumulu').style.color="black";
+            document.getElementById('juneixinxi').style.color="black";
+            var i=document.getElementById("123");
+            i.contentWindow.location.href=url+ch;
+            i.scrolling ="auto";
+            i.frameborder ="0";
+            i.width ="100%";
+            //i.height ="1000px";
+
+
+        };
+        function createIframe1(url) {
+            //if(document.getElementById("example-table-2").style.display =="none")
+            //{
+            //    document.getElementById("example-table-2").style.display = "block";
+            //}
+            //if(document.getElementById("CurUser").style.display=="none"&&document.getElementById("NoCurUser").style.display =="none")
+            //{
+            //    document.getElementById("CurUser").style.display="block";
+            //    document.getElementById("NoCurUser").style.display="block";
+            //}
+            //if( document.getElementById("div-that-holds-the-iframe").style.display=="block")
+            //{
+            //    document.getElementById("div-that-holds-the-iframe").style.display = "none";
+            //}
+            //var selectedData = $("#example-table-2").tabulator("getSelectedData");
+            //document.getElementById("checkname1").value= selectedData[0].registrationNo;
+            //document.getElementById('Projectzhulu').style.color="black";
+            //document.getElementById('Allprojectjilu').style.color="black";
+            //document.getElementById('Allarchivejilu').style.color="red";
+            //document.getElementById('Archivezhulu').style.color="black";
+            //document.getElementById('juanneiquanbumulu').style.color="black";
+            //document.getElementById('juneixinxi').style.color="black";
+            //document.getElementById("count").innerHTML = "共检索到数据:" + document.getElementById("checkname5").value;
+
+
+            var selectedData = $("#example-table-2").tabulator("getSelectedData");
+
+            var ch = selectedData[0].dengjihao;
+
+            document.getElementById("example-table-2").style.display = "none";
+            document.getElementById("CurUser").style.display = "none";
+            document.getElementById("NoCurUser").style.display = "none";
+            document.getElementById("div-that-holds-the-iframe").style.display = "block";
+
+            document.getElementById('Projectzhulu').style.color = "black";
+            document.getElementById('Allprojectjilu').style.color = "black";
+            document.getElementById('Allarchivejilu').style.color = "red";
+            //document.getElementById('Allarchivejilu').style.color = "black";
+            document.getElementById('Archivezhulu').style.color = "black";
+            document.getElementById('juanneiquanbumulu').style.color = "black";
+            document.getElementById('juneixinxi').style.color = "black";
+            var i = document.getElementById("123");
+            i.contentWindow.location.href = url + ch;
+            i.scrolling = "auto";
+            i.frameborder = "0";
+            i.width = "100%";
+
+        };
+        function createIframe2(url) {
+            var selectedData = $("#example-table-2").tabulator("getSelectedData");
+
+            var ch = selectedData[0].dengjihao;
+            //alert(ch);
+            document.getElementById("example-table-2").style.display = "none";
+            document.getElementById("CurUser").style.display="none";
+            document.getElementById("NoCurUser").style.display="none";
+            document.getElementById("div-that-holds-the-iframe").style.display = "block";
+            document.getElementById('Projectzhulu').style.color="black";
+            document.getElementById('Allprojectjilu').style.color="black";
+            document.getElementById('Allarchivejilu').style.color="black";
+            document.getElementById('Archivezhulu').style.color="red";
+            document.getElementById('juanneiquanbumulu').style.color="black";
+            document.getElementById('juneixinxi').style.color="black";
+            var i=document.getElementById("123");
+            i.contentWindow.location.href=url+'?id3='+ch;
+            i.scrolling ="auto";
+            i.frameborder ="0";
+            i.width ="100%";
+            //i.height ="1000px";
+
+
+
+        };
+        function createIframe3(url) {
+            var selectedData = $("#example-table-2").tabulator("getSelectedData");
+
+            var ch = selectedData[0].dengjihao;
+            document.getElementById("example-table-2").style.display = "none";
+            document.getElementById("CurUser").style.display="none";
+            document.getElementById("NoCurUser").style.display="none";
+            document.getElementById("div-that-holds-the-iframe").style.display = "block";
+            document.getElementById('Projectzhulu').style.color="black";
+            document.getElementById('Allprojectjilu').style.color="black";
+            document.getElementById('Allarchivejilu').style.color="black";
+            document.getElementById('Archivezhulu').style.color="black";
+            document.getElementById('juanneiquanbumulu').style.color="red";
+            document.getElementById('juneixinxi').style.color="black";
+            var i=document.getElementById("123");
+            i.contentWindow.location.href=url+'?id1='+ch;
+            i.scrolling ="auto";
+            i.frameborder ="0";
+            i.width ="100%";
+            //i.height ="1000px";
+
+
+
+        };
+        function createIframe4(url) {
+
+
+            document.getElementById("checkname3").value=document.getElementById("123").contentWindow.document.getElementById("checkname1").value;
+            var ch=document.getElementById("checkname3").value;
+            document.getElementById("example-table-2").style.display = "none";
+            document.getElementById("CurUser").style.display="none";
+            document.getElementById("NoCurUser").style.display="none";
+            document.getElementById("div-that-holds-the-iframe").style.display = "block";
+            document.getElementById('Projectzhulu').style.color="black";
+            document.getElementById('Allprojectjilu').style.color="black";
+            document.getElementById('Allarchivejilu').style.color="black";
+            document.getElementById('Archivezhulu').style.color="black";
+            document.getElementById('juanneiquanbumulu').style.color="black";
+            document.getElementById('juneixinxi').style.color="red";
+            var i=document.getElementById("123");
+            i.contentWindow.location.href=url+ch;
+            i.scrolling ="auto";
+            i.frameborder ="0";
+            i.width ="100%";
+            //i.height ="1000px";
+
+
+
+        };
+        function createIframe6() {
+
+            var selectedData = $("#example-table-2").tabulator("getSelectedData");
+            var name="";
+            //alert(1);
+            //alert(selectedData[0].archivesNo);
+            for(var j=0;j<selectedData.length;j++)
+            {
+                name+=selectedData[j].archivesNo+",";
+            }
+            var url3=document.getElementById("url1").value;
+            //alert(name);
+            window.open("/ArchiveSearch/CurUserAdd/?id3="+name+"type=1");
+
+        };
+        function createIframe7()
+        {
+            var selectedData = $("#example-table-2").tabulator("getSelectedData");
+            var name="";
+            //alert(1);
+            //alert(selectedData[0].archivesNo);
+            for(var j=0;j<selectedData.length;j++)
+            {
+                name+=selectedData[j].archivesNo+",";
+            }
+            //alert(name);
+            window.open("/ArchiveSearch/NoCurUser/?id3="+name+"type=1");
+        };
+
+        function change()
+        {
+
+            $("#example-table-2").tabulator("setPage", document.getElementById("curruntpage").value);
+        }
+
+
+    </script>
+</head>
+<body style="background:#ecf0f5;padding:15px;padding-bottom:0px;">
+
+
+    <div style="overflow-y:auto;overflow-x:hidden; height:100%;">
+        <div class="nav-tabs-custom">
+            <ul class="nav nav-tabs" style="cursor:pointer;">
+
+                <li><a onclick="return createIframe0('/ArchiveSearch/ProjectInfoes/')" id="Projectzhulu" data-toggle="tab">工程项目著录单</a></li>
+                <li><a onclick="return createIframe('/ArchiveSearch/Allprojectjilu1/?dengjihao=')" id="Allprojectjilu" data-toggle="tab">工程全部记录</a></li>
+                <li><a onclick="return createIframe1('/ArchiveSearch/Allprojectanjuan/?registrationNo=')" id="Allarchivejilu" data-toggle="tab">案卷全部记录</a></li>
+                <li><a onclick="return createIframe2('/ArchiveSearch/anjuanzhuludan/')" id="Archivezhulu" data-toggle="tab">案卷著录单</a></li>
+                <li class="active"><a onclick="return createIframe3('/ArchiveSearch/Juanneimulu/')" id="juanneiquanbumulu" data-toggle="tab">卷内全部目录</a></li>
+                <li><a onclick="return createIframe4('/ArchiveSearch/Juanneimuluxinxi/')" id="juneixinxi" data-toggle="tab">卷内目录信息</a></li>
+                <li><a onclick="return createIframe6()" @*style="display:none;"*@ id="CurUser" data-toggle="tab">当前用户添加</a></li>
+                <li><a onclick="return createIframe7()" @*style="display:none;"*@ id="NoCurUser" data-toggle="tab">非当前用户添加</a></li>
+                <li><a id="count" data-toggle="tab" disabled="disabled" style="color:blue;cursor:default;">共检索到数据:@ViewData["count"]</a></li>
+                <li><a id="count1" style="color:blue;cursor:default;"><input type="text" name="curruntpage" id="curruntpage" onblur="change()" style="width:30px;height:18px;border:0px;">/@ViewData["totalpage"] </a></li>
+            </ul>
+            <div class="tab-content">
+                <input name="checkname1" id="checkname1" hidden="hidden">@*记录案卷登记号*@
+                <input name="SerachText" id="SerachText" value="@ViewData["SerachText"]" hidden="hidden" />
+                <input name="checkname2" id="checkname2" hidden="hidden">@*记录工程ID*@
+                <input name="checkname3" id="checkname3" hidden="hidden">@*记录文件编号*@
+
+                <input name="checkname5" id="checkname5" hidden="hidden" value="@ViewData["count"]">@*记录工程全部记录条数*@
+                <input value="@ViewData["url"]" name="url" id="url" hidden="hidden">
+                <input value="@ViewData["url1"]" name="url" id="url1" hidden="hidden">
+
+
+                <div id="example-table-2" class="box-h">
+                    <div class="loader"><i class="fa fa-spinner fa-pulse fa-fw"></i><div>数据加载中...</div></div>
+                </div>
+                <div id="div-that-holds-the-iframe" style="display:none;border:0px">
+                    <iframe id="123" name="123" class="box-h" style="border:2px solid #ddd"></iframe>
+                </div>
+            </div>
+        </div>
+        @*}*@
+    </div>
+
+</body>
+</html>

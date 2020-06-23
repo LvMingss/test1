@@ -1,0 +1,554 @@
+﻿<link type="text/css" rel="stylesheet" href="~/Scripts/jquery/jquery-ui.css">
+<link href="~/Content/Tabulator/version3.0/tabulator.css" rel="stylesheet" />
+<script src="~/Scripts/jquery-2.1.1.min.js" type="text/javascript"></script>
+<script type="text/javascript" src="~/Scripts/jquery/jquery-1.8.3.js"></script>
+<script src="~/Scripts/jquery-ui.min.js"></script>
+
+<script type="text/javascript" src="~/Scripts/jquery/jquery.ui.core.js"></script>
+<script type="text/javascript" src="~/Scripts/jquery/jquery.ui.datepicker.js"></script>
+<script type="text/javascript" src="~/Scripts/jquery/jquery.ui.widget.js"></script>
+<script type="text/javascript" src="~/Scripts/jquery/jquery-ui-timepicker-addon.js"></script>
+<script src="~/Content/Tabulator/version3.0/tabulator.js"></script>
+
+<script src="~/Scripts/xlsx.full.min.js"></script>
+@model IEnumerable<urban_archive.Models.OtherArchives>
+@{
+    ViewBag.Title = "分类档案管理";
+}
+<section>
+    <h2 style="float:left;"><i class="fa fa-tags kongge"></i>分类档案管理</h2>
+    <ol class="breadcrumb">
+        @*<li class="active">其他档案</li>*@
+        <li class="active">分类档案</li>
+        <li>档案管理</li>
+    </ol>
+    <div style="clear:both;"></div>
+</section>
+<script type="text/javascript">
+    var k = function (value, data, cell, row, options) { //plain text value
+        return "<i class='fa fa-search-plus' style='color:#428bca;vertical-align:middle; padding:2px 0;'></i>"
+    };
+    var l= function (value, data, cell, row, options) { //plain text value
+        return "<i class='fa fa-edit' style='color:#428bca;vertical-align:middle; padding:2px 0;'></i>"
+    };
+    var n = function (value, data, cell, row, options) { //plain text value
+        return "<i class='glyphicon glyphicon-trash' style='color:#428bca;vertical-align:middle; padding:2px 0;'></i>"
+    };
+    var j = function (value, data, cell, row, options) { //plain text value
+        return "<i class='fa fa-edit' style='color:#428bca;vertical-align:middle; padding:2px 0;'></i>"
+    };
+    $().ready(function () {//在页面加载完成之后用，为了保证js能完整的执行。
+        $(document).ready(function () {
+            var a = $(window).height();
+            var hh = a-160;
+            $(".box-h").height(hh)  // 高度加在类名为box的DIV 上
+        })
+            $("#example-table-2").tabulator({
+                height: "100%",
+                virtualDom: false,
+                fitColumns: true,
+                selectable: true, //make rows selectable
+                pagination: "remote",
+                ajaxURL: "/FenLeiDangAn/IndexData/" + new Date().getTime(),
+                paginator: function (url, pageNo, pageSize, ajaxParams) {
+
+                    var type = document.getElementById("Selected").value;
+                    var content = document.getElementById("SearchString").value;
+                    var Url = "";
+                    if (type != "" && content != "") {
+                        Url = url + "?page=" + pageNo + "&Selected=" + type + "&searchString=" + encodeURI(content);
+                    }
+                    else {
+                        Url = url + "?page=" + pageNo;
+                    }
+
+                    return Url; //must return the string of the page request URL
+                },
+                columns: [
+                    {
+                        title: "录入", field: "archiveNo", width: 50, formatter: j, headerSort: false, align: "center", cellClick: function (e, cell) {
+                        var url = '/FenLeiDangAn/luru/?archiveNo=' + cell.getValue();
+                        window.location.href = url;
+                        }
+                    },
+                    {
+                        title: "查看", field: "ID", width: 50 ,formatter: k, headerSort: false, align: "center", cellClick: function (e, cell) {
+                            var url = '/FenLeiDangAn/Details/?id=' + cell.getValue();
+                            window.location.href = url;
+                        }
+                    },
+                    {
+                        title: "修改", field: "ID", width: 50 ,formatter: l, headerSort: false, align: "center", cellClick: function (e, cell) {
+                            var url = '/FenLeiDangAn/Edit/?id=' + cell.getValue();
+                            //window.location.href = url;
+                            window.open(url);
+                        }
+                    },
+                    {
+                        title: "删除", field: "ID", width: 50 ,formatter: n, headerSort: false, align: "center", cellClick: function (e, cell) {
+                            if(del()){
+                                var url = '/FenLeiDangAn/Delete/?id=' + cell.getValue();
+                                window.location.href = url;
+                            }
+                        }
+                    },
+                { title: "项目顺序号", field: "proSeqNo", headerSort:false, width: 100, },
+                { title: "大类顺序号", field: "registrationNo", headerSort: false, width: 100 },
+                { title: "案卷顺序号", field: "count", headerSort: false, width: 100},
+                { title: "档号", field: "archiveNo", headerSort: false, width: 120 },
+                { title: "案卷题名", field: "archiveTitle", headerSort: false, width: 160 },
+                { title: "编制单位", field: "bianzhiUnit", headerSort: false, width: 160 },
+                { title: "编制时间", field: "resultbianzhiTime", headerSort: false, width: 100 },
+                { title: "进馆时间", field: "resultinHouseTime", headerSort: false, width: 100},
+                { title: "计量单位", field: "measureUnit", headerSort: false, width: 100 },
+                { title: "保管期限", field: "retentionPeriodName", headerSort: false, width: 100},
+                { title: "密级", field: "securityName", headerSort: false, width: 100 },
+                { title: "排架号", field: "paijiaNo", headerSort: false, width: 100},
+                { title: "总登记号", field: "registrationNo", headerSort: false, width: 100 },
+                { title: "分类号", field: "classNo",headerSort: false, minWidth:100 },
+                ],
+            });
+            $("#example-table-2").tabulator("setData");
+            @*var temp = new Array();
+            var data=@(new HtmlString(@ViewBag.result));
+           for (var i = 0; i < data.length;i++) {
+            var b = data[i].bianzhiTime
+            if(b!=null){
+                var resultbianzhiTime = b.slice(0,10)
+            }
+            var c = data[i].inHouseTime
+            if(c!=null){
+                var resultinHouseTime = c.slice(0,10)
+            }
+            temp.push({ "id": i + 1, "a": data[i].proSeqNo, "b": data[i].registrationNo, "c": data[i].count, "d": data[i].archiveNo,"e": data[i].archiveTitle,"f": data[i].bianzhiUnit, "g": resultbianzhiTime, "h": resultinHouseTime, "i": data[i].measureUnit, "j": data[i].retentionPeriodName,"o": data[i].securityName,"p": data[i].paijiaNo,"q": data[i].registrationNo,"r": data[i].classNo,"m": data[i].ID,});
+    }
+            $("#example-table-2").tabulator("setData", temp);
+            $(window).resize(function () {
+                var a = $(window).height();
+                var hh = a-160;
+                $(".box-h").height(hh)  // 高度加在类名为box的DIV 上
+                $("#example-table-2").tabulator("redraw",true);
+            })*@
+
+    });
+    function del() {
+        var msg = "确认要删除吗?";
+        if (confirm(msg) == true) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+    $(document).ready(function () {
+        $("#Find").click(function () {
+            var type = document.getElementById("Selected").value;
+            var content = document.getElementById("SearchString").value;
+            var Url = "";
+
+            Url = "/FenLeiDangAn/Index/" + "?Selected=" + type + "&searchString=" + encodeURI(content);
+            window.location.href = Url;
+
+        });
+    });
+</script>
+
+<div class="form-inline">
+    <p>
+        检索条件 : @Html.DropDownList("Selected", null, new { @class = "form-control" })&nbsp;&nbsp;检索内容：@Html.TextBox("SearchString", ViewBag.CurrentFilter as string, new { @class = "form-control" })
+        <input type="button" id="Find" name="Find" class="btn btn-default" value="查找" />
+
+    </p>
+</div>
+
+<div id="example-table-2" class="box-h" > </div>
+
+
+@*@using (Html.BeginForm())
+{
+
+    <p>
+        @Html.DropDownList("Selected", null, "请选择检索条件", new { @class = "form-control", @style = "display:inline" })
+        <label>
+            &nbsp;&nbsp;&nbsp;
+            检索内容：
+        </label>
+        <input type="text" name="search" id="serach" class="form-control" style="display:inline"><input type="submit" name="action" value="查询" class="btn btn-default">
+        @Html.ActionLink("分类档案添加", "Create", new { }, new { @class = "btn btn-default" })
+
+
+
+
+    </p>
+    }*@
+
+    @*<div id="example-table-2" class="box-h" style="overflow:auto"> </div>*@
+
+
+
+    @*<p>
+            @Html.ActionLink("Create New", "Create")
+        </p>*@
+    @*<table class="table">
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.registrationNo)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.doorplate)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.landNo)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.projectRange)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.year)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.volNo)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.classNo)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.archiveNo)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.paijiaNo)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.archiveTitle)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.bianzhiUnit)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.bianzhiTime)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.inHouseTime)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.measureUnit)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.count)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.securityID)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.retentionPeriodNo)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.licenceNo)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.applyUnit)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.location)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.note)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.classTypeID)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.ArchiveThick)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.proSeqNo)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.urbanID)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.firstResponsible)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.otherResponsible)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.developUnit)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.tranferUnit)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.designUnit)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.constructionUnit)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.textMaterial)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.drawing)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.licenceTime)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.kaigongTime)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.jungongTime)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.jianzhuArea)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.bilichi)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.biaoyinPerson)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.biaoyinTime)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.shenhePerson)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.shenheTime)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.luruPerson)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.luruTime)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.tuzhiniandai)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.tufu)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.tuzhiStatus)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.newLocation)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.cunfangLocation)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.neirongTiyao)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.isImageExist)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.isJungongArch)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.status)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.areaProSeqNo)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.areaNo)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.areaStatus)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.isYD)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.isNeibu)
+                </th>
+                <th></th>
+            </tr>
+
+        @foreach (var item in Model) {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.registrationNo)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.doorplate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.landNo)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.projectRange)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.year)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.volNo)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.classNo)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.archiveNo)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.paijiaNo)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.archiveTitle)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.bianzhiUnit)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.bianzhiTime)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.inHouseTime)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.measureUnit)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.count)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.securityID)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.retentionPeriodNo)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.licenceNo)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.applyUnit)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.location)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.note)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.classTypeID)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ArchiveThick)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.proSeqNo)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.urbanID)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.firstResponsible)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.otherResponsible)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.developUnit)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.tranferUnit)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.designUnit)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.constructionUnit)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.textMaterial)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.drawing)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.licenceTime)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.kaigongTime)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.jungongTime)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.jianzhuArea)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.bilichi)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.biaoyinPerson)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.biaoyinTime)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.shenhePerson)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.shenheTime)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.luruPerson)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.luruTime)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.tuzhiniandai)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.tufu)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.tuzhiStatus)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.newLocation)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.cunfangLocation)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.neirongTiyao)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.isImageExist)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.isJungongArch)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.status)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.areaProSeqNo)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.areaNo)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.areaStatus)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.isYD)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.isNeibu)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |
+                    @Html.ActionLink("Details", "Details", new { id=item.ID }) |
+                    @Html.ActionLink("Delete", "Delete", new { id=item.ID })
+                </td>
+            </tr>
+        }
+
+        </table>*@

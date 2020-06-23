@@ -1,0 +1,121 @@
+﻿@model IEnumerable<urban_archive.Models.vw_charge>
+@{
+    ViewBag.Title = "财务科收费明细 ";
+}
+<style type="text/css">
+    .jubu {
+        max-width: 100%;
+    }
+</style>
+<script type="text/javascript" src="~/Scripts/jquery/jquery-1.8.3.js"></script>
+<script type="text/javascript" src="~/Scripts/jquery/jquery.ui.core.js"></script>
+<script type="text/javascript" src="~/Scripts/jquery/jquery.ui.datepicker.js"></script>
+<script type="text/javascript" src="~/Scripts/jquery/jquery.ui.widget.js"></script>
+<script type="text/javascript" src="~/Scripts/jquery/jquery-ui-timepicker-addon.js"></script>
+<script>
+function click_c() {
+    window.close();
+}
+</script>
+<h2><i class="fa fa-tags"></i>财务科收费明细</h2>    
+<hr />
+@using (Html.BeginForm())
+{
+    <table class="table table-bordered dl-horizontal" style="background-color:#f9f9f9;">
+        <tr>
+            <td style="width:180px;">
+                姓名/单位：
+            </td>
+            <td>
+                <input type="text" readonly="readonly" id="unitName" name="unitName" value="@ViewBag.unitName" class="form-control jubu">
+            </td>
+        </tr>
+        <tr>
+            <td style="width:180px;">
+                序号：
+            </td>
+            <td>
+                <input type="text" readonly="readonly" id="seqNo" name="seqNo" value="@ViewBag.seqNo" class="form-control jubu">
+            </td>
+        </tr>
+        <tr>
+            <td style="width:180px;">
+                合计金额：
+
+            </td>
+            <td>
+                <input type="text" id="total" name="totle" readonly="readonly" value="@ViewBag.total" class="form-control jubu">            
+            </td>
+        </tr>
+        <tr>
+            <td style="width:180px;">
+                备注
+
+            </td>
+            <td>
+                <input type="text" id="note" name="note" readonly="readonly" value="@ViewBag.note" class="form-control jubu">
+            </td>
+        </tr>
+</table>
+
+
+        @*<label>姓名/单位：</label>
+        <input type="text" readonly="readonly" id="unitName" name="unitName" value="@ViewBag.unitName" class="form-control">
+        <label>序号：</label>
+        <input type="text" readonly="readonly" id="seqNo" name="seqNo" value="@ViewBag.seqNo" class="form-control">
+        <hr />*@
+        <table class="table table-bordered table-striped" style="background-color:#f9f9f9;">
+            <tr >
+                <th style="background-color:darkGray">
+                    收费科室
+                </th>
+                <th style="background-color:darkGray">
+                    收费事项
+                </th>
+                <th style="background-color:darkGray">
+                    收费日期
+                </th>
+                <th style="background-color:darkGray">
+                    收费金额
+                </th>
+            </tr>
+
+            @foreach (var item in Model)
+            {
+
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.text)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.itemName)
+                    </td>
+
+                    <td>
+                        @Html.DisplayFor(modelItem => item.chargeTime)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.totalExpense)
+                    </td>
+
+                </tr>
+            }
+        </table>
+        @*<hr />
+        <td>
+            合计金额：<input type="text" id="total" name="totle" readonly="readonly" value="@ViewBag.total" class="form-control">
+        </td>
+        <br>*@
+    <div style="text-align:center;">
+        <input type="submit" name="action" id="ok" value="确认收费" class="btn btn-default">
+        <input type="submit" name="action" id="dayin" value="打印" class="btn btn-default">
+        <input type="submit" name="action" id="back" value="驳回" class="btn btn-default">
+        <input type="button" name="action" id="returm" onclick="click_c()" value="返回" class="btn btn-default">
+        <div style="height:20px;"></div>
+    </div>
+        
+        }
+
+
+
+

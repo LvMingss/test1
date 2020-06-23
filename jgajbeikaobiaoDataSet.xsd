@@ -1,0 +1,68 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="jgajbeikaobiaoDataSet" targetNamespace="http://tempuri.org/jgajbeikaobiaoDataSet.xsd" xmlns:mstns="http://tempuri.org/jgajbeikaobiaoDataSet.xsd" xmlns="http://tempuri.org/jgajbeikaobiaoDataSet.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections>
+          <Connection AppSettingsObjectName="Web.config" AppSettingsPropertyName="UrbanConConnectionString" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="UrbanConConnectionString (Web.config)" ParameterPrefix="@" PropertyReference="AppConfig.System.Configuration.ConfigurationManager.0.ConnectionStrings.UrbanConConnectionString.ConnectionString" Provider="System.Data.SqlClient" />
+        </Connections>
+        <Tables>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="ArchivesDetailTableAdapter" GeneratorDataComponentClassName="ArchivesDetailTableAdapter" Name="ArchivesDetail" UserDataComponentName="ArchivesDetailTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="UrbanConConnectionString (Web.config)" DbObjectName="UrbanCon.dbo.ArchivesDetail" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>SELECT pageCount, checker, checkDate, typerDate, remarks, textMaterial, drawing FROM dbo.ArchivesDetail</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="pageCount" DataSetColumn="pageCount" />
+              <Mapping SourceColumn="checker" DataSetColumn="checker" />
+              <Mapping SourceColumn="checkDate" DataSetColumn="checkDate" />
+              <Mapping SourceColumn="typerDate" DataSetColumn="typerDate" />
+              <Mapping SourceColumn="remarks" DataSetColumn="remarks" />
+              <Mapping SourceColumn="textMaterial" DataSetColumn="textMaterial" />
+              <Mapping SourceColumn="drawing" DataSetColumn="drawing" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+        </Tables>
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="jgajbeikaobiaoDataSet" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="True" msprop:Generator_DataSetName="jgajbeikaobiaoDataSet" msprop:Generator_UserDSName="jgajbeikaobiaoDataSet">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="ArchivesDetail" msprop:Generator_TableClassName="ArchivesDetailDataTable" msprop:Generator_TableVarName="tableArchivesDetail" msprop:Generator_TablePropName="ArchivesDetail" msprop:Generator_RowDeletingName="ArchivesDetailRowDeleting" msprop:Generator_RowChangingName="ArchivesDetailRowChanging" msprop:Generator_RowEvHandlerName="ArchivesDetailRowChangeEventHandler" msprop:Generator_RowDeletedName="ArchivesDetailRowDeleted" msprop:Generator_UserTableName="ArchivesDetail" msprop:Generator_RowChangedName="ArchivesDetailRowChanged" msprop:Generator_RowEvArgName="ArchivesDetailRowChangeEvent" msprop:Generator_RowClassName="ArchivesDetailRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="pageCount" msprop:Generator_ColumnVarNameInTable="columnpageCount" msprop:Generator_ColumnPropNameInRow="pageCount" msprop:Generator_ColumnPropNameInTable="pageCountColumn" msprop:Generator_UserColumnName="pageCount" type="xs:long" minOccurs="0" />
+              <xs:element name="checker" msprop:Generator_ColumnVarNameInTable="columnchecker" msprop:Generator_ColumnPropNameInRow="checker" msprop:Generator_ColumnPropNameInTable="checkerColumn" msprop:Generator_UserColumnName="checker" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="20" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="checkDate" msprop:Generator_ColumnVarNameInTable="columncheckDate" msprop:Generator_ColumnPropNameInRow="checkDate" msprop:Generator_ColumnPropNameInTable="checkDateColumn" msprop:Generator_UserColumnName="checkDate" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="typerDate" msprop:Generator_ColumnVarNameInTable="columntyperDate" msprop:Generator_ColumnPropNameInRow="typerDate" msprop:Generator_ColumnPropNameInTable="typerDateColumn" msprop:Generator_UserColumnName="typerDate" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="remarks" msprop:Generator_ColumnVarNameInTable="columnremarks" msprop:Generator_ColumnPropNameInRow="remarks" msprop:Generator_ColumnPropNameInTable="remarksColumn" msprop:Generator_UserColumnName="remarks" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="150" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="textMaterial" msprop:Generator_ColumnVarNameInTable="columntextMaterial" msprop:Generator_ColumnPropNameInRow="textMaterial" msprop:Generator_ColumnPropNameInTable="textMaterialColumn" msprop:Generator_UserColumnName="textMaterial" type="xs:long" minOccurs="0" />
+              <xs:element name="drawing" msprop:Generator_ColumnVarNameInTable="columndrawing" msprop:Generator_ColumnPropNameInRow="drawing" msprop:Generator_ColumnPropNameInTable="drawingColumn" msprop:Generator_UserColumnName="drawing" type="xs:long" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

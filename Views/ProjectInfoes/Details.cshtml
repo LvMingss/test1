@@ -1,0 +1,313 @@
+﻿@model urban_archive.Models.vw_projectProfile
+
+@{
+    ViewBag.Title = "Details";
+}
+<script type="text/javascript" src="~/Scripts/jquery/jquery-1.8.3.js"></script>
+<script type="text/javascript" src="~/Scripts/jquery/jquery.ui.core.js"></script>
+<script type="text/javascript" src="~/Scripts/jquery/jquery.ui.datepicker.js"></script>
+<script type="text/javascript" src="~/Scripts/jquery/jquery.ui.widget.js"></script>
+<script type="text/javascript" src="~/Scripts/jquery/jquery-ui-timepicker-addon.js"></script>
+<script>
+    //function del() {
+    //    var msg = "确认要删除吗?";
+    //    if (confirm(msg) == true) {
+    //        return true;
+    //    } else {
+    //        return false;
+    //    }
+    //}
+    $(document).ready(function () {
+        $("#back").click(function () {
+            window.close();
+        });
+    });
+</script>
+@using (Html.BeginForm())
+{
+    <h2 style="margin-top:0;"><i class="fa fa-tags kongge"></i>业务科：工程信息</h2>
+    <hr />
+        <div class="form-horizontal">
+            <div class="panel panel-default">
+                <table class="table table-bordered dl-horizontal">
+                    <tr>
+                        <td style="background-color:#f9f9f9;min-width:130px;width:6%;font-weight:bold;">
+                            工程名称
+                        </td>
+                        <td colspan="7">
+                            @Html.DisplayFor(model => model.projectName)
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="background-color:#f9f9f9;font-weight:bold;">
+                            工程地点
+                        </td>
+                        <td colspan="7">
+                            @Html.DisplayFor(model => model.location)
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="background-color:#f9f9f9;font-weight:bold;">
+                            最新工程地点
+                        </td>
+                        <td colspan="7">
+                            @Html.DisplayFor(model => model.newLocation)
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="background-color:#f9f9f9;font-weight:bold;">
+                            报送人
+                        </td>
+                        <td style="width:19%;">
+                            @Html.DisplayFor(model => model.submitPerson)
+                        </td>
+                        <td style="background-color:#f9f9f9;min-width:100px;width:6%;font-weight:bold;">
+                            手机
+                        </td>
+                        <td style="width:19%;">
+                            @Html.DisplayFor(model => model.mobilephoneSubmitPerson)
+                        </td>
+                        <td style="background-color:#f9f9f9;min-width:100px;width:6%;font-weight:bold;">
+                            固话
+                        </td>
+                        <td style="width:19%;">
+                            @Html.DisplayFor(model => model.telphoneSubmitPerson)
+                        </td>
+                        <td style="background-color:#f9f9f9;font-weight:bold;">
+                            档案密级
+                        </td>
+                        <td style="width:19%">
+                            @Html.DisplayFor(model => model.securityID)
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="background-color:#f9f9f9;font-weight:bold;">
+                            工程序号
+                        </td>
+                        <td>
+                            @Html.DisplayFor(model => model.projectNo)
+                        </td>
+                        <td style="background-color:#f9f9f9;font-weight:bold;">
+                            建筑面积
+                        </td>
+                        <td>
+                            @Html.DisplayFor(model => model.buildingArea) 平方米
+                        </td>
+                        <td style="background-color:#f9f9f9;font-weight:bold;">
+                            拟分类号
+                        </td>
+                        <td style="width:19%">
+                            @Html.DisplayFor(model => model.prevClassNo)
+                        </td>
+                        <td style="background-color:#f9f9f9;font-weight:bold;">
+                            保存期限
+                        </td>
+                        <td style="width:19%">
+                            @Html.DisplayFor(model => model.retentionPeriodNo)
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="background-color:#f9f9f9;font-weight:bold;">
+                            项目顺序号
+                        </td>
+                        <td>
+                            @Html.DisplayFor(model => model.paperProjectSeqNo)
+                        </td>
+                        <td style="background-color:#f9f9f9;font-weight:bold;">
+                            接收日期
+                        </td>
+                        <td>
+                            @Html.DisplayFor(model => model.dateReceived)
+                        </td>
+                        <td style="background-color:#f9f9f9;font-weight:bold;">
+                            接收人
+                        </td>
+                        <td>
+                            @Html.DisplayFor(model => model.recipient)
+                        </td>
+                        <td style="background-color:#f9f9f9;font-weight:bold;">
+                            异地存放
+                        </td>
+                        <td>
+                            @*@Html.DisplayFor(model => model.isYD)*@
+                            @Html.DropDownList("isYD", null, htmlAttributes: new { @class = "form-control ", @disabled = "disabled" })
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="background-color:#f9f9f9;font-weight:bold;">
+                            项目概况
+                        </td>
+                        <td colspan="3">
+                            @Html.DisplayFor(model => model.projectProfile)
+                        </td>
+                        <td style="background-color:#f9f9f9;font-weight:bold;">
+                            整理要求
+                        </td>
+                        <td colspan="3">
+                            @Html.DisplayFor(model => model.collationRequirement)
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="background-color:#f9f9f9;font-weight:bold;">
+                            测绘坐标
+                        </td>
+                        <td colspan="5">
+                            @Html.DisplayFor(model => model.coordinate)
+                        </td>
+                        <td style="background-color:#f9f9f9;min-width:100px;width:6%;font-weight:bold;">
+                            档案状态
+                        </td>
+                        <td style="width:19%">
+                            @Html.DisplayFor(model => model.status)
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <div class="panel panel-default">
+                <table class="table table-bordered dl-horizontal">
+                    <tr>
+                        <td style="background-color:#f9f9f9;min-width:130px;width:6%;font-weight:bold;" rowspan="2">
+                            建设单位
+                        </td>
+                        <td colspan="6">
+                            @Html.DisplayFor(model => model.developmentOrganization)
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="background-color:#f9f9f9;min-width:130px;width:6%;font-weight:bold;">
+                            建设单位联系人
+                        </td>
+                        <td style="width:25%">
+                            @Html.DisplayFor(model => model.devolonpentOrgContacter)
+                        </td>
+                        <td style="background-color:#f9f9f9;min-width:130px;width:6%;font-weight:bold;">
+                            固定电话
+                        </td>
+                        <td style="width:25%">
+                            @Html.DisplayFor(model => model.telphoneNoDevelopment)
+                        </td>
+                        <td style="background-color:#f9f9f9;min-width:100px;width:6%;font-weight:bold;">
+                            手机电话
+                        </td>
+                        <td style="width:26%">
+                            @Html.DisplayFor(model => model.mobilephoneNoDevelopment)
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="background-color:#f9f9f9;font-weight:bold;" rowspan="2">
+                            监理单位
+                        </td>
+                        <td colspan="6">
+                            @Html.DisplayFor(model => model.jianliUnit)
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="background-color:#f9f9f9;font-weight:bold;">
+                            监理单位负责人
+                        </td>
+                        <td>
+                            @Html.DisplayFor(model => model.jianliUnitContacter)
+                        </td>
+                        <td style="background-color:#f9f9f9;font-weight:bold;">
+                            监理者
+                        </td>
+                        <td colspan="3">
+                            @Html.DisplayFor(model => model.telphoneNoJianliUnit)
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="background-color:#f9f9f9;font-weight:bold;" rowspan="2">
+                            施工单位
+                        </td>
+                        <td colspan="6">
+                            @Html.DisplayFor(model => model.constructionOrganization)
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="background-color:#f9f9f9;font-weight:bold;">
+                            施工单位法人
+                        </td>
+                        <td>
+                            @Html.DisplayFor(model => model.constructionOrgContacter)
+                        </td>
+                        <td style="background-color:#f9f9f9;font-weight:bold;">
+                            技术员
+                        </td>
+                        <td colspan="3">
+                            @Html.DisplayFor(model => model.telphoneNoConstruction)
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="background-color:#f9f9f9;font-weight:bold;" rowspan="2">
+                            设计单位
+                        </td>
+                        <td colspan="6">
+                            @Html.DisplayFor(model => model.disignOrganization)
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="background-color:#f9f9f9;font-weight:bold;">
+                            设计单位负责人
+                        </td>
+                        <td>
+                            @Html.DisplayFor(model => model.designOrgaContacter)
+                        </td>
+                        <td style="background-color:#f9f9f9;font-weight:bold;">
+                            设计者
+                        </td>
+                        <td colspan="3">
+                            @Html.DisplayFor(model => model.telphoneNoDesignOrga)
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="background-color:#f9f9f9;font-weight:bold;" rowspan="2">
+                            初审意见
+                        </td>
+                        <td colspan="6">
+                            @Html.DisplayFor(model => model.csyj)
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="background-color:#f9f9f9;font-weight:bold;">
+                            初审意见人
+                        </td>
+                        <td>
+                            @Html.DisplayFor(model => model.csyjPerson)
+                        </td>
+                        <td style="background-color:#f9f9f9;font-weight:bold;">
+                            初审意见日期
+                        </td>
+                        <td colspan="3">
+                            @Html.DisplayFor(model => model.csyjDate)
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="background-color:#f9f9f9;font-weight:bold;">
+                            备忘录
+                        </td>
+                        <td>
+                            @Html.DisplayFor(model => model.memo)
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="background-color:#f9f9f9;font-weight:bold;">
+                            文件
+                        </td>
+                        <td colspan="3">
+                            @Html.DisplayFor(model => model.storagePath)
+                        </td>
+                    </tr>
+                </table>
+            </div>
+
+
+            <div style="text-align:center;">
+                <input type="submit" value="文件下载" name="action" class="btn btn-default">
+                @*<input type="submit" value="删除" name="action" class="btn btn-default" onclick="return del()">*@
+                @*@Html.ActionLink("修改", "Edit", new { id = Model.projectID },new {@class="btn btn-default" })*@
+                <input type="button" value="返回" id="back" class="btn btn-default">
+            </div>
+            <div style="height:20px;">
+            </div>
+        </div>
+}

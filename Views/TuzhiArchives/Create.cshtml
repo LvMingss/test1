@@ -1,0 +1,476 @@
+﻿@model urban_archive.Models.TuzhiArchives
+
+@{
+    ViewBag.Title = "图纸档案录入";
+}
+<section>
+    <h2 style="float:left;"><i class="fa fa-tags kongge"></i>图纸档案录入</h2>
+    <ol class="breadcrumb">
+        <li class="active">图纸档案</li>
+        <li>图纸档案录入</li>
+    </ol>
+    <div style="clear:both;"></div>
+</section>
+<hr style="margin-top:0px"/>
+<style type="text/css">
+    .jubu {
+        max-width: 100%;
+    }
+</style>
+<link type="text/css" rel="stylesheet" href="~/Scripts/jquery/jquery-ui.css">
+<script type="text/javascript" src="~/Scripts/jquery/jquery-1.8.3.js"></script>
+<script type="text/javascript" src="~/Scripts/jquery/jquery.ui.core.js"></script>
+<script type="text/javascript" src="~/Scripts/jquery/jquery.ui.datepicker.js"></script>
+<script type="text/javascript" src="~/Scripts/jquery/jquery.ui.widget.js"></script>
+<script type="text/javascript" src="~/Scripts/jquery/jquery-ui-timepicker-addon.js"></script>
+
+<script>
+            $(function () {
+                $("#luruTime").datepicker({
+                    changeMonth: true,
+                    changeYear: true
+                });
+            });
+            $(function () {
+                $("#jgDate").datepicker({
+                    changeMonth: true,
+                    changeYear: true
+                });
+            });
+    function openclass() {
+        number = window.showModalDialog('/ProjectInfoes/ZTree',"", 'dialogWidth=300px;dialogHeight=500px');
+        //弹出模型对话框，obj为传值参数,name为子页面返回参数
+        document.getElementById("classNo").value = number;
+    }
+    function ifok() {
+        var msg = "确认要提交吗?";
+        if (confirm(msg) == true) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+</script>
+@using (Html.BeginForm()) 
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group" style="display:none">
+            @Html.LabelFor(model => model.ID, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.ID, new { htmlAttributes = new { @class = "form-control", @Value = @ViewBag.ID } })
+                @Html.ValidationMessageFor(model => model.ID, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="panel panel-default">
+            <table class="table table-bordered dl-horizontal" style="background-color:#f9f9f9;">
+
+                <tr>
+                    <td style="background-color:#f9f9f9;width:10%;">
+                        序号
+                    </td>
+                    <td>
+                        @Html.EditorFor(model => model.seqNo, new { htmlAttributes = new { @class = "form-control", @Value = @ViewBag.ID } })
+                        @Html.ValidationMessageFor(model => model.seqNo, "", new { @class = "text-danger" })
+                    </td>
+                    <td style="background-color:#f9f9f9;width:10%;">
+                        分类号
+                    </td>
+                    <td>
+                        @Html.EditorFor(model => model.classNo, new { htmlAttributes = new { @class = "form-control", @onclick = "openclass()" } })
+                        @Html.ValidationMessageFor(model => model.classNo, "", new { @class = "text-danger" })
+                    </td>
+                    <td style="background-color:#f9f9f9;width:10%;">
+                        档号
+                    </td>
+                    <td>
+                        @Html.EditorFor(model => model.archiveNo, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.archiveNo, "", new { @class = "text-danger" })
+                    </td>
+                </tr>
+                <tr>
+                    <td style="background-color:#f9f9f9;width:10%;">
+                        档案馆代号
+                    </td>
+                    <td>
+                        @Html.EditorFor(model => model.archiveCode, new { htmlAttributes = new { @class = "form-control", @Value = "437402" } })
+                        @Html.ValidationMessageFor(model => model.archiveCode, "", new { @class = "text-danger" })
+                    </td>
+                    <td style="background-color:#f9f9f9;width:10%;">
+                        总登记号
+                    </td>
+                    <td>
+                        @Html.EditorFor(model => model.registrationNo, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.registrationNo, "", new { @class = "text-danger" })
+                    </td>
+                    <td style="background-color:#f9f9f9;width:10%;">
+                        排架号
+                    </td>
+                    <td>
+                        @Html.EditorFor(model => model.paijiaNo, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.paijiaNo, "", new { @class = "text-danger" })
+                    </td>
+                </tr>
+                <tr>
+                    <td style="background-color:#f9f9f9;width:10%;">
+                        案卷题名
+                    </td>
+                    <td colspan="5">
+                        @Html.TextAreaFor(model => model.archiveTitle, new { @class = "form-control jubu" })
+                        @Html.ValidationMessageFor(model => model.archiveTitle, "", new { @class = "text-danger" })
+                    </td>
+                </tr>
+                <tr>
+                    <td style="background-color:#f9f9f9;width:10%;">
+                        编制单位
+                    </td>
+                    <td colspan="5">
+                        @Html.EditorFor(model => model.bianzhiUnit, new { htmlAttributes = new { @class = "form-control jubu" } })
+                        @Html.ValidationMessageFor(model => model.bianzhiUnit, "", new { @class = "text-danger" })
+                    </td>
+                </tr>
+            </table>
+        </div>
+
+
+
+        @*<div class="form-group">
+            @Html.LabelFor(model => model.seqNo, "序号", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.seqNo, new { htmlAttributes = new { @class = "form-control", @Value = @ViewBag.ID } })
+                @Html.ValidationMessageFor(model => model.seqNo, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.classNo, "分类号", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.classNo, new { htmlAttributes = new { @class = "form-control", @onclick = "openclass()" } })
+                @Html.ValidationMessageFor(model => model.classNo, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.archiveNo, "档号", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.archiveNo, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.archiveNo, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.archiveCode, "档案馆代号", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.archiveCode, new { htmlAttributes = new { @class = "form-control", @Value = "437402" } })
+                @Html.ValidationMessageFor(model => model.archiveCode, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.registrationNo, "总登记号", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.registrationNo, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.registrationNo, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.paijiaNo, "排架号", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.paijiaNo, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.paijiaNo, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.archivesTitle, "案卷题名", htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.TextAreaFor(model => model.archivesTitle, new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.archivesTitle, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.bianzhiUnit, "编制单位", htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.bianzhiUnit, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.bianzhiUnit, "", new { @class = "text-danger" })
+        </div>
+    </div>*@
+        <div class="panel panel-default">
+            <table class="table table-bordered dl-horizontal" style="background-color:#f9f9f9;">
+
+                <tr>
+                    <td style="background-color:#f9f9f9;width:10%;">
+                        图纸年代
+                    </td>
+                    <td>
+                        @Html.EditorFor(model => model.tuzhiYear, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.tuzhiYear, "", new { @class = "text-danger" })
+                    </td>
+                    <td style="background-color:#f9f9f9;width:10%;">
+                        进馆时间
+                    </td>
+                    <td>
+                        @Html.EditorFor(model => model.jgDate, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.jgDate, "", new { @class = "text-danger" })
+                    </td>
+                    
+                </tr>
+                <tr>
+                    <td style="background-color:#f9f9f9;width:10%;">
+                        比例
+                    </td>
+                    <td>
+                        @Html.EditorFor(model => model.bilichi, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.bilichi, "", new { @class = "text-danger" })
+                    </td> 
+                    <td style="background-color:#f9f9f9;width:10%;">
+                        图幅
+                    </td>
+                    <td>
+                        @Html.EditorFor(model => model.tufu, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.tufu, "", new { @class = "text-danger" })
+                    </td> 
+                </tr>
+                <tr>
+                    <td style="background-color:#f9f9f9;width:10%;">
+                        图纸状况
+                    </td>
+                    <td>
+                        @Html.EditorFor(model => model.tuzhiStatus, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.tuzhiStatus, "", new { @class = "text-danger" })
+                    </td>
+                    <td style="background-color:#f9f9f9;width:10%;">
+                        是否裱糊
+                    </td>
+                    <td>
+                        @Html.EditorFor(model => model.isBiaohu, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.isBiaohu, "", new { @class = "text-danger" })
+                    </td>
+                </tr>
+                <tr>
+                    <td style="background-color:#f9f9f9;width:10%;">
+                        计量单位
+                    </td>
+                    <td>
+                        @Html.EditorFor(model => model.measureUnit, new { htmlAttributes = new { @class = "form-control", @Value = "张" } })
+                        @Html.ValidationMessageFor(model => model.measureUnit, "", new { @class = "text-danger" })
+                    </td>
+                    <td style="background-color:#f9f9f9;width:10%;">
+                        数量
+                    </td>
+                    <td>
+                        @Html.EditorFor(model => model.tuzhiCount, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.tuzhiCount, "", new { @class = "text-danger" })
+                    </td>
+                </tr>
+                <tr>
+                    <td style="background-color:#f9f9f9;width:10%;">
+                        密级
+                    </td>
+                    <td>
+                        @Html.DropDownList("securityID", null, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.securityID, "", new { @class = "text-danger" })
+                    </td>
+                    <td style="background-color:#f9f9f9;width:10%;">
+                        保管期限
+                    </td>
+                    <td>
+                        @Html.DropDownList("retentionPeriodNo", null, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.retentionPeriodNo, "", new { @class = "text-danger" })
+                    </td>
+                </tr> 
+                <tr>
+                    <td style="background-color:#f9f9f9;width:10%;">
+                        录入时间
+                    </td>
+                    <td>
+                        @Html.EditorFor(model => model.luruTime, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.luruTime, "", new { @class = "text-danger" })
+                    </td>
+                    <td style="background-color:#f9f9f9;width:10%;">
+                        是否异地
+                    </td>
+                    <td>
+                        @Html.DropDownList("isYD",null, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.isYD, "", new { @class = "text-danger" })
+                    </td>
+                </tr>
+                <tr>
+                    <td style="background-color:#f9f9f9;width:10%;">
+                        内容提要
+                    </td>
+                    <td colspan="3">
+                        @*<textarea id="neirongTiyao" name="neirongTiyao" class="form-control"></textarea>*@
+                        @Html.TextAreaFor(model => model.neirongTiyao, new { @class = "form-control jubu" })
+                        @Html.ValidationMessageFor(model => model.neirongTiyao, "", new { @class = "text-danger" })
+                    </td>
+                </tr>   
+                <tr>
+                    <td style="background-color:#f9f9f9;width:10%;">
+                        存放地点
+                    </td>
+                    <td colspan="3">
+                        @Html.EditorFor(model => model.storeLocation, new { htmlAttributes = new { @class = "form-control jubu" } })
+                        @Html.ValidationMessageFor(model => model.storeLocation, "", new { @class = "text-danger" })
+                    </td>
+                </tr>
+                <tr>
+                    <td style="background-color:#f9f9f9;width:10%;">
+                        移交单位
+                    </td>
+                    <td colspan="3">
+                        @Html.EditorFor(model => model.transferUnit, new { htmlAttributes = new { @class = "form-control jubu" } })
+                        @Html.ValidationMessageFor(model => model.transferUnit, "", new { @class = "text-danger" })
+                    </td>
+                </tr>   
+                <tr>
+                    <td style="background-color:#f9f9f9;width:10%;">
+                        测绘坐标
+                    </td>
+                    <td colspan="3">
+                        @Html.EditorFor(model => model.coordinate, new { htmlAttributes = new { @class = "form-control jubu" } })
+                        @Html.ValidationMessageFor(model => model.coordinate, "", new { @class = "text-danger" })
+                    </td>
+                </tr>
+               </table>
+            </div>  
+                    @*<div class="form-group">
+                        @Html.LabelFor(model => model.tuzhiYear, "图纸年代", htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.tuzhiYear, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.tuzhiYear, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.jgDate, "进馆时间", htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.jgDate, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.jgDate, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.bilichi, "比例", htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.bilichi, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.bilichi, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.tufu, "图幅", htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.tufu, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.tufu, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.tuzhiStatus, "图纸状况", htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.tuzhiStatus, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.tuzhiStatus, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.isBiaohu, "是否裱糊", htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.isBiaohu, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.isBiaohu, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.measureUnit, "计量单位", htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.measureUnit, new { htmlAttributes = new { @class = "form-control", @Value = "张" } })
+                            @Html.ValidationMessageFor(model => model.measureUnit, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.tuzhiCount, "数量", htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.tuzhiCount, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.tuzhiCount, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.securityID, "密级", htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.DropDownList("securityID", null, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.securityID, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.retentionPeriodNo, "保管期限", htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.DropDownList("retentionPeriodNo", null, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.retentionPeriodNo, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.luruTime, "录入时间", htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.luruTime, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.luruTime, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.isYD, "是否异地", htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            <div class="checkbox">
+                                @Html.EditorFor(model => model.isYD, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.isYD, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.neirongTiyao, "内容提要", htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.TextAreaFor(model => model.neirongTiyao, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.neirongTiyao, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.storeLocation, "存放地点", htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.storeLocation, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.storeLocation, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.transferUnit, "移交单位", htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.transferUnit, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.transferUnit, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-md-offset-2 col-md-10">
+                            <input type="submit" value="提交" name="action" class="btn btn-default" onclick="return ifok()" />
+                            <input type="submit" value="添加下一条" name="action" class="btn btn-default" disabled="@ViewData["next"]" />
+                            <input type="submit" value="返回" name="action" class="btn btn-default" />
+                        </div>
+                    </div>*@
+        <div style="text-align:center;">
+            <p>
+                <input type="submit" value="提交" name="action" class="btn btn-default" onclick="return ifok()" />
+                <input type="submit" value="添加下一条" name="action" class="btn btn-default" disabled="@ViewData["next"]" />
+                <input type="submit" value="返回" name="action" class="btn btn-default" />
+            </p>
+        </div>
+        </div>
+        }
+
+

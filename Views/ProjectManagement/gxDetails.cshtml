@@ -1,0 +1,373 @@
+﻿@model urban_archive.Models.vw_gxprojectList
+
+@{
+    ViewBag.Title = "Details";
+}
+
+
+@using (Html.BeginForm())
+{
+    <h2 style="margin-top:0;"><i class="fa fa-tags kongge"></i>管线科：工程信息</h2>
+    <hr />
+    <div class="form-horizontal">
+        <div class="panel panel-default">
+            <table class="table table-bordered dl-horizontal">
+                <tr>
+                    <td style="background-color:#f9f9f9;min-width:130px;width:6%;">
+                        工程名称
+                    </td>
+                    <td colspan="7">
+                        @Html.DisplayFor(model => model.projectName)
+                    </td>
+                </tr>
+                <tr>
+                    <td style="background-color:#f9f9f9;min-width:130px;width:6%;">
+                        工程地点
+                    </td>
+                    <td colspan="7">
+                        @Html.DisplayFor(model => model.location)
+                    </td>
+                </tr>
+                <tr>
+                    <td style="background-color:#f9f9f9;min-width:130px;width:6%;">
+                        最新工程地点
+                    </td>
+                    <td colspan="7">
+                        @Html.DisplayFor(model => model.newLocation)
+                    </td>
+                </tr>
+                <tr>
+                    <td style="background-color:#f9f9f9;min-width:130px;width:6%;">
+                        报送人
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => model.submitPerson)
+                    </td>
+                    <td style="background-color:#f9f9f9;min-width:130px;width:6%;">
+                        手机
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => model.mobilephoneSubmitPerson)
+                    </td>
+                    <td style="background-color:#f9f9f9;min-width:130px;width:6%;">
+                        固话
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => model.telphoneSubmitPerson)
+                    </td>
+                    <td style="background-color:#f9f9f9;min-width:130px;width:6%;">
+                        档案密级
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => model.securityID)
+                    </td>
+                </tr>
+                <tr>
+                    <td style="background-color:#f9f9f9;">
+                        项目序号
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => model.paperProjectSeqNo)
+                    </td>
+                    <td style="background-color:#f9f9f9;">
+                        工程序号
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => model.projectNo)
+                    </td>
+                    <td style="background-color:#f9f9f9;">
+                        开工日期
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => model.dateF)
+                    </td>
+                    <td style="background-color:#f9f9f9;">
+                        竣工日期
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => model.dateE)
+                    </td>
+                </tr>
+                <tr>
+                    <td style="background-color:#f9f9f9;">
+                        管线长度(米)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => model.buildingArea)
+                    </td>
+                    <td style="background-color:#f9f9f9;">
+                        管径(毫米)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => model.height)
+                    </td>
+                    <td style="background-color:#f9f9f9;">
+                        材质
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => model.Material)
+                    </td>
+                    <td style="background-color:#f9f9f9;">
+                        埋深(米)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => model.layerCount)
+                    </td>
+                </tr>
+                <tr>
+                    <td style="background-color:#f9f9f9;">
+                        拟分类号
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => model.prevClassNo)
+                    </td>
+                    <td style="background-color:#f9f9f9;">
+                        保存期限
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => model.retentionPeriodNo)
+                    </td>
+                    <td style="background-color:#f9f9f9;">
+                        测绘编号
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => model.MapNo)
+                    </td>
+                    <td style="background-color:#f9f9f9;">
+                        光盘编号
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => model.guangpanNo)
+                    </td>
+                </tr>
+                <tr>
+                    <td style="background-color:#f9f9f9;min-width:130px;width:6%;">
+                        档案接收日期
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => model.dateReceived)
+                    </td>
+                    <td style="background-color:#f9f9f9;min-width:130px;width:6%;">
+                        档案接收人
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => model.recipient)
+                    </td>
+                    <td style="background-color:#f9f9f9;">
+                        异地存放
+                    </td>
+                    <td>
+                        @Html.DropDownList("yidi", null, htmlAttributes: new { @disabled = "disabled" })
+                    </td>
+                    <td style="background-color:#f9f9f9;">
+                        档案状态
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => model.statusName)
+                    </td>
+                </tr>
+                <tr>
+                    <td style="background-color:#f9f9f9;">
+                        项目概况
+                    </td>
+                    <td colspan="3">
+                        @Html.DisplayFor(model => model.projectProfile)
+                    </td>
+                    <td style="background-color:#f9f9f9;">
+                        整理要求
+                    </td>
+                    <td colspan="3">
+                        @Html.DisplayFor(model => model.collationRequirement)
+                    </td>
+                </tr>
+                <tr>
+                    <td style="background-color:#f9f9f9;min-width:130px;width:6%;">
+                        测绘坐标
+                    </td>
+                    <td colspan="7">
+                        @Html.DisplayFor(model => model.coordinate)
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <div class="panel panel-default">
+            <table class="table table-bordered dl-horizontal">
+                <tr>
+                    <td style="background-color:#f9f9f9;min-width:130px;width:6%;">
+                        建设单位
+                    </td>
+                    <td colspan="5">
+                        @Html.DisplayFor(model => model.developmentOrganization)
+                    </td>
+                </tr>
+                <tr>
+                    <td style="background-color:#f9f9f9;min-width:130px;width:6%;">
+                        负责人
+                    </td>
+                    <td style="width:27%;">
+                        @Html.DisplayFor(model => model.telphoneNoDevelopment)
+                    </td>
+                    <td style="background-color:#f9f9f9;min-width:130px;width:6%;">
+                        建设单位联系人
+                    </td>
+                    <td style="width:27%;">
+                        @Html.DisplayFor(model => model.devolonpentOrgContacter)
+                    </td>
+                    
+                    <td style="background-color:#f9f9f9;min-width:130px;width:6%;">
+                        手机电话
+                    </td>
+                    <td style="width:28%;">
+                        @Html.DisplayFor(model => model.mobilephoneNoDevelopment)
+                    </td>
+                </tr>
+                <tr>
+                    <td style="background-color:#f9f9f9;">
+                        监理单位
+                    </td>
+                    <td colspan="5">
+                        @Html.DisplayFor(model => model.jianliUnit)
+                    </td>
+                </tr>
+                <tr>
+                    <td style="background-color:#f9f9f9;">
+                        监理单位负责人
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => model.jianliUnitContacter)
+                    </td>
+                    <td style="background-color:#f9f9f9;">
+                        监理者
+                    </td>
+                    <td colspan="3">
+                        @Html.DisplayFor(model => model.telphoneNoJianliUnit)
+                    </td>
+                </tr>
+                <tr>
+                    <td style="background-color:#f9f9f9;">
+                        施工单位
+                    </td>
+                    <td colspan="5">
+                        @Html.DisplayFor(model => model.constructionOrganization)
+                    </td>
+                </tr>
+                <tr>
+                    <td style="background-color:#f9f9f9;">
+                        施工单位法人
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => model.constructionOrgContacter)
+                    </td>
+                    <td style="background-color:#f9f9f9;">
+                        技术员
+                    </td>
+                    <td colspan="3">
+                        @Html.DisplayFor(model => model.telphoneNoConstruction)
+                    </td>
+                </tr>
+                <tr>
+                    <td style="background-color:#f9f9f9;">
+                        设计单位
+                    </td>
+                    <td colspan="5">
+                        @Html.DisplayFor(model => model.disignOrganization)
+                    </td>
+                </tr>
+                <tr>
+                    <td style="background-color:#f9f9f9;">
+                        设计单位负责人
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => model.designOrgaContacter)
+                    </td>
+                    <td style="background-color:#f9f9f9;">
+                        设计者
+                    </td>
+                    <td colspan="3">
+                        @Html.DisplayFor(model => model.telphoneNoDesignOrga)
+                    </td>
+                </tr>
+                <tr>
+                    <td style="background-color:#f9f9f9;">
+                        测绘单位
+                    </td>
+                    <td colspan="5">
+                        @Html.DisplayFor(model => model.MapOrginisation, new { htmlAttributes = new { @class = "form-control jubu" } })
+                    </td>
+                </tr>
+                <tr>
+                    <td style="background-color:#f9f9f9;">
+                        测绘者
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => model.Mapper, new { htmlAttributes = new { @class = "form-control" } })
+                    </td>
+                    <td style="background-color:#f9f9f9;">
+                        联系电话
+                    </td>
+                    <td colspan="3">
+                        @Html.DisplayFor(model => model.TeleNoMap, new { htmlAttributes = new { @class = "form-control" } })
+                    </td>
+
+                </tr>
+            </table>
+        </div>
+        <div class="panel panel-default">
+            <table class="table table-bordered dl-horizontal">
+                <tr>
+                    <td style="background-color:#f9f9f9;">
+                        初审意见
+                    </td>
+                    <td colspan="3">
+                        @Html.DisplayFor(model => model.csyj)
+                    </td>
+                </tr>
+                <tr>
+                    <td style="background-color:#f9f9f9;min-width:130px;width:6%;">
+                        初审意见人
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => model.csyjPerson)
+                    </td>
+                    <td style="background-color:#f9f9f9;min-width:130px;width:6%;">
+                        初审意见日期
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => model.csyjDate)
+                    </td>
+                </tr>
+                <tr>
+                    <td style="background-color:#f9f9f9;">
+                        备忘录
+                    </td>
+                    <td colspan="3">
+                        @Html.DisplayFor(model => model.memo)
+                    </td>
+                </tr>
+                <tr>
+                    <td style="background-color:#f9f9f9;">
+                        文件
+                    </td>
+                    <td colspan="3">
+                        @Html.DisplayFor(model => model.storagePath)
+                    </td>
+                </tr>
+            </table>
+        </div>
+
+
+        <div style="text-align:center;">
+            <input type="submit" value="文件下载" name="action" class="btn btn-default">
+            @*<input type="submit" value="删除" name="action" class="btn btn-default">*@
+
+            <input type="submit" value="返回" name="action" class="btn btn-default">
+        </div>
+        <div style="height:20px;">
+        </div>
+    </div>
+}
+
+@*<p>
+        @Html.ActionLink("Edit", "Edit", new { id = Model.projectID }) |
+        @Html.ActionLink("Back to List", "Index")
+    </p>*@

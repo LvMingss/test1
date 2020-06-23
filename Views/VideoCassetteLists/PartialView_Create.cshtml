@@ -1,0 +1,123 @@
+﻿@model urban_archive.Models.VideoCassetteList
+
+@{
+    ViewBag.Title = "Create";
+}
+<style type="text/css">
+    .jubu {
+        max-width: 100%;
+    }
+</style>
+
+
+@*<p>
+    <h4>添加声像记录</h4>
+</p>*@
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="panel panel-default" style="margin-bottom:0px;">
+        <table class="table table-bordered dl-horizontal">
+            <tr>
+                <td class="linear" style="font-size: 18px;color:white;text-align:center;" colspan="6">
+                    <i class="fa fa-check-square-o"></i>添加声像记录
+                </td>
+            </tr>
+            @*<tr>
+                <td  class="linear" style="font-size: 18px;font-weight:500;background-color:#e6e6e6" colspan="6">
+                    <i class="fa fa-check-square-o"></i>添加声像记录
+                </td>
+            </tr>*@
+            <tr>
+                <td style="background-color:#f9f9f9;width:180px;">
+                    文件类型
+                </td>
+                <td style="background-color:#f9f9f9;">
+                    @Html.DropDownList("filingDesc",null, new { @class = "form-control" })
+                </td>
+                <td style="background-color:#f9f9f9;width:180px;">
+                    上传时间
+                </td>
+                <td style="background-color:#f9f9f9;">
+                    @Html.EditorFor(model => model.shootingDate, new { htmlAttributes = new { @class = "form-control", @Value = ViewBag.now } })
+                    @Html.ValidationMessageFor(model => model.shootingDate, "", new { @class = "text-danger" })
+                </td>
+                <td style="background-color:#f9f9f9;width:180px;">
+                    文件类别数
+                </td>
+                <td style="background-color:#f9f9f9;">
+                    @Html.EditorFor(model => model.videoMinutesCount, new { htmlAttributes = new { @class = "form-control", @Value = 2 } })
+                    @Html.ValidationMessageFor(model => model.videoMinutesCount, "", new { @class = "text-danger" })
+                </td>
+            </tr>
+            <tr >
+                <td style="background-color:#f9f9f9;width:180px;">
+                    文件内容<br />（视频数、照片数、以及具体内容描述）
+                </td>
+                <td style="background-color:#f9f9f9;" colspan="5">
+                    @Html.TextArea("videoContent", "1.视频：段 \n2.照片：张", 5, 200,  new { @class = "form-control jubu" } )
+                    @Html.ValidationMessageFor(model => model.videoContent, "", new { @class = "text-danger" })
+                </td>                
+            </tr> 
+            <tr>
+                <td style="text-align:center;" colspan="6">
+                    <input type="submit" name="action" value="添加" class="btn btn-default" />
+                    @*<input type="submit" name="action" value="返回" class="btn btn-default" />*@
+
+                </td>
+            </tr>           
+        </table>
+        @*<div style="text-align:center;">
+            <input type="submit" name="action" value="添加" class="btn btn-default" /> 
+            <input type="submit" name="action" value="返回" class="btn btn-default" />
+        </div>*@ 
+    </div>
+    
+    
+            @*<div class="form-horizontal">
+                <hr />
+
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                <div class="form-group">
+                    @Html.LabelFor(model => model.filingDesc, "文件类型", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.DropDownList("filingDesc")
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.shootingDate, "上传时间", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.shootingDate, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.shootingDate, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.videoMinutesCount, "文件类别数（视频照片都有就填2)", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.videoMinutesCount, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.videoMinutesCount, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.videoContent, "文件内容（视频数、照片数、以及具体内容描述）", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.TextArea("videoContent", " 例：\r\n1.视频：10 描述：xxxxxx \r\n2.照片：5 描述：xxxxxx", 12, 200, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.videoContent, "", new { @class = "text-danger" })
+                    </div>
+                </div>*@
+
+    
+                @*<div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <input type="submit" name="action" value="添加" class="btn btn-default" />
+                        <input type="submit" name="action" value="返回" class="btn btn-default" />
+                    </div>
+                </div>*@
+            
+            }
+

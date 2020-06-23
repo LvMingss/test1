@@ -1,0 +1,174 @@
+﻿@model urban_archive.Models.ContractInfo
+@{
+    ViewBag.Title = "Details";
+}
+
+@using (Html.BeginForm())
+{
+    <div class="form-horizontal">
+
+        <div>
+            @*<h2><i class="fa fa-tags kongge"></i>移交责任书信息</h2>
+            <hr />*@
+            <div class="panel panel-default" >
+                <table class="table table-bordered @*table-striped*@" >
+                    <tr>
+                        <td class="linear" style="font-size: 18px;color:white;text-align:center;padding:2px;" colspan="4">
+                            <i class="fa fa-check-square-o"></i>移交责任书信息
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td style="background-color:#f9f9f9;width:10%;min-width:110px;font-weight:bold;">
+                            责任书编号
+                        </td>
+                        <td width:40%>
+                            @Html.DisplayFor(model => model.contractNo)
+                        </td>
+                        <td style="background-color:#f9f9f9;width:10%;min-width:110px;font-weight:bold;">
+                            签订日期
+                        </td>
+                        <td>
+                            @Html.DisplayFor(model => model.dateSigned)
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="background-color:#f9f9f9;font-weight:bold;">
+                            移交方
+                        </td>
+                        <td colspan="3">
+                            @Html.DisplayFor(model => model.transferUnit)
+                        </td>
+                    </tr>
+
+
+                    <tr>
+                        <td style="background-color:#f9f9f9;font-weight:bold;">
+                            工程名称
+                        </td>
+                        <td colspan="3">
+                            @Html.DisplayFor(model => model.projectName)
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="background-color:#f9f9f9;font-weight:bold;">
+                            工程地点
+                        </td>
+                        <td>
+                            @Html.DisplayFor(model => model.location)
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="background-color:#f9f9f9;font-weight:bold;">
+                            层数
+                        </td>
+                        <td>
+                            @Html.DisplayFor(model => model.layerCount)
+                        </td>                
+                   
+                        <td style="background-color:#f9f9f9;font-weight:bold;">
+                            建筑面积
+                        </td>
+                        <td>
+                            @Html.DisplayFor(model => model.buildingArea)
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="background-color:#f9f9f9;font-weight:bold;">
+                            计划开工时间
+                        </td>
+                        <td>
+                            @Html.DisplayFor(model => model.planningStartDate)
+                        </td>
+                        <td style="background-color:#f9f9f9;font-weight:bold;">
+                            计划竣工时间
+                        </td>
+                        <td>
+                            @Html.DisplayFor(model => model.planningEndDate)
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <div class="panel panel-default" >
+                <table class="table table-bordered @*table-striped*@" >
+                    <tr>
+                        <td class="linear" style="font-size: 18px;color:white;text-align:center;padding:2px;" colspan="2">
+                            甲方<i class="fa fa-caret-down kongge"></i>
+                        </td>
+                        <td class="linear" style="font-size: 18px;color:white;text-align:center;padding:2px;" colspan="2">
+                            乙方<i class="fa fa-caret-down kongge"></i>
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td style="background-color:#f9f9f9;width:180px;font-weight:bold;">
+                            地址
+                        </td>
+                        <td style="">
+                            @Html.DisplayFor(model => model.partAaddress)
+                        </td>
+                        <td style="background-color:#f9f9f9;width:10%;font-weight:bold;">
+                            地址
+                        </td>
+                        <td>
+                            @Html.DisplayFor(model => model.partBadress)
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="background-color:#f9f9f9;width:10%;font-weight:bold;">
+                            法定代表人
+                        </td>
+                        <td style="">
+                            @Html.DisplayFor(model => model.partALegalRepresent)
+                        </td>
+                        <td style="background-color:#f9f9f9;width:10%;font-weight:bold;">
+                            法定代表人
+                        </td>
+                        <td style="width:40%;">
+                            @Html.DisplayFor(model => model.partBLegalRepresent)
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="background-color:#f9f9f9;width:10%;font-weight:bold;">
+                            委托代理人
+                        </td>
+                        <td style="">
+                            @Html.DisplayFor(model => model.partAweituoAgent)
+                        </td>
+                        <td style="background-color:#f9f9f9;width:10%;font-weight:bold;">
+                            委托代理人
+                        </td>
+                        <td style="width:40%;">
+                            @Html.DisplayFor(model => model.partBweituoAgent)
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="background-color:#f9f9f9;width:10%;font-weight:bold;">
+                            联系电话
+                        </td>
+                        <td style="">
+                            @Html.DisplayFor(model => model.partAcontactTel)
+                        </td>
+                        <td style="background-color:#f9f9f9;width:10%;font-weight:bold;">
+                            联系电话
+                        </td>
+                        <td style="width:40%;">
+                            @Html.DisplayFor(model => model.partBcontactTel)
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            
+            <div style="text-align:center;">
+                <p>                    
+                    @*@Html.ActionLink("编辑", "Edit", new { id = Model.contractNo}, new { @class = "btn btn-default" })*@ 
+                    <input type="submit" value="返回" name="action" class="btn btn-default">
+                </p>
+                <div style="height:20px;">
+                </div> 
+            </div>
+            </div>
+    </div>
+
+
+}

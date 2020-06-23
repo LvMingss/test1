@@ -1,0 +1,184 @@
+﻿@model IEnumerable<urban_archive.Models.vw_projectList>
+@{
+    ViewBag.Title = "jgArchivesReceiveTJ";
+}
+<link href="~/Content/Tabulator/version3.0/tabulator.css" rel="stylesheet" />
+<link type="text/css" rel="stylesheet" href="~/Scripts/jquery/jquery-ui.css">
+
+<style type="text/css">
+    .loader {
+        box-sizing: border-box;
+        height: 100%;
+        width: 100%;
+        padding-top: 100px;
+        background-color: #ddd;
+        color: #fff;
+        font-size: 30px;
+        font-weight: bold;
+        text-align: center;
+    }
+
+        .loader i {
+            margin-bottom: 20px;
+            font-size: 60px;
+        }
+</style>
+
+<script src="~/Scripts/jquery-2.1.1.min.js" type="text/javascript"></script>
+<script type="text/javascript" src="~/Scripts/jquery/jquery-1.8.3.js"></script>
+
+<script src="~/Scripts/jquery-ui.min.js"></script>
+<script type="text/javascript" src="~/Scripts/jquery/jquery.ui.core.js"></script>
+<script type="text/javascript" src="~/Scripts/jquery/jquery.ui.datepicker.js"></script>
+<script type="text/javascript" src="~/Scripts/jquery/jquery.ui.widget.js"></script>
+<script type="text/javascript" src="~/Scripts/jquery/jquery-ui-timepicker-addon.js"></script>
+
+@*<script src="~/Content/Tabulator/tabulator.js"></script>*@
+<script src="~/Content/Tabulator/version3.0/tabulator.js"></script>
+<script src="~/Scripts/xlsx.full.min.js"></script>
+<script>
+            $(function () {
+                $("#startdate").datepicker({
+                    changeMonth: true,
+                    changeYear: true
+                });
+            });
+            $(function () {
+                $("#enddate").datepicker({
+                    changeMonth: true,
+                    changeYear: true
+                });
+            });
+</script>
+<script type="text/javascript">
+   
+
+    $().ready(function () {//在页面加载完成之后用，为了保证js能完整的执行。
+        $(document).ready(function () {
+            var a = $(window).height();
+            var hh = a-180;
+            $(".box-h").height(hh)  // 高度加在类名为box的DIV 上
+
+        })
+        $("#example-table-2").tabulator({
+            height:"100%",
+            //virtualDom:false,
+            virtualDomBuffer:666,
+            //minWidth
+            fitColumns:true,
+            selectable:true, //make rows selectable
+            //pagination:"local",
+            //paginationSize:50,
+            rowFormatter:function(row){
+                //row - row component
+
+                var data = row.getData();
+
+                if(data.k=="通过审核"){
+                    row.getElement().css({"background-color":"#CCFFCC","border-bottom":"1px solid #999"});
+                }
+                if(data.k=="整理"){
+                    row.getElement().css({"background-color":"#CCCCFF","border-bottom":"1px solid #999"});
+                }
+                if(data.k=="编号"){
+                    row.getElement().css({"background-color":"#FFCCCC","border-bottom":"1px solid #999"});
+                }
+                if(data.k=="录入"){
+                    row.getElement().css({"background-color":"#FFCC99","border-bottom":"1px solid #999"});
+                }
+                if(data.k=="等待入库"){
+                    row.getElement().css({"background-color":"#FFFFCC","border-bottom":"1px solid #999"});
+                }
+                if(data.k=="入库"){
+                    row.getElement().css({"background-color":"#CCFFFF ","border-bottom":"1px solid #999"});
+                }
+            },
+            columns: [
+            
+            { title: "序号 ", field: "id",headerSort: false, width:50 },
+
+            { title: "工程名称 ", field: "a",headerSort: false, minWidth: 600 },
+            { title: "工程序号", field: "b", headerSort: false, width: 100 },
+            { title: "工程顺序号", field: "c", headerSort: false, width: 100 },
+            { title: "档号", field: "d",headerSort: false,  width: 200 },
+            { title: "总登记号", field: "e",headerSort: false,  width: 200 },
+            { title: "排架号", field: "f",headerSort: false,  width: 200 },
+            { title: "工程地点", field: "g",headerSort: false,  width: 200 },
+            { title: "建设单位", field: "h",headerSort: false,  width: 200 },
+            { title: "设计单位", field: "i",headerSort: false,  width: 200 },
+            { title: "施工单位", field: "j",headerSort: false,  width: 200 },
+            { title: "状态", field: "k",headerSort: false,  width: 100 },
+            { title: "整理人", field: "l",headerSort: false,  width: 100 },
+            { title: "接收人", field: "m",headerSort: false,  width: 100},
+            { title: "接收日期", field: "n",headerSort: false,  width: 100 },
+            { title: "归档日期", field: "o",headerSort: false,width: 100},
+
+
+
+            ],
+        });
+
+        //trigger download of data.xlsx file
+        $("#download-xlsx").click(function(){
+            $("#example-table-2").tabulator("download", "xlsx", "竣工档案接收统计.xlsx");
+        });
+
+        var temp = new Array();
+        var data=@(new HtmlString(@ViewBag.result));
+        for (var i = 0; i < data.length;i++) {
+            var b = data[i].dateReceived
+            if(b!=null){
+                var result = b.slice(0,10)
+            }
+            var c = data[i].dateArchive
+            if(c!=null){
+                var result1 = c.slice(0,10)
+            }
+            var f=data[i].startArchiveNo
+            var g=data[i].endArchiveNo
+            var d=""
+            if(f!=null&&g!=null){
+                var d=f+'—'+g
+            }
+            var h=data[i].startRegisNo
+            var j=data[i].endRegisNo
+            var e=""
+            if(h!=null&&j!=null){
+                var e=h+'—'+j
+            }
+            temp.push({ "id": i + 1, "a": data[i].projectName, "b": data[i].projectNo, "c": data[i].paperProjectSeqNo, "d":d ,"e":e,"f":data[i].paijiaNo,"g": data[i].location, "h":data[i].developmentOrganization, "i":data[i].disignOrganization,"j":data[i].constructionOrganization,"k":data[i].statusName,"l":data[i].collator,"m":data[i].recipient,"n":result, "o":result1,});
+        }
+
+        $("#example-table-2").tabulator("setData", temp);
+        $(window).resize(function () {
+            var a = $(window).height();
+            var hh = a-180;
+            $(".box-h").height(hh)  // 高度加在类名为box的DIV 上
+            $("#example-table-2").tabulator("redraw",true);
+
+        });
+
+    });
+</script>
+<section>
+    <h2 style="float:left;"><i class="fa fa-tags kongge"></i>竣工档案接收统计</h2>
+    <ol class="breadcrumb">
+        <li class="active">档案统计</li>
+        <li class="active">档案接收统计</li>
+        <li>竣工档案</li>
+    </ol>
+    <div style="clear:both;"></div>
+</section>
+@using (Html.BeginForm("jgArchivesReceiveTJ", "Statistics", FormMethod.Get))
+{
+    <p>
+        接收日期：<input type="text" name="startdate" id="startdate" value="@ViewData["start"]" class="form-control" style="display:inline">至<input type="text" value="@ViewData["end"]" name="enddate" id="enddate" class="form-control" style="display:inline">
+
+        <input type="submit" value="查找" class="btn btn-default" /> <label id="count" name="count" style="color:blue">共检索到: @ViewBag.count 条</label>
+
+    </p>
+}
+<div id="example-table-2" class="box-h">
+    <div class="loader"><i class="fa fa-spinner fa-pulse fa-fw"></i><div>数据加载中...</div></div>
+</div>
+<div style="text-align:center;margin-top:5px;"><button id="download-xlsx" class="btn btn-default">下载表格</button></div>

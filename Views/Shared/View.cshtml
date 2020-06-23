@@ -1,0 +1,149 @@
+﻿@*@model PagedList.IPagedList<urban_archive.Models.vw_projectList>
+@using PagedList.Mvc;*@
+@*@{
+        Layout = null;
+        //要使视图不使用布局或模板页，那么需要把Layout赋值为空
+    }*@
+<link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
+<link href="~/Content/jquery-ui.theme.css" rel="stylesheet" />
+
+
+<script src="~/Scripts/jquery-2.1.1.min.js" type="text/javascript"></script>
+<script src="~/Scripts/jquery-ui.min.js"></script>
+@*<script src="~/Scripts/bootstrap.min.js"></script>*@
+<script src="~/Scripts/tabulator.js"></script>
+
+
+
+<script type="text/javascript">
+        var details = function (value, data, cell, row, options) { //plain text value
+            return "<i class='fa fa-search-plus' style='color:#428bca;;vertical-align:middle; padding:2px 0;'></i> "
+        };
+        var edit = function (value, data, cell, row, options) { //plain text value
+            return "<i class='fa fa-download' style='color:#428bca;;vertical-align:middle; padding:2px 0;'></i> "
+        };
+        var chec=function (value, data, row) {
+            return "<div id='checkbox-div-" + row + "'>" +
+                "<label class='field-checkbox'><input id='ShareGroup-" + row + "-0'" + " name='ShareGroup-" + row+ "'" + " type='checkbox' value='0' onchange='changeCheckboxColor(" + row + ")' /></label>" +
+
+                "</div>";
+        };
+
+
+
+        $().ready(function () {//在页面加载完成之后用，为了保证js能完整的执行。
+            $(document).ready(function () {
+                //var height = $(window).height();   // 浏览器的高度
+                //var a = height - 110;
+                var hh = a-206;
+                $(".box-h").height(hh)  // 高度加在类名为box的DIV 上
+
+            })
+            $("#example-table-2").tabulator({
+                height: "100%",
+                columns: [
+{
+    title: "查看", field: "caozuo1",width: 100 ,formatter: details, sortable: false, sorter: "string", align: "center", onClick: function (e, val, cell, row) {
+        //var url = '/ArchiveSearch/ProjectInfoes?id=' + row.projectID;
+        //document.getElementById("text").value=row.projectID;
+        //window.location.href = url;
+        //var row1 = $("#example-table-2").datagrid("getSelected");
+        //document.getElementById("text").value=row1.projectID;
+
+        $("#checkname1").val(row.projectID);
+
+    }
+},
+//{
+//    title: "工程案卷", field: "caozuo2",width: 100 ,formatter: details, sortable: false, sorter: "string", align: "center", onClick: function (e, val, cell, row) {
+//        var url = '/ArchiveSearch/Projectanjuan?id=' + row.paperProjectSeqNo;
+//        //window.location.href = url;
+//    }
+//},
+
+                { title: "项目顺序号", field: "paperProjectSeqNo", sortable: false,width: 200 },
+                { title: "总卷数", field: "originalVolumeCount",sortable: false, width: 500 },
+                { title: "总厚度", field: "originalVolumeCount",sortable: false, width: 500 },
+                { title: "工程名称", field: "projectName",sortable: false, width: 500 },
+                { title: "工程地点", field: "location", sortable: false,width: 200 },
+                { title: "最新工程地点", field: "newLocation",sortable: false, width: 500 },
+                { title: "建设单位", field: "developmentOrganization",sortable: false, width: 500 },
+                { title: "执照号", field: "licenseNo",sortable: false, width: 500 },
+                { title: "开工日期", field: "kaigongTime", sortable: false,width: 200 },
+                { title: "竣工日期", field: "jungongTime",sortable: false, width: 500 },
+                { title: "进馆日期", field: "jgDate",sortable: false, width: 500 },
+                { title: "录入日期", field: "typerDate",sortable: false, width: 500 },
+                { title: "文字材料", field: "textMaterial", sortable: false,width: 200 },
+                { title: "图纸", field: "drawing",sortable: false, width: 500 },
+                { title: "照片", field: "photoCount",sortable: false, width: 500 },
+                { title: "移交单位", field: "transferUnit",sortable: false, width: 500 },
+                { title: "施工单位", field: "constructionUnit", sortable: false,width: 200 },
+                { title: "设计单位", field: "designUnit",sortable: false, width: 500 },
+                { title: "起始档号", field: "startArchiveNo",sortable: false, width: 500 },
+                { title: "终止档号", field: "endArchiveNo",sortable: false, width: 500 },
+                { title: "起始市政档案号", field: "shizhengNoStart", sortable: false,width: 200 },
+                { title: "终止市政档案号", field: "shizhengNoEnd",sortable: false, width: 500 },
+                { title: "起始排架号", field: "startPaijiaNo",sortable: false, width: 500 },
+                { title: "终止排架号", field: "endPaijiaNo",sortable: false, width: 500 },
+                { title: "工程ID", field: "projectID", sortable: false,width: 200 },
+                { title: "索引", field: "Index",sortable: false, width: 500 },
+
+
+                ],
+            });
+
+            var temp = new Array();
+            var data=@(new HtmlString(@ViewBag.result1));
+            @*var x=@Html.Raw(HttpUtility.UrlDecode(@ViewBag.result1.ToString()));*@
+
+
+
+            for (var i = 0; i < data.length;i++) {
+                temp.push({ "id": i + 1, "caozuo1": "查看", "paperProjectSeqNo": data[i].paperProjectSeqNo, "originalVolumeCount": data[i].originalVolumeCount, "originalVolumeCount": data[i].originalInchCount ,"projectName": data[i].projectName, "location": data[i].location,
+                    "newLocation": data[i].newLocation, "developmentOrganization": data[i].developmentOrganization,"licenseNo": data[i].licenseNo, "kaigongTime": data[i].kaigongTime,"jungongTime": data[i].jungongTime, "jgDate": data[i].jgDate,
+                    "typerDate": data[i].luruTime, "textMaterial": data[i].textMaterial,"drawing": data[i].drawing, "photoCount": data[i].photoCount,"transferUnit": data[i].transferUnit, "constructionOrganization": data[i].constructionOrganization,
+                    "disignOrganization": data[i].disignOrganization, "startArchiveNo": data[i].startArchiveNo,"endArchiveNo": data[i].endArchiveNo, "shizhengNoStart": data[i].shizhengNoStart,"shizhengNoEnd": data[i].shizhengNoEnd, "startPaijiaNo": data[i].startPaijiaNo,
+                    "endPaijiaNo": data[i].endPaijiaNo, "projectID": data[i].projectID,"Index": data[i].Index
+                });
+            }
+
+            $("#example-table-2").tabulator("setData", temp);
+            $(window).resize(function () {
+                $("#example-table-2").tabulator("redraw");
+                $(document).ready(function () {
+                    var height = $(window).height();
+                    var a = height - 110;
+                    var hh = a-206;
+                    $(".box-h").height(hh)  // 高度加在类名为box的DIV 上
+                })
+            });
+
+        });
+</script>
+@using (Html.BeginForm())
+{
+    <input type="submit" name="action" id="Projectzhulu" value="工程项目著录单">
+    <input type="submit" name="action" id="Allprojectjilu" value="工程全部记录">
+    <input type="submit" name="action" id="Allarchivejilu" value="案卷全部记录">
+    <input type="submit" name="action" id="Archivezhulu" value="案卷著录单">
+    <input type="submit" name="action" id="juanneiquanbumulu" value="卷内全部目录">
+    <input type="submit" name="action" id="juneixinxi" value="卷内目录信息">
+    <input name="checkname1" id="checkname1" hidden="hidden">
+    <input name="url" id="url" hidden="hidden" value="@Request.Url.ToString()">
+
+}
+<div id="example-table-2" class="box-h"> </div>
+
+<input value="@ViewData["checkname"]" name="checkname" id="checkname" hidden="hidden"> @*从后台传来数据，进行ajax判断*@
+@*@(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) / @Model.PageCount*@
+@*@(ViewBag.result.PageCount < @ViewBag.result.PageNumber ? 0 : @ViewBag.result.PageNumber) / @ViewBag.result.PageCount 页
+@Html.PagedListPager(Model, page => Url.Action("LookFinshProject",
+    new { page, SerachText = ViewBag.coent, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))*@
+
+
+
+
+
+
+
+

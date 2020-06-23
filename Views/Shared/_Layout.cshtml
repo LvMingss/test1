@@ -1,0 +1,101 @@
+﻿<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    @*<title>@ViewBag.Title - 青岛市多维城市建设档案数字化管理系统</title>*@
+    <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+    <link href="~/Content/Site.css" rel="stylesheet" />
+    <link href="~/Content/font-awesome-4.7.0/css/font-awesome.css" rel="stylesheet" />
+    <link href="~/Content/new.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/stylesheets/theme.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/stylesheets/premium.css" rel="stylesheet" />
+    <style type="text/css">
+        #line-chart {
+            height: 300px;
+            width: 800px;
+            margin: 0px auto;
+            margin-top: 1em;
+        }
+
+        .navbar-default .navbar-brand, .navbar-default .navbar-brand:hover {
+            color: #fff;
+        }
+    </style>
+
+
+    <script src="~/Scripts/jquery-2.1.1.min.js"></script>
+    <script src="/Content/lib/bootstrap/js/bootstrap.js"></script>
+    @*<script type="text/javascript">
+        $(function() {
+            var match = document.cookie.match(new RegExp('color=([^;]+)'));
+            if(match) var color = match[1];
+            if(color) {
+                $('body').removeClass(function (index, css) {
+                    return (css.match (/\btheme-\S+/g) || []).join(' ')
+                })
+                $('body').addClass('theme-' + color);
+            }
+
+
+        });
+    </script>*@
+    @*<script type="text/javascript">
+        $(function() {
+            var uls = $('.sidebar-nav > ul > *').clone();
+            uls.addClass('visible-xs');
+            $('#main-menu').append(uls.clone());
+        });
+    </script>
+    <script type="text/javascript">
+        $("[rel=tooltip]").tooltip();
+        $(function() {
+            $('.demo-cancel-click').click(function(){return false;});
+        });
+    </script>*@
+    
+    @*<script>
+        var buttons = $(':button');
+        buttons.on('click', function () {
+            buttons.css('background-color', 'white');
+            $(this).css('background-color', 'yellow');
+        });
+    </script>*@
+    @*<script type="text/javascript">
+        var a;
+        $(document).ready(function () {
+            var height = $(window).height();   // 浏览器的高度
+            a = height - 110;
+            $(".box").height(a)
+
+        })
+        $(window).resize(function () {   //窗口大小变化自动执行
+            var height = $(window).height();   // 浏览器的高度
+             a = height - 110;
+            $(".box").height(a)
+        });
+    </script>*@
+
+</head>
+
+<body style="background:#ecf0f5;padding:15px;padding-bottom:0px;">
+
+    <div >
+        <div  style="overflow-y:auto;overflow-x:hidden; height:100%;">
+            @RenderBody()
+        </div>
+    </div>
+
+
+    @RenderSection("scripts", required: false)
+    @RenderSection("css", required: false)
+</body>
+</html>
+
+
+
+
+

@@ -1,0 +1,116 @@
+﻿@model IEnumerable<urban_archive.Models.vw_projectList>
+
+<link href="~/Content/Tabulator/version3.0/tabulator.css" rel="stylesheet" />
+@{
+    ViewBag.Title = "PaperSettle";
+}
+<script src="~/Scripts/jquery-2.1.1.min.js" type="text/javascript"></script>
+<script src="~/Scripts/jquery-ui.min.js"></script>
+<script src="~/Content/Tabulator/version3.0/tabulator.js"></script>
+<script src="~/Scripts/xlsx.full.min.js"></script>
+<script type="text/javascript">
+    var j = function (value, data, cell, row, options) { //plain text value
+        return "<i class='fa fa-search-plus' style='color:#428bca;vertical-align:middle; padding:2px 0;'></i> "
+    };
+    var k = function (value, data, cell, row, options) { //plain text value
+        return "<i class='fa fa-hand-lizard-o' style='color:#428bca;vertical-align:middle; padding:2px 0;'></i>"
+        };
+
+
+    $().ready(function () {//在页面加载完成之后用，为了保证js能完整的执行。
+        $(document).ready(function () {
+
+            var a = $(window).height();
+            var hh = a-160;
+            $(".box-h").height(hh)  // 高度加在类名为box的DIV 上
+
+        })
+            $("#example-table-2").tabulator({
+                height:"100%",
+                virtualDom:false,
+                
+                //columnMinWidth:80,
+                //minWidth
+                fitColumns:true,                
+                selectable:true, //make rows selectable
+                pagination:"local",
+                paginationSize:50,
+
+                columns: [
+                {
+                    title: "查看", field: "j", width: 50 ,formatter: j, headerSort: false,align: "center", cellClick: function (e,cell) {
+
+                        var url = '/ProjectInfoes/Details?id=' + cell.getValue()+"&id2=3";
+                        window.location.href = url;
+                    }
+                },
+                {
+                    title: "领取", field: "k", width: 50 ,formatter: k,headerSort: false, align: "center", cellClick: function (e,cell) {
+                        var url = '/PaperSettle/lingqu?id=' + cell.getValue();
+                        window.location.href = url;
+                    }
+                },
+                { title: "工程名称", field: "a",headerSort: false },
+                { title: "工程序号", field: "b", headerSort: false,width: 100 },
+                { title: "建设单位", field: "c", headerSort: false },
+                { title: "施工单位", field: "d", headerSort: false },
+                { title: "接收人", field: "e", headerSort: false,width: 80 },
+                { title: "接收日期", field: "f" ,headerSort: false,minWidth: 100 },
+
+
+
+                ],
+            });
+           ////trigger download of data.csv file
+           // $("#download-csv").click(function(){
+           //     $("#example-table-2").tabulator("download", "csv", "data.csv");
+           // });
+        //trigger download of data.xlsx file
+            $("#download-xlsx").click(function(){
+                $("#example-table-2").tabulator("download", "xlsx", "data.xlsx");
+            });
+            var temp = new Array();
+            var data=@(new HtmlString(@ViewBag.result));
+            for (var i = 0; i < data.length;i++) {
+                var a = data[i].dateReceived
+                if(a!=null){
+                    var result = a.slice(0,10)
+                }
+                temp.push({ "id": i + 1, "a": data[i].projectName, "b": data[i].projectNo, "c": data[i].developmentOrganization, "d": data[i].constructionOrganization,"e": data[i].recipient,"f": result,"j": data[i].projectID,"k": data[i].projectID});
+            }
+
+            $("#example-table-2").tabulator("setData", temp);
+            $(window).resize(function () {
+                var a = $(window).height();
+                var hh = a-160;
+                $(".box-h").height(hh)  // 高度加在类名为box的DIV 上
+                $("#example-table-2").tabulator("redraw",true);
+
+            });
+
+        });
+</script>
+<section>
+<h2 style="float:left;"><i class="fa fa-tags kongge"></i>待整理工程</h2>
+<ol class="breadcrumb">
+    <li class="active">竣工档案</li>
+    <li class="active">档案整理</li>
+    <li>档案领取</li>
+</ol>
+<div style="clear:both;"></div>
+</section>
+@using (Html.BeginForm("linquzhengli", "PaperSettle", FormMethod.Get))
+{
+    <p style="float:left">
+            检索条件： @Html.DropDownList("SelectedID", null, new { @class = "form-control",@style="display:inline;width:280px;" })  检索内容： @Html.TextBox("SearchString", ViewBag.CurrentFilter as string, new { @class = "form-control", @style = "display:inline;width:280px;" })
+            <input type="submit" value="查找" class="btn btn-default" />
+            
+    </p>
+}
+<p style="float:left">
+    <button id="download-xlsx" class="btn btn-default" style="margin-left:5px;">表格下载</button>
+</p>
+<div style="clear:both"></div>
+<div id="example-table-2" class="box-h" > </div>
+
+

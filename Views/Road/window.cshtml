@@ -1,0 +1,190 @@
+﻿@model urban_archive.Models.WordTable
+@{
+    Layout = null;
+}
+
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>@ViewBag.Title - 青岛市多维城市建设档案数字化管理系统</title>
+    <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    @Styles.Render("~/Content/css")
+
+    <link href="~/Content/lib/font-awesome/css/font-awesome.css" rel="stylesheet" />
+    <link href="~/Content/new.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/stylesheets/theme.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/stylesheets/premium.css" rel="stylesheet" />
+
+    <link rel="shortcut icon" href="../assets/ico/favicon.ico">
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="../assets/ico/apple-touch-icon-144-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="../assets/ico/apple-touch-icon-114-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="../assets/ico/apple-touch-icon-72-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" href="../assets/ico/apple-touch-icon-57-precomposed.png">
+    <style type="text/css">
+        #line-chart {
+            height: 300px;
+            width: 800px;
+            margin: 0px auto;
+            margin-top: 1em;
+        }
+
+        .navbar-default .navbar-brand, .navbar-default .navbar-brand:hover {
+            color: #fff;
+        }
+    </style>
+
+
+    <script src="~/Scripts/jquery-2.1.1.min.js"></script>
+    <script src="/Content/lib/bootstrap/js/bootstrap.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            var match = document.cookie.match(new RegExp('color=([^;]+)'));
+            if (match) var color = match[1];
+            if (color) {
+                $('body').removeClass(function (index, css) {
+                    return (css.match(/\btheme-\S+/g) || []).join(' ')
+                })
+                $('body').addClass('theme-' + color);
+            }
+        });
+    </script>
+    <script type="text/javascript">
+        $(function () {
+            var uls = $('.sidebar-nav > ul > *').clone();
+            uls.addClass('visible-xs');
+            $('#main-menu').append(uls.clone());
+        });
+    </script>
+    <script type="text/javascript">
+        $("[rel=tooltip]").tooltip();
+        $(function () {
+            $('.demo-cancel-click').click(function () { return false; });
+        });
+    </script>
+    <script>
+        var buttons = $(':button');
+        buttons.on('click', function () {
+            buttons.css('background-color', 'white');
+            $(this).css('background-color', 'yellow');
+        });
+    </script>
+    <script>
+            function onLoad()//弹出窗口获取父页面已有确定值
+            {
+                var obj = window.dialogArguments//获取父页面对象
+                document.getElementById("txtSeqNo").value = obj.id + "-" + obj.number;
+                document.getElementById("ddlClass").value = obj.name;
+                document.getElementById("ID").value = obj.id;
+            }
+            function tjbefore()//对话框添加传值
+            {
+                var obj = window.dialogArguments//获取父页面对象判断
+                var name = document.getElementById("txtName").value;
+                window.returnValue = name;
+                window.close();
+                ID = obj.id;
+                number = obj.number;
+                $.ajax({
+                    url: '../../LicenceFiles/tianjiabefore',
+                    data: { id: ID, txtName: name, txtSeqNo: number },
+                    type: 'post',
+                    success: function (data) {
+                    }
+                })
+            }
+            function tjafter()//对话框添加传值
+            {
+                var obj = window.dialogArguments//获取父页面对象判断
+                var name = document.getElementById("txtName").value;
+                //var title = new Array(a);
+                //window.parent.document.getElementById("fileTitle").text = title[0];//传值到父页面
+                //titlename = title[0];
+                window.returnValue = name;
+                //var a = '＜%=tianjia()%＞';
+                window.close();
+                //}
+                ID = obj.id;
+                number = obj.number;
+                $.ajax({
+                    url: '../../LicenceFiles/tianjiaafter',
+                    data: { id: ID, txtName: name, txtSeqNo: number },
+                    type: 'post',
+                    success: function (data) {
+                    }
+                })
+            }
+            function cancel()//取消
+            {
+                window.close();
+            }
+
+    </script>
+</head>
+
+<body style="background:#fff;" onload="onLoad();">
+    <div class="content" style="overflow:auto;height:100%;">
+
+        @{
+            ViewBag.Title = "添加词条";
+        }
+        <style type="text/css">
+            .jubu {
+                max-width: 100%;
+            }
+        </style>
+
+
+        @using (Html.BeginForm())
+        {
+            <div>
+
+                <form id="form1" target="">
+                    <iframe name="" width=0 height=0 frameborder=0 style=”display: none”></iframe>
+                    <div class="panel panel-default">
+                        <table class="table table-bordered dl-horizontal" style="text-align:center">
+
+                            <tr>
+                                <td style="background-color:#f9f9f9;width:20%;">
+                                    序号
+                                </td>
+                                <td>
+                                    <input id="txtSeqNo" name="txtSeqNo" readonly="readonly" style="width: 284px;display:inline;" type="text" class="form-control" />
+                                    <input id="ID" name="ID" readonly="readonly" type="text" style="display:none" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="background-color:#f9f9f9;width:20%;">
+                                    类型
+                                </td>
+                                <td>
+                                    <input id="ddlClass" name="ddlClass" readonly="readonly" style="width: 284px;display:inline;" type="text" class="form-control" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="background-color:#f9f9f9;width:20%;">
+                                    名称
+                                </td>
+                                <td>
+                                    <input id="txtName" name="txtName" style="width: 284px;display:inline;" type="text" class="form-control" />
+                            </tr>
+                        </table>
+                    </div>
+                    <div style="text-align:center;">
+                        <p>
+                            <input type="button" name="action" id="btnPreSubmit" onclick="tjbefore()" class="btn btn-default" value="前项添加" />
+                            &nbsp;&nbsp;
+                            <input type="button" name="action" id="btnSubmit" onclick="tjafter()" class="btn btn-default" value="后项添加" />
+                            &nbsp; &nbsp;
+                            <input onclick="cancel()" id="btnCancel" class="btn btn-default" value="取消" type="button" style="display:none" />
+                        </p>
+                    </div>
+                </form>
+            </div>
+        }
+    </div>
+</body>
+</html>

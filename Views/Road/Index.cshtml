@@ -1,0 +1,236 @@
+﻿<link type="text/css" rel="stylesheet" href="~/Scripts/jquery/jquery-ui.css">
+<link href="~/Content/Tabulator/version3.0/tabulator.css" rel="stylesheet" />
+<script src="~/Scripts/jquery-2.1.1.min.js" type="text/javascript"></script>
+<script type="text/javascript" src="~/Scripts/jquery/jquery-1.8.3.js"></script>
+<script src="~/Scripts/jquery-ui.min.js"></script>
+
+<script type="text/javascript" src="~/Scripts/jquery/jquery.ui.core.js"></script>
+<script type="text/javascript" src="~/Scripts/jquery/jquery.ui.datepicker.js"></script>
+<script type="text/javascript" src="~/Scripts/jquery/jquery.ui.widget.js"></script>
+<script type="text/javascript" src="~/Scripts/jquery/jquery-ui-timepicker-addon.js"></script>
+<script src="~/Content/Tabulator/version3.0/tabulator.js"></script>
+
+<script src="~/Scripts/xlsx.full.min.js"></script>
+@model IEnumerable<urban_archive.Models.OtherArchives>
+@*<link href="~/Content/jquery-ui.@*theme.css" rel="stylesheet" />
+<link href="~/Content/Tabulator/tabulator.css" rel="stylesheet" />*@
+@{
+    ViewBag.Title = "道路档案管理";
+}
+<section>
+    <h2 style="float:left;"><i class="fa fa-tags kongge"></i>道路档案管理</h2>
+    <ol class="breadcrumb">
+        @*<li class="active">其他档案</li>*@
+        <li class="active">道路档案</li>
+        <li>档案管理</li>
+    </ol>
+    <div style="clear:both;"></div>
+</section>
+
+@*<script src="~/Scripts/jquery-2.1.1.min.js" type="text/javascript"></script>
+<script src="~/Scripts/jquery-ui.min.js"></script>
+<script src="~/Content/Tabulator/tabulator.js"></script>*@
+
+<script type="text/javascript">
+    var k = function (value, data, cell, row, options) { //plain text value
+        return "<i class='fa fa-search-plus' style='color:#428bca;vertical-align:middle; padding:2px 0;'></i>"
+    };
+    var l = function (value, data, cell, row, options) { //plain text value
+        return "<i class='fa fa-edit' style='color:#428bca;vertical-align:middle; padding:2px 0;'></i>"
+    };
+    var n = function (value, data, cell, row, options) { //plain text value
+        return "<i class='glyphicon glyphicon-trash' style='color:#428bca;vertical-align:middle; padding:2px 0;'></i>"
+    };
+    var juanneimulu = function (value, data, cell, row, options) { //plain text value
+        return "<i class='fa  fa-list-ol' style='color:#428bca;;vertical-align:middle; padding:2px 0;'></i>"
+    };
+    $.ajax({
+        cache: false  //不缓存数据
+    })
+
+    $().ready(function () {//在页面加载完成之后用，为了保证js能完整的执行。
+        $(document).ready(function () {
+            var a = $(window).height();
+            var hh = a-160;
+            $(".box-h").height(hh)  // 高度加在类名为box的DIV 上
+        })
+        $("#example-table-2").tabulator({
+            height: "100%",
+            virtualDom: false,
+            fitColumns: true,
+            selectable: true, //make rows selectable
+            pagination: "remote",
+            ajaxURL: "/Road/IndexData/" + new Date().getTime(),
+            paginator: function (url, pageNo, pageSize, ajaxParams) {
+
+                var type = document.getElementById("SelectedID").value;
+                var content = document.getElementById("SearchString").value;
+                var Url = "";
+                if (type != "" && content != "") {
+                    Url = url + "?page=" + pageNo + "&SelectedID=" + type + "&searchString=" + encodeURI(content);
+                }
+                else {
+                    Url = url + "?page=" + pageNo;
+                }
+
+                return Url; //must return the string of the page request URL
+            },
+            columns: [
+                {
+                    title: "查看", field: "ID", width: 50, formatter: k, headerSort: false, align: "center", cellClick: function (e, cell) {
+                        var url = '/Road/Details/?id=' + cell.getValue();
+                        window.location.href = url;
+                    }
+                },
+                {
+                    title: "修改", field: "ID", width: 50, formatter: l, headerSort: false, align: "center", cellClick: function (e, cell) {
+                        var url = '/Road/Edit/?id=' + cell.getValue();
+                        //window.location.href = url;
+
+                        window.open(url);
+                    }
+                },
+                {
+                    title: "卷内目录", field: "ID", width: 80, formatter: juanneimulu, headerSort: false, align: "center", cellClick: function (e, cell) {
+
+                        var url = '/Road/juannei/?id=' + cell.getValue() + '&id2=0' + '&id1=0';
+                        //window.location.href = url;
+                        window.open(url);
+                    }
+                },
+                {
+                    title: "删除", field: "ID", width: 50, formatter: n, headerSort: false, align: "center", cellClick: function (e, cell) {
+                        if (del()) {
+                            var url = '/Road/Delete/?id=' + cell.getValue();
+                            window.location.href = url;
+                        }
+                    }
+                },
+            { title: "执照号", field: "licenceNo", headerSort: false, width: 150 },
+            { title: "申请单位", field: "applyUnit", headerSort: false, width: 300 },
+            { title: "工程内容", field: "projectRange", headerSort: false, width: 300 },
+            { title: "工程地点", field: "location", headerSort: false, width: 200 },
+            { title: "最新工程地点", field: "newLocation", headerSort: false, width: 200 },
+            { title: "年度", field: "year", headerSort: false, width: 100 },
+            { title: "总登记号", field: "registrationNo", headerSort: false, width: 100, },
+            { title: "区工程顺序号", field: "areaProSeqNo", headerSort: false, width: 200 },
+
+            //{ title: "门牌", field: "doorplate", headerSort: false, width: 100 },
+            //{ title: "地号", field: "landNo", headerSort: false, width: 100 },
+            //{ title: "卷号", field: "volNo",headerSort: false, width: 100 },
+            //{ title: "排架号", field: "paijiaNo", headerSort: false, minWidth: 100 },
+            ],
+        });
+        $("#example-table-2").tabulator("setData");
+
+    });
+    function del() {
+        var msg = "确认要删除吗?";
+        if (confirm(msg) == true) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+    $(document).ready(function () {
+        $("#Find").click(function () {
+            var type = document.getElementById("SelectedID").value;
+            var content = document.getElementById("SearchString").value;
+            var Url = "";
+
+            Url = "/Road/Index/" + "?type=" + type + "&searchString=" + encodeURI(content);
+            window.location.href = Url;
+
+        });
+    });
+    </script>
+<div class="form-inline">
+    <p>
+        检索条件 : @Html.DropDownList("SelectedID", null, new { @class = "form-control" })&nbsp;&nbsp;检索内容：@Html.TextBox("SearchString", ViewBag.CurrentFilter as string, new { @class = "form-control" })
+        <input type="button" id="Find" name="Find" class="btn btn-default" value="查找" />
+
+    </p>
+    </div>
+
+    <div id="example-table-2" class="box-h" > </div>
+
+
+@*height: "100%",
+                colMinWidth: 100,
+                fitColumns: true,
+                sortable: false,
+                selectable: true, //make rows selectable
+                pagination: "local",
+                paginationSize: 100,
+                columns: [
+                        {
+                            title: "查看", field: "k", width: 100 ,formatter: k, sorter: "string", align: "center", onClick: function (e, val, cell, row) {
+                                var url = '/Road/Details/?id=' + row.m;
+                                window.location.href = url;
+                            }
+                        },
+                        {
+                            title: "修改", field: "1", width: 100 ,formatter: l, sorter: "string", align: "center", onClick: function (e, val, cell, row) {
+                                var url = '/Road/Edit/?id=' + row.m;
+                                window.location.href = url;
+                            }
+                        },
+                        {
+                            title: "删除", field: "n", width: 100 ,formatter: n, sorter: "string", align: "center", onClick: function (e, val, cell, row) {
+                                if(del()){
+                                    var url = '/Road/Delete/?id=' + row.m;
+                                    window.location.href = url;
+                                }
+                            }
+                        },
+                { title: "年度", field: "a", width: 100 },
+                { title: "卷号", field: "b", width: 100 },
+                { title: "总登记号", field: "c", width: 100, },
+                { title: "申请单位", field: "d", width: 300 },
+                { title: "工程地点", field: "e", width: 200 },
+                { title: "最新工程地点", field: "f", width: 200 },
+                { title: "门牌", field: "g", width: 100 },
+                { title: "地号", field: "h", width: 100 },
+                { title: "工程内容", field: "i", width: 300 },
+                { title: "排架号", field: "j", width: 100 },
+                    ],
+                });
+                var temp = new Array();
+                var data=@(new HtmlString(@ViewBag.result));
+               for (var i = 0; i < data.length;i++) {
+                temp.push({"id":i+1,"a":data[i].year,"b":data[i].volNo,"c":data[i].registrationNo,"d":data[i].applyUnit,"e":data[i].location,"f":data[i].newLocation,"g":data[i].doorplate,"h":data[i].landNo,"i":data[i].projectRange,"j":data[i].paijiaNo,"m":data[i].ID,});
+        }
+                $("#example-table-2").tabulator("setData", temp);
+                $(window).resize(function () {
+                    var a = $(window).height();
+                    var hh = a-160;
+                    $(".box-h").height(hh)  // 高度加在类名为box的DIV 上
+                    $("#example-table-2").tabulator("redraw",true);
+                })
+
+        });
+        function del() {
+            var msg = "确认要删除吗?";
+            if (confirm(msg) == true) {
+                return true;
+            } else {
+                return false;
+            }
+        }
+    </script>
+    @using (Html.BeginForm())
+    {
+        <p>
+            @Html.DropDownList("Selected", null, "请选择检索条件", new { @class = "form-control", @style = "display:inline" })
+            <label>
+                &nbsp;&nbsp;&nbsp;
+                检索内容：
+            </label>
+            <input type="text" name="search" id="serach" class="form-control" style="display:inline"><input type="submit" name="action" value="查找" class="btn btn-default">
+        </p>
+
+    }
+
+    <div id="example-table-2" class="box-h" style="overflow:auto"> </div>*@
+
+

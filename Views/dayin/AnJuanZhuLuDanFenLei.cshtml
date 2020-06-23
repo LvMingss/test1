@@ -1,0 +1,97 @@
+﻿@{
+    ViewBag.Title = "案卷著录单分类目录";
+}
+<h2><i class="fa fa-tags"></i>案卷著录单分类目录</h2>
+<hr />
+<script>
+function choose() {
+                //number = window.open('./ZTree', 'dialogWidth=600px;dialogHeight=300px');
+                number = window.showModalDialog('./ZTree', 'dialogWidth=600px;dialogHeight=300px');
+    //弹出模型对话框，obj为传值参数,name为子页面返回参数
+                if (number != null) {
+                    document.getElementById("No").value = number;
+                }
+                else {
+                    document.getElementById("No").value = "";
+                }
+            }
+</script>
+@using (Html.BeginForm())
+{
+    <div style="font-size:20px;">
+        <i class="fa fa-caret-right"></i>请输入分类号
+    </div><br>
+    <div class="panel panel-default">
+        <table class="table table-bordered dl-horizontal">
+            <tr>
+                <td style="background-color:#f9f9f9;width:10%;">
+                    分类号:
+                </td>
+                <td colspan="3">
+                    <input type="text" id="No" name="No" class="form-control" onclick="choose()">
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div style="font-size:20px;">
+        <i class="fa fa-caret-right"></i>请输入项目顺序号范围
+    </div><br>
+    <div class="panel panel-default">
+        <table class="table table-bordered dl-horizontal">
+            <tr>
+                <td style="background-color:#f9f9f9;width:10%;">
+                    起始项目顺序号:
+                </td>
+                <td>
+                    <input type="text" id="SeqNoS" name="SeqNoS" class="form-control">
+                </td>
+                <td style="background-color:#f9f9f9;width:10%;">
+                    终止项目顺序号:
+                </td>
+                <td>
+                    <input type="text" id="SeqNoE" name="SeqNoE" class="form-control">
+                </td>
+            </tr>
+            @*<tr>
+                    <td colspan="4" style="text-align:center;">
+                        <input type="submit" id="ok" value="打印整理档案汇总" name="action" class="btn btn-default" />
+                        <input type="submit" id="cancel" value="取消" name="action" class="btn btn-default" />
+                    </td>
+
+                </tr>*@
+        </table>
+    </div>
+    <div style="text-align:center;">
+        <p>
+            <input type="submit" id="ok" value="打印案卷著录单" name="action" class="btn btn-default" />
+            <input type="submit" name="action" class="btn btn-default" id="all" value="打印全部" />
+            <input type="submit" id="cancel" value="取消" name="action" class="btn btn-default" />
+        </p>
+        <div style="height:20px;">
+        </div>
+    </div>
+
+    @*<div>
+        <label class="form-group">请输入分类号</label><br>
+        <label> 分类号:</label>
+        <input type="text" id="No" name="No" class="form-control" onclick="choose()">
+    </div>
+    <div>
+        <br>
+        <label class="form-group">请输入项目顺序号范围</label><br>
+        起始项目顺序号:
+        <input type="text" id="SeqNoS" name="SeqNoS" class="form-control">
+    </div>
+            <div>
+                终止项目顺序号:
+                <input type="text" id="SeqNoE" name="SeqNoE" class="form-control">
+            </div>
+            <br>
+            <div>
+                <input type="submit" id="ok" value="打印案卷著录单" name="action" class="btn btn-default" />
+                <input type="submit" name="action" class="btn btn-default" id="all" value="打印全部" />
+                <input type="submit" id="cancel" value="取消" name="action" class="btn btn-default" />
+            </div>*@
+
+}
+

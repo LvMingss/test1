@@ -1,0 +1,44 @@
+﻿
+@{
+    ViewBag.Title = "jieyuePersonLogin";
+}
+
+
+
+@using (Html.BeginForm("jieyuePersonLogin", "BorrowLogin", FormMethod.Post))
+{
+    <div style="width:100%;text-align:center;padding-top:5%;">
+        <div class="panel panel-default" style="border:1px solid #408cca;max-width:400px;text-align:center;margin:0 auto;">
+            <table class="table table-bordered dl-horizontal" style="height:240px;">
+                <tr style="height:60px;">
+                    <td class="linear" style="color:white;font-size:20px" colspan="2">
+                        请输入您的登记姓名
+                    </td>
+
+                </tr>
+                <tr style="height:120px;">
+                    <td style="font-size:18px;width:120px">
+                        借阅人姓名
+                    </td>
+                    <td>
+                        <input name="PassWord" id="PassWord" style="width:300px;font-size:18px">
+                    </td>
+                </tr>
+                <tr style="height:60px;">
+                    <td class="linear" colspan="2">
+                        <input type="submit" value="登录" name="action"style="width:30%;font-size:18px">
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+
+                @*<fieldset>
+                    <legend style="background:#efefef;color:Red;">请输入您的登记姓名</legend>
+                    <p>
+                        <input name="BorrowName" id="BorrowName" value="借阅人姓名:" style="background: transparent;border:none;width:300px;font-size:20px">
+                        <input name="PassWord" id="PassWord" style="width:300px;font-size:20px">
+                    </p>
+                    <input type="submit" value="登录" name="action" class="btn btn-default">
+                </fieldset>*@
+                }

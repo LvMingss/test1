@@ -1,0 +1,349 @@
+﻿@model urban_archive.Models.gxContractInfo
+@{
+    ViewBag.Title = "Create";
+}
+@section css{
+    <link type="text/css" rel="stylesheet" href="~/Scripts/jquery/jquery-ui.css">
+}
+<style type="text/css">
+    .jubu {
+        max-width: 100%;
+    }
+</style>
+@section scripts{
+    <script type="text/javascript" src="~/Scripts/jquery/jquery-1.8.3.js"></script>
+    <script type="text/javascript" src="~/Scripts/jquery/jquery.ui.core.js"></script>
+    <script type="text/javascript" src="~/Scripts/jquery/jquery.ui.datepicker.js"></script>
+    <script type="text/javascript" src="~/Scripts/jquery/jquery.ui.widget.js"></script>
+    <script type="text/javascript" src="~/Scripts/jquery/jquery-ui-timepicker-addon.js"></script>
+
+
+    <script>
+        $(function () {
+            $("#dateSigned").datepicker({
+                changeMonth: true,
+                changeYear: true
+            });
+        });
+        $(function () {
+            $("#planningStartDate").datepicker({
+                changeMonth: true,
+                changeYear: true
+            });
+        });
+        $(function () {
+            $("#planningEndDate").datepicker({
+                changeMonth: true,
+                changeYear: true
+            });
+        });
+        $().ready(function () {
+            $("#contractNo").blur(function () {
+                var ss = $("#contractNo").val();
+                if (ss.length == 0) {
+                    alert("责任书编号不能为空");
+                }
+                else {
+                    if (ss.length < 7) {
+                        alert("责任书编号不能少于7位！");
+                    }
+                }
+            });
+        });
+
+        $().ready(function () {
+            $("#projectName").blur(function () {
+                var ss = $("#projectName").val();
+                if (ss.length == 0) {
+                    alert("工程名称不能为空");
+                }
+            });
+        });
+        function saveok() {
+            var msg = "确认提交保存吗?";
+            if (confirm(msg) == true) {
+                return true;
+            } else {
+                return false;
+            }
+        }
+        function getno() {
+            var textclass = document.getElementById("classid").value
+            if (textclass == 2)
+            { document.getElementById('contractNo').value = ""; }
+            else {
+                $.ajax({
+                    type: "POST",
+                    url: "/SignContract/getno",
+                    contentType: "application/string",
+                    data: "",
+                    dataType: "json",
+                    success: function (data) {
+
+                        if (data != "" && data != "undefined") {
+
+                            document.getElementById('contractNo').value = data;
+                        }
+
+                        else {
+                            alert("未查询到责任书编号");
+                        }
+
+                    }
+
+                });
+            }
+        }
+    </script>
+}
+<section>
+    <h2 style="float:left;"><i class="fa fa-tags kongge"></i>签订移交责任书</h2>
+    <ol class="breadcrumb">
+        <li class="active">管线档案</li>
+        <li class="active">前期材料</li>
+        <li>移交责任书管理</li>
+    </ol>
+    <div style="clear:both;"></div>
+</section>
+
+@using (Html.BeginForm())
+{
+    
+    @Html.AntiForgeryToken()
+    <div class="form-horizontal">
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="panel panel-default" style="border:1px solid #408cca">
+            <table class="table table-bordered dl-horizontal">
+
+                <tr>
+                    <td class="linear" style="font-size: 18px;color:white;text-align:center;" colspan="4">
+                        <i class="fa fa-check-square-o"></i>签订青岛市建设工程管线档案移交责任书
+                    </td>
+                </tr>
+                <tr>
+                    <td style="background-color:#f9f9f9;width:180px;">
+                        工程类型：
+                    </td>
+                    <td  colspan="3"style="background-color:#f9f9f9;">
+                        @Html.DropDownList("classifyID", null, new { @class = "form-control", @style = "display:inline;width:300px;" })
+                        <div style="display:none">
+                            <input type="text" id="classid" name="classid" class="form-control" value="1">
+                            <script>
+                                document.getElementById("classifyID").onchange = function () {
+                                    document.getElementById("classid").value = this.options[this.options.selectedIndex].value;
+                                    getno();
+                                }
+                            </script>
+                        </div>
+                        </td>
+                </tr>
+                <tr>
+                    <td style="background-color:#f9f9f9;width:180px;">
+                        责任书编号
+                    </td>
+                    <td style="background-color:#f9f9f9;">
+                        @Html.EditorFor(model => model.contractNo, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.contractNo, "", new { @class = "text-danger" })
+                    </td>
+                    <td style="background-color:#f9f9f9;width:180px;">
+                        签订日期
+                    </td>
+                    <td style="background-color:#f9f9f9;">
+                        <input type="text" id="dateSigned" name="dateSigned" class="form-control">
+                        @Html.ValidationMessageFor(model => model.dateSigned, "", new { @class = "text-danger" })
+                    </td>
+                </tr>
+                <tr>
+                    <td style="background-color:#f9f9f9;width:180px;">
+                        建设单位
+                    </td>
+                    <td colspan="3" style="background-color:#f9f9f9;">
+                        @Html.EditorFor(model => model.transferUnit, new { htmlAttributes = new { @class = "form-control jubu" } })
+                        @Html.ValidationMessageFor(model => model.transferUnit, "", new { @class = "text-danger" })
+                    </td>
+                </tr>
+                <tr>
+                    <td style="background-color:#f9f9f9;width:180px;">
+                        施工单位
+                    </td>
+                    <td colspan="3" style="background-color:#f9f9f9;">
+                        @Html.EditorFor(model => model.constructUnit, new { htmlAttributes = new { @class = "form-control jubu" } })
+                        @Html.ValidationMessageFor(model => model.constructUnit, "", new { @class = "text-danger" })
+                    </td>
+                </tr>
+                <tr>
+                    <td style="background-color:#f9f9f9;width:180px;">
+                        工程名称
+                    </td>
+                    <td colspan="3" style="background-color:#f9f9f9;">
+                        @Html.EditorFor(model => model.projectName, new { htmlAttributes = new { @class = "form-control jubu" } })
+                        @Html.ValidationMessageFor(model => model.projectName, "", new { @class = "text-danger" })
+                    </td>
+                </tr>
+                <tr>
+                    <td style="background-color:#f9f9f9;width:180px;">
+                        工程地点
+                    </td>
+                    <td colspan="3" style="background-color:#f9f9f9;">
+                        @Html.EditorFor(model => model.location, new { htmlAttributes = new { @class = "form-control jubu" } })
+                        @Html.ValidationMessageFor(model => model.location, "", new { @class = "text-danger" })
+                    </td>
+                </tr>
+                <tr>
+                    <td style="background-color:#f9f9f9;width:180px;">
+                        管线长度(米)
+                    </td>
+                    <td style="background-color:#f9f9f9;">
+                        @Html.EditorFor(model => model.buildingArea, new { htmlAttributes = new { @class = "form-control " } })
+                        @Html.ValidationMessageFor(model => model.buildingArea, "", new { @class = "text-danger" })
+                    </td>
+                    <td style="background-color:#f9f9f9;width:180px;">
+                        埋深(米)
+                    </td>
+                    <td style="background-color:#f9f9f9;">
+                        @Html.EditorFor(model => model.layerCount, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.layerCount, "", new { @class = "text-danger" })
+                    </td>
+
+                </tr>
+                <tr>
+                    <td style="background-color:#f9f9f9;width:180px;">
+                        管径
+                    </td>
+                    <td  style="background-color:#f9f9f9;">
+                        @Html.EditorFor(model => model.guanjing, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.guanjing, "", new { @class = "text-danger" })
+                    </td>
+                    <td style="background-color:#f9f9f9;width:180px;">
+                        材质
+                    </td>
+                    <td style="background-color:#f9f9f9;">
+                        @Html.EditorFor(model => model.Material, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Material, "", new { @class = "text-danger" })
+                    </td>
+                </tr>
+                
+                <tr>
+                    <td style="background-color:#f9f9f9;width:180px;">
+                        计划开工时间
+                    </td>
+                    <td style="background-color:#f9f9f9;">
+                        <input type="text" id="planningStartDate" name="planningStartDate" class="form-control">
+                        @Html.ValidationMessageFor(model => model.planningStartDate, "", new { @class = "text-danger" })
+                    </td>
+                    <td style="background-color:#f9f9f9;width:180px;">
+                        计划竣工时间
+                    </td>
+                    <td style="background-color:#f9f9f9;">
+                        <input type="text" id="planningEndDate" name="planningEndDate" class="form-control">
+                        @Html.ValidationMessageFor(model => model.planningEndDate, "", new { @class = "text-danger" })
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <div class="panel panel-default" style="border:1px solid #408cca">
+            <table class="table table-bordered dl-horizontal">
+                <tr>
+                    <td class="linear" style="font-size: 18px;color:white;text-align:center;" colspan="4">
+                        <i class="fa fa-check-square-o"></i>市城市建设档案馆
+                    </td>
+                </tr>
+                <tr>
+                    <td style="background-color:#f9f9f9;width:180px;">
+                        地址
+                    </td>
+                    <td colspan="3" style="background-color:#f9f9f9;">
+                        @Html.EditorFor(model => model.partAaddress, new { htmlAttributes = new { @class = "form-control jubu" } })
+                        @Html.ValidationMessageFor(model => model.partAaddress, "", new { @class = "text-danger" })
+                    </td>
+                </tr>
+                <tr>
+                    <td style="background-color:#f9f9f9;width:180px;">
+                        业务科咨询电话
+                    </td>
+                    <td style="background-color:#f9f9f9;">
+                        @Html.EditorFor(model => model.partALegalRepresent, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.partALegalRepresent, "", new { @class = "text-danger" })
+                    </td>
+                    <td style="background-color:#f9f9f9;width:180px;">
+                        管理科咨询电话
+                    </td>
+                    <td style="background-color:#f9f9f9;">
+                        @Html.EditorFor(model => model.partAweituoAgent, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.partAweituoAgent, "", new { @class = "text-danger" })
+                    </td>
+                </tr>
+                <tr>
+                    <td style="background-color:#f9f9f9;width:180px;">
+                        声像科咨询电话
+                    </td>
+                    <td style="background-color:#f9f9f9;" >
+                        @Html.EditorFor(model => model.partAcontactTel, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.partAcontactTel, "", new { @class = "text-danger" })
+                    </td>
+                    <td style="background-color:#f9f9f9;width:180px;">
+                        管线科咨询电话
+                    </td>
+                    <td style="background-color:#f9f9f9;">
+                        @Html.EditorFor(model => model.partAguanxianTel, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.partAguanxianTel, "", new { @class = "text-danger" })
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <div class="panel panel-default" style="border:1px solid #408cca">
+            <table class="table table-bordered dl-horizontal">
+                <tr>
+                    <td class="linear" style="font-size: 18px;color:white;text-align:center;" colspan="4">
+                        <i class="fa fa-check-square-o"></i>建设单位
+                    </td>
+                </tr>
+                <tr>
+                    <td style="background-color:#f9f9f9;width:180px;">
+                        建设单位
+                    </td>
+                    <td colspan="3" style="background-color:#f9f9f9;">
+                        @Html.EditorFor(model => model.partBadress, new { htmlAttributes = new { @class = "form-control jubu" } })
+                        @Html.ValidationMessageFor(model => model.partBadress, "", new { @class = "text-danger" })
+                    </td>
+                </tr>
+                <tr>
+                    <td style="background-color:#f9f9f9;width:180px;">
+                        负责人
+                    </td>
+                    <td style="background-color:#f9f9f9;">
+                        @Html.EditorFor(model => model.partBLegalRepresent, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.partBLegalRepresent, "", new { @class = "text-danger" })
+                    </td>
+                    <td style="background-color:#f9f9f9;width:180px;">
+                        联系人
+                    </td>
+                    <td style="background-color:#f9f9f9;">
+                        @Html.EditorFor(model => model.partBweituoAgent, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.partBweituoAgent, "", new { @class = "text-danger" })
+                    </td>
+                </tr>
+                <tr>
+                    <td style="background-color:#f9f9f9;width:180px;">
+                        联系人电话
+                    </td>
+                    <td style="background-color:#f9f9f9;" colspan="3">
+                        @Html.EditorFor(model => model.partBcontactTel, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.partBcontactTel, "", new { @class = "text-danger" })
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+
+        <div style="text-align:center;">
+            @*<button class="btn btn-primary"><i class="fa fa-save"></i> 保存</button>*@
+            <input type="submit" value="保存" class="btn btn-default" onclick="return saveok()"/>
+            <div style="height:20px;"></div>
+        </div>
+    
+}
+
+@*<div>
+        @Html.ActionLink("Back to List", "Index")
+    </div>*@

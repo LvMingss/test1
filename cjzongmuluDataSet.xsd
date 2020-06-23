@@ -1,0 +1,128 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="cjzongmuluDataSet" targetNamespace="http://tempuri.org/cjzongmuluDataSet.xsd" xmlns:mstns="http://tempuri.org/cjzongmuluDataSet.xsd" xmlns="http://tempuri.org/cjzongmuluDataSet.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections>
+          <Connection AppSettingsObjectName="Web.config" AppSettingsPropertyName="UrbanConConnectionString" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="UrbanConConnectionString (Web.config)" ParameterPrefix="@" PropertyReference="AppConfig.System.Configuration.ConfigurationManager.0.ConnectionStrings.UrbanConConnectionString.ConnectionString" Provider="System.Data.SqlClient" />
+        </Connections>
+        <Tables>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="vw_archiveMainListTableAdapter" GeneratorDataComponentClassName="vw_archiveMainListTableAdapter" Name="vw_archiveMainList" UserDataComponentName="vw_archiveMainListTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="UrbanConConnectionString (Web.config)" DbObjectName="UrbanCon.dbo.vw_archiveMainList" DbObjectType="View" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>SELECT paperProjectSeqNo, volNo, archivesNo, paijiaNo, archivesTitle, licenseNo, developmentOrganization, constructionOrganization, jgDate, remarks, changeLog, location, registrationNo FROM dbo.vw_archiveMainList</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="paperProjectSeqNo" DataSetColumn="paperProjectSeqNo" />
+              <Mapping SourceColumn="volNo" DataSetColumn="volNo" />
+              <Mapping SourceColumn="archivesNo" DataSetColumn="archivesNo" />
+              <Mapping SourceColumn="paijiaNo" DataSetColumn="paijiaNo" />
+              <Mapping SourceColumn="archivesTitle" DataSetColumn="archivesTitle" />
+              <Mapping SourceColumn="licenseNo" DataSetColumn="licenseNo" />
+              <Mapping SourceColumn="developmentOrganization" DataSetColumn="developmentOrganization" />
+              <Mapping SourceColumn="constructionOrganization" DataSetColumn="constructionOrganization" />
+              <Mapping SourceColumn="jgDate" DataSetColumn="jgDate" />
+              <Mapping SourceColumn="remarks" DataSetColumn="remarks" />
+              <Mapping SourceColumn="changeLog" DataSetColumn="changeLog" />
+              <Mapping SourceColumn="location" DataSetColumn="location" />
+              <Mapping SourceColumn="registrationNo" DataSetColumn="registrationNo" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+        </Tables>
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="cjzongmuluDataSet" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="True" msprop:Generator_DataSetName="cjzongmuluDataSet" msprop:Generator_UserDSName="cjzongmuluDataSet">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="vw_archiveMainList" msprop:Generator_TableClassName="vw_archiveMainListDataTable" msprop:Generator_TableVarName="tablevw_archiveMainList" msprop:Generator_TablePropName="vw_archiveMainList" msprop:Generator_RowDeletingName="vw_archiveMainListRowDeleting" msprop:Generator_RowChangingName="vw_archiveMainListRowChanging" msprop:Generator_RowEvHandlerName="vw_archiveMainListRowChangeEventHandler" msprop:Generator_RowDeletedName="vw_archiveMainListRowDeleted" msprop:Generator_UserTableName="vw_archiveMainList" msprop:Generator_RowChangedName="vw_archiveMainListRowChanged" msprop:Generator_RowEvArgName="vw_archiveMainListRowChangeEvent" msprop:Generator_RowClassName="vw_archiveMainListRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="paperProjectSeqNo" msprop:Generator_ColumnVarNameInTable="columnpaperProjectSeqNo" msprop:Generator_ColumnPropNameInRow="paperProjectSeqNo" msprop:Generator_ColumnPropNameInTable="paperProjectSeqNoColumn" msprop:Generator_UserColumnName="paperProjectSeqNo" type="xs:long" />
+              <xs:element name="volNo" msprop:Generator_ColumnVarNameInTable="columnvolNo" msprop:Generator_ColumnPropNameInRow="volNo" msprop:Generator_ColumnPropNameInTable="volNoColumn" msprop:Generator_UserColumnName="volNo" type="xs:int" minOccurs="0" />
+              <xs:element name="archivesNo" msprop:Generator_ColumnVarNameInTable="columnarchivesNo" msprop:Generator_ColumnPropNameInRow="archivesNo" msprop:Generator_ColumnPropNameInTable="archivesNoColumn" msprop:Generator_UserColumnName="archivesNo">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="30" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="paijiaNo" msprop:Generator_ColumnVarNameInTable="columnpaijiaNo" msprop:Generator_ColumnPropNameInRow="paijiaNo" msprop:Generator_ColumnPropNameInTable="paijiaNoColumn" msprop:Generator_UserColumnName="paijiaNo" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="15" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="archivesTitle" msprop:Generator_ColumnVarNameInTable="columnarchivesTitle" msprop:Generator_ColumnPropNameInRow="archivesTitle" msprop:Generator_ColumnPropNameInTable="archivesTitleColumn" msprop:Generator_UserColumnName="archivesTitle" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="200" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="licenseNo" msprop:Generator_ColumnVarNameInTable="columnlicenseNo" msprop:Generator_ColumnPropNameInRow="licenseNo" msprop:Generator_ColumnPropNameInTable="licenseNoColumn" msprop:Generator_UserColumnName="licenseNo" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="developmentOrganization" msprop:Generator_ColumnVarNameInTable="columndevelopmentOrganization" msprop:Generator_ColumnPropNameInRow="developmentOrganization" msprop:Generator_ColumnPropNameInTable="developmentOrganizationColumn" msprop:Generator_UserColumnName="developmentOrganization" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="100" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="constructionOrganization" msprop:Generator_ColumnVarNameInTable="columnconstructionOrganization" msprop:Generator_ColumnPropNameInRow="constructionOrganization" msprop:Generator_ColumnPropNameInTable="constructionOrganizationColumn" msprop:Generator_UserColumnName="constructionOrganization" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="100" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="jgDate" msprop:Generator_ColumnVarNameInTable="columnjgDate" msprop:Generator_ColumnPropNameInRow="jgDate" msprop:Generator_ColumnPropNameInTable="jgDateColumn" msprop:Generator_UserColumnName="jgDate" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="remarks" msprop:Generator_ColumnVarNameInTable="columnremarks" msprop:Generator_ColumnPropNameInRow="remarks" msprop:Generator_ColumnPropNameInTable="remarksColumn" msprop:Generator_UserColumnName="remarks" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="150" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="changeLog" msprop:Generator_ColumnVarNameInTable="columnchangeLog" msprop:Generator_ColumnPropNameInRow="changeLog" msprop:Generator_ColumnPropNameInTable="changeLogColumn" msprop:Generator_UserColumnName="changeLog" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="10" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="location" msprop:Generator_ColumnVarNameInTable="columnlocation" msprop:Generator_ColumnPropNameInRow="location" msprop:Generator_ColumnPropNameInTable="locationColumn" msprop:Generator_UserColumnName="location" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="100" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="registrationNo" msprop:Generator_ColumnVarNameInTable="columnregistrationNo" msprop:Generator_ColumnPropNameInRow="registrationNo" msprop:Generator_ColumnPropNameInTable="registrationNoColumn" msprop:Generator_UserColumnName="registrationNo" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="15" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

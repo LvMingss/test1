@@ -1,0 +1,78 @@
+﻿
+@{
+    ViewBag.Title = "打印个人整理档案统计";
+}
+@section css{
+    <link type="text/css" rel="stylesheet" href="~/Scripts/jquery/jquery-ui.css">
+}
+@section scripts{
+    <script type="text/javascript" src="~/Scripts/jquery/jquery-1.8.3.js"></script>
+    <script type="text/javascript" src="~/Scripts/jquery/jquery.ui.core.js"></script>
+    <script type="text/javascript" src="~/Scripts/jquery/jquery.ui.datepicker.js"></script>
+    <script type="text/javascript" src="~/Scripts/jquery/jquery.ui.widget.js"></script>
+    <script type="text/javascript" src="~/Scripts/jquery/jquery-ui-timepicker-addon.js"></script>
+    @*<script type="text/javascript" src="~/Scripts/jquery/jquery-ui-timepicker-zh-CN.js"></script>*@
+    <script>
+            $(function () {
+                $("#startdata").datepicker({
+                    changeMonth: true,
+                    changeYear: true
+                });
+            });
+            $(function () {
+                $("#enddata").datepicker({
+                    changeMonth: true,
+                    changeYear: true
+                });
+            });
+            //function right()
+            //{
+            //    var Person = document.getElementById("collator").value;
+            //    var DataFrom = document.getElementById("startdata").value;
+            //    var DataTo = document.getElementById("enddata").value;
+            //    $.ajax({
+            //        url: '../../StatisticalAndRetrieval/reporting',
+            //        data: { collator: Person, startdata: DataFrom, enddata: DataTo },
+            //        type: 'post',
+            //        success: function (data) {
+            //        }
+            //    })
+            //}
+            //function colse()
+            //{
+            //    window.close();
+            //}
+    </script>
+    }
+@using (Html.BeginForm())
+{
+<body>
+    <form>
+        <div class="title">
+            <h1 style="font-size: x-large;">
+                &nbsp; &nbsp; 打印个人整理档案统计
+            </h1>
+        </div>
+        <div >
+            <label class="form-group">请输入整理人</label><br>
+            <label> 整理人:</label>
+            <input type="text" id="collator" name="collator" class="form-control" >
+        </div>
+        <div>
+            <br>
+            <label class="form-group">请输入整理日期范围</label><br>
+            <label> 整理起始日期:</label>
+            <input type="text" id="startdata" name="startdata" class="form-control">    
+        </div>          
+        <div>
+            整理终止日期:
+            <input type="text" id="enddata" name="enddata" class="form-control">
+        </div>
+        <br>
+        <div>
+            <input type="submit" id="ok" value="打印"name="action"class="btn btn-default" />
+            <input type="submit" id="cancel" value="取消" name="action" class="btn btn-default" />
+        </div>
+    </form>
+</body>
+}

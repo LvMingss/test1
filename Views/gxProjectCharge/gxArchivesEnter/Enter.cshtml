@@ -1,0 +1,90 @@
+﻿@model IEnumerable<urban_archive.Models.gxArchivesDetail>
+<link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
+<link href="~/Content/jquery-ui.theme.css" rel="stylesheet" />
+<link href="~/Content/Tabulator/tabulator.css" rel="stylesheet" />
+
+@{
+    ViewBag.Title = "Index";
+}
+<script src="~/Scripts/jquery-2.1.1.min.js" type="text/javascript"></script>
+<script src="~/Scripts/jquery-ui.min.js"></script>
+<script src="~/Content/Tabulator/tabulator.js"></script>
+<script type="text/javascript">
+    var m = function (value, data, cell, row, options) { //plain text value
+        return "<i class='fa  fa-list-ol' style='color:#428bca;vertical-align:middle; padding:2px 0;'></i> "
+    };
+    var n = function (value, data, cell, row, options) { //plain text value
+        return "<i class='fa fa-download' style='color:#428bca;vertical-align:middle; padding:2px 0;'></i>"
+        };
+
+
+    $().ready(function () {//在页面加载完成之后用，为了保证js能完整的执行。
+        $(document).ready(function () {
+            var a = $(window).height();
+            var hh = a-160;        
+            $(".box-h").height(hh)  // 高度加在类名为box的DIV 上
+
+        })
+        $("#example-table-2").tabulator({
+            height: "100%",
+            colMinWidth:100, 
+            pagination:"local",
+            paginationSize:50,
+            fitColumns:true,
+            sortable: false,
+            selectable:true, //make rows selectable
+            columns: [
+            {
+                title: "卷内目录", field: "m", width: 100 ,formatter: m,  sorter: "string", align: "center", onClick: function (e, val, cell, row) {
+
+                    var url = '/gxArchivesEnter/FileList?id1='+row.e+"&id2=0"+"&id=0";
+                    window.location.href = url;
+                }
+            },
+            {
+                title: "录入/查看", field: "n", width: 100 ,formatter: n, sorter: "string", align: "center", onClick: function (e, val, cell, row) {
+                    var url = '/gxArchivesEnter/EnterAndSee?id=' + row.b;
+                    window.location.href = url;
+                }
+            },      
+            { title: "卷号", field: "a", width: 100 },
+            { title: "登记号", field: "b", width: 100 },
+            { title: "案卷题名", field: "c", width: 200 },
+            { title: "排架号", field: "d", width: 100 },
+            { title: "档号", field: "e", width: 100 },
+            { title: "第一责任者", field: "f", width: 200 },
+            { title: "其他责任者", field: "g", width: 200 },
+            { title: "文字页数", field: "h", width: 100 },
+            { title: "图纸页数", field: "i", width: 100 },
+            { title: "案卷厚度", field: "j", width: 100 },
+            { title: "录入员", field: "k", width: 100 },
+            { title: "录入日期", field: "l" },
+            ],
+        });
+
+        var temp = new Array();
+        var data=@Html.Raw(Json.Encode(Model));
+        for (var i = 0; i < data.length;i++) {
+            var b = data[i].typerDate                
+            if(b!=null){
+                var date = new Date(parseInt(b.slice(6)))
+
+                result1 = date.getFullYear()+'/'+(parseInt(date.getMonth())+1)+'/'+date.getDate()
+
+            }                
+            temp.push({ "id": i + 1, "a": data[i].volNo, "b": data[i].registrationNo, "c": data[i].archivesTitle, "d": data[i].paijiaNo,"e":data[i].archivesNo,"f":data[i].firstResponsible,"g": data[i].responsibleOther, "h":data[i].textMaterial, "i":data[i].drawing,"j":data[i].archiveThickness,"k":data[i].typist,"l":result1});
+        }
+
+        $("#example-table-2").tabulator("setData", temp);
+        $(window).resize(function () {
+            var a = $(window).height();
+            var hh = a-160;        
+            $(".box-h").height(hh)  // 高度加在类名为box的DIV 上
+            $("#example-table-2").tabulator("redraw",true);
+        });
+
+    });       
+</script>
+<h2><i class="fa fa-tags kongge"></i>案卷列表</h2>
+<hr />
+<div id="example-table-2" class="box-h" style="overflow:auto"> </div>

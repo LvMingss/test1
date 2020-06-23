@@ -1,0 +1,779 @@
+﻿@model urban_archive.Models.businessPlanProject
+
+@{
+    ViewBag.Title = "Edit";
+}
+<style type="text/css">
+    .dangqianzhuangtai {
+        color: blue;
+        text-decoration: underline;
+    }
+</style>
+<style type="text/css">
+    .jubu {
+        max-width: 100%;
+    }
+</style>
+<link type="text/css" rel="stylesheet" href="~/Scripts/jquery/jquery-ui.css">
+
+<script type="text/javascript" src="~/Scripts/jquery/jquery-1.8.3.js"></script>
+<script type="text/javascript" src="~/Scripts/jquery/jquery.ui.core.js"></script>
+<script type="text/javascript" src="~/Scripts/jquery/jquery.ui.datepicker.js"></script>
+<script type="text/javascript" src="~/Scripts/jquery/jquery.ui.widget.js"></script>
+<script type="text/javascript" src="~/Scripts/jquery/jquery-ui-timepicker-addon.js"></script>
+@*<script type="text/javascript" src="~/Scripts/jquery/jquery-ui-timepicker-zh-CN.js"></script>*@
+<script>
+
+    function panduan() {
+        var msg = "是否确认提交保存该卷内目录！";
+        if (confirm(msg) == true) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+    function del() {
+        var msg = "是否确认修改！";
+        if (confirm(msg) == true) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    //获取第一个文本框的值并放入第三个文本框内.
+    function add() {
+
+        //var text1 = document.getElementById("file").value;//获取ID为landNo文本框的值.
+        //var text2 = document.getElementById("yearNo").value;
+        //var text3 = document.getElementById("projectID").value;
+        var text1 = document.getElementById("fileNo").value;
+        var text4 = document.getElementById("projectname").value;
+        var text5 = document.getElementById("projectContent").value;
+        var text6 = document.getElementById("developmentUnit").value;
+        if (document.getElementById("isNeibu").value == "公开")
+        {
+            document.getElementById("archiveTitle_neibu").value = "";
+            document.getElementById("projectContent_neibu").value = "";
+        }
+        //textarea标签在第二次赋值时将空格转换成换行，造成误换行，故写此函数
+        if (document.getElementById("isNeibu").value == "公开" || document.getElementById("isNeibu").value == "公开/内部")
+        {
+            if (document.getElementById("archiveTitle").value == null || document.getElementById("archiveTitle").value=="")
+            {
+                //document.getElementById("fileNo").value = text1 + "字(" + text2 + ")第" + text3 + "号";
+                //document.getElementById("archiveTitle").value = text1 + "字(" + text2 + ")第" + text3 + "号" + " " + text6 + " " + text4 + "\n" + text5;
+                document.getElementById("archiveTitle").value = text1.trim() + " " + text6 + " " + text4 + "\n" + text5;
+            }
+            else
+            {
+                document.getElementById("archiveTitle").value = "";
+                //document.getElementById("fileNo").value = text1 + "字(" + text2 + ")第" + text3 + "号";
+                //document.getElementById("archiveTitle").value = text1 + "字(" + text2 + ")第" + text3 + "号" + " " + text6 + " " + text4 + "\n" + text5;
+                document.getElementById("archiveTitle").value = text1.trim() + " " + text6 + " " + text4 + "\n" + text5;
+            }
+        }
+    }
+
+    function add_fileNo() {
+        var text1 = document.getElementById("file").value;//获取ID为landNo文本框的值.
+        var text2 = document.getElementById("yearNo").value;
+        var text3 = document.getElementById("projectID").value;
+
+        document.getElementById("fileNo").value = text1 + "字(" + text2 + ")第" + text3 + "号";
+    }
+
+    function add_neibu() {
+
+        //var text1 = document.getElementById("file").value;//获取ID为landNo文本框的值.
+        //var text2 = document.getElementById("yearNo").value;
+        //var text3 = document.getElementById("projectID").value;
+        var text1 = document.getElementById("fileNo").value;
+        var text4 = document.getElementById("projectname").value;
+        var text5 = document.getElementById("projectContent_neibu").value;
+        var text6 = document.getElementById("developmentUnit").value;
+        if (document.getElementById("isNeibu").value == "内部")
+        {
+            document.getElementById("archiveTitle").value = "";
+            document.getElementById("projectContent").value = "";
+        }
+        if (document.getElementById("isNeibu").value == "内部" || document.getElementById("isNeibu").value == "公开/内部")
+        {
+            if (document.getElementById("archiveTitle_neibu").value == null || document.getElementById("archiveTitle_neibu").value == "")
+            {
+                document.getElementById("archiveTitle_neibu").value = text1.trim() + " " + text6 + " " + text4 + "\n" + text5;
+            }
+            else
+            {
+                document.getElementById("archiveTitle_neibu").value = "";
+                document.getElementById("archiveTitle_neibu").value = text1.trim() + " " + text6 + " " + text4 + "\n" + text5;
+            }
+        }
+    }
+
+$().ready(function () {
+    $("#fileNo").blur(function () {
+        var ss = $("#fileNo").val();
+        if (ss.length == 0) {
+            document.getElementById("wenhao").style.display = "block";
+        }
+        else {
+            document.getElementById("wenhao").style.display = "none";
+        }
+    });
+});
+$().ready(function () {
+    $("#gongjijuan").blur(function () {
+        var ss = $("#gongjijuan").val();
+        if (ss.length == 0) {
+            document.getElementById("zongjuanshu").style.display = "inline-block";
+        }
+        else {
+            document.getElementById("zongjuanshu").style.display = "none";
+        }
+    });
+});
+$().ready(function () {
+    $("#dijijuan").blur(function () {
+        var ss = $("#dijijuan").val();
+        if (ss.length == 0) {
+            document.getElementById("juanshu").style.display = "inline-block";
+        }
+        else {
+            document.getElementById("juanshu").style.display = "none";
+        }
+    });
+});
+
+
+$(document).ready(function () {
+    $("#xiugai").click(function () {
+
+        var msg = "是否确认修改！";
+        if (confirm(msg) == true) {
+
+
+            var id1 = document.getElementById("ID").value;
+            var totalSeqNo1 = document.getElementById("totalSeqNo").value;
+            var seqNo1 = document.getElementById("seqNo").value;
+            var securityID1 = document.getElementById("securityID").value;
+            var retentionPeriodID1 = document.getElementById("retentionPeriodID").value;
+            var gongjijuan1 = document.getElementById("gongjijuan").value;
+            var dijijuan1 = document.getElementById("dijijuan").value;
+            if (gongjijuan1 == null || gongjijuan1 == "") {
+                alert("共几卷不能为空!");
+            }
+            if (dijijuan1 == null || dijijuan1 == "") {
+                alert("第几卷不能为空!");
+            }
+            else {
+                var projectname1 = document.getElementById("projectname").value;
+
+                var boxNo1 = document.getElementById("boxNo").value;
+                var developmentUnit1 = document.getElementById("developmentUnit").value;
+                var projectContent1 = document.getElementById("projectContent").value;
+                var projectLocation1 = document.getElementById("projectLocation").value;
+
+                var yearNo1 = document.getElementById("yearNo").value;
+                var projectID1 = document.getElementById("projectID").value;
+                var fileNo1 = document.getElementById("fileNo").value;
+                var photoCnt1 = document.getElementById("photoCnt").value;
+                var dateReceived1 = document.getElementById("dateReceived").value;
+                var remarks1 = document.getElementById("remarks").value;
+
+                var ddl = document.getElementById("bianzhiUnit");
+                var bianzhiUnit1 = ddl.options[ddl.selectedIndex].text;
+                var luruPerson1 = document.getElementById("luruPerson").value;
+
+                var bianzhiTime1 = document.getElementById("bianzhiTime").value;
+                var pageNo1 = document.getElementById("pageNo").value;
+                var shenhePerson1 = document.getElementById("shenhePerson").value;
+                var isNeibu1 = document.getElementById("isNeibu").value;
+                var projectContent_neibu1 = document.getElementById("projectContent_neibu").value;
+                var archiveTitle1 = document.getElementById("archiveTitle").value;
+                var archiveTitle_neibu1 = document.getElementById("archiveTitle_neibu").value;
+                var pageNo_neibu1 = document.getElementById("pageNo_neibu").value;
+                var developmentUnit_neibu1 = document.getElementById("developmentUnit").value;
+                var projectLocation_neibu1 = document.getElementById("projectLocation").value;
+                var photoCnt_neibu1 = document.getElementById("photoCnt_neibu").value;
+                var wenziCnt1 = document.getElementById("wenziCnt").value;
+                var wenziCnt_neibu1 = document.getElementById("wenziCnt_neibu").value;
+
+                var bei_anTime1 = document.getElementById("bei_anTime").value;
+                var jungongTime1 = document.getElementById("jungongTime").value;
+                var projectNumber1 = document.getElementById("projectNumber").value;
+                var buildingArea1 = document.getElementById("buildingArea").value;
+                var projectType1 = document.getElementById("projectType").value;
+                var structType1 = document.getElementById("structType").value;
+                var kan_chaUnit1 = document.getElementById("kan_chaUnit").value;
+                var designUnit1 = document.getElementById("designUnit").value;
+                var constructionUnit1 = document.getElementById("constructionUnit").value;
+                var supervisorUnit1 = document.getElementById("supervisorUnit").value;
+                var supervisorybody1 = document.getElementById("supervisorybody").value;
+                var kaigongTime1 = document.getElementById("kaigongTime").value;
+
+
+                $.ajax({
+                    type: "POST",
+                    url: "/YeWu/Baocunok_yewu/?name=xiugai",
+                    contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
+                    data: { id: id1, securityID: securityID1, retentionPeriodID: retentionPeriodID1, gongjijuan: gongjijuan1, dijijuan: dijijuan1, projectname: projectname1, boxNo: boxNo1, developmentUnit: developmentUnit1, projectContent: projectContent1, projectLocation: projectLocation1, yearNo: yearNo1, projectID: projectID1, fileNo: fileNo1, dateReceived: dateReceived1, remarks: remarks1, bianzhiUnit: bianzhiUnit1, luruPerson: luruPerson1, bianzhiTime: bianzhiTime1, pageNo: pageNo1, shenhePerson: shenhePerson1, isNeibu: isNeibu1, projectContent_neibu: projectContent_neibu1, archiveTitle: archiveTitle1, archiveTitle_neibu: archiveTitle_neibu1, pageNo_neibu: pageNo_neibu1, developmentUnit_neibu: developmentUnit_neibu1, projectLocation_neibu: projectLocation_neibu1, photoCnt_neibu: photoCnt_neibu1, wenziCnt: wenziCnt1, wenziCnt_neibu: wenziCnt_neibu1, photoCnt: photoCnt1, bei_anTime: bei_anTime1, jungongTime: jungongTime1, projectNumber: projectNumber1, buildingArea: buildingArea1, projectType: projectType1, structType: structType1, kan_chaUnit: kan_chaUnit1, designUnit: designUnit1, constructionUnit: constructionUnit1, supervisorUnit: supervisorUnit1, supervisorybody: supervisorybody1, kaigongTime: kaigongTime1, totalSeqNo: totalSeqNo1, seqNo2: seqNo1 },
+                    dataType: "json",
+                    success: function (data) {
+
+                        if (data == "1") {
+                            alert("共几卷不能为空!");
+                        }
+                        if (data == "2") {
+                            alert("第几卷不能为空!");
+                        }
+                        if (data == "3") {
+                            alert("工程种类不能为空!");
+                        }
+                        if (data == "6") {
+                            alert("修改成功!");
+                        }
+                        if (data == "5") {
+                            alert("数据错误，保存失败");
+                        }
+
+
+                    }
+                });
+            }
+        }
+    });
+});
+$(document).ready(function () {
+    $("#finish").click(function () {
+        if (document.getElementById("ProjectContent").style.display=="none")
+        {
+                document.getElementById("ProjectContent").style.display = "inline-block";
+
+        }
+
+    });
+});
+$(document).ready(function () {
+    $("#fengpiG").click(function () {
+        var a = document.getElementById("ID").value*1;
+        window.open('/YeWu/YeWuGongChengFengPi/?id=' + a + "&id1=0");
+    });
+});
+$(document).ready(function () {
+    $("#beikaobiaoG").click(function () {
+        var b = document.getElementById("seqNo1").value * 1;
+        window.open('/YeWu/beikaobiao/?id=' + b + "&id1=0");
+    });
+}); $(document).ready(function () {
+    $("#fengpiN").click(function () {
+        var c = document.getElementById("ID").value * 1 ;
+        window.open('/YeWu/YeWuGongChengFengPi/?id=' + c + "&id1=1");
+    });
+}); $(document).ready(function () {
+    $("#beikaobiaoN").click(function () {
+        var d = document.getElementById("seqNo1").value * 1;
+        window.open('/YeWu/beikaobiao/?id=' + d + "&id1=1");
+    });
+});
+$(document).ready(function () {
+    $("#ProjectContent").click(function () {
+        var e = document.getElementById("seqNo1").value * 1;
+        window.open('/YeWu/YeWuGongChengMuLu/?id=' + e);
+    });
+});
+$().ready(function () {
+    $("#boxID").blur(function () {
+        var ss = $("#boxID").val();
+        if (ss.length == 0) {
+            document.getElementById("tishi").style.display = "inline-block";
+        }
+        else {
+            document.getElementById("tishi").style.display = "none";
+        }
+    });
+});
+function add1() {
+    var text1 = document.getElementById("box").value;//获取ID为landNo文本框的值.
+    var text2 = document.getElementById("year").value.trim();
+    var text3 = document.getElementById("boxID").value.trim();
+    var text4 = "";
+    switch (document.getElementById("quyu").value.trim()) {
+        case "1":
+            text4 = "";
+            break;
+        case "2":
+            text4 = "北";
+            break;
+        case "3":
+            text4 = "四";
+            break;
+        case "4":
+            text4 = "李";
+            break;
+        case "5":
+            text4 = "南";
+            break;
+        case "6":
+            text4 = "崂";
+            break;
+        case "7":
+            text4 = "城";
+            break;
+        case "8":
+            text4 = "黄";
+            break;
+        case "9":
+            text4 = "胶";
+            break;
+        case "10":
+            text4 = "胶南";
+            break;
+        case "11":
+            text4 = "平";
+            break;
+        case "12":
+            text4 = "莱";
+            break;
+        case "13":
+            text4 = "即";
+            break;
+        case "14":
+            text4 = "开";
+            break;
+        default:
+            break;
+    }
+    document.getElementById("yearNo").value = text2;
+    document.getElementById("boxNo").value = text2 + "年" + text4 + text1 + "第" + text3 + "号";
+
+}
+
+   $(document).ready(function () {
+       $("#back").click(function () {
+           window.close();
+       });
+   });
+</script>
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        @*<h4 style="padding-left:30px;">工程种类： @ViewBag.classifyName</h4>
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            @Html.Hidden("classifyID")*@
+        @* @Html.Hidden("classifyID", (int)ViewBag.classifyID)*@
+        @Html.HiddenFor(model => model.ID)
+        @Html.HiddenFor(model => model.seqNo1)
+        <input type="text" id="ID" name="ID" value="@ViewBag.ID" class="hidden" />
+        <div class="panel panel-default" style="margin-bottom:0px;">
+            <table class="table table-bordered dl-horizontal" style="background-color:#f9f9f9;">
+                <tr>
+
+                    <td style="background-color:#f9f9f9;font-weight:bold;min-width:130px;width:6%;">
+                        盒名
+                    </td>
+                    <td colspan="3">
+
+                        <input type="text" id="year" name="year" style="display:inline" value="@ViewBag.year" class="form-control" onblur="add1()" />年
+                        @Html.DropDownList("quyu", null, new { @class = "form-control", @style = "display:inline;width:150px;", @onblur = "add1()" })
+                        <input type="text" id="box" name="box" style="display:inline" class="form-control" value="@ViewBag.box" onblur="add1()" />@*数据库里并没有这个字段，为了方便录入合成盒号*@
+
+
+                        第 <input type="text" id="boxID" style="display:inline" class="form-control" name="boxID" value="@ViewBag.boxid" onblur="add1()" />号文件
+                        <label id="tishi" style="display:none;color:crimson">盒号不能为空！</label>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="background-color:#f9f9f9;font-weight:bold;min-width:130px;width:6%;">
+                        盒名
+                    </td>
+                    <td colspan="3">
+                        @Html.EditorFor(model => model.boxNo, new { htmlAttributes = new { @class = "form-control jubu" } })
+                        @Html.ValidationMessageFor(model => model.boxNo, "", new { @class = "text-danger" })
+                    </td>
+                </tr>
+
+                <tr>
+                    <td style="background-color:#f9f9f9;font-weight:bold;min-width:130px;width:6%;">
+                        工程总顺序号
+                    </td>
+                    <td>
+                        @Html.EditorFor(model => model.totalSeqNo, new { htmlAttributes = new { @class = "form-control", @style = "max-width:100%;padding:0px 5px;height:28px;"} })
+                        @Html.ValidationMessageFor(model => model.totalSeqNo, "", new { @class = "text-danger" })
+                    </td>
+                    <td style="background-color:#f9f9f9;font-weight:bold;min-width:130px;width:6%;">
+                        盒号
+                    </td>
+                    <td>
+
+                        @Html.EditorFor(model => model.seqNo, new { htmlAttributes = new { @class = "form-control", @style = "max-width:100%;padding:0px 5px;height:28px;" } })
+                        @Html.ValidationMessageFor(model => model.seqNo, "", new { @class = "text-danger" })
+                    </td>
+                </tr>
+                <tr>
+
+                    <td style="background-color:#f9f9f9;font-weight:bold;min-width:130px;width:6%;">
+                        文件编号
+                    </td>
+                    <td style="width:44%;">
+                        <input type="text" id="file" name="file" onblur="add()" value="@ViewBag.classname" @*onclick="choose()"*@ style="width:100px;display:inline;padding:0px 5px;height:28px;" class="form-control" />
+                        @*@Html.EditorFor(model => model.boxNo, "", new { htmlAttributes = new { @style = "width:150px;display:inline;padding:0px 5px;height:28px;", @class = "form-control", @onblur = "add()" } })*@
+                        字【
+                        @Html.EditorFor(model => model.yearNo, "", new { htmlAttributes = new { @style = "width:100px;display:inline;padding:0px 5px;height:28px;", @class = "form-control", @onblur = "add()" } })】
+                        第
+                        @Html.EditorFor(model => model.projectID, new { htmlAttributes = new { @style = "width:100px;display:inline;padding:0px 5px;height:28px;", @class = "form-control", @onblur = "add()" } })
+                        @* <input type="text" id="txtprojectno2" name="txtprojectno2" class="form-control" style="width:100px;display:inline" value="@ViewBag.jbhao" />*@
+                        号
+                    </td>
+                    <td style="background-color:#f9f9f9;font-weight:bold;min-width:130px;width:6%;">
+                        备案号
+                    </td>
+                    <td style="width:44%;">
+                        @Html.EditorFor(model => model.fileNo, new { htmlAttributes = new { @class = "form-control", @style = "padding:0px 5px;height:28px;display:inline;" } })
+                        <label id="wenhao" style="display:none;color:crimson">备案号不能为空！</label>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="background-color:#f9f9f9;font-weight:bold;min-width:130px;width:6%;">
+                        备案日期
+                    </td>
+                    <td style="width:44%;">
+                        @Html.EditorFor(model => model.bei_anTime, new { htmlAttributes = new { @class = "form-control", @Value = ViewBag.bei_anTime, @style = "padding:0px 5px;height:28px;display:inline;" } })
+                        @Html.ValidationMessageFor(model => model.bei_anTime, "", new { @class = "text-danger" })
+                    </td>
+                    <td style="background-color:#f9f9f9;font-weight:bold;min-width:130px;width:6%;">
+                        竣工日期
+                    </td>
+                    <td>
+                        @Html.EditorFor(model => model.jungongTime, new { htmlAttributes = new { @class = "form-control", @Value = ViewBag.jungongTime, @style = "padding:0px 5px;height:28px;display:inline;" } })
+                        @Html.ValidationMessageFor(model => model.jungongTime, "", new { @class = "text-danger" })
+                    </td>
+                </tr>
+
+                <tr>
+
+                    <td style="background-color:#f9f9f9;font-weight:bold;min-width:130px;width:6%;">
+                        工程编号
+                    </td>
+                    <td style="width:44%;">
+                        @Html.EditorFor(model => model.projectNumber, new { htmlAttributes = new { @class = "form-control", @style = "padding:0px 5px;height:28px;" } })
+                        @Html.ValidationMessageFor(model => model.projectNumber, "", new { @class = "text-danger" })
+                    </td>
+                    <td style="background-color:#f9f9f9;font-weight:bold;min-width:130px;width:6%;">
+                        建筑面积
+                    </td>
+                    <td>
+                        @Html.EditorFor(model => model.buildingArea, new { htmlAttributes = new { @class = "form-control", @style = "padding:0px 5px;height:28px;" } })
+                        @Html.ValidationMessageFor(model => model.buildingArea, "", new { @class = "text-danger" })
+                    </td>
+
+                </tr>
+
+                <tr>
+                    <td style="background-color:#f9f9f9;font-weight:bold;min-width:130px;width:6%;">
+                        工程类别
+                    </td>
+                    <td style="width:44%;">
+                        @Html.EditorFor(model => model.projectType, new { htmlAttributes = new { @class = "form-control", @style = "padding:0px 5px;height:28px;" } })
+                        @Html.ValidationMessageFor(model => model.projectType, "", new { @class = "text-danger" })
+                    </td>
+                    <td style="background-color:#f9f9f9;font-weight:bold;min-width:130px;width:6%;">
+                        结构形式
+                    </td>
+                    <td>
+                        @Html.EditorFor(model => model.structType, new { htmlAttributes = new { @class = "form-control", @style = "padding:0px 5px;height:28px;" } })
+                        @Html.ValidationMessageFor(model => model.structType, "", new { @class = "text-danger" })
+                    </td>
+                </tr>
+
+                <tr>
+                    <td style="background-color:#f9f9f9;font-weight:bold;min-width:130px;width:6%;">
+                        工程名称
+                    </td>
+                    <td>
+                        @Html.EditorFor(model => model.projectname, new { htmlAttributes = new { @class = "form-control", @style = "max-width:100%;padding:0px 5px;height:28px;", @onblur = "add()" } })
+                        @Html.ValidationMessageFor(model => model.projectname, "", new { @class = "text-danger" })
+                    </td>
+                    <td style="background-color:#f9f9f9;font-weight:bold;min-width:130px;width:6%;">
+                        工程地点
+                    </td>
+                    <td>
+                        @Html.EditorFor(model => model.projectLocation, new { htmlAttributes = new { @class = "form-control", @style = "max-width:100%;padding:0px 5px;height:28px;", @onblur = "add()" } })
+                        @Html.ValidationMessageFor(model => model.projectLocation, "", new { @class = "text-danger" })
+                    </td>
+
+
+                </tr>
+                <tr>
+                    <td style="background-color:#f9f9f9;font-weight:bold;min-width:130px;width:6%;">
+                        勘察单位
+                    </td>
+                    <td>
+                        @Html.EditorFor(model => model.kan_chaUnit, new { htmlAttributes = new { @class = "form-control", @style = "max-width:100%;padding:0px 5px;height:28px;" } })
+                        @Html.ValidationMessageFor(model => model.kan_chaUnit, "", new { @class = "text-danger" })
+                    </td>
+                    <td style="background-color:#f9f9f9;font-weight:bold;min-width:130px;width:6%;">
+                        设计单位
+                    </td>
+                    <td>
+                        @Html.EditorFor(model => model.designUnit, new { htmlAttributes = new { @class = "form-control", @style = "max-width:100%;padding:0px 5px;height:28px;" } })
+                        @Html.ValidationMessageFor(model => model.designUnit, "", new { @class = "text-danger" })
+                    </td>
+
+
+                </tr>
+                <tr>
+                    <td style="background-color:#f9f9f9;font-weight:bold;min-width:130px;width:6%;">
+                        施工单位
+                    </td>
+                    <td>
+                        @Html.EditorFor(model => model.constructionUnit, new { htmlAttributes = new { @class = "form-control", @style = "max-width:100%;padding:0px 5px;height:28px;" } })
+                        @Html.ValidationMessageFor(model => model.constructionUnit, "", new { @class = "text-danger" })
+                    </td>
+                    <td style="background-color:#f9f9f9;font-weight:bold;min-width:130px;width:6%;">
+                        监理单位
+                    </td>
+                    <td>
+                        @Html.EditorFor(model => model.supervisorUnit, new { htmlAttributes = new { @class = "form-control", @style = "max-width:100%;padding:0px 5px;height:28px;" } })
+                        @Html.ValidationMessageFor(model => model.supervisorUnit, "", new { @class = "text-danger" })
+                    </td>
+
+
+                </tr>
+
+                <tr>
+                    <td style="background-color:#f9f9f9;font-weight:bold;min-width:130px;width:6%;">
+                        监督机构
+                    </td>
+                    <td>
+                        @Html.EditorFor(model => model.supervisorybody, new { htmlAttributes = new { @class = "form-control", @style = "max-width:100%;padding:0px 5px;height:28px;" } })
+                        @Html.ValidationMessageFor(model => model.supervisorybody, "", new { @class = "text-danger" })
+                    </td>
+                    <td style="background-color:#f9f9f9;font-weight:bold;min-width:130px;width:6%;">
+                        开工日期
+                    </td>
+                    <td>
+                        @Html.EditorFor(model => model.kaigongTime, new { htmlAttributes = new { @class = "form-control", @Value = ViewBag.kaigongTime, @style = "padding:0px 5px;height:28px;display:inline;" } })
+                        @Html.ValidationMessageFor(model => model.kaigongTime, "", new { @class = "text-danger" })
+
+                    </td>
+
+                </tr>
+
+                <tr>
+                    <td style="background-color:#f9f9f9;font-weight:bold;min-width:130px;width:6%;">
+                        建设单位
+                    </td>
+                    <td>
+                        @Html.EditorFor(model => model.developmentUnit, new { htmlAttributes = new { @class = "form-control", @style = "max-width:100%;padding:0px 5px;height:28px;" } })
+                        @Html.ValidationMessageFor(model => model.developmentUnit, "", new { @class = "text-danger" })
+                    </td>
+                    <td style="background-color:#f9f9f9;font-weight:bold;min-width:130px;width:6%;">
+                        保管年限
+                    </td>
+                    <td>
+                        @Html.DropDownList("retentionPeriodID", null, new { @class = "form-control", @style = "padding:0px 5px;height:28px;" })
+                    </td>
+
+                </tr>
+                <tr>
+
+                    <td style="background-color:#f9f9f9;font-weight:bold;min-width:130px;width:6%;">
+                        是否为内部
+                    </td>
+                    <td>
+                        @Html.DropDownList("isNeibu", null, new { @class = "form-control", @style = "padding:0px 5px;height:28px;" })
+                    </td>
+                    <td style="background-color:#f9f9f9;font-weight:bold;min-width:130px;width:6%;">
+                        档案密级
+                    </td>
+                    <td>
+                        @Html.DropDownList("securityID", null, new { @class = "form-control", @style = "padding:0px 5px;height:28px;" })
+                    </td>
+                </tr>
+                <tr>
+                    <td style="background-color:#f9f9f9;font-weight:bold;min-width:130px;width:6%;">
+                        文件材料题名<br />(公开)
+                    </td>
+                    <td>
+                        @Html.TextAreaFor(model => model.projectContent, new { @class = "form-control", @onblur = "add()", @style = "max-width:100%;padding:0px 5px;height:56px;" })
+                        @Html.ValidationMessageFor(model => model.projectContent, "", new { @class = "text-danger" })
+                    </td>
+                    <td style="background-color:#f9f9f9;font-weight:bold;min-width:130px;width:6%;">
+                        文件材料题名<br />(内部)
+                    </td>
+                    <td>
+                        @Html.TextAreaFor(model => model.projectContent_neibu, new { @class = "form-control", @onblur = "add_neibu()", @style = "max-width:100%;padding:0px 5px;height:56px;" })
+                        @Html.ValidationMessageFor(model => model.projectContent_neibu, "", new { @class = "text-danger" })
+                    </td>
+                </tr>
+
+                <tr>
+                    <td style="background-color:#f9f9f9;font-weight:bold;min-width:130px;width:6%;">
+                        案卷题名(公开)
+                    </td>
+                    <td>
+                        @Html.TextAreaFor(model => model.archiveTitle, new { @class = "form-control", @onblur = "add()", @style = "max-width:100%;padding:0px 5px;height:56px;" })
+
+                        @Html.ValidationMessageFor(model => model.archiveTitle, "", new { @class = "text-danger" })
+                    </td>
+                    <td style="background-color:#f9f9f9;font-weight:bold;min-width:130px;width:6%;">
+                        案卷题名(内部)
+                    </td>
+                    <td>
+                        @Html.TextAreaFor(model => model.archiveTitle_neibu, new { @class = "form-control", @onblur = "add_neibu()", @style = "max-width:100%;padding:0px 5px;height:56px;" })
+
+                        @Html.ValidationMessageFor(model => model.archiveTitle_neibu, "", new { @class = "text-danger" })
+                    </td>
+                </tr>
+
+                <tr>
+                    <td style="background-color:#f9f9f9;font-weight:bold;min-width:130px;width:6%;">
+                        页次(公开)
+                    </td>
+                    <td>
+                        @Html.EditorFor(model => model.pageNo, new { htmlAttributes = new { @class = "form-control", @style = "padding:0px 5px;height:28px;" } })
+                        @Html.ValidationMessageFor(model => model.pageNo, "", new { @class = "text-danger" })
+                    </td>
+                    <td style="background-color:#f9f9f9;font-weight:bold;min-width:130px;width:6%;">
+                        页次(内部)
+                    </td>
+                    <td>
+                        @Html.EditorFor(model => model.pageNo_neibu, new { htmlAttributes = new { @class = "form-control", @style = "padding:0px 5px;height:28px;" } })
+                        @Html.ValidationMessageFor(model => model.pageNo_neibu, "", new { @class = "text-danger" })
+                    </td>
+                </tr>
+                <tr>
+                    <td style="background-color:#f9f9f9;font-weight:bold;min-width:130px;width:6%;">
+                        文字材料(公开)
+                    </td>
+                    <td>
+                        @Html.EditorFor(model => model.wenziCnt, new { htmlAttributes = new { @class = "form-control", @style = "padding:0px 5px;height:28px;" } })
+                        @Html.ValidationMessageFor(model => model.wenziCnt, "", new { @class = "text-danger" })
+                    </td>
+                    <td style="background-color:#f9f9f9;font-weight:bold;min-width:130px;width:6%;">
+                        文字材料(内部)
+                    </td>
+                    <td>
+                        @Html.EditorFor(model => model.wenziCnt_neibu, new { htmlAttributes = new { @class = "form-control", @style = "padding:0px 5px;height:28px;" } })
+                        @Html.ValidationMessageFor(model => model.wenziCnt_neibu, "", new { @class = "text-danger" })
+                    </td>
+                </tr>
+                <tr>
+                    <td style="background-color:#f9f9f9;font-weight:bold;min-width:130px;width:6%;">
+                        图纸(公开)
+                    </td>
+                    <td>
+                        @Html.EditorFor(model => model.photoCnt, new { htmlAttributes = new { @class = "form-control", @style = "padding:0px 5px;height:28px;" } })
+                        @Html.ValidationMessageFor(model => model.photoCnt, "", new { @class = "text-danger" })
+                    </td>
+                    <td style="background-color:#f9f9f9;font-weight:bold;min-width:130px;width:6%;">
+                        图纸(内部)
+                    </td>
+                    <td>
+                        @Html.EditorFor(model => model.photoCnt_neibu, new { htmlAttributes = new { @class = "form-control", @style = "padding:0px 5px;height:28px;" } })
+                        @Html.ValidationMessageFor(model => model.photoCnt_neibu, "", new { @class = "text-danger" })
+                    </td>
+                </tr>
+                <tr>
+                    <td style="background-color:#f9f9f9;text-align:center;" colspan="4">
+                        共 @Html.EditorFor(model => model.gongjijuan, new { htmlAttributes = new { @class = "form-control", @style = "display:inline;width:100px;padding:0px 5px;height:28px;" } })
+                        @Html.ValidationMessageFor(model => model.gongjijuan, "", new { @class = "text-danger" })卷,
+                        第 @Html.EditorFor(model => model.dijijuan, new { htmlAttributes = new { @class = "form-control", @style = "display:inline;width:100px;padding:0px 5px;height:28px;" } })
+                        @Html.ValidationMessageFor(model => model.dijijuan, "", new { @class = "text-danger" })卷<br>
+                        <label id="zongjuanshu" style="display:none;color:crimson">总卷数不能为空！</label>
+                        <label id="juanshu" style="display:none;color:crimson">卷数不能为空！</label>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="background-color:#f9f9f9;font-weight:bold;min-width:130px;width:6%;">
+                        编制单位
+                    </td>
+                    <td>
+                        @Html.DropDownList("bianzhiUnit", null, new { @class = "form-control", @style = "padding:0px 5px;height:28px;" })
+                        @*@Html.EditorFor(model => model.bianzhiUnit, new { htmlAttributes = new { @class = "form-control", @style = "padding:0px 5px;height:28px;", @Value = "青岛市规划局" } })*@
+                        @Html.ValidationMessageFor(model => model.bianzhiUnit, "", new { @class = "text-danger" })
+                    </td>
+                    <td style="background-color:#f9f9f9;font-weight:bold;min-width:130px;width:6%;">
+                        编制日期
+                    </td>
+                    <td>
+                        @Html.EditorFor(model => model.bianzhiTime, new { htmlAttributes = new { @class = "form-control", @Value = ViewBag.bianzhiTime, @style = "padding:0px 5px;height:28px;" } })
+                        @Html.ValidationMessageFor(model => model.bianzhiTime, "", new { @class = "text-danger" })
+                    </td>
+
+                </tr>
+                <tr>
+                    <td style="background-color:#f9f9f9;font-weight:bold;min-width:130px;width:6%;">
+                        录入人员
+                    </td>
+                    <td>
+                        @Html.EditorFor(model => model.luruPerson, new { htmlAttributes = new { @class = "form-control", @style = "padding:0px 5px;height:28px;" } })
+                        @Html.ValidationMessageFor(model => model.luruPerson, "", new { @class = "text-danger" })
+                    </td>
+                    <td style="background-color:#f9f9f9;font-weight:bold;min-width:130px;width:6%;">
+                        接收日期
+                    </td>
+                    <td>
+                        @Html.EditorFor(model => model.dateReceived, new { htmlAttributes = new { @class = "form-control", @Value = ViewBag.dateReceived, @style = "padding:0px 5px;height:28px;" } })
+                        @Html.ValidationMessageFor(model => model.dateReceived, "", new { @class = "text-danger" })
+                    </td>
+                </tr>
+
+                <tr>
+
+                    <td style="background-color:#f9f9f9;font-weight:bold;min-width:130px;width:6%;">
+                        审核人
+                    </td>
+                    <td>
+                        @Html.DropDownList("shenhePerson", null, new { @class = "form-control", @style = "padding:0px 5px;height:28px;" })
+
+                    </td>
+                    @*<td style="background-color:#f9f9f9;min-width:110px;width:6%;font-weight:bold;">
+                            测绘坐标
+                        </td>
+                        <td colspan="3">
+                            @Html.EditorFor(model => model.coordinate, new { htmlAttributes = new { @class = "form-control jubu" } })
+                            @Html.ValidationMessageFor(model => model.coordinate, "", new { @class = "text-danger" })
+
+                        </td>*@
+                </tr>
+                <tr>
+
+                    <td style="background-color:#f9f9f9;font-weight:bold;min-width:130px;width:6%;">
+                        备注
+                    </td>
+                    <td colspan="3">
+                        @Html.EditorFor(model => model.remarks, new { htmlAttributes = new { @class = "form-control", @style = "max-width:100%;padding:0px 5px;height:28px;" } })
+                        @Html.ValidationMessageFor(model => model.remarks, "", new { @class = "text-danger" })
+                    </td>
+                </tr>
+
+            </table>
+        </div>
+
+        <div style="text-align:center;">
+            <p>
+                <div>
+                    <input type="button" name="xiugai" id="xiugai" value="修改" class="btn btn-default" disabled="@ViewBag.baocun" />
+                    <input type="button" name="back" id="back" value="返回" class="btn btn-default" />
+                    <input type="button" id="ProjectContent" value="打印工程目录" class="btn btn-default" style="@ViewData["ProjectContent"]" />
+
+                    <input type="button" id="fengpiG" value="打印工程封皮(公开)" class="btn btn-default" style="@ViewData["fengpiG"]" />
+                    <input type="button" id="beikaobiaoG" value="打印备考表(公开)" class="btn btn-default" style="@ViewData["beikaobiaoG"]" />
+
+                    <input type="button" id="fengpiN" value="打印工程封皮(内部)" class="btn btn-default" style="@ViewData["fengpiN"]" />
+                    <input type="button" id="beikaobiaoN" value="打印备考表(内部)" class="btn btn-default" style="@ViewData["beikaobiaoN"]" />
+
+
+                </div>
+            </p>
+        </div>
+    </div>
+}
+
+

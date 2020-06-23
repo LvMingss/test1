@@ -1,0 +1,148 @@
+﻿@model urban_archive.Models.ArchivesContainer
+
+@{
+    ViewBag.Title = "删除档案盒具";
+}
+
+<h2>删除档案盒具</h2>
+
+<div>
+
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            收费编号
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.seqNo)
+        </dd>
+
+        <dt>
+            单位名称
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.DepartName)
+        </dd>
+
+
+
+        <dt>
+            档案盒单价（元）
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.singleBoxFee)
+        </dd>
+        <dt>
+            两厘米（个）
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.twoCentiCnt)
+        </dd>
+
+        <dt>
+            三厘米（个）
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.thrCentiCnt)
+        </dd>
+
+        <dt>
+            四厘米（个）
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.fourCentiCnt)
+        </dd>
+
+        <dt>
+            五厘米（个）
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.fiveCentiCnt)
+        </dd>
+
+        <dt>
+            档案目录单价（元）
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.singleCatalogFee)
+        </dd>
+        <dt>
+            封面（个）
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.coverCnt)
+        </dd>
+
+        <dt>
+            目录（个）
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.catalogueCnt)
+        </dd>
+
+        <dt>
+            备考表（个）
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.proformaCnt)
+        </dd>
+
+
+        <dt>
+            档案盒费用
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.archiveBoxFee)
+        </dd>
+
+        <dt>
+            档案目录费用
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.archiveCataLogFee)
+        </dd>
+
+        <dt>
+            费用总计
+        </dt>
+        <dd>
+            @ViewBag.totle
+        </dd>
+        <dt>
+            日期
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.submitDate)
+        </dd>
+
+        <dt>
+            录入人
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.submitPerson)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="删除" class="btn btn-default" /> |
+            @Html.ActionLink("返回", "Index")
+        </div>
+    }
+</div>

@@ -1,0 +1,152 @@
+﻿@*<script>
+    function fengpi()
+    {
+        var a = document.getElementById("S").value;
+        var b = document.getElementById("E").value;
+        var c = document.getElementById("title").value;
+
+        window.open('/gxArchivesEnter/NBFengPi/?id1=' + a + "&id2=" + b + "&title="+c);
+    }
+    function beikaobiao() {
+        var a = document.getElementById("S").value;
+        var b = document.getElementById("E").value;
+
+        window.open('/gxArchivesEnter/beikaobiaoNB/?id1=' + a + "&id2=" + b );
+    }
+    function mulu() {
+        var a = document.getElementById("S").value;
+        var b = document.getElementById("E").value;
+
+        window.open('/gxArchivesEnter/muluNB/?id1=' + a + "&id2=" + b);
+    }
+    </script>*@
+<script>
+function Getcurpro()
+{
+    var textclass = document.getElementById("classid").value
+
+    $.ajax({
+        type: "POST",
+        url: "/gxArchivesEnter/box/?id=" + textclass,
+        contentType: "application/string",
+        data: "",
+        dataType: "json",
+        success: function (data) {
+
+                document.getElementById('boxNo').value = data;
+
+
+        }
+
+    });
+}
+</script>
+
+
+
+@using (Html.BeginForm())
+{
+    <h2 style="margin-top:0;"><i class="fa fa-tags kongge"></i>内部文件盒号</h2>
+    <hr />
+<div class="panel panel-default">
+    <table class="table table-bordered " style="background-color:#f9f9f9;">
+        <tr>
+            <td style="background-color:#f9f9f9;width:20%;">
+                档案类型：
+            </td>
+            <td>
+                @Html.DropDownList("classifyID", null, new { @class = "form-control", @style = "display:inline;width:300px;" })
+                <div style="display:none">
+                    <input type="text" id="classid" name="classid" class="form-control" value="1">
+                    <script>
+                document.getElementById("classifyID").onchange = function ()
+                {
+                    document.getElementById("classid").value = this.options[this.options.selectedIndex].value;
+                    Getcurpro();
+                }
+                    </script>
+                    </div>
+</td>
+        </tr>
+        <tr>
+            <td style="background-color:#f9f9f9;width:20%;">
+                起始项目顺序号：
+            </td>
+            <td>
+                <input type="text" id="NoS" name="NoS" class="form-control">
+            </td>
+        </tr>
+        <tr>
+            <td style="background-color:#f9f9f9;width:20%;">
+                终止项目顺序号：
+            </td>
+            <td>
+                <input type="text" id="NoE" name="NoE" class="form-control">
+            </td>
+        </tr>
+        <tr>
+            <td style="background-color:#f9f9f9;width:20%;">
+                输入所在盒号：
+            </td>
+            <td>
+                <input type="text" id="boxNo" name="boxNo" class="form-control" value="@ViewBag.box">
+            </td>
+        </tr>
+        </table>
+    </div>
+    <div style="text-align:center;">
+        <input type="submit" value="确定" name="action" run at="server" class="btn btn-default">
+        </div>
+        <hr />
+        <h2 style="margin-top:0;"><i class="fa fa-tags kongge"></i>打印内部文件封皮、备考表、案卷目录</h2>
+        <hr />
+        <div class="panel panel-default">
+            <table class="table table-bordered " style="background-color:#f9f9f9;">
+                <tr>
+                    <td style="background-color:#f9f9f9;width:20%;">
+                        起始项目顺序号：
+                    </td>
+                    <td>
+                        <input type="text" id="S" name="S" class="form-control">
+                    </td>
+                </tr>
+                <tr>
+                    <td style="background-color:#f9f9f9;width:20%;">
+                        终止项目顺序号：
+                    </td>
+                    <td>
+                        <input type="text" id="E" name="E" class="form-control">
+                    </td>
+                </tr>
+                <tr>
+                    <td style="background-color:#f9f9f9;width:20%;">
+                        起始日期：
+                    </td>
+                    <td>
+                        <input type="text" id="dataf" name="dataf" class="form-control">
+                    </td>
+                </tr>
+                <tr>
+                    <td style="background-color:#f9f9f9;width:20%;">
+                        终止日期：
+                    </td>
+                    <td>
+                        <input type="text" id="datae" name="datae" class="form-control">
+                    </td>
+                </tr>
+                <tr>
+                    <td style="background-color:#f9f9f9;width:20%;">
+                        输入文件标题：
+                    </td>
+                    <td>
+                        <input type="text" id="title" name="title" class="form-control"style="max-width:100%">
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <div style="text-align:center;">
+            <input type="submit" value="打印内部文件封皮" name="action" run at="server" class="btn btn-default"@*onclick="fengpi()"*@>
+            <input type="submit" value="打印内部文件备考表" name="action" run at="server" class="btn btn-default"@*onclick="beikaobiao()"*@>
+            <input type="submit" value="打印内部文件目录" name="action" run at="server" class="btn btn-default"@*onclick="mulu()"*@>
+        </div>
+}

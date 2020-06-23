@@ -1,0 +1,206 @@
+﻿@model IEnumerable<urban_archive.Models.InformationContent>
+<link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
+<link href="~/Content/jquery-ui.theme.css" rel="stylesheet" />
+<link href="~/Content/Tabulator/version3.0/tabulator.css" rel="stylesheet" />
+
+@{
+    ViewBag.Title = "信息查看";
+}
+<script src="~/Scripts/jquery-2.1.1.min.js" type="text/javascript"></script>
+<script src="~/Scripts/jquery-ui.min.js"></script>
+<script src="~/Content/Tabulator/version3.0/tabulator.js"></script>
+
+<script type="text/javascript">
+    var o = function (value, data, cell, row, options) { //plain text value
+        return "<i class='fa fa-download' style='color:#428bca;vertical-align:middle; padding:2px 0;'></i>"
+    };
+    var chakan = function (value, data, cell, row, options) { //plain text value
+        return "<i class='fa fa-search-plus' style='color:#428bca;vertical-align:middle; padding:2px 0;'></i>"
+    };
+    $().ready(function () {
+        $(document).ready(function () {
+
+            var a = $(window).height();
+            var hh = a-120;
+            $(".box-h").height(hh)
+
+        })
+            $("#example-table-2").tabulator({
+                height:"100%",
+                virtualDom:false,
+                selectable: true,
+                fitColumns:true,
+                pagination:"local",
+                paginationSize:50,
+                columns: [
+                      {
+                          title: "查看", field: "o", width: 50 ,formatter: chakan,  align: "center", headerSort: false,cellClick: function (e,cell) {
+
+                              var url = '/OfficeInformation/chakan/?id=' + cell.getValue()+"&id1=1";
+                              window.location.href = url;
+                          }
+                      },
+                {
+                     title: "下载", field: "o", width: 50 ,formatter: o, headerSort: false, align: "center", cellClick: function (e,cell) {
+                         var url = '/OfficeInformation/DownLoadFile?id=' + cell.getValue() ;
+                        window.location.href = url;
+                    }
+                    //,formatter:function(value, data, cell, row, options){
+
+                    //    return "<span style='color:#428bca; '>" + value + "</span>";
+
+                    //},
+                },
+
+                {
+                    title: "标题", field: "a", width: 600 , headerSort: false,
+                },
+
+                { title: "作者", field: "b",width: 100 , headerSort: false, },
+                { title: "发布日期", field: "c", minWidth: 100 ,headerSort: false },
+
+
+                ],
+            });
+
+            var temp = new Array();
+            var data=@(new HtmlString(@ViewBag.result));
+            for (var i = 0; i < data.length;i++) {
+                var b = data[i].date
+                if(b!=null){
+                    var result = b.slice(0,10)
+                }
+                temp.push({ "id": i + 1, "a": data[i].title, "b": data[i].author, "c": result, "o": data[i].ID});
+            }
+
+            $("#example-table-2").tabulator("setData", temp);
+            $(window).resize(function () {
+                var a = $(window).height();
+                var hh = a-120;
+                $(".box-h").height(hh);
+                $("#example-table-2").tabulator("redraw",true);
+
+            });
+
+        });
+</script>
+<section>
+    <h2 style="float:left;"><i class="fa fa-tags kongge"></i>信息查看</h2>
+    <ol class="breadcrumb">
+        <li class="active">业务办公</li>
+        <li>信息查看</li>
+    </ol>
+    <div style="clear:both;"></div>
+</section>
+<hr style="margin-top:0px;"/>
+@*<h2><i class="fa fa-tags kongge"></i>信息查看</h2>
+<hr/>*@
+
+@*<section>
+    <h2 style="float:left;"><i class="fa fa-tags"></i>信息查看</h2>
+    <ol class="breadcrumb">
+        <li class="active">编研管理</li>
+        <li class="active">城建信息</li>
+        <li>信息查看</li>
+    </ol>
+    <div style="clear:both;"></div>
+</section>
+<hr style="margin-top:0px;" />*@
+<div id="example-table-2" class="box-h" > </div>
+
+@*<table class="table table-bordered table-striped">
+    <tr>
+        <th>
+            标题
+        </th>
+        <th>
+            作者
+        </th>
+        <th>
+            发布日期
+        </th>
+        
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                <a href="@Url.Action("DownLoadFile", new {id = item.ID})">@Html.DisplayFor(modelItem => item.title)</a>
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.author)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.date)
+            </td>
+        </tr>
+    }
+
+</table>*@
+
+
+@*@model urban_archive.Models.InformationContent
+
+@{
+    ViewBag.Title = "发布信息查看 ";
+}
+
+<h2>发布信息查看 </h2>
+
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            标题
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.title)
+        </dd>
+
+        <dt>
+            作者
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.author)
+        </dd>
+
+        <dt>
+            发布日期
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.date)
+        </dd>
+
+        <dt>
+           内容
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.content)
+        </dd>
+
+        <dt>
+            类别
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.InformationSubCategory.Name)
+        </dd>
+
+        <dt>
+            文件下载
+        </dt>
+
+        <dd>
+            <a href="@Url.Action("DownLoadFile", new {id = Model.ID })">点击下载相关文件</a>
+        </dd>
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("编辑", "Edit", new { id = Model.ID }) |
+    @Html.ActionLink("返回", "Index")
+</p>*@

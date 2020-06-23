@@ -1,0 +1,219 @@
+﻿@model urban_archive.Models.Briefing
+
+@{
+    ViewBag.Title = "城建信息";
+}
+<style type="text/css">
+    .jubu {
+        max-width: 100%;
+        
+    }
+</style>
+<link type="text/css" rel="stylesheet" href="~/Scripts/jquery/jquery-ui.css">
+<script type="text/javascript" src="~/Scripts/jquery/jquery-1.8.3.js"></script>
+<script type="text/javascript" src="~/Scripts/jquery/jquery.ui.core.js"></script>
+<script type="text/javascript" src="~/Scripts/jquery/jquery.ui.datepicker.js"></script>
+<script type="text/javascript" src="~/Scripts/jquery/jquery.ui.widget.js"></script>
+<script type="text/javascript" src="~/Scripts/jquery/jquery-ui-timepicker-addon.js"></script>
+@*<script type="text/javascript" src="~/Scripts/jquery/jquery-ui-timepicker-zh-CN.js"></script>*@
+<script>
+            $(function () {
+                $("#briefTime").datepicker({
+                    changeMonth: true,
+                    changeYear: true
+                });
+            });
+    function OK()//获取文件名
+    {
+        var filename = document.getElementById("MyUploadile").value;
+        var pos=filename.lastIndexOf("\\");
+        document.getElementById("name").value = filename.substring(pos + 1);
+    }
+</script>
+<h2><i class="fa fa-tags kongge"></i>城建信息</h2>
+<hr />
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <div style="font-size:20px;">
+            <i class="fa fa-caret-right kongge"></i>第一步：修改信息
+        </div><br>
+
+
+        @*<h4>第一步：修改信息</h4>
+            <hr />*@
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.ID)
+
+        <div class="form-group" style="display:none">
+            @Html.LabelFor(model => model.briefYear, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <input type="text" name="briefYear" id="briefYear" value="@ViewBag.year">
+                @*@Html.EditorFor(model => model.briefYear, new { htmlAttributes = new { @class = "form-control" } })*@
+                @Html.ValidationMessageFor(model => model.briefYear, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group" style="display:none">
+            @Html.LabelFor(model => model.briefMonth, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <input type="text" name="briefMonth" id="briefMonth" value="@ViewBag.month">
+                @*@Html.EditorFor(model => model.briefMonth, new { htmlAttributes = new { @class = "form-control" } })*@
+                @Html.ValidationMessageFor(model => model.briefMonth, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="panel panel-default">
+            <table class="table table-bordered dl-horizontal">
+                <tr>
+                    <td style="background-color:#f9f9f9;width:10%;">
+                        资料来源
+                    </td>
+                    <td>
+                        @Html.DropDownList("paperName", null, new { @class = "form-control" })
+                        @*@Html.EditorFor(model => model.paperName, new { htmlAttributes = new { @class = "form-control" } })*@
+                        @Html.ValidationMessageFor(model => model.paperName, "", new { @class = "text-danger" })
+                    </td>
+                    <td style="background-color:#f9f9f9;width:10%;">
+                        编辑人
+                    </td>
+                    <td>
+                        <input type="text" name="maker" id="maker" value="杨丽萍" class="form-control">
+                        @*@Html.EditorFor(model => model.maker, new { htmlAttributes = new { @class = "form-control" } })*@
+                        @Html.ValidationMessageFor(model => model.maker, "", new { @class = "text-danger" })
+                    </td>
+                    <td style="background-color:#f9f9f9;width:10%;">
+                        报刊日期
+                    </td>
+                    <td>
+                        @Html.EditorFor(model => model.briefTime, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.briefTime, "", new { @class = "text-danger" })
+                    </td>
+                </tr>
+
+                <tr>
+                    <td style="background-color:#f9f9f9;width:10%;">
+                        文章标题
+                    </td>
+                    <td colspan="5">
+                        @Html.EditorFor(model => model.briefTitle, new { htmlAttributes = new { @class = "form-control jubu" } })
+                        @Html.ValidationMessageFor(model => model.briefTitle, "", new { @class = "text-danger" })
+                    </td>
+                </tr>
+                <tr>
+                    <td style="background-color:#f9f9f9;width:10%;">
+                        文章副标题
+                    </td>
+                    <td colspan="5"> 
+                        @Html.EditorFor(model => model.briefCoTitle, new { htmlAttributes = new { @class = "form-control jubu" } })
+                        @Html.ValidationMessageFor(model => model.briefCoTitle, "", new { @class = "text-danger" })
+                    </td>
+                </tr>
+                <tr>
+                    <td style="background-color:#f9f9f9;width:10%;">
+                        备注
+                    </td>
+                    <td colspan="5">
+                        @Html.EditorFor(model => model.remarks, new { htmlAttributes = new { @class = "form-control jubu" } })
+                        @Html.ValidationMessageFor(model => model.remarks, "", new { @class = "text-danger" })
+                    </td>
+
+                </tr>
+            </table>
+        </div><br />
+
+        @*<div class="form-group">
+                @Html.LabelFor(model => model.paperName, "资料来源", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.DropDownList("paperName", null, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.paperName, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.briefTitle, "文章标题", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.briefTitle, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.briefTitle, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.briefCoTitle, "文章副标题", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.briefCoTitle, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.briefCoTitle, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.maker, "编辑人", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    <input type="text" name="maker" id="maker" value="杨丽萍" class="form-control">
+                    @Html.ValidationMessageFor(model => model.maker, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.briefTime, "报刊日期", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.briefTime, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.briefTime, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.remarks, "备注", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.remarks, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.remarks, "", new { @class = "text-danger" })
+                </div>
+            </div>*@
+
+        @*<div class="form-group">
+                @Html.LabelFor(model => model.fileName, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.fileName, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.fileName, "", new { @class = "text-danger" })
+                </div>
+            </div>*@
+
+        <div style="font-size:20px;">
+            <i class="fa fa-caret-right kongge"></i>第二步：上传简报（如需修改请重新上传）
+        </div><br>
+        @*<h4>第二步：上传简报（如需修改请重新上传）</h4>
+            <hr />*@
+        <div class="panel panel-default">
+            <table class="table table-bordered dl-horizontal">
+                <tr>
+                    <td style="background-color:#f9f9f9;width:10%;">
+                        文件上传
+                    </td>
+                    <td>
+                        <input name="MyUploadile" id="MyUploadile" type="file" onchange="OK()" />
+                        <input name="name" id="name" type="text" value="@ViewBag.name" style="display:none">
+                    </td>
+                </tr>
+            </table>
+        </div>
+        
+        <p style="text-align:center;">
+            <input type="submit" value="确认" class="btn btn-default" />
+            <a href="/Briefings/Details" class="btn btn-default">返回</a>
+
+        </p>
+
+                    @*<div class="form-group">
+                        <label class="control-label col-md-2">文件上传</label>
+                        <div class="col-md-10">
+                            <input name="MyUploadile" id="MyUploadile" type="file" onchange="OK()" />
+                            <input name="name" id="name" type="text" value="@ViewBag.name" style="display:none">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-offset-2 col-md-10">
+                            <input type="submit" value="确认" class="btn btn-default" />
+                            <a href="/Briefings/Details" class="btn btn-default">返回</a>
+                            <div style="height:20px;"></div>
+                        </div>
+                    </div>*@
+        </div>
+        }

@@ -1,0 +1,969 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="VideoArchiveModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="PhotoCassette">
+          <Key>
+            <PropertyRef Name="photoArchiveNo" />
+          </Key>
+          <Property Name="photoArchiveNo" Type="varchar" MaxLength="15" Nullable="false" />
+          <Property Name="registrationNo" Type="varchar" MaxLength="15" />
+          <Property Name="paijiaNo" Type="varchar" MaxLength="15" />
+          <Property Name="videoProjectSeqNo" Type="bigint" />
+          <Property Name="archiveTitle" Type="char" MaxLength="150" Nullable="false" />
+          <Property Name="photoBoxNo" Type="varchar" MaxLength="10" />
+          <Property Name="photoCount" Type="varchar" MaxLength="10" />
+          <Property Name="startShootingTime" Type="datetime" />
+          <Property Name="endShootingTime" Type="datetime" />
+          <Property Name="filingTime" Type="datetime" />
+          <Property Name="filingPeople" Type="varchar" MaxLength="10" />
+          <Property Name="filingDesc" Type="varchar" MaxLength="50" />
+          <Property Name="checker" Type="varchar" MaxLength="10" />
+          <Property Name="checkTime" Type="datetime" />
+          <Property Name="bianzhiUnit" Type="varchar" MaxLength="100" />
+          <Property Name="bianzhiDateStart" Type="datetime" />
+          <Property Name="bianzhiTime" Type="datetime" />
+          <Property Name="bianzhiDateEnd" Type="datetime" />
+        </EntityType>
+        <EntityType Name="PhotoChangjiWorksheet">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="workSheetNo" Type="int" />
+          <Property Name="projectName" Type="varchar" MaxLength="100" />
+          <Property Name="seqNo" Type="int" />
+          <Property Name="projectContent" Type="varchar" MaxLength="50" />
+          <Property Name="shootTime" Type="datetime" />
+          <Property Name="projectLocation" Type="varchar" MaxLength="100" />
+          <Property Name="timeCode1" Type="char" MaxLength="10" />
+          <Property Name="timeCode2" Type="char" MaxLength="10" />
+          <Property Name="shooter" Type="char" MaxLength="10" />
+          <Property Name="listCnt" Type="int" />
+          <Property Name="jingbie" Type="varchar" MaxLength="100" />
+          <Property Name="jianliUnit" Type="varchar" MaxLength="100" />
+          <Property Name="jianliPresent" Type="varchar" MaxLength="50" />
+          <Property Name="shootLocation" Type="varchar" MaxLength="50" />
+          <Property Name="photoArchiveNo" Type="varchar" MaxLength="15" />
+        </EntityType>
+        <EntityType Name="PhotoFileList">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="tableNo" Type="int" />
+          <Property Name="shooter" Type="char" MaxLength="10" />
+          <Property Name="shootTime" Type="datetime" />
+          <Property Name="photoSeqNo" Type="int" />
+          <Property Name="photoTitle" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="remarks" Type="varchar" MaxLength="50" />
+          <Property Name="photoArchiveNo" Type="varchar" MaxLength="15" />
+        </EntityType>
+        <EntityType Name="VideoArchiveAttribute">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="varchar" MaxLength="50" />
+          <Property Name="chinesename" Type="varchar" MaxLength="50" />
+          <Property Name="codeID" Type="int" />
+        </EntityType>
+        <EntityType Name="VideoArchives">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="videoProjectSeqNo" Type="bigint" Nullable="false" />
+          <Property Name="dateReceived" Type="datetime" />
+          <Property Name="projectName" Type="varchar" MaxLength="100" />
+          <Property Name="SheetID" Type="int" />
+          <Property Name="location" Type="varchar" MaxLength="150" />
+          <Property Name="qjdsyYear" Type="char" MaxLength="4" />
+          <Property Name="qjdsyNo" Type="char" MaxLength="50" />
+          <Property Name="csyj" Type="varchar" MaxLength="100" />
+          <Property Name="csyjPerson" Type="char" MaxLength="10" />
+          <Property Name="csyjDate" Type="datetime" />
+          <Property Name="fzryj" Type="varchar" MaxLength="100" />
+          <Property Name="fzryjPerson" Type="char" MaxLength="10" />
+          <Property Name="fzryjDate" Type="datetime" />
+          <Property Name="zgyj" Type="varchar" MaxLength="100" />
+          <Property Name="zgyjPerson" Type="char" MaxLength="10" />
+          <Property Name="zgyjDate" Type="datetime" />
+          <Property Name="operater" Type="char" MaxLength="20" />
+          <Property Name="checker" Type="char" MaxLength="10" />
+          <Property Name="videoCassetteBoxCount" Type="varchar" MaxLength="5" />
+          <Property Name="photoBoxCount" Type="varchar" MaxLength="5" />
+          <Property Name="opticalDiskCount" Type="varchar" MaxLength="5" />
+          <Property Name="constructUnit" Type="varchar" MaxLength="100" />
+          <Property Name="dateConstrcuted" Type="datetime" />
+          <Property Name="timeConstrcuted" Type="datetime" />
+          <Property Name="startVideoArchivesNo" Type="varchar" MaxLength="20" />
+          <Property Name="endVideoArchivesNo" Type="varchar" MaxLength="20" />
+          <Property Name="startVideoRegisNo" Type="varchar" MaxLength="20" />
+          <Property Name="endVideoRegisNo" Type="varchar" MaxLength="20" />
+          <Property Name="startVideoPaijiaNo" Type="varchar" MaxLength="20" />
+          <Property Name="endVideoPaijiaNo" Type="varchar" MaxLength="20" />
+          <Property Name="startPhotoArchivesNo" Type="varchar" MaxLength="20" />
+          <Property Name="endPhotoArchivesNo" Type="varchar" MaxLength="20" />
+          <Property Name="startPhotoRegisNo" Type="varchar" MaxLength="20" />
+          <Property Name="endPhotoRegisNo" Type="varchar" MaxLength="20" />
+          <Property Name="startPhotoPaijiaNo" Type="varchar" MaxLength="20" />
+          <Property Name="endPhotoPaijiaNo" Type="varchar" MaxLength="20" />
+          <Property Name="videoStatus" Type="char" MaxLength="1" />
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="rukutime" Type="datetime" />
+          <Property Name="buildingArea" Type="decimal" Precision="18" Scale="4" />
+          <Property Name="instructor" Type="nchar" MaxLength="10" />
+          <Property Name="constructArea" Type="varchar" MaxLength="50" />
+          <Property Name="planningStartDate" Type="datetime" />
+          <Property Name="planningEndDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="VideoCassette">
+          <Key>
+            <PropertyRef Name="videoArchiveNo" />
+          </Key>
+          <Property Name="videoArchiveNo" Type="varchar" MaxLength="15" Nullable="false" />
+          <Property Name="registrationNo" Type="varchar" MaxLength="15" />
+          <Property Name="paijiaNo" Type="varchar" MaxLength="15" />
+          <Property Name="videoProjectSeqNo" Type="bigint" />
+          <Property Name="documentArchivesNo" Type="varchar" MaxLength="30" />
+          <Property Name="archiveTitle" Type="char" MaxLength="50" Nullable="false" />
+          <Property Name="location" Type="varchar" MaxLength="100" />
+          <Property Name="videoCassetteBoxNo" Type="varchar" MaxLength="5" />
+          <Property Name="videoMinutesCount" Type="varchar" MaxLength="5" />
+          <Property Name="opticalDiskNo" Type="varchar" MaxLength="5" />
+          <Property Name="diskMinutesCount" Type="int" />
+          <Property Name="startShootingTime" Type="datetime" />
+          <Property Name="endShootingTime" Type="datetime" />
+          <Property Name="shootingPerson" Type="char" MaxLength="10" />
+          <Property Name="shootingDate" Type="datetime" />
+          <Property Name="filingTime" Type="datetime" />
+          <Property Name="filingDesc" Type="varchar" MaxLength="50" />
+          <Property Name="filingPeople" Type="varchar" MaxLength="10" />
+          <Property Name="checker" Type="varchar" MaxLength="10" />
+          <Property Name="checkTime" Type="datetime" />
+          <Property Name="bianzhiUnit" Type="varchar" MaxLength="100" />
+          <Property Name="bianzhiDateStart" Type="datetime" />
+          <Property Name="bianzhiTime" Type="datetime" />
+          <Property Name="bianzhiDateEnd" Type="datetime" />
+        </EntityType>
+        <EntityType Name="VideoCassetteList">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="ProjectIDS" Type="varchar" MaxLength="100" />
+          <Property Name="videoMinutesCount" Type="varchar" MaxLength="5" />
+          <Property Name="opticalDiskNo" Type="varchar" MaxLength="5" />
+          <Property Name="diskMinutesCount" Type="int" />
+          <Property Name="startShootingTime" Type="datetime" />
+          <Property Name="endShootingTime" Type="datetime" />
+          <Property Name="shootingPerson" Type="char" MaxLength="10" />
+          <Property Name="shootingDate" Type="datetime" />
+          <Property Name="filingTime" Type="datetime" />
+          <Property Name="filingDesc" Type="varchar" MaxLength="50" />
+          <Property Name="filingPeople" Type="varchar" MaxLength="10" />
+          <Property Name="checker" Type="varchar" MaxLength="10" />
+          <Property Name="checkTime" Type="datetime" />
+          <Property Name="bianzhiUnit" Type="varchar" MaxLength="100" />
+          <Property Name="bianzhiDateStart" Type="datetime" />
+          <Property Name="bianzhiTime" Type="datetime" />
+          <Property Name="bianzhiDateEnd" Type="datetime" />
+          <Property Name="videoContent" Type="varchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="VideoChangjiWorksheet">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="workSheetNo" Type="int" />
+          <Property Name="projectName" Type="varchar" MaxLength="100" />
+          <Property Name="seqNo" Type="int" />
+          <Property Name="projectContent" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="shootTime" Type="datetime" />
+          <Property Name="projectLocation" Type="varchar" MaxLength="100" />
+          <Property Name="timeCodeBegin" Type="char" MaxLength="10" />
+          <Property Name="timeCodeEnd" Type="char" MaxLength="10" />
+          <Property Name="shooter" Type="char" MaxLength="10" />
+          <Property Name="listCnt" Type="int" />
+          <Property Name="jingbie" Type="varchar" MaxLength="50" />
+          <Property Name="jianliUnit" Type="varchar" MaxLength="100" />
+          <Property Name="jianliPresent" Type="varchar" MaxLength="100" />
+          <Property Name="shootLocation" Type="varchar" MaxLength="50" />
+          <Property Name="videoArchiveNo" Type="varchar" MaxLength="15" />
+        </EntityType>
+        <EntityType Name="VideoContractInfo">
+          <Key>
+            <PropertyRef Name="contractNo" />
+          </Key>
+          <Property Name="contractNo" Type="char" MaxLength="8" Nullable="false" />
+          <Property Name="contractName" Type="varchar" MaxLength="100" />
+          <Property Name="contractDesc" Type="varchar" MaxLength="50" />
+          <Property Name="transferUnit" Type="varchar" MaxLength="100" />
+          <Property Name="projectName" Type="varchar" MaxLength="150" />
+          <Property Name="location" Type="varchar" MaxLength="100" />
+          <Property Name="buildingArea" Type="varchar" MaxLength="50" />
+          <Property Name="dateSigned" Type="datetime" />
+          <Property Name="layerCount" Type="varchar" MaxLength="50" />
+          <Property Name="planningStartDate" Type="datetime" />
+          <Property Name="planningEndDate" Type="datetime" />
+          <Property Name="scanningCopy" Type="bit" />
+          <Property Name="isReceiveArchive" Type="bit" />
+          <Property Name="textMaterial" Type="bigint" />
+          <Property Name="drawing" Type="bigint" />
+          <Property Name="partAaddress" Type="varchar" MaxLength="100" />
+          <Property Name="partALegalRepresent" Type="varchar" MaxLength="50" />
+          <Property Name="partAweituoAgent" Type="varchar" MaxLength="50" />
+          <Property Name="partAcontactTel" Type="varchar" MaxLength="50" />
+          <Property Name="partBadress" Type="varchar" MaxLength="100" />
+          <Property Name="partBLegalRepresent" Type="varchar" MaxLength="50" />
+          <Property Name="partBweituoAgent" Type="varchar" MaxLength="50" />
+          <Property Name="partBcontactTel" Type="char" MaxLength="12" />
+          <Property Name="constructUnit" Type="varchar" MaxLength="100" />
+          <Property Name="constructArea" Type="varchar" MaxLength="10" />
+        </EntityType>
+        <EntityType Name="VideoContractSheet">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="sheetNo" Type="char" MaxLength="10" />
+          <Property Name="contractNo" Type="char" MaxLength="8" />
+          <Property Name="developmentOrgnization" Type="varchar" MaxLength="50" />
+          <Property Name="projectName" Type="varchar" MaxLength="150" />
+          <Property Name="location" Type="varchar" MaxLength="150" />
+          <Property Name="retentionPeriodNo" Type="char" MaxLength="1" />
+          <Property Name="securityID" Type="char" MaxLength="1" />
+          <Property Name="buildingArea" Type="decimal" Precision="18" Scale="4" />
+          <Property Name="totalCost" Type="decimal" Precision="18" Scale="4" />
+          <Property Name="projectResponsible" Type="varchar" MaxLength="50" />
+          <Property Name="telephoneNo" Type="char" MaxLength="12" />
+          <Property Name="mobilephoneNo" Type="char" MaxLength="11" />
+          <Property Name="instructor" Type="char" MaxLength="10" />
+          <Property Name="contractTel" Type="char" MaxLength="12" />
+          <Property Name="contractMobileNo" Type="char" MaxLength="11" />
+          <Property Name="address" Type="varchar" MaxLength="50" />
+          <Property Name="email" Type="varchar" MaxLength="50" />
+          <Property Name="videoResponsible" Type="char" MaxLength="15" />
+          <Property Name="weituoContactNo" Type="char" MaxLength="7" />
+          <Property Name="costFee" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="partB" Type="varchar" MaxLength="50" />
+          <Property Name="fillDate" Type="datetime" />
+          <Property Name="introduction" Type="varchar" MaxLength="500" />
+          <Property Name="isCharge" Type="bit" />
+          <Property Name="archiveBoxMaterailFee" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="scanningCopy" Type="bit" />
+          <Property Name="projectID" Type="bigint" />
+          <Property Name="year" Type="nchar" MaxLength="20" Nullable="false" />
+          <Property Name="constructArea" Type="varchar" MaxLength="50" />
+          <Property Name="planningStartDate" Type="datetime" />
+          <Property Name="planningEndDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="VideoContractSheetAttribute">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="varchar" MaxLength="50" />
+          <Property Name="chinename" Type="varchar" MaxLength="50" />
+          <Property Name="codeID" Type="int" />
+        </EntityType>
+        <EntityType Name="VideoFilelist">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="tableNo" Type="int" />
+          <Property Name="shootLocation" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="shootTime" Type="datetime" />
+          <Property Name="materialSeqNo" Type="char" MaxLength="20" />
+          <Property Name="timecodeBegin" Type="char" MaxLength="10" />
+          <Property Name="timecodeEnd" Type="char" MaxLength="10" />
+          <Property Name="contentDetail" Type="varchar" MaxLength="100" />
+          <Property Name="remarks" Type="varchar" MaxLength="50" />
+          <Property Name="editor" Type="char" MaxLength="10" />
+          <Property Name="shooter" Type="char" MaxLength="10" />
+          <Property Name="videoArchiveNo" Type="varchar" MaxLength="15" />
+        </EntityType>
+        <EntityType Name="VideoStatus">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="videoStatusNo" Type="char" MaxLength="1" Nullable="false" />
+          <Property Name="videoStatusName" Type="varchar" MaxLength="10" />
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+        </EntityType>
+        <!--生成过程中发现错误:
+警告 6002: 表/视图“UrbanCon.dbo.vw_VideoArchivesList”未定义主键。已推断出该键，并将定义创建为只读的表/视图。-->
+        <EntityType Name="vw_VideoArchivesList">
+          <Key>
+            <PropertyRef Name="videoProjectSeqNo" />
+          </Key>
+          <Property Name="videoProjectSeqNo" Type="bigint" Nullable="false" />
+          <Property Name="ProjectIDS" Type="varchar" MaxLength="100" />
+          <Property Name="projectName" Type="varchar" MaxLength="100" />
+          <Property Name="videoStatus" Type="char" MaxLength="1" />
+          <Property Name="shootingDate" Type="datetime" />
+          <Property Name="videoCassetteBoxCount" Type="varchar" MaxLength="5" />
+          <Property Name="photoBoxCount" Type="varchar" MaxLength="5" />
+        </EntityType>
+        <EntityContainer Name="VideoArchiveModelStoreContainer">
+          <EntitySet Name="PhotoCassette" EntityType="Self.PhotoCassette" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PhotoChangjiWorksheet" EntityType="Self.PhotoChangjiWorksheet" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PhotoFileList" EntityType="Self.PhotoFileList" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="VideoArchiveAttribute" EntityType="Self.VideoArchiveAttribute" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="VideoArchives" EntityType="Self.VideoArchives" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="VideoCassette" EntityType="Self.VideoCassette" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="VideoCassetteList" EntityType="Self.VideoCassetteList" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="VideoChangjiWorksheet" EntityType="Self.VideoChangjiWorksheet" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="VideoContractInfo" EntityType="Self.VideoContractInfo" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="VideoContractSheet" EntityType="Self.VideoContractSheet" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="VideoContractSheetAttribute" EntityType="Self.VideoContractSheetAttribute" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="VideoFilelist" EntityType="Self.VideoFilelist" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="VideoStatus" EntityType="Self.VideoStatus" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="vw_VideoArchivesList" EntityType="Self.vw_VideoArchivesList" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [vw_VideoArchivesList].[videoProjectSeqNo] AS [videoProjectSeqNo], 
+    [vw_VideoArchivesList].[ProjectIDS] AS [ProjectIDS], 
+    [vw_VideoArchivesList].[projectName] AS [projectName], 
+    [vw_VideoArchivesList].[videoStatus] AS [videoStatus], 
+    [vw_VideoArchivesList].[shootingDate] AS [shootingDate], 
+    [vw_VideoArchivesList].[videoCassetteBoxCount] AS [videoCassetteBoxCount], 
+    [vw_VideoArchivesList].[photoBoxCount] AS [photoBoxCount]
+    FROM [dbo].[vw_VideoArchivesList] AS [vw_VideoArchivesList]</DefiningQuery>
+          </EntitySet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="VideoArchiveModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="VideoArchiveEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="VideoCassetteList" EntityType="VideoArchiveModel.VideoCassetteList" />
+          <EntitySet Name="VideoArchiveAttribute" EntityType="VideoArchiveModel.VideoArchiveAttribute" />
+          <EntitySet Name="VideoChangjiWorksheet" EntityType="VideoArchiveModel.VideoChangjiWorksheet" />
+          <EntitySet Name="VideoContractSheetAttribute" EntityType="VideoArchiveModel.VideoContractSheetAttribute" />
+          <EntitySet Name="VideoStatus" EntityType="VideoArchiveModel.VideoStatus" />
+          <EntitySet Name="PhotoChangjiWorksheet" EntityType="VideoArchiveModel.PhotoChangjiWorksheet" />
+          <EntitySet Name="VideoCassette" EntityType="VideoArchiveModel.VideoCassette" />
+          <EntitySet Name="PhotoCassette" EntityType="VideoArchiveModel.PhotoCassette" />
+          <EntitySet Name="PhotoFileList" EntityType="VideoArchiveModel.PhotoFileList" />
+          <EntitySet Name="VideoContractInfo" EntityType="VideoArchiveModel.VideoContractInfo" />
+          <EntitySet Name="VideoContractSheet" EntityType="VideoArchiveModel.VideoContractSheet" />
+          <EntitySet Name="VideoArchives" EntityType="VideoArchiveModel.VideoArchives" />
+          <EntitySet Name="vw_VideoArchivesList" EntityType="VideoArchiveModel.vw_VideoArchivesList" />
+          </EntityContainer>
+        <EntityType Name="VideoCassetteList">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="ProjectIDS" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="videoMinutesCount" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+          <Property Name="opticalDiskNo" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+          <Property Name="diskMinutesCount" Type="Int32" />
+          <Property Name="startShootingTime" Type="DateTime" Precision="3" />
+          <Property Name="endShootingTime" Type="DateTime" Precision="3" />
+          <Property Name="shootingPerson" Type="String" MaxLength="10" FixedLength="true" Unicode="false" />
+          <Property Name="shootingDate" Type="DateTime" Precision="3" />
+          <Property Name="filingTime" Type="DateTime" Precision="3" />
+          <Property Name="filingDesc" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="filingPeople" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="checker" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="checkTime" Type="DateTime" Precision="3" />
+          <Property Name="bianzhiUnit" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="bianzhiDateStart" Type="DateTime" Precision="3" />
+          <Property Name="bianzhiTime" Type="DateTime" Precision="3" />
+          <Property Name="bianzhiDateEnd" Type="DateTime" Precision="3" />
+          <Property Name="videoContent" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="VideoArchiveAttribute">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="chinesename" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="codeID" Type="Int32" />
+        </EntityType>
+        <EntityType Name="VideoChangjiWorksheet">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="workSheetNo" Type="Int32" />
+          <Property Name="projectName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="seqNo" Type="Int32" />
+          <Property Name="projectContent" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="shootTime" Type="DateTime" Precision="3" />
+          <Property Name="projectLocation" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="timeCodeBegin" Type="String" MaxLength="10" FixedLength="true" Unicode="false" />
+          <Property Name="timeCodeEnd" Type="String" MaxLength="10" FixedLength="true" Unicode="false" />
+          <Property Name="shooter" Type="String" MaxLength="10" FixedLength="true" Unicode="false" />
+          <Property Name="listCnt" Type="Int32" />
+          <Property Name="jingbie" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="jianliUnit" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="jianliPresent" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="shootLocation" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="videoArchiveNo" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="VideoContractSheetAttribute">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="chinename" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="codeID" Type="Int32" />
+        </EntityType>
+        <EntityType Name="VideoStatus">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="videoStatusNo" Type="String" Nullable="false" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="videoStatusName" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+        </EntityType>
+        <EntityType Name="PhotoChangjiWorksheet">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="workSheetNo" Type="Int32" />
+          <Property Name="projectName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="seqNo" Type="Int32" />
+          <Property Name="projectContent" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="shootTime" Type="DateTime" Precision="3" />
+          <Property Name="projectLocation" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="timeCode1" Type="String" MaxLength="10" FixedLength="true" Unicode="false" />
+          <Property Name="timeCode2" Type="String" MaxLength="10" FixedLength="true" Unicode="false" />
+          <Property Name="shooter" Type="String" MaxLength="10" FixedLength="true" Unicode="false" />
+          <Property Name="listCnt" Type="Int32" />
+          <Property Name="jingbie" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="jianliUnit" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="jianliPresent" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="shootLocation" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="photoArchiveNo" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="VideoCassette">
+          <Key>
+            <PropertyRef Name="videoArchiveNo" />
+          </Key>
+          <Property Name="videoArchiveNo" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="registrationNo" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="paijiaNo" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="videoProjectSeqNo" Type="Int64" />
+          <Property Name="documentArchivesNo" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="archiveTitle" Type="String" Nullable="false" MaxLength="50" FixedLength="true" Unicode="false" />
+          <Property Name="location" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="videoCassetteBoxNo" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+          <Property Name="videoMinutesCount" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+          <Property Name="opticalDiskNo" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+          <Property Name="diskMinutesCount" Type="Int32" />
+          <Property Name="startShootingTime" Type="DateTime" Precision="3" />
+          <Property Name="endShootingTime" Type="DateTime" Precision="3" />
+          <Property Name="shootingPerson" Type="String" MaxLength="10" FixedLength="true" Unicode="false" />
+          <Property Name="shootingDate" Type="DateTime" Precision="3" />
+          <Property Name="filingTime" Type="DateTime" Precision="3" />
+          <Property Name="filingDesc" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="filingPeople" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="checker" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="checkTime" Type="DateTime" Precision="3" />
+          <Property Name="bianzhiUnit" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="bianzhiDateStart" Type="DateTime" Precision="3" />
+          <Property Name="bianzhiTime" Type="DateTime" Precision="3" />
+          <Property Name="bianzhiDateEnd" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="PhotoCassette">
+          <Key>
+            <PropertyRef Name="photoArchiveNo" />
+          </Key>
+          <Property Name="photoArchiveNo" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="registrationNo" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="paijiaNo" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="videoProjectSeqNo" Type="Int64" />
+          <Property Name="archiveTitle" Type="String" Nullable="false" MaxLength="150" FixedLength="true" Unicode="false" />
+          <Property Name="photoBoxNo" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="photoCount" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="startShootingTime" Type="DateTime" Precision="3" />
+          <Property Name="endShootingTime" Type="DateTime" Precision="3" />
+          <Property Name="filingTime" Type="DateTime" Precision="3" />
+          <Property Name="filingPeople" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="filingDesc" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="checker" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="checkTime" Type="DateTime" Precision="3" />
+          <Property Name="bianzhiUnit" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="bianzhiDateStart" Type="DateTime" Precision="3" />
+          <Property Name="bianzhiTime" Type="DateTime" Precision="3" />
+          <Property Name="bianzhiDateEnd" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="PhotoFileList">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="tableNo" Type="Int32" />
+          <Property Name="shooter" Type="String" MaxLength="10" FixedLength="true" Unicode="false" />
+          <Property Name="shootTime" Type="DateTime" Precision="3" />
+          <Property Name="photoSeqNo" Type="Int32" />
+          <Property Name="photoTitle" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="remarks" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="photoArchiveNo" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="VideoContractInfo">
+          <Key>
+            <PropertyRef Name="contractNo" />
+          </Key>
+          <Property Name="contractNo" Type="String" Nullable="false" MaxLength="8" FixedLength="true" Unicode="false" />
+          <Property Name="contractName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="contractDesc" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="transferUnit" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="projectName" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="location" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="buildingArea" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="dateSigned" Type="DateTime" Precision="3" />
+          <Property Name="layerCount" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="planningStartDate" Type="DateTime" Precision="3" />
+          <Property Name="planningEndDate" Type="DateTime" Precision="3" />
+          <Property Name="scanningCopy" Type="Boolean" />
+          <Property Name="isReceiveArchive" Type="Boolean" />
+          <Property Name="textMaterial" Type="Int64" />
+          <Property Name="drawing" Type="Int64" />
+          <Property Name="partAaddress" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="partALegalRepresent" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="partAweituoAgent" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="partAcontactTel" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="partBadress" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="partBLegalRepresent" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="partBweituoAgent" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="partBcontactTel" Type="String" MaxLength="12" FixedLength="true" Unicode="false" />
+          <Property Name="constructUnit" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="constructArea" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="VideoContractSheet">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="sheetNo" Type="String" MaxLength="10" FixedLength="true" Unicode="false" />
+          <Property Name="contractNo" Type="String" MaxLength="8" FixedLength="true" Unicode="false" />
+          <Property Name="developmentOrgnization" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="projectName" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="location" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="retentionPeriodNo" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="securityID" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="buildingArea" Type="Decimal" Precision="18" Scale="4" />
+          <Property Name="totalCost" Type="Decimal" Precision="18" Scale="4" />
+          <Property Name="projectResponsible" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="telephoneNo" Type="String" MaxLength="12" FixedLength="true" Unicode="false" />
+          <Property Name="mobilephoneNo" Type="String" MaxLength="11" FixedLength="true" Unicode="false" />
+          <Property Name="instructor" Type="String" MaxLength="10" FixedLength="true" Unicode="false" />
+          <Property Name="contractTel" Type="String" MaxLength="12" FixedLength="true" Unicode="false" />
+          <Property Name="contractMobileNo" Type="String" MaxLength="11" FixedLength="true" Unicode="false" />
+          <Property Name="address" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="videoResponsible" Type="String" MaxLength="15" FixedLength="true" Unicode="false" />
+          <Property Name="weituoContactNo" Type="String" MaxLength="7" FixedLength="true" Unicode="false" />
+          <Property Name="costFee" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="partB" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="fillDate" Type="DateTime" Precision="3" />
+          <Property Name="introduction" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="isCharge" Type="Boolean" />
+          <Property Name="archiveBoxMaterailFee" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="scanningCopy" Type="Boolean" />
+          <Property Name="projectID" Type="Int64" />
+          <Property Name="year" Type="String" Nullable="false" MaxLength="20" FixedLength="true" Unicode="true" />
+          <Property Name="constructArea" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="planningStartDate" Type="DateTime" Precision="3" />
+          <Property Name="planningEndDate" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="VideoArchives">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="videoProjectSeqNo" Type="Int64" Nullable="false" />
+          <Property Name="dateReceived" Type="DateTime" Precision="3" />
+          <Property Name="projectName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="SheetID" Type="Int32" />
+          <Property Name="location" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="qjdsyYear" Type="String" MaxLength="4" FixedLength="true" Unicode="false" />
+          <Property Name="qjdsyNo" Type="String" MaxLength="50" FixedLength="true" Unicode="false" />
+          <Property Name="csyj" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="csyjPerson" Type="String" MaxLength="10" FixedLength="true" Unicode="false" />
+          <Property Name="csyjDate" Type="DateTime" Precision="3" />
+          <Property Name="fzryj" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="fzryjPerson" Type="String" MaxLength="10" FixedLength="true" Unicode="false" />
+          <Property Name="fzryjDate" Type="DateTime" Precision="3" />
+          <Property Name="zgyj" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="zgyjPerson" Type="String" MaxLength="10" FixedLength="true" Unicode="false" />
+          <Property Name="zgyjDate" Type="DateTime" Precision="3" />
+          <Property Name="operater" Type="String" MaxLength="20" FixedLength="true" Unicode="false" />
+          <Property Name="checker" Type="String" MaxLength="10" FixedLength="true" Unicode="false" />
+          <Property Name="videoCassetteBoxCount" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+          <Property Name="photoBoxCount" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+          <Property Name="opticalDiskCount" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+          <Property Name="constructUnit" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="dateConstrcuted" Type="DateTime" Precision="3" />
+          <Property Name="timeConstrcuted" Type="DateTime" Precision="3" />
+          <Property Name="startVideoArchivesNo" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="endVideoArchivesNo" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="startVideoRegisNo" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="endVideoRegisNo" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="startVideoPaijiaNo" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="endVideoPaijiaNo" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="startPhotoArchivesNo" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="endPhotoArchivesNo" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="startPhotoRegisNo" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="endPhotoRegisNo" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="startPhotoPaijiaNo" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="endPhotoPaijiaNo" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="videoStatus" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="rukutime" Type="DateTime" Precision="3" />
+          <Property Name="buildingArea" Type="Decimal" Precision="18" Scale="4" />
+          <Property Name="instructor" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="constructArea" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="planningStartDate" Type="DateTime" Precision="3" />
+          <Property Name="planningEndDate" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="vw_VideoArchivesList">
+          <Key>
+            <PropertyRef Name="videoProjectSeqNo" />
+          </Key>
+          <Property Name="videoProjectSeqNo" Type="Int64" Nullable="false" />
+          <Property Name="ProjectIDS" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="projectName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="videoStatus" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="shootingDate" Type="DateTime" Precision="3" />
+          <Property Name="videoCassetteBoxCount" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+          <Property Name="photoBoxCount" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+        </EntityType>
+        </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="VideoArchiveModelStoreContainer" CdmEntityContainer="VideoArchiveEntities">
+          <EntitySetMapping Name="VideoCassetteList">
+            <EntityTypeMapping TypeName="VideoArchiveModel.VideoCassetteList">
+              <MappingFragment StoreEntitySet="VideoCassetteList">
+                <ScalarProperty Name="videoContent" ColumnName="videoContent" />
+                <ScalarProperty Name="bianzhiDateEnd" ColumnName="bianzhiDateEnd" />
+                <ScalarProperty Name="bianzhiTime" ColumnName="bianzhiTime" />
+                <ScalarProperty Name="bianzhiDateStart" ColumnName="bianzhiDateStart" />
+                <ScalarProperty Name="bianzhiUnit" ColumnName="bianzhiUnit" />
+                <ScalarProperty Name="checkTime" ColumnName="checkTime" />
+                <ScalarProperty Name="checker" ColumnName="checker" />
+                <ScalarProperty Name="filingPeople" ColumnName="filingPeople" />
+                <ScalarProperty Name="filingDesc" ColumnName="filingDesc" />
+                <ScalarProperty Name="filingTime" ColumnName="filingTime" />
+                <ScalarProperty Name="shootingDate" ColumnName="shootingDate" />
+                <ScalarProperty Name="shootingPerson" ColumnName="shootingPerson" />
+                <ScalarProperty Name="endShootingTime" ColumnName="endShootingTime" />
+                <ScalarProperty Name="startShootingTime" ColumnName="startShootingTime" />
+                <ScalarProperty Name="diskMinutesCount" ColumnName="diskMinutesCount" />
+                <ScalarProperty Name="opticalDiskNo" ColumnName="opticalDiskNo" />
+                <ScalarProperty Name="videoMinutesCount" ColumnName="videoMinutesCount" />
+                <ScalarProperty Name="ProjectIDS" ColumnName="ProjectIDS" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="VideoArchiveAttribute">
+            <EntityTypeMapping TypeName="VideoArchiveModel.VideoArchiveAttribute">
+              <MappingFragment StoreEntitySet="VideoArchiveAttribute">
+                <ScalarProperty Name="codeID" ColumnName="codeID" />
+                <ScalarProperty Name="chinesename" ColumnName="chinesename" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="VideoChangjiWorksheet">
+            <EntityTypeMapping TypeName="VideoArchiveModel.VideoChangjiWorksheet">
+              <MappingFragment StoreEntitySet="VideoChangjiWorksheet">
+                <ScalarProperty Name="videoArchiveNo" ColumnName="videoArchiveNo" />
+                <ScalarProperty Name="shootLocation" ColumnName="shootLocation" />
+                <ScalarProperty Name="jianliPresent" ColumnName="jianliPresent" />
+                <ScalarProperty Name="jianliUnit" ColumnName="jianliUnit" />
+                <ScalarProperty Name="jingbie" ColumnName="jingbie" />
+                <ScalarProperty Name="listCnt" ColumnName="listCnt" />
+                <ScalarProperty Name="shooter" ColumnName="shooter" />
+                <ScalarProperty Name="timeCodeEnd" ColumnName="timeCodeEnd" />
+                <ScalarProperty Name="timeCodeBegin" ColumnName="timeCodeBegin" />
+                <ScalarProperty Name="projectLocation" ColumnName="projectLocation" />
+                <ScalarProperty Name="shootTime" ColumnName="shootTime" />
+                <ScalarProperty Name="projectContent" ColumnName="projectContent" />
+                <ScalarProperty Name="seqNo" ColumnName="seqNo" />
+                <ScalarProperty Name="projectName" ColumnName="projectName" />
+                <ScalarProperty Name="workSheetNo" ColumnName="workSheetNo" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="VideoContractSheetAttribute">
+            <EntityTypeMapping TypeName="VideoArchiveModel.VideoContractSheetAttribute">
+              <MappingFragment StoreEntitySet="VideoContractSheetAttribute">
+                <ScalarProperty Name="codeID" ColumnName="codeID" />
+                <ScalarProperty Name="chinename" ColumnName="chinename" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="VideoStatus">
+            <EntityTypeMapping TypeName="VideoArchiveModel.VideoStatus">
+              <MappingFragment StoreEntitySet="VideoStatus">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="videoStatusName" ColumnName="videoStatusName" />
+                <ScalarProperty Name="videoStatusNo" ColumnName="videoStatusNo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PhotoChangjiWorksheet">
+            <EntityTypeMapping TypeName="VideoArchiveModel.PhotoChangjiWorksheet">
+              <MappingFragment StoreEntitySet="PhotoChangjiWorksheet">
+                <ScalarProperty Name="photoArchiveNo" ColumnName="photoArchiveNo" />
+                <ScalarProperty Name="shootLocation" ColumnName="shootLocation" />
+                <ScalarProperty Name="jianliPresent" ColumnName="jianliPresent" />
+                <ScalarProperty Name="jianliUnit" ColumnName="jianliUnit" />
+                <ScalarProperty Name="jingbie" ColumnName="jingbie" />
+                <ScalarProperty Name="listCnt" ColumnName="listCnt" />
+                <ScalarProperty Name="shooter" ColumnName="shooter" />
+                <ScalarProperty Name="timeCode2" ColumnName="timeCode2" />
+                <ScalarProperty Name="timeCode1" ColumnName="timeCode1" />
+                <ScalarProperty Name="projectLocation" ColumnName="projectLocation" />
+                <ScalarProperty Name="shootTime" ColumnName="shootTime" />
+                <ScalarProperty Name="projectContent" ColumnName="projectContent" />
+                <ScalarProperty Name="seqNo" ColumnName="seqNo" />
+                <ScalarProperty Name="projectName" ColumnName="projectName" />
+                <ScalarProperty Name="workSheetNo" ColumnName="workSheetNo" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="VideoCassette">
+            <EntityTypeMapping TypeName="VideoArchiveModel.VideoCassette">
+              <MappingFragment StoreEntitySet="VideoCassette">
+                <ScalarProperty Name="bianzhiDateEnd" ColumnName="bianzhiDateEnd" />
+                <ScalarProperty Name="bianzhiTime" ColumnName="bianzhiTime" />
+                <ScalarProperty Name="bianzhiDateStart" ColumnName="bianzhiDateStart" />
+                <ScalarProperty Name="bianzhiUnit" ColumnName="bianzhiUnit" />
+                <ScalarProperty Name="checkTime" ColumnName="checkTime" />
+                <ScalarProperty Name="checker" ColumnName="checker" />
+                <ScalarProperty Name="filingPeople" ColumnName="filingPeople" />
+                <ScalarProperty Name="filingDesc" ColumnName="filingDesc" />
+                <ScalarProperty Name="filingTime" ColumnName="filingTime" />
+                <ScalarProperty Name="shootingDate" ColumnName="shootingDate" />
+                <ScalarProperty Name="shootingPerson" ColumnName="shootingPerson" />
+                <ScalarProperty Name="endShootingTime" ColumnName="endShootingTime" />
+                <ScalarProperty Name="startShootingTime" ColumnName="startShootingTime" />
+                <ScalarProperty Name="diskMinutesCount" ColumnName="diskMinutesCount" />
+                <ScalarProperty Name="opticalDiskNo" ColumnName="opticalDiskNo" />
+                <ScalarProperty Name="videoMinutesCount" ColumnName="videoMinutesCount" />
+                <ScalarProperty Name="videoCassetteBoxNo" ColumnName="videoCassetteBoxNo" />
+                <ScalarProperty Name="location" ColumnName="location" />
+                <ScalarProperty Name="archiveTitle" ColumnName="archiveTitle" />
+                <ScalarProperty Name="documentArchivesNo" ColumnName="documentArchivesNo" />
+                <ScalarProperty Name="videoProjectSeqNo" ColumnName="videoProjectSeqNo" />
+                <ScalarProperty Name="paijiaNo" ColumnName="paijiaNo" />
+                <ScalarProperty Name="registrationNo" ColumnName="registrationNo" />
+                <ScalarProperty Name="videoArchiveNo" ColumnName="videoArchiveNo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PhotoCassette">
+            <EntityTypeMapping TypeName="VideoArchiveModel.PhotoCassette">
+              <MappingFragment StoreEntitySet="PhotoCassette">
+                <ScalarProperty Name="bianzhiDateEnd" ColumnName="bianzhiDateEnd" />
+                <ScalarProperty Name="bianzhiTime" ColumnName="bianzhiTime" />
+                <ScalarProperty Name="bianzhiDateStart" ColumnName="bianzhiDateStart" />
+                <ScalarProperty Name="bianzhiUnit" ColumnName="bianzhiUnit" />
+                <ScalarProperty Name="checkTime" ColumnName="checkTime" />
+                <ScalarProperty Name="checker" ColumnName="checker" />
+                <ScalarProperty Name="filingDesc" ColumnName="filingDesc" />
+                <ScalarProperty Name="filingPeople" ColumnName="filingPeople" />
+                <ScalarProperty Name="filingTime" ColumnName="filingTime" />
+                <ScalarProperty Name="endShootingTime" ColumnName="endShootingTime" />
+                <ScalarProperty Name="startShootingTime" ColumnName="startShootingTime" />
+                <ScalarProperty Name="photoCount" ColumnName="photoCount" />
+                <ScalarProperty Name="photoBoxNo" ColumnName="photoBoxNo" />
+                <ScalarProperty Name="archiveTitle" ColumnName="archiveTitle" />
+                <ScalarProperty Name="videoProjectSeqNo" ColumnName="videoProjectSeqNo" />
+                <ScalarProperty Name="paijiaNo" ColumnName="paijiaNo" />
+                <ScalarProperty Name="registrationNo" ColumnName="registrationNo" />
+                <ScalarProperty Name="photoArchiveNo" ColumnName="photoArchiveNo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PhotoFileList">
+            <EntityTypeMapping TypeName="VideoArchiveModel.PhotoFileList">
+              <MappingFragment StoreEntitySet="PhotoFileList">
+                <ScalarProperty Name="photoArchiveNo" ColumnName="photoArchiveNo" />
+                <ScalarProperty Name="remarks" ColumnName="remarks" />
+                <ScalarProperty Name="photoTitle" ColumnName="photoTitle" />
+                <ScalarProperty Name="photoSeqNo" ColumnName="photoSeqNo" />
+                <ScalarProperty Name="shootTime" ColumnName="shootTime" />
+                <ScalarProperty Name="shooter" ColumnName="shooter" />
+                <ScalarProperty Name="tableNo" ColumnName="tableNo" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="VideoContractInfo">
+            <EntityTypeMapping TypeName="VideoArchiveModel.VideoContractInfo">
+              <MappingFragment StoreEntitySet="VideoContractInfo">
+                <ScalarProperty Name="constructArea" ColumnName="constructArea" />
+                <ScalarProperty Name="constructUnit" ColumnName="constructUnit" />
+                <ScalarProperty Name="partBcontactTel" ColumnName="partBcontactTel" />
+                <ScalarProperty Name="partBweituoAgent" ColumnName="partBweituoAgent" />
+                <ScalarProperty Name="partBLegalRepresent" ColumnName="partBLegalRepresent" />
+                <ScalarProperty Name="partBadress" ColumnName="partBadress" />
+                <ScalarProperty Name="partAcontactTel" ColumnName="partAcontactTel" />
+                <ScalarProperty Name="partAweituoAgent" ColumnName="partAweituoAgent" />
+                <ScalarProperty Name="partALegalRepresent" ColumnName="partALegalRepresent" />
+                <ScalarProperty Name="partAaddress" ColumnName="partAaddress" />
+                <ScalarProperty Name="drawing" ColumnName="drawing" />
+                <ScalarProperty Name="textMaterial" ColumnName="textMaterial" />
+                <ScalarProperty Name="isReceiveArchive" ColumnName="isReceiveArchive" />
+                <ScalarProperty Name="scanningCopy" ColumnName="scanningCopy" />
+                <ScalarProperty Name="planningEndDate" ColumnName="planningEndDate" />
+                <ScalarProperty Name="planningStartDate" ColumnName="planningStartDate" />
+                <ScalarProperty Name="layerCount" ColumnName="layerCount" />
+                <ScalarProperty Name="dateSigned" ColumnName="dateSigned" />
+                <ScalarProperty Name="buildingArea" ColumnName="buildingArea" />
+                <ScalarProperty Name="location" ColumnName="location" />
+                <ScalarProperty Name="projectName" ColumnName="projectName" />
+                <ScalarProperty Name="transferUnit" ColumnName="transferUnit" />
+                <ScalarProperty Name="contractDesc" ColumnName="contractDesc" />
+                <ScalarProperty Name="contractName" ColumnName="contractName" />
+                <ScalarProperty Name="contractNo" ColumnName="contractNo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="VideoContractSheet">
+            <EntityTypeMapping TypeName="VideoArchiveModel.VideoContractSheet">
+              <MappingFragment StoreEntitySet="VideoContractSheet">
+                <ScalarProperty Name="planningEndDate" ColumnName="planningEndDate" />
+                <ScalarProperty Name="planningStartDate" ColumnName="planningStartDate" />
+                <ScalarProperty Name="constructArea" ColumnName="constructArea" />
+                <ScalarProperty Name="year" ColumnName="year" />
+                <ScalarProperty Name="projectID" ColumnName="projectID" />
+                <ScalarProperty Name="scanningCopy" ColumnName="scanningCopy" />
+                <ScalarProperty Name="archiveBoxMaterailFee" ColumnName="archiveBoxMaterailFee" />
+                <ScalarProperty Name="isCharge" ColumnName="isCharge" />
+                <ScalarProperty Name="introduction" ColumnName="introduction" />
+                <ScalarProperty Name="fillDate" ColumnName="fillDate" />
+                <ScalarProperty Name="partB" ColumnName="partB" />
+                <ScalarProperty Name="costFee" ColumnName="costFee" />
+                <ScalarProperty Name="weituoContactNo" ColumnName="weituoContactNo" />
+                <ScalarProperty Name="videoResponsible" ColumnName="videoResponsible" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="address" ColumnName="address" />
+                <ScalarProperty Name="contractMobileNo" ColumnName="contractMobileNo" />
+                <ScalarProperty Name="contractTel" ColumnName="contractTel" />
+                <ScalarProperty Name="instructor" ColumnName="instructor" />
+                <ScalarProperty Name="mobilephoneNo" ColumnName="mobilephoneNo" />
+                <ScalarProperty Name="telephoneNo" ColumnName="telephoneNo" />
+                <ScalarProperty Name="projectResponsible" ColumnName="projectResponsible" />
+                <ScalarProperty Name="totalCost" ColumnName="totalCost" />
+                <ScalarProperty Name="buildingArea" ColumnName="buildingArea" />
+                <ScalarProperty Name="securityID" ColumnName="securityID" />
+                <ScalarProperty Name="retentionPeriodNo" ColumnName="retentionPeriodNo" />
+                <ScalarProperty Name="location" ColumnName="location" />
+                <ScalarProperty Name="projectName" ColumnName="projectName" />
+                <ScalarProperty Name="developmentOrgnization" ColumnName="developmentOrgnization" />
+                <ScalarProperty Name="contractNo" ColumnName="contractNo" />
+                <ScalarProperty Name="sheetNo" ColumnName="sheetNo" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="VideoArchives">
+            <EntityTypeMapping TypeName="VideoArchiveModel.VideoArchives">
+              <MappingFragment StoreEntitySet="VideoArchives">
+                <ScalarProperty Name="planningEndDate" ColumnName="planningEndDate" />
+                <ScalarProperty Name="planningStartDate" ColumnName="planningStartDate" />
+                <ScalarProperty Name="constructArea" ColumnName="constructArea" />
+                <ScalarProperty Name="instructor" ColumnName="instructor" />
+                <ScalarProperty Name="buildingArea" ColumnName="buildingArea" />
+                <ScalarProperty Name="rukutime" ColumnName="rukutime" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="videoStatus" ColumnName="videoStatus" />
+                <ScalarProperty Name="endPhotoPaijiaNo" ColumnName="endPhotoPaijiaNo" />
+                <ScalarProperty Name="startPhotoPaijiaNo" ColumnName="startPhotoPaijiaNo" />
+                <ScalarProperty Name="endPhotoRegisNo" ColumnName="endPhotoRegisNo" />
+                <ScalarProperty Name="startPhotoRegisNo" ColumnName="startPhotoRegisNo" />
+                <ScalarProperty Name="endPhotoArchivesNo" ColumnName="endPhotoArchivesNo" />
+                <ScalarProperty Name="startPhotoArchivesNo" ColumnName="startPhotoArchivesNo" />
+                <ScalarProperty Name="endVideoPaijiaNo" ColumnName="endVideoPaijiaNo" />
+                <ScalarProperty Name="startVideoPaijiaNo" ColumnName="startVideoPaijiaNo" />
+                <ScalarProperty Name="endVideoRegisNo" ColumnName="endVideoRegisNo" />
+                <ScalarProperty Name="startVideoRegisNo" ColumnName="startVideoRegisNo" />
+                <ScalarProperty Name="endVideoArchivesNo" ColumnName="endVideoArchivesNo" />
+                <ScalarProperty Name="startVideoArchivesNo" ColumnName="startVideoArchivesNo" />
+                <ScalarProperty Name="timeConstrcuted" ColumnName="timeConstrcuted" />
+                <ScalarProperty Name="dateConstrcuted" ColumnName="dateConstrcuted" />
+                <ScalarProperty Name="constructUnit" ColumnName="constructUnit" />
+                <ScalarProperty Name="opticalDiskCount" ColumnName="opticalDiskCount" />
+                <ScalarProperty Name="photoBoxCount" ColumnName="photoBoxCount" />
+                <ScalarProperty Name="videoCassetteBoxCount" ColumnName="videoCassetteBoxCount" />
+                <ScalarProperty Name="checker" ColumnName="checker" />
+                <ScalarProperty Name="operater" ColumnName="operater" />
+                <ScalarProperty Name="zgyjDate" ColumnName="zgyjDate" />
+                <ScalarProperty Name="zgyjPerson" ColumnName="zgyjPerson" />
+                <ScalarProperty Name="zgyj" ColumnName="zgyj" />
+                <ScalarProperty Name="fzryjDate" ColumnName="fzryjDate" />
+                <ScalarProperty Name="fzryjPerson" ColumnName="fzryjPerson" />
+                <ScalarProperty Name="fzryj" ColumnName="fzryj" />
+                <ScalarProperty Name="csyjDate" ColumnName="csyjDate" />
+                <ScalarProperty Name="csyjPerson" ColumnName="csyjPerson" />
+                <ScalarProperty Name="csyj" ColumnName="csyj" />
+                <ScalarProperty Name="qjdsyNo" ColumnName="qjdsyNo" />
+                <ScalarProperty Name="qjdsyYear" ColumnName="qjdsyYear" />
+                <ScalarProperty Name="location" ColumnName="location" />
+                <ScalarProperty Name="SheetID" ColumnName="SheetID" />
+                <ScalarProperty Name="projectName" ColumnName="projectName" />
+                <ScalarProperty Name="dateReceived" ColumnName="dateReceived" />
+                <ScalarProperty Name="videoProjectSeqNo" ColumnName="videoProjectSeqNo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="vw_VideoArchivesList">
+            <EntityTypeMapping TypeName="VideoArchiveModel.vw_VideoArchivesList">
+              <MappingFragment StoreEntitySet="vw_VideoArchivesList">
+                <ScalarProperty Name="photoBoxCount" ColumnName="photoBoxCount" />
+                <ScalarProperty Name="videoCassetteBoxCount" ColumnName="videoCassetteBoxCount" />
+                <ScalarProperty Name="shootingDate" ColumnName="shootingDate" />
+                <ScalarProperty Name="videoStatus" ColumnName="videoStatus" />
+                <ScalarProperty Name="projectName" ColumnName="projectName" />
+                <ScalarProperty Name="ProjectIDS" ColumnName="ProjectIDS" />
+                <ScalarProperty Name="videoProjectSeqNo" ColumnName="videoProjectSeqNo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="无" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

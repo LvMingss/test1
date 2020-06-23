@@ -1,0 +1,326 @@
+﻿@model urban_archive.Models.VideoArchives
+
+@{
+    ViewBag.Title = "声像工程";
+}
+<style type="text/css">
+    .jubu {
+        max-width: 100%;
+    }
+</style>
+<link type="text/css" rel="stylesheet" href="~/Scripts/jquery/jquery-ui.css">
+
+<script type="text/javascript" src="~/Scripts/jquery/jquery-1.8.3.js"></script>
+<script type="text/javascript" src="~/Scripts/jquery/jquery.ui.core.js"></script>
+<script type="text/javascript" src="~/Scripts/jquery/jquery.ui.datepicker.js"></script>
+<script type="text/javascript" src="~/Scripts/jquery/jquery.ui.widget.js"></script>
+<script type="text/javascript" src="~/Scripts/jquery/jquery-ui-timepicker-addon.js"></script>
+
+<script>
+        $(function () {
+            $("#fzryjDate").datepicker({
+                changeMonth: true,
+                changeYear: true
+            });
+        });
+
+        $(function () {
+            $("#zgyjDate").datepicker({
+                changeMonth: true,
+                changeYear: true
+            });
+        });
+</script>
+<script>
+    function del() {
+        var msg = "确认要删除吗?";
+        if (confirm(msg) == true) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+    function tongguo() {
+        var msg = "确认通过?";
+        if (confirm(msg) == true) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+    function bohui() {
+        var msg = "确认驳回?";
+        if (confirm(msg) == true) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+    function tijiao() {
+        var msg = "确认提交?";
+        if (confirm(msg) == true) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+</script>
+<h2><i class="fa fa-tags kongge"></i>青建档声验收意见书</h2>
+
+@*<h2>领导审核</h2>*@
+@*<h3>青建档声验收意见书 </h3>*@
+
+@*<h4>工作联系单信息 </h4>*@
+<hr />
+
+
+<div class="panel panel-default" style="border:1px solid #408cca">
+    <table class="table table-bordered dl-horizontal">
+        <tr>
+            <td class="linear" style="font-size: 18px;color:white;text-align:center;" colspan="4">
+                <i class="fa fa-check-square-o"></i>工作联系单信息
+            </td>
+        </tr>
+        <tr>
+            <td style="background-color:#f9f9f9;width:10%;">
+                工作联系单单号
+            </td>
+            <td>
+                @ViewBag.sheetNo
+            </td>
+            <td style="background-color:#f9f9f9;width:10%;">
+                日期
+            </td>
+            <td>
+                @ViewBag.fillDate
+            </td>
+        </tr>
+        <tr>
+            <td style="background-color:#f9f9f9;width:10%;">
+                建设单位
+            </td>
+            <td colspan="3">
+                @ViewBag.developmentOrgnization
+            </td>
+
+        </tr>
+        <tr>
+            <td style="background-color:#f9f9f9;width:10%;">
+                工程地点
+            </td>
+            <td colspan="3">
+                @ViewBag.location
+            </td>
+
+        </tr>
+        <tr>
+            <td style="background-color:#f9f9f9;width:10%;">
+                建筑面积
+            </td>
+            <td>
+                @ViewBag.buildingArea
+            </td>
+            <td style="background-color:#f9f9f9;width:10%;">
+                工程负责人
+            </td>
+            <td>
+                @ViewBag.projectResponsible
+            </td>
+        </tr>
+    </table>
+</div>
+<div class="panel panel-default" style="border:1px solid #408cca">
+    <table class="table table-bordered dl-horizontal">
+        <tr>
+            <td class="linear" style="font-size: 18px;color:white;text-align:center;" colspan="4">
+                <i class="fa fa-check-square-o"></i>工程信息
+            </td>
+        </tr>
+        <tr>
+            <td style="background-color:#f9f9f9;width:10%;">
+                项目顺序号
+            </td>
+            <td>
+                @Html.DisplayFor(model => model.videoProjectSeqNo)
+            </td>
+            <td style="background-color:#f9f9f9;width:10%;">
+                档案接收时间
+            </td>
+            <td>
+                @Html.DisplayFor(model => model.dateReceived)
+            </td>
+
+        </tr>
+        <tr>
+            <td style="background-color:#f9f9f9;width:10%;">
+                工程名称
+            </td>
+            <td colspan="3">
+                @Html.DisplayFor(model => model.videoProjectSeqNo)
+            </td>
+
+        </tr>
+        <tr>
+            <td style="background-color:#f9f9f9;width:10%;">
+                联系单号
+            </td>
+            <td>
+                @Html.DisplayFor(model => model.SheetID)
+            </td>
+            <td style="background-color:#f9f9f9;" colspan="3">
+                青建档验（
+                @Html.DisplayFor(model => model.qjdsyYear)
+                ）  年
+                第（
+                @Html.DisplayFor(model => model.qjdsyNo)
+                ）号
+            </td>
+
+        </tr>
+        <tr>
+            <td style="background-color:#f9f9f9;width:10%;">
+                工程地点
+            </td>
+            <td colspan="3">
+                @Html.DisplayFor(model => model.location)
+            </td>
+
+        </tr>
+
+        <tr>
+            <td style="background-color:#f9f9f9;width:10%;">
+                初审人
+            </td>
+            <td>
+                @Html.DisplayFor(model => model.csyjPerson)
+            </td>
+            <td style="background-color:#f9f9f9;width:10%;">
+                初审日期
+            </td>
+            <td>
+                @Html.DisplayFor(model => model.csyjDate)
+            </td>
+
+        </tr>
+        <tr>
+            <td style="background-color:#f9f9f9;width:10%;">
+                初审意见
+            </td>
+            <td>
+                @Html.DisplayFor(model => model.csyj)
+            </td>
+            <td style="background-color:#f9f9f9;width:10%;">
+                经办人
+            </td>
+            <td>
+                @Html.DisplayFor(model => model.operater)
+            </td>
+
+        </tr>
+
+    </table>
+</div>
+
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+
+    <div class="form-horizontal">
+        <hr />
+
+        @*<h4>审核意见</h4>
+            <hr />*@
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.ID)
+        @Html.HiddenFor(model => model.SheetID)
+        @Html.HiddenFor(model => model.videoProjectSeqNo)
+        @Html.HiddenFor(model => model.operater)
+        @Html.HiddenFor(model => model.dateReceived)
+        @Html.HiddenFor(model => model.projectName)
+        @Html.HiddenFor(model => model.location)
+        @Html.HiddenFor(model => model.qjdsyYear)
+        @Html.HiddenFor(model => model.qjdsyNo)
+        @Html.HiddenFor(model => model.csyj)
+        @Html.HiddenFor(model => model.csyjPerson)
+        @Html.HiddenFor(model => model.csyjDate)
+        @Html.HiddenFor(model => model.videoCassetteBoxCount)
+        @Html.HiddenFor(model => model.photoBoxCount)
+        <div class="panel panel-default" style="border:1px solid #408cca">
+            <table class="table table-bordered dl-horizontal">
+                <tr>
+                    <td class="linear" style="font-size: 18px;color:white;text-align:center;" colspan="4">
+                        <i class="fa fa-check-square-o"></i>审核意见
+                    </td>
+                </tr>
+                <tr>
+                    <td style="background-color:#f9f9f9;width:10%;">
+                        部门负责人意见
+                    </td>
+                    <td colspan="3">
+                        @Html.TextArea("fzryj", "经审核，该工程声像竣工档案接收情况属实，声像科拟签发《建设工程声像竣工档案验收意见书》，请批示！"
+            , 1, 200, new { @class = "form-control jubu" })
+                        @Html.ValidationMessageFor(model => model.fzryj, "", new { @class = "text-danger" })
+                    </td>
+                </tr>
+                <tr>
+                    <td style="background-color:#f9f9f9;width:10%;">
+                        审核人
+                    </td>
+                    <td>
+                        @Html.EditorFor(model => model.fzryjPerson, new { htmlAttributes = new { @class = "form-control", @Value = "马卫陆" } })
+                        @Html.ValidationMessageFor(model => model.fzryjPerson, "", new { @class = "text-danger" })
+                    </td>
+                    <td style="background-color:#f9f9f9;width:10%;">
+                        审核日期
+                    </td>
+                    <td>
+                        @Html.EditorFor(model => model.fzryjDate, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.fzryjDate, "", new { @class = "text-danger" })
+                    </td>
+                </tr>
+                <tr>
+                    <td style="background-color:#f9f9f9;width:10%;">
+                        主管意见
+                    </td>
+                    <td colspan="3">
+                        @Html.TextArea("zgyj", "同意！", 1, 200, new { @class = "form-control jubu" })
+                        @Html.ValidationMessageFor(model => model.zgyj, "", new { @class = "text-danger" })
+                    </td>
+                </tr>
+                <tr>
+                    <td style="background-color:#f9f9f9;width:10%;">
+                        主管
+                    </td>
+                    <td>
+                        @Html.EditorFor(model => model.zgyjPerson, new { htmlAttributes = new { @class = "form-control", @Value = "李青生" } })
+                        @Html.ValidationMessageFor(model => model.zgyjPerson, "", new { @class = "text-danger" })
+                    </td>
+                    <td style="background-color:#f9f9f9;width:10%;">
+                        日期
+                    </td>
+                    <td>
+                        @Html.EditorFor(model => model.zgyjDate, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.zgyjDate, "", new { @class = "text-danger" })
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+
+    @*<div style="text-align:center;">
+        <p>
+            <input type="submit" value="提交" class="btn btn-default" onclick="return tijiao()" />
+            @Html.ActionLink("返回", "Index", new { }, new { @class = "btn btn-default" })
+        </p>
+        <div style="height:20px;">
+        </div>
+    </div>*@
+}
+@*<p>
+        @Html.ActionLink("返回", "Index")
+    </p>*@
+
+

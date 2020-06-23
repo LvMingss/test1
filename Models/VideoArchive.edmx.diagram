@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="4bc22c5dca8d4801b68530e507237928" Name="Diagram1" ZoomLevel="46">
+        <EntityTypeShape EntityType="VideoArchiveModel.VideoCassetteList" Width="1.5" PointX="2.75" PointY="0.75" />
+        <EntityTypeShape EntityType="VideoArchiveModel.VideoArchiveAttribute" Width="1.5" PointX="7.375" PointY="7.75" />
+        <EntityTypeShape EntityType="VideoArchiveModel.VideoChangjiWorksheet" Width="1.5" PointX="9.625" PointY="1.875" />
+        <EntityTypeShape EntityType="VideoArchiveModel.VideoContractSheetAttribute" Width="1.5" PointX="3.375" PointY="8.75" />
+        <EntityTypeShape EntityType="VideoArchiveModel.VideoStatus" Width="1.5" PointX="9.375" PointY="6.75" />
+        <EntityTypeShape EntityType="VideoArchiveModel.PhotoChangjiWorksheet" Width="1.5" PointX="5.375" PointY="10.75" />
+        <EntityTypeShape EntityType="VideoArchiveModel.VideoCassette" Width="1.5" PointX="12.375" PointY="0.75" />
+        <EntityTypeShape EntityType="VideoArchiveModel.PhotoCassette" Width="1.5" PointX="9.375" PointY="9.75" />
+        <EntityTypeShape EntityType="VideoArchiveModel.PhotoFileList" Width="1.5" PointX="11.375" PointY="7.75" />
+        <EntityTypeShape EntityType="VideoArchiveModel.VideoContractInfo" Width="1.5" PointX="0.75" PointY="9.75" />
+        <EntityTypeShape EntityType="VideoArchiveModel.VideoContractSheet" Width="1.5" PointX="13.375" PointY="7.75" />
+        <EntityTypeShape EntityType="VideoArchiveModel.VideoArchives" Width="1.5" PointX="15.375" PointY="0.75" />
+        <EntityTypeShape EntityType="VideoArchiveModel.vw_VideoArchivesList" Width="1.5" PointX="5.375" PointY="0.75" />
+        </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

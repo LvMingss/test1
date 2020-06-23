@@ -1,0 +1,342 @@
+﻿@model urban_archive.Models.FileInfo
+@{
+    ViewBag.Title = "Edit";
+}
+@section css{
+    <link type="text/css" rel="stylesheet" href="~/Scripts/jquery/jquery-ui.css">
+}
+@section scripts{
+    <script type="text/javascript" src="~/Scripts/jquery/jquery-1.8.3.js"></script>
+    <script type="text/javascript" src="~/Scripts/jquery/jquery.ui.core.js"></script>
+    <script type="text/javascript" src="~/Scripts/jquery/jquery.ui.datepicker.js"></script>
+    <script type="text/javascript" src="~/Scripts/jquery/jquery.ui.widget.js"></script>
+    <script type="text/javascript" src="~/Scripts/jquery/jquery-ui-timepicker-addon.js"></script>
+    @*<script type="text/javascript" src="~/Scripts/jquery/jquery-ui-timepicker-zh-CN.js"></script>*@
+    <script>
+            $(function () {
+                $("#startDate").datepicker({
+                    changeMonth: true,
+                    changeYear: true
+                });
+            });
+            function Onfocus1()//单击显示数据列表1
+            {
+                $.ajax({
+                    url: '../../ArchivesEnter/title',
+                    data: {},
+                    type: 'post',
+                    dataType: 'json',
+                    success: function (data) {
+                        $("#select1").empty();
+                        var objSelectNow = document.getElementById("select1");
+                        for (var j = 0; j < data.length; j++) {
+                            var objOption = document.createElement("OPTION");
+                            objOption.text = data[j].name;
+                            objOption.value = data[j].ID;
+                            objSelectNow.options.add(objOption);
+                        }
+                        $("#tanchu1").removeClass("yincang");
+                        $("#tanchu1").addClass("chuxian");
+                    }
+                })
+            }
+            function Onfocus2()//单击显示数据列表2
+            {
+                $.ajax({
+                    url: '../../ArchivesEnter/Responser',
+                    data: {},
+                    type: 'post',
+                    dataType: 'json',
+                    success: function (data) {
+                        var objSelectNow = document.getElementById("select2");
+                        $("#select2").empty();
+                        for (var j = 0; j < data.length; j++) {
+                            var objOption = document.createElement("OPTION");
+                            objOption.text = data[j].name;
+                            objOption.value = data[j].ID;
+                            objSelectNow.options.add(objOption);
+                        }
+                        $("#tanchu1").removeClass("yincang");
+                        $("#tanchu1").addClass("chuxian");
+                    }
+                })
+            }
+            function titletj()//弹出对话框1
+            {
+
+                var obj = new Object();
+                obj.number = "1";
+                obj.name = "文件材料题名";
+                obj.id = document.all.select1.options[document.all.select1.selectedIndex].value;//获取选择id
+                name = window.showModalDialog('./window', obj, 'dialogWidth=600px;dialogHeight=300px');
+                //弹出模型对话框，obj为传值参数,name为子页面返回参数
+                document.getElementById("fileName").value = name;
+            }
+            function responsertj()//弹出对话框2
+            {
+                //var obj1 = document.all.select1.options[document.all.select1.selectedIndex];
+                var obj = new Object();
+                obj.number = "2";
+                obj.name = "责任者";
+                obj.id = document.all.select2.options[document.all.select2.selectedIndex].value;//获取选择id
+                name = window.showModalDialog('./window', obj, 'dialogWidth=600px;dialogHeight=300px');
+                document.getElementById("responsible").value = name;
+            }
+            function saveok() {
+                var msg = "确认要修改吗?";
+                if (confirm(msg) == true) {
+                    return true;
+                } else {
+                    return false;
+                }
+            }
+            function del() {
+                var msg = "确认要删除吗?";
+                if (confirm(msg) == true) {
+                    return true;
+                } else {
+                    return false;
+                }
+            }                             //删除确认对话框
+
+    </script>
+    }
+
+
+@using (Html.BeginForm("Edit", "ArchivesEnter", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+    @Html.HiddenFor(model => model.id)
+
+    <div class="form-horizontal">
+        <h2 style="margin-top:0;"><i class="fa fa-tags kongge"></i>当前文件信息</h2>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="panel panel-default">
+            <table class="table table-bordered " style="background-color:#f9f9f9;">
+                <tr>
+                    <td style="background-color:#f9f9f9;width:10%;">
+                        序号
+                    </td>                
+                    <td width="40%">
+                        @Html.EditorFor(model => model.seqNo, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.seqNo, "", new { @class = "text-danger" })
+                    </td>
+                    <td style="background-color:#f9f9f9;width:10%;">
+                        类型
+                    </td>
+                    <td width="40%">
+                        @Html.EditorFor(model => model.type, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.type, "", new { @class = "text-danger" })
+                    </td>
+                    @*<td width="50%">
+                        <div id="tanchu1" class="yincang;">
+                            <select ondblclick="titletj();" id="select1" size="4" style="width: 100%; height: 147px;max-width:100%;"></select>
+                            <select ondblclick="responsertj();" id="select2" size="4" style="width: 100%; height: 147px;"></select>
+                        </div>
+                        <script type="text/javascript">
+                        document.getElementById("select1").onchange = function ()
+                        {
+                            document.getElementById("fileName").value = this.options[this.options.selectedIndex].text;
+                            document.getElementById("DELETE_ID").value = this.options[this.options.selectedIndex].value + "-" + 1
+                        }
+                        document.getElementById("select2").onchange = function () {
+                            document.getElementById("responsible").value = this.options[this.options.selectedIndex].text;
+                            document.getElementById("DELETE_ID").value = this.options[this.options.selectedIndex].value + "-" + 2
+                        }
+                        </script>
+                        <input type="submit" id="delete" value="删除词条" name="action" class="btn btn-default" style="height: 33px">
+                        <input type="text" id="DELETE_ID" name="DELETE_ID">
+                    </td>*@
+                </tr>
+                
+                <tr>
+                    <td style="background-color:#f9f9f9;width:10%;">
+                        文件编号
+                    </td>
+                    <td colspan="3">
+                        @Html.EditorFor(model => model.fileNo, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.fileNo, "", new { @class = "text-danger" })
+                    </td>
+                </tr>
+                <tr>
+                    <td style="background-color:#f9f9f9;width:10%;">
+                        文件材料题名
+                    </td>
+                    <td width="40%">
+                        <input type="text" id="fileName" name="fileName" value="@ViewBag.fileName" onclick="Onfocus1()" class="form-control" />
+                        @Html.ValidationMessageFor(model => model.fileName, "", new { @class = "text-danger" })
+                    </td>
+                    <td style="background-color:#f9f9f9;width:10%;">
+                        责任者
+                    </td>
+                    <td width="40%">
+                        <input type="text" id="responsible" name="responsible" value="@ViewBag.responsible" onclick="Onfocus2()" class="form-control" />
+                        @Html.ValidationMessageFor(model => model.responsible, "", new { @class = "text-danger" })
+                    </td>
+                </tr>
+                <tr>
+                    <td style="width:100%"colspan="4" align="center">
+                        <div class="form-inline">
+                            <select ondblclick="titletj();" id="select1" size="4" style="width: 100%; height: 147px;"class="form-control"></select>
+                            <select ondblclick="responsertj();" id="select2" size="4" style="width: 100%; height: 147px;"class="form-control"></select>
+                        </div>
+                       
+                            <script type="text/javascript">
+                                document.getElementById("select1").onchange = function () {
+                                    document.getElementById("fileName").value = this.options[this.options.selectedIndex].text;
+                                    document.getElementById("DELETE_ID").value = this.options[this.options.selectedIndex].value + "-" + 1
+                                }
+                                document.getElementById("select2").onchange = function () {
+                                    document.getElementById("responsible").value = this.options[this.options.selectedIndex].text;
+                                    document.getElementById("DELETE_ID").value = this.options[this.options.selectedIndex].value + "-" + 2
+                                }
+                            </script>
+                        <div class="form-inline">
+                            <input type="submit" id="delete" value="删除词条" onclick="return del()" name="action" class="btn btn-default" style="height: 33px">
+                            <input type="text" id="DELETE_ID" name="DELETE_ID" class="form-control" style="display:none">
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="background-color:#f9f9f9;width:10%;">
+                        起止页次
+                    </td>
+                    <td width="40%">
+                       @Html.EditorFor(model => model.startPageNo, new { htmlAttributes = new { @class = "form-control" } })
+                       @Html.ValidationMessageFor(model => model.startPageNo, "", new { @class = "text-danger" }) 页次格式：1或1-10
+                        @*<input type="text" id="ClassNo" name="ClassNo" value="页次格式：1或1-10" class="form-control" style="border:0px;font-weight:bold;color:red" />*@
+                    </td>
+                    <td style="background-color:#f9f9f9;width:10%;">
+                        编制日期
+                    </td>
+                    <td width="40%">
+                        @Html.EditorFor(model => model.startDate, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.startDate, "", new { @class = "text-danger" })日期格式：2010.3.12或2010.3.12-2010.3.20
+                        @*<input type="text" id="ClassNo" name="ClassNo" value="日期格式：2010.3.12或2010.3.12-2010.3.20" class="form-control" style="border:0px;font-weight:bold;color:red" />*@
+                    </td>
+                </tr>
+                
+                <tr>
+                    <td style="background-color:#f9f9f9;width:10%;">
+                        备注
+                    </td>
+                    <td colspan="3">
+                        @Html.EditorFor(model => model.remarks, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.remarks, "", new { @class = "text-danger" })
+                    </td>
+                </tr>
+                </table>
+                    @*<div class="form-group">
+                        @Html.LabelFor(model => model.seqNo, "序号", htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.seqNo, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.seqNo, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.type, "类型", htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.type, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.type, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.fileNo, "文件编号", htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.fileNo, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.fileNo, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.fileName, "文件材料题名", htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            <input type="text" id="fileName" name="fileName" value="@ViewBag.fileName" onclick="Onfocus1()" class="form-control" />
+                            @Html.ValidationMessageFor(model => model.fileName, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.responsible, "责任者", htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            <input type="text" id="responsible" name="responsible" value="@ViewBag.responsible" onclick="Onfocus2()" class="form-control" />
+                            @Html.ValidationMessageFor(model => model.responsible, "", new { @class = "text-danger" })
+                        </div>
+                    </div>*@
+                    @*<div id="tanchu1" class="yincang;">
+                <select ondblclick="titletj();" id="select1" size="4" style="width: 100%; height: 147px;"></select>
+                <select ondblclick="responsertj();" id="select2" size="4" style="width: 100%; height: 147px;"></select>
+            </div>
+            <script type="text/javascript">
+                document.getElementById("select1").onchange = function ()
+                {
+                    document.getElementById("fileName").value = this.options[this.options.selectedIndex].text;
+                    document.getElementById("DELETE_ID").value = this.options[this.options.selectedIndex].value + "-" + 1
+                }
+                document.getElementById("select2").onchange = function () {
+                    document.getElementById("responsible").value = this.options[this.options.selectedIndex].text;
+                    document.getElementById("DELETE_ID").value = this.options[this.options.selectedIndex].value + "-" + 2
+                }
+            </script>
+            <input type="submit" id="delete" value="删除词条" name="action" class="btn btn-default" style="height: 33px">
+            <input type="text" id="DELETE_ID" name="DELETE_ID">*@
+
+                    @*<div class="form-group">
+                        @Html.LabelFor(model => model.startPageNo, "起止页次", htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.startPageNo, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.startPageNo, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" value="" class="control-label col-md-2" style="border:0px;font-weight:bold" />
+                        <div class="col-md-10">
+                            <input type="text" id="ClassNo" name="ClassNo" value="页次格式：1或1-10" class="form-control" style="border:0px;font-weight:bold;color:red" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.startDate, "编制日期", htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.startDate, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.startDate, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" value="" class="control-label col-md-2" style="border:0px;font-weight:bold" />
+                        <div class="col-md-10">
+                            <input type="text" id="ClassNo" name="ClassNo" value="日期格式：2010.3.12或2010.3.12-2010.3.20" class="form-control" style="border:0px;font-weight:bold;color:red" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.remarks, "备注", htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.remarks, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.remarks, "", new { @class = "text-danger" })
+                        </div>
+                    </div>*@
+
+
+
+
+
+
+</div>
+        <div style="text-align:center;">
+            <input type="submit" value="修改" name="action" run at="server" class="btn btn-default"onclick="return saveok()">
+            <input type="submit" value="上一页" name="action" class="btn btn-default" disabled="@ViewData["button1"]">
+            <input type="submit" value="下一页" name="action" class="btn btn-default" disabled="@ViewData["button2"]">
+            <input type="submit" value="返回" name="action" class="btn btn-default">
+            <input name="archivesNo" value="@ViewData["archivesNo"]" id="archivesNo" hidden="hidden">
+            <div style="height:20px;">
+            </div>
+        </div>
+</div>
+        }
+
+        @*<div>
+            @Html.ActionLink("Back to List", "Index")
+        </div>*@
+
+

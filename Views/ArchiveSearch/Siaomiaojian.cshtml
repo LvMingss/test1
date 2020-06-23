@@ -1,0 +1,85 @@
+﻿@model PagedList.IPagedList<urban_archive.Models.BindUserAndImage>
+@using PagedList.Mvc;
+@{
+    Layout = null;
+    //要使视图不使用布局或模板页，那么需要把Layout赋值为空
+}
+<script type="text/javascript" src="~/Scripts/jquery/jquery-1.8.3.js"></script>
+<script type="text/javascript" src="~/Scripts/jquery/jquery.ui.core.js"></script>
+<script type="text/javascript" src="~/Scripts/jquery/jquery.ui.datepicker.js"></script>
+<script type="text/javascript" src="~/Scripts/jquery/jquery.ui.widget.js"></script>
+<script type="text/javascript" src="~/Scripts/jquery/jquery-ui-timepicker-addon.js"></script>
+<script>
+$().ready(function () {
+
+
+    $("#checkname").ready(function () {
+
+        var s = $("#checkname").val();
+
+        if (s == 1) {
+            $("#message").val("该借阅人没有可以打印的图纸");
+        }
+
+
+
+    });
+
+
+});
+</script>
+
+<input name="message" id="message" style="background: transparent;border:none;color:Red;width:300px;font-size:20px"> @*隐藏文本域，用于显示提示消息*@
+<table class="table table-bordered table-striped">
+    <tr>
+
+        <th>
+            序号
+        </th>
+        <th>
+            收费编号
+        </th>
+        <th>
+            日期
+        </th>
+        <th>
+            图纸名称
+        </th>
+        <th>
+            删除
+        </th>
+
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td style="width:30%;">
+                @Html.DisplayFor(modelItem => item.recordID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.userID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.imageTime)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ImageAddress)
+            </td>
+            <td>
+                @Html.ActionLink("删除", "Deleting", new { id = item.ID.ToString().Trim(), id2 = item.realuserID.ToString().Trim() })
+            </td>
+        </tr>
+    }
+</table>
+<input value="@ViewData["checkname"]" name="checkname" id="checkname" hidden="hidden"> @*从后台传来数据，进行ajax判断*@
+@(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) / @Model.PageCount
+
+@Html.PagedListPager(Model, page => Url.Action("Siaomiaojian",
+    new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))
+
+
+
+
+
+

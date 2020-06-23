@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="a3d1f3d65b4445baaa8de527fbf9355a" Name="Diagram1" ZoomLevel="16">
+        <EntityTypeShape EntityType="UrbanConModel.ContractInfo" Width="1.5" PointX="21.125" PointY="8.875" />
+        <EntityTypeShape EntityType="UrbanConModel.ArchivesStatus" Width="1.5" PointX="6.875" PointY="5" />
+        <EntityTypeShape EntityType="UrbanConModel.otherArchiveType" Width="1.5" PointX="5.375" PointY="0.75" />
+        <EntityTypeShape EntityType="UrbanConModel.RetentionPeriod" Width="1.5" PointX="7.375" PointY="0.75" />
+        <EntityTypeShape EntityType="UrbanConModel.SecurityClassification" Width="1.5" PointX="9.375" PointY="0.75" />
+        <EntityTypeShape EntityType="UrbanConModel.vw_charge" Width="1.5" PointX="15.375" PointY="14.75" />
+        <EntityTypeShape EntityType="UrbanConModel.ChargeType" Width="1.5" PointX="17.375" PointY="21" />
+        <EntityTypeShape EntityType="UrbanConModel.DepartmentCode" Width="1.5" PointX="17.375" PointY="18" />
+        <EntityTypeShape EntityType="UrbanConModel.vw_archiveQueryList" Width="1.5" PointX="15.375" PointY="0.75" />
+        <EntityTypeShape EntityType="UrbanConModel.CabinetInfo" Width="1.5" PointX="17.375" PointY="0.75" />
+        <EntityTypeShape EntityType="UrbanConModel.WordTable" Width="1.5" PointX="9.375" PointY="3.75" />
+        <EntityTypeShape EntityType="UrbanConModel.FafangArchiveCertificate" Width="1.5" PointX="11.375" PointY="6.75" />
+        <EntityTypeShape EntityType="UrbanConModel.LingquInterchangeForm" Width="1.5" PointX="11.375" PointY="10.75" />
+        <EntityTypeShape EntityType="UrbanConModel.StructureType" Width="1.5" PointX="13.375" PointY="8.75" />
+        <EntityTypeShape EntityType="UrbanConModel.vw_indivCollStatis" Width="1.5" PointX="11.375" PointY="14.75" />
+        <EntityTypeShape EntityType="UrbanConModel.BorrowApplication" Width="1.5" PointX="13.375" PointY="11.75" />
+        <EntityTypeShape EntityType="UrbanConModel.BorrowPopurse" Width="1.5" PointX="5.375" PointY="21.75" />
+        <EntityTypeShape EntityType="UrbanConModel.PhotoCassette" Width="1.5" PointX="22.375" PointY="19.75" />
+        <EntityTypeShape EntityType="UrbanConModel.vw_fileList" Width="1.5" PointX="24.375" PointY="12.75" />
+        <EntityTypeShape EntityType="UrbanConModel.Charger" Width="1.5" PointX="19.625" PointY="16.625" />
+        <AssociationConnector Association="UrbanConModel.FK_Charger_ChargeType" />
+        <AssociationConnector Association="UrbanConModel.FK_Charger_DepartmentCode" />
+        <EntityTypeShape EntityType="UrbanConModel.gridview1" Width="1.5" PointX="13.375" PointY="24.75" />
+        <EntityTypeShape EntityType="UrbanConModel.UserAndRegis" Width="1.5" PointX="24.375" PointY="16.75" />    
+        <EntityTypeShape EntityType="UrbanConModel.BindUserAndArchives" Width="1.5" PointX="3.2010353501890951" PointY="13.799651465285407" />
+        <EntityTypeShape EntityType="UrbanConModel.zdArchive" Width="1.5" PointX="6.9443381442429208" PointY="2.8874037875269556" />
+        <EntityTypeShape EntityType="UrbanConModel.ContractInfoAttribute" Width="1.5" PointX="0.7348277721250559" PointY="3.8372712749230078" />
+        <EntityTypeShape EntityType="UrbanConModel.FinishArchiveAttribute" Width="1.5" PointX="3.459731822581837" PointY="31.741034641741326" />
+        <EntityTypeShape EntityType="UrbanConModel.ProjectInfoAttribute" Width="1.5" PointX="5.2670656578927613" PointY="30.925787999725802" />
+        <EntityTypeShape EntityType="UrbanConModel.ArchiveAttribute" Width="1.5" PointX="0.93401253639441562" PointY="22.589860941558079" />
+        <EntityTypeShape EntityType="UrbanConModel.LicenceFiles" Width="1.5" PointX="15.375" PointY="9.75" />
+        <EntityTypeShape EntityType="UrbanConModel.PlanArchiveAttribute" Width="1.5" PointX="0.75" PointY="0.75" />
+        <EntityTypeShape EntityType="UrbanConModel.VideoArchiveListChinese" Width="1.5" PointX="13.375" PointY="22.125" />
+        <EntityTypeShape EntityType="UrbanConModel.vw_VideoProjectList" Width="1.5" PointX="15.375" PointY="24.125" />
+        <EntityTypeShape EntityType="UrbanConModel.gxChineseTable" Width="1.5" PointX="17.375" PointY="23.75" />
+        <EntityTypeShape EntityType="UrbanConModel.vw_transferPaper" Width="1.5" PointX="25.375" PointY="3.75" />
+        <EntityTypeShape EntityType="UrbanConModel.FuyinFeeDetail" Width="1.5" PointX="17.375" PointY="28.75" />
+        <EntityTypeShape EntityType="UrbanConModel.vw_ProjectStatus" Width="1.5" PointX="6.375" PointY="13.75" />
+        <EntityTypeShape EntityType="UrbanConModel.MaxArchiveRegisNo1" Width="1.5" PointX="11.375" PointY="3.75" />
+        <EntityTypeShape EntityType="UrbanConModel.MaxArchiveRegisNo" Width="1.5" PointX="8.375" PointY="10.75" />
+        <EntityTypeShape EntityType="UrbanConModel.SpatialDataDL" Width="1.5" PointX="17.375" PointY="13.75" />
+        <EntityTypeShape EntityType="UrbanConModel.SpatialDataZZ" Width="1.5" PointX="10.375" PointY="18.75" />
+        <EntityTypeShape EntityType="UrbanConModel.VProjectGeosZZ" Width="1.5" PointX="19.375" PointY="22.75" />
+        <EntityTypeShape EntityType="UrbanConModel.vw_ArchiveList" Width="1.5" PointX="23.375" PointY="8.75" />
+        <EntityTypeShape EntityType="UrbanConModel.SpatialData" Width="1.5" PointX="0.75" PointY="18.75" />
+        <EntityTypeShape EntityType="UrbanConModel.VProjectSpatialInfoZZ" Width="1.5" PointX="30.375" PointY="9.75" />
+        <EntityTypeShape EntityType="UrbanConModel.MainCategory" Width="1.5" PointX="11.375" PointY="0.75" />
+        <EntityTypeShape EntityType="UrbanConModel.MinorDictionary" Width="1.5" PointX="8.375" PointY="13.75" />
+        <EntityTypeShape EntityType="UrbanConModel.SubDictionary" Width="1.5" PointX="17.375" PointY="3.75" />
+        <EntityTypeShape EntityType="UrbanConModel.NewProjectInfo" Width="1.5" PointX="32.375" PointY="0.75" />
+        <EntityTypeShape EntityType="UrbanConModel.zdArchiveAttribute" Width="1.5" PointX="3.375" PointY="7.75" />
+        <EntityTypeShape EntityType="UrbanConModel.YuanChuanFileInfo" Width="1.5" PointX="35.375" PointY="29.75" />
+        <EntityTypeShape EntityType="UrbanConModel.YuanChuanArchivesDetail" Width="1.5" PointX="9.375" PointY="28.75" />
+        <EntityTypeShape EntityType="UrbanConModel.YuanChuanPaperArchives" Width="1.5" PointX="27.375" PointY="34.75" />
+        <EntityTypeShape EntityType="UrbanConModel.YuanChuanProjectInfo" Width="1.5" PointX="32.375" PointY="10.75" />
+        <EntityTypeShape EntityType="UrbanConModel.VProjectGeos" Width="1.5" PointX="3.375" PointY="10.75" />
+        <EntityTypeShape EntityType="UrbanConModel.VProjectSpatialInfo" Width="1.5" PointX="0.75" PointY="6.75" />
+        <EntityTypeShape EntityType="UrbanConModel.VProjectGeosDL" Width="1.5" PointX="5.375" PointY="10.75" />
+        <EntityTypeShape EntityType="UrbanConModel.VProjectSpatialInfoDL" Width="1.5" PointX="21.375" PointY="25.75" />
+        <EntityTypeShape EntityType="UrbanConModel.vw_categoryList" Width="1.5" PointX="6.375" PointY="24.75" />
+        <EntityTypeShape EntityType="UrbanConModel.vw_gxcategoryList" Width="1.5" PointX="37.375" PointY="0.75" />
+        <EntityTypeShape EntityType="UrbanConModel.ChineseTableList" Width="1.5" PointX="3.375" PointY="3.75" />
+        <EntityTypeShape EntityType="UrbanConModel.BianHaoLog" Width="1.5" PointX="0.75" PointY="25.75" />
+        <EntityTypeShape EntityType="UrbanConModel.vw_YuanChuanpassList" Width="1.5" PointX="35.375" PointY="34.75" />
+        <EntityTypeShape EntityType="UrbanConModel.vw_YuanChuanprojectList" Width="1.5" PointX="37.375" PointY="5.75" />
+        <EntityTypeShape EntityType="UrbanConModel.vw_ImageAndBorrow" Width="1.5" PointX="12.375" PointY="18.75" />
+        <EntityTypeShape EntityType="UrbanConModel.vw_projectProfile" Width="1.5" PointX="37.375" PointY="27.75" />
+        <EntityTypeShape EntityType="UrbanConModel.OtherArchiveAttribute" Width="1.5" PointX="3.375" PointY="16.75" />
+        <EntityTypeShape EntityType="UrbanConModel.BindUserAndImage" Width="1.5" PointX="19.375" PointY="0.75" />
+        <EntityTypeShape EntityType="UrbanConModel.tem_vwprojectList" Width="1.5" PointX="10.375" PointY="37.75" />
+        <EntityTypeShape EntityType="UrbanConModel.tem_vwpassList" Width="1.5" PointX="29.375" PointY="37.75" />
+        <EntityTypeShape EntityType="UrbanConModel.vw_passList" Width="1.5" PointX="6.375" PointY="33.75" />
+        <EntityTypeShape EntityType="UrbanConModel.RoadJuannei" Width="1.5" PointX="3.375" PointY="24.75" />
+        <EntityTypeShape EntityType="UrbanConModel.vw_LicenceArchivesForPrint" Width="1.5" PointX="34.375" PointY="0.75" />
+        <EntityTypeShape EntityType="UrbanConModel.vw_projectList" Width="1.5" PointX="12.375" PointY="29.75" />
+        <EntityTypeShape EntityType="UrbanConModel.PaperArchives" Width="1.5" PointX="23.375" PointY="29.75" />
+        <EntityTypeShape EntityType="UrbanConModel.BindUserAndImageDown" Width="1.5" PointX="19.375" PointY="4.75" />
+        <EntityTypeShape EntityType="UrbanConModel.TuzhiArchives" Width="1.5" PointX="8.375" PointY="21.75" />
+        <EntityTypeShape EntityType="UrbanConModel.OtherArchives" Width="1.5" PointX="14.375" PointY="31.75" />
+        <EntityTypeShape EntityType="UrbanConModel.vw_PlanProjectBoxList1" Width="1.5" PointX="30.375" PointY="23.75" />
+        <EntityTypeShape EntityType="UrbanConModel.vw_PlanProjectBoxList" Width="1.5" PointX="32.375" PointY="20.75" />
+        <EntityTypeShape EntityType="UrbanConModel.BorrowRegistration" Width="1.5" PointX="0.75" PointY="30.75" />
+        <EntityTypeShape EntityType="UrbanConModel.shp" Width="1.5" PointX="17.375" PointY="8.75" />
+        <EntityTypeShape EntityType="UrbanConModel.fenleiFile" Width="1.5" PointX="27.375" PointY="0.75" />
+        <EntityTypeShape EntityType="UrbanConModel.ArchivesDetail" Width="1.5" PointX="26.375" PointY="7.75" />
+        <EntityTypeShape EntityType="UrbanConModel.FileInfo" Width="1.5" PointX="26.375" PointY="19.75" />
+        <EntityTypeShape EntityType="UrbanConModel.ProjectInfo" Width="1.5" PointX="32.375" PointY="30.75" />
+        <EntityTypeShape EntityType="UrbanConModel.vw_archiveInfo" Width="1.5" PointX="10.375" PointY="22.75" />
+        <EntityTypeShape EntityType="UrbanConModel.vw_transferStatis" Width="1.5" PointX="21.375" PointY="0.75" />
+        </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

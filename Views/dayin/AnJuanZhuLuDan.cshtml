@@ -1,0 +1,86 @@
+﻿
+@{
+    ViewBag.Title = "案卷著录单";
+}
+
+
+<h2><i class="fa fa-tags"></i>案卷著录单</h2>
+<hr />
+
+@using (Html.BeginForm())
+{
+    <div style="font-size:20px;">
+        <i class="fa fa-caret-right"></i>请输入项目顺序号的范围
+    </div><br>
+    <div class="panel panel-default">
+        <table class="table table-bordered dl-horizontal">
+            <tr>
+                <td style="background-color:#f9f9f9;width:180px;">
+                    起始项目顺序号（*）:
+                </td>
+                <td>
+                    <input type="text" name="seqNoStart" id="seqNoStart" class="form-control " />
+                </td>
+                <td style="background-color:#f9f9f9;width:180px;">
+                    起始卷号:
+                </td>
+                <td>
+                    <input type="text" name="VolNoStart" id="VolNoStart" class="form-control " />
+                </td>
+            </tr>
+            <tr>
+                <td style="background-color:#f9f9f9;width:180px;">
+                    终止项目顺序号（*）:
+                </td>
+                <td>
+                    <input type="text" name="seqNoEnd" id="seqNoEnd" class="form-control " />
+                </td>
+                <td style="background-color:#f9f9f9;width:180px;">
+                    终止卷号:
+                </td>
+                <td>
+                    <input type="text" name="VolNoEnd" id="VolNoEnd" class="form-control " />
+                </td>
+            </tr>
+            <tr>
+                <td colspan="4" style="text-align:center;">
+                    <input type="submit" name="action" class="btn btn-default" id="ok" value="打印案卷著录单" />
+                    <input type="submit" name="action" class="btn btn-default" id="cancel" value="取消" />
+                </td>
+
+            </tr>
+        </table>
+    </div>
+
+    @*<div>
+        请输入项目顺序号的范围
+    </div><br>
+    <div>
+        起始项目顺序号（*）:
+    </div>
+        <div>
+            <input type="text" name="seqNoStart" id="seqNoStart" class="form-control " />
+        </div>
+        <div>
+            起始卷号:
+        </div>
+        <div>
+            <input type="text" name="VolNoStart" id="VolNoStart" class="form-control " />
+        </div>
+        <div>
+            终止项目顺序号（*）:
+        </div>
+        <div>
+            <input type="text" name="seqNoEnd" id="seqNoEnd" class="form-control " />
+        </div>
+        <div>
+            终止卷号:
+        </div>
+        <div>
+            <input type="text" name="VolNoEnd" id="VolNoEnd" class="form-control " />
+        </div><br>
+        <div>
+            <input type="submit" name="action" class="btn btn-default" id="ok" value="打印案卷著录单" />
+            <input type="submit" name="action" class="btn btn-default" id="cancel" value="取消" />
+                    </div>*@
+}

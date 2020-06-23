@@ -1,0 +1,72 @@
+﻿@model PagedList.IPagedList<urban_archive.Models.ArchivesDetail>
+@using PagedList.Mvc;
+<link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
+@{
+    ViewBag.Title = "ArchivesDetail";
+}
+
+<h2>档案管理</h2>
+
+<p>
+    @Html.ActionLink("添加案卷", "Create")
+</p>
+@using (Html.BeginForm("Index", "ArchivesDetails", FormMethod.Get))
+{
+    <p>       
+        类别 : @Html.DropDownList("SelectedID")  
+         =  @Html.TextBox("SearchString", ViewBag.CurrentFilter as string)
+        <input type="submit" value="查找" />
+    </p>
+}
+<table class="table">
+    <tr>
+        <th>
+           项目顺序号
+        </th>
+        <th>
+            档号     
+        </th>
+        <th>
+            案卷题名  
+        </th>
+        <th>
+           总登记号
+        </th>
+        <th>
+            projectID
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.paperProjectSeqNo)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.archivesNo)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.archivesTitle)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.registrationNo)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PaperArchives.projectID)
+          
+        </td>
+        <td>
+            @Html.ActionLink("查看", "Details", new { id = item.ID }) |
+            @Html.ActionLink("修改", "Edit", new { id=item.ID }) |
+            @Html.ActionLink("删除", "Delete", new { id=item.ID })
+        </td>
+    </tr>
+}
+
+</table>
+<br />
+Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+
+@Html.PagedListPager(Model, page => Url.Action("Index",
+    new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))

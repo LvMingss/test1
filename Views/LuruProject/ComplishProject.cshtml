@@ -1,0 +1,165 @@
+﻿
+@{
+    ViewBag.Title = "Home Page";
+}
+
+@using (Html.BeginForm("CompolishProject", "LuruProject", FormMethod.Get))
+{
+<div class="jumbotron">
+    <h1>竣工档案</h1>
+    
+</div>
+
+<div class="row">
+    <div class="col-md-4">
+        
+           
+            <h3>  @Html.ActionLink("签订移交责任书", "Create", "SignContract")</h3>
+            
+        
+    </div>
+    <div class="col-md-4">
+        <h3>@Html.ActionLink("移交责任书管理", "Index", "SignContract")</h3>
+        
+    </div>
+    <div class="col-md-4">
+        <h3>@Html.ActionLink("从责任书录入工程", "Index", "SignContract")</h3>
+
+    </div>
+    <div class="col-md-4">
+        <h3>@Html.ActionLink("直接录入工程", "gxCreate", "LuruProject")</h3>
+        
+    </div>
+    <div class="col-md-4">
+
+        <p>
+            <h3> @Html.ActionLink("工程管理与打印", "ManagementPrint", "LuruProject")</h3>
+        </p>
+
+    </div>
+    <div class="col-md-4">
+
+        <p>
+            <h3> @Html.ActionLink("收费查询", "Create", "gxProjectCharge")</h3>
+        </p>
+
+    </div>
+    <div class="col-md-4">
+
+        <p>
+            <h3> @Html.ActionLink("工程收费", "projectchargeindex", "gxProjectCharge")</h3>
+        </p>
+
+    </div>
+    <div class="col-md-4">
+
+        <p>
+            <h3> @Html.ActionLink("领取整理", "linquzhengli", "gxPaperSettle")</h3>
+        </p>
+
+    </div>
+    <div class="col-md-4">
+
+        <p>
+            <h3> @Html.ActionLink("整理信息", "informationzhengli", "gxPaperSettle")</h3>
+        </p>
+
+    </div>
+    <div class="col-md-4">
+
+        <p>
+            <h3> @Html.ActionLink("等待编号", "waitcode", "gxPaperSettle")</h3>
+        </p>
+
+    </div>
+    <div class="col-md-4">
+        <p>
+            <h3> @Html.ActionLink("整理统计", "ZhengliTongji", "gxPaperSettle")</h3>
+        </p>
+
+    </div>
+   
+    <div class="col-md-4">
+
+        <p>
+            <h3> @Html.ActionLink("分类编号", "ClassCode", "gxArchivesCode")</h3>
+        </p>
+
+    </div>
+    <div class="col-md-4">
+
+        <p>
+            <h3> @Html.ActionLink("编号修改", "CodeEdit", "gxArchivesCode")</h3>
+        </p>
+
+    </div>
+
+    <div class="col-md-4">
+
+        <p>
+            <h3> @Html.ActionLink("案卷录入", "ArchiveEnter", "gxArchivesEnter")</h3>
+        </p>
+
+    </div>
+    <div class="col-md-4">
+
+        <p>
+            <h3> @Html.ActionLink("等待入库", "WaitStorage", "gxArchivesEnter")</h3>
+        </p>
+
+    </div>
+    
+    <div class="col-md-4">
+
+        <p>
+            <h3> @Html.ActionLink("档案管理", "ArchiveMaga", "gxArchiveManagement")</h3>
+        </p>
+
+    </div>
+     <div class="col-md-4">
+
+        <p>
+            <h3> @Html.ActionLink("材料发放", "MeterialsSend", "gxLaterMaterials")</h3>
+        </p>
+
+    </div>
+    <div class="col-md-4">
+
+        <p>
+            <h3> @Html.ActionLink("全部档案", "AllArchives", "gxStatisticalAndRetrieval")</h3>
+        </p>
+
+    </div>
+    <div class="col-md-4">
+
+        <p>
+            <h3> @Html.ActionLink("案卷录入统计表", "LuRuTongJi", "gxArchivesEnter")</h3>
+        </p>
+
+    </div>
+    <br>
+    <div class="col-md-4">
+
+        <p>
+            <h3> @Html.ActionLink("库房信息", "InformationWarehouse", "gxCodeManagement")</h3>
+        </p>
+
+    </div>
+    <div class="col-md-4">
+
+        <p>
+            <h3> @Html.ActionLink("最大档号与登记号", "MaxArchiveRegisNo", "gxCodeManagement")</h3>
+        </p>
+
+    </div>
+    <div class="col-md-4">
+
+        <p>
+            <h3> @Html.ActionLink("分类管理", "CodeManagement", "gxArchivesCode")</h3>
+        </p>
+
+    </div>
+
+</div>
+
+}

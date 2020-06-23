@@ -1,0 +1,158 @@
+﻿@model IEnumerable<urban_archive.Models.bookInfo>
+@*@using PagedList.Mvc;
+<link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />*@
+@*<link href="~/Content/jquery-ui.theme.css" rel="stylesheet" />*@
+<link href="~/Content/Tabulator/version3.0/tabulator.css" rel="stylesheet" />
+@{
+    ViewBag.Title = "图书表";
+}
+
+<script src="~/Scripts/jquery-2.1.1.min.js" type="text/javascript"></script>
+<script src="~/Scripts/jquery-ui.min.js"></script>
+<script src="~/Content/Tabulator/version3.0/tabulator.js"></script>
+<script src="~/Scripts/xlsx.full.min.js"></script>
+
+<script type="text/javascript">
+
+    var g = function (value, data, cell, row, options) {
+        return "<i class='fa fa-edit' style='color:#428bca;vertical-align:middle; padding:2px 0;'></i>"
+    };
+    var n = function (value, data, cell, row, options) {
+        return "<i class='fa fa-edit' style='color:#428bca;vertical-align:middle; padding:2px 0;'></i>"
+    };
+    var j = function (value, data, cell, row, options) {
+        return "<i class='fa fa-search-plus' style='color:#428bca;vertical-align:middle; padding:2px 0;'></i>"
+    };
+    var k = function (value, data, cell, row, options) {
+        return "<i class='glyphicon glyphicon-trash' style='color:#428bca;vertical-align:middle; padding:2px 0;'></i>"
+    };
+
+
+        $().ready(function () {
+            $(document).ready(function () {
+
+                var a = $(window).height();
+                var hh = a-180;
+
+                $(".box-h").height(hh)
+
+            })
+
+            $("#example-table-2").tabulator({
+                height: "100%",
+                virtualDom:false,
+                fitColumns:true,
+                headerSort: false,
+                selectable:true,
+                pagination:"local",
+                paginationSize:50,
+                columns: [
+
+
+
+                { title: "编号", field: "a", headerSort: true,width: 80 },
+                {
+                    title: "借阅/归还", field: "g", width: 80 ,formatter: g, headerSort: false,  align: "center",cellClick: function (e,cell) {
+                        var url = '/bookInfoes/Borrow?id=' +cell.getValue();
+                        window.location.href = url;
+                    }
+                },
+            {
+                title: "编辑", field: "n", width: 50 ,formatter: n,headerSort: false, align: "center", cellClick: function (e,cell) {
+                    var url = '/bookInfoes/Edit?id=' + cell.getValue()+'&id2=2';
+                    window.location.href = url;
+                }
+            },
+            {
+                title: "详细信息", field: "j", width: 80 ,formatter:j, headerSort: false, align: "center", cellClick: function (e,cell) {
+                    var url = '/bookInfoes/Details?id=' + cell.getValue()+'&id2=2';
+                    window.location.href = url;
+                }
+            },
+            {
+                title: "删除", field: "k", width: 50 ,formatter:k, headerSort: false,  align: "center", cellClick: function (e,cell) {
+                    if(del())
+                    {
+                        var url = '/bookInfoes/Delete?id=' + cell.getValue();
+                        window.location.href = url;
+                    }
+                }
+            },
+                { title: "书名项", field: "b", headerSort: false,width: 300},
+                { title: "著者", field: "c", headerSort: false,width: 220 },
+                { title: "出版社", field: "d", headerSort: false,width: 220 },
+                { title: "出版日期", field: "e", headerSort: false,width: 220 },
+                { title: "价格", field: "f", headerSort: false,width: 220},
+                { title: "借用信息", field: "h", headerSort: false,minWidth: 220},
+                ],
+            });
+            $("#download-xlsx").click(function(){
+                $("#example-table-2").tabulator("download", "xlsx", "data.xlsx");
+            });
+                var temp = new Array();
+                var data=@(new HtmlString(@ViewBag.result));
+
+                for (var i = 0; i < data.length;i++) {
+                    if(data[i].publishDate!=null&&data[i].publishDate!="")
+
+                    {
+
+                        var result=data[i].publishDate.substring(0,10);
+                    }
+                   
+                    temp.push({ "id": i + 1, "a": data[i].bookNo, "b": data[i].bookName, "c": data[i].authorZhu, "d": data[i].press,"e": result,"f": data[i].price,  "g": data[i].bookNo,"h": data[i].borrowInfo, "n": data[i].bookNo, "j": data[i].bookNo, "k": data[i].bookNo,});
+                }
+
+                $("#example-table-2").tabulator("setData", temp);
+                $(window).resize(function () {
+                    var a = $(window).height();
+                    var hh = a-180;
+                    $(".box-h").height(hh)
+                    $("#example-table-2").tabulator("redraw",true);
+                });
+
+        });
+    function del() {
+        var msg = "确认要删除吗?";
+        if (confirm(msg) == true) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+    function print()
+    {
+        window.showModalDialog("/bookInfoes/PrintBookInformation",null, "dialogWidth=500px;dialogHeight=400px");
+    }
+
+</script>
+<section>
+    <h2 style="float:left;"><i class="fa fa-tags kongge"></i>图书表</h2>
+    <ol class="breadcrumb">
+        <li class="active">编研管理</li>
+        <li>图书管理</li>
+    </ol>
+    <div style="clear:both;"></div>
+</section>
+
+@using (Html.BeginForm())
+{
+<p>
+    检索条件： @Html.DropDownList("Selected", null, new { @class = "form-control", @style = "display:inline;width:150px;" })检索内容：<input type="text" name="serach" id="serach" value="@ViewBag.search" class = "form-control" style="display:inline"><input type="submit" name="action" value="查询" class="btn btn-default">
+    <input type="submit" name="action" value="已借出" class="btn btn-default">
+    <span class="btn btn-default">
+        <i class="fa fa-print" style="padding:2px 5px 2px 0px"></i><input type="button" value="打印图书信息" onclick="print()"  style="border-style:none;background:none;padding:0px 0px;">
+
+    </span>
+    
+
+    <span class="btn btn-default">
+        <i class="fa fa-plus" style="padding:2px 5px 2px 0px"></i>@Html.ActionLink("添加图书", "Create", new { }, new { @style = "color:inherit;" })
+    </span>
+</p>
+}
+<div id="example-table-2" class="box-h"></div>
+
+<div style="text-align:center;margin-top:5px;"><button id="download-xlsx" class="btn btn-default">导出数据</button></div>
+
+

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="c8273a8fe44f478a9d707635fc554f6a" Name="Diagram1" ZoomLevel="70">
+        <EntityTypeShape EntityType="OfficeModel.InformationContent" Width="1.5" PointX="5.625" PointY="1" />
+        <EntityTypeShape EntityType="OfficeModel.InformationSubCategory" Width="1.5" PointX="3.375" PointY="1.375" />
+        <AssociationConnector Association="OfficeModel.FK_InformationContent_InformationSubCategory" />
+        <EntityTypeShape EntityType="OfficeModel.BaowenFileType" Width="1.5" PointX="7.375" PointY="7.75" />
+        <EntityTypeShape EntityType="OfficeModel.vw_receiveArchiveDetail" Width="1.5" PointX="9.375" PointY="0.75" />
+        <EntityTypeShape EntityType="OfficeModel.vw_archiveMainList" Width="1.5" PointX="0.75" PointY="9.75" />
+        <EntityTypeShape EntityType="OfficeModel.ArchivesContainer" Width="1.5" PointX="3.375" PointY="10.75" />
+        <EntityTypeShape EntityType="OfficeModel.vw_categoryList" Width="1.5" PointX="5.375" PointY="10.75" />
+        <EntityTypeShape EntityType="OfficeModel.vw_roadArchive" Width="1.5" PointX="0.75" PointY="0.75" />
+        <EntityTypeShape EntityType="OfficeModel.vw_licenceArchive" Width="1.5" PointX="7.375" PointY="11.75" />
+        <EntityTypeShape EntityType="OfficeModel.vw_planArchives" Width="1.5" PointX="9.375" PointY="11.75" />
+        <EntityTypeShape EntityType="OfficeModel.PlanArchiveClassify" Width="1.5" PointX="11.375" PointY="11.75" />
+        <EntityTypeShape EntityType="OfficeModel.vw_planarchiveBoxInfo" Width="1.5" PointX="13.375" PointY="0.75" />
+        <EntityTypeShape EntityType="OfficeModel.vw_zdArchives" Width="1.5" PointX="13.375" PointY="7.75" />
+        <EntityTypeShape EntityType="OfficeModel.vw_ClassArchives" Width="1.5" PointX="13.375" PointY="12.75" />
+        <EntityTypeShape EntityType="OfficeModel.vw_archiveClassi" Width="1.5" PointX="0.75" PointY="14.75" />
+        <EntityTypeShape EntityType="OfficeModel.View_PlanProjectWithBox" Width="1.5" PointX="15.375" PointY="0.75" />
+        <EntityTypeShape EntityType="OfficeModel.vw_projectTypelist" Width="1.5" PointX="15.375" PointY="9.75" />
+        <EntityTypeShape EntityType="OfficeModel.OtherArchives" Width="1.5" PointX="17.375" PointY="0.75" />
+        <EntityTypeShape EntityType="OfficeModel.BindUserAndImage" Width="1.5" PointX="5.375" PointY="17.75" />
+        <EntityTypeShape EntityType="OfficeModel.vw_PlanProjectList" Width="1.5" PointX="9.375" PointY="16.75" />
+        <EntityTypeShape EntityType="OfficeModel.vw_YuanChuancategoryList" Width="1.5" PointX="0.75" PointY="5.75" />
+        <EntityTypeShape EntityType="OfficeModel.BorrowRegistration" Width="1.5" PointX="17.375" PointY="13.75" />
+        <EntityTypeShape EntityType="OfficeModel.BaowenLeaderList" Width="1.5" PointX="5.375" PointY="4.75" />
+        <EntityTypeShape EntityType="OfficeModel.BaowenMainTable" Width="1.5" PointX="19.375" PointY="0.75" />
+        <EntityTypeShape EntityType="OfficeModel.vw_projectRecordList" Width="1.5" PointX="9.75" PointY="5.75" />
+        <EntityTypeShape EntityType="OfficeModel.vw_projectRecordList1" Width="1.5" PointX="0.75" PointY="19.75" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

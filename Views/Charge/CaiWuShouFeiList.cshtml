@@ -1,0 +1,120 @@
+﻿@model IEnumerable<urban_archive.Models.vw_charge>
+@{
+    var list = ViewBag.feiyong;
+}
+@{
+    ViewBag.Title = "财务收费列表";
+}
+
+<link href="~/Content/jquery-ui.theme.css" rel="stylesheet" />
+<link href="~/Content/Tabulator/version3.0/tabulator.css" rel="stylesheet" />
+
+<script src="~/Scripts/jquery-2.1.1.min.js" type="text/javascript"></script>
+<script src="~/Scripts/jquery-ui.min.js"></script>
+<script src="~/Content/Tabulator/version3.0/tabulator.js"></script>
+<script src="~/Scripts/xlsx.full.min.js"></script>
+<script type="text/javascript">
+    var jiesuan = function (value, data, cell, row, options) { //plain text value
+            return "<i class='fa fa-search-plus' style='color:#428bca;;vertical-align:middle; padding:2px 0;'></i> "
+        };
+
+        $().ready(function () {//在页面加载完成之后用，为了保证js能完整的执行。
+            $(document).ready(function () {
+                var a = $(window).height();
+                var hh = a-160;
+                $(".box-h").height(hh)  // 高度加在类名为box的DIV 上
+
+            })
+            $("#example-table-2").tabulator({
+                height:"100%",
+                virtualDom:false,
+                selectable: true,
+                fitColumns:true,
+                pagination:"local",
+                paginationSize:50,
+                columns: [
+                {
+                    title: "费用结算", field: "caozuo1",width: 80 ,formatter: jiesuan, headerSort: false, align: "center", cellClick: function (e,cell) {
+                        var url = '/Charge/JieSuan?id=' + cell.getValue();
+                        //window.location.href = url;
+                        //window.opener.location.reload(url);
+                        window.open(url);
+                    }
+                },
+
+                { title: "科室", field: "name", sortable: false,width: 100 },
+                { title: "编号", field: "No",sortable: false, width: 200 },
+                { title: "缴费单位/缴费人", field: "gender",sortable: false, width: 300 },
+                { title: "金额", field: "sum", sortable: false, width: 100 },
+                { title: "缴费情况", field: "charge",sortable: false, width: 100 ,align: "center",formatter:"tickCross"},
+                { title: "是否驳回", field: "back",sortable: false, width: 100 ,align: "center",formatter:"tickCross" },
+                { title: "驳回原因", field: "result",sortable: false  },
+
+
+                
+
+
+
+                ],
+            });
+            $("#download-xlsx").click(function(){
+                $("#example-table-2").tabulator("download", "xlsx", "data.xlsx");
+            });
+            var temp = new Array();
+            var data=@(new HtmlString(@ViewBag.result));
+            
+            for (var i = 0; i < data.length;i++) {
+                temp.push({ "id": i + 1,"caozuo1": data[i].seqNo, "name": data[i].text, "No": data[i].seqNo, "gender": data[i].unitName, "sum": data[i].totalExpense, "charge": data[i].isCharge,"back": data[i].isBack, "result": data[i].backNote });
+            }
+
+            $("#example-table-2").tabulator("setData", temp);
+            $(window).resize(function () {
+                var a = $(window).height();
+                var hh = a-160;
+                $(".box-h").height(hh)  // 高度加在类名为box的DIV 上
+                $("#example-table-2").tabulator("redraw",true);   
+            });
+
+        });
+    function opencharge()
+    {
+        window.showModalDialog('../ProjectCharge/charge',"", 'dialogWidth=650px;dialogHeight=400px');
+    }
+    function openclassify()
+    {
+        window.open("../ProjectCharge/classify","_self");
+    }
+</script>
+<section>
+    <h2 style="float:left;"><i class="fa fa-tags kongge"></i>财务收费列表</h2>
+    <ol class="breadcrumb">
+        <li class="active">财务收费 </li>
+        <li>财务收费列表</li>
+    </ol>
+    <div style="clear:both;"></div>
+</section>
+@using (Html.BeginForm())
+{
+    <p style="float:left;">
+        检索条件： @Html.DropDownList("dropdowmlist", null, "请选择检索条件", new { @class = "form-control", @style = "display:inline;width:160px;" })   
+        检索内容：<input type="text" name="search" id="serach"value="@ViewBag.Search" class = "form-control"style="display:inline;width:160px;">
+        @Html.DropDownList("Department",null, new { @class = "form-control", @style = "display:inline;width:120px;" }) 
+        @Html.DropDownList("ischarge", null, new { @class = "form-control", @style = "display:inline;width:100px;" }) 
+        <input type="submit" name="action"value="查询" class="btn btn-default">
+        @*<span class="btn btn-default">
+            <i class='fa fa-print' style='color:inherit; padding:2px 5px 2px 0px;'></i><input type="button" name="action" onclick="opencharge()" value="打印收费详细报表" style="border-style:none;background:none;padding:0px 0px;">
+        </span>*@
+        <span class="btn btn-default">
+            <input type="button" name="action" onclick="openclassify()" value="分类统计明细表" style="border-style:none;background:none;padding:0px 0px;">
+        </span>
+    </p>
+}
+<p style="float:left;margin-left:5px;">
+    <span class="btn btn-default">
+        <i class='fa fa-download' style='color:inherit; padding:2px 5px 2px 0px;'></i><input type="submit" id="download-xlsx" name="action" value="下载收费详细报表" style="border-style:none;background:none;padding:0px 0px;">
+    </span>
+</p>
+<div style="clear:both"></div>
+@*@Html.ActionLink("打印收费详细报表", "charge", "ProjectCharge")*@
+
+<div id="example-table-2" class="box-h" > </div>

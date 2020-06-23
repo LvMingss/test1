@@ -1,0 +1,33 @@
+﻿
+@{
+    ViewBag.Title = "档案扫描件匹配";
+}
+
+<section>
+    <h2 style="float:left;"><i class="fa fa-tags kongge"></i>档案扫描件匹配</h2>
+    <ol class="breadcrumb">
+        <li>档案扫描件匹配</li>
+    </ol>
+    <div style="clear:both;"></div>
+</section>
+@using (Html.BeginForm())
+{
+    <div class="panel panel-default" style="border-top:3px solid #408cca">
+        <table class="table table-bordered dl-horizontal">
+            <tr>
+                <td style="font-size:18px;" colspan="4">
+                    <i class="fa fa-check-square-o"></i>匹配竣工档案
+                </td>
+
+            </tr>
+            <tr>
+                <td>
+                    项目顺序号：
+                    <input type="text" name="seq" id="seq" class="form-control" style="display:inline">    
+                    <input type="submit" name="action" id="jgok" value="开始匹配竣工档案" class="btn btn-default">
+                    @*<input type="submit" name="action" id="jgdel" value="删除已匹配竣工档案" class="btn btn-default">*@
+                </td>
+            </tr>
+        </table>
+    </div>
+}

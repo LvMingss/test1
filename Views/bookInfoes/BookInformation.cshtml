@@ -1,0 +1,98 @@
+﻿@model IEnumerable<urban_archive.Models.bookInfo>
+@*@using PagedList.Mvc;*@
+<link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
+<link href="~/Content/jquery-ui.theme.css" rel="stylesheet" />
+<link href="~/Content/Tabulator/version3.0/tabulator.css" rel="stylesheet" />
+@{
+    ViewBag.Title = "图书表";
+}
+<script src="~/Scripts/jquery-2.1.1.min.js" type="text/javascript"></script>
+<script src="~/Scripts/jquery-ui.min.js"></script>
+<script src="~/Content/Tabulator/version3.0/tabulator.js"></script>
+
+    <script type="text/javascript">
+
+        var j = function (value, data, cell, row, options) {
+            return "<i class='fa fa-search-plus' style='color:#428bca;vertical-align:middle; padding:2px 0;'></i>  "
+        };
+
+
+        $().ready(function () {
+            $(document).ready(function () {
+
+                var a = $(window).height();
+                var hh = a-160;
+
+                $(".box-h").height(hh)
+
+            })
+
+            $("#example-table-2").tabulator({
+                height:"100%",
+                virtualDom:false,
+                selectable: true,
+               
+                //columnMinWidth:100,
+                //minWidth
+                fitColumns:true,
+                pagination:"local",
+                paginationSize:50,
+
+                columns: [
+                { title: "编号", field: "a", headerSort: false,align: "center",width: 50 },
+                {
+                    title: "详细信息", field: "j", width: 80 ,formatter: j, headerSort: false, align: "center", cellClick: function (e,cell) {
+                        var url = '/bookInfoes/Details?id=' + cell.getValue()+'&id2=1';
+                        window.location.href = url;
+                    }
+                },
+                { title: "书名项", field: "b", headerSort: false,width: 300},
+                { title: "著者", field: "c", headerSort: false,width: 220 },
+                { title: "出版社", field: "d", headerSort: false,width: 220 },
+                { title: "出版日期", field: "e", headerSort: false,width: 100 },
+                { title: "价格", field: "f", headerSort: false,width: 100},
+                { title: "借用信息", field: "h", headerSort: false,minWidth: 200},
+                ],
+            });
+
+                var temp = new Array();
+                var data=@(new HtmlString(@ViewBag.result));
+                for (var i = 0; i < data.length;i++) {
+                    var b = data[i].publishDate
+                    if(b!=null){
+                        var result =b.substring(0,10)
+                    }
+                    temp.push({ "id": i + 1, "a": data[i].bookNo, "b": data[i].bookName, "c": data[i].authorZhu, "d": data[i].press,"e": result,"f": data[i].price, "h": data[i].borrowInfo,"j": data[i].bookNo});
+                }
+
+                $("#example-table-2").tabulator("setData", temp);
+                $(window).resize(function () {
+                    var a = $(window).height();
+                    var hh = a-160;
+                    $(".box-h").height(hh)
+                    $("#example-table-2").tabulator("redraw",true);
+
+                });
+
+            });
+    </script>
+
+
+<section>
+    <h2 style="float:left;"><i class="fa fa-tags kongge"></i>图书表</h2>
+    <ol class="breadcrumb">
+        <li class="active">编研管理</li>
+        <li>图书管理</li>
+    </ol>
+    <div style="clear:both;"></div>
+</section>
+
+@using (Html.BeginForm())
+{
+    <p>
+        检索条件： @Html.DropDownList("Selected", null, new { @class = "form-control", @style="display:inline"})检索内容：<input type="text" name="serach" id="serach"value="@ViewBag.search"class = "form-control"style="display:inline"><input type="submit" name="action" value="查询"style="display:inline" class="btn btn-default">
+        <input type="submit" name="action" value="已借出" class="btn btn-default">
+
+    </p>
+}
+<div id="example-table-2" class="box-h" ></div>

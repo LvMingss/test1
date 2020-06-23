@@ -1,0 +1,577 @@
+﻿@model urban_archive.Models.Charger
+
+@{
+    ViewBag.Title = "添加其他收费事项";
+}
+<style type="text/css">
+    .jubu {
+        max-width: 100%;
+    }
+
+    .jubu1 {
+        float: left;        
+    }
+</style>
+
+
+
+    <link type="text/css" rel="stylesheet" href="~/Scripts/jquery/jquery-ui.css">
+<link href="~/Scripts/text/jquery.ui.all.css" rel="stylesheet" />
+@*<link href="~/Scripts/text/jquery-ui.css" rel="stylesheet" />*@
+<script src="~/Scripts/jquery-1.10.2.js"></script>
+<script type="text/javascript" src="~/Scripts/jquery/jquery-1.8.3.js"></script>
+
+@*<script src="~/Scripts/text/jquery-ui.js"></script>*@
+
+
+
+
+<script src="~/Scripts/jquery-ui.min.js"></script>
+    <script type="text/javascript" src="~/Scripts/jquery/jquery.ui.core.js"></script>
+    <script type="text/javascript" src="~/Scripts/jquery/jquery.ui.datepicker.js"></script>
+    <script type="text/javascript" src="~/Scripts/jquery/jquery.ui.widget.js"></script>
+    <script type="text/javascript" src="~/Scripts/jquery/jquery-ui-timepicker-addon.js"></script>
+<script src="~/Scripts/text/jquery.ui.core.js"></script>
+<script src="~/Scripts/text/jquery.ui.widget.js"></script>
+<script src="~/Scripts/text/jquery.ui.position.js"></script>
+<script src="~/Scripts/text/jquery.ui.autocomplete.js"></script>
+<script src="~/Scripts/text/jquery.ui.menu.js"></script>
+
+<script language="javascript" type="text/javascript">
+    $(function () {
+        var $unitName = $("#unitName");
+            $("#unitName").autocomplete({
+                minLength:4,
+                source: function (request, response) {
+                    $.ajax({
+                        type: "POST",
+                        url: "../../Charge/NameSelection",
+                        dataType: "json",
+                        data: { "q": $unitName.val() },
+                        success: function (datas) {
+                            response($.map(datas, function (item) {
+                                return { value: item.name };
+                            }));
+                        }, error: function () {
+                            alert("ajax请求失败");
+                        }
+                    });
+                }
+            });
+        });
+</script>
+@*<span style="font-size:14px;" deep="7">
+<script type="text/javascript">            //jquery UI数据库获取数据
+
+    function getunitName(e) {
+        var $unitName = $("#unitName");
+        $.ajax({
+            url: "../../Charge/NameSelection",
+            type: "post",
+            data: { "q": $unitName.val() },
+            dataType: 'json',
+            success: function (datas) {
+                if (datas != null) {
+                    var n = datas.length;
+                    var data2=[]
+                    for(var i=0;i<n;i++)
+                    {
+                        data2.push(datas[i].name)
+                    }
+                    }
+                    //alert(data2)
+                $("#unitName").autocomplete({
+                    source: data2
+                });
+            }
+        })
+    }
+        $(function () {
+            $('#unitName').keyup(function () { getunitName() });
+        })
+</script></span>*@  
+
+    <script >
+            $(function () {
+                $("#chargeTime").datepicker({
+                    changeMonth: true,
+                    changeYear: true
+                });
+            });
+
+            function UpOrClose() {
+                if (document.getElementById("tongji").style.display != "block") {
+                    document.getElementById("tongji").style.display = "block";
+                }
+                else {
+                    document.getElementById("tongji").style.display = "none";
+                }
+            }
+            function queding() {
+                var msg = "确认要提交保存吗?";
+                if (confirm(msg) == true) {
+                    return true;
+                } else {
+                    return false;
+                }
+            }
+
+            function jiesuan() {
+                var a4p = document.getElementById("a4picture").value;
+                var a4pfei = document.getElementById("a4pCharge").value;
+                document.getElementById("a4ptotal").value = a4p * a4pfei;
+                var a4t = document.getElementById("a4text").value;
+                var a4tfei = document.getElementById("a4tCharge").value;
+                document.getElementById("a4ttotal").value = (a4tfei * a4t).toFixed(1);
+                document.getElementById("a4").value = a4p * 1 + a4t * 1;
+                var a3p = document.getElementById("a3picture").value;
+                var a3pfei = document.getElementById("a3pCharge").value;
+                document.getElementById("a3ptotal").value = a3p * a3pfei;
+                var a3t = document.getElementById("a3text").value;
+                var a3tfei = document.getElementById("a3tCharge").value;
+                document.getElementById("a3ttotal").value = (a3t * a3tfei).toFixed(1);
+                document.getElementById("a3").value = a3p * 1 + a3t * 1;
+                var a2p = document.getElementById("a2picture").value;
+                var a2pfei = document.getElementById("a2pCharge").value;
+                document.getElementById("a2ptotal").value = a2p * a2pfei;
+                document.getElementById("a2").value = a2p;
+                var a1p = document.getElementById("a1picture").value;
+                var a1pfei = document.getElementById("a1pCharge").value;
+                document.getElementById("a1ptotal").value = a1p * a1pfei;
+                document.getElementById("a1").value = a1p;
+                var a0p = document.getElementById("a0picture").value;
+                var a0pfei = document.getElementById("a0pCharge").value;
+                document.getElementById("a0ptotal").value = a0p * a0pfei;
+                document.getElementById("a0").value = a0p;
+                var a1l = document.getElementById("a1lpicture").value;
+                var a1lfei = document.getElementById("a1lpCharge").value;
+                document.getElementById("a1lptotal").value = a1l * a1lfei;
+                document.getElementById("a1long").value = a1l;
+                var a0l = document.getElementById("a0lpicture").value;
+                var a0lfei = document.getElementById("a0lpCharge").value;
+                document.getElementById("a0lptotal").value = a0l * a0lfei;
+                document.getElementById("a0long").value = a0l;
+                document.getElementById("totalExpense").value = (a0l * a0lfei + a1l * a1lfei + a0p * a0pfei + a1p * a1pfei + a2p * a2pfei + a3t * a3tfei + a3p * a3pfei + a4tfei * a4t + a4p * a4pfei).toFixed(1);
+                document.getElementById("theoryExpense").value = (a0l * a0lfei + a1l * a1lfei + a0p * a0pfei + a1p * a1pfei + a2p * a2pfei + a3t * a3tfei + a3p * a3pfei + a4tfei * a4t + a4p * a4pfei).toFixed(1);
+            }             
+    </script>
+<script>
+        function Onfocus1()//单击显示数据列表1
+        {
+            document.getElementById("select1").style.display = "block";
+            $.ajax({
+                url: '../../Charge/name',
+                data:{},
+                type: 'post',
+                dataType: 'json',
+                success: function (data) {
+                    $("#select1").empty();
+                    var objSelectNow = document.getElementById("select1");
+                    for (var j = 0; j < data.length; j++) {
+                        var objOption = document.createElement("OPTION");
+                        objOption.text = data[j].name;
+                        objOption.value = data[j].ID
+                        objSelectNow.options.add(objOption);
+                    }
+                }
+            })
+            
+        }
+        function windowclose()
+        {
+            document.getElementById("select1").style.display = "none";
+        }
+</script>
+<section>
+    <h2 style="float:left;"><i class="fa fa-tags kongge"></i>添加其他收费事项</h2>
+    <ol class="breadcrumb">
+        <li class="active">财务收费 </li>
+        <li>添加其他收费事项</li>
+    </ol>
+    <div style="clear:both;"></div>
+</section>
+<hr style="margin-top:0px;"/>
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group" style="display:none">
+            @Html.LabelFor(model => model.ID, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <input type="text" id="ID" name="ID" value="@ViewBag.ID" onblur="write();">
+                @Html.ValidationMessageFor(model => model.ID, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="panel panel-default">
+            <table class="table table-bordered dl-horizontal" style="background-color:#f9f9f9;">
+                <tr>
+                    <td style="background-color:#f9f9f9;width:10%;">
+                        单位/姓名
+                    </td>
+                    <td>
+                            <input type="text" id="unitName" name="unitName" class="form-control jubu">
+                                                    @*<input type="text" id="unitName" name="unitName">*@
+                    </td>
+            @*<td >
+                @Html.EditorFor(model => model.unitName, new { htmlAttributes = new { @class = "form-control jubu", @onclick = "Onfocus1()", @onblur = "windowclose()" } })
+                @Html.ValidationMessageFor(model => model.unitName, "", new { @class = "text-danger" })
+
+                <div id="tanchu1" colspan="4" style="text-align:center;">
+                    <select class="form-control jubu" id="select1" size="4" style="width: 100%; height: 147px;display:none"></select>
+                    <script type="text/javascript">
+                        document.getElementById("select1").onchange = function ()//列表传值到文本框
+                        {
+                            document.getElementById("unitName").value = this.options[this.options.selectedIndex].text;
+                        }
+                    </script>
+
+                </div>
+            </td>*@
+</tr>
+                    
+                
+                <tr>
+                    <td style="background-color:#f9f9f9;width:10%;">
+                        收费事项
+                    </td>
+                    <td @*colspan="7"*@>
+                        @Html.EditorFor(model => model.itemName, new { htmlAttributes = new { @class = "form-control jubu jubu1" } })
+                        @Html.ValidationMessageFor(model => model.itemName, "", new { @class = "text-danger" })
+                        <input type="button" id="paper" name="paper" value="纸张费用统计" onclick="UpOrClose()" class="btn btn-default">
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <div id="tongji" class="panel panel-default" style="display:none;">
+            <table class="table table-bordered dl-horizontal" style="background-color:#f9f9f9;">
+                <tr>
+                    <td rowspan="2" style="height: 28px; width: 15%">
+                        A4：
+                        <input type="text" id="a4" name="a4" value="0" style="width: 80px;display:inline" class = "form-control" >
+                        张
+                    </td>
+                    <td style="height: 28px; width: 138px">
+                        图纸：
+                    </td>
+                    <td style="height: 28px; width: 30%">
+                        <input type="text" id="a4picture" name="a4picture" value="0" onblur="jiesuan()" style="width: 80px;display:inline" class = "form-control">张*<input type="text" id="a4pCharge" name="a4pCharge" value="4" style="width: 80px;display:inline" class = "form-control">元/张
+                    </td>
+                    <td style="height: 28px; width: 35%">
+                        =<input type="text" id="a4ptotal" value="0" name="a4ptotal" style="width: 110px;display:inline" class = "form-control">元
+                    </td>
+                </tr>
+                <tr>
+                    <td style="height: 28px; width: 138px">
+                        文字：
+                    </td>
+                    <td style="height: 28px; width: 20%">
+                        <input type="text" id="a4text" name="a4text" value="0" onblur="jiesuan()" style="width: 80px;display:inline" class = "form-control">张*<input type="text" id="a4tCharge" name="a4tCharge" value="0.4" style="width: 80px;display:inline" class = "form-control">元/张
+                    </td>
+                    <td style="height: 28px; width: 30%">
+                        =<input type="text" id="a4ttotal" value="0"  style="width: 110px;display:inline" class = "form-control"name="a4ttotal">元
+                    </td>
+                </tr>
+                <tr>
+                    <td rowspan="2" style="height: 28px; width: 15%">
+                        A3：
+                        <input type="text" id="a3" name="a3" style="width: 80px;display:inline" class = "form-control">
+                        张
+                    </td>
+                    <td style="height: 28px; width: 138px">
+                        图纸：
+                    </td>
+                    <td style="height: 28px; width: 25%">
+                        <input type="text" id="a3picture" name="a3picture" value="0" style="width: 80px;display:inline" class = "form-control" onblur="jiesuan()">张*<input type="text" id="a3pCharge" name="a3pCharge" value="8"style="width: 80px;display:inline" class = "form-control">元/张
+                    </td>
+                    <td style="height: 28px; width: 35%">
+                        =<input type="text" id="a3ptotal" value="0" style="width: 110px;display:inline" class = "form-control"name="a3ptotal">元
+                    </td>
+                </tr>
+                <tr>
+                    <td style="height: 28px; width: 138px">
+                        文字：
+                    </td>
+                    <td style="height: 28px; width: 20%">
+                        <input type="text" id="a3text" name="a3text" value="0" style="width: 80px;display:inline" class = "form-control" onblur="jiesuan()">张*<input type="text" id="a3tCharge" name="a3tCharge" value="0.8" style="width: 80px;display:inline" class = "form-control">元/张
+                    </td>
+                    <td style="height: 28px; width: 20%">
+                        =<input type="text" id="a3ttotal" value="0"  style="width: 110px;display:inline" class = "form-control"name="a3ttotal">元
+                    </td>
+                </tr>
+                <tr>
+                    <td style="height: 56px; width: 15%">
+                        A2：
+                        <input type="text" id="a2" name="a2" style="width: 80px;display:inline" class = "form-control">
+                        张
+                    </td>
+                    <td style="height: 56px; width: 138px">
+                        图纸：
+                    </td>
+                    <td style="height: 56px; width: 25%">
+                        <input type="text" id="a2picture" name="a2picture" value="0" style="width: 80px;display:inline" class = "form-control" onblur="jiesuan()">张*<input type="text" id="a2pCharge" name="a2pCharge" value="12" style="width: 80px;display:inline" class = "form-control">元/张
+                    </td>
+                    <td style="height: 56px; width: 35%">
+                        =<input type="text" id="a2ptotal" value="0" style="width: 110px;display:inline" class = "form-control" name="a2ptotal">元
+                    </td>
+                </tr>
+                <tr>
+                    <td style="height: 56px; width: 15%">
+                        A1：
+                        <input type="text" id="a1" name="a1" style="width: 80px;display:inline" class = "form-control">
+                        张
+                    </td>
+                    <td style="height: 56px; width: 138px">
+                        图纸：
+                    </td>
+                    <td style="height: 56px; width: 25%">
+                        <input type="text" id="a1picture" name="a1picture" value="0" style="width: 80px;display:inline" class = "form-control" onblur="jiesuan()">张*<input type="text" id="a1pCharge" name="a1pCharge" value="15" style="width: 80px;display:inline" class = "form-control">元/张
+                    </td>
+                    <td style="height: 56px; width: 35%">
+                        =<input type="text" id="a1ptotal" value="0" style="width: 110px;display:inline" class = "form-control" name="a1ptotal">元
+                    </td>
+                </tr>
+
+                <tr>
+                    <td style="height: 56px; width: 15%">
+                        A0：
+                        <input type="text" id="a0" style="width: 80px;display:inline" class = "form-control" name="a0">
+                        张
+                    </td>
+                    <td style="height: 56px; width: 138px">
+                        图纸：
+                    </td>
+                    <td style="height: 56px; width: 25%">
+                        <input type="text" id="a0picture" name="a0picture" value="0" style="width: 80px;display:inline" class = "form-control" onblur="jiesuan()">张*<input type="text" id="a0pCharge" name="a0pCharge" value="20" style="width: 80px;display:inline" class = "form-control">元/张
+                    </td>
+                    <td style="height: 56px; width: 35%">
+                        =<input type="text" id="a0ptotal" value="0" style="width: 110px;display:inline" class = "form-control" name="a0ptotal">元
+                    </td>
+                </tr>
+                <tr>
+                    <td style="height: 56px; width: 15%">
+                        A1加长：
+                        <input type="text" id="a1long" style="width: 80px;display:inline" class = "form-control" name="a1long">
+                        张
+                    </td>
+                    <td style="height: 56px; width: 138px">
+                        图纸：
+                    </td>
+                    <td style="height: 56px; width: 25%">
+                        <input type="text" id="a1lpicture" name="a1lpicture" value="0" style="width: 80px;display:inline" class = "form-control" onblur="jiesuan()">张*<input type="text" id="a1lpCharge" name="a1lpCharge" value="20" style="width: 80px;display:inline" class = "form-control">元/张
+                    </td>
+                    <td style="height: 56px; width: 35%">
+                        =<input type="text" id="a1lptotal" value="0" style="width: 110px;display:inline" class = "form-control" name="a1lptotal">元
+                    </td>
+                </tr>
+
+                <tr>
+                    <td style="height: 56px; width: 20%">
+                        A0加长：
+                        <input type="text" id="a0long" name="a0long" style="width: 80px;display:inline" class = "form-control">
+                        张
+                    </td>
+                    <td style="height: 56px; width: 20%">
+                        图纸：
+                    </td>
+                    <td style="height: 56px; width: 25%">
+                        <input type="text" id="a0lpicture" name="a0lpicture" value="0" style="width: 80px;display:inline" class = "form-control" onblur="jiesuan()">张*<input type="text" id="a0lpCharge" name="a0lpCharge" value="30" style="width: 80px;display:inline" class = "form-control">元/张
+                    </td>
+                    <td style="height: 56px; width: 35%">
+                        =<input type="text" id="a0lptotal" value="0" style="width: 110px;display:inline" class = "form-control" name="a0lptotal">元
+                    </td>
+                </tr>
+                <tr>
+                    <td style="text-align:center" colspan="4">
+                        <input type="button" id="close" name="close" value="收起" onclick="UpOrClose()" class="btn btn-default">
+                    </td>
+                </tr>
+            </table>
+        </div>
+
+
+        @*<div class="form-group">
+                @Html.LabelFor(model => model.unitName, "单位/姓名", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.unitName, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.unitName, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.itemName, "收费事项", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.itemName, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.itemName, "", new { @class = "text-danger" })
+                </div>
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="button" id="paper" name="paper" value="纸张费用统计" onclick="UpOrClose()" class="btn btn-default">
+                </div>
+            </div>*@
+
+        @*<div id="tongji" class="col-md-offset-2 col-md-10" style="display:none">
+                A4:<input type="text" id="a4" name="a4" value="0">张<br>
+                图纸:<input type="text" id="a4picture" name="a4picture" value="0" onblur="jiesuan()">张*<input type="text" id="a4pCharge" name="a4pCharge" value="4">元/张=<input type="text" id="a4ptotal" value="0" name="a4ptotal">元<br>
+                文字:<input type="text" id="a4text" name="a4text" value="0" onblur="jiesuan()">张*<input type="text" id="a4tCharge" name="a4tCharge" value="0.4">元/张=<input type="text" id="a4ttotal" value="0" name="a4ttotal">元<br>
+                A3:<input type="text" id="a3" name="a3">张<br>
+                图纸:<input type="text" id="a3picture" name="a3picture" value="0" onblur="jiesuan()">张*<input type="text" id="a3pCharge" name="a3pCharge" value="8">元/张=<input type="text" id="a3ptotal" value="0" name="a3ptotal">元<br>
+                文字:<input type="text" id="a3text" name="a3text" value="0" onblur="jiesuan()">张*<input type="text" id="a3tCharge" name="a3tCharge" value="0.8">元/张=<input type="text" id="a3ttotal" value="0" name="a3ttotal">元<br>
+                A2:<input type="text" id="a2" name="a2">张<br>
+                图纸:<input type="text" id="a2picture" name="a2picture" value="0" onblur="jiesuan()">张*<input type="text" id="a2pCharge" name="a2pCharge" value="12">元/张=<input type="text" id="a2ptotal" value="0" name="a2ptotal">元<br>
+                A1:<input type="text" id="a1" name="a1">张<br>
+                图纸:<input type="text" id="a1picture" name="a1picture" value="0" onblur="jiesuan()">张*<input type="text" id="a1pCharge" name="a1pCharge" value="15">元/张=<input type="text" id="a1ptotal" value="0" name="a1ptotal">元<br>
+                A0:<input type="text" id="a0" name="a0">张<br>
+                图纸:<input type="text" id="a0picture" name="a0picture" value="0" onblur="jiesuan()">张*<input type="text" id="a0pCharge" name="a0pCharge" value="20">元/张=<input type="text" id="a0ptotal" value="0" name="a0ptotal">元<br>
+                A1加长:<input type="text" id="a1long" name="a1long">张<br>
+                图纸:<input type="text" id="a1lpicture" name="a1lpicture" value="0" onblur="jiesuan()">张*<input type="text" id="a1lpCharge" name="a1lpCharge" value="20">元/张=<input type="text" id="a1lptotal" value="0" name="a1lptotal">元<br>
+                A0加长:<input type="text" id="a0long" name="a0long">张<br>
+                图纸:<input type="text" id="a0lpicture" name="a0lpicture" value="0" onblur="jiesuan()">张*<input type="text" id="a0lpCharge" name="a0lpCharge" value="30">元/张=<input type="text" id="a0lptotal" value="0" name="a0lptotal">元<br>
+
+                <div class="form-group">
+                    <div class="col-md-10">
+                        <input type="button" id="close" name="close" value="收起" onclick="UpOrClose()" class="btn btn-default">
+                    </div>
+                </div>
+            </div>*@
+        <div class="panel panel-default">
+            <table class="table table-bordered dl-horizontal" style="background-color:#f9f9f9;">
+                <tr>
+                    <td style="background-color:#f9f9f9;width:10%;">
+                        收费种类
+                    </td>
+                    <td >
+                        @Html.DropDownList("chargeClassify", null, "请选择收费种类", new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.chargeClassify, "", new { @class = "text-danger" })
+                    </td>
+                    <td style="background-color:#f9f9f9;width:10%;">
+                        收费日期
+                    </td>
+                    <td >
+                        <input type="text" id="chargeTime" name="chargeTime" value="@ViewBag.date" class="form-control">
+                        @*@Html.EditorFor(model => model.chargeTime, new { htmlAttributes = new { @class = "form-control" } })*@
+                        @Html.ValidationMessageFor(model => model.chargeTime, "", new { @class = "text-danger" })
+                    </td>
+                </tr>
+                <tr>
+                    <td style="background-color:#f9f9f9;width:10%;">
+                        理论金额
+                    </td>
+                    <td>
+                        @Html.EditorFor(model => model.theoryExpense, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.theoryExpense, "", new { @class = "text-danger" })
+                    </td>
+                    <td style="background-color:#f9f9f9;width:10%;">
+                        实际金额
+                    </td>
+                    <td>
+                        @Html.EditorFor(model => model.totalExpense, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.totalExpense, "", new { @class = "text-danger" })
+                    </td>
+                </tr>
+                <tr>
+                    <td style="background-color:#f9f9f9;width:10%;">
+                        来自科室
+                    </td>
+                    <td>
+                        @Html.DropDownList("fromDepartment", null, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.fromDepartment, "", new { @class = "text-danger" })
+                    </td>
+                    <td style="background-color:#f9f9f9;width:10%;">
+                        操作人
+                    </td>
+                    <td>
+                        @Html.DropDownList("person", null, "请选择操作人", new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.@operator, "", new { @class = "text-danger" })
+                    </td>
+                </tr>
+                <tr>
+                    <td style="background-color:#f9f9f9;width:10%;">
+                        备注（请输入联系方式）
+                    </td>
+                    <td colspan="3">
+                        @Html.EditorFor(model => model.remarks, new { htmlAttributes = new { @class = "form-control jubu" } })
+                        @Html.ValidationMessageFor(model => model.remarks, "", new { @class = "text-danger" })
+                    </td>
+
+                </tr>
+                <tr>
+                    <td style="background-color:#f9f9f9;width:10%;">
+                        费用去向
+                    </td>
+                    <td colspan="3">
+                        @Html.DropDownList("whereTransfer", null, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.whereTransfer, "", new { @class = "text-danger" })
+                    </td>
+                </tr>
+                </table>
+            </div>
+                @*<div class="form-group">
+                    @Html.LabelFor(model => model.chargeClassify, "收费种类", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.DropDownList("chargeClassify", null, "请选择收费种类", new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.chargeClassify, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(model => model.chargeTime, "收费日期", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        <input type="text" id="chargeTime" name="chargeTime" value="@ViewBag.date" class="form-control">
+                        @Html.ValidationMessageFor(model => model.chargeTime, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(model => model.theoryExpense, "理论金额", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.theoryExpense, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.theoryExpense, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(model => model.totalExpense, "实际金额", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.totalExpense, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.totalExpense, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(model => model.fromDepartment, "来自科室", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.DropDownList("fromDepartment", null, "请选择来自科室", new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.fromDepartment, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(model => model.@operator, "操作人", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.DropDownList("person", null, "请选择操作人", new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.@operator, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(model => model.remarks, "备注", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.remarks, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.remarks, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(model => model.whereTransfer, "费用去向", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.DropDownList("whereTransfer", null, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.whereTransfer, "", new { @class = "text-danger" })
+                    </div>
+                </div>*@
+        <div style="text-align:center;">
+            <p>
+                <input type="submit" value="提交" class="btn btn-default"onclick="return queding()" />
+                <input type="submit" value="返回" name="action" id="return" class="btn btn-default" />
+            <p>
+                <div style="height:5px;">
+                </div>
+        </div>
+</div>
+
+
+        }
+

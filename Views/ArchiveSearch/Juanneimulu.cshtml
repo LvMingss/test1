@@ -1,0 +1,143 @@
+﻿@model IEnumerable<urban_archive.Models.FileInfo>
+<link href="~/Content/jquery-ui.theme.css" rel="stylesheet" />
+@{
+    ViewBag.Title = "FileList";
+}
+
+<link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
+<link href="~/Content/jquery-ui.theme.css" rel="stylesheet" />
+<link href="~/Content/Tabulator/version3.0/tabulator.css" rel="stylesheet" />
+<script src="~/Scripts/jquery-2.1.1.min.js" type="text/javascript"></script>
+<script src="~/Scripts/jquery-ui.min.js"></script>
+<script src="~/Content/Tabulator/version3.0/tabulator.js"></script>
+<script type="text/javascript">
+    var h= function (value, data, cell, row, options) {
+        return "<i class='fa fa-pencil-square-o' style='color:#428bca;;vertical-align:middle; padding:2px 0;'></i> "
+    };
+    var m = function (value, data, cell, row, options) {
+        return "<i class='fa fa-search-plus' style='color:#428bca;;vertical-align:middle; padding:2px 0;'></i> "
+        };
+    var j = function (value, data, cell, row, options) {
+        return "<i class='fa fa-trash-o' style='color:#428bca;;vertical-align:middle; padding:2px 0;'></i>"
+    };
+
+    $().ready(function () {//在页面加载完成之后用，为了保证js能完整的执行。
+        $(document).ready(function () {
+            var a = $(window).height();
+            var hh = a-35;
+            $(".box-h").height(hh)  // 高度加在类名为box的DIV 上
+
+        })
+            $("#example-table-2").tabulator({
+                height: "100%",
+                selectable:1,
+                pagination:"local",
+                paginationSize:50,
+                columns: [
+           //{
+           //         title: "修改", field: "h", width: 100 ,formatter:h,sortable:false,sorter: "string", align: "center", onClick: function (e, val, cell, row) {
+           //             var url = '/ArchivesEnter/Edit?id=' + row.n;
+           //             window.location.href = url;
+           //         }
+           //     },
+
+                {
+                    title: "查看", field: "i", width: 50 ,formatter:m, sortable:false,sorter: "string", align: "center",headerSort: false,  cellClick: function (e,cell) {
+                        //var url = '/ArchivesEnter/Details?id=' + row.n;
+                        //window.location.href = url;
+                    
+                        var tem=cell.getRow().getData.a+","+cell.getRow().getData.w1;
+                    
+                        $("#checkname1").val(tem);
+                        
+                    }
+                },
+                {
+                    title: "查看扫描件", field: "a", width: 100 ,formatter:m, sortable:false,sorter: "string", align: "center",headerSort: false,  cellClick: function (e,cell) {
+                        var paperProjectSeqNo = document.getElementById("paperProjectSeqNo").value;
+                        var volNo=document.getElementById("volNo").value;
+                        var archiveNo=document.getElementById("archiveNo").value;
+                        var url = '/ArchiveSearch/LooksaomiaoJN?paperProjectSeqNo=' + paperProjectSeqNo + "&volNo=" + volNo + "&seqNo=" + encodeURIComponent(cell.getValue()) + "&archiveNo=" + archiveNo;
+                        window.open(url);                                         
+                    }
+                },
+                //{
+                //    title: "删除", field: "j", width:100 ,formatter:j, sorter: "string", sortable:false,align: "center", onClick: function (e, val, cell, row) {
+                //        var url = '/ArchivesCode/Delete?id=' + row.n;
+                //        window.location.href = url;
+                //    }
+                //},
+                { title: "序号", field: "a",sortable:false,width: 50,headerSort: false },
+                { title: "文件编号", field: "b", sortable:false,width: 200 ,headerSort: false},
+                { title: "文件材料题名", field: "c",sortable:false, width: 600,headerSort: false },
+                { title: "责任者", field: "d", sortable:false,width: 300,headerSort: false },
+                { title: "类型", field: "e", sortable:false,width: 100,headerSort: false },
+                { title: "起页", field: "f", sortable:false,width: 100,headerSort: false },
+                //{ title: "起始日期", field: "g", sortable:false,width: 200 ,headerSort: false},
+
+
+                ],
+                rowSelected:function(row){
+              
+                    var selectedData = $("#example-table-2").tabulator("getSelectedData");
+                    document.getElementById("checkname1").value=selectedData[0].a+","+selectedData[0].w1;
+                  
+           
+                },//选中行回调函数，进行参数传递
+            });
+
+            var temp = new Array();
+            var data=@Html.Raw(Json.Encode(Model));
+        for (var i = 0; i < data.length;i++) {
+
+            
+
+                temp.push({ "id": i + 1,"i":"查看", "a": data[i].seqNo, "b": data[i].fileNo, "c": data[i].fileName, "d": data[i].responsible,"e":data[i].type,"f":data[i].startPageNo, "n": data[i].id,"w1":data[i].archivesNo});
+            }
+
+            $("#example-table-2").tabulator("setData", temp);
+            $(window).resize(function () {
+                var a = $(window).height();
+                var hh = a-35;
+                $(".box-h").height(hh)  // 高度加在类名为box的DIV 上
+                $("#example-table-2").tabulator("redraw",true);
+
+            });
+
+    });
+    $(document).ready(function () {
+        
+
+        var a=document.getElementById("volCount").value
+        //window.parent.docuent.getElementById("count").value=document.getElementById("volCount").value;
+        //parent.window.document.getElementById("count").value=document.getElementById("volCount").value;
+        window.parent.document.getElementById("count").innerHTML="共检索到数据:"+a;
+        //window.parent.$("count").html(a);
+    });
+</script>
+@*<h2><i class="fa fa-tags"></i>卷内文件信息</h2>
+<hr />*@
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    <input name="checkname1" id="checkname1" hidden="hidden">
+
+    @*<div style="text-align:center;">
+        <div style="height:32px;">
+        </div>*@
+    @*<input type="submit" value="添加" name="action" class="btn btn-default">
+        <input type="submit" value="录入完毕" name="action" class="btn btn-default" disabled="@ViewData["botton3"]">
+        <input type="submit" value="返回案卷信息" name="action" class="btn btn-default">*@
+    @*<input type="submit" value="关闭页面" name="action" class="btn btn-default">
+            <div style="height:20px;">
+            </div>
+        </div>*@
+    <input name="volCount" id="volCount" value="@ViewData["volCount"]" hidden="hidden">
+    <input value="@ViewData["url1"]" name="url" id="url1" hidden="hidden">
+    <input name="paperProjectSeqNo" id="paperProjectSeqNo" value="@ViewData["paperProjectSeqNo"]" hidden="hidden">
+    <input name="volNo" id="volNo" value="@ViewData["volNo"]" hidden="hidden">
+    <input name="archiveNo" id="archiveNo" value="@ViewData["archiveNo"]" hidden="hidden">
+}
+<div id="example-table-2" class="box-h" style="overflow:auto"> </div>

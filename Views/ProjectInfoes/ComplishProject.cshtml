@@ -1,0 +1,211 @@
+﻿
+@{
+    ViewBag.Title = "Home Page";
+}
+
+@using (Html.BeginForm("CompolishProject", "ProjectInfoes", FormMethod.Get))
+{
+<div class="jumbotron">
+    <h1>竣工档案</h1>
+    
+</div>
+
+<div class="row">
+    <div class="col-md-4">
+        
+           
+            <h3>  @Html.ActionLink("签订移交责任书", "Create","ContractInfoes" )</h3>
+            
+        
+    </div>
+    <div class="col-md-4">
+        <h3>@Html.ActionLink("移交责任书管理", "Index","ContractInfoes" )</h3>
+        
+    </div>
+    <div class="col-md-4">
+        <h3>@Html.ActionLink("从责任书录入工程", "Index", "ContractInfoes")</h3>
+
+    </div>
+    <div class="col-md-4">
+        <h3>@Html.ActionLink("直接录入工程", "Create", "ProjectInfoes")</h3>
+        
+    </div>
+    <div class="col-md-4">
+
+        <p>
+            <h3> @Html.ActionLink("工程管理与打印", "ManagementPrint", "ProjectInfoes")</h3>
+        </p>
+
+    </div>
+    <div class="col-md-4">
+
+        <p>
+            <h3> @Html.ActionLink("收费查询", "Create", "ProjectCharge")</h3>
+        </p>
+
+    </div>
+    <div class="col-md-4">
+
+        <p>
+            <h3> @Html.ActionLink("工程收费", "projectchargeindex", "ProjectCharge")</h3>
+        </p>
+
+    </div>
+    <div class="col-md-4">
+
+        <p>
+            <h3> @Html.ActionLink("领取整理", "linquzhengli", "PaperSettle")</h3>
+        </p>
+
+    </div>
+    <div class="col-md-4">
+
+        <p>
+            <h3> @Html.ActionLink("整理信息", "informationzhengli", "PaperSettle")</h3>
+        </p>
+
+    </div>
+    <div class="col-md-4">
+
+        <p>
+            <h3> @Html.ActionLink("等待编号", "waitcode", "PaperSettle")</h3>
+        </p>
+
+    </div>
+    <div class="col-md-4">
+
+        <p>
+            <h3> @Html.ActionLink("等待编号", "waitcode", "PaperSettle")</h3>
+        </p>
+
+    </div>
+    <div class="col-md-4">
+
+        <p>
+            <h3> @Html.ActionLink("库房信息", "InformationWarehouse", "CodeManagement")</h3>
+        </p>
+
+    </div>
+    <div class="col-md-4">
+
+        <p>
+            <h3> @Html.ActionLink("最大档号与登记号", "MaxArchiveRegisNo", "CodeManagement")</h3>
+        </p>
+
+    </div>
+    <div class="col-md-4">
+
+        <p>
+            <h3> @Html.ActionLink("分类编号", "ClassCode", "ArchivesCode")</h3>
+        </p>
+
+    </div>
+    <div class="col-md-4">
+
+        <p>
+            <h3> @Html.ActionLink("编号修改", "CodeEdit", "ArchivesCode")</h3>
+        </p>
+
+    </div>
+    <div class="col-md-4">
+
+        <p>
+            <h3> @Html.ActionLink("分类管理", "CodeManagement", "ArchivesCode")</h3>
+        </p>
+
+    </div>
+    <div class="col-md-4">
+
+        <p>
+            <h3> @Html.ActionLink("编号管理", "MaxArchiveRegisNo", "CodeManagement")</h3>
+        </p>
+
+    </div>
+    <div class="col-md-4">
+
+        <p>
+            <h3> @Html.ActionLink("案卷录入", "ArchiveEnter","ArchivesEnter")</h3>
+        </p>
+
+    </div>
+    <div class="col-md-4">
+
+        <p>
+            <h3> @Html.ActionLink("等待入库", "WaitStorage", "ArchivesEnter")</h3>
+        </p>
+
+    </div>
+    
+    <div class="col-md-4">
+
+        <p>
+            <h3> @Html.ActionLink("档案管理", "ArchiveMaga", "ArchiveManagement")</h3>
+        </p>
+
+    </div>
+     <div class="col-md-4">
+
+        <p>
+            <h3> @Html.ActionLink("材料发放", "MeterialsSend", "LaterMaterials")</h3>
+        </p>
+
+    </div>
+    <div class="col-md-4">
+
+        <p>
+            <h3> @Html.ActionLink("全部档案", "AllArchives", "StatisticalAndRetrieval")</h3>
+        </p>
+
+    </div>
+    <div class="col-md-4">
+
+        <p>
+            <h3> @Html.ActionLink("统计分析", "StatisticalAndAnalysis", "StatisticalAndRetrieval")</h3>
+        </p>
+
+    </div>
+    <div class="col-md-4">
+
+        <p>
+            <h3> @Html.ActionLink("案卷录入统计表", "LuRuTongJi", "ArchivesEnter")</h3>
+        </p>
+
+    </div>
+    <div class="col-md-4">
+
+        <p>
+            <h3> @Html.ActionLink("借阅用户", "UserBorrow", "UrbanBorrow")</h3>
+        </p>
+
+    </div>
+    <div class="col-md-4">
+
+        <p>
+            <h3> @Html.ActionLink("整理统计", "ZhengliTongji", "PaperSettle")</h3>
+        </p>
+
+    </div>
+    <div class="col-md-4">
+
+        <p>
+            <h3> @Html.ActionLink("借阅登记", "jieyuePersonLogin", "BorrowLogin")</h3>
+        </p>
+
+    </div>
+    <div class="col-md-4">
+
+        <p>
+            <h3> @Html.ActionLink("档案检索", "ArchiveSearchMainWindow", "ArchiveSearch")</h3>
+        </p>
+
+    </div>
+    <div class="col-md-4">
+
+        <p>
+            <h3> @Html.ActionLink("借阅收费明细", "BorrowFeeDetail", "BorrowFeeDetail")</h3>
+        </p>
+
+    </div>
+</div>
+
+}

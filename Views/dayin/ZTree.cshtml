@@ -1,0 +1,82 @@
+﻿
+@*@{
+    Layout = null;
+
+}*@
+@section css{
+    <link type="text/css" rel="stylesheet" herf="~/Scripts/zTree/css/zTreeStyle/zTreeStyle.css">
+    @*<link rel="stylesheet" href="~/Scripts/zTree/css/demo.css" type="text/css">*@
+}
+@section scripts
+{
+    <script type="text/javascript" src="~/Scripts/zTree/js/jquery-1.4.4.min.js"></script>
+    <script type="text/javascript" src="~/Scripts/zTree/js/jquery.ztree.core-3.5.js"></script>
+    @*<script type="text/javascript" src="~/Scripts/zTree/js/jquery.ztree.excheck.js"></script>
+    <script type="text/javascript" src="~/Scripts/zTree/js/jquery.ztree.exedit.js"></script>*@
+
+    <script type="text/javascript">
+        var t;
+        var setting = {
+            view: {
+                selectedMulti: true,
+                showLine: true,
+                dblClickExpand: true,
+            },
+            data: {
+                simpleData: {
+                    enable: true,
+                    idKey: "id",
+                    pIdKey: "pId",
+                    rootPId: ""
+                }
+            },
+            callback: {
+                onClick: onClick
+            }
+        };
+    //var treeNodes = [
+    //        { id: 1, pId: 0, name: "市规划", open: false},
+    //        { id: 11, pId: 1, name: "建" },
+    //        { id: 12, pId: 1, name: "青规建管" },
+    //        { id: 13, pId: 1, name: "青规建审" },
+    //        { id: 14, pId: 1, name: "验" },
+    //];
+        $(document).ready(function () {
+            $.ajax({
+                async: false,
+                cache: false,
+                type: 'POST',
+                url: '../../ProjectInfoes/fenleihao',
+                success: function (data) {
+                    //alert(data);
+                    treeNodes = data;
+                    //alert(treeNodes)
+                }
+            });
+            treeObj=$.fn.zTree.init($("#ztree"), setting, treeNodes);
+            treeObj.expandAll(true);
+        //第一个参数是<ul/>id选择的jquery对象,第二个参数是配置的setting,第三个参数是获取到的数据.
+    });
+
+    function onClick(e, treeId, treeNode) {
+        var treeObj = $.fn.zTree.getZTreeObj("ztree"),
+        sprName=treeNode.name;//节点name
+        sprID = treeNode.id;//节点ID
+        document.getElementById("choose").value = sprID;
+    }
+    function right()
+    {
+        var number = document.getElementById("choose").value;
+        window.returnValue = number;
+        window.close();
+        
+    }
+    </script>
+    }
+
+
+<input type="text" id="choose" name="choose">
+<input type="submit" id="queding" name="action" value="确定" onclick="right();">
+<div>
+    <ul id="ztree" class="ztree"></ul>
+</div>

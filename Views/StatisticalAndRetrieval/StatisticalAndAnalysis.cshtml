@@ -1,0 +1,220 @@
+﻿
+@*<link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />*@
+@*<link href="~/Content/jquery-ui.theme.css" rel="stylesheet" />*@
+<link href="~/Content/Tabulator/version3.0/tabulator.css" rel="stylesheet" />
+<link type="text/css" rel="stylesheet" href="~/Scripts/jquery/jquery-ui.css">
+@{
+    ViewBag.Title = "PaperSettle";
+}
+<style>
+    .loader {
+        box-sizing: border-box;
+        height: 100%;
+        width: 100%;
+        padding-top: 100px;
+        background-color: #ddd;
+        color: #fff;
+        font-size: 30px;
+        font-weight: bold;
+        text-align: center;
+    }
+
+        .loader i {
+            margin-bottom: 20px;
+            font-size: 60px;
+        }
+</style>
+
+<script src="~/Scripts/jquery-2.1.1.min.js" type="text/javascript"></script>
+<script type="text/javascript" src="~/Scripts/jquery/jquery-1.8.3.js"></script>
+
+<script src="~/Scripts/jquery-ui.min.js"></script>
+
+<script type="text/javascript" src="~/Scripts/jquery/jquery.ui.core.js"></script>
+<script type="text/javascript" src="~/Scripts/jquery/jquery.ui.datepicker.js"></script>
+<script type="text/javascript" src="~/Scripts/jquery/jquery.ui.widget.js"></script>
+<script type="text/javascript" src="~/Scripts/jquery/jquery-ui-timepicker-addon.js"></script> 
+<script src="~/Content/Tabulator/version3.0/tabulator.js"></script>
+
+<script src="~/Scripts/xlsx.full.min.js"></script>
+
+<script>
+            $(function () {
+                $("#startdate").datepicker({
+                    changeMonth: true,
+                    changeYear: true
+                });
+            });
+            $(function () {
+                $("#enddate").datepicker({
+                    changeMonth: true,
+                    changeYear: true
+                });
+            });
+</script>
+<script type="text/javascript">
+    var p = function (value, data, cell, row, options) { //plain text value
+        return "<i class='fa fa-search-plus' style='color:#428bca;vertical-align:middle; padding:2px 0;'></i>"
+    };
+    var q = function (value, data, cell, row, options) { //plain text value
+        return "<i class='fa fa-search-plus' style='color:#428bca;vertical-align:middle; padding:2px 0;'></i>"
+    };
+    var r = function (value, data, cell, row, options) { //plain text value
+        return "<i class='fa fa-search-plus' style='color:#428bca;vertical-align:middle; padding:2px 0;'></i>"
+    };
+
+    $().ready(function () {//在页面加载完成之后用，为了保证js能完整的执行。
+        $(document).ready(function () {
+            var a = $(window).height();
+            var hh = a-180;
+            $(".box-h").height(hh)  // 高度加在类名为box的DIV 上
+
+        })
+        $("#example-table-2").tabulator({
+            height:"100%",
+            virtualDom:false,
+            fitColumns:true,                
+            selectable:1, //make rows selectable
+            pagination: "remote",
+            ajaxURL: "/StatisticalAndRetrieval/StatisticalAndAnalysisData/" + new Date().getTime(),
+            ajaxParams: { type: document.getElementById("SelectedID").value, startdate: document.getElementById("startdate").value, enddate: document.getElementById("enddate").value },
+            paginator: function (url, pageNo, pageSize, ajaxParams) {
+
+
+
+                var Url = "";
+
+                Url = url + "?page=" + pageNo;
+
+
+                return Url;
+            },
+
+           
+            rowFormatter:function(row){
+                //row - row component
+
+                var data = row.getData();
+
+                if (data.statusName == "通过审核") {
+                    row.getElement().css({"background-color":"#CCFFCC","border-bottom":"1px solid #999"});
+                }
+                if (data.statusName == "整理") {
+                    row.getElement().css({"background-color":"#CCCCFF","border-bottom":"1px solid #999"});
+                }
+                if (data.statusName == "编号") {
+                    row.getElement().css({"background-color":"#FFCCCC","border-bottom":"1px solid #999"});
+                }
+                if (data.statusName == "录入") {
+                    row.getElement().css({"background-color":"#FFCC99","border-bottom":"1px solid #999"});
+                }
+                if (data.statusName == "等待入库") {
+                    row.getElement().css({"background-color":"#FFFFCC","border-bottom":"1px solid #999"});
+                }
+                if (data.statusName == "入库") {
+                    row.getElement().css({"background-color":"#66CCCC ","border-bottom":"1px solid #999"});
+                }
+            },
+            
+            columns: [
+            {
+                title: "接收查看", field: "projectID", width: 80, formatter: p, headerSort: false, sorter: "string", align: "center", cellClick: function (e, cell) {
+                    var url = '/StatisticalAndRetrieval/SeeReceive?id=' + cell.getValue();
+                    window.open(url);
+
+                }
+            },
+            {
+                title: "案卷查看", field: "paperProjectSeqNo", width: 80, formatter: q, headerSort: false, sorter: "string", align: "center", cellClick: function (e, cell) {
+                    var url = '/StatisticalAndRetrieval/SeeArchives?id=' + cell.getValue();
+                    window.open(url);
+
+                }
+            },
+            {
+                title: "整理查看", field: "projectID", width: 80, formatter: r, headerSort: false, sorter: "string", align: "center", cellClick: function (e, cell) {
+                    var url = '/StatisticalAndRetrieval/SeeSettle?id=' + cell.getValue()+'&id2='+'1';
+                    window.open(url);
+
+                }
+            },
+
+             { title: "工程名称 ", field: "projectName", headerSort: false, minWidth: 600 },
+            
+            { title: "工程顺序号", field: "paperProjectSeqNo", headerSort: false, width: 100 },
+            { title: "工程序号", field: "projectNo", headerSort: false, width: 100 },
+            { title: "档号", field: "d", headerSort: false, width: 200 },
+            { title: "总登记号", field: "e", headerSort: false, width: 200 },
+            { title: "工程地点", field: "location", headerSort: false, width: 200 },
+            { title: "建设单位", field: "developmentOrganization", headerSort: false, width: 200 },
+            { title: "设计单位", field: "disignOrganization", headerSort: false, width: 200 },
+            { title: "施工单位", field: "constructionOrganization", headerSort: false, width: 200 },
+            { title: "状态", field: "statusName", headerSort: false, width: 100 },
+            { title: "整理人", field: "collator", headerSort: false, width: 100 },
+            { title: "接收人", field: "recipient", headerSort: false, width: 100 },
+            { title: "接收日期", field: "dateReceived", headerSort: false, width: 100 },
+            { title: "入库日期", field: "dateArchive", headerSort: false, minWidth: 100 },
+
+
+
+            ],
+        });
+
+        $("#download-xlsx").click(function () {
+            $("#example-table-2").tabulator("download", "xlsx", "data.xlsx");
+        });
+
+        $(window).resize(function () {
+            var a = $(window).height();
+            var hh = a - 180;
+            $(".box-h").height(hh)  // 高度加在类名为box的DIV 上
+            $("#example-table-2").tabulator("redraw", true);
+        });
+    
+
+       
+    });
+    //$(document).ready(function () {
+    //    $("#Find").click(function () {
+    //        var type = document.getElementById("SelectedID").value;
+    //        var startdate = document.getElementById("startdate").value;
+    //        var enddate = document.getElementById("enddate").value;
+    //        var Url = "";
+          
+    //        Url = "/StatisticalAndRetrieval/StatisticalAndAnalysis/" + "?type=" + type + "&startdate=" + startdate + "&enddate=" + enddate;
+    //            window.location.href = Url;
+    //        //$("#example-table-2").tabulator("setData");
+    //    });
+    //});
+</script>
+<section>
+    <h2 style="float:left;"><i class="fa fa-tags kongge"></i>全部档案信息</h2>
+    <ol class="breadcrumb">
+        <li class="active">竣工档案</li>
+        <li class="active">统计检索</li>
+        <li>统计分析</li>
+    </ol>
+    <div style="clear:both;"></div>
+</section>
+@using (Html.BeginForm())
+{
+        <p>
+                检索条件：@Html.DropDownList("SelectedID", null, new { @class = "form-control", @style = "display:inline;width:150px;" })
+                接收日期：<input type="text" name="startdate" id="startdate" value="@ViewData["start"]" class = "form-control"style="display:inline;width:auto;" >至<input type="text" value="@ViewData["end"]" name="enddate" id="enddate" class="form-control"style="display:inline;width:auto;">
+                <input type="submit" id="Find" name="Find" value="查找" class="btn btn-default" /> <label id="count" name="count" style="color:blue">共检索到: @ViewBag.count 条</label>
+        </p>
+}
+<div id="example-table-2" class="box-h">
+    <div class="loader"><i class="fa fa-spinner fa-pulse fa-fw"></i><div>数据加载中...</div></div>
+</div>
+ <div style="text-align:center;margin-top:5px;"><button id="download-xlsx" class="btn btn-default">导出数据</button></div>  
+ 
+
+
+
+
+
+
+
+
+

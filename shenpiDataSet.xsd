@@ -1,0 +1,160 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="shenpiDataSet" targetNamespace="http://tempuri.org/shenpiDataSet.xsd" xmlns:mstns="http://tempuri.org/shenpiDataSet.xsd" xmlns="http://tempuri.org/shenpiDataSet.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections>
+          <Connection AppSettingsObjectName="Web.config" AppSettingsPropertyName="UrbanConConnectionString" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="UrbanConConnectionString (Web.config)" ParameterPrefix="@" PropertyReference="AppConfig.System.Configuration.ConfigurationManager.0.ConnectionStrings.UrbanConConnectionString.ConnectionString" Provider="System.Data.SqlClient" />
+        </Connections>
+        <Tables>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="vw_ProjectStatusTableAdapter" GeneratorDataComponentClassName="vw_ProjectStatusTableAdapter" Name="vw_ProjectStatus" UserDataComponentName="vw_ProjectStatusTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="UrbanConConnectionString (Web.config)" DbObjectName="UrbanCon.dbo.vw_ProjectStatus" DbObjectType="View" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>SELECT contractNo, projectName, developmentOrganization, constructionOrganization, statusName, location, isLingquYijiaoshu, isFafangHegezheng, isCharge, status, mobilephoneNoDevelopment, mobilephoneNoConstruction, memo, projectID, disignOrganization, jianliUnit, projectNo, paperProjectSeqNo, seqNo, isFinanceCharge FROM dbo.vw_ProjectStatus</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="contractNo" DataSetColumn="contractNo" />
+              <Mapping SourceColumn="projectName" DataSetColumn="projectName" />
+              <Mapping SourceColumn="developmentOrganization" DataSetColumn="developmentOrganization" />
+              <Mapping SourceColumn="constructionOrganization" DataSetColumn="constructionOrganization" />
+              <Mapping SourceColumn="statusName" DataSetColumn="statusName" />
+              <Mapping SourceColumn="location" DataSetColumn="location" />
+              <Mapping SourceColumn="isLingquYijiaoshu" DataSetColumn="isLingquYijiaoshu" />
+              <Mapping SourceColumn="isFafangHegezheng" DataSetColumn="isFafangHegezheng" />
+              <Mapping SourceColumn="isCharge" DataSetColumn="isCharge" />
+              <Mapping SourceColumn="status" DataSetColumn="status" />
+              <Mapping SourceColumn="mobilephoneNoDevelopment" DataSetColumn="mobilephoneNoDevelopment" />
+              <Mapping SourceColumn="mobilephoneNoConstruction" DataSetColumn="mobilephoneNoConstruction" />
+              <Mapping SourceColumn="memo" DataSetColumn="memo" />
+              <Mapping SourceColumn="projectID" DataSetColumn="projectID" />
+              <Mapping SourceColumn="disignOrganization" DataSetColumn="disignOrganization" />
+              <Mapping SourceColumn="jianliUnit" DataSetColumn="jianliUnit" />
+              <Mapping SourceColumn="projectNo" DataSetColumn="projectNo" />
+              <Mapping SourceColumn="paperProjectSeqNo" DataSetColumn="paperProjectSeqNo" />
+              <Mapping SourceColumn="seqNo" DataSetColumn="seqNo" />
+              <Mapping SourceColumn="isFinanceCharge" DataSetColumn="isFinanceCharge" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+        </Tables>
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="shenpiDataSet" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="True" msprop:Generator_DataSetName="shenpiDataSet" msprop:Generator_UserDSName="shenpiDataSet">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="vw_ProjectStatus" msprop:Generator_TableClassName="vw_ProjectStatusDataTable" msprop:Generator_TableVarName="tablevw_ProjectStatus" msprop:Generator_TablePropName="vw_ProjectStatus" msprop:Generator_RowDeletingName="vw_ProjectStatusRowDeleting" msprop:Generator_RowChangingName="vw_ProjectStatusRowChanging" msprop:Generator_RowEvHandlerName="vw_ProjectStatusRowChangeEventHandler" msprop:Generator_RowDeletedName="vw_ProjectStatusRowDeleted" msprop:Generator_UserTableName="vw_ProjectStatus" msprop:Generator_RowChangedName="vw_ProjectStatusRowChanged" msprop:Generator_RowEvArgName="vw_ProjectStatusRowChangeEvent" msprop:Generator_RowClassName="vw_ProjectStatusRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="contractNo" msprop:Generator_ColumnVarNameInTable="columncontractNo" msprop:Generator_ColumnPropNameInRow="contractNo" msprop:Generator_ColumnPropNameInTable="contractNoColumn" msprop:Generator_UserColumnName="contractNo" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="8" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="projectName" msprop:Generator_ColumnVarNameInTable="columnprojectName" msprop:Generator_ColumnPropNameInRow="projectName" msprop:Generator_ColumnPropNameInTable="projectNameColumn" msprop:Generator_UserColumnName="projectName" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="500" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="developmentOrganization" msprop:Generator_ColumnVarNameInTable="columndevelopmentOrganization" msprop:Generator_ColumnPropNameInRow="developmentOrganization" msprop:Generator_ColumnPropNameInTable="developmentOrganizationColumn" msprop:Generator_UserColumnName="developmentOrganization" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="100" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="constructionOrganization" msprop:Generator_ColumnVarNameInTable="columnconstructionOrganization" msprop:Generator_ColumnPropNameInRow="constructionOrganization" msprop:Generator_ColumnPropNameInTable="constructionOrganizationColumn" msprop:Generator_UserColumnName="constructionOrganization" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="100" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="statusName" msprop:Generator_ColumnVarNameInTable="columnstatusName" msprop:Generator_ColumnPropNameInRow="statusName" msprop:Generator_ColumnPropNameInTable="statusNameColumn" msprop:Generator_UserColumnName="statusName">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="location" msprop:Generator_ColumnVarNameInTable="columnlocation" msprop:Generator_ColumnPropNameInRow="location" msprop:Generator_ColumnPropNameInTable="locationColumn" msprop:Generator_UserColumnName="location" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="100" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="isLingquYijiaoshu" msprop:Generator_ColumnVarNameInTable="columnisLingquYijiaoshu" msprop:Generator_ColumnPropNameInRow="isLingquYijiaoshu" msprop:Generator_ColumnPropNameInTable="isLingquYijiaoshuColumn" msprop:Generator_UserColumnName="isLingquYijiaoshu" type="xs:boolean" minOccurs="0" />
+              <xs:element name="isFafangHegezheng" msprop:Generator_ColumnVarNameInTable="columnisFafangHegezheng" msprop:Generator_ColumnPropNameInRow="isFafangHegezheng" msprop:Generator_ColumnPropNameInTable="isFafangHegezhengColumn" msprop:Generator_UserColumnName="isFafangHegezheng" type="xs:boolean" minOccurs="0" />
+              <xs:element name="isCharge" msprop:Generator_ColumnVarNameInTable="columnisCharge" msprop:Generator_ColumnPropNameInRow="isCharge" msprop:Generator_ColumnPropNameInTable="isChargeColumn" msprop:Generator_UserColumnName="isCharge" type="xs:boolean" minOccurs="0" />
+              <xs:element name="status" msprop:Generator_ColumnVarNameInTable="columnstatus" msprop:Generator_ColumnPropNameInRow="status" msprop:Generator_ColumnPropNameInTable="statusColumn" msprop:Generator_UserColumnName="status">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="2" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="mobilephoneNoDevelopment" msprop:Generator_ColumnVarNameInTable="columnmobilephoneNoDevelopment" msprop:Generator_ColumnPropNameInRow="mobilephoneNoDevelopment" msprop:Generator_ColumnPropNameInTable="mobilephoneNoDevelopmentColumn" msprop:Generator_UserColumnName="mobilephoneNoDevelopment" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="30" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="mobilephoneNoConstruction" msprop:Generator_ColumnVarNameInTable="columnmobilephoneNoConstruction" msprop:Generator_ColumnPropNameInRow="mobilephoneNoConstruction" msprop:Generator_ColumnPropNameInTable="mobilephoneNoConstructionColumn" msprop:Generator_UserColumnName="mobilephoneNoConstruction" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="30" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="memo" msprop:Generator_ColumnVarNameInTable="columnmemo" msprop:Generator_ColumnPropNameInRow="memo" msprop:Generator_ColumnPropNameInTable="memoColumn" msprop:Generator_UserColumnName="memo" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="100" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="projectID" msprop:Generator_ColumnVarNameInTable="columnprojectID" msprop:Generator_ColumnPropNameInRow="projectID" msprop:Generator_ColumnPropNameInTable="projectIDColumn" msprop:Generator_UserColumnName="projectID" type="xs:long" />
+              <xs:element name="disignOrganization" msprop:Generator_ColumnVarNameInTable="columndisignOrganization" msprop:Generator_ColumnPropNameInRow="disignOrganization" msprop:Generator_ColumnPropNameInTable="disignOrganizationColumn" msprop:Generator_UserColumnName="disignOrganization" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="100" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="jianliUnit" msprop:Generator_ColumnVarNameInTable="columnjianliUnit" msprop:Generator_ColumnPropNameInRow="jianliUnit" msprop:Generator_ColumnPropNameInTable="jianliUnitColumn" msprop:Generator_UserColumnName="jianliUnit" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="100" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="projectNo" msprop:Generator_ColumnVarNameInTable="columnprojectNo" msprop:Generator_ColumnPropNameInRow="projectNo" msprop:Generator_ColumnPropNameInTable="projectNoColumn" msprop:Generator_UserColumnName="projectNo" type="xs:long" minOccurs="0" />
+              <xs:element name="paperProjectSeqNo" msprop:Generator_ColumnVarNameInTable="columnpaperProjectSeqNo" msprop:Generator_ColumnPropNameInRow="paperProjectSeqNo" msprop:Generator_ColumnPropNameInTable="paperProjectSeqNoColumn" msprop:Generator_UserColumnName="paperProjectSeqNo" type="xs:long" />
+              <xs:element name="seqNo" msprop:Generator_ColumnVarNameInTable="columnseqNo" msprop:Generator_ColumnPropNameInRow="seqNo" msprop:Generator_ColumnPropNameInTable="seqNoColumn" msprop:Generator_UserColumnName="seqNo" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="20" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="isFinanceCharge" msprop:Generator_ColumnVarNameInTable="columnisFinanceCharge" msprop:Generator_ColumnPropNameInRow="isFinanceCharge" msprop:Generator_ColumnPropNameInTable="isFinanceChargeColumn" msprop:Generator_UserColumnName="isFinanceCharge" type="xs:boolean" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

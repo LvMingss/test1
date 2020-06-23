@@ -1,0 +1,198 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="BianYanModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="BookBorrowInfo">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="bookNo" Type="int" />
+          <Property Name="borrower" Type="varchar" MaxLength="50" />
+          <Property Name="borrowDate" Type="datetime" />
+          <Property Name="returnDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="bookInfo">
+          <Key>
+            <PropertyRef Name="bookNo" />
+          </Key>
+          <Property Name="bookNo" Type="int" Nullable="false" />
+          <Property Name="bookName" Type="varchar" MaxLength="150" />
+          <Property Name="authorZhu" Type="varchar(max)" />
+          <Property Name="authorBian" Type="varchar(max)" />
+          <Property Name="authorJi" Type="varchar(max)" />
+          <Property Name="authorZuan" Type="varchar(max)" />
+          <Property Name="authorYi" Type="varchar(max)" />
+          <Property Name="authorHui" Type="varchar(max)" />
+          <Property Name="press" Type="varchar(max)" />
+          <Property Name="publishDate" Type="datetime" />
+          <Property Name="price" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="classificationNo" Type="varchar" MaxLength="50" />
+          <Property Name="suoShuNo" Type="char" MaxLength="10" />
+          <Property Name="huJianNo" Type="varchar" MaxLength="30" />
+          <Property Name="pageCount" Type="varchar" MaxLength="50" />
+          <Property Name="summary" Type="varchar" MaxLength="100" />
+          <Property Name="borrowInfo" Type="varchar" MaxLength="50" />
+          <Property Name="remarks" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Briefing">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="briefTitle" Type="varchar" MaxLength="150" />
+          <Property Name="briefYear" Type="char" MaxLength="10" />
+          <Property Name="briefMonth" Type="char" MaxLength="10" />
+          <Property Name="paperName" Type="varchar" MaxLength="50" />
+          <Property Name="maker" Type="char" MaxLength="10" />
+          <Property Name="remarks" Type="varchar" MaxLength="50" />
+          <Property Name="fileName" Type="varchar" MaxLength="150" />
+          <Property Name="briefTime" Type="varchar" MaxLength="50" />
+          <Property Name="briefCoTitle" Type="varchar" MaxLength="250" />
+        </EntityType>
+        <EntityContainer Name="BianYanModelStoreContainer">
+          <EntitySet Name="BookBorrowInfo" EntityType="Self.BookBorrowInfo" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="bookInfo" EntityType="Self.bookInfo" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Briefing" EntityType="Self.Briefing" Schema="dbo" store:Type="Tables" />
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="BianYanModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="BianYanEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Briefing" EntityType="BianYanModel.Briefing" />
+          <EntitySet Name="BookBorrowInfo" EntityType="BianYanModel.BookBorrowInfo" />
+          <EntitySet Name="bookInfo" EntityType="BianYanModel.bookInfo" />
+        </EntityContainer>
+        <EntityType Name="Briefing">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="briefTitle" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="briefYear" Type="String" MaxLength="10" FixedLength="true" Unicode="false" />
+          <Property Name="briefMonth" Type="String" MaxLength="10" FixedLength="true" Unicode="false" />
+          <Property Name="paperName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="maker" Type="String" MaxLength="10" FixedLength="true" Unicode="false" />
+          <Property Name="remarks" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="fileName" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="briefTime" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="briefCoTitle" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="BookBorrowInfo">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="bookNo" Type="Int32" />
+          <Property Name="borrower" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="borrowDate" Type="DateTime" Precision="3" />
+          <Property Name="returnDate" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="bookInfo">
+          <Key>
+            <PropertyRef Name="bookNo" />
+          </Key>
+          <Property Name="bookNo" Type="Int32" Nullable="false" />
+          <Property Name="bookName" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="authorZhu" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="authorBian" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="authorJi" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="authorZuan" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="authorYi" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="authorHui" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="press" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="publishDate" Type="DateTime" Precision="3" />
+          <Property Name="price" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="classificationNo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="suoShuNo" Type="String" MaxLength="10" FixedLength="true" Unicode="false" />
+          <Property Name="huJianNo" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="pageCount" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="summary" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="borrowInfo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="remarks" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="BianYanModelStoreContainer" CdmEntityContainer="BianYanEntities">
+          <EntitySetMapping Name="Briefing">
+            <EntityTypeMapping TypeName="BianYanModel.Briefing">
+              <MappingFragment StoreEntitySet="Briefing">
+                <ScalarProperty Name="briefCoTitle" ColumnName="briefCoTitle" />
+                <ScalarProperty Name="briefTime" ColumnName="briefTime" />
+                <ScalarProperty Name="fileName" ColumnName="fileName" />
+                <ScalarProperty Name="remarks" ColumnName="remarks" />
+                <ScalarProperty Name="maker" ColumnName="maker" />
+                <ScalarProperty Name="paperName" ColumnName="paperName" />
+                <ScalarProperty Name="briefMonth" ColumnName="briefMonth" />
+                <ScalarProperty Name="briefYear" ColumnName="briefYear" />
+                <ScalarProperty Name="briefTitle" ColumnName="briefTitle" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="BookBorrowInfo">
+            <EntityTypeMapping TypeName="BianYanModel.BookBorrowInfo">
+              <MappingFragment StoreEntitySet="BookBorrowInfo">
+                <ScalarProperty Name="returnDate" ColumnName="returnDate" />
+                <ScalarProperty Name="borrowDate" ColumnName="borrowDate" />
+                <ScalarProperty Name="borrower" ColumnName="borrower" />
+                <ScalarProperty Name="bookNo" ColumnName="bookNo" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="bookInfo">
+            <EntityTypeMapping TypeName="BianYanModel.bookInfo">
+              <MappingFragment StoreEntitySet="bookInfo">
+                <ScalarProperty Name="remarks" ColumnName="remarks" />
+                <ScalarProperty Name="borrowInfo" ColumnName="borrowInfo" />
+                <ScalarProperty Name="summary" ColumnName="summary" />
+                <ScalarProperty Name="pageCount" ColumnName="pageCount" />
+                <ScalarProperty Name="huJianNo" ColumnName="huJianNo" />
+                <ScalarProperty Name="suoShuNo" ColumnName="suoShuNo" />
+                <ScalarProperty Name="classificationNo" ColumnName="classificationNo" />
+                <ScalarProperty Name="price" ColumnName="price" />
+                <ScalarProperty Name="publishDate" ColumnName="publishDate" />
+                <ScalarProperty Name="press" ColumnName="press" />
+                <ScalarProperty Name="authorHui" ColumnName="authorHui" />
+                <ScalarProperty Name="authorYi" ColumnName="authorYi" />
+                <ScalarProperty Name="authorZuan" ColumnName="authorZuan" />
+                <ScalarProperty Name="authorJi" ColumnName="authorJi" />
+                <ScalarProperty Name="authorBian" ColumnName="authorBian" />
+                <ScalarProperty Name="authorZhu" ColumnName="authorZhu" />
+                <ScalarProperty Name="bookName" ColumnName="bookName" />
+                <ScalarProperty Name="bookNo" ColumnName="bookNo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="无" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

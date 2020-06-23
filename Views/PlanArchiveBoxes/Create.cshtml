@@ -1,0 +1,468 @@
+﻿@model urban_archive.Models.PlanArchiveBox
+
+@{
+    ViewBag.Title = "规划档案案卷录入";
+}
+
+<style type="text/css">
+    .dangqianzhuangtai {
+        color: blue;
+        text-decoration: underline;
+    }
+</style>
+<h2><i class="fa fa-tags kongge"></i>规划档案案卷录入【@ViewBag.classify】</h2>
+<hr style="margin:0px"/>
+<style type="text/css">
+.form-control1{
+  width: 200px;
+  height: 34px;
+  padding: 6px 12px;
+  font-size: 16px;
+  line-height: 1.42857143;
+  color: #555;
+  background-color: #fff;
+  background-image: none;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+          box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+  -webkit-transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+          transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+}
+
+
+.form-control1:focus {
+        border-color: #66afe9;
+        outline: 0;
+        -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(102, 175, 233, .6);
+}
+.jubu {
+        max-width: 100%;
+    }
+.jubu1{
+        width: 100%;
+    }
+</style>
+
+@section css{
+    <link type="text/css" rel="stylesheet" href="~/Scripts/jquery/jquery-ui.css">
+}
+@section scripts{
+    <script type="text/javascript" src="~/Scripts/jquery/jquery-1.8.3.js"></script>
+    <script type="text/javascript" src="~/Scripts/jquery/jquery.ui.core.js"></script>
+    <script type="text/javascript" src="~/Scripts/jquery/jquery.ui.datepicker.js"></script>
+    <script type="text/javascript" src="~/Scripts/jquery/jquery.ui.widget.js"></script>
+    <script type="text/javascript" src="~/Scripts/jquery/jquery-ui-timepicker-addon.js"></script>
+    @*<script type="text/javascript" src="~/Scripts/jquery/jquery-ui-timepicker-zh-CN.js"></script>*@
+    <script>
+            $(function () {
+                $("#bianzhiDate").datepicker({
+                    changeMonth: true,
+                    changeYear: true
+                });
+            });
+            $(function () {
+                $("#receiveTime").datepicker({
+                    changeMonth: true,
+                    changeYear: true
+                });
+            });
+            $(function () {
+                $("#luruTime").datepicker({
+                    changeMonth: true,
+                    changeYear: true
+                });
+            });
+         
+    </script>
+<script>
+$().ready(function () {
+    $("#yearNo").blur(function () {
+        var ss = $("#yearNo").val();
+        if (ss.length == 0) {
+            document.getElementById("tishi").style.display = "inline-block";
+        }
+        else {
+            document.getElementById("tishi").style.display = "none";
+        }
+    });
+});
+</script>
+
+<script>
+$().ready(function () {
+    $("#boxID").blur(function () {
+        var ss = $("#boxID").val();
+        if (ss.length == 0) {
+            document.getElementById("tishi").style.display = "inline-block";
+        }
+        else {
+            document.getElementById("tishi").style.display = "none";
+        }
+    });
+});
+</script>
+<script>
+$().ready(function () {
+    $("#archiveBoxCnt").blur(function () {
+        var ss = $("#archiveBoxCnt").val();
+        if (ss.length == 0) {
+            document.getElementById("totaljuan").style.display = "inline-block";
+        }
+        else {
+            document.getElementById("totaljuan").style.display = "none";
+        }
+    });
+});
+</script>
+<script>
+$().ready(function () {
+    $("#archiveBoxNo").blur(function () {
+        var ss = $("#archiveBoxNo").val();
+        if (ss.length == 0) {
+            document.getElementById("juanshu").style.display = "inline-block";
+        }
+        else {
+            document.getElementById("juanshu").style.display = "none";
+        }
+    });
+});
+</script>
+<script>
+$().ready(function () {
+    $("#pageCnt").blur(function () {
+        var ss = $("#pageCnt").val();
+        if (ss.length == 0) {
+            document.getElementById("total").style.display = "inline-block";
+        }
+        else {
+            document.getElementById("total").style.display = "none";
+        }
+    });
+});
+</script>
+
+<script>
+$().ready(function () {
+    $("#drawing").blur(function () {
+        var ss = $("#drawing").val();
+        if (ss.length == 0) {
+            document.getElementById("drawingno").style.display = "inline-block";
+        }
+        else {
+            document.getElementById("drawingno").style.display = "none";
+        }
+    });
+});
+</script>
+}
+<script>
+    function add() {
+        var text1 = document.getElementById("box").value;//获取ID为landNo文本框的值.
+        var text2 = document.getElementById("yearNo").value.trim();
+        var text3 = document.getElementById("boxID").value.trim();
+        //document.getElementById("boxNo").value = text1 + "字[" + text2 + "]第" + text3 + "号文件";
+        document.getElementById("boxNo").value = text2+"年"+text1+text3+"号";
+        //document.getElementById("archiveTitle").value = text1 + "字（" + text2 + "）第" + text3 + "号文件"+"\n";
+    }
+    //function fininsh() {
+    //    var msg = "是否确认完成该案卷录入";
+    //    if (confirm(msg) == true) {
+    //        return true;
+    //    } else {
+    //        return false;
+    //    }
+    //}
+    function xiayijuan() {
+        var msg = "是否确认添加下一卷";
+        if (confirm(msg) == true) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+    function del() {
+        var msg = "是否确认刪除";
+        if (confirm(msg) == true) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+    function choose() {
+        number = window.showModalDialog('./../OtherArchives/ZTree', 'dialogWidth=600px;dialogHeight=300px');
+        //弹出模型对话框，obj为传值参数,name为子页面返回参数
+        if (number == undefined) {
+            document.getElementById("box").value = null
+            document.getElementById("tishi").style.display = "block";
+        }
+        else {
+            document.getElementById("box").value = number;
+            document.getElementById("tishi").style.display = "none";
+        }
+
+    }
+    $(document).ready(function () {
+        $("#baocun").click(function () {
+
+
+            var ID1 = document.getElementById("ID").value;
+            var box1=document.getElementById("box").value;
+            var boxID1= document.getElementById("boxID").value;
+            var boxNo1 = document.getElementById("boxNo").value;
+           
+            var yearNo1 = document.getElementById("yearNo").value;
+            var classifyID1 = document.getElementById("classifyID").value;
+           
+            var archiveBoxCnt1 = document.getElementById("archiveBoxCnt").value;
+            var archiveBoxNo1 = document.getElementById("archiveBoxNo").value;
+          
+
+
+                $.ajax({
+                    type: "POST",
+                    url: "/PlanArchiveBoxes/baocun?name=baocun",
+                    contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
+                    data: { ID: ID1, box: box1, boxID: boxID1,yearNo:yearNo1, boxNo: boxNo1, archiveBoxCnt: archiveBoxCnt1, archiveBoxNo: archiveBoxNo1, classifyID: classifyID1 },
+                    dataType: "json",
+                    success: function (data) 
+                    {
+                     
+                     
+                       
+                        if (data == "2") {
+                            
+                            alert("数据错误，保存失败");
+                        }
+                        else
+                        {
+                            document.getElementById("ID").value = data;
+                          
+                            alert("保存成功!");
+                        }
+                   
+                    }
+                });
+            
+        });
+    });
+    $(document).ready(function () {
+        $("#luru").click(function () {
+         
+            document.getElementById("fengpi_anjuan").disabled =false;
+            document.getElementById("fengpi_beikaobiao").disabled=false; 
+            document.getElementById("fengpi_juanneimulu").disabled = false;
+            var ID1 = document.getElementById("ID").value;
+            $.ajax({
+                type: "POST",
+                url: "/PlanArchiveBoxes/luru",
+                contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
+                data: { ID: ID1},
+                dataType: "json",
+                success: function (data) {
+
+                  
+                }
+            });
+
+            
+        });
+    });
+    </script>
+@using (Html.BeginForm()) 
+{
+    @Html.AntiForgeryToken()
+    <div>
+        <p style="float:left;margin-top:15px;">
+            @Html.ActionLink("规划档案录入", "Create", new { classifyID = ViewBag.classifyID },new { @class = "dangqianzhuangtai" }) ->
+            @Html.ActionLink("待编号", "Index", new { status = "BH" , classifyID=ViewBag.classifyID }) ->
+            @Html.ActionLink("待归档", "Index", new { status = "GD", classifyID = ViewBag.classifyID }) ->
+            @Html.ActionLink("待入库", "Index", new { status = "SH", classifyID = ViewBag.classifyID }) ->
+            @Html.ActionLink("已入库", "Index", new { status = "RK", classifyID = ViewBag.classifyID }) ->
+            @Html.ActionLink("档案列表", "Index", new { classifyID = ViewBag.classifyID }) &nbsp;&nbsp;
+        </p>
+        <div style="clear:both"></div>
+    </div>
+    <div class="form-horizontal">
+
+        <input type="text" id="ID" name="ID" value="@ViewBag.ID" class="hidden" />
+        <input type="text" id="classifyID" name="classifyID" value="@ViewBag.classifyID" class="hidden" />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.classSeqNo)@*某个类别档案排序号*@
+        <div class="panel panel-default">
+            <table class="table table-bordered dl-horizontal" style="background-color:#f9f9f9;">
+
+                <tr>
+                    <td style="background-color:#f9f9f9;" width="10%">
+                        盒号
+                    </td>
+                    <td colspan="4">
+                        【@Html.EditorFor(model => model.yearNo, new { htmlAttributes = new { @class = "form-control1", @onblur = "add()", @style = "width:100px;" } }) 年
+                        <input type="text" id="box" name="box" value="@ViewBag.box" onblur="add()" @*onclick="choose()"*@style="width:180px;" class="form-control1" />@*数据库里并没有这个字段，为了方便录入合成盒号*@
+                        
+                       
+                        第 @Html.EditorFor(model => model.boxID, new { htmlAttributes = new { @class = "form-control1", @onblur = "add()", @style = "width:100px;" } })
+                        @Html.ValidationMessageFor(model => model.boxID, "", new { @class = "text-danger" })号文件
+                        <label id="tishi" style="display:none;color:crimson">盒号不能为空！</label>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="background-color:#f9f9f9;" width="10%">
+                        盒号
+                    </td>
+                    <td colspan="3">
+                        @Html.EditorFor(model => model.boxNo, new { htmlAttributes = new { @class = "form-control jubu" } })
+                        @Html.ValidationMessageFor(model => model.boxNo, "", new { @class = "text-danger" })
+                    </td>
+                    @*<td style="background-color:#f9f9f9;" width="10%">
+                        接收日期
+                    </td>
+                    <td>
+                        @Html.EditorFor(model => model.receiveTime, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.receiveTime, "", new { @class = "text-danger" })
+                    </td>*@
+                </tr>
+
+                @*<tr>
+                    <td style="background-color:#f9f9f9;" width="10%">
+                        档案馆代号
+                    </td>
+                    <td>
+                        @Html.EditorFor(model => model.archiveCode, new { htmlAttributes = new { @class = "form-control", @Value = "437402" } })
+                        @Html.ValidationMessageFor(model => model.archiveCode, "", new { @class = "text-danger" })
+                    </td>
+                    <td style="background-color:#f9f9f9;" width="10%">
+                        录入人
+                    </td>
+                    <td>
+                        @Html.EditorFor(model => model.lururen, new { htmlAttributes = new { @class = "form-control", @Value = @ViewBag.lururen,@readonly="readonly" } })
+                        @Html.ValidationMessageFor(model => model.lururen, "", new { @class = "text-danger" })
+                    </td>
+                    <td style="background-color:#f9f9f9;" width="10%">
+                        录入日期
+                    </td>
+                    <td>
+                        @Html.EditorFor(model => model.luruTime, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.luruTime, "", new { @class = "text-danger" })
+                    </td>
+                </tr>
+                <tr>
+                    <td style="background-color:#f9f9f9;">
+                        编制单位
+                    </td>
+                    <td colspan="3">
+                        @Html.EditorFor(model => model.bianzhiUnit, new { htmlAttributes = new { @class = "form-control jubu", @Value = "青岛市规划局" } })
+                        @Html.ValidationMessageFor(model => model.bianzhiUnit, "", new { @class = "text-danger" })
+                    </td>
+                    <td style="background-color:#f9f9f9;">
+                        编制日期
+                    </td>
+                    <td>
+                        @Html.EditorFor(model => model.bianzhiDate, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.bianzhiDate, "", new { @class = "text-danger" })
+                    </td>
+                </tr>
+                <tr>
+                    <td style="background-color:#f9f9f9;" width="10%" rowspan="2">
+                        案卷题名
+                    </td>
+                    <td rowspan="2">
+                        @Html.TextAreaFor(model => model.archiveTitle, 3, 500, new { @class = "form-control" } )
+                        @Html.ValidationMessageFor(model => model.archiveTitle, "", new { @class = "text-danger" })
+                    </td>
+                    <td style="background-color:#f9f9f9;">
+                        案卷类别序号
+                    </td>
+                    <td>
+                        @Html.EditorFor(model => model.classifyID, new { htmlAttributes = new { @class = "form-control", @Value = @ViewBag.classifyID, @readonly = "readonly" } })
+                        @Html.ValidationMessageFor(model => model.classifyID, "", new { @class = "text-danger" })
+                    </td>
+                    <td style="background-color:#f9f9f9;">
+                        案卷类别名称
+                    </td>
+                    <td>
+                        @Html.EditorFor(model => model.classify, new { htmlAttributes = new { @class = "form-control", @Value = @ViewBag.classify, @readonly = "readonly" } })
+                        @Html.ValidationMessageFor(model => model.classify, "", new { @class = "text-danger" })
+                    </td>
+                </tr>
+                <tr>
+                    <td style="background-color:#f9f9f9;">
+                        案卷厚度
+                    </td>
+                    <td>
+                        @Html.DropDownList("ArchiveThick",null, new { @class = "form-control" })
+                    </td>
+                    <td style="background-color:#f9f9f9;">
+                        档案密级
+                    </td>
+                    <td>
+                        @Html.DropDownList("securityID", null, new { @class = "form-control" })
+                    </td>
+                </tr>
+                <tr>
+                    <td style="background-color:#f9f9f9;">
+                        保管年限
+                    </td>
+                    <td>
+                        @Html.DropDownList("retentionPeriodID", null, new { @class = "form-control" })
+                    </td>
+                    <td style="background-color:#f9f9f9;">
+                        是否为异地
+                    </td>
+                    <td>
+                        @Html.DropDownList("isYD", null, new { @class = "form-control" })
+                    </td>
+                    
+                    <td style="background-color:#f9f9f9;">
+                        是否为内部
+                    </td>
+                    <td>
+                        @Html.DropDownList("isNeibu", null, new { @class = "form-control" })
+                    </td>
+
+                </tr>*@
+                <tr>
+                    <td style="background-color:#f9f9f9;text-align:center;" colspan="6">
+                        共 @Html.EditorFor(model => model.archiveBoxCnt, new { htmlAttributes = new { @class = "form-control1" } })
+                        @Html.ValidationMessageFor(model => model.archiveBoxCnt, "", new { @class = "text-danger" })卷,
+                        第 @Html.EditorFor(model => model.archiveBoxNo, new { htmlAttributes = new { @class = "form-control1" } })
+                        @Html.ValidationMessageFor(model => model.archiveBoxNo, "", new { @class = "text-danger" })卷
+                        @*共 @Html.EditorFor(model => model.pageCnt, new { htmlAttributes = new { @class = "form-control1" } })
+                        @Html.ValidationMessageFor(model => model.pageCnt, "", new { @class = "text-danger" })页,
+                        其中图纸 @Html.EditorFor(model => model.drawing, new { htmlAttributes = new { @class = "form-control1" } })
+                        @Html.ValidationMessageFor(model => model.drawing, "", new { @class = "text-danger" })页<br>*@
+                        <label id="totaljuan" style="display:none;color:crimson">总卷数不能为空！</label>
+                        <label id="juanshu" style="display:none;color:crimson">卷数不能为空！</label>
+                        <label id="total" style="display:none;color:crimson">总页数不能为空！</label>
+                        <label id="drawingno" style="display:none;color:crimson">图纸页数不能为空！</label>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <div style="text-align:center;">
+            <p>
+                <div>
+                    <input type="button" name="baocun" id="baocun" value="提交" class="btn btn-default" />
+                    <input type="submit" name="action" value="录入该卷工程" class="btn btn-default"   @*disabled=@ViewData["button"]*@/>
+                    @*<input type="submit" name="action" value="删除该案卷" class="btn btn-default" disabled=@ViewData["button"] onclick="return del()" />*@
+                    <input type="button" id="luru" name="luru" value="录入完毕" class="btn btn-default" @*disabled=@ViewData["button"]*@ @*onclick="return fininsh()"*@ />
+                    <input type="submit" name="action" value="添加下一卷" class="btn btn-default" @*disabled=@ViewData["next"]*@ onclick="return xiayijuan()" />
+                    @*@Html.ActionLink("返回案卷列表", "Index", new { classifyID = @ViewBag.classifyID }, new { @class = "btn btn-default" })*@
+                    <div @*style="@ViewData["div1"]"*@>
+                        @*<input type="submit" id="fengpi_anjuan" name="action" value="打印案卷封皮" class="btn btn-default" disabled="disabled" />*@
+                        @*<input type="submit" name="action" value="打印案卷（工程）封皮" class="btn btn-default" disabled="@ViewData["fengpi"]" />
+                        <input type="submit" name="action" value="打印工程封皮" class="btn btn-default" disabled="@ViewData["fengpi"]" />*@
+                        @*<input type="submit" id="fengpi_beikaobiao" name="action" value="打印备考表" class="btn btn-default" disabled="disabled" />*@
+                        <input type="submit" id="fengpi_juanneimulu" name="action" value="打印工程目录" class="btn btn-default" disabled="disabled" />
+                    </div>
+                </div>
+            </p>
+        </div>
+
+
+
+
+
+    </div>
+}
+

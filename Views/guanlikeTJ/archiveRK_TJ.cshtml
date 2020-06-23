@@ -1,0 +1,66 @@
+﻿
+@{
+    ViewBag.Title = "archiveRK_TJ";
+}
+
+<h2><i class="fa fa-tags"></i>档案入库统计</h2>
+<hr />
+
+@section css{
+    <link type="text/css" rel="stylesheet" href="~/Scripts/jquery/jquery-ui.css">
+}
+@section scripts{
+    <script type="text/javascript" src="~/Scripts/jquery/jquery-1.8.3.js"></script>
+    <script type="text/javascript" src="~/Scripts/jquery/jquery.ui.core.js"></script>
+    <script type="text/javascript" src="~/Scripts/jquery/jquery.ui.datepicker.js"></script>
+    <script type="text/javascript" src="~/Scripts/jquery/jquery.ui.widget.js"></script>
+    <script type="text/javascript" src="~/Scripts/jquery/jquery-ui-timepicker-addon.js"></script>
+    @*<script type="text/javascript" src="~/Scripts/jquery/jquery-ui-timepicker-zh-CN.js"></script>*@
+    <script>
+        $(function () {
+            $("#startdata").datepicker({
+                changeMonth: true,
+                changeYear: true
+            });
+        });
+        $(function () {
+            $("#enddata").datepicker({
+                changeMonth: true,
+                changeYear: true
+            });
+        });
+        
+    </script>
+}
+@using (Html.BeginForm())
+{
+    <div style="font-size:20px;">
+        <i class="fa fa-caret-right" style="padding-right:5px;"></i>请输入接收时间
+    </div><br>
+    <div class="panel panel-default">
+        <table class="table table-bordered dl-horizontal">
+           
+            <tr>
+                <td style="background-color:#f9f9f9;width:10%;">
+                    起始日期:
+                </td>
+                <td>
+                    <input type="text" id="startdata" name="startdata" class="form-control">
+                </td>
+                <td style="background-color:#f9f9f9;width:10%;">
+                    终止日期:
+                </td>
+                <td>
+                    <input type="text" id="enddata" name="enddata" class="form-control">
+                </td>
+            </tr>
+            <tr>
+                <td colspan="4" style="text-align:center;">
+                    <input type="submit" id="ok" value="查看统计结果" name="action" class="btn btn-default" />
+                </td>
+
+            </tr>
+        </table>
+    </div>
+
+}

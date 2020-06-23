@@ -1,0 +1,104 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="zhizhaofengpiDataSet" targetNamespace="http://tempuri.org/zhizhaofengpiDataSet.xsd" xmlns:mstns="http://tempuri.org/zhizhaofengpiDataSet.xsd" xmlns="http://tempuri.org/zhizhaofengpiDataSet.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections>
+          <Connection AppSettingsObjectName="Web.config" AppSettingsPropertyName="UrbanConConnectionString" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="UrbanConConnectionString (Web.config)" ParameterPrefix="@" PropertyReference="AppConfig.System.Configuration.ConfigurationManager.0.ConnectionStrings.UrbanConConnectionString.ConnectionString" Provider="System.Data.SqlClient" />
+        </Connections>
+        <Tables>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="vw_LicenceArchivesForPrintTableAdapter" GeneratorDataComponentClassName="vw_LicenceArchivesForPrintTableAdapter" Name="vw_LicenceArchivesForPrint" UserDataComponentName="vw_LicenceArchivesForPrintTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="UrbanConConnectionString (Web.config)" DbObjectName="UrbanCon.dbo.vw_LicenceArchivesForPrint" DbObjectType="View" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>SELECT securityName, retentionPeriodName, registrationNo, volNo, archiveTitle, bianzhiUnit, bianzhiTime, count, textMaterial, drawing FROM dbo.vw_LicenceArchivesForPrint</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="securityName" DataSetColumn="securityName" />
+              <Mapping SourceColumn="retentionPeriodName" DataSetColumn="retentionPeriodName" />
+              <Mapping SourceColumn="registrationNo" DataSetColumn="registrationNo" />
+              <Mapping SourceColumn="volNo" DataSetColumn="volNo" />
+              <Mapping SourceColumn="archiveTitle" DataSetColumn="archiveTitle" />
+              <Mapping SourceColumn="bianzhiUnit" DataSetColumn="bianzhiUnit" />
+              <Mapping SourceColumn="bianzhiTime" DataSetColumn="bianzhiTime" />
+              <Mapping SourceColumn="count" DataSetColumn="count" />
+              <Mapping SourceColumn="textMaterial" DataSetColumn="textMaterial" />
+              <Mapping SourceColumn="drawing" DataSetColumn="drawing" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+        </Tables>
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="zhizhaofengpiDataSet" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="True" msprop:Generator_DataSetName="zhizhaofengpiDataSet" msprop:Generator_UserDSName="zhizhaofengpiDataSet">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="vw_LicenceArchivesForPrint" msprop:Generator_TableClassName="vw_LicenceArchivesForPrintDataTable" msprop:Generator_TableVarName="tablevw_LicenceArchivesForPrint" msprop:Generator_TablePropName="vw_LicenceArchivesForPrint" msprop:Generator_RowDeletingName="vw_LicenceArchivesForPrintRowDeleting" msprop:Generator_RowChangingName="vw_LicenceArchivesForPrintRowChanging" msprop:Generator_RowEvHandlerName="vw_LicenceArchivesForPrintRowChangeEventHandler" msprop:Generator_RowDeletedName="vw_LicenceArchivesForPrintRowDeleted" msprop:Generator_UserTableName="vw_LicenceArchivesForPrint" msprop:Generator_RowChangedName="vw_LicenceArchivesForPrintRowChanged" msprop:Generator_RowEvArgName="vw_LicenceArchivesForPrintRowChangeEvent" msprop:Generator_RowClassName="vw_LicenceArchivesForPrintRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="securityName" msprop:Generator_ColumnVarNameInTable="columnsecurityName" msprop:Generator_ColumnPropNameInRow="securityName" msprop:Generator_ColumnPropNameInTable="securityNameColumn" msprop:Generator_UserColumnName="securityName">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="10" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="retentionPeriodName" msprop:Generator_ColumnVarNameInTable="columnretentionPeriodName" msprop:Generator_ColumnPropNameInRow="retentionPeriodName" msprop:Generator_ColumnPropNameInTable="retentionPeriodNameColumn" msprop:Generator_UserColumnName="retentionPeriodName">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="10" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="registrationNo" msprop:Generator_ColumnVarNameInTable="columnregistrationNo" msprop:Generator_ColumnPropNameInRow="registrationNo" msprop:Generator_ColumnPropNameInTable="registrationNoColumn" msprop:Generator_UserColumnName="registrationNo" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="15" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="volNo" msprop:Generator_ColumnVarNameInTable="columnvolNo" msprop:Generator_ColumnPropNameInRow="volNo" msprop:Generator_ColumnPropNameInTable="volNoColumn" msprop:Generator_UserColumnName="volNo" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="10" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="archiveTitle" msprop:Generator_ColumnVarNameInTable="columnarchiveTitle" msprop:Generator_ColumnPropNameInRow="archiveTitle" msprop:Generator_ColumnPropNameInTable="archiveTitleColumn" msprop:Generator_UserColumnName="archiveTitle" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="250" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="bianzhiUnit" msprop:Generator_ColumnVarNameInTable="columnbianzhiUnit" msprop:Generator_ColumnPropNameInRow="bianzhiUnit" msprop:Generator_ColumnPropNameInTable="bianzhiUnitColumn" msprop:Generator_UserColumnName="bianzhiUnit" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="30" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="bianzhiTime" msprop:Generator_ColumnVarNameInTable="columnbianzhiTime" msprop:Generator_ColumnPropNameInRow="bianzhiTime" msprop:Generator_ColumnPropNameInTable="bianzhiTimeColumn" msprop:Generator_UserColumnName="bianzhiTime" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="100" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="count" msprop:Generator_ColumnVarNameInTable="columncount" msprop:Generator_ColumnPropNameInRow="count" msprop:Generator_ColumnPropNameInTable="countColumn" msprop:Generator_UserColumnName="count" type="xs:int" minOccurs="0" />
+              <xs:element name="textMaterial" msprop:Generator_ColumnVarNameInTable="columntextMaterial" msprop:Generator_ColumnPropNameInRow="textMaterial" msprop:Generator_ColumnPropNameInTable="textMaterialColumn" msprop:Generator_UserColumnName="textMaterial" type="xs:int" minOccurs="0" />
+              <xs:element name="drawing" msprop:Generator_ColumnVarNameInTable="columndrawing" msprop:Generator_ColumnPropNameInRow="drawing" msprop:Generator_ColumnPropNameInTable="drawingColumn" msprop:Generator_UserColumnName="drawing" type="xs:int" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

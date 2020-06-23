@@ -1,0 +1,14 @@
+﻿
+@{
+    ViewBag.Title = "收费驳回原因";
+}
+
+<h2>收费驳回原因</h2>
+@using (Html.BeginForm())
+{
+
+    <label>收费编号：</label><input type="text" id="seqNo" name="seqNo" value="@ViewBag.seq" class="form-control"readonly="readonly">
+    <label>驳回原因：</label><input type="text" id="result" name="result"  class="form-control">
+    <input type="submit" name="action" id="ok" value="驳回" class="btn btn-default">
+    <input type="submit" name="action" id="quxiao" value="取消" class="btn btn-default">
+}

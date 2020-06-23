@@ -1,0 +1,169 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="chushenyijianDataSet" targetNamespace="http://tempuri.org/chushenyijianDataSet.xsd" xmlns:mstns="http://tempuri.org/chushenyijianDataSet.xsd" xmlns="http://tempuri.org/chushenyijianDataSet.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections>
+          <Connection AppSettingsObjectName="Web.config" AppSettingsPropertyName="UrbanConConnectionString" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="UrbanConConnectionString (Web.config)" ParameterPrefix="@" PropertyReference="AppConfig.System.Configuration.ConfigurationManager.0.ConnectionStrings.UrbanConConnectionString.ConnectionString" Provider="System.Data.SqlClient" />
+        </Connections>
+        <Tables>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="PaperArchivesTableAdapter" GeneratorDataComponentClassName="PaperArchivesTableAdapter" Name="PaperArchives" UserDataComponentName="PaperArchivesTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="UrbanConConnectionString (Web.config)" DbObjectName="UrbanCon.dbo.PaperArchives" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>SELECT projectNo, submitPerson, dateReceived, qjdyYear, qjdyNo, csyj, csyjPerson, csyjDate, fzryj, fzryjPerson, fzryjDate, zgyj, zgyjDate FROM dbo.PaperArchives</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="projectNo" DataSetColumn="projectNo" />
+              <Mapping SourceColumn="submitPerson" DataSetColumn="submitPerson" />
+              <Mapping SourceColumn="dateReceived" DataSetColumn="dateReceived" />
+              <Mapping SourceColumn="qjdyYear" DataSetColumn="qjdyYear" />
+              <Mapping SourceColumn="qjdyNo" DataSetColumn="qjdyNo" />
+              <Mapping SourceColumn="csyj" DataSetColumn="csyj" />
+              <Mapping SourceColumn="csyjPerson" DataSetColumn="csyjPerson" />
+              <Mapping SourceColumn="csyjDate" DataSetColumn="csyjDate" />
+              <Mapping SourceColumn="fzryj" DataSetColumn="fzryj" />
+              <Mapping SourceColumn="fzryjPerson" DataSetColumn="fzryjPerson" />
+              <Mapping SourceColumn="fzryjDate" DataSetColumn="fzryjDate" />
+              <Mapping SourceColumn="zgyj" DataSetColumn="zgyj" />
+              <Mapping SourceColumn="zgyjDate" DataSetColumn="zgyjDate" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="ProjectInfoTableAdapter" GeneratorDataComponentClassName="ProjectInfoTableAdapter" Name="ProjectInfo" UserDataComponentName="ProjectInfoTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="UrbanConConnectionString (Web.config)" DbObjectName="UrbanCon.dbo.ProjectInfo" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>SELECT projectName, developmentOrganization, constructionOrganization, telphoneNoConstruction FROM dbo.ProjectInfo</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="projectName" DataSetColumn="projectName" />
+              <Mapping SourceColumn="developmentOrganization" DataSetColumn="developmentOrganization" />
+              <Mapping SourceColumn="constructionOrganization" DataSetColumn="constructionOrganization" />
+              <Mapping SourceColumn="telphoneNoConstruction" DataSetColumn="telphoneNoConstruction" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+        </Tables>
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="chushenyijianDataSet" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="True" msprop:Generator_DataSetName="chushenyijianDataSet" msprop:Generator_UserDSName="chushenyijianDataSet">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="PaperArchives" msprop:Generator_TableClassName="PaperArchivesDataTable" msprop:Generator_TableVarName="tablePaperArchives" msprop:Generator_TablePropName="PaperArchives" msprop:Generator_RowDeletingName="PaperArchivesRowDeleting" msprop:Generator_RowChangingName="PaperArchivesRowChanging" msprop:Generator_RowEvHandlerName="PaperArchivesRowChangeEventHandler" msprop:Generator_RowDeletedName="PaperArchivesRowDeleted" msprop:Generator_UserTableName="PaperArchives" msprop:Generator_RowChangedName="PaperArchivesRowChanged" msprop:Generator_RowEvArgName="PaperArchivesRowChangeEvent" msprop:Generator_RowClassName="PaperArchivesRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="projectNo" msprop:Generator_ColumnVarNameInTable="columnprojectNo" msprop:Generator_ColumnPropNameInRow="projectNo" msprop:Generator_ColumnPropNameInTable="projectNoColumn" msprop:Generator_UserColumnName="projectNo" type="xs:long" minOccurs="0" />
+              <xs:element name="submitPerson" msprop:Generator_ColumnVarNameInTable="columnsubmitPerson" msprop:Generator_ColumnPropNameInRow="submitPerson" msprop:Generator_ColumnPropNameInTable="submitPersonColumn" msprop:Generator_UserColumnName="submitPerson" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="10" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="dateReceived" msprop:Generator_ColumnVarNameInTable="columndateReceived" msprop:Generator_ColumnPropNameInRow="dateReceived" msprop:Generator_ColumnPropNameInTable="dateReceivedColumn" msprop:Generator_UserColumnName="dateReceived" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="qjdyYear" msprop:Generator_ColumnVarNameInTable="columnqjdyYear" msprop:Generator_ColumnPropNameInRow="qjdyYear" msprop:Generator_ColumnPropNameInTable="qjdyYearColumn" msprop:Generator_UserColumnName="qjdyYear" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="4" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="qjdyNo" msprop:Generator_ColumnVarNameInTable="columnqjdyNo" msprop:Generator_ColumnPropNameInRow="qjdyNo" msprop:Generator_ColumnPropNameInTable="qjdyNoColumn" msprop:Generator_UserColumnName="qjdyNo" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="4" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="csyj" msprop:Generator_ColumnVarNameInTable="columncsyj" msprop:Generator_ColumnPropNameInRow="csyj" msprop:Generator_ColumnPropNameInTable="csyjColumn" msprop:Generator_UserColumnName="csyj" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="100" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="csyjPerson" msprop:Generator_ColumnVarNameInTable="columncsyjPerson" msprop:Generator_ColumnPropNameInRow="csyjPerson" msprop:Generator_ColumnPropNameInTable="csyjPersonColumn" msprop:Generator_UserColumnName="csyjPerson" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="csyjDate" msprop:Generator_ColumnVarNameInTable="columncsyjDate" msprop:Generator_ColumnPropNameInRow="csyjDate" msprop:Generator_ColumnPropNameInTable="csyjDateColumn" msprop:Generator_UserColumnName="csyjDate" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="fzryj" msprop:Generator_ColumnVarNameInTable="columnfzryj" msprop:Generator_ColumnPropNameInRow="fzryj" msprop:Generator_ColumnPropNameInTable="fzryjColumn" msprop:Generator_UserColumnName="fzryj" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="300" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="fzryjPerson" msprop:Generator_ColumnVarNameInTable="columnfzryjPerson" msprop:Generator_ColumnPropNameInRow="fzryjPerson" msprop:Generator_ColumnPropNameInTable="fzryjPersonColumn" msprop:Generator_UserColumnName="fzryjPerson" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="10" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="fzryjDate" msprop:Generator_ColumnVarNameInTable="columnfzryjDate" msprop:Generator_ColumnPropNameInRow="fzryjDate" msprop:Generator_ColumnPropNameInTable="fzryjDateColumn" msprop:Generator_UserColumnName="fzryjDate" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="zgyj" msprop:Generator_ColumnVarNameInTable="columnzgyj" msprop:Generator_ColumnPropNameInRow="zgyj" msprop:Generator_ColumnPropNameInTable="zgyjColumn" msprop:Generator_UserColumnName="zgyj" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="100" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="zgyjDate" msprop:Generator_ColumnVarNameInTable="columnzgyjDate" msprop:Generator_ColumnPropNameInRow="zgyjDate" msprop:Generator_ColumnPropNameInTable="zgyjDateColumn" msprop:Generator_UserColumnName="zgyjDate" type="xs:dateTime" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="ProjectInfo" msprop:Generator_TableClassName="ProjectInfoDataTable" msprop:Generator_TableVarName="tableProjectInfo" msprop:Generator_TablePropName="ProjectInfo" msprop:Generator_RowDeletingName="ProjectInfoRowDeleting" msprop:Generator_RowChangingName="ProjectInfoRowChanging" msprop:Generator_RowEvHandlerName="ProjectInfoRowChangeEventHandler" msprop:Generator_RowDeletedName="ProjectInfoRowDeleted" msprop:Generator_UserTableName="ProjectInfo" msprop:Generator_RowChangedName="ProjectInfoRowChanged" msprop:Generator_RowEvArgName="ProjectInfoRowChangeEvent" msprop:Generator_RowClassName="ProjectInfoRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="projectName" msprop:Generator_ColumnVarNameInTable="columnprojectName" msprop:Generator_ColumnPropNameInRow="projectName" msprop:Generator_ColumnPropNameInTable="projectNameColumn" msprop:Generator_UserColumnName="projectName" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="500" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="developmentOrganization" msprop:Generator_ColumnVarNameInTable="columndevelopmentOrganization" msprop:Generator_ColumnPropNameInRow="developmentOrganization" msprop:Generator_ColumnPropNameInTable="developmentOrganizationColumn" msprop:Generator_UserColumnName="developmentOrganization" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="100" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="constructionOrganization" msprop:Generator_ColumnVarNameInTable="columnconstructionOrganization" msprop:Generator_ColumnPropNameInRow="constructionOrganization" msprop:Generator_ColumnPropNameInTable="constructionOrganizationColumn" msprop:Generator_UserColumnName="constructionOrganization" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="100" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="telphoneNoConstruction" msprop:Generator_ColumnVarNameInTable="columntelphoneNoConstruction" msprop:Generator_ColumnPropNameInRow="telphoneNoConstruction" msprop:Generator_ColumnPropNameInTable="telphoneNoConstructionColumn" msprop:Generator_UserColumnName="telphoneNoConstruction" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="12" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

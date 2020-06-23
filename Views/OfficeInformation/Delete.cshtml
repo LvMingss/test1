@@ -1,0 +1,71 @@
+﻿@model urban_archive.Models.InformationContent
+
+@{
+    ViewBag.Title = "删除信息";
+}
+
+<h2>删除信息</h2>
+
+<h3>你是否确认删除该信息?</h3>
+<div>
+   <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            标题
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.title)
+        </dd>
+
+        <dt>
+            作者
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.author)
+        </dd>
+
+        <dt>
+            发布日期
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.date)
+        </dd>
+
+        <dt>
+           内容
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.content)
+        </dd>
+
+        <dt>
+            文件名
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.filename)
+        </dd>
+
+        <dt>
+            类别
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.InformationSubCategory.Name)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="删除" class="btn btn-default" /> |
+            @Html.ActionLink("返回", "Index")
+        </div>
+    }
+</div>

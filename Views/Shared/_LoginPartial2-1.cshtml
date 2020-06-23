@@ -1,0 +1,100 @@
+﻿@using Microsoft.AspNet.Identity
+@if (HttpContext.Current.User.IsInRole("业务科") && HttpContext.Current.User.IsInRole("高级用户"))
+{
+    <ul>
+        <li><a href="#" data-target=".jungongdangan-menu" class="nav-header " data-toggle="collapse"><i class="fa fa-fw fa-dashboard"></i> 竣工档案 <i class="fa fa-collapse"></i></a></li>
+        <li>
+            <ul class="jungongdangan-menu nav @*nav-list*@ collapse in">
+                <li><a href="#jg-qianqicailiao-menu" class="nav-header collapsed" data-toggle="collapse"><i class="fa fa-fw fa-legal" style="padding-left:10px;"></i> 前期材料 <i class="fa fa-collapse"></i></a></li>
+                <li>
+                    <ul id="jg-qianqicailiao-menu" class="nav nav-list collapse @*in*@">
+                        <li><a href="http://localhost:59320/ContractInfoes/Create"><span class="fa fa-caret-right" style="padding-left:18px;"></span> 签订移交责任书</a></li>
+                        <li><a href="http://localhost:59320/ContractInfoes/Index"><span class="fa fa-caret-right" style="padding-left:18px;"></span> 移交责任书管理</a></li>
+                    </ul>
+                </li>
+
+
+                <li><a href="#jg-gongchengjieshou-menu" class="nav-header collapsed" data-toggle="collapse"><i class="fa fa-fw fa-legal" style="padding-left:10px;"></i> 工程接收<i class="fa fa-collapse"></i></a></li>
+                <li>
+                    <ul id="jg-gongchengjieshou-menu" class="nav nav-list collapse in">
+                        <li><a href="http://localhost:59320/ContractInfoes/Index"><span class="fa fa-caret-right" style="padding-left:18px;"></span> 从责任书录入工程</a></li>
+                        <li class="active"><a href="http://localhost:59320/ProjectInfoes/Create"><span class="fa fa-caret-right" style="padding-left:18px;"></span><font color="#0066CC"> 直接录入工程</font></a></li>
+                        <li><a href="/ProjectInfoes/ManagementPrint"><span class="fa fa-caret-right" style="padding-left:18px;"></span> 工程管理与打印</a></li>
+                    </ul>
+                </li>
+
+
+
+                <li><a href="#" data-target=".jg-gongchengshoufei-menu" class="nav-header collapsed" data-toggle="collapse"><i class="fa fa-fw fa-legal" style="padding-left:10px;"></i> 工程收费<i class="fa fa-collapse"></i></a></li>
+                <li>
+                    <ul class="jg-gongchengshoufei-menu nav nav-list collapse">
+                        <li><a href="http://localhost:59320/ProjectCharge/Create"><span class="fa fa-caret-right" style="padding-left:18px;"></span> 收费查询</a></li>
+                        <li><a href="http://localhost:59320/ProjectCharge/projectchargeindex"><span class="fa fa-caret-right" style="padding-left:18px;"></span> 工程收费</a></li>
+
+                    </ul>
+                </li>
+
+                <li><a href="#" data-target=".jg-danganzhengli-menu" class="nav-header collapsed" data-toggle="collapse"><i class="fa fa-fw fa-legal" style="padding-left:10px;"></i> 档案整理<i class="fa fa-collapse"></i></a></li>
+                <li>
+                    <ul class="jg-danganzhengli-menu nav nav-list collapse">
+                        <li><a href="http://localhost:59320/PaperSettle/linquzhengli"><span class="fa fa-caret-right" style="padding-left:18px;"></span> 档案领取</a></li>
+                        <li><a href="http://localhost:59320/PaperSettle/informationzhengli"><span class="fa fa-caret-right" style="padding-left:18px;"></span> 整理信息</a></li>
+                        <li><a href="http://localhost:59320/PaperSettle/waitcode"><span class="fa fa-caret-right" style="padding-left:18px;"></span> 等待编号</a></li>
+                        <li><a href="terms-and-conditions.html"><span class="fa fa-caret-right" style="padding-left:18px;"></span> 整理统计</a></li>
+                    </ul>
+                </li>
+
+                <li><a href="#" data-target=".jg-danganbianhao-menu" class="nav-header collapsed" data-toggle="collapse"><i class="fa fa-fw fa-legal" style="padding-left:10px;"></i> 档案编号<i class="fa fa-collapse"></i></a></li>
+                <li>
+                    <ul class="jg-danganbianhao-menu nav nav-list collapse">
+                        <li><a href="http://localhost:59320/ArchivesCode/ClassCode"><span class="fa fa-caret-right" style="padding-left:18px;"></span> 分类编号</a></li>
+                        <li><a href="http://localhost:59320/ArchivesCode/CodeEdit"><span class="fa fa-caret-right" style="padding-left:18px;"></span> 编号修改</a></li>
+                        <li><a href="http://localhost:59320/ArchivesCode/CodeManagement"><span class="fa fa-caret-right" style="padding-left:18px;"></span> 分类管理</a></li>
+
+
+                    </ul>
+                </li>
+
+                <li><a href="#" data-target=".jg-danganluru-menu" class="nav-header collapsed" data-toggle="collapse"><i class="fa fa-fw fa-legal" style="padding-left:10px;"></i> 档案录入<i class="fa fa-collapse"></i></a></li>
+                <li>
+                    <ul class="jg-danganluru-menu nav nav-list collapse">
+                        <li><a href="http://localhost:59320/ArchivesEnter/ArchiveEnter"><span class="fa fa-caret-right" style="padding-left:18px;"></span> 案卷录入</a></li>
+                        <li><a href="http://localhost:59320/ArchivesEnter/WaitStorage"><span class="fa fa-caret-right" style="padding-left:18px;"></span> 等待入库</a></li>
+                        <li><a href="privacy-policy.html"><span class="fa fa-caret-right" style="padding-left:18px;"></span> 案卷录入统计表</a></li>
+                        <li><a href="terms-and-conditions.html"><span class="fa fa-caret-right" style="padding-left:18px;"></span> 案卷增删改</a></li>
+                    </ul>
+                </li>
+
+                <li><a href="#" data-target=".jg-danganguanli-menu" class="nav-header collapsed" data-toggle="collapse"><i class="fa fa-fw fa-legal" style="padding-left:10px;"></i> 档案管理<i class="fa fa-collapse"></i></a></li>
+                <li>
+                    <ul class="jg-danganguanli-menu nav nav-list collapse">
+                        <li><a href="privacy-policy.html"><span class="fa fa-caret-right" style="padding-left:18px;"></span> 工程管理</a></li>
+                        <li><a href="http://localhost:59320/ArchiveManagement/ArchiveMaga"><span class="fa fa-caret-right" style="padding-left:18px;"></span> 档案管理</a></li>
+                        <li><a href="privacy-policy.html"><span class="fa fa-caret-right" style="padding-left:18px;"></span> 卷内目录管理</a></li>
+                    </ul>
+                </li>
+                <li><a href="#" data-target=".jg-houqicailiao-menu" class="nav-header collapsed" data-toggle="collapse"><i class="fa fa-fw fa-legal" style="padding-left:10px;"></i> 后期材料<i class="fa fa-collapse"></i></a></li>
+                <li>
+                    <ul class="jg-houqicailiao-menu nav nav-list collapse">
+                        <li><a href="http://localhost:59320/LaterMaterials/MeterialsSend"><span class="fa fa-caret-right" style="padding-left:18px;"></span> 材料发放</a></li>
+
+                    </ul>
+                </li>
+                <li><a href="#" data-target=".jg-tongjijiansuo-menu" class="nav-header collapsed" data-toggle="collapse"><i class="fa fa-fw fa-legal" style="padding-left:10px;"></i> 统计检索<i class="fa fa-collapse"></i></a></li>
+                <li>
+                    <ul class="jg-tongjijiansuo-menu nav nav-list collapse">
+                        <li><a href="http://localhost:59320/StatisticalAndRetrieval/AllArchives"><span class="fa fa-caret-right" style="padding-left:18px;"></span> 全部档案</a></li>
+                        <li><a href="privacy-policy.html"><span class="fa fa-caret-right" style="padding-left:18px;"></span> 统计分析</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </li>
+    </ul>
+}
+@if (HttpContext.Current.User.IsInRole("信息管理科") && HttpContext.Current.User.IsInRole("科长"))
+{
+
+}
+
+
+

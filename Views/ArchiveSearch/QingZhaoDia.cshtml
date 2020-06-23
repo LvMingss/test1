@@ -1,0 +1,153 @@
+﻿<script type="text/javascript" src="~/Scripts/jquery/jquery-1.8.3.js"></script>
+<script type="text/javascript" src="~/Scripts/jquery/jquery.ui.core.js"></script>
+<script type="text/javascript" src="~/Scripts/jquery/jquery.ui.datepicker.js"></script>
+<script type="text/javascript" src="~/Scripts/jquery/jquery.ui.widget.js"></script>
+<script type="text/javascript" src="~/Scripts/jquery/jquery-ui-timepicker-addon.js"></script>
+<script type="text/javascript">
+
+    function right() {
+        var number = document.getElementById("choose").value;
+        if (number=="")
+        {
+            alert("请照种类不能为空");
+
+        }
+        window.returnValue = number;
+
+       window.close();
+
+    }
+    function Tian() {
+
+
+
+        if(zhizhazohArchive.checked==true)
+        {
+            document.getElementById("choose").value += "1-执照档案,";
+        }
+        else {
+
+            deleitem("1-执照档案");
+        }
+
+
+
+    }
+
+    function Tian1() {
+
+
+
+
+        if (daoluArchive.checked== true)
+        {
+            document.getElementById("choose").value +="2-道路档案," ;
+        }
+        else {
+
+            deleitem("2-道路档案");
+        }
+
+    }
+    function Tian2() {
+
+
+
+        if (fenleiArchive.checked==true) {
+            document.getElementById("choose").value += "3-分类档案,";
+        }
+        else {
+
+            deleitem("3-分类档案");
+        }
+
+
+    }
+    function Tian3() {
+
+
+
+
+        if (jiufenArchive.checked== true) {
+            document.getElementById("choose").value += "4-图纸档案,";
+        }
+        else {
+
+            deleitem("4-图纸档案");
+        }
+
+    }
+    function Error() {
+
+
+
+
+
+        document.getElementById("message").value = "请照种类不能为空";
+
+
+    }
+  
+    function deleitem(item) {
+
+        var arr = new Array();
+        arr = document.getElementById('choose').value.split(',');
+        document.getElementById('choose').value = "";
+        for (var i = 0; i < arr.length - 1; i++) {
+
+
+            if (arr[i] == item) {
+                arr[i] = "";
+            }
+            if (arr[i] != "") {
+
+                document.getElementById('choose').value = document.getElementById('choose').value + arr[i] + ",";
+            }
+        }
+
+    }
+</script>
+
+<div style="text-align:center">
+    <input type="text" id="choose" name="choose" style="width:140px;">
+    <input type="button" id="queding" name="action" value="确定" class="btn btn-default" style="padding-bottom:2px;padding-top:2px;" onclick="right();">
+    <input name="message" id="message" style="background: transparent;border:none;color:red;font-size:16px">
+</div>
+<div class="panel panel-default">
+    <table class="table table-bordered table-striped" style="text-align:center">
+        <tr>
+            <td>
+                执照档案
+                <input type="checkbox" ID="zhizhazohArchive" name="zhizhazohArchive" onclick="javascript:Tian()" />
+            </td>
+        </tr>
+        <tr>
+            <td>
+                道路档案
+                <input type="checkbox" ID="daoluArchive" name="daoluArchive" onclick="javascript:Tian1()" />
+            </td>
+        </tr>
+        <tr>
+            <td>
+                分类档案
+                <input type="checkbox" ID="fenleiArchive" name="fenleiArchive" onclick="javascript:Tian2()" />
+            </td>
+        </tr>
+        <tr>
+            <td>
+                图纸档案
+                <input type="checkbox" ID="jiufenArchive" name="jiufenArchive" onclick="javascript:Tian3()" />
+            </td>
+        </tr>
+    </table>
+</div>
+        
+         @*<legend style="background:#efefef;">请选择请照档案种类</legend>*@
+
+        
+        
+
+
+
+        
+

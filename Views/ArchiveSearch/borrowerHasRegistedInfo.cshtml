@@ -1,0 +1,229 @@
+﻿
+@{
+    Layout = null;
+}
+
+<link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
+<link href="~/Content/jquery-ui.theme.css" rel="stylesheet" />
+<link href="~/Content/Tabulator/tabulator.css" rel="stylesheet" />
+@*<link href="~/Content/bootstrap.css" rel="stylesheet" />*@
+<script src="~/Scripts/jquery-2.1.1.min.js" type="text/javascript"></script>
+<script src="~/Scripts/jquery-ui.min.js"></script>
+<script src="~/Content/Tabulator/tabulator.js"></script>
+<script type="text/javascript">
+
+    var n = function (value, data, cell, row, options) { //plain text value
+        return "<span style='color:#428bca;'>选择</span> "
+    };
+    
+
+
+    $().ready(function () {//在页面加载完成之后用，为了保证js能完整的执行。
+    
+        $(document).ready(function () {
+            var height = $(window).height();
+            var a = $(window).height();
+            var hh = a-100;
+            $(".box-h").height(hh)  // 高度加在类名为box的DIV 上
+
+        })
+        $("#example-table-2").tabulator({
+            height: "100%",
+            selectable:true, //make rows selectable
+            sortable: false,
+            pagination:"local",
+            paginationSize:50,
+
+
+            columns: [
+                { title:"选择借阅人", field: "f", width: 100,formatter: n, align: "center",sorter: "string", onClick: function (e, val, cell, row)
+                {
+                    
+                    //$("#checkname").val(row.a);
+                    //var checkname=document.getElementById("checkname").value;
+                    parent.window.returnValue =row.a;
+                    window.close();
+                    //var action="选择借阅人";
+                    //window.location.href='/ArchiveSearch/borrowerHasRegistedInfo/?action='+action+"&checkname="+checkname;
+                    
+
+                   }
+                },
+                
+                { title: "借阅人ID", field: "a", width: 100, onClick: function(e, val, cell, row) { parent.window.returnValue = row.a; window.close();} },
+                { title: "借阅人姓名", field: "b", width: 100, onClick: function(e, val, cell, row) { parent.window.returnValue = row.a; window.close();} },
+                { title: "借阅日期", field: "c", width: 100, onClick: function(e, val, cell, row) { parent.window.returnValue = row.a; window.close();}},
+                { title: "借阅单位", field: "d",width: 100, onClick: function(e, val, cell, row) { parent.window.returnValue = row.a; window.close();} },
+                { title: "单位/个人", field: "e", width: 500, onClick: function(e, val, cell, row) { parent.window.returnValue = row.a; window.close();} },
+
+                ],
+
+            });
+
+            var temp = new Array();
+            var data=@(new HtmlString(@ViewBag.result1));
+            for (var i = 0; i < data.length;i++) {
+                //var b = data[i].borrowDate
+                //if(b!=null){
+                //    var date = new Date(parseInt(b.slice(6)))
+                //    var result = date.getFullYear()+'/'+(parseInt(date.getMonth())+1)+'/'+date.getDate()
+                //}
+
+                temp.push({ "id": i + 1,"f":"选择", "a": data[i].ID, "b": data[i].borrower, "c": data[i].borrowDate , "d": data[i].borrowUnit,"e": data[i].singleOrDepart});
+            }
+            $("#example-table-2").tabulator("setData", temp);
+            $(document).ready(function () {
+                var height = $(window).height();
+                var a = $(window).height();
+                var hh = a-100;
+                $(".box-h").height(hh)  // 高度加在类名为box的DIV 上
+                $("#example-table-2").tabulator("redraw", true);
+
+
+            })
+
+    });
+    </script>
+    <script type="text/javascript">
+    $(document).ready(function () {
+        $("#Showall").click(function () {
+            var SelectedID=document.getElementById("SelectedID").selectedIndex;
+            var SearchString=document.getElementById("SearchString").value;
+           
+            $.ajax({
+                type:"POST",
+                url: "/ArchiveSearch/HasRegistedInfo/?SelectedID="+SelectedID+"&SearchString="+SearchString+"&name="+"Showall",
+                contentType:"application/json",
+                data:"",
+                dataType: "json",
+                success: function (Data) {
+                   
+                    
+                        
+                    if(Date!=null&&Data.length!=0)
+                    {
+                        onSuccess(Data);
+         
+                    }
+                    else
+                    {
+                        
+                        alert("没有您要检索的数据！");
+                        Data="";
+                        onSuccess(Data);
+                    }
+
+                }
+            });
+        });
+    });
+    $(document).ready(function () {
+        $("#Find").click(function () {
+         
+            var SelectedID=document.getElementById("SelectedID").selectedIndex;
+            var SearchString=document.getElementById("SearchString").value;
+          
+          
+        $.ajax({
+            type:"POST",
+            url: "/ArchiveSearch/HasRegistedInfo/?SelectedID="+SelectedID+"&SearchString="+SearchString+"&name="+"Find",
+            contentType:"application/json",
+            data:"",
+            dataType: "json",
+            success: function (Data) {
+                
+       
+                        
+                if(Date!=null&&Data.length!=0)
+                {
+                    onSuccess(Data);
+         
+                }
+                else
+                {
+                        
+                    alert("没有您要检索的数据！");
+                    Data="";
+                    onSuccess(Data);
+                }
+
+            }
+          });
+      });
+  });
+       
+    $(document).ready(function () {
+        $("#Showtoday").click(function () {
+            var SelectedID=document.getElementById("SelectedID").selectedIndex;
+            var SearchString=document.getElementById("SearchString").value;
+            $.ajax({
+                type:"POST",
+                url: "/ArchiveSearch/HasRegistedInfo/?SelectedID="+SelectedID+"&SearchString="+SearchString+"&name="+"Showtoday",
+                contentType:"application/json",
+                data:"",
+                dataType: "json",
+                success: function (Data) {
+                   
+                  
+                        
+                    if(Date!=null&&Data.length!=0)
+                    {
+                        onSuccess(Data);
+         
+                    }
+                    else
+                    {
+                        
+                        alert("没有您要检索的数据！");
+                        Data="";
+                        onSuccess(Data);
+                    }
+
+                }
+            });
+        });
+    });
+   
+    
+  
+  
+ function onSuccess(Data) { 
+  
+        var temp = new Array();
+        var data=Data;
+        for (var i = 0; i < data.length;i++) {
+            //var b = data[i].borrowDate
+            //if(b!=null){
+            //    var date = new Date(parseInt(b.slice(6)))
+            //    var result = date.getFullYear()+'/'+(parseInt(date.getMonth())+1)+'/'+date.getDate()
+            //}
+
+            temp.push({ "id": i + 1,"f":"选择", "a": data[i].ID, "b": data[i].borrower, "c": data[i].borrowDate , "d": data[i].borrowUnit,"e": data[i].singleOrDepart});
+        }
+        $("#example-table-2").tabulator("setData", temp);
+    }
+        
+</script> 
+
+
+
+    @using (Html.BeginForm())
+    {
+        <p>
+            <select name="SelectedID" id="SelectedID">
+                <option value="1" selected="selected">借阅人姓名</option>
+                <option value="2">借阅人单位</option>
+            </select>
+            <input type="text" name="SearchString" id="SearchString" />
+            <input type="button" id="Find" value="查找" class="btn btn-default" />
+            <input type="submit" name="action" id="Resign" value="登记新借阅人" class="btn btn-default" />
+            <input type="button" id="Showtoday" value="显示当天" class="btn btn-default" />
+            <input type="button" id="Showall" value="显示全部" class="btn btn-default" />
+            <input value="@ViewData["checkname"]" name="checkname" id="checkname" hidden="hidden">@*获取选中行的相关信息传至后台*@
+        </p>
+
+    }
+    <div id="example-table-2" class="box-h" style="overflow:auto;"> </div>
+
+
+

@@ -1,0 +1,89 @@
+﻿
+@model PagedList.IPagedList<urban_archive.Models.Briefing>
+@using PagedList.Mvc;
+<link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
+
+@{
+    ViewBag.Title = "城建信息";
+}
+
+<h2>城建信息</h2>
+@using (Html.BeginForm())
+{
+    <p>
+    检索条件： @Html.DropDownList("Selected")检索内容：<input type="text" name="search" id="serach"><input type="submit" name="action" value="查询">
+        </p>
+}
+<p>
+    @Html.ActionLink("添加/上传简报", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            序号
+        </th>
+        <th>
+           文章标题（点击下载）
+        </th>
+        <th>
+            副标题
+        </th>
+        <th>
+            资料来源
+        </th>
+        <th>
+           报刊日期
+        </th>
+        <th>
+            编辑人
+        </th>
+        <th>
+           备注
+        </th>
+        <th>
+            简报文件名
+        </th>
+        
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.ID)
+        </td>
+        <td>
+            <a href="@Url.Action("DownLoadFile", new {id = item.ID})">@Html.DisplayFor(modelItem => item.briefTitle)</a>        
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.briefCoTitle)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.paperName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.briefTime)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.maker)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.remarks)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.fileName)
+        </td>
+        
+        
+        <td>
+            @Html.ActionLink("编辑", "Edit", new { id=item.ID }) |
+            @*@Html.ActionLink("Details", "Details", new { id=item.ID }) |*@
+            @Html.ActionLink("删除", "Delete", new { id=item.ID })
+        </td>
+    </tr>
+}
+
+</table>
+@(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) / @Model.PageCount
+
+@Html.PagedListPager(Model, page => Url.Action("Details", new { page }))

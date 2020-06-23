@@ -1,0 +1,56 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="guihuaBKBDataSet" targetNamespace="http://tempuri.org/guihuaBKBDataSet.xsd" xmlns:mstns="http://tempuri.org/guihuaBKBDataSet.xsd" xmlns="http://tempuri.org/guihuaBKBDataSet.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections>
+          <Connection AppSettingsObjectName="Web.config" AppSettingsPropertyName="UrbanConConnectionString" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="UrbanConConnectionString (Web.config)" ParameterPrefix="@" PropertyReference="AppConfig.System.Configuration.ConfigurationManager.0.ConnectionStrings.UrbanConConnectionString.ConnectionString" Provider="System.Data.SqlClient" />
+        </Connections>
+        <Tables>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="vw_PlanBeiKaoBiaoTableAdapter" GeneratorDataComponentClassName="vw_PlanBeiKaoBiaoTableAdapter" Name="vw_PlanBeiKaoBiao" UserDataComponentName="vw_PlanBeiKaoBiaoTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="UrbanConConnectionString (Web.config)" DbObjectName="UrbanCon.dbo.vw_PlanBeiKaoBiao" DbObjectType="View" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>SELECT seqNo, pageCnt, drawing, photo, ID FROM dbo.vw_PlanBeiKaoBiao</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="seqNo" DataSetColumn="seqNo" />
+              <Mapping SourceColumn="pageCnt" DataSetColumn="pageCnt" />
+              <Mapping SourceColumn="drawing" DataSetColumn="drawing" />
+              <Mapping SourceColumn="photo" DataSetColumn="photo" />
+              <Mapping SourceColumn="ID" DataSetColumn="ID" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+        </Tables>
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="guihuaBKBDataSet" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="True" msprop:Generator_DataSetName="guihuaBKBDataSet" msprop:Generator_UserDSName="guihuaBKBDataSet">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="vw_PlanBeiKaoBiao" msprop:Generator_TableClassName="vw_PlanBeiKaoBiaoDataTable" msprop:Generator_TableVarName="tablevw_PlanBeiKaoBiao" msprop:Generator_TablePropName="vw_PlanBeiKaoBiao" msprop:Generator_RowDeletingName="vw_PlanBeiKaoBiaoRowDeleting" msprop:Generator_RowChangingName="vw_PlanBeiKaoBiaoRowChanging" msprop:Generator_RowEvHandlerName="vw_PlanBeiKaoBiaoRowChangeEventHandler" msprop:Generator_RowDeletedName="vw_PlanBeiKaoBiaoRowDeleted" msprop:Generator_UserTableName="vw_PlanBeiKaoBiao" msprop:Generator_RowChangedName="vw_PlanBeiKaoBiaoRowChanged" msprop:Generator_RowEvArgName="vw_PlanBeiKaoBiaoRowChangeEvent" msprop:Generator_RowClassName="vw_PlanBeiKaoBiaoRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="seqNo" msprop:Generator_ColumnVarNameInTable="columnseqNo" msprop:Generator_ColumnPropNameInRow="seqNo" msprop:Generator_ColumnPropNameInTable="seqNoColumn" msprop:Generator_UserColumnName="seqNo" type="xs:int" minOccurs="0" />
+              <xs:element name="pageCnt" msprop:Generator_ColumnVarNameInTable="columnpageCnt" msprop:Generator_ColumnPropNameInRow="pageCnt" msprop:Generator_ColumnPropNameInTable="pageCntColumn" msprop:Generator_UserColumnName="pageCnt" type="xs:int" minOccurs="0" />
+              <xs:element name="drawing" msprop:Generator_ColumnVarNameInTable="columndrawing" msprop:Generator_ColumnPropNameInRow="drawing" msprop:Generator_ColumnPropNameInTable="drawingColumn" msprop:Generator_UserColumnName="drawing" type="xs:int" minOccurs="0" />
+              <xs:element name="photo" msprop:Generator_ColumnVarNameInTable="columnphoto" msprop:Generator_ColumnPropNameInRow="photo" msprop:Generator_ColumnPropNameInTable="photoColumn" msprop:Generator_UserColumnName="photo" type="xs:int" minOccurs="0" />
+              <xs:element name="ID" msprop:Generator_ColumnVarNameInTable="columnID" msprop:Generator_ColumnPropNameInRow="ID" msprop:Generator_ColumnPropNameInTable="IDColumn" msprop:Generator_UserColumnName="ID" type="xs:int" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+    <xs:unique name="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:vw_PlanBeiKaoBiao" />
+      <xs:field xpath="mstns:ID" />
+    </xs:unique>
+  </xs:element>
+</xs:schema>

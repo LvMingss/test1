@@ -1,0 +1,134 @@
+﻿@model IEnumerable<urban_archive.Models.VideoArchives>
+<link href="~/Content/jquery-ui.theme.css" rel="stylesheet" />
+<link href="~/Content/Tabulator/version3.0/tabulator.css" rel="stylesheet" />
+
+@{
+    ViewBag.Title = "Index";
+}
+<script src="~/Scripts/jquery-2.1.1.min.js" type="text/javascript"></script>
+<script src="~/Scripts/jquery-ui.min.js"></script>
+<script src="~/Content/Tabulator/version3.0/tabulator.js"></script>
+
+<script type="text/javascript">
+        var details = function (value, data, cell, row, options) { //plain text value
+            return "<i class='fa fa-search-plus' style='color:#428bca;vertical-align:middle; padding:2px 0;'></i> "
+        };
+        var jieshou = function (value, data, cell, row, options) { //plain text value
+            return "<i class='glyphicon glyphicon-open' style='color:#428bca;vertical-align:middle; padding:2px 0;'></i> "
+        };
+        var edit = function (value, data, cell, row, options) { //plain text value
+            return "<i class='fa fa-edit' style='color:#428bca;vertical-align:middle; padding:2px 0;'></i> "
+        };
+        var shanchu = function (value, data, cell, row, options) { //plain text value
+            return "<i class='glyphicon glyphicon-trash' style='color:#428bca;vertical-align:middle; padding:2px 0;'></i> "
+        };
+
+
+        $().ready(function () {//在页面加载完成之后用，为了保证js能完整的执行。
+            $(document).ready(function () {
+                var a = $(window).height();
+                var hh = a-160;
+                $(".box-h").height(hh)  // 高度加在类名为box的DIV 上
+
+            })
+            $("#example-table-2").tabulator({
+                height:"100%",
+                virtualDom:false,
+                selectable: true,
+                fitColumns:true,
+                pagination:"local",
+                paginationSize:50,
+                columns: [
+                    {
+                    title: "查看", field: "caozuo1",width: 50 ,formatter: details, headerSort: false,  align: "center", cellClick: function (e,cell) {
+                        var url = '/VideoArchives/Details?id=' + cell.getValue();
+                        window.location.href = url;
+                    }
+                    },               
+                    {
+                        title: "修改", field: "caozuo2", width: 50 ,formatter: edit, headerSort: false,  align: "center", cellClick: function (e,cell) {
+                            var url = '/VideoArchives/Edit?id=' + cell.getValue()
+                            window.location.href = url;
+                        }
+                    },                
+                {
+                    title: "删除", field: "caozuo4", width: 50 ,formatter: shanchu, headerSort: false,  align: "center", cellClick: function (e,cell) {
+                        if(del()){
+                            var url = '/VideoArchives/Delete?id='+cell.getValue();
+                            window.location.href = url;
+                        } 
+                    }
+                },
+
+                {
+                    title: "上传视频/照片", field: "caozuo3", width: 120 ,formatter: jieshou, headerSort: false,  align: "center", cellClick: function (e,cell) {
+                        var url = '/VideoCassetteLists/Index?videoProjectSeqNo='+cell.getValue();
+                        window.location.href = url;
+
+                    }
+                },
+                { title: "联系单序号", field: "SheetID", headerSort: false,width: 100 },
+                { title: "项目顺序号", field: "videoProjectSeqNo",headerSort: false, width: 100 },
+                { title: "工程名称", field: "projectName",headerSort: false, width: 300 },
+                { title: "工程地点", field: "location",headerSort: false, width: 300 },
+                { title: "声像科指导人", field: "operater",headerSort: false, width: 100 },
+                { title: "接收日期", field: "dateReceived",headerSort: false, width: 100 },
+                { title: "档案状态", field: "videoStatus",headerSort: false,minWidth: 100 },
+                ],
+            });
+
+            var temp = new Array();
+            var data=@(new HtmlString(@ViewBag.result));
+            for (var i = 0; i < data.length;i++) {
+                
+                var a = data[i].dateReceived
+                var result=a
+                if(a!=null){
+                    result =  a.slice(0,10)
+                }
+                temp.push({ "id": i + 1,"ID":data[i].ID,"videoStatus":"已审核","SheetID":data[i].SheetID,"videoProjectSeqNo":data[i].videoProjectSeqNo, "projectName": data[i].projectName, "location": data[i].location, "operater": data[i].instructor, "dateReceived":result, "caozuo1": data[i].ID, "caozuo2": data[i].ID,"caozuo3": data[i].videoProjectSeqNo ,"caozuo4": data[i].ID  });
+            }
+
+            $("#example-table-2").tabulator("setData", temp);
+            $(window).resize(function () {
+                $(document).ready(function () {
+                    var a = $(window).height();
+                    var hh = a-160;
+                    $(".box-h").height(hh)  // 高度加在类名为box的DIV 上
+                $("#example-table-2").tabulator("redraw",true);
+
+                })
+            });
+
+        });
+</script>
+<script>
+    function del() {
+        var msg = "确认要删除吗?";
+        if (confirm(msg) == true) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+</script>
+<section>
+    <h2 style="float:left;"><i class="fa fa-tags kongge"></i>已审核</h2>
+    <ol class="breadcrumb">
+        <li class="active">声像档案</li>
+        <li class="active">声像工程</li>
+        <li>已审核</li>
+    </ol>
+    <div style="clear:both;"></div>
+</section>
+@using (Html.BeginForm("Index_shenhe", "VideoArchives", FormMethod.Get))
+{
+    <div class="form-inline">
+        <p>
+            检索条件 : @Html.DropDownList("SelectedID", null, new { @class = "form-control" }) &nbsp;&nbsp;&nbsp;
+            检索内容：@Html.TextBox("SearchString", ViewBag.CurrentFilter as string, new { @class = "form-control" })
+            <input type="submit" class="btn btn-default" value="查找" />
+        </p>
+    </div>
+}
+<div id="example-table-2" class="box-h" > </div>

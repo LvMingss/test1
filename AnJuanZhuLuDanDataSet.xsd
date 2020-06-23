@@ -1,0 +1,120 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="AnJuanZhuLuDanDataSet" targetNamespace="http://tempuri.org/AnJuanZhuLuDanDataSet.xsd" xmlns:mstns="http://tempuri.org/AnJuanZhuLuDanDataSet.xsd" xmlns="http://tempuri.org/AnJuanZhuLuDanDataSet.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections>
+          <Connection AppSettingsObjectName="Web.config" AppSettingsPropertyName="UrbanConConnectionString" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="UrbanConConnectionString (Web.config)" ParameterPrefix="@" PropertyReference="AppConfig.System.Configuration.ConfigurationManager.0.ConnectionStrings.UrbanConConnectionString.ConnectionString" Provider="System.Data.SqlClient" />
+        </Connections>
+        <Tables>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="vw_categoryListTableAdapter" GeneratorDataComponentClassName="vw_categoryListTableAdapter" Name="vw_categoryList" UserDataComponentName="vw_categoryListTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="UrbanConConnectionString (Web.config)" DbObjectName="UrbanCon.dbo.vw_categoryList" DbObjectType="View" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>SELECT mainCategoryID, subDictionaryID, minorDictionaryID, archivesNo, paperProjectSeqNo, registrationNo, paijiaNo, archivesTitle, developmentOrganization, typerDate, volNo, shizhengNo FROM dbo.vw_categoryList</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="mainCategoryID" DataSetColumn="mainCategoryID" />
+              <Mapping SourceColumn="subDictionaryID" DataSetColumn="subDictionaryID" />
+              <Mapping SourceColumn="minorDictionaryID" DataSetColumn="minorDictionaryID" />
+              <Mapping SourceColumn="archivesNo" DataSetColumn="archivesNo" />
+              <Mapping SourceColumn="paperProjectSeqNo" DataSetColumn="paperProjectSeqNo" />
+              <Mapping SourceColumn="registrationNo" DataSetColumn="registrationNo" />
+              <Mapping SourceColumn="paijiaNo" DataSetColumn="paijiaNo" />
+              <Mapping SourceColumn="archivesTitle" DataSetColumn="archivesTitle" />
+              <Mapping SourceColumn="developmentOrganization" DataSetColumn="developmentOrganization" />
+              <Mapping SourceColumn="typerDate" DataSetColumn="typerDate" />
+              <Mapping SourceColumn="volNo" DataSetColumn="volNo" />
+              <Mapping SourceColumn="shizhengNo" DataSetColumn="shizhengNo" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+        </Tables>
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="AnJuanZhuLuDanDataSet" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="True" msprop:Generator_DataSetName="AnJuanZhuLuDanDataSet" msprop:Generator_UserDSName="AnJuanZhuLuDanDataSet">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="vw_categoryList" msprop:Generator_TableClassName="vw_categoryListDataTable" msprop:Generator_TableVarName="tablevw_categoryList" msprop:Generator_TablePropName="vw_categoryList" msprop:Generator_RowDeletingName="vw_categoryListRowDeleting" msprop:Generator_RowChangingName="vw_categoryListRowChanging" msprop:Generator_RowEvHandlerName="vw_categoryListRowChangeEventHandler" msprop:Generator_RowDeletedName="vw_categoryListRowDeleted" msprop:Generator_UserTableName="vw_categoryList" msprop:Generator_RowChangedName="vw_categoryListRowChanged" msprop:Generator_RowEvArgName="vw_categoryListRowChangeEvent" msprop:Generator_RowClassName="vw_categoryListRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="mainCategoryID" msprop:Generator_ColumnVarNameInTable="columnmainCategoryID" msprop:Generator_ColumnPropNameInRow="mainCategoryID" msprop:Generator_ColumnPropNameInTable="mainCategoryIDColumn" msprop:Generator_UserColumnName="mainCategoryID" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="1" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="subDictionaryID" msprop:Generator_ColumnVarNameInTable="columnsubDictionaryID" msprop:Generator_ColumnPropNameInRow="subDictionaryID" msprop:Generator_ColumnPropNameInTable="subDictionaryIDColumn" msprop:Generator_UserColumnName="subDictionaryID" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="2" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="minorDictionaryID" msprop:Generator_ColumnVarNameInTable="columnminorDictionaryID" msprop:Generator_ColumnPropNameInRow="minorDictionaryID" msprop:Generator_ColumnPropNameInTable="minorDictionaryIDColumn" msprop:Generator_UserColumnName="minorDictionaryID" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="2" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="archivesNo" msprop:Generator_ColumnVarNameInTable="columnarchivesNo" msprop:Generator_ColumnPropNameInRow="archivesNo" msprop:Generator_ColumnPropNameInTable="archivesNoColumn" msprop:Generator_UserColumnName="archivesNo">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="30" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="paperProjectSeqNo" msprop:Generator_ColumnVarNameInTable="columnpaperProjectSeqNo" msprop:Generator_ColumnPropNameInRow="paperProjectSeqNo" msprop:Generator_ColumnPropNameInTable="paperProjectSeqNoColumn" msprop:Generator_UserColumnName="paperProjectSeqNo" type="xs:long" />
+              <xs:element name="registrationNo" msprop:Generator_ColumnVarNameInTable="columnregistrationNo" msprop:Generator_ColumnPropNameInRow="registrationNo" msprop:Generator_ColumnPropNameInTable="registrationNoColumn" msprop:Generator_UserColumnName="registrationNo" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="15" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="paijiaNo" msprop:Generator_ColumnVarNameInTable="columnpaijiaNo" msprop:Generator_ColumnPropNameInRow="paijiaNo" msprop:Generator_ColumnPropNameInTable="paijiaNoColumn" msprop:Generator_UserColumnName="paijiaNo" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="15" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="archivesTitle" msprop:Generator_ColumnVarNameInTable="columnarchivesTitle" msprop:Generator_ColumnPropNameInRow="archivesTitle" msprop:Generator_ColumnPropNameInTable="archivesTitleColumn" msprop:Generator_UserColumnName="archivesTitle" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="200" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="developmentOrganization" msprop:Generator_ColumnVarNameInTable="columndevelopmentOrganization" msprop:Generator_ColumnPropNameInRow="developmentOrganization" msprop:Generator_ColumnPropNameInTable="developmentOrganizationColumn" msprop:Generator_UserColumnName="developmentOrganization" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="100" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="typerDate" msprop:Generator_ColumnVarNameInTable="columntyperDate" msprop:Generator_ColumnPropNameInRow="typerDate" msprop:Generator_ColumnPropNameInTable="typerDateColumn" msprop:Generator_UserColumnName="typerDate" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="volNo" msprop:Generator_ColumnVarNameInTable="columnvolNo" msprop:Generator_ColumnPropNameInRow="volNo" msprop:Generator_ColumnPropNameInTable="volNoColumn" msprop:Generator_UserColumnName="volNo" type="xs:int" minOccurs="0" />
+              <xs:element name="shizhengNo" msprop:Generator_ColumnVarNameInTable="columnshizhengNo" msprop:Generator_ColumnPropNameInRow="shizhengNo" msprop:Generator_ColumnPropNameInTable="shizhengNoColumn" msprop:Generator_UserColumnName="shizhengNo" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="100" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

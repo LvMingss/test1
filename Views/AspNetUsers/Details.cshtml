@@ -1,0 +1,211 @@
+﻿@model urban_archive.Models.AspNetUsers
+
+@{
+    ViewBag.Title = "用户信息查看";
+}
+
+@*<h2>用户信息查看</h2>*@
+
+<div>
+   
+        <table class="table table-bordered dl-horizontal" style="width:600px;text-align:center;margin:0 auto;border:1px solid #408cca;margin-top:50px;background:#fff;">
+            <tr class="linear">
+                <td colspan="2" style="color:white;font-size:18px;">
+                    用户信息查看
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    用户名
+                </td>
+                <td>
+                    @Html.DisplayFor(model => model.UserName)
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    科室
+                </td>
+                <td>
+                    @Html.DisplayFor(model => model.DepartmentName)
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    职位
+                </td>
+                <td>
+                    @Html.DisplayFor(model => model.RoleName)
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    电子邮箱
+                </td>
+                <td>
+                    @Html.DisplayFor(model => model.Email)
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    密码
+                </td>
+                <td>
+                    @Html.DisplayFor(model => model.Password)
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    @Html.ActionLink("编辑", "Edit", new { id = Model.Id }, new { @class = "btn btn-default", @style = "margin-right:10px;" }) |
+
+                    @Html.ActionLink("返回", "Index", new { }, new { @class = "btn btn-default", @style = "margin-left:10px;" })
+                </td>
+
+            </tr>
+        </table>
+    </div>
+
+    @*<dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.UserName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.UserName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.RoleName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.RoleName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DepartmentName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DepartmentName)
+        </dd>*@
+
+        @*<dt>
+                @Html.DisplayNameFor(model => model.DepartmentId)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.DepartmentId)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.RoleId)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.RoleId)
+            </dd>*@
+
+        @*<dt>
+                @Html.DisplayNameFor(model => model.Name)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Name)
+            </dd>*@
+
+        @*<dt>
+            @Html.DisplayNameFor(model => model.Email)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Email)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Password)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Password)
+        </dd>*@
+        @*<dt>
+                @Html.DisplayNameFor(model => model.EmailConfirmed)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.EmailConfirmed)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.PasswordHash)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.PasswordHash)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.SecurityStamp)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.SecurityStamp)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.PhoneNumber)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.PhoneNumber)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.PhoneNumberConfirmed)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.PhoneNumberConfirmed)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.TwoFactorEnabled)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.TwoFactorEnabled)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.LockoutEndDateUtc)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.LockoutEndDateUtc)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.LockoutEnabled)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.LockoutEnabled)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.AccessFailedCount)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.AccessFailedCount)
+            </dd>*@
+
+
+
+    @*</dl>
+</div>
+<p>
+    @Html.ActionLink("编辑", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("返回", "Index")
+</p>*@

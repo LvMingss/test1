@@ -1,0 +1,773 @@
+﻿
+
+
+@{
+    Layout = null;
+    //要使视图不使用布局或模板页，那么需要把Layout赋值为空
+}
+
+
+
+<!doctype html>
+@*<meta http-equiv="X-UA-Compatible" content="IE=10;IE=11" />*@
+@*<meta http-equiv="X-UA-Compatible" content="IE=10; IE=EDGE">*@
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>费用结算</title>
+    <link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/jquery-ui.theme.css" rel="stylesheet" />
+    @*<link href="~/Content/Tabulator/tabulator.css" rel="stylesheet" />*@
+    <link href="~/Content/Tabulator/version3.0/tabulator.css" rel="stylesheet" />
+    <link href="~/Content/font-awesome-4.7.0/css/font-awesome.css" rel="stylesheet" />
+
+    @*@Styles.Render("~/Content/css")*@
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+    @*<link href="~/Content/Site.css" rel="stylesheet" />*@
+    <link type="text/css" rel="stylesheet" href="~/Scripts/jquery/jquery-ui.css" />
+    @*<link href="~/Content/bootstrap.min.css" rel="stylesheet" />*@
+    <link href="~/Content/viewer/viewer.min.css" rel="stylesheet" />
+
+    <script src="~/Scripts/jquery-2.1.1.min.js" type="text/javascript"></script>
+    @*<script type="text/javascript" src="~/Scripts/jquery/jquery-1.8.3.js"></script>*@
+    <script src="~/Scripts/jquery-ui.min.js"></script>
+    @*<script src="~/Content/Tabulator/tabulator.js"></script>*@
+    <script src="~/Content/Tabulator/version3.0/tabulator.js"></script>
+    <link href="~/Scripts/zTREE/css/AJAXControlToolKit.css" rel="stylesheet" />
+    <script src="~/Scripts/LoadWebBrowseActiveX.js"></script>
+
+    <script src="~/Scripts/bootstrap.min.js"></script>
+    <script src="~/Content/viewer/viewer.min.js"></script>
+    <script src="~/Content/viewer/viewer-jquery.min.js"></script>
+
+    <meta http-equiv="pragram" content="no-cache" />
+    @*<meta http-equiv="X-UA-Compatible" content="IE=7" />*@
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        #dis li img {
+            /*max-height: 1000px;
+                max-width: 800px;*/
+            max-height: 45%;
+            max-width: 28%;
+            width: expression( ( this.width > 1000) ? 10000 : this.width );
+            /*height: expression( ( this.heigh > 400) ? 400 : this.height );*/
+            BORDER-RIGHT: 5px double;
+            BORDER-TOP: 5px double;
+            BORDER-LEFT: 5px double;
+            BORDER-BOTTOM: 5px double;
+        }
+
+        /*#dowebok {
+            width: 1200px;
+            margin: 0 auto;
+            font-size: 0;
+        }
+
+            #dowebok li {
+                display: inline-block;
+                width: 32%;
+                margin-left: 1%;
+                padding-top: 1%;
+            }
+
+                #dowebok li img {
+                    width: 100%;
+                    width: expression( ( this.width > 300) ? 300 : this.width );
+                    BORDER-RIGHT: 5px double;
+                    BORDER-TOP: 5px double;
+                    BORDER-LEFT: 5px double;
+                    BORDER-BOTTOM: 5px double;
+                }*/
+
+        .file-preview {
+            border-radius: 5px;
+            border: 1px solid #ddd;
+           
+        }
+
+
+
+
+
+        #List {
+        }
+
+            #List ul {
+                margin: 0px;
+                padding: 0px;
+                list-style-type: none;
+                vertical-align: middle;
+            }
+
+            #List li {
+               
+                width: 100px;
+                height: 20px;
+                line-height: 20px;
+                font-size: 14px;
+                font-weight: bold;
+                color: #666666;
+                text-decoration: none;
+                text-align: left;
+                background: #ffffff;
+            }
+    </style>
+    <script language="javascript" type="text/javascript">
+            var oldBorder;
+            function SetNewBorder(oSrc) {
+                oldBorder = oSrc.style.border;
+                oSrc.style.border = "1px outset #00FFFF";
+            }
+
+            function SetOldBorder(oSrc) {
+                oSrc.style.border = oldBorder;
+            }
+    </script>
+
+    <script type="text/javascript" language="javascript">
+
+            var chec = function (value, data, cell, row, options) { //plain text value
+                return "<i class='fa fa-search-plus' style='color:#428bca;vertical-align:middle; padding:2px 0;'></i>"
+            };
+            $(document).ready(function () {
+
+                window.focus();
+
+                var path = GetQueryStringRegExp("Info");
+                document.getElementById("ID").value = path;
+
+                $.ajax({
+                    type: "POST",
+                    //url: "/UrbanBorrow/GetUserAndImageListByUserId/?userSeqNo=" + path,
+                    url: "/UrbanBorrow/GetUserAndImageListByUserId/?userSeqNo=" + path + "&i=" + @ViewBag.i,
+                    contentType: "application/json",
+                    data: "",
+                    dataType: "json",
+                    success: function (data) {
+
+
+
+                        onSuccess(data);
+
+
+                    }
+                });
+
+            });
+            $().ready(function () {//在页面加载完成之后用，为了保证js能完整的执行。
+
+                $(document).ready(function () {
+                    var height = $(window).height();
+                    var hh = height - 83;
+                    $(".box-h").height(height)
+                    $(".box-h1").height(hh)
+                    var width = $(window).width();
+                    var wid = width -260;
+                    $(".box-w").height(wid);
+
+                })
+                $("#example-table-2").tabulator({
+                    height: "100%",
+                    virtualDom: false,
+                    selectable:1, //make rows selectable
+                    sortable: false,
+                    pagination: "local",
+                    paginationSize: 300,
+                    fitColumns: true,
+
+                    columns: [
+                         {
+                             title: "选择", field: "check", width: 50, formatter: "tickCross", headerSort: false, sorter: "string", align: "center", cellClick: function (e, cell) {
+
+                                 if (cell.getRow().getData().check == false) {
+
+                                     $("#example-table-2").tabulator("updateData", [{ id: cell.getRow().getData().id, check: true }]);
+
+                                 }
+                                 else {
+
+                                     $("#example-table-2").tabulator("updateData", [{ id: cell.getRow().getData().id, check: false }]);
+                                 }
+
+                             }
+
+
+
+                         },
+                        { title: "文件序号", field: "a", headerSort: false, align: "center", width: 80, },
+
+                       {
+                           title: "文件名称", field: "Name", width: 220, headerSort: false,  cellClick: function (e, cell) {
+                            //    if (document.getElementById("dowebok").childNodes.length!=0)
+                            //{
+                            //    for (var j = 0; j < document.getElementById("dowebok").childNodes.length;j++)
+                            //    {
+                            //      document.getElementById("dowebok").removeChild(document.getElementById("dowebok").childNodes[j]);
+                            //    }
+
+                               //}
+                               $('#dowebok li').each(function () {
+                                   $(this).remove();
+                               });
+                               if (cell.getRow().getData().Name.indexOf(".pdf") != -1) {
+                                   Getyeci();
+                                   str1 = "<li><iframe data-original=" + '"' + cell.getRow().getData().WebPath + '"' + "id=" + '"' + cell.getRow().getData().id + '"' + "src=" + '"' + cell.getRow().getData().WebPath + '"' + 'style="width: 600px; height: 800px;"></iframe>' + "<h4>" + cell.getRow().getData().Name + "</h4></li>";
+                                   $("#dowebok").append(str1);
+                                   $("#dowebok").viewer("destroy");
+                                   $("#dowebok").viewer();
+
+                               }
+                               else {
+                                   str1 = "<li><img data-original=" + '"' + cell.getRow().getData().WebPath + '"' + "id=" + '"' + cell.getRow().getData().id + '"' + "src=" + '"' + cell.getRow().getData().WebPath + '"' + "alt=" + '"' + cell.getRow().getData().Name + '"' + "/>" + "<h4>" + cell.getRow().getData().Name + "</h4></li>";
+                                   Getsize(cell.getRow().getData().WebPath);
+                                   $("#dowebok").append(str1);
+                                   $("#dowebok").viewer("destroy");
+                                   $("#dowebok").viewer();
+                               }
+                               
+
+                               //str1 = "<li><img data-original=" + '"' + cell.getRow().getData().WebPath + '"' + "id=" + '"' + cell.getRow().getData().id + '"' + "src=" + '"' + cell.getRow().getData().WebPath + '"' + "alt=" + '"' + cell.getRow().getData().Name + '"' + "/>" + "<h4>" + cell.getRow().getData().Name + "</h4></li>";
+
+                               //Getsize(cell.getRow().getData().WebPath);
+                               //$("#dowebok").append(str1);
+
+
+
+                               //$("#dowebok").viewer("destroy");
+                               //$("#dowebok").viewer();
+
+
+
+                           }
+                       },
+
+
+
+
+
+                    ],
+
+                });
+
+
+
+
+            });
+            function Getsize(add) {
+
+                $.ajax({
+                    type: "POST",
+                    url: "/UrbanBorrow/GetSize/?path=" + add,
+
+                    contentType: "application/x-www-form-urlencoded",
+                    data: "",
+                    dataType: "json",
+                    success: function (data) {
+
+                        document.getElementById('pagesize').value = data;
+
+                    }
+                });
+            }
+            function onSuccess(result) { //debugger;
+
+
+                if (result == null || result == "undefined") {
+                    alert("fail");
+                    return;
+                }
+                onSuccessList(result);//加载图片显示列表
+            }
+
+            function onSuccessList(result) {
+
+                alert("共" + result.length + "张扫描件");
+                document.getElementById("count").value = result.length;
+                var temp = new Array();
+                var Data = result;
+                for (var i = 0; i < Data.length; i++) {
+
+                    var val = false;
+                    temp.push({ "id": i + 1, "check": val, "a": i + 1, "Name": Data[i].Name, "WebPath": Data[i].WebPath, "ID": Data[i].ID });
+                }
+                $("#example-table-2").tabulator("setData", temp);
+                $(window).resize(function () {
+                    $(document).ready(function () {
+                        var height = $(window).height();
+                        var hh = height - 83;
+                        $(".box-h").height(height)
+                        $(".box-h1").height(hh)
+                        var width = $(window).width();
+                        var wid = width-260;
+                        $(".box-w").height(wid);
+                        $("#example-table-2").tabulator("redraw", true);
+
+                    })
+                });
+            }
+            function ShowCalendar2(idRes) {//alert("x = " + event.clientX + ";y = " + event.clientY);
+                if (document.all.item(idRes) != null) {
+                    var x = event.screenX + 20;
+                    var y = event.screenY + 50;
+                    var z = window.showModalDialog('/ArchiveSearch/borrowerHasRegistedInfo', 'dialogHeight:1000px;dialogWidth:1500px;dialogLeft:' + x + 'px;dialogTop:' + y + 'px;');
+
+                    document.getElementById("userid1").value = z;
+
+                }
+            }
+            $(document).ready(function () {
+                $("#Add").click(function () {
+                    var selectedData = $("#example-table-2").tabulator("getSelectedData");
+                    var info1 = "";
+                    //alert(selectedData.length);
+                    //alert(selectedData[0].WebPath);
+                    for (var j = 0; j < selectedData.length; j++)
+                    {
+                        if (selectedData.length==1)
+                        {
+                            info1= selectedData[j].WebPath;//当选中的记录只有一条
+                        }
+
+                           else
+                            {
+                              info1 += selectedData[j].WebPath + ",";
+                            }
+                    }
+                    document.getElementById("txtLocation").value = info1;
+
+                    var info = document.getElementById("txtLocation").value;
+
+                    var paperProjectSeqNo = GetQueryStringRegExp("paperProjectSeqNo");
+
+                    var ArchiveNo = GetQueryStringRegExp("ArchiveNo");
+                    var volNo = GetQueryStringRegExp("volNo");
+                    ArchiveNo = ArchiveNo.toString().trim();
+                    var regNo = GetQueryStringRegExp("regNo");
+                    while (paperProjectSeqNo.length < 5) {
+                        paperProjectSeqNo = "0" + paperProjectSeqNo;
+                    }
+                    var VolCnt1 = document.getElementById("VolCnt").value;
+
+                    var userid = document.getElementById("userid1").value;
+
+
+                    $.ajax({
+                        type: "POST",
+                        url: "/ArchiveSearch/Looksaomiaopost/?paperProjectSeqNo=" + paperProjectSeqNo + "&archiveNo=" + ArchiveNo + "&volNo=" + volNo + "&info=" + info + "&name1=" + "Add" + "&VolCnt1=" + VolCnt1 + "&userid=" + userid + "&regNo=" + regNo,
+                        contentType: "application/json",
+                        data: "",
+                        dataType: "json",
+                        success: function (data) {
+
+                            if (data == "1") {
+                                alert("您尚未选择借阅人");
+                                $("#Msg").val("您尚未选择借阅人");
+                            }
+                            if (data == "2") {
+                                alert("您尚未登记，请先登记");
+                                $("#Msg").val("您尚未登记，请先登记");
+                            }
+                            if (data == "3") {
+                                alert("保存成功");
+                                $("#Msg").val("保存成功");
+                            }
+                            if (data == "4") {
+                                alert("此图纸已保存");
+                                $("#Msg").val("此图纸已保存");
+                            }
+                            if (data == "5") {
+                                alert("您尚未选择扫描件或借阅人");
+                                $("#Msg").val("您尚未选择扫描件或借阅人");
+
+                            }
+
+
+
+                        }
+
+                    });
+
+                });
+            });
+
+            $(document).ready(function () {
+                $("#btnDelSMJ").click(function () {
+
+                    var info1 = GetControlInfo();
+                    document.getElementById("txtLocation").value = info1;
+
+                    var info = document.getElementById("txtLocation").value;
+
+                    var paperProjectSeqNo = GetQueryStringRegExp("paperProjectSeqNo");
+
+                    var ArchiveNo = GetQueryStringRegExp("ArchiveNo");
+                    var volNo = GetQueryStringRegExp("volNo");
+                    ArchiveNo = ArchiveNo.toString().trim();
+                    var regNo = GetQueryStringRegExp("regNo");
+                    while (paperProjectSeqNo.length < 5) {
+                        paperProjectSeqNo = "0" + paperProjectSeqNo;
+                    }
+                    var VolCnt1 = document.getElementById("VolCnt").value;
+
+                    var userid = document.getElementById("userid1").value;
+
+
+                    $.ajax({
+                        type: "POST",
+                        url: "/ArchiveSearch/Looksaomiaopost/?paperProjectSeqNo=" + paperProjectSeqNo + "&archiveNo=" + ArchiveNo + "&volNo=" + volNo + "&info=" + info + "&name1=" + "Delete" + "&VolCnt1=" + VolCnt1 + "&userid=" + userid + "&regNo=" + regNo,
+                        contentType: "application/json",
+                        data: "",
+                        dataType: "json",
+                        success: function (data) {
+
+                            if (data == "6") {
+                                alert("扫描件删除成功");
+                                $("#Msg").val("扫描件删除成功");
+                            }
+
+
+
+                        }
+
+                    });
+
+                });
+            });
+            $(document).ready(function () {
+
+                $("#delecting").click(function () {
+
+                    var data1 = $("#example-table-2").tabulator("getData");
+
+                    var cnt1 = 0;
+                    cnt1 = data1.length;
+
+                    var arrNa1 = new Array();
+                    var arrPa1 = new Array();
+                    var ArrID1 = new Array();
+                    var m1 = 0;
+                    for (var i = 0; i < cnt1; i++) {
+                        if (data1[i].check == true && data1[i].check != "undefined") {
+                            arrNa1[m1] = data1[i].Name;
+                            arrPa1[m1] = data1[i].WebPath;
+                            ArrID1[m1] = data1[i].ID;
+
+                            m1++;
+
+                        }
+                    }
+                    alert(ArrID1);
+                    if (arrNa1.toString().indexOf("pdf") != -1) {
+                        var Cntyeci = document.getElementById("yeci").value;
+                    }
+                    else { var Cntyeci = "wu";}
+                    window.location.href = '/UrbanBorrow/DeletingSaoMiao/?txtImageId=' + ArrID1 + "&ID=" + document.getElementById("ID").value + "&Cntyeci=" + Cntyeci + "&txtImageName=" + arrNa1;
+                    //$.ajax({
+                    //    type: "POST",
+                    //    url: "/UrbanBorrow/DeletingSaoMiao/",
+                    //    contentType: "application/x-www-form-urlencoded",
+                    //    data: { txtImageId: ArrID1, ID: document.getElementById("ID").value },
+                    //    dataType: "json",
+                    //success: function (data) {
+
+                    //    if (data == "1") {
+
+                    //        alert("删除成功");
+
+
+                    //    }
+
+                    //    if (data == "2") {
+                    //        alert("数据问题，删除失败");
+
+                    //    }
+                    //    if (data == "3")
+                    //    {
+                    //        alert("请选择要删除的扫描件");
+                    //    }
+                    //}
+                    //        });
+                });
+            });
+            $(document).ready(function () {
+                $("#reback").click(function () {
+                    window.close();
+                });
+            });
+            function Pre() {
+
+                var selectedData = $("#example-table-2").tabulator("getSelectedData");//获取选中的数据
+                if (document.getElementById("dowebok").childNodes.length == 0) {
+                    alert("请选择一条记录");
+                }//需要选择一条记录
+                else {
+                    if (document.getElementById('flag5').value == 0)//下一条按钮已经不可用
+                    {
+                        document.getElementById('next').disabled = false;//恢复可用状态
+                    }
+                    $('#dowebok li').each(function () {
+                        $(this).remove();
+                    });
+                    var flag2 = selectedData[0].id;
+                    if (flag2 - 1 == 1) {
+
+                        document.getElementById('pre').disabled = true;
+                        document.getElementById('flag5').value = 1;
+                        alert("这是第一条！");
+                    }
+                    $("#example-table-2").tabulator("selectRow", flag2 - 1)
+                    var selectedData1 = $("#example-table-2").tabulator("getSelectedData");
+
+                    var str1 = "<li><img data-original=" + '"' + selectedData1[0].WebPath + '"  ' + "id=" + '"' + selectedData1[0].id + '"' + "src=" + '"' + selectedData1[0].WebPath + '"  ' + "alt=" + '"' + selectedData1[0].Name + '"' + "/>" + "<h4>" + selectedData1[0].Name + "</h4></li>";
+
+                    $("#dowebok").append(str1);
+                    Getsize(selectedData1[0].WebPath);
+                    $("#dowebok").viewer("destroy");
+                    $("#dowebok").viewer();
+
+
+                }
+
+            }
+            function next() {
+
+                var selectedData = $("#example-table-2").tabulator("getSelectedData");//获取选中的数据
+                if (document.getElementById("dowebok").childNodes.length == 0) {
+                    alert("请选择一条记录");
+                }
+                else {
+                    if (document.getElementById('flag5').value == 1)//上一条按钮已经不可用
+                    {
+                        document.getElementById('pre').disabled = false;//恢复可用状态
+                    }
+
+                    var flag2 = selectedData[0].id + 1;
+
+                    $('#dowebok li').each(function () {
+                        $(this).remove();
+                    });
+
+
+
+
+                    if (flag2 == document.getElementById("count").value) {
+
+                        document.getElementById('next').disabled = true;
+                        document.getElementById('flag5').value = 0;
+                        alert("这是最后一条！");
+                    }
+
+                    $("#example-table-2").tabulator("selectRow", flag2);
+                    var selectedData1 = $("#example-table-2").tabulator("getSelectedData");
+
+                    var str1 = "<li><img data-original=" + '"' + selectedData1[0].WebPath + '"  ' + "id=" + '"' + selectedData1[0].id + '"' + "src=" + '"' + selectedData1[0].WebPath + '"  ' + "alt=" + '"' + selectedData1[0].Name + '"' + "/>" + "<h4>" + selectedData1[0].Name + "</h4></li>";
+
+                    $("#dowebok").append(str1);
+                    Getsize(selectedData1[0].WebPath);
+                    $("#dowebok").viewer("destroy");
+                    $("#dowebok").viewer();
+                }
+            }
+            $(document).ready(function () {
+
+                $("#Butok").click(function () {
+
+
+
+                    //var path = GetQueryStringRegExp("Info");
+                    var a = document.getElementById('txtImageId').value;
+                    var b = document.getElementById('txtPaperSize').value;
+                    $.ajax({
+                        type: "GET",
+                        url: "/UrbanBorrow/printLinq3ok/?txtImageId=" + a + "&txtPaperSize="+b,
+                        contentType: "application/json",
+                        data: "",
+                        dataType: "json",
+                        success: function (data) {
+
+                            if (data == "1") {
+                                alert("保存成功");
+                                $("#Msg").val("保存成功");
+                            }
+
+                            if (data == "2") {
+                                alert("数据问题，保存失败");
+                                $("#Msg").val("数据问题，保存失败");
+                            }
+
+                        }
+                    });
+
+
+
+                });
+            });
+            $(document).ready(function () {
+
+                $("#Allselect").click(function () {
+
+                    $("#example-table-2").tabulator("selectRow");
+                });
+
+            });
+            $(document).ready(function () {
+
+                $("#Delselect").click(function () {
+
+                    $("#example-table-2").tabulator("deselectRow");
+
+                });
+            });
+            $(document).ready(function () {
+
+                $("#delecting").click(function () {
+
+                    var data1 = $("#example-table-2").tabulator("getData");
+
+                    var cnt1 = 0;
+                    cnt1 = data1.length;
+
+                    var arrNa1 = new Array();
+                    var arrPa1 = new Array();
+                    var ArrID1 = new Array();
+                    var m1 = 0;
+                    for (var i = 0; i < cnt1; i++) {
+                        if (data1[i].check == true && data1[i].check != "undefined") {
+                            arrNa1[m1] = data1[i].Name;
+                            arrPa1[m1] = data1[i].WebPath;
+                            ArrID1[m1] = data1[i].ID;
+
+                            m1++;
+
+                        }
+                    }
+
+                    window.location.href = '/UrbanBorrow/DeletingSaoMiao/?txtImageId='+ArrID1+"&ID="+document.getElementById("ID").value;
+                    //$.ajax({
+                    //    type: "POST",
+                    //    url: "/UrbanBorrow/DeletingSaoMiao/",
+                    //    contentType: "application/x-www-form-urlencoded",
+                    //    data: { txtImageId: ArrID1, ID: document.getElementById("ID").value },
+                    //    dataType: "json",
+                    //success: function (data) {
+
+                    //    if (data == "1") {
+
+                    //        alert("删除成功");
+
+
+                    //    }
+
+                    //    if (data == "2") {
+                    //        alert("数据问题，删除失败");
+
+                    //    }
+                    //    if (data == "3")
+                    //    {
+                    //        alert("请选择要删除的扫描件");
+                    //    }
+                    //}
+                    //        });
+                      });
+                    });
+        //});
+            function Getyeci() {
+                document.getElementById('yeci').style.display = "inline";
+                //document.getElementById('yeci').disabled = true;
+            }
+    </script>
+</head>
+
+    
+<body class="box-h" style="overflow:hidden;background:#ecf0f5;border:1px solid #ddd;padding:0px;margin:0px;">
+
+
+    <div id="example-table-2" class="box-h" style="float:left;width:300px;"></div>
+
+    <div class="file-preview box-h" id="con" style="padding:0px;margin:0px;border:0px;text-align:center">
+        <form>
+            <input id="txtLocation" hidden="hidden" />
+            <input id="txtImageId" hidden="hidden" />
+            <input id="txtIsTuzhi" hidden="hidden" />
+            <input id="txtPaperSize" hidden="hidden" />
+
+            @*<table class="table table-bordered dl-horizontal">
+                                <tr>
+                                    <td>
+                                        <input id="txtLocation" hidden="hidden" />
+                                        <input id="Button3" type="button" class="btn btn-default" value="选择借阅人" onclick="javascript:ShowCalendar2('userid1');" />
+                                        <input id="userid1" disabled="disabled" />
+                                        <input id="Add" type="button" value="添加到用户" class="btn btn-default" />
+                                        <input id="Msg" style="border:0px;color:coral;background:#ecf0f5;width:100px" />
+                                    </td>
+                                    <td>
+                                        竣工档案：【<input id="proNo" value="@ViewData["proNo"]" />】【第<input id="VolNo" value="@ViewData["VolNo"]" style="width:100px;" />/<input id="VolCnt" value="@ViewData["VolCnt"]" style="width:100px;" />卷】
+
+                                    </td>
+                                </tr>
+
+
+
+
+                <div class="file-preview" id="con" style="display:inline;float:left;">
+                    <div id="dis"></div>
+                    <div id="dis1">
+
+                <div class="file-preview" id="con" cstyle="display:inline;float:left;">
+                    <div id="dis"></div>
+                    <div id="dis1">
+
+                            </table>*@
+
+
+           
+               
+                @*<input id="Button3" type="button" class="btn btn-default" value="选择借阅人" onclick="javascript:ShowCalendar2('userid1');" />
+                <input id="userid1" disabled="disabled" style="width:100px;" />*@
+                @*<input id="Add" type="button" value="添加到用户" class="btn btn-default" />
+                <input id="reback" type="button" value="返回" class="btn btn-default" />*@
+                @*<input id="Butok" type="button" value="保存图纸信息" class="btn btn-default" />*@
+              
+                @*竣工档案：【<input id="proNo" value="@ViewData["proNo"]" style="width:100px;" />】【第<input id="VolNo" value="@ViewData["VolNo"]" style="width:100px;" />/<input id="VolCnt" value="@ViewData["VolCnt"]" style="width:100px;" />卷】*@
+            
+            <div style="text-align:center;">
+                <input id="Msg" style="border:0px;color:coral;background:#ecf0f5;font-size:14px;" />
+            </div>
+
+        </form>
+        <div id="part">
+
+        </div>
+        <div id="dis" class="box-h1" style="display:block">
+            <input type="button" id="pre" value="上一条" class="btn btn-default"style="padding:3px 6px" onclick="Pre()" />
+            <input type="button" id="next" value="下一条" class="btn btn-default"style="padding:3px 6px" onclick="next()" />
+            <input type="button" id="delecting"class="btn btn-default"style="padding:3px 6px" value="删除扫描件"/>
+            <input name="yeci" id="yeci" style="padding:3px 6px;display:none;"> 
+            纸张类型：<input id="pagesize" name="pagesize" style="padding:3px;" />
+            <ul id="dowebok"></ul>
+            @*<input type="button" id="Allselect" value="全选" />
+            <input type="button" id="Delselect" value="全删" />*@
+        </div>
+        @*<div id="dis1" style="display:none">
+
+            <ul id="dowebok"></ul>
+        </div>*@
+        <div id="div_WebBrowse" style="display:none">
+
+         
+        </div>
+        <input id="flag" name="flag" value="0" hidden="hidden" />
+        <input id="flag5" name="flag5" hidden="hidden" />
+        <input id="flg" name="flg" hidden="hidden" value="1" />@*设置标识符，以确定当前状态是单选还是多选,1:单选2：多选*@
+        <input id="storage" name="storage" hidden="hidden" />
+        <input id="count" name="count" hidden="hidden" />@*记录扫描件条数*@
+        <input id="ID" name="ID"  hidden="hidden" />@*记录扫描件绑定的用户，用于删除扫描件*@
+    </div>
+    
+
+</body>
+</html>

@@ -1,0 +1,186 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>@ViewBag.Title  文件材料题名(公开)                                 </title>
+    <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    @Styles.Render("~/Content/css")
+
+    <link href="~/Content/lib/font-awesome/css/font-awesome.css" rel="stylesheet" />
+    <link href="~/Content/new.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/stylesheets/theme.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/stylesheets/premium.css" rel="stylesheet" />
+
+    <link rel="shortcut icon" href="../assets/ico/favicon.ico">
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="../assets/ico/apple-touch-icon-144-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="../assets/ico/apple-touch-icon-114-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="../assets/ico/apple-touch-icon-72-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" href="../assets/ico/apple-touch-icon-57-precomposed.png">
+    <style type="text/css">
+        #line-chart {
+            height: 300px;
+            width: 800px;
+            margin: 0px auto;
+            margin-top: 1em;
+        }
+
+        .navbar-default .navbar-brand, .navbar-default .navbar-brand:hover {
+            color: #fff;
+        }
+    </style>
+
+
+    <script src="~/Scripts/jquery-2.1.1.min.js"></script>
+    <script src="/Content/lib/bootstrap/js/bootstrap.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            $.ajax({
+                url: "/PlanProjects/title/",
+                data: {},
+                type: 'post',
+                dataType: 'json',
+                success: function (data) {
+                    $("#select").empty();
+                    var objSelectNow = document.getElementById("select");
+                    //var nameid = document.getElementById("filenameid");
+                    var nameid = window.dialogArguments;
+                    for (var j = 0; j < data.length; j++) {
+                        var objOption = document.createElement("OPTION");
+                        objOption.text = data[j].name;
+                        objOption.value = data[j].ID;
+                        objSelectNow.options.add(objOption);
+                        if (data[j].ID == nameid) {
+                            objOption.selected = true;
+                        }
+                    }
+                }
+            })
+        })
+    @*</script>*@
+
+    @*<script>*@
+        //function titletj()
+        //{
+        //var obj = new Object();
+        //obj.number = "1";
+        //obj.name = "文件材料题名(公开)";
+        //if (document.all.select.options[document.all.select.selectedIndex] == undefined) {
+        //    alert("没有选择词条，请选择！");
+        //}
+        //else {
+        //    obj.id = document.all.select.options[document.all.select.selectedIndex].value;
+        //    name = window.showModalDialog('/PlanProjects/window', obj, 'dialogWidth=600px;dialogHeight=300px');
+        //    //弹出模型对话框，obj为传值参数,name为子页面返回参数
+        //    location.reload();
+        //    if (name != "undefined") {
+        //        document.getElementById("choose1").value = name;
+        //    }
+        //    else {
+        //        document.getElementById("choose1").value = "";
+        //    }
+        //}
+        //}
+        function addct()//添加词条
+        {
+            if (document.getElementById("choose1").value == "") {
+                alert("请输入需要添加的词条内容！");
+            }
+            else {
+                var name = document.getElementById("choose1").value;
+                for (i = 0; i < document.all.item("select").length; i++) {
+                    if (name == document.all.item("select").options[i].text) {
+                        alert("已存在此词条，请重新输入！");
+                        break;
+                    }
+                    else {
+                        if (i + 1 == document.all.item("select").length) {
+                            $.ajax({
+                                url: '/PlanProjects/tianjia',
+                                data: { choose1: name },
+                                type: 'post',
+                                success: function (data) {
+                                    alert("添加成功！");
+                                    window.returnValue = "1;";
+                                    window.close();
+                                    //window.dialogArguments.Onfocus();
+                                }
+                            })
+                        }
+                    }
+                }
+            }
+        }
+
+        function dele() {
+            var msg = "确认要删除吗?";
+            if (confirm(msg) == true) {
+                var SelectID = document.getElementById("DELETE_ID").value;
+                $.ajax({
+                    url: "/PlanProjects/window2/?DELETE_ID=" + SelectID,
+                    data: {},
+                    type: 'post',
+                    dataType: 'json',
+                    success: function (data) {
+                        if (data == "1") {
+                            alert("删除成功！");
+                            window.returnValue = "1;";
+                            window.close();
+                        }
+                        else {
+                            alert("删除失败！");
+                        }
+                       
+                    }
+                });
+            } else {
+                return false;
+            }
+        }                             //删除确认对话框
+
+        function right() {
+            var projectname = document.getElementById("choose1").value;
+            window.returnValue = "0;" + projectname;
+            window.close();
+        }
+    </script>
+
+</head>
+    @*@using (Html.BeginForm("window1", "PlanProjects"))
+        {
+            @Html.AntiForgeryToken()*@
+    <body style="background:#fff;">
+
+        @*<input type="text" id="choose1" name="choose1" style="width:900px;max-width:100%;margin-top:20px;margin-left:20px;" />*@
+        <textarea id="choose1" name="choose1" style="width:900px;height:70px;max-width:100%;margin-top:20px;margin-left:20px;"></textarea>
+        <input type="submit" id="queding" name="action" class="btn btn-default" value="确定" onclick="right();" style="margin-left:10px;margin-top:-20px;" />
+        @*<input type="text" id="filenameid" style="display:none" name="filenameid" value="@ViewBag.filenameid">*@
+        @*<input type="text" id="classifyID" name="classifyID" value="@ViewBag.classifyID" class="hidden" />*@
+
+        <div>
+
+            <select style="width:950px;max-width:100%;margin-top:20px;margin-left:20px;" id="select" size="14"></select>
+            <script type="text/javascript">
+            document.getElementById("select").onchange = function () {
+                document.getElementById("choose1").value = this.options[this.options.selectedIndex].text;
+                document.getElementById("DELETE_ID").value = this.options[this.options.selectedIndex].value;
+            }
+            </script>
+
+        </div>
+        <div style="text-align:center;margin-top:20px;">
+            <input type="button" id="delete" value="删除词条" width="20" class="btn btn-default" onclick="return dele()" name="action" />
+            <input type="submit" id="add" value="增加词条" width="20" class="btn btn-default" onclick="return addct()" name="action" />
+            <input type="text" id="DELETE_ID" name="DELETE_ID" style="display:none" />
+        </div>
+    </body>
+</html>
+

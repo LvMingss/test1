@@ -1,0 +1,309 @@
+﻿@*@model urban_archive.Models.ArchivesDetail*@
+
+@{
+    ViewBag.Title = "Details";
+}
+<style>
+    .chuxian {
+        width: 100%;
+        height: 147px;
+        visibility: visible;
+    }
+
+    .yincang {
+        visibility: hidden;
+    }
+</style>
+<link href="~/Content/Tabulator/version3.0/tabulator.css" rel="stylesheet" />
+<link type="text/css" rel="stylesheet" href="~/Scripts/jquery/jquery-ui.css">
+
+<script src="~/Scripts/jquery-2.1.1.min.js" type="text/javascript"></script>
+<script src="~/Scripts/jquery-ui.min.js"></script>
+<script src="~/Content/Tabulator/version3.0/tabulator.js"></script>
+<script type="text/javascript">
+
+$().ready(function () {//在页面加载完成之后用，为了保证js能完整的执行。
+    $(document).ready(function () {
+        var a = $(window).height();
+        var hh = a-160;
+        $(".box-h").height(hh)  // 高度加在类名为box的DIV 上
+
+    })
+        $("#example-table-2").tabulator({
+            height:"100%",
+            virtualDom:false,
+            fitColumns:true,
+            selectable:true, //make rows selectable
+            pagination:"local",
+            paginationSize:50,
+            columns: [
+            { title: "文件名称", field: "a", headerSort: false,width: 300 },
+            { title: "责任者", field: "b", headerSort: false,width: 250 },
+            { title: "类型", field: "c", headerSort: false,width: 30 },
+            { title: "卷数", field: "d", headerSort: false,width: 30 },
+            ],
+        });
+        var temp = new Array();
+        var data =@(new HtmlString(@ViewBag.result));
+
+        for (var i = 0; i < data.length; i++) {
+            temp.push({ "id": i + 1, "a": data[i].fileName, "b": data[i].responsible, "c": data[i].type, "d": data[i].seqNo});
+        }
+
+            $("#example-table-2").tabulator("setData", temp);
+
+        //$(window).resize(function () {
+        //    var a = $(window).height();
+        //    var hh = a-160;
+        //    $(".box-h").height(hh)  // 高度加在类名为box的DIV 上
+        //    $("#example-table-2").tabulator("redraw",true);
+        //});
+
+    });
+</script>
+
+
+@using (Html.BeginForm())
+{
+    <div class="form-horizontal">
+
+        <div>
+            <h2 align="center" style="margin-top:0;"><i class="fa fa-tags kongge"></i>工程信息</h2>
+            <hr />
+            <div class="panel panel-default">
+                <table class="table table-bordered dl-horizontal">
+                    <tr>
+                        <td style="background-color:#f9f9f9;width:10%;">
+                            工程名称
+                        </td>
+                        <td colspan="3">
+                            @*<input type="text" id="location" name="location" value="@ViewBag.projectName" class="form-control" style="display:inline;" />*@
+                            <textarea style="border:0px;width:100%;" disabled>@ViewBag.projectName</textarea>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="background-color:#f9f9f9;width:10%;">
+                            工程地点
+                        </td>
+                        <td colspan="3">
+                            @*<input type="text" id="location" name="location" value="@ViewBag.location" class="form-control" style="display:inline;" />*@
+                            <textarea style="border:0px;width:100%;" disabled>@ViewBag.location</textarea>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="background-color:#f9f9f9;width:10%;">
+                            建设单位
+                        </td>
+                        <td colspan="3">
+                            @*<input type="text" id="developmentOrganization" name="developmentOrganization" value="@ViewBag.developmentOrganization" class="form-control" style="display:inline;" />*@
+                            <textarea style="border:0px;width:100%;" disabled>@ViewBag.developmentOrganization</textarea>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="background-color:#f9f9f9;width:10%;">
+                            联系人
+                        </td>
+                        <td>
+                            @*<input type="text" id="devolonpentOrgContacter" name="devolonpentOrgContacter" value="@ViewBag.devolonpentOrgContacter" class="form-control" style="display:inline;" />*@
+                            <textarea style="border:0px;width:100%;" disabled>@ViewBag.devolonpentOrgContacter</textarea>
+                        </td>
+                        <td style="background-color:#f9f9f9;width:10%;">
+                            电话
+                        </td>
+                        <td>
+                            @*<input type="text" id="mobilephoneNoDevelopment" name="mobilephoneNoDevelopment" value="@ViewBag.mobilephoneNoDevelopment" class="form-control" style="display:inline;" />*@
+                            <textarea style="border:0px;width:100%;" disabled>@ViewBag.mobilephoneNoDevelopment</textarea>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="background-color:#f9f9f9;width:10%;">
+                            施工单位
+                        </td>
+                        <td colspan="3">
+                            @*<input type="text" id="constructionOrganization" name="constructionOrganization" value="@ViewBag.constructionOrganization" class="form-control" style="display:inline;" />*@
+                            <textarea style="border:0px;width:100%;" disabled>@ViewBag.constructionOrganization</textarea>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="background-color:#f9f9f9;width:10%;">
+                            法人
+                        </td>
+                        <td>
+                            @*<input type="text" id="constructionOrgContacter" name="constructionOrgContacter" value="@ViewBag.constructionOrgContacter" class="form-control" style="display:inline;" />*@
+                            <textarea style="border:0px;width:100%;" disabled>@ViewBag.constructionOrgContacter</textarea>
+                        </td>
+                        <td style="background-color:#f9f9f9;width:10%;">
+                            电话
+                        </td>
+                        <td>
+                            @*<input type="text" id="telphoneNoDevelopment" name="telphoneNoDevelopment" value="@ViewBag.telphoneNoDevelopment" class="form-control" style="display:inline;" />*@
+                            <textarea style="border:0px;width:100%;" disabled>@ViewBag.telphoneNoDevelopment</textarea>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="background-color:#f9f9f9;width:10%;">
+                            设计单位
+                        </td>
+                        <td colspan="3">
+                            @*<input type="text" id="disignOrganization" name="disignOrganization" value="@ViewBag.disignOrganization" class="form-control" style="display:inline;" />*@
+                            <textarea style="border:0px;width:100%;" disabled>@ViewBag.disignOrganization</textarea>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="background-color:#f9f9f9;width:10%;">
+                            联系人
+                        </td>
+                        <td>
+                            @*<input type="text" id="designOrgaContacter" name="designOrgaContacter" value="@ViewBag.designOrgaContacter" class="form-control" style="display:inline;" />*@
+                            <textarea style="border:0px;width:100%;" disabled>@ViewBag.designOrgaContacter</textarea>
+                        </td>
+                        <td style="background-color:#f9f9f9;width:10%;">
+                            设计者
+                        </td>
+                        <td>
+                            @*<input type="text" id="telphoneNoDesignOrga" name="telphoneNoDesignOrga" value="@ViewBag.telphoneNoDesignOrga" class="form-control" style="display:inline;" />*@
+                            <textarea style="border:0px;width:100%;" disabled>@ViewBag.telphoneNoDesignOrga</textarea>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td style="background-color:#f9f9f9;width:10%;">
+                            监理单位
+                        </td>
+                        <td colspan="3">
+                            @*<input type="text" id="jianliUnit" name="jianliUnit" value="@ViewBag.jianliUnit" class="form-control" style="display:inline;" />*@
+                            <textarea style="border:0px;width:100%;" disabled>@ViewBag.jianliUnit</textarea>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="background-color:#f9f9f9;width:10%;">
+                            联系人
+                        </td>
+                        <td>
+                            @*<input type="text" id="jianliUnitContacter" name="jianliUnitContacter" value="@ViewBag.jianliUnitContacter" class="form-control" style="display:inline;" />*@
+                            <textarea style="border:0px;width:100%;" disabled>@ViewBag.jianliUnitContacter</textarea>
+                        </td>
+                        <td style="background-color:#f9f9f9;width:10%;">
+                            电话
+                        </td>
+                        <td>
+                            @*<input type="text" id="telphoneNoJianliUnit" name="telphoneNoJianliUnit" value="@ViewBag.telphoneNoJianliUnit" class="form-control" style="display:inline;" />*@
+                            <textarea style="border:0px;width:100%;" disabled>@ViewBag.telphoneNoJianliUnit</textarea>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td style="background-color:#f9f9f9;width:10%;">
+                            勘察单位
+                        </td>
+                        <td colspan="3">
+                            @*<input type="text" id="Kcdw" name="Kcdw" value="@ViewBag.Kcdw" class="form-control" style="display:inline;" />*@
+                            <textarea style="border:0px;width:100%;" disabled>@ViewBag.Kcdw</textarea>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="background-color:#f9f9f9;width:10%;">
+                            联系人
+                        </td>
+                        <td>
+                            @*<input type="text" id="Kcdwlxr" name="Kcdwlxr" value="@ViewBag.Kcdwlxr" class="form-control" style="display:inline;" />*@
+                            <textarea style="border:0px;width:100%;" disabled>@ViewBag.Kcdwlxr</textarea>
+                        </td>
+                        <td style="background-color:#f9f9f9;width:10%;">
+                            电话
+                        </td>
+                        <td>
+                            @*<input type="text" id="Kcdwlxdh" name="Kcdwlxdh" value="@ViewBag.Kcdwlxdh" class="form-control" style="display:inline;" />*@
+                            <textarea style="border:0px;width:100%;" disabled>@ViewBag.Kcdwlxdh</textarea>
+                        </td>
+                    </tr>
+
+                </table>
+                <hr/>
+                <h4 align="center" style="margin-top:0;"><i class="fa fa-tags kongge"></i>案卷信息</h4>
+                <hr/>
+                
+                <table class="table table-bordered dl-horizontal">
+                    <tr>
+                        <td style="background-color:#f9f9f9;width:10%;">
+                            案卷题名
+                        </td>
+                        <td colspan="3">
+                            <textarea style="border:0px;width:100%;" disabled>@ViewBag.archivesTitle</textarea>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="background-color:#f9f9f9;width:10%;">
+                            编制单位
+                        </td>
+                        <td colspan="3">
+                            <textarea style="border:0px;width:100%;" disabled>@ViewBag.firstResponsible</textarea>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="background-color:#f9f9f9;width:10%;">
+                            责任者
+                        </td>
+                        <td>
+                            <textarea style="border:0px;width:100%;" disabled>@ViewBag.firstResponsible</textarea>
+                        </td>
+                        <td style="background-color:#f9f9f9;width:10%;">
+                            编制时间
+                        </td>
+                        <td>
+                            <textarea style="border:0px;width:100%;" disabled>@ViewBag.bianzhiTime</textarea>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="background-color:#f9f9f9;width:10%;">
+                            开工时间
+                        </td>
+                        <td>
+                            <textarea style="border:0px;width:100%;" disabled>@ViewBag.kaigongTime</textarea>
+                        </td>
+                        <td style="background-color:#f9f9f9;width:10%;">
+                            竣工时间
+                        </td>
+                        <td>
+                            <textarea style="border:0px;width:100%;" disabled>@ViewBag.jungongTime</textarea>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="background-color:#f9f9f9;width:10%;">
+                            立卷人
+                        </td>
+                        <td>
+                            <textarea style="border:0px;width:100%;" disabled>@ViewBag.indexer</textarea>
+                        </td>
+                        <td style="background-color:#f9f9f9;width:10%;">
+                            立卷日期
+                        </td>
+                        <td>
+                            <textarea style="border:0px;width:100%;" disabled>@ViewBag.indexDate</textarea>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="background-color:#f9f9f9;width:10%;">
+                            主题词
+                        </td>
+                        <td colspan="3">
+                            <textarea style="border:0px;width:100%;" disabled>@ViewBag.key1</textarea>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="background-color:#f9f9f9;width:10%;">
+                            备注
+                        </td>
+                        <td colspan="3">
+                            <textarea style="border:0px;width:100%;" disabled>@ViewBag.remarks</textarea>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+
+        </div>
+    </div>
+}
+<p><h4 align="center">案卷文件</h4></p>
+<div id="example-table-2" class="box-h"> </div>
+

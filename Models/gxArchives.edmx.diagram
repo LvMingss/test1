@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="bf07b5a26ba546f481e8e05cb66a6ade" Name="Diagram1" ZoomLevel="18">
+        <EntityTypeShape EntityType="gxArchivesModel.gxCabinetInfo" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="gxArchivesModel.gxFafangArchiveCertificate" Width="1.5" PointX="4.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="gxArchivesModel.gxLicenceFiles" Width="1.5" PointX="6.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="gxArchivesModel.gxLingquInterchangeForm" Width="1.5" PointX="6.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="gxArchivesModel.gxMaxArchiveRegisNo" Width="1.5" PointX="0.75" PointY="7.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="gxArchivesModel.vw_gxProjectStatus" Width="1.5" PointX="14.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="gxArchivesModel.vw_gxreceiveArchiveDetail" Width="1.5" PointX="5.375" PointY="18.75" />
+        <EntityTypeShape EntityType="gxArchivesModel.vw_gxfileList" Width="1.5" PointX="19.375" PointY="0.75" />
+        <EntityTypeShape EntityType="gxArchivesModel.gxClassType" Width="1.5" PointX="9.375" PointY="19.75" />
+        <EntityTypeShape EntityType="gxArchivesModel.vw_gxtransferPaper" Width="1.5" PointX="19.375" PointY="10.75" />
+        <EntityTypeShape EntityType="gxArchivesModel.vw_gxarchiveQueryList" Width="1.5" PointX="9.375" PointY="0.75" />
+        <EntityTypeShape EntityType="gxArchivesModel.MaxArchiveRegisNo1" Width="1.5" PointX="7.375" PointY="9.75" />
+        <EntityTypeShape EntityType="gxArchivesModel.gxContractInfo" Width="1.5" PointX="13.375" PointY="10.75" />
+        <EntityTypeShape EntityType="gxArchivesModel.vw_gxArchiveList" Width="1.5" PointX="0.75" PointY="10.75" />
+        <EntityTypeShape EntityType="gxArchivesModel.vw_gxarchiveMainList" Width="1.5" PointX="11.75" PointY="0.75" />
+        <EntityTypeShape EntityType="gxArchivesModel.vw_gxtransferStatis" Width="1.5" PointX="11.75" PointY="5.75" />
+        <EntityTypeShape EntityType="gxArchivesModel.vw_gxcategoryList" Width="1.5" PointX="5.375" PointY="13.75" />
+        <EntityTypeShape EntityType="gxArchivesModel.tem_vwpassList" Width="1.5" PointX="11.375" PointY="18.75" />
+        <EntityTypeShape EntityType="gxArchivesModel.vw_gxpassList" Width="1.5" PointX="13.375" PointY="18.75" />
+        <EntityTypeShape EntityType="gxArchivesModel.gxFileInfo" Width="1.5" PointX="18.375" PointY="4.75" />
+        <EntityTypeShape EntityType="gxArchivesModel.gxPaperArchives" Width="1.5" PointX="0.75" PointY="15.75" />
+        <EntityTypeShape EntityType="gxArchivesModel.vw_gxprojectList" Width="1.5" PointX="2.75" PointY="16.75" />
+        <EntityTypeShape EntityType="gxArchivesModel.gxArchivesDetail" Width="1.5" PointX="21.375" PointY="0.75" />
+        <EntityTypeShape EntityType="gxArchivesModel.vw_gxarchiveInfo" Width="1.5" PointX="3.375" PointY="4.75" />
+        <EntityTypeShape EntityType="gxArchivesModel.gxProjectInfo" Width="1.5" PointX="15.375" PointY="6.75" />
+        <EntityTypeShape EntityType="gxArchivesModel.vw_gxprojectProfile" Width="1.5" PointX="17.375" PointY="14.75" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

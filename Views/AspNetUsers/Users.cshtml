@@ -1,0 +1,51 @@
+﻿@model urban_archive.Models.AspNetUsers
+
+@{
+    ViewBag.Title = "个人信息";
+}
+
+
+<div>
+    <table class="table table-bordered dl-horizontal" style="width:600px;text-align:center;margin:0 auto;border:1px solid #408cca;margin-top:50px;background:#fff;">
+        <tr class="linear">
+            <td colspan="2" style="color:white;font-size:18px;">
+                个人信息
+            </td>
+        </tr>
+        <tr>
+            <td>
+                用户名
+            </td>
+            <td>
+                @ViewBag.UserName
+            </td>
+        </tr>
+        <tr>
+            <td>
+                职位
+            </td>
+            <td>
+                @ViewBag.RoleName
+            </td>
+        </tr>
+        <tr>
+            <td>
+                科室
+            </td>
+            <td>
+                @ViewBag.DepartmentName
+            </td>
+        </tr>
+        <tr>
+            <td>
+                电子邮箱
+            </td>
+            <td>
+                @ViewBag.Email
+            </td>
+        </tr>
+    </table>
+</div>
+
+
+

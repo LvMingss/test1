@@ -1,0 +1,76 @@
+﻿
+@{
+    ViewBag.Title = "城建档案接收明细";
+}
+
+<h2><i class="fa fa-tags kongge"></i>城建档案接收明细</h2>
+<hr />
+@using (Html.BeginForm())
+{
+<body>
+    <form id="form2">
+
+        <div style="font-size:20px;">
+            <i class="fa fa-caret-right"></i>请输入工程序号的范围
+        </div><br>
+        <div class="panel panel-default">
+            <table class="table table-bordered dl-horizontal">
+                <tr>
+                    <td style="background-color:#f9f9f9;width:20%;">
+                        起始工程序号:
+                    </td>
+                    <td>
+                        <input type="text" name="seqNoStart" id="seqNoStart" class="form-control " />
+                    </td>
+                    <td style="background-color:#f9f9f9;width:20%;">
+                        终止工程序号:
+                    </td>
+                    <td>
+                        <input type="text" name="seqNoEnd" id="seqNoEnd" class="form-control " />
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="4" style="text-align:center;">
+                        <input type="submit" name="action" class="btn btn-default" id="cancel" value="打印档案接收明细（工程序号）" />
+                        <input type="submit" name="action" class="btn btn-default" id="cancel" value="取消" />
+
+                    </td>
+
+                </tr>
+            </table>              
+        </div>                    
+                    <div style="font-size:20px;">
+                        <i class="fa fa-caret-right"></i>请输入项目顺序号的范围
+                    </div>
+                    <br>
+        <div class="panel panel-default">
+            <table class="table table-bordered dl-horizontal">
+                <tr>
+                    <td style="background-color:#f9f9f9;width:20%;">
+                        起始项目顺序号:
+                    </td>
+                    <td>
+                        <input type="text" name="txtSeqNoS" id="txtSeqNoS" class="form-control " />
+                    </td>
+                    <td style="background-color:#f9f9f9;width:20%;">
+                        终止项目顺序号:
+                    </td>
+                    <td>
+                        <input type="text" name="txtSeqNoE" id="txtSeqNoE" class="form-control " />
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="4" style="text-align:center;">
+                        <input type="submit" name="action" class="btn btn-default" id="cancel" value="打印档案接收明细（项目顺序号）" />
+                        <input type="submit" name="action" class="btn btn-default" id="cancel" value="取消" />
+
+                    </td>
+
+                </tr>
+            </table>
+        </div>
+                    
+    </form>
+</body>
+}
+

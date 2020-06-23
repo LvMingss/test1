@@ -1,0 +1,154 @@
+﻿
+
+@model urban_archive.Models.gxCabinetInfo
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+<script>
+    function baocun() {
+        var msg = "确认要提交保存修改吗?";
+        if (confirm(msg) == true) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+    function del() {
+        var msg = "确认要删除吗?";
+        if (confirm(msg) == true) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    </script>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <h2 style="margin-top:0;"><i class="fa fa-tags kongge"></i>柜子信息</h2>
+        
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.cabinetNo)
+        <div class="panel panel-default">
+            <table class="table table-bordered dl-horizontal" style="background-color:#f9f9f9;">
+                <tr>
+                    <td style="background-color:#f9f9f9;width:10%;">
+                        柜号
+                    </td>
+                    <td>
+                        @Html.EditorFor(model => model.cabinetNo, new { htmlAttributes = new { @class = "form-control", @readOnly = "readOnly " } })
+                        @Html.ValidationMessageFor(model => model.cabinetNo, "", new { @class = "text-danger" })
+                    </td>
+                    <td style="background-color:#f9f9f9;width:10%;">
+                        宽度
+                    </td>
+                    <td>
+                        @Html.EditorFor(model => model.width, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.width, "", new { @class = "text-danger" })
+                    </td>
+                </tr>
+                <tr>
+                    <td style="background-color:#f9f9f9;width:10%;">
+                        起始层次
+                    </td>
+                    <td>
+                        @Html.EditorFor(model => model.cengRangeA, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.cengRangeA, "", new { @class = "text-danger" })
+                    </td>
+                    <td style="background-color:#f9f9f9;width:10%;">
+                        终止层次
+                    </td>
+                    <td>
+                        @Html.EditorFor(model => model.cengRangeB, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.cengRangeB, "", new { @class = "text-danger" })
+                    </td>
+                </tr>
+                <tr>
+                    <td style="background-color:#f9f9f9;width:10%;">
+                        剩余宽度
+                    </td>
+                    <td>
+                        @Html.EditorFor(model => model.remainWidth, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.remainWidth, "", new { @class = "text-danger" })
+                    </td>
+                    <td style="background-color:#f9f9f9;width:10%;">
+                        终止排架号
+                    </td>
+                    <td>
+                        @Html.EditorFor(model => model.startPaijiaNo, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.startPaijiaNo, "", new { @class = "text-danger" })
+                    </td>
+                </tr>
+            </table>
+
+                @*<div class="form-group">
+                    @Html.LabelFor(model => model.cabinetNo, "柜号", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.cabinetNo, new { htmlAttributes = new { @class = "form-control", @readOnly = "readOnly " } })
+                        @Html.ValidationMessageFor(model => model.cabinetNo, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.width, "宽度", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.width, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.width, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(model => model.cengRangeA, "起始层次", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.cengRangeA, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.cengRangeA, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.cengRangeB, "终止层次", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.cengRangeB, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.cengRangeB, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(model => model.remainWidth, "剩余宽度", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.remainWidth, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.remainWidth, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(model => model.startPaijiaNo, "终止排架号", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.startPaijiaNo, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.startPaijiaNo, "", new { @class = "text-danger" })
+                    </div>
+                </div>*@
+                 
+
+
+
+        </div>
+        <div style="text-align:center;">
+            <p>
+                <input type="submit" value="修改" name="action"onclick="return baocun()" class="btn btn-default"> |
+                <input type="submit" value="删除" name="action"onclick="return del()" class="btn btn-default"> |
+                <input type="submit" value="返回" name="action" class="btn btn-default">
+            <p>
+                <div style="height:5px;">
+                </div>
+        </div> 
+       </div>    
+        }
+          
+        @*<div>
+            @Html.ActionLink("Back to List", "Index")
+        </div>*@

@@ -1,0 +1,93 @@
+﻿@model IEnumerable<urban_archive.Models.vw_charge>
+@{
+    var list = ViewBag.feiyong;
+}
+@{
+    ViewBag.Title = "财务收费列表";
+}
+
+<link href="~/Content/jquery-ui.theme.css" rel="stylesheet" />
+<link href="~/Content/Tabulator/version3.0/tabulator.css" rel="stylesheet" />
+
+<script src="~/Scripts/jquery-2.1.1.min.js" type="text/javascript"></script>
+<script src="~/Scripts/jquery-ui.min.js"></script>
+<script src="~/Content/Tabulator/version3.0/tabulator.js"></script>
+
+<script type="text/javascript">
+    var jiesuan = function (value, data, cell, row, options) { //plain text value
+            return "<i class='fa fa-search-plus' style='color:#428bca;;vertical-align:middle; padding:2px 0;'></i> "
+        };
+
+        $().ready(function () {//在页面加载完成之后用，为了保证js能完整的执行。
+            $(document).ready(function () {
+                var a = $(window).height();
+                var hh = a-160;
+                $(".box-h").height(hh)  // 高度加在类名为box的DIV 上
+
+            })
+            $("#example-table-2").tabulator({
+                height:"100%",
+                virtualDom:false,
+                
+                //columnMinWidth:100,
+                //minWidth
+                fitColumns:true,                
+                selectable:true, //make rows selectable
+                pagination:"local",
+                paginationSize:50,
+                columns: [
+                {
+                    title: "收费查询", field: "caozuo1",width: 100 ,formatter: jiesuan,   align: "center", headerSort: false,cellClick: function (e,cell) {
+                        var url = '/guanzhang/JieSuan?id=' + cell.getValue();
+                        window.location.href = url;
+                    }
+                },
+                { title: "科室", field: "name", headerSort: false,width: 100 },
+                { title: "编号", field: "No",headerSort: false, width: 200 },
+                { title: "缴费单位/缴费人", field: "gender",headerSort: false, width: 200 },
+                { title: "缴费情况", field: "charge",headerSort: false, width: 100 ,align: "center",formatter:"tickCross"},
+                { title: "是否驳回", field: "back",headerSort: false, width: 100 ,align: "center",formatter:"tickCross" },
+                { title: "驳回原因", field: "result",headerSort: false, minWidth: 200  },
+
+
+                ],
+            });
+
+            var temp = new Array();
+            var data=@(new HtmlString(@ViewBag.result));
+            for (var i = 0; i < data.length;i++) {
+                temp.push({ "id": i + 1,"caozuo1": "费用结算", "name": data[i].text, "No": data[i].seqNo, "gender": data[i].unitName, "charge": data[i].isCharge,"back": data[i].isBack, "result": data[i].backNote,"caozuo1": data[i].seqNo, });
+            }
+
+            $("#example-table-2").tabulator("setData", temp);
+            $(window).resize(function () {
+                var a = $(window).height();
+                var hh = a-160;
+                $(".box-h").height(hh)  // 高度加在类名为box的DIV 上
+                $("#example-table-2").tabulator("redraw",true);   
+            });
+
+        });
+</script>
+<section>
+    <h2 style="float:left;"><i class="fa fa-tags kongge"></i>财务收费列表</h2>
+    <ol class="breadcrumb">
+        <li class="active">馆长室</li>
+        <li>财务收费查询</li>
+    </ol>
+    <div style="clear:both;"></div>
+</section>
+@using (Html.BeginForm())
+{
+    <p>
+        检索条件： @Html.DropDownList("dropdowmlist", null, "请选择检索条件", new { @class = "form-control", @style = "display:inline;width:160px;" })   
+        检索内容：<input type="text" name="search" id="serach" class = "form-control"style="display:inline;width:160px;">
+        @Html.DropDownList("Department",null, new { @class = "form-control", @style = "display:inline;width:120px;" }) 
+        @Html.DropDownList("ischarge", null, new { @class = "form-control", @style = "display:inline;width:100px;" }) 
+        <input type="submit" name="action"value="查询" class="btn btn-default">
+        
+    </p>
+}
+@*@Html.ActionLink("打印收费详细报表", "charge", "ProjectCharge")*@
+
+<div id="example-table-2" class="box-h"  > </div>

@@ -1,0 +1,1388 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Report xmlns="http://schemas.microsoft.com/sqlserver/reporting/2008/01/reportdefinition" xmlns:rd="http://schemas.microsoft.com/SQLServer/reporting/reportdesigner">
+  <Body>
+    <ReportItems>
+      <Textbox Name="originalInchCount">
+        <CanGrow>true</CanGrow>
+        <KeepTogether>true</KeepTogether>
+        <Paragraphs>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>厚度：</Value>
+                <Style>
+                  <FontFamily>宋体</FontFamily>
+                  <FontSize>12pt</FontSize>
+                </Style>
+              </TextRun>
+              <TextRun>
+                <Value>=sum(Fields!archiveThickness.Value,"yijiaoshu2")</Value>
+                <Style>
+                  <FontFamily>宋体</FontFamily>
+                  <FontSize>12pt</FontSize>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style />
+          </Paragraph>
+        </Paragraphs>
+        <rd:DefaultName>originalInchCount</rd:DefaultName>
+        <Top>2.80141cm</Top>
+        <Left>22.56578cm</Left>
+        <Height>0.6cm</Height>
+        <Width>2.94979cm</Width>
+        <Style>
+          <Border>
+            <Style>None</Style>
+          </Border>
+          <PaddingLeft>2pt</PaddingLeft>
+          <PaddingRight>2pt</PaddingRight>
+          <PaddingTop>2pt</PaddingTop>
+          <PaddingBottom>2pt</PaddingBottom>
+        </Style>
+      </Textbox>
+      <Textbox Name="projectName">
+        <KeepTogether>true</KeepTogether>
+        <Paragraphs>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>=First(Fields!projectName.Value,"yijiaoshu1")</Value>
+                <Style>
+                  <FontFamily>宋体</FontFamily>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style />
+          </Paragraph>
+        </Paragraphs>
+        <rd:DefaultName>projectName</rd:DefaultName>
+        <Top>4.30953cm</Top>
+        <Left>16.66558cm</Left>
+        <Height>1.84354cm</Height>
+        <Width>7.50063cm</Width>
+        <ZIndex>1</ZIndex>
+        <Style>
+          <Border>
+            <Style>None</Style>
+          </Border>
+          <VerticalAlign>Middle</VerticalAlign>
+          <PaddingLeft>2pt</PaddingLeft>
+          <PaddingRight>2pt</PaddingRight>
+          <PaddingTop>2pt</PaddingTop>
+          <PaddingBottom>2pt</PaddingBottom>
+        </Style>
+      </Textbox>
+      <Textbox Name="originalVolumeCount">
+        <CanGrow>true</CanGrow>
+        <KeepTogether>true</KeepTogether>
+        <Paragraphs>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>=Parameters!totaljuanshu.Value</Value>
+                <Style>
+                  <FontFamily>宋体</FontFamily>
+                  <FontSize>20pt</FontSize>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style>
+              <TextAlign>Center</TextAlign>
+            </Style>
+          </Paragraph>
+        </Paragraphs>
+        <rd:DefaultName>originalVolumeCount</rd:DefaultName>
+        <Top>6.47912cm</Top>
+        <Left>6.09613cm</Left>
+        <Height>0.86458cm</Height>
+        <Width>1.83475cm</Width>
+        <ZIndex>2</ZIndex>
+        <Style>
+          <Border>
+            <Style>None</Style>
+          </Border>
+          <PaddingLeft>2pt</PaddingLeft>
+          <PaddingRight>2pt</PaddingRight>
+          <PaddingTop>2pt</PaddingTop>
+          <PaddingBottom>2pt</PaddingBottom>
+        </Style>
+      </Textbox>
+      <Textbox Name="textMaterial">
+        <CanGrow>true</CanGrow>
+        <KeepTogether>true</KeepTogether>
+        <Paragraphs>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>=Sum(Fields!textMaterial.Value, "yijiaoshu2")</Value>
+                <Style>
+                  <FontFamily>宋体</FontFamily>
+                  <FontSize>16pt</FontSize>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style>
+              <TextAlign>Center</TextAlign>
+            </Style>
+          </Paragraph>
+        </Paragraphs>
+        <rd:DefaultName>textMaterial</rd:DefaultName>
+        <Top>6.47912cm</Top>
+        <Left>15.76096cm</Left>
+        <Height>0.86458cm</Height>
+        <Width>2.46095cm</Width>
+        <ZIndex>3</ZIndex>
+        <Style>
+          <Border>
+            <Style>None</Style>
+          </Border>
+          <PaddingLeft>2pt</PaddingLeft>
+          <PaddingRight>2pt</PaddingRight>
+          <PaddingTop>2pt</PaddingTop>
+          <PaddingBottom>2pt</PaddingBottom>
+        </Style>
+      </Textbox>
+      <Textbox Name="drawing">
+        <CanGrow>true</CanGrow>
+        <KeepTogether>true</KeepTogether>
+        <Paragraphs>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>=Sum(Fields!drawing.Value, "yijiaoshu2")</Value>
+                <Style>
+                  <FontFamily>宋体</FontFamily>
+                  <FontSize>16pt</FontSize>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style>
+              <TextAlign>Center</TextAlign>
+            </Style>
+          </Paragraph>
+        </Paragraphs>
+        <rd:DefaultName>drawing</rd:DefaultName>
+        <Top>6.47912cm</Top>
+        <Left>21.76794cm</Left>
+        <Height>0.86458cm</Height>
+        <Width>2.79104cm</Width>
+        <ZIndex>4</ZIndex>
+        <Style>
+          <Border>
+            <Style>None</Style>
+          </Border>
+          <PaddingLeft>2pt</PaddingLeft>
+          <PaddingRight>2pt</PaddingRight>
+          <PaddingTop>2pt</PaddingTop>
+          <PaddingBottom>2pt</PaddingBottom>
+        </Style>
+      </Textbox>
+      <Textbox Name="photoCount">
+        <CanGrow>true</CanGrow>
+        <KeepTogether>true</KeepTogether>
+        <Paragraphs>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>=Sum(Fields!photoCount.Value, "yijiaoshu2")</Value>
+                <Style>
+                  <FontFamily>宋体</FontFamily>
+                  <FontSize>16pt</FontSize>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style>
+              <TextAlign>Center</TextAlign>
+            </Style>
+          </Paragraph>
+        </Paragraphs>
+        <rd:DefaultName>photoCount</rd:DefaultName>
+        <Top>7.96238cm</Top>
+        <Left>6.05706cm</Left>
+        <Height>0.86458cm</Height>
+        <Width>2.18123cm</Width>
+        <ZIndex>5</ZIndex>
+        <Style>
+          <Border>
+            <Style>None</Style>
+          </Border>
+          <PaddingLeft>2pt</PaddingLeft>
+          <PaddingRight>2pt</PaddingRight>
+          <PaddingTop>2pt</PaddingTop>
+          <PaddingBottom>2pt</PaddingBottom>
+        </Style>
+      </Textbox>
+      <Image Name="Image1">
+        <Source>Embedded</Source>
+        <Value>李馆长签字</Value>
+        <Sizing>Fit</Sizing>
+        <Top>12.88203cm</Top>
+        <Left>8.27287cm</Left>
+        <Height>1.1825cm</Height>
+        <Width>3.85479cm</Width>
+        <ZIndex>6</ZIndex>
+        <Style>
+          <Border>
+            <Style>None</Style>
+          </Border>
+        </Style>
+      </Image>
+      <Textbox Name="Textbox7">
+        <CanGrow>true</CanGrow>
+        <KeepTogether>true</KeepTogether>
+        <Paragraphs>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>周葛强　周伟玲</Value>
+                <Style>
+                  <FontFamily>宋体</FontFamily>
+                  <FontSize>16pt</FontSize>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style />
+          </Paragraph>
+        </Paragraphs>
+        <rd:DefaultName>Textbox7</rd:DefaultName>
+        <Top>14.60183cm</Top>
+        <Left>8.27287cm</Left>
+        <Height>0.78521cm</Height>
+        <Width>5.07188cm</Width>
+        <ZIndex>7</ZIndex>
+        <Style>
+          <Border>
+            <Style>None</Style>
+          </Border>
+          <PaddingLeft>2pt</PaddingLeft>
+          <PaddingRight>2pt</PaddingRight>
+          <PaddingTop>2pt</PaddingTop>
+          <PaddingBottom>2pt</PaddingBottom>
+        </Style>
+      </Textbox>
+      <Textbox Name="transferUnit">
+        <KeepTogether>true</KeepTogether>
+        <Paragraphs>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>=First(Fields!transferUnit.Value, "yijiaoshu2")</Value>
+                <Style>
+                  <FontFamily>宋体</FontFamily>
+                  <FontSize>14pt</FontSize>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style />
+          </Paragraph>
+        </Paragraphs>
+        <rd:DefaultName>transferUnit</rd:DefaultName>
+        <Top>10.26266cm</Top>
+        <Left>17.45933cm</Left>
+        <Height>2.3202cm</Height>
+        <Width>7.60646cm</Width>
+        <ZIndex>8</ZIndex>
+        <Style>
+          <Border>
+            <Style>None</Style>
+          </Border>
+          <VerticalAlign>Middle</VerticalAlign>
+          <PaddingLeft>2pt</PaddingLeft>
+          <PaddingRight>2pt</PaddingRight>
+          <PaddingTop>2pt</PaddingTop>
+          <PaddingBottom>2pt</PaddingBottom>
+        </Style>
+      </Textbox>
+      <Textbox Name="ExecutionTime">
+        <CanGrow>true</CanGrow>
+        <KeepTogether>true</KeepTogether>
+        <Paragraphs>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>交接日期：</Value>
+                <Style>
+                  <FontFamily>宋体</FontFamily>
+                  <FontSize>16pt</FontSize>
+                  <Format>yyyy年MMMd日</Format>
+                </Style>
+              </TextRun>
+              <TextRun>
+                <Value>=Globals!ExecutionTime</Value>
+                <Style>
+                  <FontFamily>宋体</FontFamily>
+                  <FontSize>16pt</FontSize>
+                  <Format>yyyy年MMMd日</Format>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style />
+          </Paragraph>
+        </Paragraphs>
+        <rd:DefaultName>ExecutionTime</rd:DefaultName>
+        <Top>18.01495cm</Top>
+        <Left>14.0462cm</Left>
+        <Height>0.81167cm</Height>
+        <Width>9.19396cm</Width>
+        <ZIndex>9</ZIndex>
+        <Style>
+          <Border>
+            <Style>None</Style>
+          </Border>
+          <PaddingLeft>2pt</PaddingLeft>
+          <PaddingRight>2pt</PaddingRight>
+          <PaddingTop>2pt</PaddingTop>
+          <PaddingBottom>2pt</PaddingBottom>
+        </Style>
+      </Textbox>
+      <Textbox Name="paperProjectSeqNo">
+        <CanGrow>true</CanGrow>
+        <KeepTogether>true</KeepTogether>
+        <Paragraphs>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>=Sum(Fields!paperProjectSeqNo.Value, "yijiaoshu1")</Value>
+                <Style>
+                  <FontFamily>宋体</FontFamily>
+                  <FontSize>12pt</FontSize>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style>
+              <TextAlign>Left</TextAlign>
+            </Style>
+          </Paragraph>
+        </Paragraphs>
+        <rd:DefaultName>paperProjectSeqNo</rd:DefaultName>
+        <Top>3.50724cm</Top>
+        <Left>22.56578cm</Left>
+        <Height>0.6cm</Height>
+        <Width>2.5cm</Width>
+        <ZIndex>10</ZIndex>
+        <Style>
+          <Border>
+            <Style>None</Style>
+          </Border>
+          <PaddingLeft>2pt</PaddingLeft>
+          <PaddingRight>2pt</PaddingRight>
+          <PaddingTop>2pt</PaddingTop>
+          <PaddingBottom>2pt</PaddingBottom>
+        </Style>
+      </Textbox>
+      <Textbox Name="page">
+        <CanGrow>true</CanGrow>
+        <KeepTogether>true</KeepTogether>
+        <Paragraphs>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>=Parameters!page.Value</Value>
+                <Style>
+                  <FontFamily>宋体</FontFamily>
+                  <FontSize>16pt</FontSize>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style>
+              <TextAlign>Center</TextAlign>
+            </Style>
+          </Paragraph>
+        </Paragraphs>
+        <rd:DefaultName>page</rd:DefaultName>
+        <Top>9.44245cm</Top>
+        <Left>14.85004cm</Left>
+        <Height>0.86458cm</Height>
+        <Width>2.5cm</Width>
+        <ZIndex>11</ZIndex>
+        <Style>
+          <Border>
+            <Style>None</Style>
+          </Border>
+          <PaddingLeft>2pt</PaddingLeft>
+          <PaddingRight>2pt</PaddingRight>
+          <PaddingTop>2pt</PaddingTop>
+          <PaddingBottom>2pt</PaddingBottom>
+        </Style>
+      </Textbox>
+      <Textbox Name="Textbox1">
+        <CanGrow>true</CanGrow>
+        <KeepTogether>true</KeepTogether>
+        <Paragraphs>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>城</Value>
+                <Style>
+                  <FontFamily>宋体</FontFamily>
+                  <FontSize>24pt</FontSize>
+                  <FontWeight>Bold</FontWeight>
+                </Style>
+              </TextRun>
+              <TextRun>
+                <Value xml:space="preserve">　</Value>
+                <Style>
+                  <FontFamily>宋体</FontFamily>
+                  <FontSize>12pt</FontSize>
+                  <FontWeight>Bold</FontWeight>
+                </Style>
+              </TextRun>
+              <TextRun>
+                <Value>市</Value>
+                <Style>
+                  <FontFamily>宋体</FontFamily>
+                  <FontSize>24pt</FontSize>
+                  <FontWeight>Bold</FontWeight>
+                </Style>
+              </TextRun>
+              <TextRun>
+                <Value xml:space="preserve">　</Value>
+                <Style>
+                  <FontFamily>宋体</FontFamily>
+                  <FontSize>12pt</FontSize>
+                  <FontWeight>Bold</FontWeight>
+                </Style>
+              </TextRun>
+              <TextRun>
+                <Value>建</Value>
+                <Style>
+                  <FontFamily>宋体</FontFamily>
+                  <FontSize>24pt</FontSize>
+                  <FontWeight>Bold</FontWeight>
+                </Style>
+              </TextRun>
+              <TextRun>
+                <Value xml:space="preserve">　</Value>
+                <Style>
+                  <FontFamily>宋体</FontFamily>
+                  <FontSize>12pt</FontSize>
+                  <FontWeight>Bold</FontWeight>
+                </Style>
+              </TextRun>
+              <TextRun>
+                <Value>设</Value>
+                <Style>
+                  <FontFamily>宋体</FontFamily>
+                  <FontSize>24pt</FontSize>
+                  <FontWeight>Bold</FontWeight>
+                </Style>
+              </TextRun>
+              <TextRun>
+                <Value xml:space="preserve">　</Value>
+                <Style>
+                  <FontFamily>宋体</FontFamily>
+                  <FontSize>12pt</FontSize>
+                  <FontWeight>Bold</FontWeight>
+                </Style>
+              </TextRun>
+              <TextRun>
+                <Value>档</Value>
+                <Style>
+                  <FontFamily>宋体</FontFamily>
+                  <FontSize>24pt</FontSize>
+                  <FontWeight>Bold</FontWeight>
+                </Style>
+              </TextRun>
+              <TextRun>
+                <Value xml:space="preserve">　</Value>
+                <Style>
+                  <FontFamily>宋体</FontFamily>
+                  <FontSize>12pt</FontSize>
+                  <FontWeight>Bold</FontWeight>
+                </Style>
+              </TextRun>
+              <TextRun>
+                <Value>案</Value>
+                <Style>
+                  <FontFamily>宋体</FontFamily>
+                  <FontSize>24pt</FontSize>
+                  <FontWeight>Bold</FontWeight>
+                </Style>
+              </TextRun>
+              <TextRun>
+                <Value xml:space="preserve">　</Value>
+                <Style>
+                  <FontFamily>宋体</FontFamily>
+                  <FontSize>12pt</FontSize>
+                  <FontWeight>Bold</FontWeight>
+                </Style>
+              </TextRun>
+              <TextRun>
+                <Value>移</Value>
+                <Style>
+                  <FontFamily>宋体</FontFamily>
+                  <FontSize>24pt</FontSize>
+                  <FontWeight>Bold</FontWeight>
+                </Style>
+              </TextRun>
+              <TextRun>
+                <Value xml:space="preserve">　</Value>
+                <Style>
+                  <FontFamily>宋体</FontFamily>
+                  <FontSize>12pt</FontSize>
+                  <FontWeight>Bold</FontWeight>
+                </Style>
+              </TextRun>
+              <TextRun>
+                <Value>交</Value>
+                <Style>
+                  <FontFamily>宋体</FontFamily>
+                  <FontSize>24pt</FontSize>
+                  <FontWeight>Bold</FontWeight>
+                </Style>
+              </TextRun>
+              <TextRun>
+                <Value xml:space="preserve">　</Value>
+                <Style>
+                  <FontFamily>宋体</FontFamily>
+                  <FontSize>12pt</FontSize>
+                  <FontWeight>Bold</FontWeight>
+                </Style>
+              </TextRun>
+              <TextRun>
+                <Value>书</Value>
+                <Style>
+                  <FontFamily>宋体</FontFamily>
+                  <FontSize>24pt</FontSize>
+                  <FontWeight>Bold</FontWeight>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style>
+              <TextAlign>Center</TextAlign>
+            </Style>
+          </Paragraph>
+        </Paragraphs>
+        <rd:DefaultName>Textbox1</rd:DefaultName>
+        <Top>1.76953cm</Top>
+        <Left>7.16704cm</Left>
+        <Height>1.12917cm</Height>
+        <Width>11.68104cm</Width>
+        <ZIndex>12</ZIndex>
+        <Style>
+          <Border>
+            <Style>None</Style>
+          </Border>
+          <PaddingLeft>2pt</PaddingLeft>
+          <PaddingRight>2pt</PaddingRight>
+          <PaddingTop>2pt</PaddingTop>
+          <PaddingBottom>2pt</PaddingBottom>
+        </Style>
+      </Textbox>
+      <Textbox Name="Textbox2">
+        <CanGrow>true</CanGrow>
+        <KeepTogether>true</KeepTogether>
+        <Paragraphs>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>兹向青岛市城市建设档案馆移交</Value>
+                <Style>
+                  <FontFamily>楷体</FontFamily>
+                  <FontSize>20pt</FontSize>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style />
+          </Paragraph>
+        </Paragraphs>
+        <rd:DefaultName>Textbox2</rd:DefaultName>
+        <Top>4.75933cm</Top>
+        <Left>5.64599cm</Left>
+        <Height>0.86458cm</Height>
+        <Width>10.56979cm</Width>
+        <ZIndex>13</ZIndex>
+        <Style>
+          <Border>
+            <Style>None</Style>
+          </Border>
+          <PaddingLeft>2pt</PaddingLeft>
+          <PaddingRight>2pt</PaddingRight>
+          <PaddingTop>2pt</PaddingTop>
+          <PaddingBottom>2pt</PaddingBottom>
+        </Style>
+      </Textbox>
+      <Textbox Name="Textbox3">
+        <CanGrow>true</CanGrow>
+        <KeepTogether>true</KeepTogether>
+        <Paragraphs>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>档案</Value>
+                <Style>
+                  <FontFamily>楷体</FontFamily>
+                  <FontSize>20pt</FontSize>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style />
+          </Paragraph>
+        </Paragraphs>
+        <rd:DefaultName>Textbox2</rd:DefaultName>
+        <Top>4.75933cm</Top>
+        <Left>24.62954cm</Left>
+        <Height>0.86458cm</Height>
+        <Width>1.70625cm</Width>
+        <ZIndex>14</ZIndex>
+        <Style>
+          <Border>
+            <Style>None</Style>
+          </Border>
+          <PaddingLeft>2pt</PaddingLeft>
+          <PaddingRight>2pt</PaddingRight>
+          <PaddingTop>2pt</PaddingTop>
+          <PaddingBottom>2pt</PaddingBottom>
+        </Style>
+      </Textbox>
+      <Textbox Name="Textbox4">
+        <CanGrow>true</CanGrow>
+        <KeepTogether>true</KeepTogether>
+        <Paragraphs>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>共计</Value>
+                <Style>
+                  <FontFamily>楷体</FontFamily>
+                  <FontSize>20pt</FontSize>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style />
+          </Paragraph>
+        </Paragraphs>
+        <rd:DefaultName>Textbox2</rd:DefaultName>
+        <Top>6.47912cm</Top>
+        <Left>4.17442cm</Left>
+        <Height>0.86458cm</Height>
+        <Width>1.70625cm</Width>
+        <ZIndex>15</ZIndex>
+        <Style>
+          <Border>
+            <Style>None</Style>
+          </Border>
+          <PaddingLeft>2pt</PaddingLeft>
+          <PaddingRight>2pt</PaddingRight>
+          <PaddingTop>2pt</PaddingTop>
+          <PaddingBottom>2pt</PaddingBottom>
+        </Style>
+      </Textbox>
+      <Textbox Name="Textbox5">
+        <CanGrow>true</CanGrow>
+        <KeepTogether>true</KeepTogether>
+        <Paragraphs>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>卷(册)，其中文字材料</Value>
+                <Style>
+                  <FontFamily>楷体</FontFamily>
+                  <FontSize>20pt</FontSize>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style />
+          </Paragraph>
+        </Paragraphs>
+        <rd:DefaultName>Textbox2</rd:DefaultName>
+        <Top>6.47912cm</Top>
+        <Left>8.10727cm</Left>
+        <Height>0.86458cm</Height>
+        <Width>7.61841cm</Width>
+        <ZIndex>16</ZIndex>
+        <Style>
+          <Border>
+            <Style>None</Style>
+          </Border>
+          <PaddingLeft>2pt</PaddingLeft>
+          <PaddingRight>2pt</PaddingRight>
+          <PaddingTop>2pt</PaddingTop>
+          <PaddingBottom>2pt</PaddingBottom>
+        </Style>
+      </Textbox>
+      <Textbox Name="Textbox6">
+        <CanGrow>true</CanGrow>
+        <KeepTogether>true</KeepTogether>
+        <Paragraphs>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>页，图纸</Value>
+                <Style>
+                  <FontFamily>楷体</FontFamily>
+                  <FontSize>20pt</FontSize>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style />
+          </Paragraph>
+        </Paragraphs>
+        <rd:DefaultName>Textbox2</rd:DefaultName>
+        <Top>6.47912cm</Top>
+        <Left>18.25718cm</Left>
+        <Height>0.86458cm</Height>
+        <Width>3.21438cm</Width>
+        <ZIndex>17</ZIndex>
+        <Style>
+          <Border>
+            <Style>None</Style>
+          </Border>
+          <PaddingLeft>2pt</PaddingLeft>
+          <PaddingRight>2pt</PaddingRight>
+          <PaddingTop>2pt</PaddingTop>
+          <PaddingBottom>2pt</PaddingBottom>
+        </Style>
+      </Textbox>
+      <Textbox Name="Textbox8">
+        <CanGrow>true</CanGrow>
+        <KeepTogether>true</KeepTogether>
+        <Paragraphs>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>页，</Value>
+                <Style>
+                  <FontFamily>楷体</FontFamily>
+                  <FontSize>20pt</FontSize>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style />
+          </Paragraph>
+        </Paragraphs>
+        <rd:DefaultName>Textbox2</rd:DefaultName>
+        <Top>6.47912cm</Top>
+        <Left>24.62954cm</Left>
+        <Height>0.86458cm</Height>
+        <Width>1.70625cm</Width>
+        <ZIndex>18</ZIndex>
+        <Style>
+          <Border>
+            <Style>None</Style>
+          </Border>
+          <PaddingLeft>2pt</PaddingLeft>
+          <PaddingRight>2pt</PaddingRight>
+          <PaddingTop>2pt</PaddingTop>
+          <PaddingBottom>2pt</PaddingBottom>
+        </Style>
+      </Textbox>
+      <Textbox Name="Textbox9">
+        <CanGrow>true</CanGrow>
+        <KeepTogether>true</KeepTogether>
+        <Paragraphs>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>照片</Value>
+                <Style>
+                  <FontFamily>楷体</FontFamily>
+                  <FontSize>20pt</FontSize>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style />
+          </Paragraph>
+        </Paragraphs>
+        <rd:DefaultName>Textbox2</rd:DefaultName>
+        <Top>7.96238cm</Top>
+        <Left>4.17442cm</Left>
+        <Height>0.86458cm</Height>
+        <Width>1.70625cm</Width>
+        <ZIndex>19</ZIndex>
+        <Style>
+          <Border>
+            <Style>None</Style>
+          </Border>
+          <PaddingLeft>2pt</PaddingLeft>
+          <PaddingRight>2pt</PaddingRight>
+          <PaddingTop>2pt</PaddingTop>
+          <PaddingBottom>2pt</PaddingBottom>
+        </Style>
+      </Textbox>
+      <Textbox Name="Textbox14">
+        <CanGrow>true</CanGrow>
+        <KeepTogether>true</KeepTogether>
+        <Paragraphs>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>张。</Value>
+                <Style>
+                  <FontFamily>楷体</FontFamily>
+                  <FontSize>20pt</FontSize>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style />
+          </Paragraph>
+        </Paragraphs>
+        <rd:DefaultName>Textbox2</rd:DefaultName>
+        <Top>7.96238cm</Top>
+        <Left>8.23829cm</Left>
+        <Height>0.86458cm</Height>
+        <Width>1.70625cm</Width>
+        <ZIndex>20</ZIndex>
+        <Style>
+          <Border>
+            <Style>None</Style>
+          </Border>
+          <PaddingLeft>2pt</PaddingLeft>
+          <PaddingRight>2pt</PaddingRight>
+          <PaddingTop>2pt</PaddingTop>
+          <PaddingBottom>2pt</PaddingBottom>
+        </Style>
+      </Textbox>
+      <Textbox Name="Textbox10">
+        <CanGrow>true</CanGrow>
+        <KeepTogether>true</KeepTogether>
+        <Paragraphs>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>附：城建档案交接目录一份（共</Value>
+                <Style>
+                  <FontFamily>楷体</FontFamily>
+                  <FontSize>20pt</FontSize>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style />
+          </Paragraph>
+        </Paragraphs>
+        <rd:DefaultName>Textbox2</rd:DefaultName>
+        <Top>9.44245cm</Top>
+        <Left>4.17442cm</Left>
+        <Height>0.86458cm</Height>
+        <Width>10.56979cm</Width>
+        <ZIndex>21</ZIndex>
+        <Style>
+          <Border>
+            <Style>None</Style>
+          </Border>
+          <PaddingLeft>2pt</PaddingLeft>
+          <PaddingRight>2pt</PaddingRight>
+          <PaddingTop>2pt</PaddingTop>
+          <PaddingBottom>2pt</PaddingBottom>
+        </Style>
+      </Textbox>
+      <Textbox Name="Textbox15">
+        <CanGrow>true</CanGrow>
+        <KeepTogether>true</KeepTogether>
+        <Paragraphs>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>张）</Value>
+                <Style>
+                  <FontFamily>楷体</FontFamily>
+                  <FontSize>20pt</FontSize>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style />
+          </Paragraph>
+        </Paragraphs>
+        <rd:DefaultName>Textbox2</rd:DefaultName>
+        <Top>9.44245cm</Top>
+        <Left>17.49116cm</Left>
+        <Height>0.86458cm</Height>
+        <Width>1.70625cm</Width>
+        <ZIndex>22</ZIndex>
+        <Style>
+          <Border>
+            <Style>None</Style>
+          </Border>
+          <PaddingLeft>2pt</PaddingLeft>
+          <PaddingRight>2pt</PaddingRight>
+          <PaddingTop>2pt</PaddingTop>
+          <PaddingBottom>2pt</PaddingBottom>
+        </Style>
+      </Textbox>
+      <Textbox Name="Textbox11">
+        <CanGrow>true</CanGrow>
+        <KeepTogether>true</KeepTogether>
+        <Paragraphs>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>接收单位：青岛市城市建设档案馆</Value>
+                <Style>
+                  <FontFamily>宋体</FontFamily>
+                  <FontSize>16pt</FontSize>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style />
+          </Paragraph>
+        </Paragraphs>
+        <rd:DefaultName>Textbox2</rd:DefaultName>
+        <Top>11.24322cm</Top>
+        <Left>4.89321cm</Left>
+        <Height>0.86458cm</Height>
+        <Width>8.74417cm</Width>
+        <ZIndex>23</ZIndex>
+        <Style>
+          <Border>
+            <Style>None</Style>
+          </Border>
+          <PaddingLeft>2pt</PaddingLeft>
+          <PaddingRight>2pt</PaddingRight>
+          <PaddingTop>2pt</PaddingTop>
+          <PaddingBottom>2pt</PaddingBottom>
+        </Style>
+      </Textbox>
+      <Textbox Name="Textbox12">
+        <CanGrow>true</CanGrow>
+        <KeepTogether>true</KeepTogether>
+        <Paragraphs>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>移交单位：</Value>
+                <Style>
+                  <FontFamily>宋体</FontFamily>
+                  <FontSize>16pt</FontSize>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style />
+          </Paragraph>
+        </Paragraphs>
+        <rd:DefaultName>Textbox2</rd:DefaultName>
+        <Top>11.24322cm</Top>
+        <Left>14.31269cm</Left>
+        <Height>0.86458cm</Height>
+        <Width>3.14664cm</Width>
+        <ZIndex>24</ZIndex>
+        <Style>
+          <Border>
+            <Style>None</Style>
+          </Border>
+          <PaddingLeft>2pt</PaddingLeft>
+          <PaddingRight>2pt</PaddingRight>
+          <PaddingTop>2pt</PaddingTop>
+          <PaddingBottom>2pt</PaddingBottom>
+        </Style>
+      </Textbox>
+      <Textbox Name="Textbox13">
+        <CanGrow>true</CanGrow>
+        <KeepTogether>true</KeepTogether>
+        <Paragraphs>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>负责人：</Value>
+                <Style>
+                  <FontFamily>宋体</FontFamily>
+                  <FontSize>16pt</FontSize>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style />
+          </Paragraph>
+        </Paragraphs>
+        <rd:DefaultName>Textbox2</rd:DefaultName>
+        <Top>12.88203cm</Top>
+        <Left>4.89321cm</Left>
+        <Height>0.86458cm</Height>
+        <Width>2.82914cm</Width>
+        <ZIndex>25</ZIndex>
+        <Style>
+          <Border>
+            <Style>None</Style>
+          </Border>
+          <PaddingLeft>2pt</PaddingLeft>
+          <PaddingRight>2pt</PaddingRight>
+          <PaddingTop>2pt</PaddingTop>
+          <PaddingBottom>2pt</PaddingBottom>
+        </Style>
+      </Textbox>
+      <Textbox Name="Textbox16">
+        <CanGrow>true</CanGrow>
+        <KeepTogether>true</KeepTogether>
+        <Paragraphs>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>经办人：</Value>
+                <Style>
+                  <FontFamily>宋体</FontFamily>
+                  <FontSize>16pt</FontSize>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style />
+          </Paragraph>
+        </Paragraphs>
+        <rd:DefaultName>Textbox2</rd:DefaultName>
+        <Top>14.60183cm</Top>
+        <Left>4.89321cm</Left>
+        <Height>0.86458cm</Height>
+        <Width>2.82914cm</Width>
+        <ZIndex>26</ZIndex>
+        <Style>
+          <Border>
+            <Style>None</Style>
+          </Border>
+          <PaddingLeft>2pt</PaddingLeft>
+          <PaddingRight>2pt</PaddingRight>
+          <PaddingTop>2pt</PaddingTop>
+          <PaddingBottom>2pt</PaddingBottom>
+        </Style>
+      </Textbox>
+      <Textbox Name="Textbox23">
+        <CanGrow>true</CanGrow>
+        <KeepTogether>true</KeepTogether>
+        <Paragraphs>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>负责人：</Value>
+                <Style>
+                  <FontFamily>宋体</FontFamily>
+                  <FontSize>16pt</FontSize>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style />
+          </Paragraph>
+        </Paragraphs>
+        <rd:DefaultName>Textbox2</rd:DefaultName>
+        <Top>12.88203cm</Top>
+        <Left>14.31269cm</Left>
+        <Height>0.86458cm</Height>
+        <Width>3.14664cm</Width>
+        <ZIndex>27</ZIndex>
+        <Style>
+          <Border>
+            <Style>None</Style>
+          </Border>
+          <PaddingLeft>2pt</PaddingLeft>
+          <PaddingRight>2pt</PaddingRight>
+          <PaddingTop>2pt</PaddingTop>
+          <PaddingBottom>2pt</PaddingBottom>
+        </Style>
+      </Textbox>
+      <Textbox Name="Textbox24">
+        <CanGrow>true</CanGrow>
+        <KeepTogether>true</KeepTogether>
+        <Paragraphs>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>经办人：</Value>
+                <Style>
+                  <FontFamily>宋体</FontFamily>
+                  <FontSize>16pt</FontSize>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style />
+          </Paragraph>
+        </Paragraphs>
+        <rd:DefaultName>Textbox2</rd:DefaultName>
+        <Top>14.60183cm</Top>
+        <Left>14.31269cm</Left>
+        <Height>0.86458cm</Height>
+        <Width>3.14664cm</Width>
+        <ZIndex>28</ZIndex>
+        <Style>
+          <Border>
+            <Style>None</Style>
+          </Border>
+          <PaddingLeft>2pt</PaddingLeft>
+          <PaddingRight>2pt</PaddingRight>
+          <PaddingTop>2pt</PaddingTop>
+          <PaddingBottom>2pt</PaddingBottom>
+        </Style>
+      </Textbox>
+    </ReportItems>
+    <Height>7.41206in</Height>
+    <Style />
+  </Body>
+  <Width>10.36842in</Width>
+  <Page>
+    <PageHeight>21cm</PageHeight>
+    <PageWidth>29.7cm</PageWidth>
+    <LeftMargin>1cm</LeftMargin>
+    <RightMargin>1cm</RightMargin>
+    <TopMargin>1cm</TopMargin>
+    <BottomMargin>1cm</BottomMargin>
+    <ColumnSpacing>0.13cm</ColumnSpacing>
+    <Style />
+  </Page>
+  <AutoRefresh>0</AutoRefresh>
+  <DataSources>
+    <DataSource Name="yijiaoshuDataSet">
+      <ConnectionProperties>
+        <DataProvider>System.Data.DataSet</DataProvider>
+        <ConnectString>/* Local Connection */</ConnectString>
+      </ConnectionProperties>
+      <rd:DataSourceID>1ee50482-c9b0-42da-8b94-9f7e92d72a51</rd:DataSourceID>
+    </DataSource>
+  </DataSources>
+  <DataSets>
+    <DataSet Name="yijiaoshu1">
+      <Query>
+        <DataSourceName>yijiaoshuDataSet</DataSourceName>
+        <CommandText>/* Local Query */</CommandText>
+      </Query>
+      <Fields>
+        <Field Name="projectName">
+          <DataField>projectName</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="originalVolumeCount">
+          <DataField>originalVolumeCount</DataField>
+          <rd:TypeName>System.Int64</rd:TypeName>
+        </Field>
+        <Field Name="textMaterial">
+          <DataField>textMaterial</DataField>
+          <rd:TypeName>System.Int64</rd:TypeName>
+        </Field>
+        <Field Name="drawing">
+          <DataField>drawing</DataField>
+          <rd:TypeName>System.Int64</rd:TypeName>
+        </Field>
+        <Field Name="transferUnit">
+          <DataField>transferUnit</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="passingDate">
+          <DataField>passingDate</DataField>
+          <rd:TypeName>System.DateTime</rd:TypeName>
+        </Field>
+        <Field Name="paperProjectSeqNo">
+          <DataField>paperProjectSeqNo</DataField>
+          <rd:TypeName>System.Int64</rd:TypeName>
+        </Field>
+        <Field Name="originalInchCount">
+          <DataField>originalInchCount</DataField>
+          <rd:TypeName>System.Int64</rd:TypeName>
+        </Field>
+      </Fields>
+      <rd:DataSetInfo>
+        <rd:DataSetName>yijiaoshuDataSet</rd:DataSetName>
+        <rd:SchemaPath>F:\urban\urban_archive\yijiaoshuDataSet.xsd</rd:SchemaPath>
+        <rd:TableName>vw_transferPaper</rd:TableName>
+        <rd:TableAdapterFillMethod>Fill</rd:TableAdapterFillMethod>
+        <rd:TableAdapterGetDataMethod>GetData</rd:TableAdapterGetDataMethod>
+        <rd:TableAdapterName>vw_transferPaperTableAdapter</rd:TableAdapterName>
+      </rd:DataSetInfo>
+    </DataSet>
+    <DataSet Name="yijiaoshu2">
+      <Query>
+        <DataSourceName>yijiaoshuDataSet</DataSourceName>
+        <CommandText>/* Local Query */</CommandText>
+      </Query>
+      <Fields>
+        <Field Name="archivesNo">
+          <DataField>archivesNo</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="ID">
+          <DataField>ID</DataField>
+          <rd:TypeName>System.Int64</rd:TypeName>
+        </Field>
+        <Field Name="archivesTitle">
+          <DataField>archivesTitle</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="paperProjectSeqNo">
+          <DataField>paperProjectSeqNo</DataField>
+          <rd:TypeName>System.Int64</rd:TypeName>
+        </Field>
+        <Field Name="paijiaNo">
+          <DataField>paijiaNo</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="registrationNo">
+          <DataField>registrationNo</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="pageCount">
+          <DataField>pageCount</DataField>
+          <rd:TypeName>System.Int64</rd:TypeName>
+        </Field>
+        <Field Name="volNo">
+          <DataField>volNo</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="mapsheetNo">
+          <DataField>mapsheetNo</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="microNo">
+          <DataField>microNo</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="storagePath">
+          <DataField>storagePath</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="indexer">
+          <DataField>indexer</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="indexDate">
+          <DataField>indexDate</DataField>
+          <rd:TypeName>System.DateTime</rd:TypeName>
+        </Field>
+        <Field Name="checker">
+          <DataField>checker</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="checkDate">
+          <DataField>checkDate</DataField>
+          <rd:TypeName>System.DateTime</rd:TypeName>
+        </Field>
+        <Field Name="typist">
+          <DataField>typist</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="typerDate">
+          <DataField>typerDate</DataField>
+          <rd:TypeName>System.DateTime</rd:TypeName>
+        </Field>
+        <Field Name="archiveThickness">
+          <DataField>archiveThickness</DataField>
+          <rd:TypeName>System.Int64</rd:TypeName>
+        </Field>
+        <Field Name="notearea">
+          <DataField>notearea</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="remarks">
+          <DataField>remarks</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="textMaterial">
+          <DataField>textMaterial</DataField>
+          <rd:TypeName>System.Int64</rd:TypeName>
+        </Field>
+        <Field Name="drawing">
+          <DataField>drawing</DataField>
+          <rd:TypeName>System.Int64</rd:TypeName>
+        </Field>
+        <Field Name="firstResponsible">
+          <DataField>firstResponsible</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="responsibleOther">
+          <DataField>responsibleOther</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="transferUnit">
+          <DataField>transferUnit</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="licenseNo">
+          <DataField>licenseNo</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="photoCount">
+          <DataField>photoCount</DataField>
+          <rd:TypeName>System.Int64</rd:TypeName>
+        </Field>
+        <Field Name="bianzhiTime">
+          <DataField>bianzhiTime</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="kaigongTime">
+          <DataField>kaigongTime</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="jungongTime">
+          <DataField>jungongTime</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="fazhaoTime">
+          <DataField>fazhaoTime</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="jgDate">
+          <DataField>jgDate</DataField>
+          <rd:TypeName>System.DateTime</rd:TypeName>
+        </Field>
+        <Field Name="developmentUnit">
+          <DataField>developmentUnit</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="constructionUnit">
+          <DataField>constructionUnit</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="designUnit">
+          <DataField>designUnit</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="isImageExist">
+          <DataField>isImageExist</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="shizhengNo">
+          <DataField>shizhengNo</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+      </Fields>
+      <rd:DataSetInfo>
+        <rd:DataSetName>yijiaoshuDataSet</rd:DataSetName>
+        <rd:SchemaPath>F:\urban\urban_archive\yijiaoshuDataSet.xsd</rd:SchemaPath>
+        <rd:TableName>ArchivesDetail</rd:TableName>
+        <rd:TableAdapterFillMethod>Fill</rd:TableAdapterFillMethod>
+        <rd:TableAdapterGetDataMethod>GetData</rd:TableAdapterGetDataMethod>
+        <rd:TableAdapterName>ArchivesDetailTableAdapter</rd:TableAdapterName>
+      </rd:DataSetInfo>
+    </DataSet>
+  </DataSets>
+  <ReportParameters>
+    <ReportParameter Name="totaljuanshu">
+      <DataType>String</DataType>
+      <Nullable>true</Nullable>
+      <AllowBlank>true</AllowBlank>
+      <Prompt>ReportParameter1</Prompt>
+    </ReportParameter>
+    <ReportParameter Name="page">
+      <DataType>String</DataType>
+      <Nullable>true</Nullable>
+      <AllowBlank>true</AllowBlank>
+      <Prompt>ReportParameter1</Prompt>
+    </ReportParameter>
+  </ReportParameters>
+  <EmbeddedImages>
+    <EmbeddedImage Name="李馆长签字">
+      <MIMEType>image/bmp</MIMEType>
+      <ImageData>Qk36TQAAAAAAADYAAAAoAAAAaQAAAD8AAAABABgAAAAAAMRNAADEDgAAxA4AAAAAAAAAAAAA////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////AP///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////wD/////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////8A////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////AP//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////wD///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////8A////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////AP///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////wDw/v7w/v7w/v7w/v7w/v7y///y///y///y///y///3/f74/v/5///5///5///7///7///7///7///5/v/3/v/3/v/3/v/3/v/3/v/3/v/3/v/3/v/3/v/2/f72/f72/f72/f72/f72/f72/f7y/v7x/v7x/v7w/v7w/v7w/v7t/Pvr/Pvq/fzu/fzw/v7y/v70/v70/v70/v71///1///2/f73/v/2/f72/f72/f72/f72/f73/v/3/v/3/v/1///1///0/v70/v70/f32/f72/f73/v/3/v/2/f72/f72/f72/f72/f71//71//71//71//71//71//71//7z/vzz/vzz/vz4//74//74//7///////////////////////////////////////////////////////////8A8v7+8v7+8f398v7+8v7+9v7/9f//9f//9v7/9f//9/7/9v7/9/7/9/7/9/7++P79+P79+P/++f/+9/7+9v3+9/7/9/7/9/7/9v399Pv89Pv88fj59Pv89fz99fz89fz99/7++P//
+9/7/9P398f398P398f398f398Pz88v7+8v7+7/387/397/z89P//9v7/9P7+9P7+8/398/398/399fz99v3+9/7/9/7/9/7/9/7/9/7/9/7/9/7/9v7/9f//9f//9f//9f//9f7+9v3+9v3+9v3+9v3+9/7/9/7/9v3+9/7/9/7/+P/+9//+9//++P/+9//+9//++P/++P//+P//+v//+///+///+///////////////////////////////////////////////////////////////APT+/vT+/vT+/vP9/fX///f+//f+//f+//f+//f+//P///P///P///P///P///f//vT8+/b+/fb+/fb9/fX8/fb9/vf+//f+//X8/fP6++jv8KWsrayztNjf4PD3+PT7/Pf+//f+//f+//b9/vH9/fD9/fD9/fT+/vX///T+/vT+/vH9/fH+/vH9/fb+//f+//T+/vT+/vT+/vT+/vT+/vX8/fb9/vf+//f+//f+//f+//f+//f+//f+//f+//X///X///X///X///X+/vb9/vb9/vb9/vb9/vf+//f+//f+//b9/vb9/vr//vr//vr//vr//vr//vr//vr//vv///v///v///3///3///3//////////////////////////////////////////////////////////////wD0/v70/v70/v70/v70/v72/v/2/v/2/v/2/v/2/v/0///0///0///0///0///1/v7z/v3y/fzy/fzz/Pz0/P32/v72/v/2/v/u/Pz0/f5tcXM8QUVXX2M+UVKKlZfx9vny9/r0/f72/f72/f71/v/0/v/0/v/2/v/1/v71/v71/v70/v70/v/1/f72/f73/f71/v71/v71/v72//72//73/f33/v74/v74/v74/v73/v/3/v/3/v/3/v/3/v/2/v/2/v/2/v/2/v/2/f72/f72/f72/f72/f73/v/3
+/v/3/v/2/f32/f75//75//75//75//75//77/v77/v78///8///8///+///+///+//////////////////////////////////////////////////////////////8A9f//9f//9f//9f//9f//9f//9f//9f//9f//9f//9f//9f//9f//9f//9f7+9v//9v//9P7+9P7+9P7+9P7+9P7+9P7+9P7+6v398Pz9b3R4x8rR5u/11u7weYiLRUpPt73B7fj69Pv89v3+9/7/9/7/9/7/9/7/9/7/9/7/9/7/9/7/9/7/9/7/9v3+9v3+9//+9//+9//+9//+9//++f/++f/++f/++f/++f/+9/7/9/7/9/7/9/7/9/7/9/7/9/7/9/7/9/7/9v3+9v3+9v3+9/7/9/7/9/7/9/7/9v399fz99fz9+f/++f/++f/++f/++f/+/P7+/P7+/f///f///v//////////////////////////////////////////////////////////////////////////APX///X///X///X///X///X///X///T+/vT+/vT+/vX///X///X///X///X///X///X///T+/vT+/vT+/vT+/vT+/vP9/fP9/ev9/Oz7+9bi5GVtc+rx+eX4+uf2+ePv80ZPU9Lb3/X8/ff+//f+//f+//f+//f+//f+//f+//f+//f+//f+//f+//b9/vb9/vf//vf//vf//vf//vf//vn//vn//vn//vn//vn//vf+//f+//f+//f+//f+//f+//f+//f+//f+//b9/vb9/vb9/vf+//f+//f+//f+//f+//b9/vb9/vn//vn//vn//vn//vn//vz+/vz+/v3///3///3///3///3///3//////////////////////////////////////////////////////////////wD0/v70/v70/v70/v70/v70/v70/v70
+/v70/v70/v71///1///1///0/v7z/f30/v70/v71///1///0/v70/v70/v70/v70/v7s/Pvs/v7n+fo8SE7Y3uTw+/7v/f/o9/rH1Ng8RUnf5uf1/P33/v/3/v/3/v/3/v/3/v/3/v/3/v/3/v/3/v/3/v/3/v/3/v/3//73//73//73//73//75//75//75//75//75//73/v/3/v/3/v/3/v/3/v/3/v/3/v/3/v/3/v/3/v/3/v/3/v/3/v/2/f73/v/3/v/3/v/2/f73/v/5//75//75//75//75//78/v78/v78/v78/v78/v76//76//76//7///////////////////////////////////////////////////////////8A9P7+9P7+9P7+9P7+9P7+9P7+9P7+9P7+9P7+9P7+9f//9f//9f//9P7+8/399P7+9P7+9f//9f//9P7+9P7+8/399P7+9P7+7vv76Pz84vn6t8fMV11lyc7T7Pv95/r92OXpQkhNg4qL8/r79/7/9/7/9/7/9/7/9/7/9/7/9/7/9/7/9/7/9/7/9/7/9/7/9//+9//+9//+9//+9//++f/++f/++f/++f/++f/+9/7/9/7/9/7/9/7/9/7/9/7/9/7/9/7/9/7/9/7/9/7/9/7/+P//9v3+9/7/9/7/9/7/9v3+9/7/+f/++f/++f/++f/++f/+/P7+/P7+/P7+/P7++v7++f/++f/++f/+////////////////////////////////////////////////////////////APH+/vH+/vH+/vH+/vH+/vT+/vP9/fT+/vT+/vP9/fP9/fP9/fT+/vX///T+/vL8/PT+/vX///X///b+//f+//f+//j///b9/vH/+/D//e///uf6/azBwzpLTtbj5e/6+vD396CmokFLS+339/X///X///X///f+//f+//f+//f+//b9/vb9/vb9/vf+
+//f+//f//vf//vf//vf//vf//vT7+/b+/fT7+/P7+vX9/Pr+//r+//r+//n9/vj8/ff//vf//vf//vf//vf+/vf+//f+//f+//f+//r+//r+//r+//r+//r+//r9//r+//r+//r//vr//Pf//vf//vf//vf//vf//vn//vn//vn//v///////////////////////////////////////////////////////////wDx/v7x/v7x/v7x/v7x/v70/v70/v70/v70/v7z/f31///1///1///z/f31///1///1///1///1///2/v/3/v/3/v/3/v/3/v/x//vx//3w/v7s/v7p/P7S3+M/TE7Ay8zn7+5ja2dmcHDs9vb0/v70/v70/v73/v/3/v/3/v/3/v/3/v73/v73/v73/v/3/v/3//73//73//73//73//70/Pv0/Pv0+/v2/f30/Pv5/v/5/v/6///6///6///3//73//73//73//73/v73/v/3/v/3/v/3/v/5/v/5/v/5/v/5/v/5/v/5/f/5/v/5/v/5//75//z3//73//73//73//73//75//75//75//7///////////////////////////////////////////////////////////8A8v7+8v7+8/7+8v7+8v7+9P7+9P7+9f7+9P7+8/398/398/398vz89P7+8/399P7+9P7+9f//9f//9v7/9/7/9/7/9v3+9/7/9P/78v/98P3+7Pv95fb5oauvgY2PPUhJQ09NV2NeztjY8Pr68/398/399P399/7/9/7/9v3+9/7/9/7/9/7/9/7/9/7/9v3+9//+9//+9//+9//+9//+8/v619/eQkpJXGRj7PTz9/7/9v399fz99v3+9v399//+9//+9//+9//+9/7+9/7/9/7/9/7/9/7/9/7/9/7/9v3+9/7/9/7/9vz+9/7/9/7/9v799//89//+9/7+9//+9//+
++P7++f/++f/++f/+////////////////////////////////////////////////////////////APb9/vb9/vb9/vb9/vb9/vX///X///T+/vT+/vT+/vX+/vL8/PP9/fT+/vT+/vX///X///X///X///b+//f+//f+//f+//f+//f//Pb//vX//7C8wEZUVzk/RHF7fbO+v2Bta628t+z29vH7+/T+/vT+/vT+/vX8/fX8/fj///j///f+//f+//f+//b9/vb9/vf//vf//vf//vb+/fb+/fT7+2JqaXJ6eXuDgqWtrO339/T+/vD6+r7IyN/p6fb+/fH5+Pf//vf//vf+/vf+//f+//f+//f+//L8/PP9/fP8/MvV1cXOzr/IyvH6/PL8/PP+/PP9+vf//vb+/fb+/fb+/fb+/fn//vn//vr//////////////////////////////////////////////////////////////wD2/f72/f72/f72/f72/f71///1///0/v70/v70/v7y/Pz0/v70/v71///1///1///1///1///1///2/v/3/v/3/v/3/v/3/v/5//z3//72/v+gq68yPkKKjZLo7/Lr9vfr+fdYa2Xk7e3w+vr1///1///1///2/f72/f72/f72/f72/f73/v/3/v/y+fr0+/z3//73//73//72/v32/v3x+fhGTk2zu7rg6OdYYF/r9/fx/f3G0tJBTU1IVFT2/v30/Pv3//73//73/v73/v/3/v/3/v/3/v/y/f3s+PjS3t4yPj4uOjoxPEBdaWtyfn/M2dfr+fT0/Pv3//72/v32/v32/v34/v34/v36//////////////////////////////////////////////////////////////8A9/7/9/7/9/7/9/7/9/7/9/7/9/7/9/7/9/7/9/7/9f//8/399P7+9P7+9P7+9P7+8v7+8P7+8P//8P7+
+9f7+9f//8fr66/T08/r79Pz88Pz86fr6xNfWbHx/1+bp7fn88Pr87/j68Pr68/399f//9f//9f3+9fz99fz99/7+9v3+9/7/9/7/9/7/9/7/9/7/9//+9//+9//+9//+9v79ydjXRUxNrrO04OrqUGBf4evr7ff3jpiYxc/PUVpZy9PS9v399//++P//+P7++v7++f3++v7/+v7/8/768Pz6ztrbNURHTl5h297kmqaqZHl7bn2AXmdrpa+v0NnZ9fr79fn69vz89v799/7+9//+////////////////////////////////////////////////////////////APf+//f+//f+//f+//f+//f+//f+//f+//f+//f+//P9/fb///T+/vT+/vT+/vT+/vL+/vD9/e///u79/fL+/vD8/Ov397vHx4yWlu75+e35+e38/Or7+uT190taXbfDx+75/PT9//H7+/L8/PX///X///X///f+//f+//f+//b9/vf+//f+//f+//f+//f+//f//vf//vf//vf//vb+/e38+0RLTNfc3fX8/MDQz+Xv7/D6+uz29vH6+qWvr252dfH5+PX9/Pf//vj+//n+//n+//n+//n+//T/+/T//vH9/dfm6FJiZYKGi+76/eX2+ef3+s/b34qWlj9JSaeur9ne3/P39/f+/vT8+/f//v///////////////////////////////////////////////////////////wD3/v/3/v/3/v/3/v/3/v/3/v/3/v/3/v/3/v/3/v/1///0/v70/v70/v7z/f30/v7y/v7v/Pzu/v3u/v3x/v7y/v7v/PzI1dVFUlKHk5Pm8/Pv+/vx/v3r/P3M2944REjBzNDw+fz1/v7y/Pz1///1///1///2/f72/f73/v/2/f73/v/3/v/3/v/3/v/3/v/3//73//73//72/v30/Pvs+/tBSEnd4uP3/v/r+vnz/Pzu
++Ph3gYHq9PTh6+tBSUjs9PP1/fz2/v33/v72/f72/f72/f72/f7z/vry/vzz/v7r+vvZ6exHT1Ta5Ojr9/vv/v/s/P7s+vnh7e1eaGhGTU6boaLz+/ry+vn3//7///////////////////////////////////////////////////////////8A9/7/9/7/9/7/9/7/9/7/9/7/9/7/9/7/9/7/9/7/9P7+9P7+9v//9f//8/399P7+8v7+8P7+7f387P387v797v797Pz76/r6na+uNERDcH196vb28/z87Pz+7v3+zdndY21x6fL18/398/399f//9f//9v7/9/7/9/7/9/7/9/7/9/7/9/7/9/7/9/7/9/7/9//+9//+9//+9v799f382ujoRk1OxcrL8vz87fz88/39oqysU11d6vT0r7i3PERD4+vq9//+9//+9v/+9P//9f//9P7+8/7+9P/78//98P397fz+5/f6m6isbHV56vH06/r85/3+6/z77/797Pj4xc/Pj5iXvMTD9Pz79//+////////////////////////////////////////////////////////////APf+//f+//f+//f+//f+//f+//f+//f+//f+//f+//P9/fP9/fT+/vP9/fP9/fT+/vL+/vH+/u///uv9/Oz+/ez+/ev9/Ov8++b5+dvu7YSRkT9JSZeen+Lz9u/+/+z4/NHc31tkaOXv7/P9/fX///X///X///f+//f+//f+//f+//f+//f+//f+//f+//f+//f//vf//vf//vb+/fb+/ez7+01UVXyBgu/29+///vL8/OXv7zxGRuTu7vD6+jhAP9ff3vf//vf//vX//vP///P///L+/vL+/vT/+/P//fL+/u38/uv7/eP09lNZXoKGi+n0+OP8/ez+/e7//u36+u/7++/5+e319Pb9/ff//v//////////////////////////////////
+/////////////////////////wDx/v7x/v7x/v7x/v7y///0/v70/v71/v70/v70/v71///1///0/v70/v70/v7x/v7v/v3q/Pvq/v3r/f3q/Pvr+fnx/v7z/v7w/Pzy/v7q9vart7c9SUlVXmLb5Oju9/vr9Pc7REi6xMTt9/fz/f30/v71///3/v/3/v/4///4///2/v71///2///1///1///1//70//30/v30//30//3t+vqFkpJWYWHz+vv0+/zz/f3u+Pg7RUXh6+vx+vo4P0Dc4+T1/P34///2/v/1///1///0/v70/v70/v70/v70/v7z/f3w+vrh9/nA09YxPkKgqa31+f3w/f3w/f30/v72/f72/f73/v/3/v/2/f7///////////////////////////////////////////////////////////8A8f7+8f7+8P398f7+8f7+8f398v7+8v7+8f7+8v7+8v7+8f398Pz88Pz88f397/z87/397f7+6v797f797v3+8v//8/7/9f3/7P396/385/r55Pb11ObljpqeRVBUj5qegYyQRVBUZ3Fx8vv78/399P7+9v7/9/7/9/7/9v3+9/7/9f7+9f//9v//9f//9f//8v378/789P/99P/99P/97Pn5t8TEQk1N7vX29Pv88/39w83NOkRE3efnwsvLPENEzNPU9fz99v3+9f3+9f//9f//9P7+9P7+9P7+9P7+8/398/398/394fL12erta3d7foSJ7fH27/z88f398/399fz99v3+9/7/9/7/9/7+////////////////////////////////////////////////////////////AO36+u/8/Or39/D9/fD9/fH+/vD9/fD9/fD9/fD9/e/8/PD9/fD9/fH+/vL///D9/e/9/ez+/en9/On5+o2ZncfQ1O/2+fL2+uj5+ev8++n7+un7+uDy8e/7/t7q7qm1uWp2
+emt3e664uPT+/vX///X///X///f+//f+//f+//f+//b+//P9/fL8/PH7+/H7+/P+/PP9/PL8+/X//vb//+76+s3a2jlERNng4PX8/fT+/vD6+jxGRtni4uz29jg/QM3U1fX8/fb9/vX9/vX///X///X///L8/PX+/vT+/vT+/uDq6trk5M3Y3FBbX0hRVTI4Peft8u/8/PH+/vT+/vb9/vb9/vf+//f+//f+/////////////////////////////////////////////////////////////wDx/f3x/v7u+/vw/f3w/f3u/v3u/v3u/v3u/v3u/v3u/v3r+/rt/fzu/v3v//7x/v7w/v7t/v7o/PvX5ukzPEI/RkxESE+Ym6Lp8/Pr9fbv+fnM1tdMVlfk8/Xr+v3t/P3t+/3m9fjv+fnw+vr1///1///1///3/v/3/v/3/v/3/v/2/v/1///0/v7z/f3z/Pzw+vn0/v30//30//30//3t+vrt+flHUlKpsLHz+vrx+/vw+vqLlZXr9fXo8vI3Pj/O1db0+/z3/v/2/v/1///1///z/f3z/f30/v71/v7s9vZIUlI5Q0M2PUEwNzyCiY4yOD3a4ebr+Pjt+vrz/f31/P31/P33/v/3/v/3/v////////////////////////////////////////////////////////////8A8P397/z88P398P398P397f797P797P797f797P796Pr57f796/386/387f387vv77fv76Pv65vr55vT4oq21NTlDVlhib254Q0dIY2donKGimZ2eOj4/3Ors6vv+6/z+6vz95/j69f7+8vz89f//9f//9v7+9/7/9/7/9/7/9/7/8vr79P398/398/39w8zMws3L6vXz7vf38/788v376/r67vv7cn19lp+g8/r78vz88v398Pr68vz8kJqaNDs84+rr9f3+9v3+9f3+9v7/9f//9P7+9v7+
+9P7+8/394OrsV2FhMDo6Oz5GPEBFUFVafIOH6fL17/z89/7+9f//9/7/+P7+9/7/9/7/+P7+////////////////////////////////////////////////////////////APD9/e/8/PD9/e36+uz5+e///u///vD//u39/O/+/u/+/u7+/ev7+u7+/ev7+un9/Or+/ef7+uX5+OX6+tvw9Ku5vjc/RYiLktzn6663umZtcDY8OzU6OLnAwePy8uP49+j7+vH+/vT+/vT+/vb///b///b///f+//f+//f+//f+//b+//X///X///L8/O/5+UtUUD9HRoaNjurw9fP5/Ov9/Oz8+9Lf30JOTu339/D9/fL+/u/7++/7+5qnp0pUVOr09PT+/vX///b+//f+//f+//f+//f+//L9//T///L9/+z3++jz98nN101SWW91et3k5/b9/vz+/vz+/vz+/vz+/vz+/vn//vn//vn//v///////////////////////////////////////////////////////////wDw/f3v/Pzw/f3x/v7v/Pzv//7v//7u/v3t/fzu/v3t/fzs/Pvt/fzq+vns/Pvl+fjn+/rp/fzp/fzh+Pjg+vzc8fStvsI2RUm4w8fd6Ovg6uy9xMMuNDI6Ojxlbm/N3Nzo9vbz+/zy/Pzy/Pz0/v70/v70/v72/f72/f73/v/3/v/2/v/1///1///z/f3v+fnq9fCosbA5QkJfZ2vFzNHn+fjv//7m8/NMWFjk7u7u+/vv/Pzq9/eToKBlcnJsdnbw+vr0/v71///2/v/3/v/3/v/3/v/3/v/0/v/2///0/v/v+Pvy+/70+f5+hIpvdnnz+vvz+vr9///9///9///9///9///5//75//75//7///////////////////////////////////////////////////////////8A8f7+8f7+8P398P398P397f38
+7v397v797v797/7+7//+7//+7f387v796/387P//6v796v395/v64/z75P394/392PDwmLCwPUxPytbZ5vLz0NvZOEE+ztDRb3Z3O0hIanZ2y9LT4uzstb+/7ff38/z89Pz99/7/9/7/9/7/9/7/9v7/9f//9f//9P7+9P7+7vz37/z63OjpeoWJOURIgZKR6fn47Pn5nqmpl6Gh6/j48Pz87vv7n6ysbnp6xM7O8vz89f//9v//9v7/9v3+9v3+9/7/9/7/9fz89v399v399v3+9v3+8/n8eYCDbnV39f369f76/f///f///P7+/P7++v7++f/++f/++f/+////////////////////////////////////////////////////////////APH+/vH+/vH+/vH+/vH+/vD//u///u7+/e7+/ez8++///u///u///u7+/ev7+uX5+Or+/ef7+uv//ur9/en9/Of7+uH49t308o6fojhJS83a3OHu7DxIRM/W1+X19Of7+snd3F5razdBQT5ISMPNzfD6+vP9/ff+//f+//f+//f+//b+//X///X///T+/vT+/vD++u78+u/8/Oby9d7q7nSGhUVVVLTBweHt7XV/f9rn5+/8/PH+/uz5+er39/D6+vL8/PX///X///T9/fX8/fb9/vf+//f+//f8+/j8/Pf7+/r+/vn9/fP6/YGIiWRsavb++/b/+v3///3///z+/vz+/vz+/vn//vn//vn//v///////////////////////////////////////////////////////////wDy/vzx/fvy/vzz//30//7z/f3z/v7y/v7y//7z///v/v3w/v7v/f3r+fnv/v3s/Pzr+/vs/Pzn+Pfp+vnt/v3s/v3q/Pvn+vni8fJ1hIVBT0/f6ek6Q0K4w8Ph9PPf9/Xf9fPn9vXL1dWjra3u+Pj1/v70/f33/v/3/v/3/v/3/v/3/v/3/v/3
+/v/2/v72/v7z//3z//7z/v7w+/3v+vzs+vqUoaEyPj5venrN19ensrLx/Pzv+vry/f3x/Pzy/f3y/v7y/f3y/v70/v72/f72/f72/f72/f7w+Pbr8/FeZmRiamilravr8POip6lfZWX2/fr2/fn8/v78/v79/v79/v79/v77//77//76/v7///////////////////////////////////////////////////////////8A8/388v378f379P/99f/+9/3+9/7/9v3+9v7/9v//8v7+8P397/z88f7+8P398P398P398P398f7+8P/+7//+7//+8f//7f386vf35PHxXmlpuL/AQEdIvMjI6vz76P797f387Pj48fv78fv78fv79P7+9f7+9/7/9/7/9/7/9/7/+P7/+f7/+f7/+f7/+f7/9f//9f//9P7+8/398vz88vz87vj4zNbWiJKSRlBQlZ+f1uDg8fv78/z88f397/z87/z88P398f7+8/3+9v3+9/7/9/7/9/7/8fr6WmRkYmxsY21tQUtLYWRpeX2ASk5Q7/Tz9/z5+/7+/P7+//////7//v7//f///f///P7+////////////////////////////////////////////////////////////AOz5+dbj4+Pw8O35+fD8/PL8/PL8/PX8/fn+//r///P///L+/vP+/vH9/fP+/vL9/fL+/vL+/vL+/vL+/vL///L//+/8/O/8/Oz5+ej19er29kZNTkNKS2ZwcOz7+un9/O79/fP9/fL8/PT9/fT+/vX///T+/vf+//f+//b9/vb9/vf9/vn+//n+//n+//n+//X///X///X///T+/vP9/fL8/PP9/fP9/ev19dvl5T1HRzhCQrbAwO339+339/D9/e/8/PD9/fH+/vP9/vb9/vf+//j///j//+v19UROTmFra/L8/PL7++Pp7mlwczc+QI+XlvL69/n//vr//v3/
+//////////3///3///z+/v///////////////////////////////////////////////////////////wCWpaY4R0g+TU5vfX+Qn6Df7e3u+vr0/Pz3/P37+/z1/f73///2/v/2/v/2/v/2/v/2/v/2/v/2/v/0/v70///z/v7x/f3w/Pzx/v7w/f3r9/efpqc7QkNwdnft+fnt/f3x/v73/f7z/f3z/f31///1///1///2/f73/v/3/v/3/v/4/v/6///6///5/v/5/v/1///1///1///0/v70/v71///0/v7y/Pzy/Pzw+vqKlJSNl5c4QkJ6hITh6+vl8vLs+fns+fnr+Pjz/f73/v/3/v/3/v/3/v/k7u5JU1NmcHDv+fnu+Pj1/P/GztE4QUI1Pz1ueXTj6un2/fz8///9///+///9///9///9//////////////////////////////////////////////////////////////8AzNveqrm8pbW4TVxfM0JFRFVUUF1dkZiZurq8//3+9v3+9Pv89/7/9/7/9/7/9/7/9/7/9/7/9/7/9P397fb28Pr68vz88vz88P398f7+7fj47PPzXGNkfoSF7fn57f388vz89vv89P7+9P7+9P7+9P7+9f7+9v3+9/7/9/7/9/7/+P7/+P3++f7/+f7/+f7/9f//9f//9P7+9P7+9P7+8/399P7+7/n5goyM6fPzjZeXipSUx9HRU11dP0pKdYKCwM3N3+zs7fr69P7+9/7/9/7/9/7/9v3+6/X1Z3Fxg42N8/z88/398fz+1uLkNUFCtMG/QE5JQEtJ7PTz+v///P///f///f///f///f//////////////////////////////////////////////////////////////AOr9/+b5/OL4+trz9djx88bZ3MPW2YaZnDpNUDJFSH2KiqCsrOPt7fT6+vP4+PT7+/T7/PP6+/b9
+/fT6+/j9/vb9/vX9/vT+/vX//PP//vL//+z7/bPExjQ6P8fN0vL4/PX7/vf9//X///X///X///X///T+/vL///L///X///f+//f+//f+//f+//b9/vf+//f+//f+//f+//f+//f+//H/++/9+8vY2UFNUTVBRYiIjkBER/D6+uz599Hg21JcXDlDQ1JcXNzl5fX+/vf+//f+//f+//f+/+3397C6ujdBQfD6+vL8/PP9/ev19UZQUIqUlE9ZWYuTkvf+/vf//vf//vf//vn//vn//vn//v///////////////////////////////////////////////////////////wDs/f/q/f7q/v/k+/3k+/zk9/rn+v3j9vfn+vzD1tmWo6M+SkpHUVFbY2SmrK3q8fLt9PX0+/zy+fn1+/z2/P31/P33/v/2/v/1//z0//7y///s+/zX5+k9Q0hESk/r8fX0+v32/P/1///1///1///0/v7z/f3y///y///1///3/v/3/v/3/v/3/v/2/f73/v/3/v/3/v/3/v/3/v/3/v/u/Pjt+/nv/P3l8fR5hYk2OT4+Q0bp8vLy/v3x/vvz/f3I0tJjbW3Y4uLx+vr3/v/3/v/3/v/3/v/v+fmlr683QUHw+vrz/f3x+/vs9vZ2gIA1Pz+Rm5vx+fj0/Pv3//73//73//75//75//75//7///////////////////////////////////////////////////////////8A7Pz97P396f395/7+5fz85fn45vn66fz95Pj45vr74PDv4/HxyNTUfYeHgYuLRE5Oc319g46O4evr8fv77Pf39v3++f//+Pz89//89v/+8vz97/v94O/yREpPTVNYcHZ75+3x9fv+9f//9f//9P7+8/398v398v//8v//9f7+9/7/9/7/9/7/9/7/9v3+9/7/9/7/9/7/9v3+9/7/9/7/ydjU5fPx7Pj56vb55/P3
+naKnOUBDpayt7fj28vv68/399P7+8/398vz89P399/7/9/7/9/7/9/7/8Pr6vsjI1N3d8fv78vz88/398/39o62toKqq7/j49v799f389//+9//++P/++f/++f/++f/+////////////////////////////////////////////////////////////APH//fD+/O3+++v//en+++r//Ob7+Ob7+Or+/Ob7+Ob6+en7+u38++z4+O35+eLv78PQ0I6bm0pXV0RSUl9sbLvFxfr+/vv8/vj9+vT6+ff+/vP8/+fy9kVLUL3DyEFHTIaMkfL4/PT+/vT+/vL8/PT+/vT+/vH+/vH+/vT+/vb9/vb9/vf+//j///f+//f+//f+//f+//f+//b9/vX8/cfW0TpIRmVyc7O/w+j09+jz9kxWWElQUZGXlvX79/X+/vP9/fX///X///b+//f+//f+//f+//f+//X+/vX+/vP9/fT+/vT+/vX///P9/fL8/PD6+vL8/Pb+/ff//vf//vf//vf//vn//vn//vn//v///////////////////////////////////////////////////////////wDy//zx/vvu/vrr//rq//ro/vnp/frp/vrl+/bm+/fo/fzn+/rv/v7x/v7w/Pzv/Pzq9/fi7+/n9PTc7OuCkpFCTExOUVO5uLr3/fn2+/v4/f72///z/f9mbHGrsba9w8g+REnl6/Dz/f3z/f31///1///z/f3x/v7x/v70/v72/f72/f73/v/4///3/v/3/v/3/v/3/v/3/v/2/f72/f7x/vu8ysgyP0A1QUV0gITc6OxUYGK6wMFOU1K6vbry/Pzz/f31///1///2/v/3/v/3/v/2/f72/f70/v71///0/v70/v70/v71///1///0/f3y/Pzy+/v2/v33//73//73//73//75//75//75//7/////////////////////////////
+//////////////////////////////8A8f7+8f7+8f7+8f7+8f7+8P398P397/z87/z87/z88f7+8f7+8f7+8P397f396fz/5fj75/r94/b54PT34vX41+jrpLC0eoWJSlBVlpyhlZ6i9fv+9vz+bXN4pKqv6vT3TlpeiJSY8Pr68fv79f7+9f7+8v7+8f7+8f7+8f7+8f7+8f7+8f7+8v7+9v7/9/7/9/7/9/7/9/7/9/7/9/7/8v3/8fz/7fj8xM/SPEdLOkFCNj0+TVRVkpmah46P8Pf49fz89/7+9v3+9/7+9/7/+P//9/7/9/7/9f//9f//9f//9f//9f//9f//9f//9f//9f//9f//9v799//+9//+9//+9//+9//+9//+9//+////////////////////////////////////////////////////////////APH+/vH+/vH+/vH+/vH+/vH+/vH+/vH+/vH+/vH+/vH+/vH+/vD9/fH+/vL//+r7/uz9/+r7/ev8/uj6/Oj7/uj5/OXz9ur2+tHg46i3ukFQUzpJTFtqbXZ8gXyCh+/5/dXh5TxITNPd3fX+/vX+/vX+/vX+/vH+/vH+/vH+/vH+/vH+/vH+/vL+/vb+//f+//f+//f+//f+//f+//f+//X+//P8//L7/u/4++ny9ujv8H+GhywzNDc+P0pRUufu7/X8/Pf+//f+//f+//f+//f+//b9/vf+//X///X///X///X///X///X///X///X///X///X///b+/ff//vf//vf//vf//vf//vf//vf//v///////////////////////////////////////////////////////////wDz/v7z/v7z/v7z/v7y/f3w/f3y///x/v7x/v7x/v7w/f3w/f3w/f3x/v7y/v7u//7t/v7t/f7u//7v/v7u//7u/v7r+/vq+/vm+/3i9vjg9PfL3+JsgYM5P0Q5P0R1
+f4Po9Pfq9vry+/vz/f3z/f30/v7z/f3u+/vu+/vx/v7x/v7x/v7x/v7y/v72/v/3/v/2/f73/v/3/v/3/v/3/v/1/v/2/v/2/v/0/P7y+/z0+/uSmZpeZWZUW1wzOjtWXV7b4uP0+/z2/f72/f72/f72/f71/P32/f70/v70/v70/v70/v70/v71///1///1///1///1///2/v33//72/v33//73//73//73//73//7///////////////////////////////////////////////////////////8A9/7/9/7/9v3+9fz98/r78P398f7+8f7+8f7+8f7+8P398f7+8f7+8f7+8f798f/98f/97/378P788f/98f/97//96/776P376v3+6fz+6vz96fz93/L1jpSZNjxBUFpeXGhsg4+T0Nra2uTk8fv78fv78Pv78P398v7+8f7+8f7+8f7+8f7+8v7+9P399fz99v3+9/7/9/7/9/7/9/7/+f/++f/++f/++f7++f/+9v39bnV2cXh53uXmlJucMjk6T1ZX8/r79Pv89v3+9v3+9v3+9v3+9v3+9P7+9P7+9P7+9P7+9P7+9f//9f//9f//9f//9f//9//+9//+9v799//+9//+9//+9//+9//+////////////////////////////////////////////////////////////APf+//f+//b9/vT7/Pb9/vL+/vL+/vH+/vH+/vH+/vL+/vH+/vH+/vH+/vH+/vL/+/L/+/D++fD++fP/+/L/+/H/++r++ef++ez7/u38/uz7/ez7/u38/tfd4j1DSODq7t3p7Zunq05YWEBKSoyWlsrU1Or09PH+/u/8/PH+/vH+/vH+/vH+/vL+/vb+//f+//b9/vf+//j///f+//f+//r//Pr//Pr//Pr//Pn/+/T7/KyztGpxcunw8ezz9I2Ule/29/f+/vb9/vb9/vb9/vb9/vb9
+/vb9/vT+/vT+/vT+/vT+/vT+/vX///X///X///X///X///f//vf//vb+/ff//vj///f//vf//vf//v///////////////////////////////////////////////////////////wD7///7///5/f75/f74/P33//73//73//73//73//71/fz3//7x/vzu/Pry//7y//3y//3y//3y//3y/v7x/v7x/v7x/v7x/v7t//7w/v7y/v7t/v3i+/nP6+w8PELd4+jc8vTm7/Pg6e3N19lUXl4+SUdFUUzK19fq9/fw/f3w/f3v/Pzw/f3x/f33///4///3/v/3/v/3/v/3/v/3/v/5//75//75//75//75//72/f69xMVHTk/o7/Dt9PW6xMTz/f30/v70/v70/v71///1///1///1///0/v70/v70/v71///1///3/v/3/v/3/v/3/v/3/v/1/P31/P33/v/3/v/3/v/3/v/3/v/3/v////////////////////////////////////////////////////////////8A+f7/+f7/8/n69/z8+f7+9//+9//+9//+9//+9//+9v799f798v/98v/+8v789P/99P/99P/99P/98/7+8f7+8f7+8f7+8f7+7//+8f7+9P3+7/7+6P79n7O1Pz9F1tzh5/r86/T46PH1pa+xt8HBeIOBXWlncX5+6/j48P398P398P398P397vr69v7/9v3+9/7/9/7/9/7/9/7/9/7/+f/++f/++f/++f/++f/+8fj5srm6QEdImJ+gqbKy6vT07Pb29P7+9P7+9P7+9P7+9P7+9f//9f//9P7+9P7+9P7+9f//9f//9/7/9/7/9/7/9/7/9/7/9v3+9v3+9/7/9/7/9/7/9/7/9/7/9/7/////////////////////////////////////////////////////////////APf+//f+//f+//b9/vf+
+//f//vf//vf//vf//vf//vT8+/P7+vL//ePx7/D9/Pf//vf//vb+/fb+/fX+/fT+/vT+/vX///X///L///X+//f+//L+/uv//t35+kRESrG3vN/19sTN0VRdYXF7fXR+fsXQzuTv6+77+/H+/vH+/vH+/vD9/fD9/fH9/fb+//f+//f+//f+//f+//f+//f+//r///r///n//vn//vn//vj///b9/vP6++Dn6PP6+/X///X///X///X///X///T+/vP9/fX///X///X///P9/fL8/PT+/vT+/vf+//f+//f+//f+//f+//f+//f+//b9/vb9/vb9/vf+//f+//b9/v///////////////////////////////////////////////////////////wD0///0///0///z/v70///3//73//73//73//73//73//72/v3p9vTx/v3y//75//75//75//75//74/v73/v/3/v/3/v/3/v/z///2/v/5/v/x/Pzp+/ri/f5EREqQlpuuxMZjbHDf6Ozm8PHz/f3s9/Xz/frw/f3x/v7x/v7x/v7x/v7x/v7y/v72/v/3/v/3/v/3/v/3/v/3/v/3/v/6///6///5//75//75//73/v/3/v/1/Pz2/f71/Pz1///1///1///1///1///0/v7z/f31///1///0/v70/v7z/f30/v70/v73/v/3/v/3/v/3/v/3/v/3/v/3/v/3/v73/v73/v73/v/3/v/3/v////////////////////////////////////////////////////////////8A8///8///8/7+8v7+8///+f799//+9//++v/+9//+9v799v7+6/j28f79+P79+v/++v/+/f//+///+f//+v7++P//9/7/+f7+9f//+P7/9/3+9P7+7v7+5vT2WFheTVNYobCx6fL18/z+8/398vz88fz68v798f7+8f7+8/3+8f7+8f7+
+9P7/8///9v7/9/7/9/7/9/7/9f3+9/7/9/7/+P7/+v//+f/++P/++f/+9v3+9v7/9Pv89/7/9P399f//9f//9P7+9f//9f//9P7+8/399f//9P7+9P7+9P7+9P7+9P7+9P7+9v3+9/7/9/7/9/7/9/7/9/7/9v7/9/7/9/7/9f7+9/7/9/7/9f7+////////////////////////////////////////////////////////////APX///X///X///T+/vX///v9/fz+/v3///3///3///v///v///n+/fr//vv///////////////////3+/vz+/vz+/vz+/vz+/vf+//f+//f+//b9/vb9/vL8/OLr64aQkO339/T+/vP9/fL8/PP9/fP9/fP9/fH+/vH+/vT+/vb9/vf+//f+//f+//f+//f+//X+/vX+/vT+/vP9/fT+/vf+//f+//f+//f+//f+//X///X///b///X///T+/vX///X///P9/fT+/vT+/vT+/vT+/vT+/vT+/vX///X///X///P9/fT+/vf+//f+//f+//f+//f+//X///X///T+/vX///X///T+/vT+/vX//////////////////////////////////////////////////////////////wD1///1///1///0/v71///5/v36//77///7///7/////////////////v7//v7+///+///+///+///8//76//76//76//76//73/v/3/v/3/v/2/f72/f7y/Pz0/v7z/Pzv+fn1/v70/v70/v70/v70/v70/v7x/v7x/v70/v72/f73/v/3/v/3/v/3/v/3/v/y/Pzy/Pzz/f3z/f30/v73/v/3/v/2/f72/f72/f71///1///2///1///0/v71///1///0/v70/v70/v70/v70/v70/v70/v71///1///1///z/f3z/f32/f72/f72/f73/v/3/v/1///1
+///1///z/f3y/Pzz/f3z/f31//////////////////////////////////////////////////////////////8A8/398/398/399P7+8/39+P/++f/++f/++P/++f/+//7+/v7+//7+//7+/P7++v/++v/++v/++v/++P38+P7++v//+f/++P/+9/7/9/7/9/7+9v3+9v3+9P7+9f//9f//9P7+8/398/399f7+9P7+9P7+8v7+8v//8///9v7/9/7/9/7/9/7/9/7/9/7/9/7/9f//9f//9f//9f//9f//9v3+9v3+9v3+9v3+9v3+9f//9f//9P7+8vz89P7+9P7+9f//9f//9f//9f//9f//9f//9f//9f//9f//9f//9f//9f//9f//9v3+9v3+9v3+9v3+9/7/9f//9f//9f//9f//9f//9f//9f//9f//////////////////////////////////////////////////////////////APT+/vT+/vT+/vX+/vX///f//vf//vf//vf//vf//vj9/Pr//vr//vr//vr//vn//vn//vn//vn//vj//vf//vf//vf//vf//vf+//f+//f+//b9/vb9/vT+/vX///X///T+/vP9/fT+/vT+/vT+/vT+/vT+/vL///P///X///f+//f+//f+//f+//f+//f+//X///X///X///X///X///X8/fX8/fb9/vf+//j///X///X///X///X///T+/vT+/vT+/vX///X///X///X///X///X///X///X///X///X///X///X///b9/vb9/vb9/vb9/vb9/vX///X///X///X///X///X///X///X//////////////////////////////////////////////////////////////wD0/v70/v70/v7y/f3y/f3w//7w//7w/v7u/fzv/v3w+vrv+fn0//71//70/v74/v73/v73
+//72//71//70//70//71//71//73/v/3/v/3/v/y+fr3/v/2/v71/v72/v71/v71/f71/v70/f31/v71/v71/v70/v/1/v/2/v/3/v/3/v/3/v/3/v/3/v/3/v/1///1///1///0/v70/v72/v/2/v/2///1/f7z+/z0/v70/v70/v7z/f3v+fnz/Pz1/v71/f71/v72/v/2/v/2/v/2/v/2/v/1/v71/v71/v72/v/2/v/1/v71/v71/f70/f30/f31///1///1///1///1///1///1///1//////////////////////////////////////////////////////////////8A8f7+8f7+8P398P398P396v796v796v795vr56Pz76/386P376/387v//7v399f//9f//8v7+8v7+8/7+9P7+9P7+9f//9f//9/7/9/7/9v3+9v3+9/7+9v3+9v3+9v3+9/7/9/7/9v3+9v3+9/7/9/7/9/7/9/7/9/7/9/7/9/7/9/7/9/7/9/7/9/7/9/7/9f//9f//9P7+9P7+9P7+9f//9f//9f//9f//9f//9P7+9P7+9P7+9f//9v7+9v3+9v3+9fz99v3+9v3+9v399fz99/7/9/7/9v3+9v3+9v3+9/7/9/7/9f//9f//9P7+9P7+9P7+9f//9f//9f//9f//9f//9f//9f//9P7+////////////////////////////////////////////////////////////AO///u///u///u39/O39/Or+/en9/On9/Of7+uX5+Ob9/OT8+uL6+OH59+T8+vD///L///H9/fP9/fP9/fP9/fP9/fX///X///f+//f+//f+//P6+/X8/fX8/fb9/vf+/vf+//f+//X8/fb9/vf+//f+//f+//f+//f+//f+//f+//f+//f+//f+//f+//f+//X///X///X///T+/vT+/vT+/vT+/vT+/vX/
+//X///T+/vT+/vT+/vT+/vP9/fb9/vb9/vX8/fb9/vX9/vP9/fP9/fX///X///T+/vT+/vT+/vX///X///X///X///T+/vT+/vT+/vX///X///X///X///X///X///X///T+/v///////////////////////////////////////////////////////////wDu///s/v3q/Pvs/v3t/v7q/v3q/v3p/fzo/Pvq/v3o//7m/fvp//7m/fvn/vzq/v3u///z///0/v70/f70/v70/v71///1///3/v/3/v/3/v/3/v/3/v/2/f73/v/3/v/3/v/3/v/3/v/3/v/3/v/3/v/3/v/3/v/3/v/3/v/3/v/3/v/3/v/3/v/3/v/3/v/0/v70/v70/v71///0/v70/v70/v70/v70/v70/v70/v70/v70/v70/v70/v73/v/3/v/3/v/3/v/0/v7x/v7x/v7z///y/v7x/v7x/v7x/v7y/v7y/v70/v70/v7z/f30/v70/v71///1///0/v70/v70/v70/v70/v71//////////////////////////////////////////////////////////////8A</ImageData>
+    </EmbeddedImage>
+  </EmbeddedImages>
+  <rd:ReportUnitType>Cm</rd:ReportUnitType>
+  <rd:ReportID>27669437-c3f5-4b89-b31e-dbd61af3c9c8</rd:ReportID>
+</Report>

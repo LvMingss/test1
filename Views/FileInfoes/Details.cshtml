@@ -1,0 +1,122 @@
+﻿@model urban_archive.Models.FileInfo
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>FileInfo</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.fileName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.fileName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.archivesNo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.archivesNo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.seqNo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.seqNo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.fileNo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.fileNo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.startPageNo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.startPageNo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.endPageNo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.endPageNo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.responsible)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.responsible)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.remarks)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.remarks)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.startDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.startDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.endDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.endDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.type)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.type)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.number)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.number)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.dengjihao)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.dengjihao)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

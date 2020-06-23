@@ -1,0 +1,164 @@
+﻿@model urban_archive.Models.vw_gxarchiveQueryList
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+<style type="text/css">
+    .jubu {
+        max-width: 100%;
+    }
+</style>
+<link type="text/css" rel="stylesheet" href="~/Scripts/jquery/jquery-ui.css">
+<script type="text/javascript" src="~/Scripts/jquery/jquery-1.8.3.js"></script>
+<script type="text/javascript" src="~/Scripts/jquery/jquery.ui.core.js"></script>
+<script type="text/javascript" src="~/Scripts/jquery/jquery.ui.datepicker.js"></script>
+<script type="text/javascript" src="~/Scripts/jquery/jquery.ui.widget.js"></script>
+<script type="text/javascript" src="~/Scripts/jquery/jquery-ui-timepicker-addon.js"></script>
+@*<script type="text/javascript" src="~/Scripts/jquery/jquery-ui-timepicker-zh-CN.js"></script>*@
+<script>
+            $(function () {
+                $("#lqDate").datepicker({
+                    changeMonth: true,
+                    changeYear: true
+                });
+            });
+            function panduan() {
+                var date = document.getElementById("lqDate").value;
+                if (date != null) {
+                    document.getElementById("tishi").style.display = "none";
+                    return true;
+                } else {
+                    document.getElementById("tishi").style.display = "block";
+                    return false;
+                }
+            }
+
+    </script>
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    @Html.HiddenFor(model => model.projectID)
+    <div class="form-horizontal">
+        @*<h4></h4>
+        <hr />*@
+        @*<h2 style="margin-top:0;"><i class="fa fa-tags kongge"></i>领取</h2>
+        <hr />*@
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+
+        <div class="panel panel-default">
+            <table class="table table-bordered ">
+                <tr>
+                    <td class="linear" style="color:white;font-size:18px;" colspan="4">
+                        <i class="fa fa-check-square-o"></i>工程信息
+                    </td>
+
+                </tr>
+                @*<tr>
+                    <th style="background-color:#f9f9f9;width:10%;" colspan="4">
+                        工程信息
+                    </th>
+                </tr>*@
+                <tr>
+                    <td style="background-color:#f9f9f9;width:10%;">
+                        工程名称
+                    </td>
+                    <td colspan="3">
+                        @Html.EditorFor(model => model.projectName, new { htmlAttributes = new { @class = "form-control jubu", @readOnly = "readOnly " } })
+                        @Html.ValidationMessageFor(model => model.projectName, "", new { @class = "text-danger" })
+                    </td>
+                </tr>
+                <tr>
+                    <td style="background-color:#f9f9f9;width:10%;">
+                        建设单位
+                    </td>
+                    <td colspan="3">
+                        @Html.EditorFor(model => model.developmentOrganization, new { htmlAttributes = new { @class = "form-control jubu", @readOnly = "readOnly " } })
+                        @Html.ValidationMessageFor(model => model.developmentOrganization, "", new { @class = "text-danger" })
+                    </td>
+                </tr>
+                <tr>
+                    <td style="background-color:#f9f9f9;width:10%;">
+                        施工单位
+                    </td>
+                    <td colspan="3">
+                        @Html.EditorFor(model => model.constructionOrganization, new { htmlAttributes = new { @class = "form-control jubu", @readOnly = "readOnly " } })
+                        @Html.ValidationMessageFor(model => model.constructionOrganization, "", new { @class = "text-danger" })
+                    </td>
+                </tr>
+                <tr>
+                    <td style="background-color:#f9f9f9;width:10%;">
+                        接收人
+                    </td>
+                    <td>
+                        @Html.EditorFor(model => model.recipient, new { htmlAttributes = new { @class = "form-control", @readOnly = "readOnly " } })
+                        @Html.ValidationMessageFor(model => model.recipient, "", new { @class = "text-danger" })
+                    </td>
+                    <td style="background-color:#f9f9f9;width:10%;">
+                        接收日期
+                    </td>
+                    <td>
+                        @Html.EditorFor(model => model.dateReceived, new { htmlAttributes = new { @class = "form-control", @readOnly = "readOnly " } })
+                        @Html.ValidationMessageFor(model => model.dateReceived, "", new { @class = "text-danger" })
+                    </td>
+                </tr>
+                <tr>
+                    <td style="background-color:#f9f9f9;width:10%;">
+                        整理要求
+                    </td>
+                    <td colspan="3">
+                        @Html.EditorFor(model => model.collationRequirement, new { htmlAttributes = new { @class = "form-control jubu", @readOnly = "readOnly " } })
+                        @Html.ValidationMessageFor(model => model.collationRequirement, "", new { @class = "text-danger" })
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <div class="panel panel-default">
+            <table class="table table-bordered ">
+                <tr>
+                    <td class="linear" style="color:white;font-size:18px;" colspan="4">
+                        <i class="fa fa-check-square-o"></i>领取信息
+                    </td>
+
+                </tr>
+                @*<tr>
+                    <th style="background-color:#f9f9f9;" colspan="4">
+                        领取信息
+                    </th>
+                </tr>*@
+                <tr>
+                    <td style="background-color:#f9f9f9;width:10%;">
+                        领取人
+                    </td>
+                    <td style="width:40%;">
+                    @Html.DropDownList("collator",null , new { @class = "form-control" } )
+                    @Html.ValidationMessageFor(model => model.collator, "", new { @class = "text-danger" })
+                    </td>
+                    <td style="background-color:#f9f9f9;width:10%;">
+                        领取日期
+                    </td>
+                    <td style="width:40%;">
+                        @Html.EditorFor(model => model.lqDate, new { htmlAttributes = new { @class = "form-control", @Value= @ViewBag.lqdate } })
+                        @Html.ValidationMessageFor(model => model.lqDate, "", new { @class = "text-danger" })
+                        <label id="tishi" style="@ViewData["style"]">领取日期不能为空</label>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <div style="text-align:center;">
+            <input type="submit" value="确定" name="action" class="btn btn-default">
+            <input type="submit" value="返回" name="action" class="btn btn-default">
+            <div style="height:20px;">
+            </div>
+        </div>
+    </div>
+
+
+        }
+
+        @*<div>
+            @Html.ActionLink("Back to List", "Index")
+        </div>*@
+
+

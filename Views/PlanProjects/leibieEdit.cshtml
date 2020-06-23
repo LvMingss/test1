@@ -1,0 +1,51 @@
+﻿@model urban_archive.Models.PlanArchiveClassify
+<section>
+    <h2><i class="fa fa-tags kongge"></i>规划档案【类别修改】</h2>
+    </section>
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+
+            <div class="form-horizontal">
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+                <div class="panel panel-default">
+                    <table class="table table-bordered dl-horizontal" style="background-color:#f9f9f9;">
+                        <tr>
+
+                            <td style="background-color:#f9f9f9;font-weight:bold;min-width:130px;width:6%;">
+                                序号
+                            </td>
+                            <td style="width:44%;">
+                                @Html.EditorFor(model => model.classifyID, new { htmlAttributes = new { @class = "form-control", @style = "padding:0px 5px;height:28px;" } })
+                            </td>
+                        </tr>
+                        <tr>
+
+                            <td style="background-color:#f9f9f9;font-weight:bold;min-width:130px;width:6%;">
+                                类别
+                            </td>
+                            <td style="width:44%;">
+                                @Html.EditorFor(model => model.classifyName, new { htmlAttributes = new { @class = "form-control", @style = "padding:0px 5px;height:28px;" } })
+                            </td>
+                        </tr>
+                        <tr>
+
+                            <td style="background-color:#f9f9f9;font-weight:bold;min-width:130px;width:6%;">
+                                类别缩写
+                            </td>
+                            <td style="width:44%;">
+                                @Html.EditorFor(model => model.classifySX, new { htmlAttributes = new { @class = "form-control", @style = "padding:0px 5px;height:28px;" } })
+                            </td>
+                        </tr>
+                    </table>
+                    <input type="submit" value="修改" name="action" class="btn btn-primary">
+                    <input type="submit" value="返回" name="action" class="btn btn-primary">
+                </div>
+            </div>
+        }
+
+
+
+
+

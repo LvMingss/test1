@@ -1,0 +1,41 @@
+﻿@model IEnumerable<urban_archive.Models.vw_charge>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<div class="col-md-4">
+    <h3>@Html.ActionLink("业务科收费查询", "YeWuFeiYongChaXun", "Charge")</h3>
+</div>
+<div class="col-md-4">
+    <h3>@Html.ActionLink("声像科收费查询", "ShengXiangFeiYongChaXun", "Charge")</h3>
+</div>
+<div class="col-md-4">
+    <h3>@Html.ActionLink("借阅收费查询", "", "")</h3>
+</div>
+<div class="col-md-4">
+    <h3>@Html.ActionLink("盒具资料费用查询", "HeJuFeiYongChaXun", "Charge")</h3>
+</div>
+<div class="col-md-4">
+    <h3>@Html.ActionLink("打复印费用查询", "DaFuYinFeiYongChaXun", "Charge")</h3>
+</div>
+<div class="col-md-4">
+    <h3>@Html.ActionLink("财务科收费", "CaiWuShouFeiList", "Charge")</h3>
+</div>
+<div class="col-md-4">
+    <h3>@Html.ActionLink("其他费用列表", "OtherFeiYongChaXun", "Charge")</h3>
+</div>
+<div class="col-md-4">
+    <h3>@Html.ActionLink("添加其他费用", "Create", "Charge")</h3>
+</div>
+<div class="col-md-4">
+    <h3>@Html.ActionLink("收费标准", "ChargeStandard", "Charge")</h3>
+</div>
+<div class="col-md-4">
+    <h3>@Html.ActionLink("打复印与收费", "DaFuYinList", "Charge")</h3>
+</div>
+<div class="col-md-4">
+    <h3>@Html.ActionLink("图纸统计", "TuZhiTongJi", "Charge")</h3>
+</div>

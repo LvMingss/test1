@@ -1,0 +1,94 @@
+﻿
+@{
+    ViewBag.Title = "guancang_TJby_paperProjectSeqNo";
+}
+
+<h2><i class="fa fa-tags kongge"></i>馆藏档案区间统计</h2>
+<hr />
+
+@section css{
+    <link type="text/css" rel="stylesheet" href="~/Scripts/jquery/jquery-ui.css">
+}
+@using (Html.BeginForm())
+{
+    <div style="font-size:20px;">
+        <i class="fa fa-caret-right" style="padding-right:5px;"></i>请输入工程顺序号（面向竣工、规划、管线档案）
+    </div><br>
+    <div class="panel panel-default">
+        <table class="table table-bordered dl-horizontal">
+
+            <tr>
+                <td style="background-color:#f9f9f9;width:10%;">
+                    起始工程顺序号:
+                </td>
+                <td>
+                    <input type="text" id="start_paperProjectSeqNo" name="start_paperProjectSeqNo" class="form-control">
+                </td>
+                <td style="background-color:#f9f9f9;width:10%;">
+                    终止工程顺序号:
+                </td>
+                <td>
+                    <input type="text" id="end_paperProjectSeqNo" name="end_paperProjectSeqNo" class="form-control">
+                </td>
+            </tr>
+            <tr>
+                <td colspan="4" style="text-align:center;">
+                    <input type="submit" id="ok" value="查看统计结果" name="action" class="btn btn-default" />
+                </td>
+
+            </tr>
+        </table>
+    </div>
+    <div style="font-size:20px;">
+        <i class="fa fa-caret-right" style="padding-right:5px;"></i>请输入年代（面向道路、执照、规划档案）
+    </div><br>
+    <div class="panel panel-default">
+        <table class="table table-bordered dl-horizontal">
+
+            <tr>
+                <td style="background-color:#f9f9f9;width:10%;">
+                    年代:
+                </td>
+                <td>
+                    <input type="text" id="year" name="year" class="form-control">
+                </td>
+                
+            </tr>
+            <tr>
+                <td colspan="2" style="text-align:center;">
+                    <input type="submit" id="ok" value="查看统计结果" name="action1" class="btn btn-default" />
+                </td>
+
+            </tr>
+        </table>
+    </div>
+
+    <div class="panel panel-default">
+        <table class="table table-bordered dl-horizontal">
+
+            <tr>
+                <td style="background-color:#f9f9f9;width:10%;">
+                    起始年代:
+                </td>
+                <td>
+                    <input type="text" id="start_year" name="start_year" class="form-control">
+                </td>
+                <td style="background-color:#f9f9f9;width:10%;">
+                    终止年代:
+                </td>
+                <td>
+                    <input type="text" id="end_year" name="end_year" class="form-control">
+                </td>
+            </tr>
+            <tr>
+                <td colspan="4" style="text-align:center;">
+                    <input type="submit" id="ok" value="查看范围统计结果" name="action1" class="btn btn-default" />
+                </td>
+
+            </tr>
+        </table>
+    </div>
+
+
+
+}

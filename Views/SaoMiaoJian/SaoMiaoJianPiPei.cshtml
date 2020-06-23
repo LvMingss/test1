@@ -1,0 +1,297 @@
+﻿
+@{
+    ViewBag.Title = "档案扫描件匹配";
+}
+
+<section>
+    <h2 style="float:left;"><i class="fa fa-tags kongge"></i>档案扫描件匹配</h2>
+    <ol class="breadcrumb">
+        <li class="active">档案借阅 </li>
+        <li class="active">借阅检索 </li>
+        <li>档案扫描件匹配</li>
+    </ol>
+    <div style="clear:both;"></div>
+</section>
+@using (Html.BeginForm())
+{
+    <div class="panel panel-default" style="border-top:3px solid #408cca">
+        <table class="table table-bordered dl-horizontal">
+            <tr>
+                <td  style="font-size:18px;" colspan="4">
+                    <i class="fa fa-check-square-o"></i>匹配竣工档案
+                </td>
+
+            </tr>
+            <tr>
+                <td >
+                    项目顺序号：
+                    <input type="text" name="seqS" id="seqS" class="form-control" style="display:inline">至
+                    <input type="text" name="seqE" id="seqE" class="form-control" style="display:inline">
+                    <input type="submit" name="action" id="jgok" value="开始匹配竣工档案" class="btn btn-default">
+                    <input type="submit" name="action" id="jgdel" value="删除已匹配竣工档案" class="btn btn-default">
+                </td>
+            </tr>
+        </table>
+    </div>
+
+
+                @*<h4>匹配竣工档案</h4>
+                <label>项目顺序号</label>
+                <input type="text" name="seqS" id="seqS" class="form-control">
+                <label>至</label>
+                <input type="text" name="seqE" id="seqE" class="form-control">
+                <input type="submit" name="action" id="jgok" value="开始匹配竣工档案" class="btn btn-default">*@
+                <hr>
+    <div class="panel panel-default" style="border-top:3px solid #f56954">
+        <table class="table table-bordered dl-horizontal">
+            <tr>
+                <td style="font-size:18px;" colspan="4">
+                    <i class="fa fa-check-square-o"></i>匹配援川档案
+                </td>
+
+            </tr>
+            <tr>
+                <td>
+                    项目顺序号：
+                    <input type="text" name="YCseqS" id="YCseqS" class="form-control" style="display:inline">至
+                    <input type="text" name="YCseqS" id="YCseqS" class="form-control" style="display:inline">
+                    <input type="submit" name="action" id="ycok" value="开始匹配援川档案" class="btn btn-default">
+                    <input type="submit" name="action" id="ycdel" value="删除已匹配援川档案" class="btn btn-default">
+                </td>
+            </tr>
+        </table>
+    </div>
+                @*<h4>匹配援川档案</h4>
+                <label>项目顺序号</label>
+                <input class="form-control" type="text" name="YCseqS" id="YCseqS">
+                <label>至</label>
+                <input class="form-control" type="text" name="YCseqE" id="YCseqE">
+                <input type="submit" name="action" id="ycok" value="开始匹配援川档案" class="btn btn-default">*@
+                <hr>
+    <div class="panel panel-default" style="border-top:3px solid #00c0ef">
+        <table class="table table-bordered dl-horizontal">
+            <tr>
+                <td style="font-size:18px;" colspan="4">
+                    <i class="fa fa-check-square-o"></i>匹配管线档案
+                </td>
+
+            </tr>
+            <tr>
+                <td>
+                    项目顺序号：
+                    <input type="text" name="GXseqS" id="GXseqS" class="form-control" style="display:inline">至
+                    <input type="text" name="GXseqE" id="GXseqE" class="form-control" style="display:inline">
+                    <input type="submit" name="action" id="gxok" value="开始匹配管线档案" class="btn btn-default">
+                    <input type="submit" name="action" id="gxdel" value="删除已匹配管线档案" class="btn btn-default">
+                </td>
+            </tr>
+        </table>
+    </div>
+                @*<h4>匹配管线档案</h4>
+                <label>项目顺序号</label>
+                <input class="form-control" type="text" name="GXseqS" id="GXseqS">
+                <label>至</label>
+                <input class="form-control" type="text" name="GXseqE" id="GXseqE">
+                <input type="submit" name="action" id="gxok" value="开始匹配管线档案" class="btn btn-default">*@
+                <hr>
+    <div class="panel panel-default" style="border-top:3px solid #00a65a">
+        <table class="table table-bordered dl-horizontal">
+            <tr>
+                <td style="font-size:18px;" colspan="4">
+                    <i class="fa fa-check-square-o"></i>匹配执照档案（新）
+                </td>
+
+            </tr>
+            <tr>
+                <td>
+                    年代：
+                    <input type="text" name="zhizhaoYear" id="zhizhaoYear" class="form-control" style="display:inline">
+                    <input type="submit" name="action" id="zzxok" value="开始匹配执照档案（新）" class="btn btn-default">
+                    <input type="submit" name="action" id="zzxdel" value="删除已匹配执照档案（新）" class="btn btn-default">
+                </td>
+            </tr>
+        </table>
+    </div>
+    <hr />
+
+    <div class="panel panel-default" style="border-top:3px solid #00a65a">
+        <table class="table table-bordered dl-horizontal">
+            <tr>
+                <td style="font-size:18px;" colspan="4">
+                    <i class="fa fa-check-square-o"></i>匹配执照档案（区）
+                </td>
+
+            </tr>
+            <tr>
+                <td>
+                    总登记号范围：
+                    <input type="text" name="zhizhaoQu1" id="zhizhaoQu1" class="form-control" style="display:inline">至
+                    <input type="text" name="zhizhaoQu2" id="zhizhaoQu2" class="form-control" style="display:inline">
+                    <input type="submit" name="action" id="zzqok" value="开始匹配执照档案（区）" class="btn btn-default">
+                    <input type="submit" name="action" id="zzqdel" value="删除已匹配执照档案（区）" class="btn btn-default">
+                </td>
+            </tr>
+        </table>
+    </div>
+    <hr />
+
+
+    <div class="panel panel-default" style="border-top:3px solid #f39c12">
+        <table class="table table-bordered dl-horizontal">
+            <tr>
+                <td style="font-size:18px;" colspan="4">
+                    <i class="fa fa-check-square-o"></i>匹配东区执照档案
+                </td>
+
+            </tr>
+            <tr>
+                <td>
+                    东区号：
+                    <input type="text" name="DQNo" id="DQNo" class="form-control" style="display:inline">
+                    <input type="submit" name="action" id="dqok" value="开始匹配东区执照档案" class="btn btn-default">
+                    <input type="submit" name="action" id="dqdel" value="删除已匹配东区执照档案" class="btn btn-default">
+                </td>
+            </tr>
+        </table>
+    </div>
+<hr />
+    <div class="panel panel-default" style="border-top:3px solid #932ab6">
+        <table class="table table-bordered dl-horizontal">
+            <tr>
+                <td style="font-size:18px;" colspan="4">
+                    <i class="fa fa-check-square-o"></i>匹配规划档案
+                </td>
+
+            </tr>
+            <tr>
+                <td>
+                    工程总顺序号：
+                    <input type="text" name="GHseqS" id="GHseqS" class="form-control" style="display:inline">至
+                    <input type="text" name="GHseqE" id="GHseqE" class="form-control" style="display:inline">
+                    <input type="submit" name="action" id="ghok" value="开始匹配规划档案" class="btn btn-default">
+                    <input type="submit" name="action" id="ghdel" value="删除已匹配规划档案" class="btn btn-default">
+                </td>
+            </tr>
+        </table>
+    </div>
+<hr />
+    <div class="panel panel-default" style="border-top:3px solid #408cca">
+        <table class="table table-bordered dl-horizontal">
+            <tr>
+                <td  style="font-size:18px;" colspan="4">
+                    <i class="fa fa-check-square-o"></i>匹配分类档案
+                </td>
+
+            </tr>
+            <tr>
+                <td>
+                    档号：
+                    <input type="text" name="NoS" id="NoS" class="form-control" style="display:inline">至
+                    <input type="text" name="NoE" id="NoE" class="form-control" style="display:inline">
+                    <input type="submit" name="action" id="flok" value="开始匹配分类档案" class="btn btn-default">
+                    <input type="submit" name="action" id="fldel" value="删除已匹配分类档案" class="btn btn-default">
+                </td>
+            </tr>
+        </table>
+    </div>
+                @*<h4>匹配执照档案（新）</h4>
+                <label>年代</label>
+                <input class="form-control" type="text" name="zhizhaoYear" id="zhizhaoYear">
+                <input class="form-control" type="submit" name="action" id="zzxok" value="开始匹配执照档案（新）" >
+                <hr>*@
+                @*<h4>匹配东区执照档案</h4>
+                <label>东区号</label>
+                <input class="form-control" type="text" name="DQNo" id="DQNo">
+                <input class="form-control" type="submit" name="action" id="dqok" value="开始匹配东区执照档案" class="btn btn-default">*@
+            
+                @*<h4>匹配规划档案</h4>
+                <label>工程总顺序号</label>
+                <input class="form-control" type="text" name="GHseqS" id="GHseqS">
+                <label>至</label>
+                <input class="form-control" type="text" name="GHseqE" id="GHseqE">
+                <input type="submit" name="action" id="ghok" value="开始匹配规划档案" class="btn btn-default">*@
+               
+                @*<h4>匹配分类档案</h4>
+                <label>档号</label>
+                <input class="form-control" type="text" name="NoS" id="NoS">
+                <label>至</label>
+                <input class="form-control" type="text" name="NoE" id="NoE">
+                <input type="submit" name="action" id="flok" value="开始匹配分类档案" class="btn btn-default">*@
+                <hr>
+    <div class="panel panel-default" style="border-top:3px solid #f56954">
+        <table class="table table-bordered dl-horizontal">
+            <tr>
+                <td  style="font-size:18px;" colspan="4">
+                    <i class="fa fa-check-square-o"></i>匹配道路档案
+                </td>
+
+            </tr>
+            <tr>
+                <td>
+                    年代：
+                    <input type="text" name="daoluYear" id="daoluYear" class="form-control" style="display:inline">
+                    <input type="submit" name="action" id="dlok" value="开始匹配道路档案" class="btn btn-default">
+                    <input type="submit" name="action" id="dldel" value="删除已匹配道路档案" class="btn btn-default">
+                </td>
+            </tr>
+        </table>
+    </div>
+
+                @*<h4>匹配道路档案</h4>
+                <label>年代</label>
+                <input class="form-control" type="text" name="daoluYear" id="daoluYear">
+                <input class="form-control" type="submit" name="action" id="dlok" value="开始匹配道路档案" >*@
+                <hr>
+    <div class="panel panel-default" style="border-top:3px solid #00c0ef">
+        <table class="table table-bordered dl-horizontal">
+            <tr>
+                <td  style="font-size:18px;" colspan="4">
+                    <i class="fa fa-check-square-o"></i>匹配图纸档案
+                </td>
+
+            </tr>
+            <tr>
+                <td>
+                    序号：
+                    <input type="text" name="TZseqS" id="TZseqS" class="form-control" style="display:inline">至
+                    <input type="text" name="TZseqE" id="TZseqE" class="form-control" style="display:inline">
+                    <input type="submit" name="action" id="tzok" value="开始匹配图纸档案" class="btn btn-default">
+                    <input type="submit" name="action" id="tzdel" value="删除已匹配图纸档案" class="btn btn-default">
+                </td>
+            </tr>
+        </table>
+    </div>
+                @*<h4>匹配图纸档案</h4>
+                <label>序号</label>
+                <input class="form-control" type="text" name="TZseqS" id="TZseqS">
+                <label>至</label>
+                <input class="form-control" type="text" name="TZseqE" id="TZseqE">
+                <input type="submit" name="action" id="tzok" value="开始匹配图纸档案" class="btn btn-default">*@
+                <hr>
+    <div class="panel panel-default" style="border-top:3px solid #00a65a">
+        <table class="table table-bordered dl-horizontal">
+            <tr>
+                <td  style="font-size:18px;" colspan="4">
+                    <i class="fa fa-check-square-o"></i>匹配征地档案
+                </td>
+
+            </tr>
+            <tr>
+                <td>
+                    总登记号：
+                    <input type="text" name="ZDarchiveS" id="ZDarchiveS" class="form-control" style="display:inline">至
+                    <input type="text" name="ZDarchiveE" id="ZDarchiveE" class="form-control" style="display:inline">
+                    <input type="submit" name="action" id="zdok" value="开始匹配征地档案" class="btn btn-default">
+                    <input type="submit" name="action" id="zddel" value="删除已匹配征地档案" class="btn btn-default">
+                </td>
+            </tr>
+        </table>
+    </div>
+                @*<h4>匹配征地档案</h4>
+                <label>总登记号</label>
+                <input class="form-control" type="text" name="ZDarchiveS" id="ZDarchiveS">
+                <label>至</label>
+                <input class="form-control" type="text" name="ZDarchiveE" id="ZDarchiveE">
+                <input type="submit" name="action" id="zdok" value="开始匹配征地档案" class="btn btn-default">
+                <hr>*@
+                }

@@ -1,0 +1,179 @@
+﻿
+@model  urban_archive.Models.vw_archiveQueryList
+
+@{
+    ViewBag.Title = "Create";
+}
+
+@section css{
+    <link type="text/css" rel="stylesheet" href="~/Scripts/jquery/jquery-ui.css">
+}
+<style type="text/css">
+    .jubu {
+        max-width: 100%;
+    }
+</style>
+@section scripts{
+    <script type="text/javascript" src="~/Scripts/jquery/jquery-1.8.3.js"></script>
+    <script type="text/javascript" src="~/Scripts/jquery/jquery.ui.core.js"></script>
+    <script type="text/javascript" src="~/Scripts/jquery/jquery.ui.datepicker.js"></script>
+    <script type="text/javascript" src="~/Scripts/jquery/jquery.ui.widget.js"></script>
+    <script type="text/javascript" src="~/Scripts/jquery/jquery-ui-timepicker-addon.js"></script>
+    @*<script type="text/javascript" src="~/Scripts/jquery/jquery-ui-timepicker-zh-CN.js"></script>*@
+    <script>
+            $(function () {
+                $("#lingquDate").datepicker({
+                    changeMonth: true,
+                    changeYear: true
+                });
+            });
+    </script>
+}
+
+@using (Html.BeginForm("FaFangHeGeZheng", "LaterMaterials", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <h2><i class="fa fa-tags kongge"></i>发放档案合格证</h2>
+        <hr />
+        @Html.HiddenFor(model => model.projectID)
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="panel panel-default" >
+            <table class="table table-bordered dl-horizontal" style="background-color:#f9f9f9;">
+                <tr>
+                    <td class="linear" style="color:white;font-size:18px;text-align:center;padding:2px;" colspan="4">
+                        <i class="fa fa-check-square-o"></i>工程信息
+                    </td>
+
+                </tr>
+                @*<tr>
+
+                        <td class="linear" style="width: 10%; font-size: 18px;color:white;text-align: center;" colspan="4">
+                            —&nbsp工&nbsp程&nbsp信&nbsp息&nbsp—
+                        </td>
+                    </tr>*@
+                <tr>
+                    <td style="background-color:#f9f9f9;width:6%;min-width:130px;font-weight:bold;">
+                        工程名称
+                    </td>
+                    <td colspan="3">
+                        @Html.EditorFor(model => model.projectName, new { htmlAttributes = new { @class = "form-control jubu", @readonly = "readonly" } })
+                        @Html.ValidationMessageFor(model => model.projectName, "", new { @class = "text-danger" })
+                    </td>
+                </tr>
+                <tr>
+                    <td style="background-color:#f9f9f9;font-weight:bold;">
+                        建设单位
+                    </td>
+                    <td colspan="3">
+                        @Html.EditorFor(model => model.developmentOrganization, new { htmlAttributes = new { @class = "form-control jubu", @readonly = "readonly" } })
+                        @Html.ValidationMessageFor(model => model.developmentOrganization, "", new { @class = "text-danger" })
+                    </td>
+                </tr>
+                <tr>
+                    <td style="background-color:#f9f9f9;font-weight:bold;">
+                        施工单位
+                    </td>
+                    <td colspan="3">
+                        @Html.EditorFor(model => model.constructionOrganization, new { htmlAttributes = new { @class = "form-control jubu", @readonly = "readonly" } })
+                        @Html.ValidationMessageFor(model => model.constructionOrganization, "", new { @class = "text-danger" })
+                    </td>
+                </tr>
+                <tr>
+                    <td style="background-color:#f9f9f9;font-weight:bold;">
+                        接收人
+                    </td>
+                    <td style="width:44%;">
+                        @Html.EditorFor(model => model.recipient, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                        @Html.ValidationMessageFor(model => model.recipient, "", new { @class = "text-danger" })
+                    </td>
+                    <td style="background-color:#f9f9f9;width:6%;min-width:150px;font-weight:bold;">
+                        接收日期
+                    </td>
+                    <td>
+                        @Html.EditorFor(model => model.dateReceived, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                        @Html.ValidationMessageFor(model => model.dateReceived, "", new { @class = "text-danger" })
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <div class="panel panel-default" >
+            <table class="table table-bordered dl-horizontal" style="background-color:#f9f9f9;">
+                <tr>
+                    <td class="linear" style="color:white;font-size:18px;text-align:center;padding:2px;" colspan="4">
+                        <i class="fa fa-check-square-o"></i>领取信息
+                    </td>
+
+                </tr>
+                @*<tr>
+                    <td class="linear" style="width: 10%; font-size: 18px;color:white;text-align: center;" colspan="4">
+                        —&nbsp领&nbsp取&nbsp信&nbsp息&nbsp—
+                    </td>
+                </tr>*@
+                <tr>
+                    <td style="background-color:#f9f9f9;width:6%;min-width:130px;font-weight:bold;">
+                        合格证编号
+                    </td>
+                    <td style="width:44%;">
+                        <input type="text" id="archiveCertificateNo" name="archiveCertificateNo" value="@ViewData["archiveCertificateNo"] " class="form-control" />
+                    </td>
+                    <td style="background-color:#f9f9f9;width:6%;min-width:150px;font-weight:bold;">
+                        是否发放合格证书
+                    </td>
+                    <td>
+                        @Html.EditorFor(model => model.isFafangHegezheng, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.isFafangHegezheng, "", new { @class = "text-danger" })
+                    </td>
+                </tr>
+                <tr>
+                    <td style="background-color:#f9f9f9;font-weight:bold;">
+                        领取单位名称
+                    </td>
+                    <td colspan="3">
+                        <input type="text" id="workUnit" name="workUnit" value="@ViewData["workUnit"] " class="form-control" style="max-width:100%"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="background-color:#f9f9f9;font-weight:bold;">
+                        领取人
+                    </td>
+                    <td>
+                        <input type="text" id="lingquPerson" name="lingquPerson" value="@ViewData["lingquPerson"] " class="form-control" , readonly="readonly" />
+                    </td>
+                    <td style="background-color:#f9f9f9;font-weight:bold;">
+                        联系电话
+                    </td>
+                    <td>
+                        <input type="text" id="contractTel" name="contractTel" value="@ViewData["contractTel"]" class="form-control" />
+                    </td>
+                </tr>
+                <tr>
+                    <td style="background-color:#f9f9f9;font-weight:bold;">
+                        发放人
+                    </td>
+                    <td style="border-bottom-color:#408cca;">
+                        <input type="text" id="fafangPeroson" name="fafangPeroson" value="@ViewData["fafangPeroson"]" class="form-control" />
+                    </td>
+                    <td style="background-color:#f9f9f9;font-weight:bold;">
+                        发放日期
+                    </td>
+                    <td style="border-bottom-color:#408cca;">
+                        <input type="text" id="lingquDate" name="lingquDate" value="@ViewData["lingquDate"]" class="form-control" />
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <div style="text-align:center;">
+            <input type="submit" value="更新" name="action" class="btn btn-default" disabled="@ViewData["button2"]"> &nbsp;
+            <input type="submit" value="确定" name="action" run at="server" class="btn btn-default" disabled="@ViewData["button1"]"> &nbsp;
+            <input type="submit" value="返回" name="action" class="btn btn-default">
+            <div style="height:20px;"></div>
+        </div>
+    </div>
+@*<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>*@
+}
+
+

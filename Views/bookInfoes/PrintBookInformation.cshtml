@@ -1,0 +1,55 @@
+﻿
+@{
+    ViewBag.Title = "打印图书信息";
+}
+<h2><i class="fa fa-tags kongge"></i>打印图书信息</h2>
+<hr />
+@using (Html.BeginForm())
+{
+    <div class="panel panel-default">
+        <table class="table table-bordered dl-horizontal">
+            <tr>
+                <td style="background-color:#f9f9f9;width:30%;">
+                    起始编号
+                </td>
+                <td>
+                    <input type="text" id="startNo" name="startNo" class="form-control" />
+                </td>
+            </tr>
+            <tr>
+                <td style="background-color:#f9f9f9;width:30%;">
+                    终止编号
+                </td>
+                <td>
+                    <input type="text" id="endNo" name="endNo" class="form-control" />
+                </td>
+            </tr>
+            <tr>
+                <td style="background-color:#f9f9f9;width:30%;">
+                    首页页码
+                </td>
+                <td>
+                    <input type="text" id="pageNo" name="pageNo" value="1" class="form-control" />
+                </td>
+            </tr>
+        </table>
+    </div>
+    <p style="text-align:center">
+        <input type="submit" name="action" id="print" value="打印图书信息" class="btn btn-default">
+    </p>
+
+                @*<div>
+                    起始编号：<input type="text" id="startNo" name="startNo" class="form-control" />
+                </div>
+                <div>
+                    终止编号：<input type="text" id="endNo" name="endNo" class="form-control" />
+                </div>
+                <div>
+                    首页页码：<input type="text" id="pageNo" name="pageNo" value="1" class="form-control" />
+                </div>
+                <div>
+                    <input type="submit" name="action" id="print" value="打印图书信息" class="btn btn-default">
+                </div>*@
+
+                }
+

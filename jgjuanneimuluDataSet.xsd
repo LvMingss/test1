@@ -1,0 +1,124 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="jgjuanneimuluDataSet" targetNamespace="http://tempuri.org/jgjuanneimuluDataSet.xsd" xmlns:mstns="http://tempuri.org/jgjuanneimuluDataSet.xsd" xmlns="http://tempuri.org/jgjuanneimuluDataSet.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections>
+          <Connection AppSettingsObjectName="Web.config" AppSettingsPropertyName="UrbanConConnectionString" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="UrbanConConnectionString (Web.config)" ParameterPrefix="@" PropertyReference="AppConfig.System.Configuration.ConfigurationManager.0.ConnectionStrings.UrbanConConnectionString.ConnectionString" Provider="System.Data.SqlClient" />
+        </Connections>
+        <Tables>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="vw_fileListTableAdapter" GeneratorDataComponentClassName="vw_fileListTableAdapter" Name="vw_fileList" UserDataComponentName="vw_fileListTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="UrbanConConnectionString (Web.config)" DbObjectName="UrbanCon.dbo.vw_fileList" DbObjectType="View" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>SELECT fileNo, firstResponsible, fileName, startPageNo, startDate, endDate, endPageNo, remarks, archivesNo, seqNo, responsible, ID FROM dbo.vw_fileList</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="fileNo" DataSetColumn="fileNo" />
+              <Mapping SourceColumn="firstResponsible" DataSetColumn="firstResponsible" />
+              <Mapping SourceColumn="fileName" DataSetColumn="fileName" />
+              <Mapping SourceColumn="startPageNo" DataSetColumn="startPageNo" />
+              <Mapping SourceColumn="startDate" DataSetColumn="startDate" />
+              <Mapping SourceColumn="endDate" DataSetColumn="endDate" />
+              <Mapping SourceColumn="endPageNo" DataSetColumn="endPageNo" />
+              <Mapping SourceColumn="remarks" DataSetColumn="remarks" />
+              <Mapping SourceColumn="archivesNo" DataSetColumn="archivesNo" />
+              <Mapping SourceColumn="seqNo" DataSetColumn="seqNo" />
+              <Mapping SourceColumn="responsible" DataSetColumn="responsible" />
+              <Mapping SourceColumn="ID" DataSetColumn="ID" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+        </Tables>
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="jgjuanneimuluDataSet" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="True" msprop:Generator_DataSetName="jgjuanneimuluDataSet" msprop:Generator_UserDSName="jgjuanneimuluDataSet">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="vw_fileList" msprop:Generator_TableClassName="vw_fileListDataTable" msprop:Generator_TableVarName="tablevw_fileList" msprop:Generator_TablePropName="vw_fileList" msprop:Generator_RowDeletingName="vw_fileListRowDeleting" msprop:Generator_RowChangingName="vw_fileListRowChanging" msprop:Generator_RowEvHandlerName="vw_fileListRowChangeEventHandler" msprop:Generator_RowDeletedName="vw_fileListRowDeleted" msprop:Generator_UserTableName="vw_fileList" msprop:Generator_RowChangedName="vw_fileListRowChanged" msprop:Generator_RowEvArgName="vw_fileListRowChangeEvent" msprop:Generator_RowClassName="vw_fileListRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="fileNo" msprop:Generator_ColumnVarNameInTable="columnfileNo" msprop:Generator_ColumnPropNameInRow="fileNo" msprop:Generator_ColumnPropNameInTable="fileNoColumn" msprop:Generator_UserColumnName="fileNo" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="100" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="firstResponsible" msprop:Generator_ColumnVarNameInTable="columnfirstResponsible" msprop:Generator_ColumnPropNameInRow="firstResponsible" msprop:Generator_ColumnPropNameInTable="firstResponsibleColumn" msprop:Generator_UserColumnName="firstResponsible" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="100" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="fileName" msprop:Generator_ColumnVarNameInTable="columnfileName" msprop:Generator_ColumnPropNameInRow="fileName" msprop:Generator_ColumnPropNameInTable="fileNameColumn" msprop:Generator_UserColumnName="fileName" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="150" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="startPageNo" msprop:Generator_ColumnVarNameInTable="columnstartPageNo" msprop:Generator_ColumnPropNameInRow="startPageNo" msprop:Generator_ColumnPropNameInTable="startPageNoColumn" msprop:Generator_UserColumnName="startPageNo" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="20" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="startDate" msprop:Generator_ColumnVarNameInTable="columnstartDate" msprop:Generator_ColumnPropNameInRow="startDate" msprop:Generator_ColumnPropNameInTable="startDateColumn" msprop:Generator_UserColumnName="startDate" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="30" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="endDate" msprop:Generator_ColumnVarNameInTable="columnendDate" msprop:Generator_ColumnPropNameInRow="endDate" msprop:Generator_ColumnPropNameInTable="endDateColumn" msprop:Generator_UserColumnName="endDate" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="20" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="endPageNo" msprop:Generator_ColumnVarNameInTable="columnendPageNo" msprop:Generator_ColumnPropNameInRow="endPageNo" msprop:Generator_ColumnPropNameInTable="endPageNoColumn" msprop:Generator_UserColumnName="endPageNo" type="xs:int" minOccurs="0" />
+              <xs:element name="remarks" msprop:Generator_ColumnVarNameInTable="columnremarks" msprop:Generator_ColumnPropNameInRow="remarks" msprop:Generator_ColumnPropNameInTable="remarksColumn" msprop:Generator_UserColumnName="remarks" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="100" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="archivesNo" msprop:Generator_ColumnVarNameInTable="columnarchivesNo" msprop:Generator_ColumnPropNameInRow="archivesNo" msprop:Generator_ColumnPropNameInTable="archivesNoColumn" msprop:Generator_UserColumnName="archivesNo">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="30" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="seqNo" msprop:Generator_ColumnVarNameInTable="columnseqNo" msprop:Generator_ColumnPropNameInRow="seqNo" msprop:Generator_ColumnPropNameInTable="seqNoColumn" msprop:Generator_UserColumnName="seqNo" type="xs:int" minOccurs="0" />
+              <xs:element name="responsible" msprop:Generator_ColumnVarNameInTable="columnresponsible" msprop:Generator_ColumnPropNameInRow="responsible" msprop:Generator_ColumnPropNameInTable="responsibleColumn" msprop:Generator_UserColumnName="responsible" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="100" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="ID" msdata:ReadOnly="true" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_ColumnVarNameInTable="columnID" msprop:Generator_ColumnPropNameInRow="ID" msprop:Generator_ColumnPropNameInTable="IDColumn" msprop:Generator_UserColumnName="ID" type="xs:long" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+    <xs:unique name="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:vw_fileList" />
+      <xs:field xpath="mstns:ID" />
+    </xs:unique>
+  </xs:element>
+</xs:schema>

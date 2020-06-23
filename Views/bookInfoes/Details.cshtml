@@ -1,0 +1,171 @@
+﻿@model urban_archive.Models.bookInfo
+
+@{
+    ViewBag.Title = "详细信息";
+}
+
+
+
+<div>
+    <h2><i class="fa fa-tags kongge"></i>详细信息</h2>
+    <hr />
+    <div class="panel panel-default">
+        <table class="table table-bordered dl-horizontal">
+            <tr>
+                <td style="background-color:#f9f9f9;width:10%;">
+                    书名项
+                </td>
+                <td colspan="3">
+                    @Html.DisplayFor(model => model.bookName)
+                </td>
+            </tr>
+            <tr>
+                <td style="background-color:#f9f9f9;width:10%;">
+                    出版项
+                </td>
+                <td colspan="3">
+                    @Html.DisplayFor(model => model.press)
+                </td>
+            </tr>
+
+            <tr>
+                <td style="background-color:#f9f9f9;width:10%;">
+                    著
+                </td>
+                <td>
+                    @Html.DisplayFor(model => model.authorZhu)                    
+                </td>
+                <td style="background-color:#f9f9f9;width:180px;width:10%;">
+                    编
+                </td>
+                <td>
+                    @Html.DisplayFor(model => model.authorBian)
+                   
+                </td>
+            </tr>
+            <tr>
+                <td style="background-color:#f9f9f9;">
+                    辑
+                </td>
+                <td>
+                    @Html.DisplayFor(model => model.authorJi)
+                    
+                </td>
+                <td style="background-color:#f9f9f9;width:180px;">
+                    纂
+                </td>
+                <td>
+                    @Html.DisplayFor(model => model.authorZuan)
+                   
+                </td>
+            </tr>
+            <tr>
+                <td style="background-color:#f9f9f9;">
+                    译
+                </td>
+                <td>
+                    @Html.DisplayFor(model => model.authorYi)
+                   
+                </td>
+                <td style="background-color:#f9f9f9;">
+                    汇
+                </td>
+                <td>
+                    @Html.DisplayFor(model => model.authorHui)
+                   
+                </td>
+            </tr>
+            <tr>
+                <td style="background-color:#f9f9f9;">
+                    出版日期
+                </td>
+                <td>
+                    @Html.DisplayFor(model => model.publishDate)
+                   
+                </td>
+                <td style="background-color:#f9f9f9;">
+                    价格
+                </td>
+                <td>
+                    @Html.DisplayFor(model => model.price)
+                    
+                </td>
+            </tr>
+            <tr>
+                <td style="background-color:#f9f9f9;">
+                    索书号
+                </td>
+                <td>
+                    @Html.DisplayFor(model => model.suoShuNo)
+                   
+                </td>
+                <td style="background-color:#f9f9f9;">
+                    分类号
+                </td>
+                <td>
+                    @Html.DisplayFor(model => model.classificationNo)
+                   
+                </td>
+            </tr>
+            <tr>
+                <td style="background-color:#f9f9f9;">
+                    互检号
+                </td>
+                <td>
+                    @Html.DisplayFor(model => model.huJianNo)
+                    
+                </td>
+                <td style="background-color:#f9f9f9;">
+                    页数
+                </td>
+                <td>
+                    @Html.DisplayFor(model => model.pageCount)
+                    
+                </td>
+            </tr>
+            <tr>
+                <td style="background-color:#f9f9f9;">
+                    提要项
+                </td>
+                <td colspan="3">
+                    @Html.DisplayFor(model => model.summary)
+                    
+                </td>
+            </tr>
+            <tr>
+                <td style="background-color:#f9f9f9;">
+                    借用信息
+                </td>
+                <td colspan="3">
+                    @Html.DisplayFor(model => model.borrowInfo)
+                    
+                </td>
+            </tr>
+            <tr>
+                <td style="background-color:#f9f9f9;">
+                    借阅人
+                </td>
+                <td>
+                    @ViewBag.borrower
+                </td>
+                <td style="background-color:#f9f9f9;">
+                    借阅时间
+                </td>
+                <td>
+                    @ViewBag.borrowdate
+                </td>
+            </tr>
+        </table>
+    </div>
+    </div>
+  @using (Html.BeginForm())
+  {
+    <div style="text-align:center;">
+        <p>
+            @Html.ActionLink("编辑", "Edit", new { id = Model.bookNo }, new { @class = "btn btn-default",@style= ViewData["button"] })
+            @*@Html.ActionLink("返回", "Index", new { @class="btn btn-default" })*@
+            <input type="submit"name="action"value="返回"id="return"class="btn btn-default">
+            @*<a href="/bookInfoes/BookInformation" class="btn btn-default">返回</a>*@
+        </p>
+    </div>
+  }

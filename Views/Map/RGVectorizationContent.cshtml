@@ -1,0 +1,120 @@
+﻿<link rel="stylesheet" href="/Scripts/gis/select2/select2.min.css" />
+<div class="box-body" style="height:100%; width:100%">
+    <div class="form-group" style="height:80px">
+        <label class="col-sm-2 control-label">工程空间数据：</label>
+        <div id="cordlist" class="col-sm-10">
+           <div><input type="button" value="添加坐标" onclick="addCord()" /></div>
+            <div id="cord1" class="cord">坐标1: <input id="x1" class="x" type="text" /><input id="y1" class="y" type="text" /></div>   
+            <div id="cord2" class="cord">坐标2: <input id="x2" class="x" type="text" /><input id="y2" class="y" type="text" /></div>   
+            <div id="cord3" class="cord">坐标3: <input id="x3" class="x" type="text" /><input id="y3" class="y" type="text" /></div>   
+            <div id="cord4" class="cord">坐标4: <input id="x4" class="x" type="text" /><input id="y4" class="y" type="text" /></div>         
+        </div>
+    </div>
+    <div class="form-group" style="height:60px">
+        <label class="col-sm-2 control-label">工程档案：</label>
+        <div class="col-sm-10">
+            <select id="project" name="project" style="width:200px">
+            </select>        
+        </div>
+    </div>
+    <div class="form-group" style="height:60px">
+        <label class="col-sm-2 control-label">建筑三维模型：</label>
+        <div class="col-sm-10">
+            <select id="vrmodel" name="vrmodel" style="width:200px">
+                @*<option value="sns0001">市政府大楼</option>*@
+            </select>
+        </div>
+    </div>
+</div>
+
+
+<script type="text/javascript" src="/Scripts/gis/select2/select2.full.min.js"></script>
+<script type="text/javascript" src="/Scripts/gis/select2/i18n/zh-CN.js"></script> 
+<script type="text/javascript">
+    var cordCount = 4;
+    var addCord = function () {
+        cordCount ++;
+        var newcord = document.createElement("div");
+        newcord.id = "cord" + cordCount;
+        newcord.className = "cord";
+        newcord.innerHTML = '坐标' + cordCount + ': <input id="x' + cordCount + '" class="x"  type="text" /><input id="y' + cordCount + '" class="y"  type="text" /><a href="javascript:deleteCord(' + cordCount + ')">删除</a>';
+        $("#cordlist").append(newcord);
+    };
+    var deleteCord = function (cordindex) {
+        $("#cord"+cordindex).remove();
+        cordCount--;
+    };
+    $(document).ready(function () {
+      
+        $("#project").select2({
+            placeholder: "选择一个工程..",
+            language: "zh-CN",
+            ajax: {
+                url: "/Map/ProjectSelection",
+                dataType: 'json',
+                delay: 250,
+                data: function (params) {
+                    return {
+                        q: params.term, // search term
+                        page: params.page|| 1
+                    };
+                },
+                processResults: function (data, params) {
+                    // parse the results into the format expected by Select2
+                    // since we are using custom formatting functions we do not need to
+                    // alter the remote JSON data, except to indicate that infinite
+                    // scrolling can be used
+                    params.page = params.page || 1;
+
+                    return {
+                        results: data.items,
+                        pagination: {
+                            more: (params.page * 30) < data.total_count
+                        }
+                    };
+                },
+                cache: true
+            },
+            //escapeMarkup: function (markup) { return markup; }, // let our custom formatter work
+            minimumInputLength: 1//,
+            //templateResult: formatRepo, // omitted for brevity, see the source of this page
+           // templateSelection: formatRepoSelection // omitted for brevity, see the source of this page
+        });
+
+        $("#vrmodel").select2({
+            placeholder: "选择一个工程模型..",
+            language: "zh-CN",
+            ajax: {
+                url: "/Map/ProjectVRModelSelection",
+                dataType: 'json',
+                delay: 250,
+                data: function (params) {
+                    return {
+                        q: params.term, // search term
+                        page: params.page || 1
+                    };
+                },
+                processResults: function (data, params) {
+                    // parse the results into the format expected by Select2
+                    // since we are using custom formatting functions we do not need to
+                    // alter the remote JSON data, except to indicate that infinite
+                    // scrolling can be used
+                    params.page = params.page || 1;
+
+                    return {
+                        results: data.items,
+                        pagination: {
+                            more: (params.page * 30) < data.total_count
+                        }
+                    };
+                },
+                cache: true
+            },
+            //escapeMarkup: function (markup) { return markup; }, // let our custom formatter work
+            minimumInputLength: 1//,
+            //templateResult: formatRepo, // omitted for brevity, see the source of this page
+            // templateSelection: formatRepoSelection // omitted for brevity, see the source of this page
+        });
+    });
+
+</script>

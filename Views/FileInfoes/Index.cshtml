@@ -1,0 +1,105 @@
+﻿@model IEnumerable<urban_archive.Models.FileInfo>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.fileName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.archivesNo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.seqNo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.fileNo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.startPageNo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.endPageNo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.responsible)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.remarks)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.startDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.endDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.type)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.number)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.dengjihao)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.fileName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.archivesNo)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.seqNo)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.fileNo)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.startPageNo)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.endPageNo)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.responsible)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.remarks)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.startDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.endDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.type)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.number)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.dengjihao)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.id }) |
+            @Html.ActionLink("Details", "Details", new { id=item.id }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.id })
+        </td>
+    </tr>
+}
+
+</table>

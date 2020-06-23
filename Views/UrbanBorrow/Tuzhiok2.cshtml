@@ -1,0 +1,284 @@
+﻿@{
+    Layout = null;
+    //要使视图不使用布局或模板页，那么需要把Layout赋值为空
+}
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<meta http-equiv="X-UA-Compatible" content="IE=10,chrome=1" />
+
+
+<title>档案浏览</title>
+<link href="~/Scripts/zTREE/css/AJAXControlToolKit.css" rel="stylesheet" />
+<script src="~/Scripts/LoadWebBrowseActiveX.js"></script>
+<script src="~/Scripts/jquery-2.1.1.min.js" type="text/javascript"></script>
+<script src="~/Scripts/jquery-ui.min.js"></script>
+<script src="~/Content/Tabulator/tabulator.js"></script>
+<meta http-equiv="pragram" content="no-cache" />
+
+
+<script language="javascript" type="text/javascript">
+        var oldBorder;
+        function SetNewBorder(oSrc) {
+            oldBorder = oSrc.style.border;
+            oSrc.style.border = "1px outset #00FFFF";
+        }
+
+        function SetOldBorder(oSrc) {
+            oSrc.style.border = oldBorder;
+        }
+</script>
+
+<script type="text/javascript" language="javascript">
+
+        $(document).ready(function () {
+            //$("#btnSub").click(function () {
+            window.focus();
+
+            //var paperProjectSeqNo = GetQueryStringRegExp("paperProjectSeqNo");
+            //var ArchiveNo = GetQueryStringRegExp("ArchiveNo");
+            //var volNo = GetQueryStringRegExp("volNo");
+            //ArchiveNo = ArchiveNo.toString().trim();
+            //while (paperProjectSeqNo.length<5)
+            //{
+            //    paperProjectSeqNo = "0" + paperProjectSeqNo;
+            //}
+            ////alert(paperProjectSeqNo);
+            ////alert(ArchiveNo);
+            ////alert(volNo);
+
+            //    $.ajax({
+            //        type:"GET",
+            //        url: "/ArchiveSearch/GetJunGongPicListDemo/?paperSeqNo=" + paperProjectSeqNo + "&archiveNo=" + ArchiveNo + "&volNo=" + volNo,
+            //        contentType:"application/json",
+            //        data:"",
+            //        dataType: "json",
+            //        success: function (data) {
+
+
+
+            //            onSuccess(data);
+
+            //        }
+            //    });
+            var result=@(new HtmlString(@ViewBag.result1));
+            if (result == null || result == "undefined") {
+                alert("fail");
+                return;
+            }
+            var arrPath = new Array();
+            var arrName = new Array();
+            var cnt = 0;
+            if (result.length != null) {
+                cnt = result.length;
+            }
+
+
+            for (var i = 0; i < cnt; i++) {
+                arrPath[i] = result[i].WebPath;
+                arrName[i] = result[i].Name;
+
+
+            }
+            CreateControl("div_WebBrowse", arrPath, arrName, cnt, "0002");
+
+
+            info = fGetListPaperSizeAll();
+
+
+            window.returnValue = info;
+            window.close();
+        });
+
+
+        function onSuccess(result) { //debugger;
+            // alert(result.rows.length+"/");
+
+            if (result == null || result == "undefined") {
+                alert("fail");
+                return;
+            }
+            var arrPath = new Array();
+            var arrName = new Array();
+            var cnt = 0;
+            if (result.length != null) {
+                cnt = result.length;
+            }
+            alert("共" + cnt + "张扫描件");
+
+            for (var i = 0; i < cnt; i++) {
+                arrPath[i] = result[i].WebPath;
+                arrName[i] = result[i].Name;
+
+
+            }
+            CreateControl("div_WebBrowse", arrPath, arrName, cnt, "1111");
+
+
+        }
+        function onError(error) {
+            alert("error");
+            if (error != null)
+                alert(error.get_message());
+        }
+        function ShowCalendar2(idRes) {//alert("x = " + event.clientX + ";y = " + event.clientY);
+            if (document.all.item(idRes) != null) {
+                var x = event.screenX + 20;
+                var y = event.screenY + 50;
+                var z = window.showModalDialog('/ArchiveSearch/borrowerHasRegistedInfo','dialogHeight:1000px;dialogWidth:1000px;dialogLeft:' + x + 'px;dialogTop:' + y + 'px;');
+
+                document.getElementById("userid1").value = z;
+
+            }
+        }
+  $(document).ready(function () {
+        $("#Add").click(function () {
+
+            var info1 = GetControlInfo();
+            document.getElementById("txtLocation").value = info1;
+
+            var info = document.getElementById("txtLocation").value;
+
+            var paperProjectSeqNo = GetQueryStringRegExp("paperProjectSeqNo");
+
+            var ArchiveNo = GetQueryStringRegExp("ArchiveNo");
+            var volNo = GetQueryStringRegExp("volNo");
+            ArchiveNo = ArchiveNo.toString().trim();
+            var regNo = GetQueryStringRegExp("regNo");
+            while (paperProjectSeqNo.length < 5)
+            {
+                paperProjectSeqNo = "0" + paperProjectSeqNo;
+            }
+            var VolCnt1 = document.getElementById("VolCnt").value;
+
+            var userid = document.getElementById("userid1").value;
+
+
+            $.ajax({
+                type:"POST",
+                url: "/ArchiveSearch/Looksaomiaopost/?paperProjectSeqNo=" + paperProjectSeqNo + "&archiveNo=" + ArchiveNo + "&volNo=" + volNo + "&info=" + info + "&name1=" + "Add" + "&VolCnt1=" + VolCnt1 + "&userid=" + userid + "&regNo=" + regNo,
+                contentType:"application/json",
+                data:"",
+                dataType: "json",
+                success: function(data)
+                {
+
+                    if(data=="1")
+                    {
+                        alert("您尚未选择借阅人");
+                        $("#Msg").val("您尚未选择借阅人");
+                    }
+                    if (data == "2")
+                    {
+                        alert("您尚未登记，请先登记");
+                        $("#Msg").val("您尚未登记，请先登记");
+                    }
+                    if (data == "3")
+                    {
+                        alert("保存成功");
+                        $("#Msg").val("保存成功");
+                    }
+                    if (data == "4")
+                    {
+                        alert("此图纸已保存");
+                        $("#Msg").val("此图纸已保存");
+                    }
+                    if (data == "5")
+                    {
+                        alert("您尚未选择扫描件或借阅人");
+                        $("#Msg").val("您尚未选择扫描件或借阅人");
+
+                    }
+
+
+
+                }
+
+            });
+
+        });
+  });
+
+  $(document).ready(function () {
+      $("#btnDelSMJ").click(function () {
+
+          var info1 = GetControlInfo();
+          document.getElementById("txtLocation").value = info1;
+
+          var info = document.getElementById("txtLocation").value;
+
+          var paperProjectSeqNo = GetQueryStringRegExp("paperProjectSeqNo");
+
+          var ArchiveNo = GetQueryStringRegExp("ArchiveNo");
+          var volNo = GetQueryStringRegExp("volNo");
+          ArchiveNo = ArchiveNo.toString().trim();
+          var regNo = GetQueryStringRegExp("regNo");
+          while (paperProjectSeqNo.length < 5) {
+              paperProjectSeqNo = "0" + paperProjectSeqNo;
+          }
+          var VolCnt1 = document.getElementById("VolCnt").value;
+
+          var userid = document.getElementById("userid1").value;
+
+
+          $.ajax({
+              type: "POST",
+              url: "/ArchiveSearch/Looksaomiaopost/?paperProjectSeqNo=" + paperProjectSeqNo + "&archiveNo=" + ArchiveNo + "&volNo=" + volNo + "&info=" + info + "&name1=" + "Delete" + "&VolCnt1=" + VolCnt1 + "&userid=" + userid + "&regNo=" + regNo,
+              contentType: "application/json",
+              data: "",
+              dataType: "json",
+              success: function (data) {
+
+                  if (data == "6") {
+                      alert("扫描件删除成功");
+                      $("#Msg").val("扫描件删除成功");
+                  }
+
+
+
+              }
+
+          });
+
+      });
+  });
+</script>
+<style>
+    .divcss5 {
+        border: 1px solid #F00;
+        width: 0px;
+        height: 0px;
+    }
+</style>
+<body style="text-align: center">
+    <form>
+
+        @*<asp:ScriptManager ID="ScriptManager1" run at="server">
+                <Services>
+                    <asp:ServiceReference Path="~/WebService.asmx" />
+                </Services>
+
+            </asp:ScriptManager>*@
+        @*<input type="text" id="txt1" name="txt1" />
+            <input type="button" id="btnSub" name="btnSub" value="调用Action" />*@
+        @*<input id="txtLocation" runat="server" style="width:0px" />
+            <input id="Button3" runat="server" type="button" class="btn" value="选择借阅人" onclick="javascript:ShowCalendar2('userid');" />
+            <input id="userid" runat="server" type="text" style="width:40px" disabled="disabled" />
+            <input id="btnAdd" type="button" class="btn" value="添加到用户" runat="server" onclick="javascript:getListIndex();" onserverclick="btnAdd_ServerClick" />
+            <input id="btnDelSMJ" runat="server" class="btn" value="删除扫描件" type="button" onclick="javascript:getListIndex();" onserverclick="btnDelSMJ_Click" />*@
+        @*<p>
+            <input id="txtLocation" hidden="hidden" />
+            <input id="Button3" type="button" class="btn" value="选择借阅人" onclick="javascript:ShowCalendar2('userid1');" />
+            <input id="userid1" disabled="disabled" />
+            <input id="Add" type="button" value="添加到用户" />*@
+        @*<input id="btnDelSMJ"  value="删除扫描件" type="button"  />*@
+        @*<input id="Msg" style="border:0px;color:coral;font-size:large" />
+                <span style="font-weight:bold"> 竣工档案：</span>【<input id="proNo" value="@ViewData["proNo"]" />】【第<input id="VolNo" value="@ViewData["VolNo"]" />/<input id="VolCnt" value="@ViewData["VolCnt"]" />卷】
+            </p>*@
+        <div class="divcss5" id="div_WebBrowse">
+
+        </div>
+    </form>
+
+</body>

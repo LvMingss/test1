@@ -1,0 +1,121 @@
+﻿
+@{
+    ViewBag.Title = "Archive_use_TJ";
+}
+
+<h2><i class="fa fa-tags kongge"></i>档案利用统计</h2>
+<hr />
+
+@section css{
+    <link type="text/css" rel="stylesheet" href="~/Scripts/jquery/jquery-ui.css">
+}
+@section scripts{
+    <script type="text/javascript" src="~/Scripts/jquery/jquery-1.8.3.js"></script>
+    <script type="text/javascript" src="~/Scripts/jquery/jquery.ui.core.js"></script>
+    <script type="text/javascript" src="~/Scripts/jquery/jquery.ui.datepicker.js"></script>
+    <script type="text/javascript" src="~/Scripts/jquery/jquery.ui.widget.js"></script>
+    <script type="text/javascript" src="~/Scripts/jquery/jquery-ui-timepicker-addon.js"></script>
+    @*<script type="text/javascript" src="~/Scripts/jquery/jquery-ui-timepicker-zh-CN.js"></script>*@
+    <script>
+            $(function () {
+                $("#startdata").datepicker({
+                    changeMonth: true,
+                    changeYear: true
+                });
+            });
+            $(function () {
+                $("#enddata").datepicker({
+                    changeMonth: true,
+                    changeYear: true
+                });
+            });
+            $(function () {
+                $("#startdata1").datepicker({
+                    changeMonth: true,
+                    changeYear: true
+                });
+            });
+            $(function () {
+                $("#enddata1").datepicker({
+                    changeMonth: true,
+                    changeYear: true
+                });
+            });
+    </script>
+}
+@using (Html.BeginForm())
+{
+   
+    <div style="font-size:20px;">
+        <i class="fa fa-caret-right" style="padding-right:5px;"></i>方式（一）：请输入借阅日期范围
+    </div><br>
+    <div class="panel panel-default">
+        <table class="table table-bordered dl-horizontal">
+            <tr>
+                <td style="background-color:#f9f9f9;width:10%;">
+                    起始日期
+                </td>
+                <td>
+                    <input type="text" id="startdata1" name="startdata1" class="form-control">
+                </td>
+                <td style="background-color:#f9f9f9;width:10%;">
+                    终止日期
+                </td>
+                <td>
+                    <input type="text" id="enddata1" name="enddata1" class="form-control">
+                </td>
+            </tr>
+            <tr>
+                <td colspan="4" style="text-align:center;">
+                    <input type="submit" id="ok" value="查看统计结果" name="action1" class="btn btn-default" />
+                </td>
+
+            </tr>
+        </table>
+    </div>
+    <div style="font-size:20px;">
+        <i class="fa fa-caret-right" style="padding-right:5px;"></i>方式（二）：请输入经办人姓名、借阅日期范围
+    </div><br>
+    <div class="panel panel-default">
+        <table class="table table-bordered dl-horizontal">
+            <tr>
+                <td style="background-color:#f9f9f9;width:10%;">
+                    经办人
+                </td>
+                <td>
+                    @*<input type="text" id="jingbanren" name="jingbanren" class="form-control">*@
+
+                    @*@Html.EditorFor(model => model.operator1, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.operator1, "", new { @class = "text-danger" })*@
+                    @Html.DropDownList("operator2", null, "", htmlAttributes: new { @class = "form-control", @style = "display:inline;" })
+                    @*<input type="button" value="添加" name="TianJia" id="TianJia" class="btn btn-default" onclick="javascript:Tian()" style="cursor:pointer;">*@
+
+                </td>
+                <td colspan="2"></td>
+            </tr>
+            <tr>
+                <td style="background-color:#f9f9f9;width:10%;">
+                    起始日期
+                </td>
+                <td>
+                    <input type="text" id="startdata" name="startdata" class="form-control">
+                </td>
+                <td style="background-color:#f9f9f9;width:10%;">
+                    终止日期
+                </td>
+                <td>
+                    <input type="text" id="enddata" name="enddata" class="form-control">
+                </td>
+            </tr>
+            <tr>
+                <td colspan="4" style="text-align:center;">
+                    <input type="submit" id="ok" value="查看统计结果" name="action" class="btn btn-default" />
+                </td>
+
+            </tr>
+        </table>
+    </div>
+
+}
+
+

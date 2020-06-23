@@ -1,0 +1,155 @@
+﻿@model urban_archive.Models.IndexViewModel
+
+@{
+    ViewBag.Title = "个人信息";
+}
+
+@*<h2><i class="fa fa-tags"></i>个人信息</h2>
+<hr />*@
+<div>
+    <table class="table table-bordered dl-horizontal" style="width:600px;text-align:center;margin:0 auto;border:1px solid #408cca;margin-top:50px;background:#fff;">
+        <tr class="linear">
+            <td colspan="2" style="color:white;font-size:18px;">
+                个人信息
+            </td>
+        </tr>
+        <tr>
+            <td >
+               用户名
+            </td>
+            <td>
+                @ViewBag.UserName
+            </td>
+        </tr>
+        <tr>
+            <td >
+                职位
+            </td>
+            <td>
+                @ViewBag.RoleName
+            </td>
+        </tr>
+        <tr>
+            <td >
+                科室
+            </td>
+            <td>
+                @ViewBag.DepartmentName
+            </td>
+        </tr>
+        <tr>
+            <td >
+                电子邮箱
+            </td>
+            <td>
+                @ViewBag.Email
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                @if (Model.HasPassword)
+            {
+                    <i class='fa fa-lock' style='color:#428bca;vertical-align:middle; padding:2px 0;'></i> @Html.ActionLink("更改密码", "ChangePassword")
+                }
+                else
+                {
+                    <i class='fa fa-lock' style='color:#428bca;vertical-align:middle; padding:2px 0;'></i> @Html.ActionLink("创建", "SetPassword")
+                }
+            </td>
+            
+        </tr>
+    </table>
+    @*<dl class="dl-horizontal">
+
+        <dt>
+            @Html.DisplayNameFor(model => model.UserName)
+        </dt>
+
+        <dd>
+            @ViewBag.UserName
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.RoleName)
+        </dt>
+
+        <dd>
+            @ViewBag.RoleName
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DepartmentName)
+        </dt>
+
+        <dd>
+            @ViewBag.DepartmentName
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Email)
+        </dt>
+
+        <dd>
+            @ViewBag.Email;
+        </dd>*@
+
+
+        @*<dt>
+                @Html.DisplayNameFor(model => model.Password)
+            </dt>
+
+            <dd>
+                @ViewBag.Password
+            </dd>*@
+
+    @*</dl>*@
+</div>
+
+
+
+    
+    @*<dl class="dl-horizontal">
+        <dd>
+            [
+            @if (Model.HasPassword)
+            {
+                @Html.ActionLink("更改密码", "ChangePassword")
+            }
+            else
+            {
+                @Html.ActionLink("创建", "SetPassword")
+            }
+            ]
+        </dd>*@
+
+        @*
+            电话号码可以在双因素身份验证系统中用作第二个验证因素。
+
+             请参阅<a href="http://go.microsoft.com/fwlink/?LinkId=403804">此文</a>
+                了解有关设置此 ASP.NET 应用程序以支持使用 SMS 进行双因素身份验证的详细信息。
+
+             在设置了双因素身份验证后，请取消注释以下块
+        *@
+        @*
+            <dt>电话号码:</dt>
+            <dd>
+                @(Model.PhoneNumber ?? "None")
+                @if (Model.PhoneNumber != null)
+                {
+                    <br />
+                    <text>[&nbsp;&nbsp;@Html.ActionLink("Change", "AddPhoneNumber")&nbsp;&nbsp;]</text>
+                    using (Html.BeginForm("RemovePhoneNumber", "Manage", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+                    {
+                        @Html.AntiForgeryToken()
+                        <text>[<input type="submit" value="Remove" class="btn-link" />]</text>
+                    }
+                }
+                else
+                {
+                    <text>[&nbsp;&nbsp;@Html.ActionLink("Add", "AddPhoneNumber")
+                }
+            </dd>
+
+
+    </dl>*@
+

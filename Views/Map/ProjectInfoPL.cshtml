@@ -1,0 +1,90 @@
+﻿<link rel="stylesheet" href="/Scripts/gis/select2/select2.min.css" />
+
+<style type="text/css">
+    #cordlist {
+        width: 100%;
+        height: 150px;
+        overflow: auto;
+    }
+
+    td {
+        height: 25px;
+        width: 30%;
+    }
+
+    td:last-child {
+        height: 25px;
+        width: 15%;
+        text-align:center;
+    }
+</style>
+
+<div id="PL" class="box-body" style="height:100%; width:100%">
+
+    <div class="form-group" >
+        <div id="cordlist" style="height:300px;">
+            <table id="paper" class="table table-bordered dl-horizontal">
+                <thead>
+                    <tr>
+                        <td>项目顺序号</td>
+                        <td>工程名称</td>
+                        <td style="text-align:center">选择</td>
+                    </tr>
+                </thead>
+                <tbody id="tbody"></tbody>
+            </table>
+        </div>
+    </div>
+</div>
+<script type="text/javascript" src="/Scripts/gis/select2/select2.full.min.js"></script>
+<script type="text/javascript" src="/Scripts/gis/select2/i18n/zh-CN.js"></script>
+<script type="text/javascript">
+    var inputPLdata = document.getElementById("PLdatas").innerHTML;
+    console.log(inputPLdata);
+    var strArr = inputPLdata.split(" ");
+    var tbody = document.getElementById("tbody");
+    
+    for (var i = 0; i < strArr.length; i++) {
+
+        var item = strArr[i].split("%");
+        if (item[0] != "" && item[1] != undefined && strArr[i].charAt(0)!='%') {
+            var tr = document.createElement("tr");
+            tr.innerHTML = '<td>' + item[0] + '</td><td>' + item[1] + '</td><td> <input type="button" class="ckxq" value="查看详情" id="' + item[0] + '" class="btn btn-default" /></td>'
+            tbody.appendChild(tr)
+        };
+
+    };
+    var divPaper = document.getElementById("paper");
+    divPaper.addEventListener("click", function (e) {
+        if (e.target.className == "ckxq") {        
+            BootstrapDialog.show({
+                type: BootstrapDialog.TYPE_INFO,
+                size: BootstrapDialog.SIZE_NORMAL,
+                draggable: true,
+                title: '<i class="fa fa-building-o"></i> 工程信息',
+                message: $('<div></div>').load('/Map/ProjectInfo?id=' + e.target.id),
+                buttons: [{
+                    icon: 'glyphicon glyphicon-list-alt',
+                    label: '案卷信息',
+                    action: function (dialog) {
+                        window.open("/Map/ArchiveList?projectid=" + e.target.id);
+                    }
+                }, {
+                    icon: 'glyphicon glyphicon-globe',
+                    label: '三维模型',
+                    action: function (dialog) {
+                        //if(flag="1")
+                        //{
+                        window.open("/Map/VrView?id=" + fs.get("dataid"));
+                        //}
+                        //else
+                        //{
+                        //    alert("该工程没有三维模型");
+                        //}
+                    }
+                }]
+            });
+        }
+    })
+   
+</script>

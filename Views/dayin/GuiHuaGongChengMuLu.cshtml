@@ -1,0 +1,192 @@
+﻿
+@{
+    ViewBag.Title = "打印规划档案工程目录";
+}
+
+<h2><i class="fa fa-tags kongge"></i>打印规划档案工程目录</h2>
+<hr />
+@using (Html.BeginForm())
+{
+   
+    <div class="panel panel-default">
+        <table class="table table-bordered dl-horizontal">
+            <tr>
+                <td style="background-color:#f9f9f9;width:6%;min-width:150px;">
+                    档案种类
+                </td>
+                <td colspan="3">
+                   @Html.DropDownList("PlanArchiveClassify", null, "全部", new { @class = "form-control" })
+                </td>                
+            </tr>   
+            <tr>
+                <td style="background-color:#f9f9f9;width:6%;min-width:150px;">
+                    起始项目顺序号
+                </td>
+                <td style="width:44%;">
+                    <input type="text" name="yearS" id="yearS" class="form-control " />
+                </td>
+                <td style="background-color:#f9f9f9;width:6%;min-width:150px;">
+                    终止项目顺序号
+                </td>
+                <td style="width:44%;">
+                    <input type="text" name="yearE" id="yearE" class="form-control " />
+                </td>
+            </tr>
+
+            <tr>
+                <td colspan="4" style="text-align:center;">
+                    <input type="submit" name="action" class="btn btn-default" id="ok" value="打印规划档案工程目录" />
+                    <input type="submit" name="action" class="btn btn-default" id="cancel" value="取消" />
+                </td>
+
+            </tr>         
+        </table>
+    </div>
+    @*<div style="font-size:20px;">
+        <i class="fa fa-caret-right kongge"></i>（第一种）请输入年度范围，年度范围为空默认打印全部
+    </div><br>*@
+    
+    @*<div style="font-size:20px;">
+        <i class="fa fa-caret-right kongge"></i>（第二种）请输入顺序号范围，顺序号范围为空默认打印全部
+    </div><br>
+    <div class="panel panel-default">
+        <table class="table table-bordered dl-horizontal">
+            <tr>
+                <td style="background-color:#f9f9f9;width:6%;min-width:150px;">
+                    起始案卷顺序号:
+                </td>
+                <td>
+                    <input type="text" name="seqNoStart" id="seqNoStart" class="form-control " />
+                </td>
+                <td style="background-color:#f9f9f9;width:6%;min-width:150px;">
+                    起始卷内序号:
+                </td>
+                <td>
+                    <input type="text" name="juanneiStart" id="juanneiStart" class="form-control " />
+                </td>
+            </tr>
+            <tr>
+                <td style="background-color:#f9f9f9;width:6%;min-width:150px;">
+                    终止案卷顺序号:
+                </td>
+                <td>
+                    <input type="text" name="seqNoEnd" id="seqNoEnd" class="form-control " />
+                </td>
+                <td style="background-color:#f9f9f9;width:6%;min-width:150px;">
+                    终止卷内序号:
+                </td>
+                <td>
+                    <input type="text" name="juanneiEnd" id="juanneiEnd" class="form-control " />
+                </td>
+            </tr>
+            <tr>
+                <td colspan="4" style="text-align:center;">
+                    <input type="submit" name="action" class="btn btn-default" id="ok" value="打印规划档案工程目录（顺序号）" />
+                    <input type="submit" name="action" class="btn btn-default" id="cancel" value="取消" />
+                </td>
+
+            </tr>
+        </table>
+    </div>
+    <div style="font-size:20px;">
+        <i class="fa fa-caret-right kongge"></i>（第三种）请输入工程流水号范围，范围为空默认打印全部
+    </div><br>
+    <div class="panel panel-default">
+        <table class="table table-bordered dl-horizontal">
+            <tr>
+                <td style="background-color:#f9f9f9;width:6%;min-width:150px;">
+                    起始工程流水号:
+                </td>
+                <td>
+                    <input type="text" name="totalSeqNoS" id="totalSeqNoS" class="form-control " />
+                </td>
+                <td style="background-color:#f9f9f9;width:6%;min-width:150px;">
+                    终止工程流水号:
+                </td>
+                <td>
+                    <input type="text" name="totalSeqNoE" id="totalSeqNoE" class="form-control " />
+                </td>
+            </tr>
+
+            <tr>
+                <td colspan="4" style="text-align:center;">
+                    <input type="submit" name="action" class="btn btn-default" id="ok" value="打印规划档案工程目录（流水号）" />
+                    <input type="submit" name="action" class="btn btn-default" id="cancel" value="取消" />
+                </td>
+
+            </tr>
+        </table>
+    </div>*@
+
+    @*<div>
+        请选择规划档案种类
+    </div>
+    <div>
+        档案种类:
+        @Html.DropDownList("PlanArchiveClassify",null,"全部")
+    </div>
+    <br>
+    <div>
+        （第一种）请输入年度范围，年度范围为空默认打印全部
+    </div><br>
+    <div>
+        起始年度:
+        <input type="text" name="yearS" id="yearS" class="form-control " />
+    </div>
+        <div>
+            终止年度:
+            <input type="text" name="yearE" id="yearE" class="form-control " />
+        </div><br>
+        <div>
+            <input type="submit" name="action" class="btn btn-default" id="ok" value="打印规划档案工程目录（年度）" />
+            <input type="submit" name="action" class="btn btn-default" id="cancel" value="取消" />
+        </div>
+        <br>
+    <div>
+        （第二种）请输入顺序号范围，顺序号范围为空默认打印全部
+    </div><br>
+    <div>
+        起始案卷顺序号:
+    </div>
+        <div>
+            <input type="text" name="seqNoStart" id="seqNoStart" class="form-control " />
+        </div>
+        <div>
+            起始卷内序号:
+        </div>
+        <div>
+            <input type="text" name="juanneiStart" id="juanneiStart" class="form-control " />
+        </div>
+        <div>
+            终止案卷顺序号:
+        </div>
+        <div>
+            <input type="text" name="seqNoEnd" id="seqNoEnd" class="form-control " />
+        </div>
+        <div>
+            终止卷内序号:
+        </div>
+        <div>
+            <input type="text" name="juanneiEnd" id="juanneiEnd" class="form-control " />
+        </div><br>
+        <div>
+            <input type="submit" name="action" class="btn btn-default" id="ok" value="打印规划档案工程目录（顺序号）" />
+            <input type="submit" name="action" class="btn btn-default" id="cancel" value="取消" />
+        </div>
+        <br>
+        <div>
+            （第三种）请输入工程流水号范围，范围为空默认打印全部
+        </div><br>
+        <div>
+            起始工程流水号:
+            <input type="text" name="totalSeqNoS" id="totalSeqNoS" class="form-control " />
+        </div>
+        <div>
+            终止工程流水号:
+            <input type="text" name="totalSeqNoE" id="totalSeqNoE" class="form-control " />
+        </div><br>
+        <div>
+            <input type="submit" name="action" class="btn btn-default" id="ok" value="打印规划档案工程目录（流水号）" />
+            <input type="submit" name="action" class="btn btn-default" id="cancel" value="取消" />
+        </div>*@
+}

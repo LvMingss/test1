@@ -1,0 +1,119 @@
+﻿
+@model  urban_archive.Models.gxMaxArchiveRegisNo
+
+
+@{
+    ViewBag.Title = "Create";
+}
+<script>
+    function baocun() {
+        var msg = "确认要提交保存修改吗?";
+        if (confirm(msg) == true) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+    </script>
+<h2 style="margin-top:0;"><i class="fa fa-tags kongge"></i>添加新类</h2>
+
+@using (Html.BeginForm("CreateNewClass", "gxCodeManagement", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <h4></h4>
+        <hr />
+        <div class="panel panel-default">
+            <table class="table table-bordered dl-horizontal" style="background-color:#f9f9f9;">
+                <tr>
+                    <td style="background-color:#f9f9f9;width:10%;">
+                        序号
+                    </td>
+                    <td>
+                        @Html.EditorFor(model => model.ID, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.ID, "", new { @class = "text-danger" })
+                    </td>
+                    <td style="background-color:#f9f9f9;width:10%;">
+                        主类缩写
+                    </td>
+                    <td>
+                        @Html.EditorFor(model => model.mainCategoryID, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.mainCategoryID, "", new { @class = "text-danger" })
+                    </td>
+                </tr>
+                <tr>
+                    <td style="background-color:#f9f9f9;width:10%;">
+                        最大档号
+                    </td>
+                    <td>
+                        @Html.EditorFor(model => model.maxArchiveNo, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.maxArchiveNo, "", new { @class = "text-danger" })
+                    </td>
+                    <td style="background-color:#f9f9f9;width:10%;">
+                        最大登记号
+                    </td>
+                    <td>
+                        @Html.EditorFor(model => model.maxRegisNo, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.maxRegisNo, "", new { @class = "text-danger" })
+                    </td>
+                </tr>
+            </table>
+        </div>
+                @*<div class="form-group">
+                    @Html.LabelFor(model => model.ID, "序号", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.ID, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.ID, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.mainCategoryID, "主类缩写", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.mainCategoryID, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.mainCategoryID, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(model => model.maxArchiveNo, "最大档号", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.maxArchiveNo, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.maxArchiveNo, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.maxRegisNo, "最大登记号", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.maxRegisNo, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.maxRegisNo, "", new { @class = "text-danger" })
+                    </div>
+                </div>*@
+
+                <div style="text-align:center;">
+                    <p>
+                        <input type="submit" value="添加" name="action"onclick="return baocun()" class="btn btn-default"> |
+
+                        <input type="submit" value="返回" name="action" class="btn btn-default">
+                    <p>
+                        <div style="height:5px;">
+                        </div>
+                </div>
+
+
+
+
+
+
+
+
+
+        </div>
+        }
+        @*<div>
+            @Html.ActionLink("Back to List", "Index")
+        </div>*@
+
+
+

@@ -1,0 +1,182 @@
+﻿
+@{
+    ViewBag.Title = "打印相关信息";
+}
+<section>
+    <h2 style="float:left;"><i class="fa fa-tags kongge"></i>打印相关信息</h2>
+    <ol class="breadcrumb">
+        <li class="active">竣工档案</li>
+        <li class="active">档案录入</li>
+        <li>案卷录入统计表</li>
+    </ol>
+    <div style="clear:both;"></div>
+</section>
+<hr style="margin-top:0px;" />
+<link type="text/css" rel="stylesheet" href="~/Scripts/jquery/jquery-ui.css">
+<script type="text/javascript" src="~/Scripts/jquery/jquery-1.8.3.js"></script>
+<script type="text/javascript" src="~/Scripts/jquery/jquery.ui.core.js"></script>
+<script type="text/javascript" src="~/Scripts/jquery/jquery.ui.datepicker.js"></script>
+<script type="text/javascript" src="~/Scripts/jquery/jquery.ui.widget.js"></script>
+<script type="text/javascript" src="~/Scripts/jquery/jquery-ui-timepicker-addon.js"></script>
+<script>
+    function Button1_Click() {
+        if (document.getElementById("DateStart").value == "") {
+            alert("起始日期不能为空");
+        }
+        if (document.getElementById("DateEnd").value == "") {
+            alert("终止日期不能为空");
+        }
+    }
+    function Button2_Click() {
+        if (document.getElementById("sseqNo").value == "") {
+            alert("起始项目顺序号不能为空");
+        }
+        if (document.getElementById("eseqNo").value == "") {
+            alert("终止项目顺序号不能为空");
+        }
+    }
+    $(function () {
+        $("#DateStart").datepicker({
+            changeMonth: true,
+            changeYear: true
+        });
+    });
+    $(function () {
+        $("#DateEnd").datepicker({
+            changeMonth: true,
+            changeYear: true
+        });
+    });
+</script>
+@using (Html.BeginForm())
+{
+    <div class="panel panel-default" style="border-top:3px solid #408cca">
+        <table class="table table-bordered dl-horizontal">
+            <tr>
+                <td style="font-size:18px;" colspan="4">
+                    <i class="fa fa-check-square-o"></i>请输入录入日期范围
+                </td>
+            </tr>
+            <tr>
+                <td style="font-weight:bold;width:15%;">
+                    录入起始日期
+                </td>
+                <td>
+                    <input name="DateStart" type="text" id="DateStart" class="form-control" />
+                </td>
+                <td style="font-weight:bold;width:15%;">
+                    录入终止日期
+                </td>
+                <td>
+                    <input name="DateEnd" type="text" id="DateEnd" class="form-control" />
+                </td>
+            <tr>
+                <td colspan="4" style="text-align:center;">
+                    <input name="action" type="submit" class="btn btn-default" id="ok" value="打印竣工档案移交书统计表" onclick="javascript:Button1_Click();" />
+                    <input name="action" type="submit" class="btn btn-default" id="cancel" value="取消" />
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="panel panel-default" style="border-top:3px solid #f56954">
+        <table class="table table-bordered dl-horizontal">
+            <tr>
+                <td style="font-size:18px;" colspan="4">
+                    <i class="fa fa-check-square-o"></i>请输入项目顺序号范围
+                </td>
+            </tr>
+            <tr>
+                <td style="width:15%;font-weight:bold;">
+                    起始项目顺序号
+                </td>
+                <td>
+                    <input name="sseqNo" type="text" id="sseqNo" class="form-control" />
+                </td>
+                <td style="width:15%;font-weight:bold;">
+                    终止项目顺序号
+                </td>
+                <td>
+                    <input name="eseqNo" type="text" id="eseqNo" class="form-control" />
+                </td>
+            <tr>
+                <td colspan="4" style="text-align:center;">
+                    <input name="action" type="submit" class="btn btn-default" id="Button1" value="打印竣工档案移交书统计表"/>
+                    <input name="action" type="submit" class="btn btn-default" id="cancel" value="取消" />
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="panel panel-default" style="border-top:3px solid #00c0ef">
+        <table class="table table-bordered dl-horizontal">
+            <tr>
+                <td style="font-size:18px;" colspan="4">
+                    <i class="fa fa-check-square-o"></i>请输入项目顺序号的范围
+                </td>
+            </tr>
+            <tr>
+                <td style="font-weight:bold;width:15%;">
+                    起始项目顺序号(*)
+                </td>
+                <td>
+                    <input name="seqNoStart" type="text" id="seqNoStart" class="form-control" />
+                </td>
+                <td style="font-weight:bold;width:15%;">
+                    起始卷号
+                </td>
+                <td>
+                    <input name="volNoStart" type="text" id="volNoStart" class="form-control" />
+                </td>
+            </tr>
+            <tr>
+                <td style="font-weight:bold;width:15%;">
+                    终止项目顺序号(*)
+                </td>
+                <td>
+                    <input name="seqNoEnd" type="text" id="seqNoEnd" class="form-control" />
+                </td>
+                <td style="font-weight:bold;width:15%;">
+                    终止卷号
+                </td>
+                <td>
+                    <input name="volNoEnd" type="text" id="volNoEnd" class="form-control" />
+                </td>
+            </tr>
+            <tr>
+                <td colspan="4" style="text-align:center;">
+                    <input type="submit" name="action" value="打印竣工档案案卷目录" id="Button4" class="btn btn-default" />
+                    <input name="action" type="submit" id="cancel" value="取消" class="btn btn-default" />
+                    <input type="submit" name="action" value="打印全部" id="all" class="btn btn-default" />
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="panel panel-default" style="border-top:3px solid #00a65a">
+        <table class="table table-bordered dl-horizontal">
+            <tr>
+                <td style="font-size:18px;" colspan="4">
+                    <i class="fa fa-check-square-o"></i>请输入项目顺序号的范围
+                </td>
+            </tr>
+            <tr>
+                <td style="font-weight:bold;width:15%;">
+                    起始项目顺序号(*)
+                </td>
+                <td>
+                    <input name="startseqNo" type="text" id="startseqNo" class="form-control" />
+                </td>
+                <td style="font-weight:bold;width:15%;">
+                    终止项目顺序号(*)
+                </td>
+                <td>
+                    <input name="endseqNo" type="text" id="endseqNo" class="form-control" />
+                </td>
+            </tr>
+            <tr>
+                <td colspan="4" style="text-align:center;">
+                    <input type="submit" name="action" value="打印城建建设竣工档案工程目录" id="Button6" class="btn btn-default" />
+                    <input name="action" type="submit" id="cancel" value="取消" class="btn btn-default" />
+                </td>
+            </tr>
+        </table>
+    </div>
+}

@@ -1,0 +1,126 @@
+﻿<link type="text/css" rel="stylesheet" href="~/Scripts/jquery/jquery-ui.css">
+@*<link href="~/Content/bootstrap.min.css" rel="stylesheet" />*@
+<link href="~/Content/viewer/viewer.min.css" rel="stylesheet" />
+
+<script type="text/javascript" src="~/Scripts/jquery/jquery-1.8.3.js"></script>
+<script src="~/Content/viewer/viewer.min.js"></script>
+<script src="~/Content/viewer/viewer-jquery.min.js"></script>
+
+<link rel="stylesheet" href="css/viewer.min.css">
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+    }
+
+    #dowebok {
+        width: 1200px;
+        margin: 0 auto;
+        font-size: 0;
+    }
+
+        #dowebok li {
+            display: inline-block;
+            width: 32%;
+            margin-left: 1%;
+            padding-top: 1%;
+        }
+
+            #dowebok li img {
+                width: 100%;
+            }
+
+    .file-preview {
+        border-radius: 5px;
+        border: 1px solid #ddd;
+        padding: 5px;
+        width: 100%;
+        margin-bottom: 5px;
+    }
+</style>
+
+<h2 style="font-size:24.5px;margin-top:7.5px;margin-bottom:22.5px;"><i class="fa fa-tags kongge"></i>照片查看</h2>
+<hr />
+<div class="panel panel-default">
+    <table class="table table-bordered @*table-striped*@" style="font-size:16px">
+        <tr>
+            <td style="background-color:#f9f9f9;width:10%;">
+                所属工程
+            </td>
+            <td>
+                @ViewBag.projectName
+            </td>
+            <td style="background-color:#f9f9f9;width:10%;">
+                工程名称
+            </td>
+            <td>
+                @ViewBag.projectName
+            </td>
+            <td style="background-color:#f9f9f9;width:10%;">
+                文件类别
+            </td>
+            <td>
+                @ViewBag.filingDesc
+            </td>
+        </tr>
+        <tr>
+            <td style="background-color:#f9f9f9;width:10%;">
+                文件描述
+            </td>
+            <td colspan="5">
+                @ViewBag.videoContent
+            </td>
+        </tr>
+    </table>
+</div>
+@*<h4>所属工程：@ViewBag.projectName</h4>
+    <h4>工程序号：@ViewBag.projectName</h4>
+    <h4>文件类别：@ViewBag.filingDesc</h4>
+    <h4>文件描述：@ViewBag.videoContent</h4>*@
+<hr />
+@*<h4>文件描述：@ViewBag.result</h4>*@
+<div class="file-preview">
+    <ul id="dowebok">
+        @*<li>
+            <img data-original="/声像照片/20170002/工程前期/stacking3.png" src="~/声像照片/20170002/工程前期/stacking3.png" alt="图片3"/>
+            <h4>1.png</h4>
+            </li>
+            <li>
+                <img data-original="/声像照片/20170002/工程前期/stacking3.png" src="~/声像照片/20170002/工程前期/stacking3.png" alt="图片3" />
+                <h4>2.png</h4>
+            </li>*@
+        @*<li><img data-original="/声像照片/20170002/工程前期/QQ图片20150914215820.jpg" src="~/声像照片/20170002/工程前期/QQ图片20150914215820.jpg" alt="图片4"> /></li>
+            <li><img data-original="/声像照片/20170002/工程前期/QQ图片20151004201915.png" src="~/声像照片/20170002/工程前期/QQ图片20151004201915.png" alt="图片5"> /></li>
+            <li><img data-original="/声像照片/20170002/工程前期/1.png" src="/声像照片/20170002/工程前期/1.png" alt="图片1"></li>
+            <li><img data-original="/声像照片/20170002/工程前期/2.png" src="/声像照片/20170002/工程前期/2.png" alt="图片2"></li>
+            <li><img data-original="/声像照片/20170002/工程前期/google.jpg" src="~/声像照片/20170002/工程前期/google.jpg"alt="图片3"> /></li>
+            <li><img data-original="/声像照片/20170002/工程前期/QQ图片20150914215820.jpg" src="~/声像照片/20170002/工程前期/QQ图片20150914215820.jpg" alt="图片4"> /></li>
+            <li><img data-original="/声像照片/20170002/工程前期/QQ图片20151004201915.png" src="~/声像照片/20170002/工程前期/QQ图片20151004201915.png" alt="图片5"> /></li>*@
+    </ul>
+</div>
+@*<script>
+    $('#dowebok').viewer();
+    </script>*@
+<script>
+            str = "@ViewBag.result";
+            var result = str.split(";");
+            for (i = 0; i < result.length - 1 ; i++) {
+                str1 = "<li><img data-original=" + '"' + result[i] + '"  ' + "src=" + '"' + result[i] + '"  ';
+                var namelist = result[i].split("/");
+                var name = namelist[namelist.length - 1];
+                str2 = str1 + "alt=" + '"' + name + '"' + "/>" + "<h4>" + name + "</h4></li>";
+                $("#dowebok").append(str2);
+            }
+            var viewer = new Viewer(document.getElementById('dowebok'), {
+                url: 'data-original'
+            });
+</script>
+@*<div style="text-align:center;">
+    <div style="height:20px;"></div>
+    <p>
+        @Html.ActionLink("返回案卷录入", "Index", "VideoCassetteLists", new { videoProjectSeqNo = @ViewBag.videoProjectSeqNo }, new { @class = "btn btn-primary btn-file", @style = "font-size:16px;" })
+    </p>
+    <div style="height:20px;">
+    </div>
+</div>*@
+

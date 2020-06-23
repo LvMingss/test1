@@ -1,0 +1,350 @@
+﻿@*@model IEnumerable<urban_archive.Models.BorrowRegistration>*@
+@*@using PagedList.Mvc;
+<link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />*@
+<link href="~/Content/jquery-ui.theme.css" rel="stylesheet" />
+<link href="~/Content/Tabulator/version3.0/tabulator.css" rel="stylesheet" />
+
+@*@{
+    ViewBag.Title = "UserBorrow";
+}*@
+<title>费用结算</title>
+
+<script src="~/Scripts/jquery-2.1.1.min.js" type="text/javascript"></script>
+<script src="~/Scripts/jquery-ui.min.js"></script>
+<script src="~/Content/Tabulator/version3.0/tabulator.js"></script>
+<script src="~/Scripts/xlsx.full.min.js"></script>
+
+<script type="text/javascript">
+    var n = function (value, data, cell, row, options) { //plain text value
+        return "<i class='fa fa-search-plus' style='color:#428bca;vertical-align:middle; padding:2px 0;'></i>"
+    };
+    var o = function (value, data, cell, row, options) { //plain text value
+        return "<i class='fa fa-edit' style='color:#428bca;vertical-align:middle; padding:2px 0;'></i> "
+    };
+    var p = function (value, data, cell, row, options) { //plain text value
+        return "<i class='fa fa-rmb' style='color:#428bca;vertical-align:middle; padding:2px 0;'></i>"
+    };
+    
+    $().ready(function () {//在页面加载完成之后用，为了保证js能完整的执行。
+        $(document).ready(function () {
+            var a = $(window).height();
+            var hh = a-180;
+            $(".box-h").height(hh)  // 高度加在类名为box的DIV 上
+
+        })
+       
+        $("#example-table-2").tabulator({
+            height: "100%",
+            virtualDom:false,
+            fitColumns:true,
+            selectable:1, //make rows selectable
+            pagination:"local",
+            paginationSize:50,
+           
+            rowFormatter:function(row){
+                //row - row component
+
+                var data = row.getData();
+
+                if(data.l==1){
+                    row.getElement().css({"background-color":"#CCFFCC","border-bottom":"1px solid #999"});
+                }
+                
+                if(data.l==4){
+                    row.getElement().css({"background-color":"#FFCCCC","border-bottom":"1px solid #999"});
+                }
+                
+                if(data.l==2){
+                    row.getElement().css({"background-color":"#FFFFCC","border-bottom":"1px solid #999"});
+                }
+                
+            },
+            columns: [
+                { title: "费用结算", field: "p", width: 70,headerSort: false,formatter: p, align: "center", sorter: "string",cellClick: function (e,cell) {
+                    var state=cell.getRow().getData().l;
+                    if(state==3)
+                    {
+                        alert("该用户费用已结算，不能重复结算");
+                    }
+                    else
+                    {
+                        var url = '/UrbanBorrow/FeeJieSuan?id=' +  cell.getValue();
+                        window.location.href = url;
+                    }
+                   
+                    }
+                },
+                { title: "下载扫描件查看", field: "p", width: 120,headerSort: false,formatter: n, align: "center", sorter: "string",cellClick: function (e,cell) {
+                    
+                    var url = '/UrbanBorrow/DownDetail?id=' +  cell.getValue();
+                    window.location.href = url;                   
+                   
+                }
+                },
+                { title: "查看", field: "n", width: 50,formatter: n, headerSort: false,align: "center",sorter: "string",cellClick: function (e,cell) {
+                    var state=cell.getRow().getData().l;
+                 
+                   
+                    if(state!=3)
+                    {
+                        alert("该用户费用尚未结算，不能查看");
+                    }
+                    else
+                    {
+                        var s = document.getElementById("SelectedID");
+                        //alert(s.options(s.selectedIndex).value);
+                        var url = '/UrbanBorrow/Details/?id=' +  cell.getValue()+"&id1=1";
+                        window.location.href = url;
+
+                    }
+                    
+                    }
+                },
+                { title: "修改", field: "o", width: 50,formatter: o,headerSort: false, align: "center", sorter: "string",cellClick: function (e,cell) {
+                  
+
+                    var today = new Date();
+                    var date="";
+                 
+                    var day = today.getDate();
+                    var month =today.getMonth()+1;
+                    var year = today.getFullYear();
+                    if(month.toString().length!=2)
+                    {
+                        date=year+"-0"+month;
+                    
+                    }
+                    else
+                    {
+                        date=year+"-"+month;
+                    }
+                    if(day.toString().length!=2)
+                    {
+                        date=date+"-0"+day;
+                    }
+                   else
+                    {
+                        date=date+"-"+day;
+                       
+                    }
+                    var state=cell.getRow().getData().l;
+                    if(state!=3)
+                    {
+                        alert("该用户费用尚未结算，不能修改");
+                    }
+                    else if(cell.getRow().getData().d==date)
+                    {
+                        var url = '/UrbanBorrow/Edit?id=' +  cell.getValue();
+                        window.location.href = url; 
+                    }
+                      else
+                     {
+                        alert("已过费用修改日期");
+                     }
+                    }
+                },
+                
+                { title: "登记序号", field: "a",headerSort: false, width: 100 },
+                { title: "借阅人姓名", field: "b", headerSort: false,width: 120 },
+                { title: "收费编号", field: "c",headerSort: false, width: 120},
+                { title: "借阅日期", field: "d",headerSort: false,width: 100 },
+                { title: "借阅单位", field: "e",headerSort: false, width: 400 },
+                { title: "借阅案卷", field: "f",headerSort: false,width: 600 },
+                { title: "单位/个", field: "g",headerSort: false, width: 100 },
+                { title: "联系方式", field: "h",headerSort: false, width: 100 },
+                //{ title: "证明费", field: "h",headerSort: false, width: 100 },
+                //{ title: "调阅费", field: "i",headerSort: false, width: 100 },
+                //{ title: "咨询费", field: "j",headerSort: false, width: 100 },
+                //{ title: "实际总费用（元）", field: "k", headerSort: false,width: 150 },
+                { title: "状态", field: "l",headerSort: false, width: 50 },
+                { title: "科室", field: "m",headerSort: false,minWidth: 100},
+                ],
+
+        });
+              
+        //trigger download of data.xlsx file
+        $("#download-xlsx").click(function(){
+            $("#example-table-2").tabulator("download", "xlsx", "data.xlsx");
+        });
+        
+       
+            var temp = new Array();
+            var data=@(new HtmlString(@ViewBag.result));
+            for (var i = 0; i < data.length;i++) {
+            var b = data[i].borrowDate;
+            if(b!=null){
+                var date =b.split("-"); 
+                var day=date[2].substring(0,2);
+                var result = date[0]+'-'+date[1]+'-'+day;
+            }
+             
+
+                //temp.push({ "id": i + 1, "a":data[i].borrowSeqNo, "b": data[i].borrower, "c": data[i].seqNo, "d": result,"e": data[i].borrowUnit,"f": data[i].archiveSerialNo, "g": data[i].singleOrDepart, "h":data[i].certificationFee , "i":data[i].consultFee  , "j": data[i].paoKufangRen,"k": data[i].realFees,"l":data[i].isJiesuanFee ,"m": "管理科","n": data[i].borrowSeqNo,"p": data[i].borrowSeqNo,"o": data[i].borrowSeqNo});
+            temp.push({ "id": i + 1, "a":data[i].borrowSeqNo, "b": data[i].borrower, "c": data[i].seqNo, "d": result,"e": data[i].borrowUnit,"f": data[i].archiveSerialNo, "g": data[i].singleOrDepart, "h":data[i].borrowerTel , "l":data[i].isJiesuanFee ,"m": "管理科","n": data[i].borrowSeqNo,"p": data[i].borrowSeqNo,"o": data[i].borrowSeqNo});
+            }
+            $("#example-table-2").tabulator("setData", temp);
+            $(window).resize(function () {
+            var a = $(window).height();
+            var hh = a-180;
+            $(".box-h").height(hh)  // 高度加在类名为box的DIV 上
+            $("#example-table-2").tabulator("redraw",true);
+
+           
+        });
+
+    });
+    function opencharge()
+    {
+        window.showModalDialog('../ProjectCharge/charge',"", 'dialogWidth=650px;dialogHeight=500px');
+    }
+</script>
+<section>
+    <h2 style="float:left;"><i class="fa fa-tags kongge"></i>借阅用户</h2>
+    <ol class="breadcrumb">
+        <li class="active">档案借阅 </li>
+        <li>借阅用户</li>
+    </ol>
+    <div style="clear:both;"></div>
+</section>
+
+
+
+    @using (Html.BeginForm("UserBorrow", "UrbanBorrow", FormMethod.Post))
+    {
+        <p style="float:left">            
+            
+            检索条件: @Html.DropDownList("SelectedID", null, new { @class = "form-control", @style = "display:inline;width:150px;" })=@Html.TextBox("SearchString", ViewBag.CurrentFilter as string, new { @class = "form-control", @style = "display:inline;width:280px;" })
+            <input type="submit" name="action" value="查找" class="btn btn-default" style="display:inline;" />
+            <input type="submit" name="action" value="登记新用户" class="btn btn-default" style="display:inline" /> 
+        </p>
+
+    }
+<p style="float:left;margin-left:5px;">
+    <span class="btn btn-default">
+        <i class='fa fa-download' style='color:inherit; padding:2px 5px 2px 0px;'></i><button id="download-xlsx" style="border-style:none;background:none;padding:0px 0px;">导出数据</button>
+        @*<input  id="download-xlsx" name="action" value="下载表格" style="border-style:none;background:none;padding:0px 0px;">*@
+    </span>
+</p>
+    @*<p style="float:left;">
+       <button id="download-xlsx" class="btn btn-default" style="display:inline;margin-left:5px;">导出数据</button>
+    </p>*@  
+    <div style="clear:both"></div>
+
+    <div id="example-table-2" class="box-h"> </div>
+    <p style="color:blue;">【状态】：1-已经登记/查看中.. ； 2-需要费用结算； 3-费用已结算； 4-结算驳回。</p>
+
+    @*<table class="table table-bordered table-striped">
+            <tr>
+
+                <th>
+                    登记序号
+                </th>
+                <th>
+                    借阅人姓名
+                </th>
+                <th>
+                    收费编号
+                </th>
+                <th>
+                    借阅日期
+                </th>
+                <th>
+                    借阅单位
+                </th>
+                <th>
+                    借阅案卷
+                </th>
+                <th>
+                    单位/个
+                </th>
+                <th>
+                    证明费
+                </th>
+
+                <th>
+                    调阅费
+
+                </th>
+
+                <th>
+                    咨询费
+                </th>
+                <th>
+                    实际总费用（元）
+                </th>
+                <th>
+                    状态
+                </th>
+                <th>
+                    科室
+                </th>
+
+                <th>
+                    查看
+                </th>
+                <th>
+                    修改
+                </th>
+                <th>
+                    费用结算
+                </th>
+            </tr>
+
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td style="width:30%;">
+                        @Html.DisplayFor(modelItem => item.borrowSeqNo)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.borrower)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.seqNo)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.borrowDate)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.borrowUnit)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.archiveSerialNo)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.singleOrDepart)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.certificationFee)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.consultFee)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.paoKufangRen)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.realFees)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.isJiesuanFee)
+                    </td>
+                    <td>
+                        管理科
+
+                    </td>
+
+                    <td>
+                        @Html.ActionLink("查看", "Details", new { id = item.ID,id1=1})
+                    </td>
+                    <td>
+                        @Html.ActionLink("修改", "Edit", new { id = item.ID })
+                    </td>
+                    <td>
+                      @Html.ActionLink("费用结算", "FeeJieSuan",  new { id =item.ID,id1=1})
+                    </td>
+
+                </tr>
+            }
+        </table>*@
+

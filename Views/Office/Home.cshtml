@@ -1,0 +1,25 @@
+﻿@using PagedList.Mvc;
+@{
+    ViewBag.Title = "Home";
+}
+
+<h2>Home</h2>
+
+<div class="col-md-4">
+    <h3>@Html.ActionLink("公文管理", "Index", "Office")</h3>
+</div>
+<div class="col-md-4">
+    <h3>@Html.ActionLink("信息发布", "Index", "OfficeInformation")</h3>
+</div>
+<div class="col-md-4">
+    <h3>@Html.ActionLink("信息查看", "Details", "OfficeInformation")</h3>
+</div>
+<div class="col-md-4">
+    <h3>@Html.ActionLink("打印", "Home", "DaYin")</h3>
+</div>
+<div class="col-md-4">
+    <h3>@Html.ActionLink("档案装具", "Index", "OfficeDanganZhuangju")</h3>
+</div>
+<div class="col-md-4">
+    <h3>@Html.ActionLink("盒具资料费用查询", "FeiYongChaXun", "OfficeDanganZhuangju")</h3>
+</div>

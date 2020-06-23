@@ -1,0 +1,90 @@
+﻿
+@{
+    ViewBag.Title = "打印规划档案案卷目录（顺序号范围）";
+}
+
+
+<h2><i class="fa fa-tags kongge"></i>打印规划档案案卷目录（顺序号范围）</h2>
+<hr />
+
+@using (Html.BeginForm())
+{
+    <div style="font-size:20px;">
+        <i class="fa fa-caret-right kongge"></i>请选择规划档案种类
+    </div><br>
+    <div class="panel panel-default">
+        <table class="table table-bordered dl-horizontal">
+            <tr>
+                <td style="background-color:#f9f9f9;width:10%;">
+                    档案种类:
+                </td>
+                <td>
+                    @Html.DropDownList("PlanArchiveClassify", null, "全部" ,new { @class = "form-control" } )
+                </td>
+            </tr>
+        </table>
+    </div>
+    <hr />
+    <div style="font-size:20px;">
+        <i class="fa fa-caret-right kongge"></i>请输入案卷顺序号范围(默认为全部)
+    </div><br>
+    <div class="panel panel-default">
+        <table class="table table-bordered dl-horizontal">
+            <tr>
+                <td style="background-color:#f9f9f9;width:10%;">
+                    起始案卷顺序号:
+                </td>
+                <td>
+                    <input type="text" name="seqNoStart" id="seqNoStart" class="form-control " />
+                </td>
+                <td style="background-color:#f9f9f9;width:10%;">
+                    终止案卷顺序号:
+                </td>
+                <td>
+                    <input type="text" name="seqNoEnd" id="seqNoEnd" class="form-control " />
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div style="text-align:center;">
+        <p>
+            <input type="submit" name="action" class="btn btn-default" id="ok" value="打印规划档案案卷目录（顺序号范围）" />
+            <input type="submit" name="action" class="btn btn-default" id="cancel" value="取消" />
+        </p>
+        <div style="height:20px;">
+        </div>
+    </div>
+
+            @*<div>
+                请选择规划档案种类
+            </div>
+            <br>
+            <div>
+                档案种类:
+                @Html.DropDownList("PlanArchiveClassify", null, "全部")
+            </div>
+            <br>
+            <div>
+                （请输入案卷顺序号范围(默认为全部)
+            </div>
+            <br>
+            <div>
+                起始案卷顺序号:
+            </div>
+            <div>
+                <input type="text" name="seqNoStart" id="seqNoStart" class="form-control " />
+            </div>
+
+            <div>
+                终止案卷顺序号:
+            </div>
+            <div>
+                <input type="text" name="seqNoEnd" id="seqNoEnd" class="form-control " />
+            </div>
+            <br>
+            <div>
+                <input type="submit" name="action" class="btn btn-default" id="ok" value="打印规划档案案卷目录（顺序号范围）" />
+                <input type="submit" name="action" class="btn btn-default" id="cancel" value="取消" />
+            </div>
+            <br>*@
+            }

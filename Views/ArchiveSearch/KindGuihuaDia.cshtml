@@ -1,0 +1,705 @@
+﻿<script type="text/javascript" src="~/Scripts/jquery/jquery-1.8.3.js"></script>
+<script type="text/javascript" src="~/Scripts/jquery/jquery.ui.core.js"></script>
+<script type="text/javascript" src="~/Scripts/jquery/jquery.ui.datepicker.js"></script>
+<script type="text/javascript" src="~/Scripts/jquery/jquery.ui.widget.js"></script>
+<script type="text/javascript" src="~/Scripts/jquery/jquery-ui-timepicker-addon.js"></script>
+<script type="text/javascript">
+
+    function right1() {
+        var number1 = document.getElementById("choose").value;
+        if (number1=="")
+        {
+            alert("规划种类不能为空");
+
+        }
+       window.returnValue = number1;
+       window.close();
+
+    }
+    function Tian() {
+
+
+
+        if (document.getElementById('all').checked == true)
+        {
+           
+            document.getElementById("choose").value="0-全部";
+            document.getElementById('Dingd').disabled = true;
+            document.getElementById('Shengp').disabled = true;
+            document.getElementById('GuiTiao').disabled = true;
+            document.getElementById('HanYe').disabled = true;
+            document.getElementById('XuanZhi').disabled = true;
+            document.getElementById('BianShen').disabled = true;
+            document.getElementById('GuiShen').disabled = true;
+            document.getElementById('GuanXian').disabled = true;
+            document.getElementById('DiZi').disabled = true;
+            document.getElementById('ShiZheng').disabled = true;
+            document.getElementById('ShenCha').disabled = true;
+            document.getElementById('DaoHong').disabled = true;
+            document.getElementById('JianYan').disabled = true;
+            document.getElementById('YanZheng').disabled = true;
+            document.getElementById('JianShen').disabled = true;
+            document.getElementById('WaiHuan').disabled = true;
+            document.getElementById('JianBian').disabled = true;
+            document.getElementById('GuangDiao').disabled = true;
+            document.getElementById('YeZi').disabled = true;
+            document.getElementById('BianGeng').disabled = true;
+            document.getElementById('DanYan').disabled = true;
+            document.getElementById('JianGuan').disabled = true;
+            document.getElementById('JianChai').disabled = true;
+            document.getElementById('LinShi').disabled = true;
+            document.getElementById('TuPi').disabled = true;
+            document.getElementById('ChaiZi').disabled = true;
+            document.getElementById('YanZi').disabled = true;
+            
+
+            document.getElementById('Dingd').checked = false;
+            document.getElementById('Shengp').checked = false;
+            document.getElementById('GuiTiao').checked = false;
+            document.getElementById('HanYe').checked = false;
+            document.getElementById('XuanZhi').checked = false;
+            document.getElementById('BianShen').checked = false;
+            document.getElementById('GuiShen').checked = false;
+            document.getElementById('GuanXian').checked = false;
+            document.getElementById('DiZi').checked = false;
+            document.getElementById('ShiZheng').checked = false;
+            document.getElementById('ShenCha').checked = false;
+            document.getElementById('DaoHong').checked = false;
+            document.getElementById('JianYan').checked = false;
+            document.getElementById('YanZheng').checked = false;
+            document.getElementById('JianShen').checked = false;
+            document.getElementById('WaiHuan').checked = false;
+            document.getElementById('JianBian').checked = false;
+            document.getElementById('GuangDiao').checked = false;
+            document.getElementById('YeZi').checked = false;
+            document.getElementById('BianGeng').checked = false;
+            document.getElementById('DanYan').checked = false;
+            document.getElementById('JianGuan').checked = false;
+            document.getElementById('JianChai').checked = false;
+            document.getElementById('LinShi').checked = false;
+            document.getElementById('TuPi').checked = false;
+            document.getElementById('ChaiZi').checked = false;
+            document.getElementById('YanZi').checked = false;
+      
+     
+        }
+        else
+        {
+            document.getElementById("choose").value = "";
+            document.getElementById('Dingd').disabled = false;
+            document.getElementById('Shengp').disabled = false;
+            document.getElementById('GuiTiao').disabled = false;
+            document.getElementById('HanYe').disabled = false;
+            document.getElementById('XuanZhi').disabled = false;
+            document.getElementById('BianShen').disabled = false;
+            document.getElementById('GuiShen').disabled = false;
+            document.getElementById('GuanXian').disabled = false;
+            document.getElementById('DiZi').disabled = false;
+            document.getElementById('ShiZheng').disabled = false;
+            document.getElementById('ShenCha').disabled = false;
+            document.getElementById('DaoHong').disabled = false;
+            document.getElementById('JianYan').disabled = false;
+            document.getElementById('YanZheng').disabled = false;
+            document.getElementById('JianShen').disabled = false;
+            document.getElementById('WaiHuan').disabled = false;
+            document.getElementById('JianBian').disabled = false;
+            document.getElementById('GuangDiao').disabled = false;
+            document.getElementById('YeZi').disabled = false;
+            document.getElementById('BianGeng').disabled = false;
+            document.getElementById('DanYan').disabled = false;
+            document.getElementById('JianGuan').disabled = false;
+            document.getElementById('JianChai').disabled = false;
+            document.getElementById('LinShi').disabled = false;
+            document.getElementById('TuPi').disabled = false;
+            document.getElementById('ChaiZi').disabled = false;
+            document.getElementById('YanZi').disabled = false;
+
+
+         
+          
+          
+           
+        }
+   
+   
+
+
+
+    }
+
+    function Tian1() {
+
+
+
+
+        if (Dingd.checked == true)
+        {
+            document.getElementById("choose").value += "1-定点" + ",";
+
+        }
+        else
+        {
+            deleitem("1-定点");
+        }
+
+    }
+    function Tian2() {
+
+
+
+        if (Shengp.checked == true) {
+            document.getElementById("choose").value += "2-审批" + ",";
+        }
+        
+        else
+        {
+           
+            deleitem("2-审批");
+        }
+    }
+    function Tian3() {
+
+
+
+
+        if (GuiTiao.checked == true) {
+            document.getElementById("choose").value += "3-审查" + ",";
+        }
+        else {
+
+            deleitem("3-审查");
+        }
+    }
+    function Tian4() {
+
+
+
+
+        if (HanYe.checked == true) {
+            document.getElementById("choose").value += "4-选址" + ",";
+        }
+        else {
+
+            deleitem("4-选址");
+        }
+    }
+    function Tian5() {
+
+
+
+
+        if (XuanZhi.checked == true) {
+            document.getElementById("choose").value += "5-规条" + ",";
+        }
+        else {
+
+            deleitem("5-规条");
+        }
+    }
+    function Tian6() {
+
+
+
+
+        if (BianShen.checked == true) {
+            document.getElementById("choose").value += "6-用地" + ",";
+        }
+        else {
+
+            deleitem("6-用地");
+        }
+    }
+    function Tian7() {
+
+
+
+
+        if (GuiShen.checked == true) {
+            document.getElementById("choose").value += "7-规审" + ",";
+        }
+        else {
+
+            deleitem("7-规审");
+        }
+    }
+    function Tian8() {
+
+
+
+
+        if (GuanXian.checked == true) {
+            document.getElementById("choose").value += "8-建审" + ",";
+        }
+        else {
+
+            deleitem("8-建审");
+        }
+    }
+    function Tian9() {
+
+
+
+
+        if (DiZi.checked == true) {
+            document.getElementById("choose").value += "9-道路红线" + ",";
+        }
+        else {
+
+            deleitem("9-道路红线");
+        }
+    }
+    function Tian10() {
+
+
+
+
+        if (ShiZheng.checked == true) {
+            document.getElementById("choose").value += "10-变审" + ",";
+        }
+        else {
+
+            deleitem("10-变审");
+        }
+    }
+    function Tian11() {
+
+
+
+
+        if (DaoHong.checked == true) {
+            document.getElementById("choose").value += "11-外环" + ",";
+        }
+        else {
+
+            deleitem("11-外环");
+        }
+    }
+    function Tian12() {
+
+
+
+
+        if (ShenCha.checked == true) {
+            document.getElementById("choose").value += "12-函业" + ",";
+        }
+        else {
+
+            deleitem("12-函业");
+        }
+    }
+    function Tian13() {
+
+
+
+
+        if (JianYan.checked == true) {
+            document.getElementById("choose").value += "13-单验(单体验收)" + ",";
+        }
+        else {
+
+            deleitem("13-单验(单体验收)");
+        }
+    }
+    function Tian14() {
+
+
+
+
+        if (YanZheng.checked == true) {
+            document.getElementById("choose").value += "14-建验(规划验收合格证)" + ",";
+        }
+        else {
+
+            deleitem("14-建验(规划验收合格证)");
+        }
+    }
+    function Tian15() {
+
+
+
+
+        if (JianShen.checked == true) {
+            document.getElementById("choose").value += "15-广雕" + ",";
+        }
+        else {
+
+            deleitem("15-广雕");
+        }
+    }
+    function Tian16() {
+
+
+
+
+        if (JianBian.checked == true) {
+            document.getElementById("choose").value += "16-归验" + ",";
+        }
+        else {
+
+            deleitem("16-归验");
+        }
+    }
+    function Tian17() {
+
+
+
+
+        if (WaiHuan.checked == true) {
+            document.getElementById("choose").value += "17-建拆" + ",";
+        }
+        else {
+
+            deleitem("17-建拆");
+        }
+    }
+    function Tian18(){
+
+
+
+
+        if (GuangDiao.checked == true) {
+            document.getElementById("choose").value += "18-市政管线" + ",";
+        }
+        else {
+
+            deleitem("18-市政管线");
+        }
+    }
+    function Tian19() {
+
+
+
+
+        if (YeZi.checked == true) {
+            document.getElementById("choose").value += "19-临市政" + ",";
+        }
+        else {
+
+            deleitem("19-临市政");
+        }
+    }
+    function Tian20() {
+
+
+
+
+        if (BianGeng.checked == true) {
+            document.getElementById("choose").value += "20-建管" + ",";
+        }
+        else {
+
+            deleitem("20-建管");
+        }
+    }
+    function Tian21() {
+
+
+
+
+        if (DanYan.checked == true) {
+            document.getElementById("choose").value += "21-验整" + ",";
+        }
+        else {
+
+            deleitem("21-验整");
+        }
+    }
+    function Tian22() {
+
+
+
+
+        if (jiangaun.checked == true) {
+            document.getElementById("choose").value += "22-延期" + ",";
+        }
+        else {
+
+            deleitem("22-延期");
+        }
+    }
+    function Tian23() {
+
+
+
+
+        if (JianChai.checked == true) {
+            document.getElementById("choose").value += "23-变更" + ",";
+        }
+        else {
+
+            deleitem("23-变更");
+        }
+    }
+    function Tian24() {
+
+
+
+
+        if (LinShi.checked == true) {
+            document.getElementById("choose").value += "24-验线" + ",";
+        }
+        else {
+
+            deleitem("24-验线");
+        }
+    }
+    function Tian25() {
+
+
+
+
+        if (tupi.checked == true) {
+            document.getElementById("choose").value += "25-变备字" + ",";
+        }
+        else {
+
+            deleitem("25-变备字");
+        }
+    }
+    function Tian26() {
+
+
+
+
+        if (chai.checked == true) {
+            document.getElementById("choose").value += "26-控制线" + ",";
+        }
+        else {
+
+            deleitem("46-拆字");
+        }
+    }
+    function Tian27() {
+
+
+
+
+        if (yanzi.checked == true) {
+            document.getElementById("choose").value += "27-图批" + ",";
+        }
+        else {
+
+            deleitem("27-图批");
+        }
+    }
+  
+   
+    function Error() {
+
+ document.getElementById("message").value = "请照种类不能为空";
+
+
+    }
+
+    function deleitem(item)
+    {
+     
+        var arr = new Array();
+        arr = document.getElementById('choose').value.split(',');
+        document.getElementById('choose').value = "";
+        for (var i = 0; i < arr.length - 1;i++)
+        {
+         
+            
+            if(arr[i]==item)
+            {
+                arr[i] ="";
+            }
+            if(arr[i]!="")
+            {
+              
+                document.getElementById('choose').value = document.getElementById('choose').value+arr[i] + ",";
+            }
+        }
+       
+    }
+</script>
+
+
+
+
+    @*<legend style="background:#efefef;">请选择请照档案种类</legend>*@
+<div style="text-align:center">
+    <input type="text" id="choose" name="choose" style="width:140px;">
+    <input type="button" id="queding" name="action" value="确定" class="btn btn-default" style="padding-bottom:2px;padding-top:2px;" onclick="right1();">
+    <input name="message" id="message" style="background: transparent;border:none;color:red;font-size:16px">
+
+</div>
+<div class="panel panel-default">
+    <table class="table table-bordered table-striped" style="text-align:center">
+        <tr>
+            <td>
+                全部
+                <input type="checkbox" id="all" name="all" onclick="javascript:Tian()" />
+            </td>
+        </tr>
+        <tr>
+            <td>
+                定点
+                <input type="checkbox" id="Dingd" name="Dingd" onclick="javascript:Tian1()" />
+            </td>
+        </tr>
+        <tr>
+            <td>
+                审批
+                <input type="checkbox" id="Shengp" name="Shengp" onclick="javascript:Tian2()" />
+            </td>
+        </tr>
+        <tr>
+            <td>
+                审查
+                <input type="checkbox" id="GuiTiao" name="GuiTiao" onclick="javascript:Tian3()" />
+            </td>
+        </tr>
+        <tr>
+            <td>
+                选址
+                <input type="checkbox" ID="HanYe" name="HanYe" onclick="javascript:Tian4()" />
+            </td>
+        </tr>
+        <tr>
+            <td>
+                规条
+                <input type="checkbox" ID="XuanZhi" name="XuanZhi" onclick="javascript:Tian5()" />
+            </td>
+        </tr>
+        <tr>
+            <td>
+                用地
+                <input type="checkbox" ID="BianShen" name="BianShen" onclick="javascript:Tian6()" />
+            </td>
+        </tr>
+        <tr>
+            <td>
+                规审
+                <input type="checkbox" ID="GuiShen" name="GuiShen" onclick="javascript:Tian7()" />
+            </td>
+        </tr>
+        <tr>
+            <td>
+                建审
+                <input type="checkbox" ID="GuanXian" name="GuanXian" onclick="javascript:Tian8()" />
+            </td>
+        </tr>
+        <tr>
+            <td>
+                道路红线
+                <input type="checkbox" ID="DiZi" name="DiZi" onclick="javascript:Tian9()" />
+            </td>
+        </tr>
+        <tr>
+            <td>
+                变审
+                <input type="checkbox" ID="ShiZheng" name="ShiZheng" onclick="javascript:Tian10()" />
+            </td>
+        </tr>
+        <tr>
+            <td>
+                外环
+                <input type="checkbox" ID="DaoHong" name="DaoHong" onclick="javascript:Tian11()" />
+            </td>
+        </tr>
+        <tr>
+            <td>
+                单验（单体验收）
+                <input type="checkbox" ID="ShenCha" name="ShenCha" onclick="javascript:Tian12()" />
+            </td>
+        </tr>
+        <tr>
+            <td>
+                建验（规划验收合格证）
+                <input type="checkbox" ID="JianYan" name="JianYan" onclick="javascript:Tian13()" />
+            </td>
+        </tr>
+        <tr>
+            <td>
+                广雕
+                <input type="checkbox" ID="YanZheng" name="YanZheng" onclick="javascript:Tian14()" />
+            </td>
+        </tr>
+        <tr>
+            <td>
+                归验
+                <input type="checkbox" ID="JianShen" name="JianShen" onclick="javascript:Tian15()" />
+            </td>
+        </tr>
+        <tr>
+            <td>
+                建拆
+                <input type="checkbox" ID="JianBian" name="JianBian" onclick="javascript:Tian16()" />
+            </td>
+        </tr>
+        <tr>
+            <td>
+                市政管线
+                <input type="checkbox" ID="WaiHuan" name="WaiHuan" onclick="javascript:Tian17()" />
+            </td>
+        </tr>
+        <tr>
+            <td>
+                临市政
+                <input type="checkbox" ID="GuangDiao" name="GuangDiao" onclick="javascript:Tian18()" />
+            </td>
+        </tr>
+        <tr>
+            <td>
+                建管
+                <input type="checkbox" ID="YeZi" name="YeZi" onclick="javascript:Tian19()" />
+            </td>
+        </tr>
+        <tr>
+            <td>
+                验整
+                <input type="checkbox" ID="BianGeng" name="BianGeng" onclick="javascript:Tian20()" />
+            </td>
+        </tr>
+        <tr>
+            <td>
+                延期
+                <input type="checkbox" ID="DanYan" name="DanYan" onclick="javascript:Tian21()" />
+            </td>
+        </tr>
+        <tr>
+            <td>
+                变更
+                <input type="checkbox" ID="JianGuan" name="JianGuan" onclick="javascript:Tian22()" />
+            </td>
+        </tr>
+        <tr>
+            <td>
+                验线
+                <input type="checkbox" ID="JianChai" name="LinShi" onclick="javascript:Tian23()" />
+            </td>
+        </tr>
+        <tr>
+            <td>
+                变备字
+                <input type="checkbox" ID="LinShi" name="LinShi" onclick="javascript:Tian24()" />
+            </td>
+        </tr>
+        <tr>
+            <td>
+                控制线
+                <input type="checkbox" ID="TuPi" name="TuPi" onclick="javascript:Tian25()" />
+            </td>
+        </tr>
+        <tr>
+            <td>
+                图批
+                <input type="checkbox" ID="ChaiZi" name="ChaiZi" onclick="javascript:Tian26()" />
+            </td>
+        </tr>
+        <tr>
+            <td>
+                验字
+                <input type="checkbox" ID="YanZi" name="YanZi" onclick="javascript:Tian27()" />
+            </td>
+        </tr>
+    </table>
+</div>    
+      
+            
+
+
+
+

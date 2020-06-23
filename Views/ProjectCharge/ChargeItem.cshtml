@@ -1,0 +1,184 @@
+﻿@model urban_archive.Models.vw_projectProfile
+<script src="@Url.Content("~/Scripts/jquery.validate.min.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Scripts/jquery.validate.unobtrusive.min.js")" type="text/javascript"></script>
+<script>
+    $().ready(function () {
+        $("#checkname").ready(function () {
+            var s = $("#checkname").val();
+            if (s == 1) {
+                alert("此工程费用已经收取");
+            }
+        });
+    });
+
+    function click_b(divDisplay1, divDisplay2, divDisplay3, divDisplay4) 
+    {
+       
+        document.getElementById(divDisplay2).style.display = "block";
+        document.getElementById(divDisplay1).style.display = "none";
+        document.getElementById(divDisplay3).style.display = "none";
+        document.getElementById(divDisplay4).style.display = "none";
+        document.getElementById('Urbansettle').disabled = false;
+       
+        if(document.getElementById('buildingArea').value!=null&&document.getElementById('buildingArea').value!="")
+        {
+            if (document.getElementById('buildingArea').value<3000)
+            {
+          
+                document.getElementById('Urbansettle').value = 3000;
+            }
+            else
+            {
+                var de = document.getElementById('buildingArea').value * 1;
+                document.getElementById('Urbansettle').value = de;
+               
+            }
+        }
+
+}
+    function click_c(divDisplay1, divDisplay2, divDisplay3, divDisplay4)
+    {
+
+
+        document.getElementById(divDisplay2).style.display = "none";
+        document.getElementById(divDisplay4).style.display = "block";
+        document.getElementById(divDisplay3).style.display = "none";
+        document.getElementById(divDisplay1).style.display = "block";
+        document.getElementById('Depart').disabled = false;
+      
+    }
+</script>
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    @Html.HiddenFor(model => model.projectID)
+    <div class="form-horizontal">
+        <h2 style="margin-top:0;"><i class="fa fa-tags kongge"></i>录入收费条目</h2>
+        <hr />
+        <input type="text" id="seqNo" name="seqNo" value="@ViewData["seqNovalue"]" style="display:@ViewData["seqNodisplay"]"readonly="readonly" />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="panel panel-default">
+            <table class="table table-bordered dl-horizontal" style="background-color:#f9f9f9;">
+                <tr>
+                    <td style="background-color:#f9f9f9;min-width:130px;width:6%;font-weight:bold;">
+                        工程序号
+                    </td>
+                    <td style="width:44%">
+                        @Html.EditorFor(model => model.projectNo, new { htmlAttributes = new { @class = "form-control", @ReadOnly = "true" } })
+                        @Html.ValidationMessageFor(model => model.projectNo, "", new { @class = "text-danger" })
+                    </td>
+                    <td style="background-color:#f9f9f9;min-width:130px;width:6%;font-weight:bold;">
+                        来源科室
+                    </td>
+                    <td style="width:44%">
+                        @Html.EditorFor(model => model.developmentOrganization, new { htmlAttributes = new { @class = "form-control", @Value = "业务科", @ReadOnly = "true" } })
+                        @Html.ValidationMessageFor(model => model.developmentOrganization, "", new { @class = "text-danger" })
+                    </td>
+                </tr>
+                <tr>
+                    <td style="background-color:#f9f9f9;font-weight:bold;">
+                        收费事项名称
+                    </td>
+                    <td colspan="3">
+                        @Html.EditorFor(model => model.projectName, new { htmlAttributes = new { @class = "form-control",@style="max-width:100%" } })
+                        @Html.ValidationMessageFor(model => model.projectName, "", new { @class = "text-danger" })
+                    </td>                    
+                </tr>
+                <tr>
+                    <td style="background-color:#f9f9f9;font-weight:bold;">
+                        报送人
+                    </td>
+                    <td colspan="3">
+                        @Html.EditorFor(model => model.submitPerson, new { htmlAttributes = new { @class = "form-control", @style = "max-width:100%" } })
+                        @Html.ValidationMessageFor(model => model.submitPerson, "", new { @class = "text-danger" })
+                    </td>
+                </tr>
+                <tr>
+                    <td style="background-color:#f9f9f9;font-weight:bold;">
+                        建筑面积
+                    </td>
+                    <td>
+                        @Html.EditorFor(model => model.buildingArea, new { htmlAttributes = new { @class = "form-control",@style="display:inline", @ReadOnly = "true" } })
+                        @Html.ValidationMessageFor(model => model.buildingArea, "", new { @class = "text-danger" }) 平方米
+                    </td>
+                    <td style="background-color:#f9f9f9;font-weight:bold;">
+                        办理人
+                    </td>
+                    <td>
+                        @Html.EditorFor(model => model.recipient, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.recipient, "", new { @class = "text-danger" })
+                    </td>
+                </tr>
+                <tr>
+                    <td style="background-color:#f9f9f9;font-weight:bold;" >
+                        收费类型
+                    </td>
+                    <td>
+                        <div id="type">
+                            <input type="radio" id="radiobutton" name="radiobutton" value="1" onclick="return click_b('divOne_2', 'divOne_3', 'divOne_4','divOne_5')" style="cursor:pointer;">档案馆整理费
+                            <input type="radio" id="radiobutton" name="radiobutton" value="2" onclick="return click_c('divOne_2', 'divOne_3', 'divOne_4','divOne_5')" style="cursor:pointer;">报送单位整理费
+                        </div>
+
+                    </td>
+                    <td colspan="2"style="padding:0;width:50%;">
+                        <div id="divOne_4" style="display:@ViewData["zhenglidisplay"];height:50px;">
+                            <div style="padding:12px 5px;min-width:130px;width:6%;font-weight:bold;background-color:#f9f9f9;height:50px;line-height:1.4285;vertical-align:middle;float:left;border-right:1px solid #ddd;">整理费</div>
+                            <div style="padding:5px;width:70%;float:left;">
+                                <input type="text" id="zhengli" name="zhengli" class="form-control" disabled="@ViewData["zhengli"]" style="display:inline" value="@ViewData["Settle"]" /> 元
+                            </div>
+                        </div>
+                        <div id="divOne_2" style="display:@ViewData["Departdisplay"];height:50px;" >
+                            <div style="padding:12px 5px;min-width:130px;width:6%;font-weight:bold;background-color:#f9f9f9;height:50px;line-height:1.4285;vertical-align:middle;float:left;border-right:1px solid #ddd;">报送单位整理费</div>
+                            <div style="padding:5px;width:70%;float:left;">
+                                <input type="text" id="Department" name="Department" disabled="@ViewData["Depart"]" class="form-control" style="display:inline" value="@ViewData["Department"]" /> 元
+                            </div>
+                        </div>
+                        <div id="divOne_5" style="display:@ViewData["Gongfenshudisplay"];height:50px;">
+                            <div style="padding:12px 5px;min-width:130px;width:6%;font-weight:bold;background-color:#f9f9f9;height:50px;line-height:1.4285;vertical-align:middle;float:left;border-right:1px solid #ddd;">公分数</div>
+                            <div style="padding:5px;width:70%;float:left;">
+                                <input type="text" id="cent" name="cent" class="form-control" value="@ViewData["Gongfenshu"]" />
+                            </div>
+                        </div>
+                        <div id="divOne_3" style="display:@ViewData["Urbandisplay"];height:50px;">
+                            <div style="padding:12px 5px;min-width:130px;width:6%;font-weight:bold;background-color:#f9f9f9;height:50px;line-height:1.4285;vertical-align:middle;float:left;border-right:1px solid #ddd;">档案馆整理费</div>
+                            <div style="padding:5px;width:70%;float:left;">
+                                <input type="text" id="Urbansettle" name="Urbansettle" disabled="@ViewData["Urban"]" class="form-control"  style="display:inline" value="@ViewData["Urbansettle"]" /> 元
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+                
+                <tr>
+                    <td style="background-color:#f9f9f9;font-weight:bold;">
+                        备注信息
+                    </td>
+                    <td>
+                        <input type="text" id="txtremarx" name="txtremarx" class="form-control" value="@ViewData["txtremarx"]" />
+                    </td>
+                    <td style="background-color:#f9f9f9;font-weight:bold;">
+                        费用转向
+                    </td>
+                    <td>
+                        @Html.DropDownList("whereTransfer",null, htmlAttributes: new { @class = "form-control " })
+                    </td>
+                </tr>
+                
+                </table>
+        </div>
+        </div>
+        <div style="text-align:center;">
+            <input value="@ViewData["checkname"]" name="checkname" id="checkname" hidden="hidden">
+            <input type="submit" value="@ViewData["quedingtext"]" name="action"  disabled="@ViewData["queding"]" class="btn btn-default">
+            <input type="submit" value="返回" name="action" class="btn btn-default">
+            <div style="height:20px;">
+            </div>
+        </div>
+        
+
+        }
+
+        @*<div>
+            @Html.ActionLink("Back to List", "Index")
+        </div>*@

@@ -1,0 +1,168 @@
+﻿@model IEnumerable<urban_archive.Models.AspNetUsers>
+
+@{
+    ViewBag.Title = "用户管理";
+}
+<link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
+<link href="~/Content/jquery-ui.theme.css" rel="stylesheet" />
+<link href="~/Content/Tabulator/tabulator.css" rel="stylesheet" />
+@{
+    ViewBag.Title = "ContractInfo";
+}
+<script src="~/Scripts/jquery-2.1.1.min.js" type="text/javascript"></script>
+<script src="~/Scripts/jquery-ui.min.js"></script>
+@*<script src="~/Scripts/bootstrap.min.js"></script>*@
+<script src="~/Content/Tabulator/tabulator.js"></script>
+<script type="text/javascript">
+    function del() {
+        var msg = "确认要删除吗?";
+        if (confirm(msg) == true) {
+            return true;
+        } else {
+            return false;
+        }
+    }                             //删除确认对话框
+
+        var Edit = function (value, data, cell, row, options) { //plain text value
+            return "<i class='fa fa-edit' style='color:#428bca;vertical-align:middle; padding:2px 0;'></i> "
+        };
+        var Details = function (value, data, cell, row, options) { //plain text value
+            return "<i class='fa fa-search-plus' style='color:#428bca;vertical-align:middle; padding:2px 0;'></i> "
+        };        
+        var Delete = function (value, data, cell, row, options) { //plain text value
+            return "<i class='glyphicon glyphicon-trash' style='color:#428bca;vertical-align:middle; padding:2px 0;'></i> "
+        };
+
+        $().ready(function () {//在页面加载完成之后用，为了保证js能完整的执行。
+            $(document).ready(function () {
+                var a = $(window).height();   // 浏览器的高度
+
+                var hh = a-170;
+
+                $(".box-h").height(hh)  // 高度加在类名为box的DIV 上
+
+            })
+            $("#example-table-2").tabulator({
+                height: "100%",
+                colMinWidth:100,
+                fitColumns:true,
+                sortable: false,
+                selectable:true, //make rows selectable
+                pagination:"local",
+                paginationSize:50,
+
+                columns: [
+{
+                    title: "编辑", field: "Edit",width: 100,formatter: Edit, sorter: "string", align: "center", onClick: function (e, val, cell, row) {
+                        var url = '/AspNetUsers/Edit?id=' + row.m;
+                        window.location.href = url;
+                    }
+                },
+                {
+                    title: "查看", field: "Details",width: 100,formatter: Details, sorter: "string", align: "center", onClick: function (e, val, cell, row) {
+                        var url = '/AspNetUsers/Details?id=' + row.m;
+                        window.location.href = url;
+                    }
+                },
+                {
+                    title: "删除", field: "Delete",width: 100,formatter: Delete, sorter: "string", align: "center", onClick: function (e, val, cell, row) {
+                        if(del()){
+                            var url = '/AspNetUsers/Delete?id=' + row.m;
+                            window.location.href = url;
+                        } 
+
+                    }
+                },
+                { title: "用户名", field: "UserName"  },
+                { title: "职位", field: "RoleName" },
+                { title: "科室", field: "DepartmentName"},
+                { title: "电子邮件", field: "Email"},
+
+
+                ],
+            });
+
+            var temp = new Array();
+            var data=@Html.Raw(Json.Encode(Model));
+            for (var i = 0; i < data.length;i++) {
+                temp.push({ "id": i + 1, "UserName": data[i].UserName, "RoleName": data[i].RoleName, "DepartmentName": data[i].DepartmentName, "Email": data[i].Email,"m": data[i].Id });
+            }
+
+            $("#example-table-2").tabulator("setData", temp);
+            $(window).resize(function () {
+                $(document).ready(function () {
+                    var a = $(window).height();
+                    var hh = a-170;
+                    $(".box-h").height(hh)  // 高度加在类名为box的DIV 上
+                })
+                $("#example-table-2").tabulator("redraw",true);
+            });
+
+        });
+</script>
+<section>
+    <h2 style="float:left;"><i class="fa fa-tags kongge"></i>用户管理</h2>
+    <ol class="breadcrumb">
+        <li>用户管理</li>
+        <li class="active">用户管理</li>
+    </ol>
+    <div style="clear:both;"></div>
+</section>
+<hr style="margin-top:0px;"/>
+@*<h2>用户管理</h2>*@
+
+
+<div id="example-table-2" class="box-h" style="overflow:auto;"></div>
+<p style="margin-top:15px;text-align:center">
+    <a href="/AspNetUsers/Create" class="btn btn-default"><i class='fa fa-user-plus' style='padding-right:5px;'></i>添加用户</a>
+    @*@Html.ActionLink("添加用户", "Create")*@
+</p>
+
+@*<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.UserName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.RoleName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DepartmentName)
+        </th>
+        
+        <th>
+            @Html.DisplayNameFor(model => model.Email)
+        </th>
+        
+
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.UserName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.RoleName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DepartmentName)
+            </td>
+            
+            <td>
+                @Html.DisplayFor(modelItem => item.Email)
+            </td>
+            
+
+            <td>
+                @Html.ActionLink("编辑", "Edit", new { id = item.Id }) |
+                @Html.ActionLink("查看", "Details", new { id = item.Id }) |
+                @Html.ActionLink("删除", "Delete", new { id = item.Id })
+            </td>
+
+        </tr>
+    }
+
+</table>*@

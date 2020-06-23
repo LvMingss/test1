@@ -1,0 +1,220 @@
+﻿
+@model  IEnumerable<urban_archive.Models.vw_charge >
+@*@using PagedList.Mvc;*@
+<link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
+<link href="~/Content/jquery-ui.theme.css" rel="stylesheet" />
+<link href="~/Content/Tabulator/version3.0/tabulator.css" rel="stylesheet" />
+@{
+    ViewBag.Title = "盒具资料费用查询";
+}
+<script src="~/Scripts/jquery-2.1.1.min.js" type="text/javascript"></script>
+<script src="~/Scripts/jquery-ui.min.js"></script>
+@*<script src="~/Scripts/tabulator.js"></script>*@
+<script src="~/Content/Tabulator/version3.0/tabulator.js"></script>
+<script type="text/javascript">
+    var o = function (value, data, cell, row, options) { //plain text value
+        return "<i class='fa fa-edit' style='color:#428bca;vertical-align:middle; padding:2px 0;'></i>"
+        };
+    var p = function (value, data, cell, row, options) { //plain text value
+        return "<i class='glyphicon glyphicon-trash' style='color:#428bca;vertical-align:middle; padding:2px 0;'></i>"
+    };
+
+
+    $().ready(function () {//在页面加载完成之后用，为了保证js能完整的执行。
+        $(document).ready(function () {
+
+            var a = $(window).height();
+            var hh = a-160;
+            $(".box-h").height(hh)  // 高度加在类名为box的DIV 上
+
+        })
+        $(window).resize(function () {
+            var a = $(window).height();
+            var hh = a-160;
+            $(".box-h").height(hh)  // 高度加在类名为box的DIV 上
+            $("#example-table-2").tabulator("redraw",true);
+
+            //$("#example-table-2").tabulator({
+            //    height: "100%"})
+        });
+        $("#example-table-2").tabulator({
+            height:"100%",
+            virtualDom:false,
+            selectable: true,
+            fitColumns:true,
+            pagination:"local",
+            paginationSize:50,
+            rowFormatter:function(row){
+                //row - row component
+
+                var data = row.getData();
+                    
+                if(data.g==false||data.g==null){ 
+                    row.getElement().css
+                        ({"background-color":"#99FF00",  "border-bottom": "1px solid #999"
+                        });
+                        
+                }
+            },
+
+
+            
+
+            columns: [
+                { title: "费用修改", field: "o", width: 80,formatter: o, align: "center", headerSort: false,cellClick: function (e,cell) {
+                    var url = '/OfficeDanganZhuangju/HeJuFeiYongEdit?id=' + cell.getValue();
+                    window.location.href = url; }
+
+
+                },
+                { title: "删除", field: "p", width: 50,formatter: p, align: "center",headerSort: false, cellClick: function (e,cell) {
+                    if(del()){
+                        var url = '/OfficeDanganZhuangju/DeleteChaxun?id=' + cell.getValue();
+                        window.location.href = url; }
+                }
+                },
+                { title: "科室", field: "a",headerSort: false, width: 80 },
+                { title: "收费编号", field: "b", headerSort: false,width: 150 },
+                { title: "金额", field: "c", headerSort: false,width: 100},
+                { title: "收费事项", field: "d",headerSort: false,width: 180 },
+                { title: "缴费单位/缴费人", field: "e",headerSort: false, width: 300 },
+                { title: "收费类别", field: "f",headerSort: false,width: 180 },
+                { title: "是否缴费", field: "g", width: 80 ,align: "center",headerSort: false,formatter:"tickCross"},
+                { title: "是否驳回", field: "i", width: 80 ,align: "center",headerSort: false,formatter:"tickCross" },
+                { title: "驳回原因", field: "j", headerSort: false,width: 200 },
+                { title: "收费日期", field: "h",headerSort: false,minWidth: 100 },
+                ],
+            });
+
+            var temp = new Array();
+            var data=@(new HtmlString(@ViewBag.result));
+            for (var i = 0; i < data.length;i++) {
+                var b = data[i].chargeTime
+                if(b!=null){
+                    var result = b.slice(0,10)
+                }
+                temp.push({ id: i + 1, a: data[i].text, b: data[i].seqNo, c: data[i].totalExpense, d: data[i].itemName,e: data[i].unitName,f: data[i].chargeType, g: data[i].isCharge, h:result , i: data[i].isBack, j: data[i].backNote,k: data[i].searchNo,o: data[i].searchNo,p: data[i].searchNo});
+            }
+            $("#example-table-2").tabulator("setData", temp);
+
+
+    });
+    function del() {
+        var msg = "确认要删除吗?";
+        if (confirm(msg) == true) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+    function opencharge()
+    {
+        window.showModalDialog('../ProjectCharge/charge',"", 'dialogWidth=700px;dialogHeight=400px');
+    }
+</script>
+<section>
+    <h2 style="float:left;"><i class="fa fa-tags kongge"></i>盒具资料费用查询</h2>
+    <ol class="breadcrumb">
+        <li class="active">业务办公 </li>
+        <li>盒具资料费用查询</li>
+    </ol>
+    <div style="clear:both;"></div>
+</section>
+@using (Html.BeginForm())
+{
+    <p>
+
+        检索条件： @Html.DropDownList("dropdowmlist", null, "请选择检索条件", new { @class = "form-control", @style = "display:inline" })   检索内容：<input type="text" name="search" id="serach"class = "form-control"value="@ViewBag.select"style="display:inline"><input type="submit" name="action" value="查询" class="btn btn-default">
+        <input type="button" name="action" onclick="opencharge()" value="打印收费详细报表" class="btn btn-default">
+
+    </p>
+}
+<div id="example-table-2" class="box-h" > </div>
+<p style="color:blue;">绿色：未缴费状态。</p>
+
+
+@*<table class="table">
+    <tr>
+        <th>
+            科室
+        </th>
+        <th>
+            收费编号
+        </th>
+        <th>
+            金额
+        </th>
+        <th>
+            收费事项
+        </th>
+        <th>
+            缴费单位/缴费人
+        </th>
+        <th>
+            收费类别
+        </th>
+        <th>
+            是否缴费
+        </th>
+        <th>
+            收费日期
+        </th>
+        <th>
+            是否驳回
+        <th>
+            驳回原因
+        </th>
+        
+
+
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.text)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.seqNo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.totalExpense)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.itemName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.unitName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.chargeType)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.isCharge)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.chargeTime)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.isBack)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.backNote)
+            </td>
+
+            <td>
+                @Html.ActionLink("费用修改", "HeJuFeiYongEdit", new { id = item.searchNo }) |
+                @Html.ActionLink("删除", "Delete", new { id = item.searchNo })
+            </td>
+        </tr>
+    }
+
+</table>*@
+@*<div style="text-align:right;font-size:16px;">
+    @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) / @Model.PageCount 页
+</div>
+<div style="text-align:center;margin-top:0;">
+    @Html.PagedListPager(Model, page => Url.Action("FeiYongChaXun", new { page }))
+</div>*@

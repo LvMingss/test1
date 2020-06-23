@@ -1,0 +1,76 @@
+﻿@model PagedList.IPagedList<urban_archive.Models.vw_projectProfile>
+@using PagedList.Mvc;
+<link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
+@{
+    ViewBag.Title = "ChargeProject";
+}
+
+<h2>工程收费</h2>
+@using (Html.BeginForm("ChargeProject", "ProjectInfoes", FormMethod.Get))
+{
+    <p>
+        <h4>
+         检索条件：@Html.DropDownList("SelectedID")=@Html.TextBox("SearchString", ViewBag.CurrentFilter as string)
+         检索条件：@Html.DropDownList("SelectedID")=@Html.TextBox("SearchString", ViewBag.CurrentFilter as string)
+         检索内容: @Html.DropDownList("SelectedID")=@Html.TextBox("SearchString", ViewBag.CurrentFilter as string)
+       <input type="submit" value="查找" />
+        </h4>
+
+
+    </p>
+}
+
+<table class="table">
+    <tr>
+        <th>
+            责任书编号
+        </th>
+        <th>
+            工程名称
+        </th>
+        <th>
+            建设单位
+        </th>
+        <th>
+            工程地点
+        </th>
+        <th>
+            操作
+        </th>
+        <th>
+            操作
+        </th>
+
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.contractNo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.projectName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.developmentOrganization)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.location)
+            </td>
+            <td>
+                @Html.ActionLink("查看", "Details", new { id = item.contractNo })|
+                @Html.ActionLink("修改", "Edit", new { id = item.contractNo }) |
+                @Html.ActionLink("删除", "Delete", new { id = item.contractNo })
+            </td>
+            <td>@Html.ActionLink("从责任书录入工程", "Create", "ProjectInfoes", new { id = item.contractNo }, null)</td>
+
+
+        </tr>
+    }
+</table>
+    Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+
+    @Html.PagedListPager(Model, page => Url.Action("Index",
+    new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))
+

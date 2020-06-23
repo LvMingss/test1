@@ -1,0 +1,462 @@
+﻿@model urban_archive.Models.PlanArchiveBox
+
+@{
+    ViewBag.Title = "Details";
+}
+<h2><i class="fa fa-tags kongge"></i>规划档案案卷查看</h2>
+<style type="text/css">
+    .jubu {
+        max-width: 100%;
+    }
+</style>
+
+@*<script type="text/javascript" src="~/Scripts/jquery/jquery-ui-timepicker-zh-CN.js"></script>*@
+<script>
+
+            function save() {
+                var msg = "是否确认完成该案卷修改";
+                if (confirm(msg) == true) {
+                    return true;
+                } else {
+                    return false;
+                }
+            }
+
+</script>
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    @Html.Hidden("url", (string)ViewBag.url)
+    <div class="form-horizontal">
+
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+        @*这些字段不能修改更新*@
+        @Html.HiddenFor(model => model.ID)
+        @Html.HiddenFor(model => model.seqNo)
+        @Html.HiddenFor(model => model.regisNo)
+        @Html.HiddenFor(model => model.paijiaNo)
+
+        @Html.HiddenFor(model => model.inchCnt)
+        @Html.HiddenFor(model => model.isArchive)
+        @Html.HiddenFor(model => model.textMatirial)
+        @Html.HiddenFor(model => model.photo)
+        @Html.HiddenFor(model => model.projectCnt)
+        @Html.HiddenFor(model => model.projectNo)
+        @Html.HiddenFor(model => model.storeLocation)
+
+
+        @Html.HiddenFor(model => model.yearNo)
+        @Html.HiddenFor(model => model.boxID)
+        @Html.HiddenFor(model => model.archiveNo)
+        @Html.HiddenFor(model => model.status)
+        @Html.HiddenFor(model => model.classifyID)
+        @Html.HiddenFor(model => model.classify)
+        @Html.HiddenFor(model => model.classSeqNo)
+
+
+
+        @*<h5>盒号</h5>*@
+        <div class="panel panel-default">
+            <table class="table table-bordered dl-horizontal" >
+
+                <tr>
+                    <td style="font-weight:bold;">
+                        盒号
+                    </td>
+                    <td colspan="3">
+                        @Html.EditorFor(model => model.boxNo, new { htmlAttributes = new { @class = "form-control jubu", @ReadOnly = "true" } })
+                        @Html.ValidationMessageFor(model => model.boxNo, "", new { @class = "text-danger" })
+                    </td>
+                </tr>
+                <tr>
+                    <td style="font-weight:bold;">
+                        案卷题名
+                    </td>
+                    <td colspan="3">
+                        @Html.EditorFor(model => model.archiveTitle, new { htmlAttributes = new { @class = "form-control jubu", @ReadOnly = "true" } })
+                        @Html.ValidationMessageFor(model => model.archiveTitle, "", new { @class = "text-danger" })
+                    </td>
+                </tr>
+                <tr>
+                    <td style="font-weight:bold;width:6%;min-width:100px;">
+                        档案馆代号
+                    </td>
+                    <td style="width:44%;">
+                        @Html.EditorFor(model => model.archiveCode, new { htmlAttributes = new { @class = "form-control", @ReadOnly = "true" } })
+                        @Html.ValidationMessageFor(model => model.archiveCode, "", new { @class = "text-danger" })
+                    </td>
+                    <td style="font-weight:bold;width:6%;min-width:100px;">
+                        录入人
+                    </td>
+                    <td style="width:44%;">
+                        @Html.EditorFor(model => model.lururen, new { htmlAttributes = new { @class = "form-control", @ReadOnly = "true" } })
+                        @Html.ValidationMessageFor(model => model.lururen, "", new { @class = "text-danger" })
+                    </td>
+                </tr>
+                <tr>
+                    <td style="font-weight:bold;">
+                        编制单位
+                    </td>
+                    <td>
+                        @Html.EditorFor(model => model.bianzhiUnit, new { htmlAttributes = new { @class = "form-control", @ReadOnly = "true" } })
+                        @Html.ValidationMessageFor(model => model.bianzhiUnit, "", new { @class = "text-danger" })
+                    </td>
+                    <td style="font-weight:bold;">
+                        编制日期
+                    </td>
+                    <td>
+                        @Html.EditorFor(model => model.bianzhiDate, new { htmlAttributes = new { @class = "form-control", @ReadOnly = "true" } })
+                        @Html.ValidationMessageFor(model => model.bianzhiDate, "", new { @class = "text-danger" })
+                    </td>
+                </tr>
+                <tr>
+                    <td style="font-weight:bold;">
+                        档案密级
+                    </td>
+                    <td>
+                        @Html.DropDownList("securityID", null, new { @class = "form-control", @ReadOnly = "true" })
+                    </td>
+                    <td style="font-weight:bold;">
+                        保管年限
+                    </td>
+                    <td>
+                        @Html.DropDownList("retentionPeriodID", null, new { @class = "form-control", @ReadOnly = "true" })
+                    </td>
+                </tr>
+
+                <tr>
+                    <td style="font-weight:bold;text-align:center;" colspan="2">
+                        共
+                        @Html.EditorFor(model => model.archiveBoxCnt, new { htmlAttributes = new { @class = "form-control",@style="display:inline;width:50px;", @ReadOnly = "true" } })
+                        @Html.ValidationMessageFor(model => model.archiveBoxCnt, "", new { @class = "text-danger" })
+                        卷，
+                        第
+                        @Html.EditorFor(model => model.archiveBoxNo, new { htmlAttributes = new { @class = "form-control", @style = "display:inline;width:50px;", @ReadOnly = "true" } })
+                        @Html.ValidationMessageFor(model => model.archiveBoxNo, "", new { @class = "text-danger" })
+                        卷，
+                        共
+                        @Html.EditorFor(model => model.pageCnt, new { htmlAttributes = new { @class = "form-control", @style = "display:inline;width:50px;", @ReadOnly = "true" } })
+                        @Html.ValidationMessageFor(model => model.pageCnt, "", new { @class = "text-danger" })
+                        页，
+                        其中图纸
+                        @Html.EditorFor(model => model.drawing, new { htmlAttributes = new { @class = "form-control", @style = "display:inline;width:50px;", @ReadOnly = "true" } })
+                        @Html.ValidationMessageFor(model => model.drawing, "", new { @class = "text-danger" })
+                        页
+                    </td>   
+                    <td style="font-weight:bold;">
+                        案卷厚度
+                    </td>
+                    <td>
+                        @Html.DropDownList("ArchiveThick", null, new { @class = "form-control", @ReadOnly = "true" })
+                    </td>                 
+                </tr>               
+                
+                <tr>
+                    <td style="font-weight:bold;">
+                        接受日期
+                    </td>
+                    <td>
+                        @Html.EditorFor(model => model.receiveTime, new { htmlAttributes = new { @class = "form-control", @ReadOnly = "true" } })
+                        @Html.ValidationMessageFor(model => model.receiveTime, "", new { @class = "text-danger" })
+                    </td>
+                    <td style="font-weight:bold;">
+                        录入日期
+                    </td>
+                    <td>
+                        @Html.EditorFor(model => model.luruTime, new { htmlAttributes = new { @class = "form-control", @ReadOnly = "true" } })
+                        @Html.ValidationMessageFor(model => model.luruTime, "", new { @class = "text-danger" })
+                    </td>
+                </tr>
+                <tr>
+                    <td style="font-weight:bold;">
+                        是否为异地
+                    </td>
+                    <td>
+                        @Html.EditorFor(model => model.isYD, new { htmlAttributes = new { @class = "form-control", @ReadOnly = "true" } })
+                        @Html.ValidationMessageFor(model => model.isYD, "", new { @class = "text-danger" })
+                    </td>
+                    <td style="font-weight:bold;">
+                        是否为内部
+                    </td>
+                    <td>
+                        @Html.DropDownList("isNeibu", null, new { @class = "form-control", @ReadOnly = "true" })
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <div style="text-align:center;">
+            <p>
+                @Html.ActionLink("编辑", "Edit", new { id = Model.ID }, new { @class = "btn btn-default" })
+                @Html.ActionLink("返回", "Index", new { status = Model.status.Trim(), classifyID = Model.classifyID }, new { @class = "btn btn-default" })
+            </p>
+        </div>
+    </div>
+        @*<h2>Details</h2>
+
+            <div>
+                <h4>PlanArchiveBox</h4>
+                <hr />
+                <dl class="dl-horizontal">
+                    <dt>
+                        @Html.DisplayNameFor(model => model.seqNo)
+
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.seqNo)
+                    </dd>
+
+                    <dt>
+                        盒号
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.boxNo)
+                    </dd>
+
+                    <dt>
+                        案卷题名
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.archiveNo)
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.regisNo)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.regisNo)
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.paijiaNo)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.paijiaNo)
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.archiveTitle)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.archiveTitle)
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.archiveCode)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.archiveCode)
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.bianzhiUnit)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.bianzhiUnit)
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.bianzhiDate)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.bianzhiDate)
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.securityID)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.securityID)
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.retentionPeriodID)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.retentionPeriodID)
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.archiveBoxCnt)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.archiveBoxCnt)
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.archiveBoxNo)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.archiveBoxNo)
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.pageCnt)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.pageCnt)
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.inchCnt)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.inchCnt)
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.classifyID)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.classifyID)
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.isArchive)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.isArchive)
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.textMatirial)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.textMatirial)
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.drawing)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.drawing)
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.photo)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.photo)
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.status)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.status)
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.yearNo)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.yearNo)
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.classify)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.classify)
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.boxID)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.boxID)
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.projectCnt)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.projectCnt)
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.projectNo)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.projectNo)
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.ArchiveThick)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.ArchiveThick)
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.storeLocation)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.storeLocation)
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.receiveTime)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.receiveTime)
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.luruTime)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.luruTime)
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.classSeqNo)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.classSeqNo)
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.isYD)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.isYD)
+                    </dd>
+
+                </dl>
+            </div>*@
+
+}

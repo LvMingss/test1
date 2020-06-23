@@ -1,0 +1,119 @@
+﻿
+<script>
+function Getcurpro()
+{
+    var textclass = document.getElementById("classid").value
+    
+    $.ajax({
+        type: "POST",
+        url: "/gxArchivesEnter/box/?id=" + textclass,
+        contentType: "application/string",
+        data: "",
+        dataType: "json",
+        success: function (data) {
+            document.getElementById('boxNo').value = data;
+            alert("已生成最大盒号！");
+        }
+    });
+}
+function Getcurpro1() {
+    var textclass = document.getElementById("classid").value
+    $.ajax({
+        type: "POST",
+        url: "/gxArchivesEnter/box/?id=" + textclass,
+        contentType: "application/string",
+        data: "",
+        dataType: "json",
+        success: function (data) {
+            document.getElementById('boxNo').value = data;
+            if (textclass == "1         ") {
+                document.getElementById('title').value = "建筑工程地下管线工程竣工测量文件";
+            }
+            if (textclass == "2         ") {
+                document.getElementById('title').value = "市政道路地下管线工程竣工测量文件";
+            }
+        }
+    });
+}
+</script>
+<script>
+    function ok()
+    {
+        document.getElementById("boxNo").readOnly = false;
+    }
+    </script>
+
+@using (Html.BeginForm())
+{
+    <h2 style="margin-top:0;"><i class="fa fa-tags kongge"></i>内部文件盒号及文件打印</h2>
+    <hr />
+<div class="panel panel-default">
+    <table class="table table-bordered " style="background-color:#f9f9f9;">
+        <tr>
+            <td style="background-color:#f9f9f9;width:15%;">
+                档案类型：
+            </td>
+            <td>
+                @Html.DropDownList("classifyID", null, new { @class = "form-control", @style = "display:inline;width:300px;" })
+                <div style="display:none">
+                    <input type="text" id="classid" name="classid" class="form-control" value="1">
+                    <script>
+                document.getElementById("classifyID").onchange = function ()
+                {
+                    document.getElementById("classid").value = this.options[this.options.selectedIndex].value;
+                    Getcurpro1();
+                }
+                    </script>
+                    </div>
+</td>
+        </tr>
+        <tr>
+            <td style="background-color:#f9f9f9;width:10%;">
+                起始项目顺序号：
+            </td>
+            <td colspan="3">
+                <input type="text" id="NoS" name="NoS" class="form-control"style="max-width:100%">
+            </td>
+        </tr>
+        <tr>
+            <td style="background-color:#f9f9f9;width:10%;">
+                文件所在盒号：
+            </td>
+            <td colspan="3">
+                <input type="text" id="boxNo" name="boxNo" class="form-control"style="display:inline"readonly="readonly" value="@ViewBag.box">
+
+                <input type="button" id="edit" name="edit" value="生成最大盒号" class="btn btn-default" onclick="Getcurpro();">     <input type="button" id="edit" name="edit" value="编辑最大盒号"class="btn btn-default"onclick="ok();"><label style="display:inline;color:red">该选项将改变盒号生成顺序且不可恢复，请谨慎操作。</label>
+        </td>
+        </tr>
+        
+        <tr>
+            <td style="background-color:#f9f9f9;width:10%;">
+                起始日期：
+            </td>
+            <td>
+                <input type="text" id="dataf" name="dataf" class="form-control"style="max-width:100%">
+            </td>
+            <td style="background-color:#f9f9f9;width:10%;">
+                终止日期：
+            </td>
+            <td>
+                <input type="text" id="datae" name="datae" class="form-control"style="max-width:100%">
+            </td>
+        </tr>
+        <tr>
+            <td style="background-color:#f9f9f9;width:10%;">
+                输入文件标题：
+            </td>
+            <td colspan="3">
+                <input type="text" id="title" name="title" class="form-control" style="max-width:100%"value="@ViewBag.title">
+            </td>
+        </tr>
+        </table>
+    </div>
+    <div style="text-align:center;">
+        <input type="submit" value="保存盒号" name="action" run at="server" class="btn btn-default">
+            <input type="submit" value="打印内部文件封皮" name="action" run at="server" class="btn btn-default">
+            <input type="submit" value="打印内部文件备考表" name="action" run at="server" class="btn btn-default">
+            <input type="submit" value="打印内部文件目录" name="action" run at="server" class="btn btn-default">
+        </div>
+}

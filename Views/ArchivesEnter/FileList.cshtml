@@ -1,0 +1,639 @@
+﻿@model IEnumerable<urban_archive.Models.FileInfo>
+<style type="text/css">
+    .jubu {
+        max-width: 100%;
+    }
+</style>
+@*<link href="~/Content/AdminLTE-2.3.7/dist/css/AdminLTE.min.css" rel="stylesheet" />
+
+<link href="~/Content/AdminLTE-2.3.7/dist/css/skins/_all-skins.min.css" rel="stylesheet" />*@
+<!-- FastClick -->
+<!-- AdminLTE App -->
+
+<!-- AdminLTE for demo purposes -->
+
+
+@*<link href="~/Content/jquery-ui.theme.css" rel="stylesheet" />*@
+<link href="~/Content/Tabulator/version3.0/tabulator.css" rel="stylesheet" />
+<script src="~/Scripts/jquery-ui.min.js"></script>
+<script src="~/Content/Tabulator/version3.0/tabulator.js"></script>
+@*<script src="~/Content/AdminLTE-2.3.7/bootstrap/js/bootstrap.min.js"></script>*@
+@*<script src="~/Content/AdminLTE-2.3.7/dist/js/app.min.js"></script>
+<script src="~/Content/AdminLTE-2.3.7/dist/js/demo.js"></script>*@
+
+
+
+    
+    <script type="text/javascript">
+    function del() {
+        var msg = "确认要删除吗?";
+        if (confirm(msg) == true) {
+            return true;
+        } else {
+            return false;
+        }
+    }                             //删除确认对话框
+
+
+
+
+    var h= function (value, data, cell, row, options) {
+        return "<i class='fa fa-pencil-square-o' style='color:#428bca;;vertical-align:middle; padding:2px 0;'></i> "
+    };
+    var m = function (value, data, cell, row, options) {
+        return "<i class='fa fa-search-plus' style='color:#428bca;;vertical-align:middle; padding:2px 0;'></i> "
+    };
+    var j = function (value, data, cell, row, options) {
+        return "<i class='fa fa-trash-o' style='color:#428bca;;vertical-align:middle; padding:2px 0;'></i>"
+    };
+
+    $().ready(function () {//在页面加载完成之后用，为了保证js能完整的执行。
+        $(document).ready(function () {
+            var a = $(window).height();
+            var hh = a-400;
+            $(".box-h").height(hh)  // 高度加在类名为box的DIV 上
+
+        })
+        //
+        $("#example-table-2").tabulator({
+            height: 350,
+            virtualDom:false,
+            fitColumns:true,      
+            
+            selectable:true,
+            pagination:"local",
+            paginationSize:25,
+            columns: [
+       {
+           title: "修改", field: "h", width: 50 ,formatter:h,headerSort: false,sorter: "string", align: "center", cellClick: function (e,cell) {
+
+               var url = '/ArchivesEnter/FileList?id1=' + cell.getValue();
+               window.location.href = url;
+           }
+       },
+
+            {
+                title: "查看", field: "i", width: 50 ,formatter:m, headerSort: false,sorter: "string", align: "center",cellClick: function (e,cell) {
+                    var url = '/ArchivesEnter/Details?id=' + cell.getValue();
+
+                    window.location.href = url;
+                }
+            },
+            {
+                title: "删除", field: "j", width:50 ,formatter:j, sorter: "string", headerSort: false,align: "center", cellClick: function (e,cell) {
+
+                    if(del()){
+                        var url = '/ArchivesEnter/Delete?id=' + cell.getValue();
+                        window.location.href =url;
+                    }
+
+                }
+            },
+            { title: "序号", field: "a",headerSort: false,width: 50 },
+            { title: "文件编号", field: "b", headerSort: false,width: 150 },
+            { title: "文件材料题名", field: "c",headerSort: false, },
+            { title: "责任者", field: "d", headerSort: false, },
+            { title: "类型", field: "e", headerSort: false,width: 50 },
+            { title: "起页", field: "f", headerSort: false,width: 50 },
+            { title: "起始日期", field: "g", headerSort: false,minWidth: 100 },
+
+
+            ],
+        });
+
+        var temp = new Array();
+        var data=@(new HtmlString(@ViewBag.result));
+        for (var i = 0; i < data.length;i++) {
+            //    var b = data[i].startDate
+
+            //    if(b!=null){
+            //        var result = b.slice(0,106)
+
+            //        //var result = date.getFullYear()+'/'+(parseInt(date.getMonth())+1)+'/'+date.getDate()
+
+            //    }
+
+            temp.push({ "id": i + 1, "a": data[i].seqNo, "b": data[i].fileNo, "c": data[i].fileName, "d": data[i].responsible,"e":data[i].type,"f":data[i].startPageNo,"g":data[i].startDate,"h": data[i].archivesNo+"&id2=2"+"&id="+data[i].id,"i": data[i].id+"&archivesNo="+data[i].archivesNo,"j": data[i].id+"&id2="+data[i].archivesNo, "n": data[i].id,"q": data[i].archivesNo});
+        }
+
+        $("#example-table-2").tabulator("setData", temp);
+        $(window).resize(function () {
+            var a = $(window).height();
+            var hh = a-400;
+            $(".box-h").height(hh)  // 高度加在类名为box的DIV 上
+            $("#example-table-2").tabulator("redraw",true);
+        });
+
+    });
+    function LuruFinsh()
+    {
+        alert("该案卷卷内文件已录入完毕");
+        document.getElementById("LuruFinsh1").disabled=true;
+
+        document.getElementById("juanniemulu").disabled=false;
+
+    }
+    </script>
+    <script>
+    //$(function () {
+    //    $("#startDate").datepicker({
+    //        changeMonth: true,
+    //        changeYear: true
+    //    });
+    //});
+    function Onfocus1()//单击显示数据列表1
+    {
+        $.ajax({
+            url: '../../ArchivesEnter/title',
+            data:{},
+            type: 'post',
+            dataType: 'json',
+            success: function (data) {
+                $("#select1").empty();
+                var objSelectNow = document.getElementById("select1");
+                var nameid= document.getElementById("filenameid").value;
+        
+                for (var j = 0; j < data.length; j++) {
+                    var objOption = document.createElement("OPTION");
+                    objOption.text = data[j].name;
+                    objOption.value = data[j].ID;
+                    objSelectNow.options.add(objOption);
+                    if(data[j].ID==nameid)
+                    {
+                        objOption.selected=true;
+                    }
+                    document.getElementById("select1").style.display="block";
+                    document.getElementById("select2").style.display="none";
+                    document.getElementById("delete").style.display="block";
+                }
+
+                $("#select3").empty();
+                var objSelectNow = document.getElementById("select3");
+                var nameid1= document.getElementById("filenameid1").value;
+                for (var j = 0; j < data.length; j++) {
+                    var objOption = document.createElement("OPTION");
+                    objOption.text = data[j].name;
+                    objOption.value = data[j].ID;
+                    objSelectNow.options.add(objOption);
+                    if(data[j].ID==nameid1)
+                    {
+                        objOption.selected=true;
+                    }
+                    document.getElementById("select3").style.display="block";
+                    document.getElementById("select4").style.display="none";
+                    document.getElementById("delete1").style.display="block";
+                }
+
+
+            }
+        })
+    }
+    function Onfocus2()//单击显示数据列表2
+    {
+        $.ajax({
+            url: '../../ArchivesEnter/Responser',
+            data: {},
+            type: 'post',
+            dataType: 'json',
+            success: function (data) {
+                var objSelectNow = document.getElementById("select2");
+                var res= document.getElementById("responsibleid").value;
+                $("#select2").empty();
+                for (var j = 0; j < data.length; j++) {
+                    var objOption = document.createElement("OPTION");
+                    objOption.text = data[j].name;
+                    objOption.value = data[j].ID;
+                    objSelectNow.options.add(objOption);
+                    if(data[j].ID==res)
+                    {
+                        objOption.selected=true;
+                    }
+                    document.getElementById("select2").style.display="block";
+                    document.getElementById("select1").style.display="none";
+                    document.getElementById("delete").style.display="block";
+                }
+                var objSelectNow = document.getElementById("select4");
+                var res1= document.getElementById("responsibleid1").value;
+                $("#select4").empty();
+                for (var j = 0; j < data.length; j++) {
+                    var objOption = document.createElement("OPTION");
+                    objOption.text = data[j].name;
+                    objOption.value = data[j].ID;
+                    objSelectNow.options.add(objOption);
+                    if(data[j].ID==res1)
+                    {
+                        objOption.selected=true;
+                    }
+                    document.getElementById("select4").style.display="block";
+                    document.getElementById("select3").style.display="none";
+                    document.getElementById("delete1").style.display="block";
+                }
+
+            }
+        })
+    }
+    function titletj()//弹出对话框1
+    {
+        var obj = new Object();
+        obj.number = "1";
+        obj.name = "文件材料题名";
+        obj.id = document.all.select1.options[document.all.select1.selectedIndex].value;
+        name = window.showModalDialog('./../window', obj, 'dialogWidth=600px;dialogHeight=300px');
+        //弹出模型对话框，obj为传值参数,name为子页面返回参数
+        if(name!="undefined")
+        {
+            document.getElementById("fileName").value = name;
+        }
+        else
+        {
+            document.getElementById("fileName").value = "";
+        }
+    }
+    function responsertj()//弹出对话框2
+    {
+        //var obj1 = document.all.select1.options[document.all.select1.selectedIndex];
+        var obj = new Object();
+        obj.number = "2";
+        obj.name = "责任者";
+        obj.id = document.all.select2.options[document.all.select2.selectedIndex].value;//获取选择id
+        name = window.showModalDialog('./../window', obj, 'dialogWidth=600px;dialogHeight=300px');
+        if(name!="undefined")
+        {
+            document.getElementById("responsible").value = name;
+        }
+        else
+        {
+            document.getElementById("responsible").value = "";
+        }
+    }
+    function titletj1()//弹出对话框1
+    {
+        var obj = new Object();
+        obj.number = "1";
+        obj.name = "文件材料题名";
+        obj.id = document.all.select3.options[document.all.select3.selectedIndex].value;//获取选择id
+        name = window.showModalDialog('./window', obj, 'dialogWidth=600px;dialogHeight=300px');
+        //弹出模型对话框，obj为传值参数,name为子页面返回参数
+        if(name!="undefined")
+        {
+            document.getElementById("fileName1").value = name;
+        }
+        else
+        {
+            document.getElementById("fileName1").value = "";
+        }
+    }
+    function responsertj1()//弹出对话框2
+    {
+        //var obj1 = document.all.select1.options[document.all.select1.selectedIndex];
+        var obj = new Object();
+        obj.number = "2";
+        obj.name = "责任者";
+        obj.id = document.all.select4.options[document.all.select4.selectedIndex].value;
+        name = window.showModalDialog('./window', obj, 'dialogWidth=600px;dialogHeight=300px');
+        
+        if(name!="undefined")
+        {
+            document.getElementById("responsible1").value = name;
+        }
+        else
+        {
+            document.getElementById("responsible1").value = "";
+        }
+    }
+    //function del() {
+    //    var msg = "确认要删除吗?";
+    //    if (confirm(msg) == true) {
+    //        return true;
+    //    } else {
+    //        return false;
+    //    }
+    //}     //删除确认对话框
+    function addnew()
+    {
+        if (document.getElementById("table").style.display != "block") {
+            document.getElementById("table").style.display = "inline-block";
+        }
+        else {
+            document.getElementById("table").style.display = "none";
+        }
+    }
+    //function saveok() {
+    //    var msg = "确认要修改吗?";
+    //    if (confirm(msg) == true) {
+    //        return true;
+    //    } else {
+    //        return false;
+    //    }
+    //}
+    </script>
+    @*<h2 style="margin:0px;font-size:22px;"><i class="fa fa-tags kongge"></i>卷内文件信息</h2>*@
+    
+
+    @using (Html.BeginForm("Edit", "ArchivesEnter", FormMethod.Post))
+    {
+
+        <div id="edit" style="@ViewBag.Edit">
+            @Html.AntiForgeryToken()
+            @*@Html.HiddenFor(model => model.id)*@
+            <input type="text" id="id" name="id" value="@ViewBag.id" style="display:none;">
+            <div class="form-horizontal">
+                <h2 style="margin:0px;font-size:22px;"><i class="fa fa-tags kongge"></i>修改文件信息</h2>
+                <hr>
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                <div class="panel panel-default" >
+                    <table class="table table-bordered " style="background-color:#f9f9f9;text-align:center;">
+                        <tr>
+                            <td style="background-color:#f9f9f9;width:6%;min-width:130px;font-weight:bold;">
+                                序号
+                            </td>
+                            <td width="47%">
+                                <input type="text" id="seqNo" name="seqNo" value="@ViewBag.seqNo" class="form-control" style="display:inline;height:28px;padding:3px;">
+                                @*@Html.EditorFor(model => model.seqNo, new { htmlAttributes = new { @class = "form-control", @style = "display:inline;height:28px;padding:3px;" } })
+                                    @Html.ValidationMessageFor(model => model.seqNo, "", new { @class = "text-danger" })*@
+                            </td>
+                            <td align="center" rowspan="8">
+                                <select ondblclick="titletj1();" id="select3" size="14" style="display:none;" class="form-control jubu"></select>
+                                <select ondblclick="responsertj1();" id="select4" size="14" style="display:none;" class="form-control jubu"></select>
+
+
+                                <script type="text/javascript">
+                                    document.getElementById("select3").onchange = function () {
+                                        document.getElementById("fileName1").value = this.options[this.options.selectedIndex].text;
+                                        document.getElementById("DELETE_ID1").value = this.options[this.options.selectedIndex].value + "-" + 1
+                                    }
+                                    document.getElementById("select4").onchange = function () {
+                                        document.getElementById("responsible1").value = this.options[this.options.selectedIndex].text;
+                                        document.getElementById("DELETE_ID1").value = this.options[this.options.selectedIndex].value + "-" + 2
+                                    }
+                                </script>
+
+                                <input type="submit" id="delete1" value="删除词条"class="btn btn-primary" onclick="return del()" name="action" style="display:none;" >
+                                <input type="text" id="DELETE_ID1" name="DELETE_ID1" class="form-control" style="display:none">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="background-color:#f9f9f9;font-weight:bold;">
+                                类型
+                            </td>
+                            <td>
+                                @Html.DropDownList("SelectedID", null, new { @class = "form-control", @style = "display:inline;height:28px;padding:3px;" })
+                                @*@Html.EditorFor(model => model.type, new { htmlAttributes = new { @class = "form-control", @style = "display:inline;height:28px;padding:3px;" } })
+                                    @Html.ValidationMessageFor(model => model.type, "", new { @class = "text-danger" })*@
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="background-color:#f9f9f9;font-weight:bold;">
+                                文件编号
+                            </td>
+                            <td>
+                                <input type="text" id="fileNo" name="fileNo" value="@ViewBag.fileNo" class="form-control" style="display:inline;height:28px;padding:3px;">
+                                @*@Html.EditorFor(model => model.fileNo, new { htmlAttributes = new { @class = "form-control", @style = "display:inline;height:28px;padding:3px;" } })
+                                @Html.ValidationMessageFor(model => model.fileNo, "", new { @class = "text-danger" })*@
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="background-color:#f9f9f9;font-weight:bold;">
+                                文件材料题名
+                            </td>
+                            <td>
+                                <input type="text" id="fileName1" name="fileName1" value="@ViewBag.fileName" onclick="Onfocus1()" class="form-control" style="display:inline;height:28px;padding:3px;max-width:100%;" />
+                                <input type="text" id="filenameid1" style="display:none" name="filenameid1" value="@ViewBag.filenameid1">
+                                @*@Html.ValidationMessageFor(model => model.fileName, "", new { @class = "text-danger" })*@
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="background-color:#f9f9f9;font-weight:bold;">
+                                责任者
+                            </td>
+                            <td>
+                                <input type="text" id="responsible1" name="responsible1" value="@ViewBag.responsible" onclick="Onfocus2()" class="form-control" style="display:inline;height:28px;padding:3px;max-width:100%;" />
+                                <input type="text" id="responsibleid1" style="display:none" name="responsibleid1" value="@ViewBag.responsibleid1">
+                                @*@Html.ValidationMessageFor(model => model.responsible, "", new { @class = "text-danger" })*@
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td style="background-color:#f9f9f9;font-weight:bold;">
+                                起止页次
+                            </td>
+                            <td>
+                                <input type="text" id="startPageNo" name="startPageNo" value="@ViewBag.startPageNo" class="form-control" style="display:inline;height:28px;padding:3px;">
+                                @*@Html.EditorFor(model => model.startPageNo, new { htmlAttributes = new { @class = "form-control", @style = "display:inline;height:28px;padding:3px;" } })
+                                @Html.ValidationMessageFor(model => model.startPageNo, "", new { @class = "text-danger" })*@ <br />页次格式：1或1-10
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="background-color:#f9f9f9;font-weight:bold;">
+                                编制日期
+                            </td>
+                            <td>
+                                <input type="text" id="startDate" name="startDate" value="@ViewBag.startDate" class="form-control" style="display:inline;height:28px;padding:3px;">
+                                @*@Html.EditorFor(model => model.startDate, new { htmlAttributes = new { @class = "form-control", @style = "display:inline;height:28px;padding:3px;" } })
+                                @Html.ValidationMessageFor(model => model.startDate, "", new { @class = "text-danger" })*@
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="background-color:#f9f9f9;font-weight:bold;">
+                                备注
+                            </td>
+                            <td>
+                                <input type="text" id="remarks" name="remarks" value="@ViewBag.remarks" class="form-control" style="display:inline;height:28px;padding:3px;">
+                                @*@Html.EditorFor(model => model.remarks, new { htmlAttributes = new { @class = "form-control", @style = "display:inline;height:28px;padding:3px;" } })
+                                @Html.ValidationMessageFor(model => model.remarks, "", new { @class = "text-danger" })*@
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+
+
+
+                <div style="text-align:center;">
+                    <input type="submit" value="修改" name="action" run at="server" class="btn btn-primary" @*onclick="return saveok()"*@>
+                    <input type="submit" value="上一页" name="action" class="btn btn-primary" disabled="@ViewData["button1"]">
+                    <input type="submit" value="下一页" name="action" class="btn btn-primary" disabled="@ViewData["button2"]">
+                    @*<input type="submit" value="返回" name="action" class="btn btn-default">*@
+                    <div style="height:20px;">
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+@using (Html.BeginForm("FileList", "ArchivesEnter", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+    
+
+        @*<div style="display:none" id="table">
+            <div id="example-table-2" class="box-h" style="overflow:auto;display:inline-block"> </div>
+            </div>
+            <input type="button" value="123" onclick="addnew()" class="btn btn-primary">*@
+    
+
+        <div id="add" style="@ViewBag.add">
+            @*@Html.HiddenFor(model => model.id)*@
+            <input type="text" id="id" name="id" value="@ViewBag.id" style="display:none;">
+            <div class="form-horizontal">
+                <h2 style="margin:0px;font-size:22px;"><i class="fa fa-tags kongge"></i>添加文件信息</h2>
+                <hr>
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                <div class="panel panel-default" >
+                    <table class="table table-bordered " style="background-color:#f9f9f9;text-align:center;">
+                        <tr>
+                            <td style="background-color:#f9f9f9;width:6%;min-width:130px; font-weight:bold;">
+                                序号
+                            </td>
+                            <td width="47%">
+                                <input type="text" id="seqNo" name="seqNo" value="@ViewBag.seqNo" class="form-control" style="display:inline;height:28px;padding:3px;">
+                                @*@Html.EditorFor(model => model.seqNo, new { htmlAttributes = new { @class = "form-control", @style = "display:inline;height:28px;padding:3px;" } })
+                                @Html.ValidationMessageFor(model => model.seqNo, "", new { @class = "text-danger" })*@
+                            </td>
+                            <td align="center" rowspan="8">
+                                <select ondblclick="titletj();" id="select1" size="14" style="display:none;" class="form-control jubu"></select>
+                                <select ondblclick="responsertj();" id="select2" size="14" style="display:none;" class="form-control jubu"></select>
+
+
+                                <script type="text/javascript">
+                                    document.getElementById("select1").onchange = function () {
+                                        document.getElementById("fileName").value = this.options[this.options.selectedIndex].text;
+                                        document.getElementById("DELETE_ID").value = this.options[this.options.selectedIndex].value + "-" + 1
+                                    }
+                                    document.getElementById("select2").onchange = function () {
+                                        document.getElementById("responsible").value = this.options[this.options.selectedIndex].text;
+                                        document.getElementById("DELETE_ID").value = this.options[this.options.selectedIndex].value + "-" + 2
+                                    }
+                                </script>
+
+                                <input type="submit" id="delete" value="删除词条" class="btn btn-primary" onclick="return del()" style="display:none;" name="action">
+                                <input type="text" id="DELETE_ID" name="DELETE_ID" class="form-control" style="display:none">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="background-color:#f9f9f9;font-weight:bold;">
+                                类型
+                            </td>
+                            <td>
+                                @Html.DropDownList("SelectedID", null, new { @class = "form-control", @style = "display:inline;height:28px;padding:3px;" })
+                                @*<input type="text" id="type" name="type"class="form-control" style="display:inline;height:28px;padding:3px;">*@
+                                @*@Html.EditorFor(model => model.type, new { htmlAttributes = new { @class = "form-control", @style = "display:inline;height:28px;padding:3px;" } })
+                                @Html.ValidationMessageFor(model => model.type, "", new { @class = "text-danger" })*@
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="background-color:#f9f9f9;font-weight:bold;">
+                                文件编号
+                            </td>
+                            <td>
+                                <input type="text" id="fileNo" name="fileNo" class="form-control" style="display:inline;height:28px;padding:3px;">
+
+                                @*@Html.EditorFor(model => model.fileNo, new { htmlAttributes = new { @class = "form-control", @style = "display:inline;height:28px;padding:3px;" } })
+                                @Html.ValidationMessageFor(model => model.fileNo, "", new { @class = "text-danger" })*@
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="background-color:#f9f9f9;font-weight:bold;">
+                                文件材料题名
+                            </td>
+                            <td>
+                                <input type="text" id="fileName" name="fileName" onclick="Onfocus1()" class="form-control" style="display:inline;height:28px;padding:3px;max-width:100%;" />
+                                <input type="text" id="filenameid" style="display:none" name="filenameid" value="@ViewBag.filenameid">
+                                @*@Html.ValidationMessageFor(model => model.fileName, "", new { @class = "text-danger" })*@
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="background-color:#f9f9f9;font-weight:bold;">
+                                责任者
+                            </td>
+                            <td>
+                                <input type="text" id="responsible" name="responsible" onclick="Onfocus2()" class="form-control" style="display:inline;height:28px;padding:3px;max-width:100%;" />
+                                <input type="text" id="responsibleid" style="display:none" name="responsibleid" value="@ViewBag.responsibleid">
+                                @*@Html.ValidationMessageFor(model => model.responsible, "", new { @class = "text-danger" })*@
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td style="background-color:#f9f9f9;font-weight:bold;">
+                                起止页次
+                            </td>
+                            <td>
+                                <input type="text" id="startPageNo" name="startPageNo" value="@ViewBag.startPageNo" class="form-control" style="display:inline;height:28px;padding:3px;">
+                                @*@Html.EditorFor(model => model.startPageNo, new { htmlAttributes = new { @class = "form-control", @style = "display:inline;height:28px;padding:3px;" } })
+                                @Html.ValidationMessageFor(model => model.startPageNo, "", new { @class = "text-danger" })*@ <br />页次格式：1或1-10
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="background-color:#f9f9f9;font-weight:bold;">
+                                编制日期
+                            </td>
+                            <td>
+                                <input type="text" id="startDate" name="startDate" class="form-control" style="display:inline;height:28px;padding:3px;">
+                                @*@Html.EditorFor(model => model.startDate, new { htmlAttributes = new { @class = "form-control", @style = "display:inline;height:28px;padding:3px;" } })
+                                @Html.ValidationMessageFor(model => model.startDate, "", new { @class = "text-danger" })*@
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="background-color:#f9f9f9;font-weight:bold;">
+                                备注
+                            </td>
+                            <td>
+                                <input type="text" id="remarks" name="remarks" class="form-control" style="display:inline;height:28px;padding:3px;">
+                                @*@Html.EditorFor(model => model.remarks, new { htmlAttributes = new { @class = "form-control", @style = "display:inline;height:28px;padding:3px;" } })
+                                @Html.ValidationMessageFor(model => model.remarks, "", new { @class = "text-danger" })*@
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+
+                <input type="text" id="registion" name="registion" hidden="hidden" value="@ViewData["registion"]" />
+
+                <div style="text-align:center;">
+
+
+                    <input type="submit" value="确定" @*onclick="addnew()"*@ name="action" class="btn btn-primary">
+
+                    <input type="submit" value="取消" name="action" class="btn btn-primary">
+                    <div style="height:20px;">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="box-tools " style="text-align:center;">
+            <div style="height:5px;">
+            </div>
+            <input type="submit" value="添加" name="action" @*onclick="addnew()"*@ class="btn btn-primary">
+            <input type="button" value="录入完毕" id="LuruFinsh1" onclick="return LuruFinsh()" class="btn btn-primary">
+            <input type="submit" value="打印卷内目录" id="juanniemulu" name="action" disabled="@ViewData["juanniemulu"]" class="btn btn-primary">
+            <input type="submit" value="返回案卷信息" name="action" class="btn btn-primary">
+            <input name="ArchiveNo" value="@ViewData["ArchiveNo"]" id="ArchiveNo" hidden="hidden">
+        </div>
+        <div style="text-align:center;">
+            <div style="height:7px;">
+            </div>
+            @*<input type="submit" value="导出为Excel" name="action" class="btn btn-primary" style="display:@ViewData["lvming"]">*@
+            <input id="FileUpload" type="file" name="FileUpload" class="inline" style="display:@ViewData["lvming"]" /> <input type="submit" value="导入Excel" name="action" class="btn btn-primary" style="display:@ViewData["lvming"]">
+        </div>
+        <hr>
+        <div style="background:#ecf0f5;">
+
+            @*<div class="box collapsed-box">*@
+            <div class="box box-default">
+                <div class="box-header with-border">
+                    <h2 style="margin:0px;font-size:22px;" class="box-title"><i class="fa fa-tags kongge"></i>卷内文件信息</h2>
+                    <hr>
+                    <label id="tishi" style="@ViewData["div"];color:red">该案卷未添加卷内目录!</label>
+                    @*<div class="box-tools pull-right">
+                        <button class="btn btn-box-tool" type="button" data-widget="collapse">
+                            <i class="fa fa-minus"></i>
+                        </button>
+                    </div>*@
+                </div>
+                <div class="box-body" id="body">
+                    <div id="example-table-2" > </div>
+                </div>
+            </div>
+            
+
+        </div>
+}

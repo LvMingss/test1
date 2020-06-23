@@ -1,0 +1,161 @@
+﻿@model urban_archive.Models.LicenceFiles
+
+@{
+    ViewBag.Title = "执照档案";
+}
+
+<h2><i class="fa fa-tags kongge"></i>卷内目录</h2>
+
+<div>
+    <hr />
+    <div class="panel panel-default">
+        <table class="table table-bordered dl-horizontal">
+            <tr>
+                <td style="background-color:#f9f9f9;font-weight:bold;width:140px;">
+                    案卷序号
+                </td>
+                <td colspan="3">
+                    @Html.DisplayFor(model => model.archiveID)
+                </td>
+            </tr>
+            <tr>
+                <td style="background-color:#f9f9f9;font-weight:bold;">
+                    卷内序号
+                </td>
+                <td colspan="3">
+                    @Html.DisplayFor(model => model.juanneiSeqNo)
+                </td>
+            </tr>
+            <tr>
+                <td style="background-color:#f9f9f9;font-weight:bold;">
+                    文件编号
+                </td>
+                <td colspan="3">
+                    @Html.DisplayFor(model => model.fileNo)
+                </td>
+            </tr>
+            <tr>
+                <td style="background-color:#f9f9f9;font-weight:bold;">
+                    文件材料题名
+                </td>
+                <td colspan="3">
+                    @Html.DisplayFor(model => model.fileTitle)
+                </td>
+            </tr>
+            <tr>
+                <td style="background-color:#f9f9f9;font-weight:bold;">
+                    责任者
+                </td>
+                <td colspan="3">
+                    @Html.DisplayFor(model => model.resUnit)
+                </td>
+            </tr>
+            <tr>
+                <td style="background-color:#f9f9f9;font-weight:bold;">
+                    起止页次
+                </td>
+                <td colspan="3">
+                    @Html.DisplayFor(model => model.pageNo)
+                </td>
+            </tr>
+            <tr>
+                <td style="background-color:#f9f9f9;font-weight:bold;">
+                    编制日期
+                </td>
+                <td  colspan="3">
+                    @Html.DisplayFor(model => model.bianzhiDate)
+                </td>                
+            </tr>
+            <tr>
+                <td style="background-color:#f9f9f9;font-weight:bold;">
+                    是否为内部文件
+                </td>
+                <td colspan="3">
+                    @Html.DisplayFor(model => model.isNeibu)
+                </td>
+            </tr>
+            <tr>
+                <td style="background-color:#f9f9f9;font-weight:bold;">
+                   备注
+                </td>
+                <td colspan="3">
+                    @Html.DisplayFor(model => model.remarks)
+                </td>
+
+            </tr>
+        </table>
+    </div>
+            @*<dl class="dl-horizontal">
+                <dt>
+                    案卷序号
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.archiveID)
+                </dd>
+
+                <dt>
+                    卷内序号
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.juanneiSeqNo)
+                </dd>
+
+                <dt>
+                    文件编号
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.fileNo)
+                </dd>
+
+                <dt>
+                    文件材料题名
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.fileTitle)
+                </dd>
+
+                <dt>
+                    责任者
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.resUnit)
+                </dd>
+
+                <dt>
+                    起止页次
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.pageNo)
+                </dd>
+
+                <dt>
+                    编制日期
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.bianzhiDate)
+                </dd>
+
+                <dt>
+                    备注
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.remarks)
+                </dd>
+
+            </dl>*@
+    </div>
+<div style="text-align:center;">
+    <p style="margin-top:21px;">
+        @*@Html.ActionLink("修改", "Edit", new { id = Model.ID }, new { @class = "btn btn-default" }) |*@
+        @Html.ActionLink("返回该卷目录", "Index", new { archiveID = Model.archiveID,id=0,id1=0 }, new { @class = "btn btn-default" })
+    </p>
+</div>
+    

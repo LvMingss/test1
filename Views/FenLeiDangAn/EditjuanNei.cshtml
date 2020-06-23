@@ -1,0 +1,128 @@
+﻿@model urban_archive.Models.fenleiFile
+@{
+    ViewBag.Title = "Edit";
+}
+@section css{
+    <link type="text/css" rel="stylesheet" href="~/Scripts/jquery/jquery-ui.css">
+}
+@section scripts{
+    <script type="text/javascript" src="~/Scripts/jquery/jquery-1.8.3.js"></script>
+    <script type="text/javascript" src="~/Scripts/jquery/jquery.ui.core.js"></script>
+    <script type="text/javascript" src="~/Scripts/jquery/jquery.ui.datepicker.js"></script>
+    <script type="text/javascript" src="~/Scripts/jquery/jquery.ui.widget.js"></script>
+    <script type="text/javascript" src="~/Scripts/jquery/jquery-ui-timepicker-addon.js"></script>
+    @*<script type="text/javascript" src="~/Scripts/jquery/jquery-ui-timepicker-zh-CN.js"></script>*@
+    <script>
+            $(function () {
+                $("#Date").datepicker({
+                    changeMonth: true,
+                    changeYear: true
+                });
+            });
+
+            function del() {
+                var msg = "确认要删除吗?";
+                if (confirm(msg) == true) {
+                    return true;
+                } else {
+                    return false;
+                }
+            }                             //删除确认对话框
+
+    </script>
+}
+
+
+@using (Html.BeginForm("EditjuanNei", "FenLeiDangAn", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+    @Html.HiddenFor(model => model.id)
+
+    <div class="form-horizontal">
+        <h2 style="margin-top:0;"><i class="fa fa-tags kongge"></i>当前文件信息</h2>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="panel panel-default">
+            <table class="table table-bordered " style="background-color:#f9f9f9;text-align:center;">
+                <tr>
+                    <td style="background-color:#f9f9f9;width:10%;">
+                        序号
+                    </td>
+                    <td width="40%">
+                        @Html.EditorFor(model => model.seqNo, new { htmlAttributes = new { @class = "form-control", @style = "display:inline;" } })
+                        @Html.ValidationMessageFor(model => model.seqNo, "", new { @class = "text-danger" })
+                    </td>
+                </tr>
+
+                <tr>
+                    <td style="background-color:#f9f9f9;width:10%;">
+                        文件编号
+                    </td>
+                    <td>
+                        @Html.EditorFor(model => model.fileNo, new { htmlAttributes = new { @class = "form-control", @style = "display:inline;" } })
+                        @Html.ValidationMessageFor(model => model.fileNo, "", new { @class = "text-danger" })
+                    </td>
+                </tr>
+                <tr>
+                    <td style="background-color:#f9f9f9;width:10%;">
+                        文件材料题名
+                    </td>
+                    <td width="40%">
+                        @Html.EditorFor(model => model.fileName, new { htmlAttributes = new { @class = "form-control", @style = "display:inline;" } })
+                        @Html.ValidationMessageFor(model => model.fileName, "", new { @class = "text-danger" })
+                    </td>
+
+                </tr>
+                <tr>
+                    <td style="background-color:#f9f9f9;width:10%;">
+                        责任者
+                    </td>
+                    <td width="40%">
+                        @Html.EditorFor(model => model.responsible, new { htmlAttributes = new { @class = "form-control", @style = "display:inline;" } })
+                        @Html.ValidationMessageFor(model => model.responsible, "", new { @class = "text-danger" })
+                    </td>
+                </tr>
+                <tr>
+                    <td style="background-color:#f9f9f9;width:10%;">
+                        页次
+                    </td>
+                    <td width="40%">
+                        @Html.EditorFor(model => model.PageNo, new { htmlAttributes = new { @class = "form-control", @style = "display:inline;" } })
+                        @Html.ValidationMessageFor(model => model.PageNo, "", new { @class = "text-danger" }) <br />页次格式：1或1-10
+                        @*<input type="text" id="ClassNo" name="ClassNo" value="页次格式：1或1-10" class="form-control" style="border:0px;font-weight:bold;color:red" />*@
+                    </td>
+
+                </tr>
+                <tr>
+                    <td style="background-color:#f9f9f9;width:10%;">
+                        日期
+                    </td>
+                    <td width="40%">
+                        @Html.EditorFor(model => model.Date, new { htmlAttributes = new { @class = "form-control", @style = "display:inline;" } })
+                        @Html.ValidationMessageFor(model => model.Date, "", new { @class = "text-danger" })<br />日期格式：2010.3.12或2010.3.12-2010.3.20
+                        @*<input type="text" id="ClassNo" name="ClassNo" value="日期格式：2010.3.12或2010.3.12-2010.3.20" class="form-control" style="border:0px;font-weight:bold;color:red" />*@
+                    </td>
+                </tr>
+                <tr>
+                    <td style="background-color:#f9f9f9;width:10%;">
+                        备注
+                    </td>
+                    <td>
+                        @Html.EditorFor(model => model.remarks, new { htmlAttributes = new { @class = "form-control", @style = "display:inline;" } })
+                        @Html.ValidationMessageFor(model => model.remarks, "", new { @class = "text-danger" })
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <div style="text-align:center;">
+            <input type="submit" value="修改" name="action" run at="server" class="btn btn-default">
+
+            <input name="archivesNo" value="@ViewData["fid"]" id="fid" hidden="hidden">
+            <div style="height:20px;">
+            </div>
+        </div>
+    </div>
+}
+
+
+

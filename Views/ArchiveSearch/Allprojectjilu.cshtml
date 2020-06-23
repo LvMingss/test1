@@ -1,0 +1,145 @@
+﻿
+
+<link href="~/Content/Tabulator/version3.0/tabulator.css" rel="stylesheet" />
+<script src="~/Scripts/jquery-2.1.1.min.js" type="text/javascript"></script>
+<script src="~/Scripts/jquery-ui.min.js"></script>
+<script src="~/Content/Tabulator/version3.0/tabulator.js"></script>
+
+<script type="text/javascript">
+    var details = function (value, data, cell, row, options) { //plain text value
+        return "<i class='fa fa-search-plus' style='color:#428bca;;vertical-align:middle; padding:2px 0;'></i> "
+    };
+  
+  
+
+
+
+
+    $().ready(function () {//在页面加载完成之后用，为了保证js能完整的执行。
+        $(document).ready(function () {
+            
+            var a = $(window).height();
+            var hh = a-35;
+            $(".box-h").height(hh)  // 高度加在类名为box的DIV 上
+
+        })
+            $("#example-table-2").tabulator({
+                height:"100%",
+                virtualDom:false,
+                
+                //columnMinWidth:100,
+                //minWidth
+                fitColumns:true,                
+                selectable:1, //make rows selectable
+                pagination:"local",
+                paginationSize:50,
+                columns: [
+{
+    title: "查看", field: "caozuo1",width: 50 ,formatter: details, headerSort: false, sorter: "string", align: "center", cellClick: function (e,cell) {
+       
+
+        $("#checkname1").val(cell.getValue());
+
+    }
+},
+
+
+                { title: "项目顺序号", field: "paperProjectSeqNo", headerSort: false,align: "center",width: 80 },
+                { title: "总卷数", field: "originalVolumeCount",headerSort: false, align: "center",width: 60 },
+                { title: "总厚度", field: "originalInchCount",headerSort: false, align: "center",width: 60 },
+                { title: "工程名称", field: "projectName",headerSort: false, width: 1000 },
+                { title: "工程地点", field: "location", headerSort: false,width: 400 },
+                { title: "执照号", field: "licenseNo",headerSort: false, width: 150 },
+                
+                { title: "建设单位", field: "developmentOrganization",headerSort: false, width: 400 },
+                { title: "最新工程地点", field: "newLocation",headerSort: false, width: 400 },
+                { title: "开工日期", field: "kaigongTime", headerSort: false,width: 100 },
+                { title: "竣工日期", field: "jungongTime",headerSort: false, width: 100 },
+                { title: "进馆日期", field: "jgDate",headerSort: false, width: 100 },
+                { title: "录入日期", field: "typerDate",headerSort: false, width: 100 },
+                { title: "文字材料", field: "textMaterial", headerSort: false,align: "center",width: 80 },
+                { title: "图纸", field: "drawing",headerSort: false, align: "center",width: 50 },
+                { title: "照片", field: "photoCount",headerSort: false, align: "center",width: 50 },
+                { title: "移交单位", field: "transferUnit",headerSort: false, width: 450 },
+                { title: "施工单位", field: "constructionUnit", headerSort: false,width: 450 },
+                { title: "设计单位", field: "designUnit",headerSort: false, width: 450 },
+                { title: "起始档号", field: "startArchiveNo",headerSort: false, width: 100 },
+                { title: "终止档号", field: "endArchiveNo",headerSort: false, width: 100 },
+                { title: "起始市政档案号", field: "shizhengNoStart", headerSort: false,width: 150 },
+                { title: "终止市政档案号", field: "shizhengNoEnd",headerSort: false, width: 150 },
+                { title: "起始排架号", field: "startPaijiaNo",headerSort: false, width: 100 },
+                { title: "终止排架号", field: "endPaijiaNo",headerSort: false, width: 100 },
+                { title: "工程ID", field: "projectID", headerSort: false,width: 100 },
+                { title: "索引", field: "Index",headerSort: false, width: 200 },
+
+
+                ],
+                rowSelected:function(row){
+               
+                    var selectedData = $("#example-table-2").tabulator("getSelectedData");
+                    document.getElementById("checkname1").value=selectedData[0].projectID;
+    
+           
+                },//选中行回
+            });
+
+          var temp = new Array();
+          var data=@Html.Raw(Json.Encode(Model));
+
+
+
+
+            for (var i = 0; i < data.length;i++) {
+                var b = data[i].jgDate
+                if(b!=null){
+                    var result =b.slice(0,10)
+                }
+                temp.push({ "id": i + 1, "caozuo1": data[i].projectID, "paperProjectSeqNo": data[i].paperProjectSeqNo, "originalVolumeCount": data[i].originalVolumeCount, "originalInchCount": data[i].originalInchCount ,"projectName": data[i].projectName, "location": data[i].location,
+                    "developmentOrganization": data[i].developmentOrganization,"newLocation": data[i].newLocation, "licenseNo": data[i].licenseNo, "kaigongTime": data[i].kaigongTime,"jungongTime": data[i].jungongTime, "jgDate": result,
+                    "typerDate": data[i].luruTime, "textMaterial": data[i].textMaterial,"drawing": data[i].drawing, "photoCount": data[i].photoCount,"transferUnit": data[i].transferUnit, "constructionOrganization": data[i].constructionOrganization,
+                    "disignOrganization": data[i].disignOrganization, "startArchiveNo": data[i].startArchiveNo,"endArchiveNo": data[i].endArchiveNo, "shizhengNoStart": data[i].shizhengNoStart,"shizhengNoEnd": data[i].shizhengNoEnd, "startPaijiaNo": data[i].startPaijiaNo,
+                    "endPaijiaNo": data[i].endPaijiaNo, "projectID": data[i].projectID,"Index": data[i].Index
+                });
+            }
+
+            $("#example-table-2").tabulator("setData", temp);
+            $(window).resize(function () {
+                $(document).ready(function () {
+                    var a = $(window).height();
+                    var hh = a-35;
+                    $(".box-h").height(hh)  // 高度加在类名为box的DIV 上
+                    $("#example-table-2").tabulator("redraw",true);
+
+                })
+            });
+
+    });
+    $(document).ready(function () {
+        
+
+        var a=document.getElementById("volCount").value
+        //window.parent.docuent.getElementById("count").value=document.getElementById("volCount").value;
+        //parent.window.document.getElementById("count").value=document.getElementById("volCount").value;
+        window.parent.document.getElementById("count").innerHTML="共检索到数据:"+a;
+        //window.parent.$("count").html(a);
+    });
+  
+   
+</script>
+@using (Html.BeginForm())
+{
+   
+    <input name="checkname1" id="checkname1" hidden="hidden">
+
+    <input name="volCount" id="volCount" value="@ViewData["volCount"]" hidden="hidden">
+}
+
+<div id="example-table-2" class="box-h"> </div>
+
+<input value="@ViewData["checkname"]" name="checkname" id="checkname" hidden="hidden"> @*从后台传来数据，进行ajax判断*@
+ 
+
+
+
+
+

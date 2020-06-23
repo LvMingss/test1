@@ -1,0 +1,315 @@
+﻿@model PagedList.IPagedList<urban_archive.Models.vw_projectProfile>
+@*@using PagedList.Mvc;
+<link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />*@
+@*<link href="~/Content/jquery-ui.theme.css" rel="stylesheet" />*@
+<link href="~/Content/Tabulator/version3.0/tabulator.css" rel="stylesheet" />
+
+<link type="text/css" rel="stylesheet" href="~/Scripts/jquery/jquery-ui.css">
+<script src="~/Scripts/jquery-2.1.1.min.js" type="text/javascript"></script>
+@*<script type="text/javascript" src="~/Scripts/jquery/jquery-1.8.3.js"></script>*@
+<script src="~/Scripts/jquery-ui.min.js"></script>
+@*<script type="text/javascript" src="~/Scripts/jquery/jquery.ui.core.js"></script>
+<script type="text/javascript" src="~/Scripts/jquery/jquery.ui.datepicker.js"></script>
+<script type="text/javascript" src="~/Scripts/jquery/jquery.ui.widget.js"></script>
+<script type="text/javascript" src="~/Scripts/jquery/jquery-ui-timepicker-addon.js"></script>*@   
+
+
+
+<script src="~/Content/Tabulator/version3.0/tabulator.js"></script>
+
+<script>
+            //$(function () {
+            //    $("#StartDate").datepicker({
+            //        changeMonth: true,
+            //        changeYear: true
+            //    });
+            //});
+            //$(function () {
+            //    $("#EndDate").datepicker({
+            //        changeMonth: true,
+            //        changeYear: true
+            //    });
+            //});
+            $(document).ready(function () {
+                $("#Print").click(function () {
+                  
+                    var url = '/PaperSettle/zhenglidayin/';
+                    window.open(url);
+                });
+            });
+</script>
+
+
+<script type="text/javascript">
+    $().ready(function () {//在页面加载完成之后用，为了保证js能完整的执行。
+        $(document).ready(function () {
+            var a = $(window).height();
+            var hh = a-160;
+            $(".box-h").height(hh)  // 高度加在类名为box的DIV 上
+
+        })
+            $("#example-table-2").tabulator({
+                height:"100%",
+                virtualDom:false,
+                
+                
+                //minWidth
+                fitColumns:true,                
+                selectable:true, //make rows selectable
+                pagination:"local",
+                paginationSize:50,
+                columns: [
+
+                { title: "工程名称", field: "a", headerSort: false,width: 200 },
+                { title: "工程序号", field: "b", headerSort: false,width: 100 },
+                { title: "项目顺序号", field: "c",headerSort: false, width: 100 },
+                { title: "设计单位", field: "d",headerSort: false, width: 200 },
+                { title: "施工单位", field: "e",headerSort: false, width: 200 },
+                { title: "接收人", field: "f", headerSort: false,width: 60 },
+                { title: "整理人", field: "g", headerSort: false,width: 60 },
+                { title: "整理日期", field: "h",headerSort: false, width: 100 },
+                { title: "起始档号", field: "i",headerSort: false, width: 100 },
+                { title: "终止档号", field: "j",headerSort: false, width: 100 },
+                { title: "文字卷数", field: "k",headerSort: false, width: 80 },
+                { title: "文字1cm", field: "l", headerSort: false,width: 80 },
+                { title: "文字2cm", field: "m",headerSort: false, width: 80 },
+                { title: "文字3cm", field: "n", headerSort: false,width: 80 },
+                { title: "文字4cm", field: "o",headerSort: false, width: 80 },
+                { title: "文字5cm", field: "p",headerSort: false, width: 80 },
+                { title: "文字总厚度（cm）", field: "q", headerSort: false,width: 150 },
+                { title: "图纸总卷数", field: "r",headerSort: false, width: 100 },
+                { title: "图纸1cm", field: "s",headerSort: false, width: 80 },
+                { title: "图纸2cm", field: "t", headerSort: false,width: 80 },
+                { title: "图纸3cm", field: "u",headerSort: false, width: 80 },
+                { title: "图纸4cm", field: "v", headerSort: false,width: 80 },
+                { title: "图纸5cm", field: "w", headerSort: false,width: 80 },
+                { title: "图纸总厚度（cm）", field: "x",headerSort: false, width: 150 },
+                { title: "状态", field: "y",headerSort: false,minWidth: 80  },
+                ],
+            });
+
+            var temp = new Array();
+            var data=@(new HtmlString(@ViewBag.result));
+            for (var i = 0; i < data.length;i++) {
+                var a = data[i].lqDate
+                //var result=a
+                if(a!=null){
+                    var result = a.slice(0,10)
+                }
+
+                temp.push({ "id": i + 1, "a": data[i].projectName, "b": data[i].projectNo, "c": data[i].paperProjectSeqNo, "d": data[i].developmentOrganization,"e": data[i].constructionOrganization,"f":data[i].recipient,"g": data[i].collator, "h": result, "i": data[i].startArchiveNo, "j": data[i].endArchiveNo,"k":data[i].characterVolumeCount,"l":data[i].character1cm,"m":data[i].character2cm,"n":data[i].character3cm,"o":data[i].character4cm,"p":data[i].character5cm,"q":data[i].copyInchCount,"r":data[i].drawingVolumeCount,"s":data[i].drawing1cm,"t":data[i].drawing2cm,"u":data[i].drawing3cm,"v":data[i].drawing4cm,"w":data[i].drawing5cm,"x":data[i].drawing,"y":data[i].status});
+            }
+
+            $("#example-table-2").tabulator("setData", temp);
+            $(window).resize(function () {
+                var a = $(window).height();
+                var hh = a-160;
+                $(".box-h").height(hh)  // 高度加在类名为box的DIV 上
+                $("#example-table-2").tabulator("redraw",true);
+            });
+
+        });
+    </script>
+
+    
+<section>
+<h2 style="float:left;"><i class="fa fa-tags kongge"></i>个人领取整理情况统计</h2>
+<ol class="breadcrumb">
+    <li class="active">竣工档案</li>
+    <li class="active">档案整理</li>
+    <li>整理统计</li>
+</ol>
+<div style="clear:both;"></div>
+</section>
+
+@using (Html.BeginForm("ZhengliTongji", "PaperSettle", FormMethod.Post))
+{
+    <p>
+        
+
+        @Html.DropDownList("lingquzhengliren", null, new { @class = "form-control" ,@style = "display:inline;width:180px;" })  <input type="submit" name="action" id="action" value="领取整理人查询" class="btn btn-default" style = "display:inline"/>
+        <span class="btn btn-default">
+            <i class='fa fa-print' style='color:inherit; padding:2px 5px 2px 0px;'></i><input type="button" value="打印个人整理档案统计表" id="Print" name="Print" style="border-style:none;background:none;padding:0px 0px;" />
+
+        </span>
+        <br />
+            
+            @*<span style="color:blue;">(请按如下格式填写：Year-Month-Day,如：2016-01-01) </span>*@
+
+</p>
+}
+
+<div id="example-table-2" class="box-h" > </div>
+
+@*<table class="table table-bordered table-striped">
+    <tr>
+
+        <th>
+            工程名称
+        </th>
+        <th>
+            工程序号
+        </th>
+        <th>
+            项目顺序号
+        </th>
+        <th>
+            设计单位
+        </th>
+        <th>
+            施工单位
+        </th>
+        <th>
+            接收人
+        </th>
+        <th>
+            整理人
+        </th>
+        <th>
+            整理日期
+        </th>
+        <th>
+            起始档号
+        </th>
+        <th>
+            终止档号
+        </th>
+        <th>
+            文字卷数（卷）
+        </th>
+        <th>
+            文字1cm
+        </th>
+        <th>
+            文字2cm
+        </th>
+        <th>
+            文字3cm
+        </th>
+
+        <th>
+            文字4cm
+        </th>
+        <th>
+            文字5cm
+        </th>
+        <th>
+            文字总厚度（cm）
+        </th>
+        <th>
+            图纸总卷数（卷）
+        </th>
+        <th>
+            图纸1cm
+        </th>
+        <th>
+            图纸2cm
+        </th>
+        <th>
+            图纸3cm
+        </th>
+        <th>
+            图纸4cm
+        </th>
+        <th>
+            图纸5cm
+        </th>
+        <th>
+            图纸总厚度（cm）
+
+        <th>
+            状态
+        </th>
+       
+
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.projectName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.projectNo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.paperProjectSeqNo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.disignOrganization)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.constructionOrganization)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.recipient)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.collator)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.lqDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.startArchiveNo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.endArchiveNo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.characterVolumeCount)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.character1cm)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.character2cm)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.character3cm)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.character4cm)
+
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.character5cm)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.copyInchCount)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.drawingVolumeCount)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.drawing1cm)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.drawing2cm)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.drawing3cm)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.drawing4cm)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.drawing5cm)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.drawing)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.status)
+            </td>
+           
+           
+
+
+        </tr>
+    }
+</table>*@
+
+

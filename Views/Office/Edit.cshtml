@@ -1,0 +1,156 @@
+﻿@model urban_archive.Models.BaowenMainTable
+
+@{
+    ViewBag.Title = "编辑";
+}
+<h2><i class="fa fa-tags kongge"></i>编辑</h2>
+
+<style type="text/css">
+    .jubu {
+        max-width: 100%;
+    }
+</style>
+<link type="text/css" rel="stylesheet" href="~/Scripts/jquery/jquery-ui.css">
+<script type="text/javascript" src="~/Scripts/jquery/jquery-1.8.3.js"></script>
+<script type="text/javascript" src="~/Scripts/jquery/jquery.ui.core.js"></script>
+<script type="text/javascript" src="~/Scripts/jquery/jquery.ui.datepicker.js"></script>
+<script type="text/javascript" src="~/Scripts/jquery/jquery.ui.widget.js"></script>
+<script type="text/javascript" src="~/Scripts/jquery/jquery-ui-timepicker-addon.js"></script>
+@*<script type="text/javascript" src="~/Scripts/jquery/jquery-ui-timepicker-zh-CN.js"></script>*@
+<script>
+            $(function () {
+                $("#shouwenriqi").datepicker({
+                    changeMonth: true,
+                    changeYear: true,
+                    dateFormat: "yy-mm-dd"
+                });
+            });
+            $(function () {
+                $("#banjieriqi").datepicker({
+                    changeMonth: true,
+                    changeYear: true,
+                    dateFormat: "yy-mm-dd"
+                });
+            });
+            function queding() {
+                var msg = "确认要提交修改吗?";
+                if (confirm(msg) == true) {
+                    return true;
+                } else {
+                    return false;
+                }
+            }
+</script>
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.ID)
+
+        <div class="panel panel-default">
+            <table class="table table-bordered dl-horizontal">
+                <tr>
+                    <td style="background-color:#f9f9f9;width:10%;">
+                        类别
+                    </td>
+                    <td>
+                        @Html.DropDownList("leibie", null, htmlAttributes: new { @class = "form-control jubu" })
+                        @*@Html.EditorFor(model => model.leibie, new { htmlAttributes = new { @class = "form-control" } })*@
+                        @Html.ValidationMessageFor(model => model.leibie, "", new { @class = "text-danger" })
+
+                    </td>
+                </tr>
+                <tr>
+                    <td style="background-color:#f9f9f9;width:10%;">
+                        顺序号
+                    </td>
+                    <td>
+                        @Html.EditorFor(model => model.shunxuhao, new { htmlAttributes = new { @class = "form-control jubu" } })
+                        @Html.ValidationMessageFor(model => model.shunxuhao, "", new { @class = "text-danger" })
+                    </td>
+                </tr>
+                <tr>
+                    <td style="background-color:#f9f9f9;width:10%;">
+                        收文日期
+                    </td>
+                    <td>
+                        @Html.EditorFor(model => model.shouwenriqi, new { htmlAttributes = new { @class = "form-control jubu", @Value = ViewBag.shouwenriqi } })
+                        @Html.ValidationMessageFor(model => model.shouwenriqi, "", new { @class = "text-danger" })
+                    </td>
+                </tr>
+                <tr>
+                    <td style="background-color:#f9f9f9;width:10%;">
+                        文件字号
+                    </td>
+                    <td>
+                        @Html.EditorFor(model => model.wenjianzihao, new { htmlAttributes = new { @class = "form-control jubu" } })
+                        @Html.ValidationMessageFor(model => model.wenjianzihao, "", new { @class = "text-danger" })
+                    </td>
+                </tr>
+                <tr>
+                    <td style="background-color:#f9f9f9;width:10%;">
+                        来文单位
+                    </td>
+                    <td>
+                        @Html.EditorFor(model => model.laiwendanwei, new { htmlAttributes = new { @class = "form-control jubu" } })
+                        @Html.ValidationMessageFor(model => model.laiwendanwei, "", new { @class = "text-danger" })
+                    </td>
+                </tr>
+                <tr>
+                    <td style="background-color:#f9f9f9;width:10%;">
+                        文件标题
+                    </td>
+                    <td>
+                        @Html.EditorFor(model => model.wenjianbiaoti, new { htmlAttributes = new { @class = "form-control jubu" } })
+                        @Html.ValidationMessageFor(model => model.wenjianbiaoti, "", new { @class = "text-danger" })
+                    </td>
+                </tr>
+                <tr>
+                    <td style="background-color:#f9f9f9;width:10%;">
+                        文件要求
+                    </td>
+                    <td>
+                        @Html.EditorFor(model => model.wenjianyaoqiu, new { htmlAttributes = new { @class = "form-control jubu" } })
+                        @Html.ValidationMessageFor(model => model.wenjianyaoqiu, "", new { @class = "text-danger" })
+                    </td>
+                </tr>
+
+                <tr>
+                    <td style="background-color:#f9f9f9;width:10%;">
+                        办结时限
+                    </td>
+                    <td>
+                        @Html.EditorFor(model => model.banjieriqi, new { htmlAttributes = new { @class = "form-control", @style = "display:inline;", @Value = ViewBag.banjieriqi } })
+                        @Html.ValidationMessageFor(model => model.banjieriqi, "", new { @class = "text-danger" })
+                        @Html.DropDownList("banjietime", null, new { @class = "form-control", @style = "display:inline;" })
+                    </td>
+                </tr>
+                <tr>
+                    <td style="background-color:#f9f9f9;width:10%;">
+                        归档卷别
+                    </td>
+                    <td>
+                        @Html.EditorFor(model => model.guidangjuanbie, new { htmlAttributes = new { @class = "form-control jubu" } })
+                        @Html.ValidationMessageFor(model => model.guidangjuanbie, "", new { @class = "text-danger" })
+                    </td>
+                </tr>
+            </table>
+        </div>
+       
+        <div style="text-align:center;">
+            <p>
+                <input type="submit" value="保存" name="action"  class="btn btn-default"onclick="return queding()" /> 
+                <input type="submit" value="处理单" name="action" class="btn btn-default" />
+                <a href="/Office" class="btn btn-default">返回</a>
+            </p>
+            <div style="height:5px;">
+            </div>
+        </div>
+    </div>
+           
+}
+
+

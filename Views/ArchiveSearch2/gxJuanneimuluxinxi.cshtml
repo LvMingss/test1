@@ -1,0 +1,92 @@
+﻿@model urban_archive.Models.gxFileInfo
+
+@{
+    ViewBag.Title = "Details";
+}
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div>
+        @*<h2 style="margin-top:0;"><i class="fa fa-tags"></i>当前文件信息</h2>
+            <hr />*@
+        <div class="panel panel-default">
+            <table class="table table-bordered ">
+                <tr>
+                    <td style="background-color:#f9f9f9;width:10%;">
+                        序号
+                    </td>
+                    <td width="40%">
+                        @Html.DisplayFor(model => model.seqNo)
+                    </td>
+                    <td style="background-color:#f9f9f9;width:10%;">
+                        文件编号
+                    </td>
+                    <td width="40%">
+                        @Html.DisplayFor(model => model.fileNo)
+                    </td>
+                </tr>
+                <tr>
+                    <td style="background-color:#f9f9f9;width:10%;">
+                        类型
+                    </td>
+                    <td colspan="3">
+                        @Html.DisplayFor(model => model.type)
+                    </td>
+                </tr>
+                <tr>
+                    <td style="background-color:#f9f9f9;width:10%;">
+                        文件材料题名
+                    </td>
+                    <td colspan="3">
+                        @Html.DisplayFor(model => model.fileName)
+                    </td>
+                </tr>
+                <tr>
+                    <td style="background-color:#f9f9f9;width:10%;">
+                        责任者
+                    </td>
+                    <td colspan="3">
+                        @Html.DisplayFor(model => model.responsible)
+                    </td>
+                </tr>
+                <tr>
+                    <td style="background-color:#f9f9f9;width:10%;">
+                        起止页次
+                    </td>
+                    <td width="40%">
+                        @Html.DisplayFor(model => model.startPageNo)
+                    </td>
+                    <td style="background-color:#f9f9f9;width:10%;">
+                        编制日期
+                    </td>
+                    <td width="40%">
+                        @Html.DisplayFor(model => model.startDate)
+                    </td>
+                </tr>
+                <tr>
+                    <td style="background-color:#f9f9f9;width:10%;">
+                        备注
+                    </td>
+                    <td colspan="3">
+                        @Html.DisplayFor(model => model.remarks)
+                    </td>
+                </tr>
+            </table>
+        </div>
+
+
+
+
+
+
+    </div>
+
+}
+
+
+
+
+
+

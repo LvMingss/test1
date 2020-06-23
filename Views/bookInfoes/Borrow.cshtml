@@ -1,0 +1,378 @@
+﻿@model urban_archive.Models.bookInfo
+     
+@{
+    ViewBag.Title = "借阅/归还";
+}
+<style type="text/css">
+    .jubu {
+        max-width: 100%;
+    }
+</style>
+<script>
+    function jie() {
+        var msg = "确认要借阅该图书吗?";
+        if (confirm(msg) == true) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+    function huan() {
+        var msg = "确认要归还该图书吗?";
+        if (confirm(msg) == true) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+    </script>
+@*<h2>图书详细信息</h2>*@
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <input type="text" id="bookNo" name="bookNo" value="@ViewBag.no" style="display:none">
+        <div class="panel panel-default" style="border:1px solid #408cca">
+            <table class="table table-bordered dl-horizontal">
+                <tr>
+                    <td class="linear" style="font-size: 18px;color:white;text-align: center;letter-spacing:5px;" colspan="4">
+                        —图书详细信息—
+                    </td>
+                </tr>
+                <tr>
+                    <td style="background-color:#f9f9f9;">
+                        书名项
+                    </td>
+                    <td colspan="3">
+                        @Html.EditorFor(model => model.bookName, new { htmlAttributes = new { @class = "form-control jubu", @readonly = "true" } })
+                        @Html.ValidationMessageFor(model => model.bookName, "", new { @class = "text-danger" })
+                    </td>
+                </tr>
+                <tr>
+                    <td style="background-color:#f9f9f9;">
+                        出版项
+                    </td>
+                    <td colspan="3">
+                        @Html.EditorFor(model => model.press, new { htmlAttributes = new { @class = "form-control jubu", @readonly = "true" } })
+                        @Html.ValidationMessageFor(model => model.press, "", new { @class = "text-danger" })
+                    </td>
+                </tr>
+
+                <tr>
+                    <td style="background-color:#f9f9f9;">
+                        著
+                    </td>
+                    <td>
+                        @Html.EditorFor(model => model.authorZhu, new { htmlAttributes = new { @class = "form-control jubu", @readonly = "true" } })
+                        @Html.ValidationMessageFor(model => model.authorZhu, "", new { @class = "text-danger" })
+                    </td>
+                    <td style="background-color:#f9f9f9;width:180px;">
+                        编
+                    </td>
+                    <td>
+                        @Html.EditorFor(model => model.authorBian, new { htmlAttributes = new { @class = "form-control jubu", @readonly = "true" } })
+                        @Html.ValidationMessageFor(model => model.authorBian, "", new { @class = "text-danger" })
+
+                    </td>
+                </tr>
+                <tr>
+                    <td style="background-color:#f9f9f9;">
+                        辑
+                    </td>
+                    <td>
+                        @Html.EditorFor(model => model.authorJi, new { htmlAttributes = new { @class = "form-control jubu", @readonly = "true" } })
+                        @Html.ValidationMessageFor(model => model.authorJi, "", new { @class = "text-danger" })
+                    </td>
+                    <td style="background-color:#f9f9f9;width:180px;">
+                        纂
+                    </td>
+                    <td>
+                        @Html.EditorFor(model => model.authorZuan, new { htmlAttributes = new { @class = "form-control jubu", @readonly = "true" } })
+                        @Html.ValidationMessageFor(model => model.authorZuan, "", new { @class = "text-danger" })
+                    </td>
+                </tr>
+                <tr>
+                    <td style="background-color:#f9f9f9;">
+                        译
+                    </td>
+                    <td>
+                        @Html.EditorFor(model => model.authorYi, new { htmlAttributes = new { @class = "form-control jubu", @readonly = "true" } })
+                        @Html.ValidationMessageFor(model => model.authorYi, "", new { @class = "text-danger" })
+                    </td>
+                    <td style="background-color:#f9f9f9;">
+                        汇
+                    </td>
+                    <td>
+                        @Html.EditorFor(model => model.authorHui, new { htmlAttributes = new { @class = "form-control jubu", @readonly = "true" } })
+                        @Html.ValidationMessageFor(model => model.authorHui, "", new { @class = "text-danger" })
+                    </td>
+                </tr>
+                <tr>
+                    <td style="background-color:#f9f9f9;">
+                        出版日期
+                    </td>
+                    <td>
+                        @Html.EditorFor(model => model.publishDate, new { htmlAttributes = new { @class = "form-control jubu", @readonly = "true" } })
+                        @Html.ValidationMessageFor(model => model.publishDate, "", new { @class = "text-danger" })
+                    </td>
+                    <td style="background-color:#f9f9f9;">
+                        价格
+                    </td>
+                    <td>
+                        @Html.EditorFor(model => model.price, new { htmlAttributes = new { @class = "form-control jubu", @readonly = "true" } })
+                        @Html.ValidationMessageFor(model => model.price, "", new { @class = "text-danger" })
+                    </td>
+                </tr>
+                <tr>
+                    <td style="background-color:#f9f9f9;">
+                        索书号
+                    </td>
+                    <td>
+                        @Html.EditorFor(model => model.suoShuNo, new { htmlAttributes = new { @class = "form-control jubu", @readonly = "true" } })
+                        @Html.ValidationMessageFor(model => model.suoShuNo, "", new { @class = "text-danger" })
+                    </td>
+                    <td style="background-color:#f9f9f9;">
+                        分类号
+                    </td>
+                    <td>
+                        @Html.EditorFor(model => model.classificationNo, new { htmlAttributes = new { @class = "form-control jubu", @readonly = "true" } })
+                        @Html.ValidationMessageFor(model => model.classificationNo, "", new { @class = "text-danger" })
+                    </td>
+                </tr>
+                <tr>
+                    <td style="background-color:#f9f9f9;">
+                        互检号
+                    </td>
+                    <td>
+                        @Html.EditorFor(model => model.huJianNo, new { htmlAttributes = new { @class = "form-control jubu", @readonly = "true" } })
+                        @Html.ValidationMessageFor(model => model.huJianNo, "", new { @class = "text-danger" })
+                    </td>
+                    <td style="background-color:#f9f9f9;">
+                        页数
+                    </td>
+                    <td>
+                        @Html.EditorFor(model => model.pageCount, new { htmlAttributes = new { @class = "form-control jubu", @readonly = "true" } })
+                        @Html.ValidationMessageFor(model => model.pageCount, "", new { @class = "text-danger" })
+                    </td>
+                </tr>
+                <tr>
+                    <td style="background-color:#f9f9f9;">
+                        提要项
+                    </td>
+                    <td colspan="3">
+                        @Html.EditorFor(model => model.summary, new { htmlAttributes = new { @class = "form-control jubu", @readonly = "true" } })
+                        @Html.ValidationMessageFor(model => model.summary, "", new { @class = "text-danger" })
+                    </td>
+                </tr>
+            </table>
+        </div>
+        @*<div class="form-group">
+                @Html.LabelFor(model => model.bookName, "书名项", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.bookName, new { htmlAttributes = new { @class = "form-control", @readonly = "true" } })
+                    @Html.ValidationMessageFor(model => model.bookName, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.press, "出版项", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.press, new { htmlAttributes = new { @class = "form-control", @readonly = "true" } })
+                    @Html.ValidationMessageFor(model => model.press, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.authorZhu, "著", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.authorZhu, new { htmlAttributes = new { @class = "form-control", @readonly = "true" } })
+                    @Html.ValidationMessageFor(model => model.authorZhu, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.authorBian, "编", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.authorBian, new { htmlAttributes = new { @class = "form-control", @readonly = "true" } })
+                    @Html.ValidationMessageFor(model => model.authorBian, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.authorJi, "辑", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.authorJi, new { htmlAttributes = new { @class = "form-control", @readonly = "true" } })
+                    @Html.ValidationMessageFor(model => model.authorJi, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.authorZuan, "纂", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.authorZuan, new { htmlAttributes = new { @class = "form-control", @readonly = "true" } })
+                    @Html.ValidationMessageFor(model => model.authorZuan, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.authorYi, "译", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.authorYi, new { htmlAttributes = new { @class = "form-control", @readonly = "true" } })
+                    @Html.ValidationMessageFor(model => model.authorYi, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.authorHui, "汇", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.authorHui, new { htmlAttributes = new { @class = "form-control", @readonly = "true" } })
+                    @Html.ValidationMessageFor(model => model.authorHui, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.publishDate, "版本项", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.publishDate, new { htmlAttributes = new { @class = "form-control", @readonly = "true" } })
+                    @Html.ValidationMessageFor(model => model.publishDate, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.price, "价格", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.price, new { htmlAttributes = new { @class = "form-control", @readonly = "true" } })
+                    @Html.ValidationMessageFor(model => model.price, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.suoShuNo, "索书号", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.suoShuNo, new { htmlAttributes = new { @class = "form-control", @readonly = "true" } })
+                    @Html.ValidationMessageFor(model => model.suoShuNo, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.classificationNo, "分类号", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.classificationNo, new { htmlAttributes = new { @class = "form-control", @readonly = "true" } })
+                    @Html.ValidationMessageFor(model => model.classificationNo, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.huJianNo, "互检号", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.huJianNo, new { htmlAttributes = new { @class = "form-control", @readonly = "true" } })
+                    @Html.ValidationMessageFor(model => model.huJianNo, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.pageCount, "页数", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.pageCount, new { htmlAttributes = new { @class = "form-control", @readonly = "true" } })
+                    @Html.ValidationMessageFor(model => model.pageCount, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.summary, "提要项", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.summary, new { htmlAttributes = new { @class = "form-control", @readonly = "true" } })
+                    @Html.ValidationMessageFor(model => model.summary, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        *@
+        <div class="panel panel-default" style="border:1px solid #408cca">
+            <table class="table table-bordered dl-horizontal">
+                <tr>
+                    <td class="linear" style="font-size: 18px;color:white;text-align: center;letter-spacing:5px;" colspan="4">
+                        —图书借阅信息—
+                    </td>
+                </tr>
+                <tr>
+                    <td style="background-color:#f9f9f9;">
+                        借用信息
+                    </td>
+                    <td colspan="3">
+                        @Html.EditorFor(model => model.borrowInfo, new { htmlAttributes = new { @class = "form-control jubu", @readonly = "true" } })
+                        @Html.ValidationMessageFor(model => model.borrowInfo, "", new { @class = "text-danger" })
+                    </td>
+                </tr>
+                <tr>
+                    <td style="background-color:#f9f9f9;">
+                        借用人
+                    </td>
+                    <td colspan="3">
+                        <input type="text" id="borrower" name="borrower" value="@ViewBag.borrower" class="form-control">
+                    </td>
+                </tr>
+                <tr>
+                    <td style="background-color:#f9f9f9;">
+                        借出时间
+                    </td>
+                    <td colspan="3">
+                        <input type="text" id="borrowDate" name="borrowDate" value="@ViewBag.borrowDate" class="form-control">
+                    </td>
+                </tr>
+                <tr>
+                    <td style="background-color:#f9f9f9;">
+                        归还时间
+                    </td>
+                    <td colspan="3">
+                        <input type="text" id="returnDate" name="returnDate" value="@ViewBag.returnDate" class="form-control">
+                    </td>
+                </tr>
+            </table>
+       </div>
+                @*<h2>图书借阅信息</h2>
+                <hr />
+                <div class="form-group">
+                    @Html.LabelFor(model => model.borrowInfo, "借用信息", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.borrowInfo, new { htmlAttributes = new { @class = "form-control", @readonly = "true" } })
+                        @Html.ValidationMessageFor(model => model.borrowInfo, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.Label("借用人", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        <input type="text" id="borrower" name="borrower" value="@ViewBag.borrower" class="form-control">
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.Label("借出时间", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        <input type="text" id="borrowDate" name="borrowDate" value="@ViewBag.borrowDate" class="form-control">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.Label("归还时间", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        <input type="text" id="returnDate" name="returnDate" value="@ViewBag.returnDate" class="form-control">
+                    </div>
+                </div>*@
+
+
+                
+        <div style="text-align:center;">
+                <input type="submit" value="借阅" name="action" class="btn btn-default" disabled="@ViewData["button1"]"onclick="return jie()" />
+                <input type="submit" value="归还" name="action" class="btn btn-default" disabled="@ViewData["button2"]" onclick="return huan()"/>
+            <input type="submit" value="返回" name="action" class="btn btn-default" />
+                <div style="height:20px;"></div>
+            </div>
+        </div>
+        }
+
+        @*<div>
+            @Html.ActionLink("返回", "Index")
+        </div>*@

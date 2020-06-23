@@ -1,0 +1,283 @@
+﻿@model IEnumerable<urban_archive.Models.FileInfo>
+<style type="text/css">
+    .jubu {
+        max-width: 100%;
+    }
+</style>
+@*<link href="~/Content/AdminLTE-2.3.7/dist/css/AdminLTE.min.css" rel="stylesheet" />
+
+    <link href="~/Content/AdminLTE-2.3.7/dist/css/skins/_all-skins.min.css" rel="stylesheet" />*@
+<!-- FastClick -->
+<!-- AdminLTE App -->
+<!-- AdminLTE for demo purposes -->
+@*<link href="~/Content/jquery-ui.theme.css" rel="stylesheet" />*@
+<link href="~/Content/Tabulator/version3.0/tabulator.css" rel="stylesheet" />
+<script src="~/Scripts/jquery-ui.min.js"></script>
+<script src="~/Content/Tabulator/version3.0/tabulator.js"></script>
+@*<script src="~/Content/AdminLTE-2.3.7/bootstrap/js/bootstrap.min.js"></script>*@
+@*<script src="~/Content/AdminLTE-2.3.7/dist/js/app.min.js"></script>
+    <script src="~/Content/AdminLTE-2.3.7/dist/js/demo.js"></script>*@
+
+
+
+
+<script type="text/javascript">
+    function del() {
+        var msg = "确认要删除吗?";
+        if (confirm(msg) == true) {
+            return true;
+        } else {
+            return false;
+        }
+    } //删除确认对话框
+
+
+
+
+    var h= function (value, data, cell, row, options) {
+        return "<i class='fa fa-pencil-square-o' style='color:#428bca;;vertical-align:middle; padding:2px 0;'></i> "
+    };
+    var m = function (value, data, cell, row, options) {
+        return "<i class='fa fa-search-plus' style='color:#428bca;;vertical-align:middle; padding:2px 0;'></i> "
+    };
+    var j = function (value, data, cell, row, options) {
+        return "<i class='fa fa-trash-o' style='color:#428bca;;vertical-align:middle; padding:2px 0;'></i>"
+    };
+
+
+    $().ready(function () {//在页面加载完成之后用，为了保证js能完整的执行。
+        $(document).ready(function () {
+            var a = $(window).height();
+            var hh = a-400;
+            $(".box-h").height(hh)  // 高度加在类名为box的DIV 上
+
+        })
+        //
+        $("#example-table-2").tabulator({
+            height: 350,
+            virtualDom:false,
+            fitColumns:true,
+
+            selectable:true,
+            pagination:"local",
+            paginationSize:25,
+            columns: [
+       {
+           title: "修改", field: "i", width: 50 ,formatter:h,headerSort: false,sorter: "string", align: "center", cellClick: function (e,cell) {
+               var url = '/FenLeiDangAn/EditjuanNei?id=' + cell.getValue();
+               window.location.href = url;
+           }
+       },
+
+            {
+                title: "查看", field: "i", width: 50 ,formatter:m, headerSort: false,sorter: "string", align: "center",cellClick: function (e,cell) {
+                    var url = '/FenLeiDangAn/DetailsjuanNei?id=' + cell.getValue();
+
+                    window.location.href = url;
+                }
+            },
+            {
+                title: "删除", field: "i", width:50 ,formatter:j, sorter: "string", headerSort: false,align: "center", cellClick: function (e,cell) {
+
+                    if(del()){
+                        var url = '/FenLeiDangAn/DeletejuanNei?id=' + cell.getValue();
+                        window.location.href =url;
+                    }
+
+                }
+            },
+            { title: "档号", field: "a",headerSort: false,width: 50 },
+            { title: "序号", field: "b", headerSort: false,width: 150 },
+            { title: "文件编号", field: "c",headerSort: false, },
+            { title: "责任者", field: "d", headerSort: false, },
+            { title: "文件题名", field: "e", headerSort: false,width: 50 },
+            { title: "日期", field: "f", headerSort: false,width: 50 },
+            { title: "页次", field: "g", headerSort: false,minWidth: 100 },
+            { title: "备注", field: "h", headerSort: false,minWidth: 100 },
+            ],
+        });
+
+        var temp = new Array();
+        var data=@(new HtmlString(@ViewBag.result));
+        for (var i = 0; i < data.length;i++) {
+            temp.push({ "id": i + 1, "a": data[i].archivesNo, "b": data[i].seqNo, "c": data[i].fileNo, "d": data[i].responsible,"e":data[i].fileName,"f":data[i].Date,"g":data[i].PageNo,"h": data[i].remarks,"i": data[i].id});
+        }
+
+        $("#example-table-2").tabulator("setData", temp);
+        $(window).resize(function () {
+            var a = $(window).height();
+            var hh = a-400;
+            $(".box-h").height(hh)  // 高度加在类名为box的DIV 上
+            $("#example-table-2").tabulator("redraw",true);
+        });
+
+    });
+    function LuruFinsh()
+    {
+        alert("该案卷卷内文件已录入完毕");
+        document.getElementById("LuruFinsh1").disabled=true;
+
+        document.getElementById("juanniemulu").disabled=false;
+
+    }
+</script>
+<script>
+
+    function addnew()
+    {
+        if (document.getElementById("table").style.display != "block") {
+            document.getElementById("table").style.display = "inline-block";
+        }
+        else {
+            document.getElementById("table").style.display = "none";
+        }
+    }
+
+</script>
+@*<h2 style="margin:0px;font-size:22px;"><i class="fa fa-tags kongge"></i>卷内文件信息</h2>*@
+
+@using (Html.BeginForm("luru", "FenLeiDangAn", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+
+    <div id="add" style="@ViewBag.add">
+        @*@Html.HiddenFor(model => model.id)*@
+        <input type="text" id="id" name="id" value="@ViewBag.id" style="display:none;">
+        <div class="form-horizontal">
+            <h2 style="margin:0px;font-size:22px;"><i class="fa fa-tags kongge"></i>添加文件信息</h2>
+            <hr>
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            <div class="panel panel-default">
+                <table class="table table-bordered " style="background-color:#f9f9f9;text-align:center;">
+                    <tr>
+                        <td style="background-color:#f9f9f9;width:6%;min-width:130px;font-weight:bold;">
+                            档号
+                        </td>
+                        <td width="47%">
+                            <input type="text" id="archivesNo" name="archivesNo" value="@ViewBag.archivesNo" class="form-control" style="display:inline;height:28px;padding:3px;">
+                            @*@Html.EditorFor(model => model.seqNo, new { htmlAttributes = new { @class = "form-control", @style = "display:inline;height:28px;padding:3px;" } })
+                            @Html.ValidationMessageFor(model => model.seqNo, "", new { @class = "text-danger" })*@
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="background-color:#f9f9f9;font-weight:bold;">
+                            序号
+                        </td>
+                        <td>
+                            <input type="text" id="seqNo" name="seqNo" value="@ViewBag.seqNo" class="form-control" style="display:inline;height:28px;padding:3px;">
+                            @*@Html.EditorFor(model => model.type, new { htmlAttributes = new { @class = "form-control", @style = "display:inline;height:28px;padding:3px;" } })
+                            @Html.ValidationMessageFor(model => model.type, "", new { @class = "text-danger" })*@
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="background-color:#f9f9f9;font-weight:bold;">
+                            文件编号
+                        </td>
+                        <td>
+                            <input type="text" id="fileNo" name="fileNo" value="@ViewBag.fileNo" class="form-control" style="display:inline;height:28px;padding:3px;">
+                            @*@Html.EditorFor(model => model.fileNo, new { htmlAttributes = new { @class = "form-control", @style = "display:inline;height:28px;padding:3px;" } })
+                            @Html.ValidationMessageFor(model => model.fileNo, "", new { @class = "text-danger" })*@
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="background-color:#f9f9f9;font-weight:bold;">
+                            责任者
+                        </td>
+                        <td>
+                            <input type="text" id="responsible1" name="responsible1" value="@ViewBag.responsible" @*onclick="Onfocus2()"*@ class="form-control" style="display:inline;height:28px;padding:3px;max-width:100%;" />
+                            @*<input type="text" id="responsibleid1" style="display:none" name="responsibleid1" value="@ViewBag.responsibleid1">*@
+                            @*@Html.ValidationMessageFor(model => model.responsible, "", new { @class = "text-danger" })*@
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="background-color:#f9f9f9;font-weight:bold;">
+                            文件题名
+                        </td>
+                        <td>
+                            <input type="text" id="fileName1" name="fileName1" value="@ViewBag.fileName" @*onclick="Onfocus1()"*@ class="form-control" style="display:inline;height:28px;padding:3px;max-width:100%;" />
+                            @*<input type="text" id="filenameid1" style="display:none" name="filenameid1" value="@ViewBag.filenameid1">*@
+                            @*@Html.ValidationMessageFor(model => model.fileName, "", new { @class = "text-danger" })*@
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td style="background-color:#f9f9f9;font-weight:bold;">
+                            日期
+                        </td>
+                        <td>
+                            <input type="text" id="Date" name="Date" value="@ViewBag.Date" class="form-control" style="display:inline;height:28px;padding:3px;">
+                            @*@Html.EditorFor(model => model.startDate, new { htmlAttributes = new { @class = "form-control", @style = "display:inline;height:28px;padding:3px;" } })
+                            @Html.ValidationMessageFor(model => model.startDate, "", new { @class = "text-danger" })*@
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="background-color:#f9f9f9;font-weight:bold;">
+                            页次
+                        </td>
+                        <td>
+                            <input type="text" id="PageNo" name="PageNo" value="@ViewBag.PageNo" class="form-control" style="display:inline;height:28px;padding:3px;">
+                            @*@Html.EditorFor(model => model.startPageNo, new { htmlAttributes = new { @class = "form-control", @style = "display:inline;height:28px;padding:3px;" } })
+                            @Html.ValidationMessageFor(model => model.startPageNo, "", new { @class = "text-danger" })*@ <br />页次格式：1或1-10
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="background-color:#f9f9f9;font-weight:bold;">
+                            备注
+                        </td>
+                        <td>
+                            <input type="text" id="remarks" name="remarks" value="@ViewBag.remarks" class="form-control" style="display:inline;height:28px;padding:3px;">
+                            @*@Html.EditorFor(model => model.remarks, new { htmlAttributes = new { @class = "form-control", @style = "display:inline;height:28px;padding:3px;" } })
+                            @Html.ValidationMessageFor(model => model.remarks, "", new { @class = "text-danger" })*@
+                        </td>
+                    </tr>
+                </table>
+            </div>
+
+            <input type="text" id="registion" name="registion" hidden="hidden" value="@ViewData["registion"]" />
+
+            <div style="text-align:center;">
+
+
+                <input type="submit" value="确定" @*onclick="addnew()"*@ name="action" class="btn btn-primary">
+
+                @*<input type="submit" value="取消" name="action" class="btn btn-primary">*@
+                <div style="height:20px;">
+                </div>
+            </div>
+        </div>
+    </div>
+        <div class="box-tools " style="text-align:center;">
+            <div style="height:5px;">
+            </div>
+            @*<input type="submit" value="添加" name="action" @*onclick="addnew()" class="btn btn-primary">*@
+            @*<input type="button" value="录入完毕" id="LuruFinsh1" onclick="return LuruFinsh()" class="btn btn-primary">
+            <input type="submit" value="打印卷内目录" id="juanniemulu" name="action" disabled="@ViewData["juanniemulu"]" class="btn btn-primary">
+            <input type="submit" value="返回案卷信息" name="action" class="btn btn-primary">*@
+            <input name="ArchiveNo" value="@ViewData["ArchiveNo"]" id="ArchiveNo" hidden="hidden">
+        </div>
+        @*<div style="text-align:center;">
+            <div style="height:7px;">
+            </div>
+            @*<input type="submit" value="导出为Excel" name="action" class="btn btn-primary" style="display:@ViewData["lvming"]">
+            <input id="FileUpload" type="file" name="FileUpload" class="inline" style="display:@ViewData["lvming"]" /> <input type="submit" value="导入Excel" name="action" class="btn btn-primary" style="display:@ViewData["lvming"]">
+        </div>
+        <hr>*@
+        <div style="background:#ecf0f5;">
+
+            @*<div class="box collapsed-box">*@
+            <div class="box box-default">
+                <div class="box-header with-border">
+                    <h2 style="margin:0px;font-size:22px;" class="box-title"><i class="fa fa-tags kongge"></i>卷内文件信息</h2>
+                    <hr>
+                    <label id="tishi" style="@ViewData["div"];color:red">该案卷未添加卷内目录!</label>
+                </div>
+                <div class="box-body" id="body">
+                    <div id="example-table-2"> </div>
+                </div>
+            </div>
+
+
+        </div>
+}

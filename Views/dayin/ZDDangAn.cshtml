@@ -1,0 +1,115 @@
+﻿
+@{
+    ViewBag.Title = "征地档案（档号范围）";
+}
+<h2><i class="fa fa-tags"></i>征地档案（档号范围）</h2>
+<hr />
+
+@using (Html.BeginForm())
+{
+    <div style="font-size:20px;">
+        <i class="fa fa-caret-right"></i>查询方式（一）请输入档案号范围（精确查找）
+    </div><br>
+    <div class="panel panel-default">
+        <table class="table table-bordered dl-horizontal">
+            <tr>
+                <td style="background-color:#f9f9f9;width:10%;">
+                    起始档案号:
+                </td>
+                <td>
+                    <input type="text" name="archiveNoS" id="archiveNoS" class="form-control " />
+                </td>
+                <td style="background-color:#f9f9f9;width:10%;">
+                    终止档案号:
+                </td>
+                <td>
+                    <input type="text" name="archiveNoE" id="archiveNoE" class="form-control " />
+                </td>
+            </tr>
+            <tr>
+                <td colspan="4" style="text-align:center;">
+                    <input type="submit" name="action" class="btn btn-default" id="ok" value="打印征地档案（精确）" />
+                    <input type="submit" name="action" class="btn btn-default" id="cancel" value="取消" />
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div style="font-size:20px;">
+        <i class="fa fa-caret-right"></i>查询方式（二）请输入档案号（模糊查找）
+    </div><br>
+    <div class="panel panel-default">
+        <table class="table table-bordered dl-horizontal">
+            <tr>
+                <td style="background-color:#f9f9f9;width:10%;">
+                    输入档案号:
+                </td>
+                <td colspan="3">
+                    <input type="text" name="archiveNo" id="archiveNo" class="form-control " />
+                </td>
+
+            </tr>
+            <tr>
+                <td colspan="4" style="text-align:center;">
+                    <input type="submit" name="action" class="btn btn-default" id="ok" value="打印征地档案（模糊）" />
+                    <input type="submit" name="action" class="btn btn-default" id="cancel" value="取消" />
+                    @*<input type="submit" name="action" class="btn btn-default" id="all" value="打印全部" />*@
+                </td>
+            </tr>
+        </table>
+    </div>
+
+    <div style="font-size:20px;">
+        <i class="fa fa-caret-right"></i>查询方式（三）请输入总登记号范围（精确查找）
+    </div>
+    <br>
+    <div class="panel panel-default">
+        <table class="table table-bordered dl-horizontal">
+            <tr>
+                <td style="background-color:#f9f9f9;width:10%;">
+                    起始总登记号:
+                </td>
+                <td>
+                    <input type="text" name="archiveNoS1" id="archiveNoS" class="form-control " />
+                </td>
+                <td style="background-color:#f9f9f9;width:10%;">
+                    终止总登记号:
+                </td>
+                <td>
+                    <input type="text" name="archiveNoE1" id="archiveNoE" class="form-control " />
+                </td>
+            </tr>
+            <tr>
+                <td colspan="4" style="text-align:center;">
+                    <input type="submit" name="action" class="btn btn-default" id="ok" value="打印征地档案（总登记号精确）" />
+                    <input type="submit" name="action" class="btn btn-default" id="cancel" value="取消" />
+
+                </td>
+            </tr>
+        </table>
+    </div>
+    <br>
+    <div style="font-size:20px;">
+        <i class="fa fa-caret-right"></i>查询方式（四）请输入总登记号
+    </div>
+    <br>
+    <div class="panel panel-default">
+        <table class="table table-bordered dl-horizontal">
+            <tr>
+                <td style="background-color:#f9f9f9;width:10%;">
+                    输入总登记号:
+                </td>
+                <td colspan="3">
+                    <input type="text" name="archiveNo1" id="archiveNo" class="form-control " />
+                </td>
+
+            </tr>
+            <tr>
+                <td colspan="4" style="text-align:center;">
+                    <input type="submit" name="action" class="btn btn-default" id="ok" value="打印征地档案（总登记号）" />
+                    <input type="submit" name="action" class="btn btn-default" id="cancel" value="取消" />
+                    @*<input type="submit" name="action" class="btn btn-default" id="all" value="打印全部" />*@
+                </td>
+            </tr>
+        </table>
+    </div>
+}

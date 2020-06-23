@@ -1,0 +1,68 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="zhengliDataSet" targetNamespace="http://tempuri.org/zhengliDataSet.xsd" xmlns:mstns="http://tempuri.org/zhengliDataSet.xsd" xmlns="http://tempuri.org/zhengliDataSet.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections>
+          <Connection AppSettingsObjectName="Web.config" AppSettingsPropertyName="UrbanConConnectionString" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="UrbanConConnectionString (Web.config)" ParameterPrefix="@" PropertyReference="AppConfig.System.Configuration.ConfigurationManager.0.ConnectionStrings.UrbanConConnectionString.ConnectionString" Provider="System.Data.SqlClient" />
+        </Connections>
+        <Tables>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="vw_projectListTableAdapter" GeneratorDataComponentClassName="vw_projectListTableAdapter" Name="vw_projectList" UserDataComponentName="vw_projectListTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="UrbanConConnectionString (Web.config)" DbObjectName="UrbanCon.dbo.vw_projectList" DbObjectType="View" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>SELECT projectName, paperProjectSeqNo, InchCountDetail, originalInchCount, originalMoneyAmount, copyInchCount, copyMoneyCount FROM dbo.vw_projectList</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="projectName" DataSetColumn="projectName" />
+              <Mapping SourceColumn="paperProjectSeqNo" DataSetColumn="paperProjectSeqNo" />
+              <Mapping SourceColumn="InchCountDetail" DataSetColumn="InchCountDetail" />
+              <Mapping SourceColumn="originalInchCount" DataSetColumn="originalInchCount" />
+              <Mapping SourceColumn="originalMoneyAmount" DataSetColumn="originalMoneyAmount" />
+              <Mapping SourceColumn="copyInchCount" DataSetColumn="copyInchCount" />
+              <Mapping SourceColumn="copyMoneyCount" DataSetColumn="copyMoneyCount" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+        </Tables>
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="zhengliDataSet" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="True" msprop:Generator_DataSetName="zhengliDataSet" msprop:Generator_UserDSName="zhengliDataSet">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="vw_projectList" msprop:Generator_TableClassName="vw_projectListDataTable" msprop:Generator_TableVarName="tablevw_projectList" msprop:Generator_TablePropName="vw_projectList" msprop:Generator_RowDeletingName="vw_projectListRowDeleting" msprop:Generator_RowChangingName="vw_projectListRowChanging" msprop:Generator_RowEvHandlerName="vw_projectListRowChangeEventHandler" msprop:Generator_RowDeletedName="vw_projectListRowDeleted" msprop:Generator_UserTableName="vw_projectList" msprop:Generator_RowChangedName="vw_projectListRowChanged" msprop:Generator_RowEvArgName="vw_projectListRowChangeEvent" msprop:Generator_RowClassName="vw_projectListRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="projectName" msprop:Generator_ColumnVarNameInTable="columnprojectName" msprop:Generator_ColumnPropNameInRow="projectName" msprop:Generator_ColumnPropNameInTable="projectNameColumn" msprop:Generator_UserColumnName="projectName" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="500" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="paperProjectSeqNo" msprop:Generator_ColumnVarNameInTable="columnpaperProjectSeqNo" msprop:Generator_ColumnPropNameInRow="paperProjectSeqNo" msprop:Generator_ColumnPropNameInTable="paperProjectSeqNoColumn" msprop:Generator_UserColumnName="paperProjectSeqNo" type="xs:long" />
+              <xs:element name="InchCountDetail" msprop:Generator_ColumnVarNameInTable="columnInchCountDetail" msprop:Generator_ColumnPropNameInRow="InchCountDetail" msprop:Generator_ColumnPropNameInTable="InchCountDetailColumn" msprop:Generator_UserColumnName="InchCountDetail" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="500" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="originalInchCount" msprop:Generator_ColumnVarNameInTable="columnoriginalInchCount" msprop:Generator_ColumnPropNameInRow="originalInchCount" msprop:Generator_ColumnPropNameInTable="originalInchCountColumn" msprop:Generator_UserColumnName="originalInchCount" type="xs:long" minOccurs="0" />
+              <xs:element name="originalMoneyAmount" msprop:Generator_ColumnVarNameInTable="columnoriginalMoneyAmount" msprop:Generator_ColumnPropNameInRow="originalMoneyAmount" msprop:Generator_ColumnPropNameInTable="originalMoneyAmountColumn" msprop:Generator_UserColumnName="originalMoneyAmount" type="xs:decimal" minOccurs="0" />
+              <xs:element name="copyInchCount" msprop:Generator_ColumnVarNameInTable="columncopyInchCount" msprop:Generator_ColumnPropNameInRow="copyInchCount" msprop:Generator_ColumnPropNameInTable="copyInchCountColumn" msprop:Generator_UserColumnName="copyInchCount" type="xs:long" minOccurs="0" />
+              <xs:element name="copyMoneyCount" msprop:Generator_ColumnVarNameInTable="columncopyMoneyCount" msprop:Generator_ColumnPropNameInRow="copyMoneyCount" msprop:Generator_ColumnPropNameInTable="copyMoneyCountColumn" msprop:Generator_UserColumnName="copyMoneyCount" type="xs:decimal" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

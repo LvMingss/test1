@@ -1,0 +1,175 @@
+﻿@model urban_archive.Models.ArchiveCertificate
+
+
+    <link type="text/css" rel="stylesheet" href="~/Scripts/jquery/jquery-ui.css">
+    <script type="text/javascript" src="~/Scripts/jquery/jquery-1.8.3.js"></script>
+    <script type="text/javascript" src="~/Scripts/jquery/jquery.ui.core.js"></script>
+    <script type="text/javascript" src="~/Scripts/jquery/jquery.ui.datepicker.js"></script>
+    <script type="text/javascript" src="~/Scripts/jquery/jquery.ui.widget.js"></script>
+    <script type="text/javascript" src="~/Scripts/jquery/jquery-ui-timepicker-addon.js"></script>
+<style type="text/css">
+    .jubu {
+        max-width: 100%;
+    }
+</style>
+    <script>
+            $(function () {
+                $("#dateArchive").datepicker({
+                    changeMonth: true,
+                    changeYear: true
+                });
+            });
+            $(function () {
+                $("#projectStartDate").datepicker({
+                    changeMonth: true,
+                    changeYear: true
+                });
+            });
+            $(function () {
+                $("#projectFinishDate").datepicker({
+                    changeMonth: true,
+                    changeYear: true
+                });
+            });
+            $(function () {
+                $("#datebianhao").datepicker({
+                    changeMonth: true,
+                    changeYear: true
+                });
+            });
+            
+        function xiugai() {
+        var msg = "确认要保存吗?";
+        if (confirm(msg) == true) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+    </script>
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.projectID)
+        <div class="panel panel-default">
+            <table class="table table-bordered dl-horizontal" style="background-color:#f9f9f9;">
+                <tr>
+                    <td style="background-color:#f9f9f9;width:6%;min-width:200px;">
+                       编号
+                    </td>
+                    <td style="width:94%;">
+                        鲁建档证
+                        @Html.EditorFor(model => model.archiveCertificateNo, new { htmlAttributes = new { @class = "form-control",@style="display:inline" } }) 号
+                        @Html.ValidationMessageFor(model => model.archiveCertificateNo, "", new { @class = "text-danger" })
+                    </td>
+                </tr>
+                <tr>
+                    <td style="background-color:#f9f9f9;">
+                        工程名称
+                    </td>
+                    <td >
+                        @Html.EditorFor(model => model.projectName, new { htmlAttributes = new { @class = "form-control jubu" } })
+                        @Html.ValidationMessageFor(model => model.projectName, "", new { @class = "text-danger" })
+                    </td>
+                </tr>
+                <tr>
+                    <td style="background-color:#f9f9f9;">
+                        工程地址
+                    </td>
+                    <td >
+                        @Html.EditorFor(model => model.location, new { htmlAttributes = new { @class = "form-control jubu" } })
+                        @Html.ValidationMessageFor(model => model.location, "", new { @class = "text-danger" })
+                    </td>
+                </tr>
+                <tr>
+                    <td style="background-color:#f9f9f9;">
+                        建设单位
+                    </td>
+                    <td>
+                        @Html.EditorFor(model => model.developmentOrganization, new { htmlAttributes = new { @class = "form-control jubu" } })
+                        @Html.ValidationMessageFor(model => model.developmentOrganization, "", new { @class = "text-danger" })
+                    </td>
+                </tr>
+                <tr>
+                    <td style="background-color:#f9f9f9;">
+                        归档时间
+                    </td>
+                    <td>
+                        @Html.EditorFor(model => model.dateArchive, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.dateArchive, "", new { @class = "text-danger" })
+                    </td>
+                </tr>
+                <tr>
+                    <td style="background-color:#f9f9f9;">
+                        起止工期
+                    </td>
+                    <td>
+                        @Html.EditorFor(model => model.projectStartDate, new { htmlAttributes = new { @class = "form-control", @style = "display:inline" } }) 至
+                        @Html.EditorFor(model => model.projectFinishDate, new { htmlAttributes = new { @class = "form-control", @style = "display:inline" } })
+                    </td>
+                </tr>
+                <tr>
+                    <td style="background-color:#f9f9f9;">
+                        联系人（档案员）
+                    </td>
+                    <td>
+                        @Html.EditorFor(model => model.submitPerson, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.submitPerson, "", new { @class = "text-danger" })
+                    </td>
+                </tr>
+                <tr>
+                    <td style="background-color:#f9f9f9;">
+                        电话
+                    </td>
+                    <td>
+                        @Html.EditorFor(model => model.telphoneSubmitPerson, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.telphoneSubmitPerson, "", new { @class = "text-danger" })
+                    </td>
+                </tr>
+                <tr>
+                    <td style="background-color:#f9f9f9;">
+                        接收人/验收人
+                    </td>
+                    <td>
+                        @Html.EditorFor(model => model.recipient, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.recipient, "", new { @class = "text-danger" })
+                    </td>
+                </tr>
+                <tr>
+                    <td style="background-color:#f9f9f9;">
+                        电话
+                    </td>
+                    <td>
+                        <input type="text" id="telphone" value="@ViewBag.tel" class = "form-control">
+                        @Html.ValidationMessageFor(model => model.telphoneSubmitPerson, "", new { @class = "text-danger" })
+                    </td>
+                </tr>
+                <tr>
+                    <td style="background-color:#f9f9f9;">
+                        编号日期
+                    </td>
+                    <td>
+                        @Html.EditorFor(model => model.datebianhao, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.datebianhao, "", new { @class = "text-danger" })
+                    </td>
+                </tr>
+            </table>
+        </div>
+
+        <div style="text-align:center;">
+            <p>
+                <input type="submit" value="提交" name="action" class="btn btn-default" onclick="return xiugai()">
+                <input type="submit" value="返回" name="action" class="btn btn-default">
+            </p>
+            <div style="height:5px;">
+            </div>
+        </div>
+    </div>
+}
+
+

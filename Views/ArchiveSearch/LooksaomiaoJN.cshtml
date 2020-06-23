@@ -1,0 +1,627 @@
+﻿@{
+    Layout = null;
+}
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=10,chrome=1" />
+    <title>查看扫描件</title>
+    <link href="~/Content/font-awesome-4.7.0/css/font-awesome.css" rel="stylesheet" />
+    <link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/jquery-ui.theme.css" rel="stylesheet" />
+    @*@Styles.Render("~/Content/css")*@
+    <link href="~/Content/Tabulator/version3.0/tabulator.css" rel="stylesheet" />
+    <link type="text/css" rel="stylesheet" href="~/Scripts/jquery/jquery-ui.css" />
+    @*<link href="~/Content/bootstrap.min.css" rel="stylesheet" />*@
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+    <link href="~/Content/viewer/viewer.min.css" rel="stylesheet" />
+
+    <script src="~/Scripts/jquery-2.1.1.min.js" type="text/javascript"></script>
+    @*<script type="text/javascript" src="~/Scripts/jquery/jquery-1.8.3.js"></script>*@
+    <script src="~/Scripts/jquery-ui.min.js"></script>
+    <script src="~/Content/Tabulator/version3.0/tabulator.js"></script>
+    <script src="~/Content/Tabulator/v3.2.2/tabulator.js"></script>
+    <link href="~/Scripts/zTREE/css/AJAXControlToolKit.css" rel="stylesheet" />
+    <script src="~/Scripts/LoadWebBrowseActiveX.js"></script>
+
+    <script src="~/Scripts/bootstrap.min.js"></script>
+    <script src="~/Content/viewer/viewer.min.js"></script>
+    <script src="~/Content/viewer/viewer-jquery.min.js"></script>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        #dis li {
+            height: 100%;
+        }
+
+            #dis li img {
+                max-height: 90%;
+                max-width: 75%;
+                width: expression( ( this.width > 10000) ? 10000 : this.width );
+                height: expression( ( this.heigh > 40000) ? 400 : this.height );
+                BORDER-RIGHT: 5px double;
+                BORDER-TOP: 5px double;
+                BORDER-LEFT: 5px double;
+                BORDER-BOTTOM: 5px double;
+            }
+
+        .file-preview {
+            border-radius: 5px;
+            border: 1px solid #ddd;
+        }
+
+        #List {
+        }
+
+            #List ul {
+                margin: 0px;
+                padding: 0px;
+                list-style-type: none;
+                vertical-align: middle;
+            }
+
+            #List li {
+                width: 100px;
+                height: 20px;
+                line-height: 20px;
+                font-size: 14px;
+                font-weight: bold;
+                color: #666666;
+                text-decoration: none;
+                text-align: left;
+                background: #ffffff;
+            }
+
+        .divcss5 {
+            border: 0px;
+            width: 0px;
+            height: 0px;
+        }
+    </style>
+    <script language="javascript" type="text/javascript">
+    var oldBorder;
+    function SetNewBorder(oSrc) {
+        oldBorder = oSrc.style.border;
+        oSrc.style.border = "1px outset #00FFFF";
+    }
+
+    function SetOldBorder(oSrc) {
+        oSrc.style.border = oldBorder;
+    }
+    </script>
+
+
+    <script type="text/javascript" language="javascript">
+
+    var chec = function (value, data, cell, row, options) { //plain text value
+        return '<input type="checkbox"  data-type="checkbox" />'
+    };
+
+    $(document).ready(function () {
+
+        window.focus();
+        var paperProjectSeqNo = document.getElementById("proNo").value;
+        var seqNo = document.getElementById("seqNo").value;
+        var volNo = document.getElementById("VolNo").value;
+        var archiveNo = document.getElementById("archiveNo").value;
+        while (paperProjectSeqNo.length < 5) {
+            paperProjectSeqNo = "0" + paperProjectSeqNo;
+        }
+        while (volNo.length < 3) {
+            volNo = "0" + volNo;
+        }
+
+        $.ajax({
+            type: "POST",
+            url: "/ArchiveSearch/GetJunGongPicListDemo/?paperSeqNo=" + paperProjectSeqNo + "&archiveNo=" + archiveNo + "&volNo=" + volNo + "&seqNo=" + seqNo,
+            //url: "/ArchiveSearch/GetJunGongPicListDemoJN/?seqNo=" + encodeURIComponent(seqNo) + "&paperSeqNo=" + paperProjectSeqNo + "&volNo=" + volNo,
+            contentType: "application/json;",
+            data: "",
+            dataType: "json",
+            success: function (data) {
+                onSuccess(data);
+            }
+        });
+    });
+    $().ready(function () {//在页面加载完成之后用，为了保证js能完整的执行。
+        $(document).ready(function () {
+            var height = $(window).height();
+            var hh = height - 83;
+            $(".box-h").height(height)
+            $(".box-h1").height(hh)
+            var width = $(window).width();
+            var wid = width - 350;
+            $(".box-w").height(wid);
+        })
+        $("#example-table-2").tabulator({
+            height: "100%",
+            virtualDom: false,
+            selectable: 1,
+            sortable: false,
+            pagination: "local",
+            paginationSize: 300,
+            fitColumns: true,
+            columns: [
+               {
+                   title: "选择", field: "check", width: 50, formatter: "tickCross", headerSort: false, sorter: "string", align: "center", cellClick: function (e, cell) {
+                       if (cell.getRow().getData().check == false) {
+                           $("#example-table-2").tabulator("updateData", [{ id: cell.getRow().getData().id, check: true }]);
+                       }
+                       else {
+                           $("#example-table-2").tabulator("updateData", [{ id: cell.getRow().getData().id, check: false }]);
+                       }
+                   }
+               },
+
+                { title: "文件序号", field: "a", align: "center", headerSort: false, width: 80 },
+                { title: "文件名称", field: "Name", width: 230, headerSort: false, cellClick: function (e, cell) {
+                        $('#dowebok li').each(function () {
+                            $(this).remove();
+                        });
+                        if (cell.getRow().getData().Name.indexOf(".pdf") != -1) {
+                            Getyeci();
+                            str1 = "<li><iframe " + "id=" + '"' + cell.getRow().getData().id + '"' + "src=" + '"' + cell.getRow().getData().WebPath + '"' + 'style="width: 1200px; height: 1400px;"></iframe>' + '<p align="center"><a href="/ArchiveSearch/DownLoadFile?id=' + cell.getRow().getData().WebPath + "&&filename=" + cell.getRow().getData().Name + '" >' + cell.getRow().getData().Name + '</a></p></li>';
+                            $("#dowebok").append(str1);
+                            $("#dowebok").viewer("destroy");
+                            $("#dowebok").viewer();
+
+                        }
+                        else {
+                            str1 = "<li><img " + "id=" + '"' + cell.getRow().getData().id + '"' + "src=" + '"' + cell.getRow().getData().WebPath + '"' + "alt=" + '"' + cell.getRow().getData().Name + '"' + "/>" + '<p align="center"><a href="/ArchiveSearch/DownLoadFile?id=' + cell.getRow().getData().WebPath + "&&filename=" + cell.getRow().getData().Name + '" >' + cell.getRow().getData().Name + '</a></p></li>';
+                            Getsize(cell.getRow().getData().WebPath);
+                            $("#dowebok").append(str1);
+                            $("#dowebok").viewer("destroy");
+                            $("#dowebok").viewer();
+                        }
+                    }
+                },
+            ],
+
+        });
+    });
+
+    function Getyeci() {
+        document.getElementById('yeci').style.display = "inline";
+    }
+
+    function Getsize(add) {
+        add = encodeURI(encodeURI(add));
+        $.ajax({
+            type: "POST",
+            url: "/UrbanBorrow/GetSize/?path=" + encodeURIComponent(add),
+            contentType: "application/x-www-form-urlencoded",
+            data: "",
+            dataType: "json",
+            success: function (data) {
+                document.getElementById('pagesize').value = data;
+            }
+        });
+    }
+    function onSuccess(result) {
+        if (result == null || result == "undefined") {
+            alert("fail");
+            return;
+        }
+        onSuccessList(result);//加载图片显示列表
+    }
+
+    function onSuccessList(result) {
+        document.getElementById("count").value = result.length;
+        var temp = new Array();
+        var Data = result;
+        for (var i = 0; i < Data.length; i++) {
+            var val = false;
+            temp.push({ "id": i + 1, "check": val, "a": i + 1, "Name": Data[i].Name, "WebPath": Data[i].WebPath });
+        }
+        $("#example-table-2").tabulator("setData", temp);
+
+        $(window).resize(function () {
+            $(document).ready(function () {
+                var height = $(window).height();
+                var hh = height - 83;
+                $(".box-h").height(height)
+                $(".box-h1").height(hh)
+                var width = $(window).width();
+                var wid = width - 360;
+                $(".box-w").height(wid);
+                $("#example-table-2").tabulator("redraw", true);
+
+            })
+        });
+
+        $('#dowebok li').each(function () {
+            $(this).remove();
+        });
+        if (Data[0].Name.indexOf(".pdf") != -1) {
+            Getyeci();
+            str1 = "<li><iframe " + "id=" + '"' + Data[0].id + '"' + "src=" + '"' + Data[0].WebPath + '"' + 'style="width: 1200px; height: 1400px;"></iframe>' + '<p align="center"><a href="/ArchiveSearch/DownLoadFile?id=' + Data[0].WebPath + "&&filename=" + Data[0].Name + '" >' + Data[0].Name + '</a></p></li>';
+            $("#dowebok").append(str1);
+            $("#dowebok").viewer("destroy");
+            $("#dowebok").viewer();
+        }
+        else {
+            str1 = "<li><img " + "id=" + '"' + Data[0].id + '"' + "src=" + '"' + Data[0].WebPath + '"' + "alt=" + '"' + Data[0].Name + '"' + "/>" + '<p align="center"><a href="/ArchiveSearch/DownLoadFile?id=' + Data[0].WebPath + "&&filename=" + Data[0].Name + '" >' + Data[0].Name + '</a></p></li>';
+            Getsize(Data[0].WebPath);
+            $("#dowebok").append(str1);
+            $("#dowebok").viewer("destroy");
+            $("#dowebok").viewer();
+        }
+    }
+    function ShowCalendar2(idRes) {//alert("x = " + event.clientX + ";y = " + event.clientY);
+        if (document.all.item(idRes) != null) {
+            var x = event.screenX + 20;
+            var y = event.screenY + 50;
+            var z = window.showModalDialog('/ArchiveSearch/borrowerHasRegistedInfo', 'dialogHeight:1000px;dialogWidth:1500px;dialogLeft:' + x + 'px;dialogTop:' + y + 'px;');
+
+            document.getElementById("userid1").value = z;
+
+        }
+    }
+
+    $(document).ready(function () {
+        $("#Adddown").click(function () {
+            var data = $("#example-table-2").tabulator("getData");
+            var m = 0;
+            var info1 = "";
+            var arr = new Array();
+            for (var i = 0; i < data.length; i++) {
+                if (data[i].check == true) {
+                    arr[m] = data[i].WebPath;
+                    m++;
+                }
+            }
+            var paperProjectSeqNo = GetQueryStringRegExp("paperProjectSeqNo");
+            var ArchiveNo = GetQueryStringRegExp("ArchiveNo");
+            var volNo = GetQueryStringRegExp("volNo");
+            ArchiveNo = ArchiveNo.toString().trim();
+            var regNo = GetQueryStringRegExp("regNo");
+
+            //var seqNo = document.getElementById("seqNo").value;
+
+            while (paperProjectSeqNo.length < 5) {
+                paperProjectSeqNo = "0" + paperProjectSeqNo;
+            }
+            var VolCnt1 = document.getElementById("VolCnt").value;
+            var userid = document.getElementById("userid1").value;
+            var Cntyeci = document.getElementById("yeci").value;
+            if (Cntyeci.indexOf("，") != -1) {
+                alert("页码中包含中文逗号");
+                //window.close();
+            }
+            else {
+                $.ajax({
+                    type: "POST",
+                    url: "/ArchiveSearch/Looksaomiaopost/?paperProjectSeqNo=" + paperProjectSeqNo + "&archiveNo=" + ArchiveNo + "&volNo=" + volNo + "&name1=" + "Adddown" + "&VolCnt1=" + VolCnt1 + "&userid=" + userid + "&regNo=" + regNo + "&Cntyeci=" + Cntyeci,
+                    contentType: "application/x-www-form-urlencoded",
+                    data: { arr1: arr },
+                    dataType: "json",
+                    success: function (data) {
+
+                        if (data == "1") {
+                            //alert("您尚未选择借阅人");
+                            $("#Msg").val("您尚未选择借阅人");
+                        }
+                        if (data == "2") {
+                            //alert("您尚未登记，请先登记");
+                            $("#Msg").val("您尚未登记，请先登记");
+                        }
+                        if (data == "3") {
+                            //alert("保存成功");
+                            $("#Msg").val("保存成功");
+                        }
+                        if (data == "4") {
+                            //alert("此图纸已保存");
+                            $("#Msg").val("此图纸已保存");
+                        }
+                        if (data == "5") {
+                            //alert("您尚未选择扫描件或借阅人");
+                            $("#Msg").val("您尚未选择扫描件或借阅人");
+                        }
+                    }
+                });
+            }
+        });
+    });
+
+    //$(document).ready(function () {
+    //    $("#btnDelSMJ").click(function () {
+
+    //        var info1 = GetControlInfo();
+    //        document.getElementById("txtLocation").value = info1;
+
+    //        var info = document.getElementById("txtLocation").value;
+
+    //        var paperProjectSeqNo = GetQueryStringRegExp("paperProjectSeqNo");
+
+    //        var ArchiveNo = GetQueryStringRegExp("ArchiveNo");
+    //        var volNo = GetQueryStringRegExp("volNo");
+    //        ArchiveNo = ArchiveNo.toString().trim();
+    //        var regNo = GetQueryStringRegExp("regNo");
+    //        while (paperProjectSeqNo.length < 5) {
+    //            paperProjectSeqNo = "0" + paperProjectSeqNo;
+    //        }
+    //        var VolCnt1 = document.getElementById("VolCnt").value;
+
+    //        var userid = document.getElementById("userid1").value;
+
+    //        $.ajax({
+    //            type: "POST",
+    //            url: "/ArchiveSearch/Looksaomiaopost/?paperProjectSeqNo=" + paperProjectSeqNo + "&archiveNo=" + ArchiveNo + "&volNo=" + volNo + "&info=" + info + "&name1=" + "Delete" + "&VolCnt1=" + VolCnt1 + "&userid=" + userid + "&regNo=" + regNo,
+    //            contentType: "application/json",
+    //            data: "",
+    //            dataType: "json",
+    //            success: function (data) {
+
+    //                if (data == "6") {
+    //                    alert("扫描件删除成功");
+    //                    $("#Msg").val("扫描件删除成功");
+    //                }
+    //            }
+    //        });
+    //    });
+    //});
+    $(document).ready(function () {
+        $("#reback").click(function () {
+            window.close();
+        });
+    });
+
+    $(document).ready(function () {
+        $("#tongji").click(function () {
+            window.close();
+        });
+    });
+    function Pre() {
+
+
+        var selectedData = $("#example-table-2").tabulator("getSelectedData");//获取选中的数据
+        if (document.getElementById("dowebok").childNodes.length == 0) {
+            alert("请选择一条记录");
+        }//需要选择一条记录
+        else {
+            if (document.getElementById('flag5').value == 0)//下一条按钮已经不可用
+            {
+                document.getElementById('next').disabled = false;//恢复可用状态
+            }
+            $('#dowebok li').each(function () {
+                $(this).remove();
+            });
+            var flag2 = selectedData[0].id;
+            if (flag2 - 1 == 1) {
+
+                document.getElementById('pre').disabled = true;
+                document.getElementById('flag5').value = 1;
+                alert("这是第一条！");
+            }
+            $("#example-table-2").tabulator("selectRow", flag2 - 1);
+            var selectedData1 = $("#example-table-2").tabulator("getSelectedData");
+            var a = selectedData1[0].WebPath.replace(/\#/g, "%23");
+            var str1 = "<li><img did=" + '"' + selectedData1[0].id + '"' + "src=" + '"' + a + '"  ' + "alt=" + '"' + selectedData1[0].Name + '"' + "/>" + "<h4>" + '<p align="center"><a href="/ArchiveSearch/DownLoadFile?id=' + a + "&&filename=" + selectedData1[0].Name + '" >' + selectedData1[0].Name + '</a></p></li>';
+            $("#dowebok").append(str1);
+            Getsize(selectedData1[0].WebPath);
+            $("#dowebok").viewer("destroy");
+            $("#dowebok").viewer();
+
+
+        }
+
+
+    }
+
+
+
+    function next() {
+        var selectedData = $("#example-table-2").tabulator("getSelectedData");//获取选中的数据
+        if (document.getElementById("dowebok").childNodes.length == 0) {
+            alert("请选择一条记录");
+        }
+        else {
+            if (document.getElementById('flag5').value == 1)//上一条按钮已经不可用
+            {
+                document.getElementById('pre').disabled = false;//恢复可用状态
+            }
+
+            var flag2 = selectedData[0].id + 1;
+
+            //for (var j = 0; j < document.getElementById("dowebok").childNodes.length; j++)
+            //{
+            //    document.getElementById("dowebok").removeChild(document.getElementById("dowebok").childNodes[j]);
+            //}
+            $('#dowebok li').each(function () {
+                $(this).remove();
+            });
+            if (flag2 == document.getElementById("count").value) {
+                document.getElementById('next').disabled = true;
+                document.getElementById('flag5').value = 0;
+                alert("这是最后一条！");
+            }
+            $("#example-table-2").tabulator("selectRow", flag2);
+            var selectedData1 = $("#example-table-2").tabulator("getSelectedData");
+            //var add = selectedData1[0].WebPath;
+            //var cont = selectedData1[0].id;
+            //var name = selectedData1[0].Name;
+            var a = selectedData1[0].WebPath.replace(/\#/g, "%23");
+            var str1 = "<li><img did=" + '"' + selectedData1[0].id + '"' + "src=" + '"' + a + '"  ' + "alt=" + '"' + selectedData1[0].Name + '"' + "/>" + "<h4>" + '<p align="center"><a href="/ArchiveSearch/DownLoadFile?id=' + a + "&&filename=" + selectedData1[0].Name + '" >' + selectedData1[0].Name + '</a></p></li>';
+            //var str2 = str1 + "alt=" + '"' + name + '"' + "/>" + "<h4>" + name + "</h4></li>";
+            //var obj = new Object();
+            //obj.name = selectedData1[0].Name;
+            //obj.path = selectedData1[0].WebPath;
+            //var number = window.showModalDialog('/UrbanBorrow/PageSize/', obj, 'dialogWidth=0px;dialogHeight=10px;center:no;dialogLeft:1000px;dialogTop:300px;alwaysLowered:yes;');
+            //document.getElementById('pagesize').value = number;
+            $("#dowebok").append(str1);
+            Getsize(selectedData1[0].WebPath);
+            $("#dowebok").viewer("destroy");
+            $("#dowebok").viewer();
+
+        }
+    }
+
+
+    $(document).ready(function () {
+
+        $("#Print").click(function () {
+            var data = $("#example-table-2").tabulator("getData");
+            var cnt = 0;
+            cnt = data.length;
+            var arrNa = new Array();
+            var arrPa = new Array();
+            var m = 0;
+            for (var i = 0; i < cnt; i++) {
+                if (data[i].check == true && data[i].check != "undefined") {
+                    arrNa[m] = data[i].Name;
+                    arrPa[m] = data[i].WebPath;
+                    m++;
+                }
+            }
+            alert("共有" + m + "张扫描件需要打印");
+            CreateControl("div_WebBrowse", arrPa, arrNa, m, "1111");
+        });
+    });
+    $(document).ready(function () {
+        $("#Down").click(function () {
+            var all = $("#example-table-2").tabulator("getData");
+            var slename = new Array();
+            var slepath = new Array();
+            var n = 0;
+            for (var i = 0; i < all.length; i++) {
+                if (all[i].check == true && all[i].check != "undefined") {
+                    slename[n] = all[i].Name;
+                    slepath[n] = all[i].WebPath;
+                    n++;
+                }
+            }
+            alert("共选中了" + n + "张下载");
+            slename = encodeURI(encodeURI(slename));
+            slepath = encodeURI(encodeURI(slepath));
+            //alert(slename);
+            url= "/ArchiveSearch/sleDownLoadFile/?id=" + slepath + "&filename=" + slename,
+            window.open(url);
+            //$.ajax({
+            //    type: "POST",
+            //    url: "/ArchiveSearch/sleDownLoadFile/?id=" + slepath + "&filename=" + slename,
+            //    contentType: "application/json",
+            //    data: "",
+            //    dataType: "json",
+
+            //});
+        });
+    });
+    $(document).ready(function () {
+
+        $("#Allselect").click(function () {
+
+
+            var Data = $("#example-table-2").tabulator("getData");
+            document.getElementById("count").value = Data.length;
+            var temp = new Array();
+
+            for (var i = 0; i < Data.length; i++) {
+                var val = true;
+                temp.push({ "id": i + 1, "check": val, "a": i + 1, "Name": Data[i].Name, "WebPath": Data[i].WebPath });
+            }
+            $("#example-table-2").tabulator("setData", temp);
+            $(window).resize(function () {
+                $(document).ready(function () {
+                    var height = $(window).height();
+                    var hh = height - 83;
+                    $(".box-h").height(height)
+                    $(".box-h1").height(hh)
+                    var width = $(window).width();
+                    var wid = width - 360;
+                    $(".box-w").height(wid);
+                    $("#example-table-2").tabulator("redraw", true);
+                })
+            });
+        });
+    });
+    $(document).ready(function () {
+
+        $("#Delselect").click(function () {
+
+            var Data = $("#example-table-2").tabulator("getData");
+            document.getElementById("count").value = Data.length;
+            var temp = new Array();
+
+            for (var i = 0; i < Data.length; i++) {
+                var val = false;
+                temp.push({ "id": i + 1, "check": val, "a": i + 1, "Name": Data[i].Name, "WebPath": Data[i].WebPath });
+            }
+            $("#example-table-2").tabulator("setData", temp);
+            $(window).resize(function () {
+                $(document).ready(function () {
+                    var height = $(window).height();
+                    var hh = height - 83;
+                    $(".box-h").height(height)
+                    $(".box-h1").height(hh)
+                    var width = $(window).width();
+                    var wid = width - 360;
+                    $(".box-w").height(wid);
+                    $("#example-table-2").tabulator("redraw", true);
+
+                })
+            });
+
+        });
+    });
+
+    </script>
+
+</head>
+
+
+<body class="box-h" style="background:#ecf0f5;border:1px solid #ddd;padding:0px;margin:0px;">
+
+
+    <div id="example-table-2" class="box-h" style="float:left;width:360px;"></div>
+
+    <div class="file-preview box-h" id="con" style="padding:0px;margin:0px;border:0px;text-align:center">
+
+        <form>
+            <p>
+                <input id="txtLocation" hidden="hidden" />
+                <input id="Button3" type="button" class="btn btn-default" value="选择借阅人" onclick="javascript:ShowCalendar2('userid1');" style="padding:4px 8px;" />
+                <input id="userid1" disabled="disabled" style="width:100px;padding:3px;" />
+                @*<input id="Add" type="button" value="添加到用户" class="btn btn-default" style="padding:4px 8px;" />*@
+                <input id="Adddown" type="button" value="添加到用户下载" class="btn btn-default" style="padding:4px 8px;" />
+                <input id="reback" type="button" value="返回" class="btn btn-default" style="padding:4px 8px;" />
+
+
+                @*<input id="Print" type="button" value="打印" class="btn btn-default" style="padding:4px 8px;" />*@
+                @*<input id="Down" type="button" value="批量下载" class="btn btn-default" style="padding:4px 8px;" />*@
+                <input id="Msg" style="border:0px;color:coral;background:#ecf0f5;height:25px;font-size:14px;" />
+                竣工档案：【<input id="proNo" value="@ViewData["proNo"]" style="padding:3px;width:100px;" />】【第<input id="VolNo" value="@ViewData["VolNo"]" style="padding:3px;width:100px;" />/<input id="VolCnt" value="@ViewData["VolCnt"]" style="width:100px;padding:3px;" />卷】【序号<input id="seqNo" value="@ViewData["seqNo"]" style="padding:3px;width:50px;" />】
+                @*纸张类型：<input id="pagesize" name="pagesize" style="padding:3px;width:100px;" />*@
+            </p>
+        </form>
+
+        <div id="dis" style="display:block;margin-bottom:5px;">
+            @*<input type="button" id="pre" value="上一条" class="btn btn-default" style="padding:3px 6px" onclick="Pre()" />
+                <input type="button" id="next" value="下一条" class="btn btn-default" style="padding:3px 6px" onclick="next()" />*@
+            <input type="button" id="Allselect" class="btn btn-default" style="padding:3px 6px" value="全选" />
+            <input type="button" id="Delselect" value="全删" class="btn btn-default" style="padding:3px 6px" />
+            <input name="yeci" id="yeci" style="padding:3px 20px;display:none;">
+            <div id="loveu">
+                页码选择（页码之间用英文逗号分隔）,例如1,5,10
+            </div>
+            <ul id="dowebok" style="margin-top:5px;" class="box-h1"></ul>
+        </div>
+    </div>
+    <input id="flag" name="flag" value="0" hidden="hidden" />
+    <input id="flag5" name="flag5" hidden="hidden" />
+    <input id="flg" name="flg" hidden="hidden" value="1" />@*设置标识符，以确定当前状态是单选还是多选,1:单选2：多选*@
+    <input id="storage" name="storage" hidden="hidden" />@*存储需要打印的扫描件*@
+    <input id="count" name="count" hidden="hidden" />@*记录扫描件条数*@
+    <input id="storage1" name="storage1" hidden="hidden" />@*记录当前选择查看的扫描件*@
+    <input name="archiveNo" id="archiveNo" value="@ViewData["archiveNo"]" hidden="hidden">
+
+
+    <div class="divcss5" id="div_WebBrowse"> </div>
+</body>
+</html>
+

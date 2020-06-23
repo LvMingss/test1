@@ -1,0 +1,148 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="ZDDangAnDataSet" targetNamespace="http://tempuri.org/ZDDangAnDataSet.xsd" xmlns:mstns="http://tempuri.org/ZDDangAnDataSet.xsd" xmlns="http://tempuri.org/ZDDangAnDataSet.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections>
+          <Connection AppSettingsObjectName="Web.config" AppSettingsPropertyName="UrbanConConnectionString" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="UrbanConConnectionString (Web.config)" ParameterPrefix="@" PropertyReference="AppConfig.System.Configuration.ConfigurationManager.0.ConnectionStrings.UrbanConConnectionString.ConnectionString" Provider="System.Data.SqlClient" />
+        </Connections>
+        <Tables>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="vw_zdArchivesTableAdapter" GeneratorDataComponentClassName="vw_zdArchivesTableAdapter" Name="vw_zdArchives" UserDataComponentName="vw_zdArchivesTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="UrbanConConnectionString (Web.config)" DbObjectName="UrbanCon.dbo.vw_zdArchives" DbObjectType="View" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>SELECT securityName, retentionPeriodName, seqNo, archiveNo, archiveTitle, textPageCnt, drawingPageCnt, photoCnt, zdwh, bdzh, zhuluDate, leibie, regisNo, paijiaNo, hbLocation, firstResponsible, hbDate FROM dbo.vw_zdArchives</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="securityName" DataSetColumn="securityName" />
+              <Mapping SourceColumn="retentionPeriodName" DataSetColumn="retentionPeriodName" />
+              <Mapping SourceColumn="seqNo" DataSetColumn="seqNo" />
+              <Mapping SourceColumn="archiveNo" DataSetColumn="archiveNo" />
+              <Mapping SourceColumn="archiveTitle" DataSetColumn="archiveTitle" />
+              <Mapping SourceColumn="textPageCnt" DataSetColumn="textPageCnt" />
+              <Mapping SourceColumn="drawingPageCnt" DataSetColumn="drawingPageCnt" />
+              <Mapping SourceColumn="photoCnt" DataSetColumn="photoCnt" />
+              <Mapping SourceColumn="zdwh" DataSetColumn="zdwh" />
+              <Mapping SourceColumn="bdzh" DataSetColumn="bdzh" />
+              <Mapping SourceColumn="zhuluDate" DataSetColumn="zhuluDate" />
+              <Mapping SourceColumn="leibie" DataSetColumn="leibie" />
+              <Mapping SourceColumn="regisNo" DataSetColumn="regisNo" />
+              <Mapping SourceColumn="paijiaNo" DataSetColumn="paijiaNo" />
+              <Mapping SourceColumn="hbLocation" DataSetColumn="hbLocation" />
+              <Mapping SourceColumn="firstResponsible" DataSetColumn="firstResponsible" />
+              <Mapping SourceColumn="hbDate" DataSetColumn="hbDate" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+        </Tables>
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="ZDDangAnDataSet" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="True" msprop:Generator_DataSetName="ZDDangAnDataSet" msprop:Generator_UserDSName="ZDDangAnDataSet">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="vw_zdArchives" msprop:Generator_TableClassName="vw_zdArchivesDataTable" msprop:Generator_TableVarName="tablevw_zdArchives" msprop:Generator_TablePropName="vw_zdArchives" msprop:Generator_RowDeletingName="vw_zdArchivesRowDeleting" msprop:Generator_RowChangingName="vw_zdArchivesRowChanging" msprop:Generator_RowEvHandlerName="vw_zdArchivesRowChangeEventHandler" msprop:Generator_RowDeletedName="vw_zdArchivesRowDeleted" msprop:Generator_UserTableName="vw_zdArchives" msprop:Generator_RowChangedName="vw_zdArchivesRowChanged" msprop:Generator_RowEvArgName="vw_zdArchivesRowChangeEvent" msprop:Generator_RowClassName="vw_zdArchivesRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="securityName" msprop:Generator_ColumnVarNameInTable="columnsecurityName" msprop:Generator_ColumnPropNameInRow="securityName" msprop:Generator_ColumnPropNameInTable="securityNameColumn" msprop:Generator_UserColumnName="securityName">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="10" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="retentionPeriodName" msprop:Generator_ColumnVarNameInTable="columnretentionPeriodName" msprop:Generator_ColumnPropNameInRow="retentionPeriodName" msprop:Generator_ColumnPropNameInTable="retentionPeriodNameColumn" msprop:Generator_UserColumnName="retentionPeriodName">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="10" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="seqNo" msprop:Generator_ColumnVarNameInTable="columnseqNo" msprop:Generator_ColumnPropNameInRow="seqNo" msprop:Generator_ColumnPropNameInTable="seqNoColumn" msprop:Generator_UserColumnName="seqNo" type="xs:int" minOccurs="0" />
+              <xs:element name="archiveNo" msprop:Generator_ColumnVarNameInTable="columnarchiveNo" msprop:Generator_ColumnPropNameInRow="archiveNo" msprop:Generator_ColumnPropNameInTable="archiveNoColumn" msprop:Generator_UserColumnName="archiveNo" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="15" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="archiveTitle" msprop:Generator_ColumnVarNameInTable="columnarchiveTitle" msprop:Generator_ColumnPropNameInRow="archiveTitle" msprop:Generator_ColumnPropNameInTable="archiveTitleColumn" msprop:Generator_UserColumnName="archiveTitle" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="200" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="textPageCnt" msprop:Generator_ColumnVarNameInTable="columntextPageCnt" msprop:Generator_ColumnPropNameInRow="textPageCnt" msprop:Generator_ColumnPropNameInTable="textPageCntColumn" msprop:Generator_UserColumnName="textPageCnt" type="xs:int" minOccurs="0" />
+              <xs:element name="drawingPageCnt" msprop:Generator_ColumnVarNameInTable="columndrawingPageCnt" msprop:Generator_ColumnPropNameInRow="drawingPageCnt" msprop:Generator_ColumnPropNameInTable="drawingPageCntColumn" msprop:Generator_UserColumnName="drawingPageCnt" type="xs:int" minOccurs="0" />
+              <xs:element name="photoCnt" msprop:Generator_ColumnVarNameInTable="columnphotoCnt" msprop:Generator_ColumnPropNameInRow="photoCnt" msprop:Generator_ColumnPropNameInTable="photoCntColumn" msprop:Generator_UserColumnName="photoCnt" type="xs:int" minOccurs="0" />
+              <xs:element name="zdwh" msprop:Generator_ColumnVarNameInTable="columnzdwh" msprop:Generator_ColumnPropNameInRow="zdwh" msprop:Generator_ColumnPropNameInTable="zdwhColumn" msprop:Generator_UserColumnName="zdwh" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="bdzh" msprop:Generator_ColumnVarNameInTable="columnbdzh" msprop:Generator_ColumnPropNameInRow="bdzh" msprop:Generator_ColumnPropNameInTable="bdzhColumn" msprop:Generator_UserColumnName="bdzh" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="zhuluDate" msprop:Generator_ColumnVarNameInTable="columnzhuluDate" msprop:Generator_ColumnPropNameInRow="zhuluDate" msprop:Generator_ColumnPropNameInTable="zhuluDateColumn" msprop:Generator_UserColumnName="zhuluDate" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="leibie" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnleibie" msprop:Generator_ColumnPropNameInRow="leibie" msprop:Generator_ColumnPropNameInTable="leibieColumn" msprop:Generator_UserColumnName="leibie" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="8" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="regisNo" msprop:Generator_ColumnVarNameInTable="columnregisNo" msprop:Generator_ColumnPropNameInRow="regisNo" msprop:Generator_ColumnPropNameInTable="regisNoColumn" msprop:Generator_UserColumnName="regisNo">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="10" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="paijiaNo" msprop:Generator_ColumnVarNameInTable="columnpaijiaNo" msprop:Generator_ColumnPropNameInRow="paijiaNo" msprop:Generator_ColumnPropNameInTable="paijiaNoColumn" msprop:Generator_UserColumnName="paijiaNo" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="10" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="hbLocation" msprop:Generator_ColumnVarNameInTable="columnhbLocation" msprop:Generator_ColumnPropNameInRow="hbLocation" msprop:Generator_ColumnPropNameInTable="hbLocationColumn" msprop:Generator_UserColumnName="hbLocation" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="200" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="firstResponsible" msprop:Generator_ColumnVarNameInTable="columnfirstResponsible" msprop:Generator_ColumnPropNameInRow="firstResponsible" msprop:Generator_ColumnPropNameInTable="firstResponsibleColumn" msprop:Generator_UserColumnName="firstResponsible" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="150" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="hbDate" msprop:Generator_ColumnVarNameInTable="columnhbDate" msprop:Generator_ColumnPropNameInRow="hbDate" msprop:Generator_ColumnPropNameInTable="hbDateColumn" msprop:Generator_UserColumnName="hbDate" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="100" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

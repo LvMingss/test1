@@ -1,0 +1,96 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="gxGongChengMuLuDataSet" targetNamespace="http://tempuri.org/gxGongChengMuLuDataSet.xsd" xmlns:mstns="http://tempuri.org/gxGongChengMuLuDataSet.xsd" xmlns="http://tempuri.org/gxGongChengMuLuDataSet.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections>
+          <Connection AppSettingsObjectName="Web.config" AppSettingsPropertyName="UrbanConConnectionString" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="UrbanConConnectionString (Web.config)" ParameterPrefix="@" PropertyReference="AppConfig.System.Configuration.ConfigurationManager.0.ConnectionStrings.UrbanConConnectionString.ConnectionString" Provider="System.Data.SqlClient" />
+        </Connections>
+        <Tables>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="vw_gxArchiveListTableAdapter" GeneratorDataComponentClassName="vw_gxArchiveListTableAdapter" Name="vw_gxArchiveList" UserDataComponentName="vw_gxArchiveListTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="UrbanConConnectionString (Web.config)" DbObjectName="UrbanCon.dbo.vw_gxArchiveList" DbObjectType="View" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>SELECT paperProjectSeqNo, projectName, archivesCount, jgDate, licenseNo, projectID, drawing, textMaterial, developmentOrganization, originalInchCount FROM dbo.vw_gxArchiveList</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="paperProjectSeqNo" DataSetColumn="paperProjectSeqNo" />
+              <Mapping SourceColumn="projectName" DataSetColumn="projectName" />
+              <Mapping SourceColumn="archivesCount" DataSetColumn="archivesCount" />
+              <Mapping SourceColumn="jgDate" DataSetColumn="jgDate" />
+              <Mapping SourceColumn="licenseNo" DataSetColumn="licenseNo" />
+              <Mapping SourceColumn="projectID" DataSetColumn="projectID" />
+              <Mapping SourceColumn="drawing" DataSetColumn="drawing" />
+              <Mapping SourceColumn="textMaterial" DataSetColumn="textMaterial" />
+              <Mapping SourceColumn="developmentOrganization" DataSetColumn="developmentOrganization" />
+              <Mapping SourceColumn="originalInchCount" DataSetColumn="originalInchCount" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+        </Tables>
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="gxGongChengMuLuDataSet" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="True" msprop:Generator_DataSetName="gxGongChengMuLuDataSet" msprop:Generator_UserDSName="gxGongChengMuLuDataSet">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="vw_gxArchiveList" msprop:Generator_TableClassName="vw_gxArchiveListDataTable" msprop:Generator_TableVarName="tablevw_gxArchiveList" msprop:Generator_TablePropName="vw_gxArchiveList" msprop:Generator_RowDeletingName="vw_gxArchiveListRowDeleting" msprop:Generator_RowChangingName="vw_gxArchiveListRowChanging" msprop:Generator_RowEvHandlerName="vw_gxArchiveListRowChangeEventHandler" msprop:Generator_RowDeletedName="vw_gxArchiveListRowDeleted" msprop:Generator_UserTableName="vw_gxArchiveList" msprop:Generator_RowChangedName="vw_gxArchiveListRowChanged" msprop:Generator_RowEvArgName="vw_gxArchiveListRowChangeEvent" msprop:Generator_RowClassName="vw_gxArchiveListRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="paperProjectSeqNo" msprop:Generator_ColumnVarNameInTable="columnpaperProjectSeqNo" msprop:Generator_ColumnPropNameInRow="paperProjectSeqNo" msprop:Generator_ColumnPropNameInTable="paperProjectSeqNoColumn" msprop:Generator_UserColumnName="paperProjectSeqNo" type="xs:long" />
+              <xs:element name="projectName" msprop:Generator_ColumnVarNameInTable="columnprojectName" msprop:Generator_ColumnPropNameInRow="projectName" msprop:Generator_ColumnPropNameInTable="projectNameColumn" msprop:Generator_UserColumnName="projectName" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="500" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="archivesCount" msprop:Generator_ColumnVarNameInTable="columnarchivesCount" msprop:Generator_ColumnPropNameInRow="archivesCount" msprop:Generator_ColumnPropNameInTable="archivesCountColumn" msprop:Generator_UserColumnName="archivesCount" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="jgDate" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnjgDate" msprop:Generator_ColumnPropNameInRow="jgDate" msprop:Generator_ColumnPropNameInTable="jgDateColumn" msprop:Generator_UserColumnName="jgDate" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="100" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="licenseNo" msprop:Generator_ColumnVarNameInTable="columnlicenseNo" msprop:Generator_ColumnPropNameInRow="licenseNo" msprop:Generator_ColumnPropNameInTable="licenseNoColumn" msprop:Generator_UserColumnName="licenseNo" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="projectID" msprop:Generator_ColumnVarNameInTable="columnprojectID" msprop:Generator_ColumnPropNameInRow="projectID" msprop:Generator_ColumnPropNameInTable="projectIDColumn" msprop:Generator_UserColumnName="projectID" type="xs:long" />
+              <xs:element name="drawing" msprop:Generator_ColumnVarNameInTable="columndrawing" msprop:Generator_ColumnPropNameInRow="drawing" msprop:Generator_ColumnPropNameInTable="drawingColumn" msprop:Generator_UserColumnName="drawing" type="xs:long" minOccurs="0" />
+              <xs:element name="textMaterial" msprop:Generator_ColumnVarNameInTable="columntextMaterial" msprop:Generator_ColumnPropNameInRow="textMaterial" msprop:Generator_ColumnPropNameInTable="textMaterialColumn" msprop:Generator_UserColumnName="textMaterial" type="xs:long" minOccurs="0" />
+              <xs:element name="developmentOrganization" msprop:Generator_ColumnVarNameInTable="columndevelopmentOrganization" msprop:Generator_ColumnPropNameInRow="developmentOrganization" msprop:Generator_ColumnPropNameInTable="developmentOrganizationColumn" msprop:Generator_UserColumnName="developmentOrganization" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="100" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="originalInchCount" msprop:Generator_ColumnVarNameInTable="columnoriginalInchCount" msprop:Generator_ColumnPropNameInRow="originalInchCount" msprop:Generator_ColumnPropNameInTable="originalInchCountColumn" msprop:Generator_UserColumnName="originalInchCount" type="xs:long" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+    <xs:unique name="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:vw_gxArchiveList" />
+      <xs:field xpath="mstns:projectID" />
+    </xs:unique>
+  </xs:element>
+</xs:schema>

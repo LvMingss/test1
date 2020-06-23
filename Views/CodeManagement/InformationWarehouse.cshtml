@@ -1,0 +1,168 @@
+﻿@model IEnumerable<urban_archive.Models.CabinetInfo>
+@*<link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />*@
+<link href="~/Content/jquery-ui.theme.css" rel="stylesheet" />
+<link href="~/Content/Tabulator/version3.0/tabulator.css" rel="stylesheet" />
+
+@{
+    ViewBag.Title = "Index";
+}
+<script src="~/Scripts/jquery-2.1.1.min.js" type="text/javascript"></script>
+<script src="~/Scripts/jquery-ui.min.js"></script>
+<script src="~/Content/Tabulator/version3.0/tabulator.js"></script>
+
+<script type="text/javascript">
+    var g= function (value, data, cell, row, options) {
+        return "<i class='fa fa-edit' style='color:#428bca;vertical-align:middle; padding:2px 0;'></i>"
+        };
+    $().ready(function () {
+        $(document).ready(function () {
+
+            var a = $(window).height();
+            var hh = a-170;
+            $(".box-h").height(hh)
+
+        })
+            $("#example-table-2").tabulator({
+                height:"100%",
+                virtualDom:false,
+                
+                //columnMinWidth:100,
+                //minWidth
+                fitColumns:true,                
+                selectable:true, //make rows selectable
+                pagination:"local",
+                paginationSize:50,
+                columns: [
+
+                { title: "编辑", field: "g", width: 50,headerSort: false,formatter: g, align: "center", cellClick: function (e,cell)  {
+                    var url = '/CodeManagement/Edit?id=' + cell.getValue();
+                    window.location.href = url;  }
+                },
+                { title: "柜号", field: "a", headerSort: false,width: 100 },
+                { title: "宽度", field: "b", headerSort: false,width: 100 },
+                { title: "起始层次", field: "c", headerSort: false ,width: 100},
+                { title: "终止层次", field: "d", headerSort: false,width: 100 },
+                { title: "剩余宽度", field: "e", headerSort: false,width: 100 },
+                { title: "终止排架号", field: "f", headerSort: false,minWidth: 100 },
+                
+                ],
+            });
+
+            var temp = new Array();
+            var data=@(new HtmlString(@ViewBag.result));
+            @*var data=@Html.Raw(Json.Encode(Model));*@
+            for (var i = 0; i < data.length;i++) {
+                var b = data[i].date
+                if(b!=null){
+                    var date = new Date(parseInt(b.slice(6)))
+
+                    var result = date.getFullYear()+'/'+(parseInt(date.getMonth())+1)+'/'+date.getDate()
+                }
+                temp.push({ "id": i + 1, "a": data[i].cabinetNo, "b": data[i].width, "c": data[i].cengRangeA, "d": data[i].cengRangeB,"e": data[i].remainWidth,"f": data[i].startPaijiaNo,"g": data[i].cabinetNo});
+            }
+
+            $("#example-table-2").tabulator("setData", temp);
+            $(window).resize(function () {
+                var a = $(window).height();
+                var hh = a-170;
+                $(".box-h").height(hh);
+                $("#example-table-2").tabulator("redraw",true);
+
+            });
+
+        });
+</script>
+
+
+<section>
+<h2 style="float:left;"><i class="fa fa-tags kongge"></i>库房信息</h2>
+<ol class="breadcrumb">
+    <li class="active">竣工档案</li>
+    <li class="active">编号管理</li>
+    <li>库房信息</li>
+</ol>
+<div style="clear:both;"></div>
+</section>
+<hr style="margin-top:0px;" />
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    <div id="example-table-2" class="box-h" > </div>
+
+    @*<div class="form-horizontal">
+        <table class="table table-bordered table-striped">
+            <tr>
+                <th>
+                    柜号
+                </th>
+                <th>
+                    宽度
+                </th>
+                <th>
+                    起始层次
+                </th>
+                <th>
+                    终止层次
+                </th>
+                <th>
+                    剩余宽度
+                </th>
+                <th>
+                    终止排架号
+                </th>
+
+                <th>
+                    编辑
+                </th>
+            </tr>
+
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.cabinetNo)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.width)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.cengRangeA)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.cengRangeB)
+
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.remainWidth)
+
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.startPaijiaNo)
+
+                    </td>
+
+
+                    <td>
+                        @Html.ActionLink("编辑", "Edit", new { id = item.cabinetNo.Trim() })
+                      
+
+
+                    </td>
+                </tr>
+            }
+
+        </table>*@
+      
+        <div style="text-align:center;">
+            <div style="height:15px;"></div>
+            
+                <input type="submit" value="添加新柜子" name="action" class="btn btn-default">
+                @*<input type="submit" value="返回" name="action" class="btn btn-default">*@
+            
+            <div style="height:15px;"></div>
+        </div>
+       
+        }

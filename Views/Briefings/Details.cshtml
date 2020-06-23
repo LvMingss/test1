@@ -1,0 +1,196 @@
+﻿@model IEnumerable<urban_archive.Models.Briefing>
+@*@using PagedList.Mvc;*@
+<link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
+<link href="~/Content/jquery-ui.theme.css" rel="stylesheet" />
+<link href="~/Content/Tabulator/version3.0/tabulator.css" rel="stylesheet" />
+
+@{
+    ViewBag.Title = "城建信息";
+}
+<script src="~/Scripts/jquery-2.1.1.min.js" type="text/javascript"></script>
+<script src="~/Scripts/jquery-ui.min.js"></script>
+<script src="~/Content/Tabulator/version3.0/tabulator.js"></script>
+
+<script type="text/javascript">
+    //var j= function (value, data, cell, row, options) {
+    //    return "<span style='color:#428bca;'>下载</span> "
+    //    };
+    var l = function (value, data, cell, row, options) { //plain text value
+        return "<i class='fa fa-edit' style='color:#428bca;vertical-align:middle; padding:2px 0;'></i>"
+    };
+    var n = function (value, data, cell, row, options) { //plain text value
+        return "<i class='glyphicon glyphicon-trash' style='color:#428bca;vertical-align:middle; padding:2px 0;'></i>"
+    };
+    var o = function (value, data, cell, row, options) { //plain text value
+        return "<i class='fa fa-download' style='color:#428bca;vertical-align:middle; padding:2px 0;'></i>"
+    };
+    $().ready(function () {
+        $(document).ready(function () {
+
+            var a = $(window).height();
+            var hh = a-160;
+            $(".box-h").height(hh)
+
+        })
+            $("#example-table-2").tabulator({
+                height:"100%",
+                virtualDom:false,
+                selectable: true,
+               
+                //columnMinWidth:100,
+                //minWidth
+                fitColumns:true,
+                pagination:"local",
+                paginationSize:50,
+                columns: [
+                        { title: "序号", field: "a", headerSort: false,width: 50 },
+
+                        {
+                            title: "修改", field: "1", width: 50 ,formatter: l, headerSort: false, align: "center",  cellClick: function (e,cell) {
+                                var url = '/Briefings/Edit/?id=' + cell.getValue();
+                                window.location.href = url;
+                            }
+                        },
+                        {
+                            title: "删除", field: "n", width: 50 ,formatter: n,headerSort: false,  align: "center",  cellClick: function (e,cell) {
+                                if(del()){
+                                    var url = '/Briefings/Delete/?id=' + cell.getValue();
+                                    window.location.href = url;
+                                }
+                            }
+                        },
+
+                 {
+                     title: "下载", field: "o", width: 50 ,formatter: o, headerSort: false, align: "center", cellClick: function (e,cell) {
+                        var url = '/Briefings/DownLoadFile?id=' + cell.getValue() ;
+                        window.location.href = url;
+                    }
+                    //,formatter:function(value, data, cell, row, options){
+
+                    //    return "<span style='color:#428bca; '>" + value + "</span>";
+
+                    //},
+                },
+                
+                { title: "文章标题", field: "b", width: 450 , headerSort: false,  },                   
+                { title: "副标题", field: "c", headerSort: false,width: 650 },
+                { title: "资料来源", field: "d", headerSort: false,width: 100 },
+                { title: "报刊日期", field: "e", headerSort: false,width: 100 },
+                { title: "编辑人", field: "f", headerSort: false,width: 100 },
+                { title: "备注", field: "g", headerSort: false,width: 250 },
+                { title: "简报文件名", field: "h",headerSort: false,minWidth: 200},
+
+
+                ],
+            });
+
+            var temp = new Array();
+            var data=@(new HtmlString(@ViewBag.result));
+            for (var i = 0; i < data.length;i++) {
+                temp.push({ "id": i + 1, "a": data[i].ID, "b": data[i].briefTitle, "c": data[i].briefCoTitle, "d": data[i].paperName,"e":data[i].briefTime ,"f": data[i].maker, "g": data[i].remarks, "h": data[i].fileName,"1": data[i].ID,"n": data[i].ID,"o": data[i].ID,});
+            }
+
+            $("#example-table-2").tabulator("setData", temp);
+            $(window).resize(function () {
+                var a = $(window).height();
+                var hh = a-160;
+                $(".box-h").height(hh);
+                $("#example-table-2").tabulator("redraw",true);
+
+            });
+
+    });
+    function del() {
+        var msg = "确认要删除吗?";
+        if (confirm(msg) == true) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+</script>
+<section>
+    <h2 style="float:left;"><i class="fa fa-tags kongge"></i>城建信息</h2>
+    <ol class="breadcrumb">
+        <li class="active">编研管理</li>
+        <li class="active">城建信息</li>
+        <li>浏览简报</li>
+    </ol>
+    <div style="clear:both;"></div>
+</section>
+
+@using (Html.BeginForm())
+{
+    <p>
+        检索条件： @Html.DropDownList("Selected", null, new { @class = "form-control", @style = "display:inline" })检索内容：<input type="text" value="@ViewBag.search"name="search" id="serach"class = "form-control"style = "display:inline" ><input type="submit" name="action" value="查询" class="btn btn-default">
+    </p>
+}
+<div id="example-table-2" class="box-h" > </div>
+
+@*<table class="table table-bordered table-striped">
+    <tr>
+        <th>
+            序号
+        </th>
+        <th>
+            文章标题（点击下载）
+        </th>
+        <th>
+            副标题
+        </th>
+        <th>
+            资料来源
+        </th>
+        <th>
+            报刊日期
+        </th>
+        <th>
+            编辑人
+        </th>
+        <th>
+            备注
+        </th>
+        <th>
+            简报文件名
+        </th>
+
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.ID)
+            </td>
+            <td>
+                <a href="@Url.Action("DownLoadFile", new {id = item.ID})">@Html.DisplayFor(modelItem => item.briefTitle)</a>
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.briefCoTitle)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.paperName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.briefTime)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.maker)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.remarks)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.fileName)
+            </td>
+        </tr>
+    }
+
+</table>*@
+@*<div style="text-align:right;font-size:16px;">
+    @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) / @Model.PageCount 页
+</div>
+<div style="text-align:center;margin-top:0;">
+    @Html.PagedListPager(Model, page => Url.Action("Details", new { page }))
+</div>*@

@@ -1,0 +1,128 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="planarchiveBoxInfo1DatSet" targetNamespace="http://tempuri.org/planarchiveBoxInfo1DatSet.xsd" xmlns:mstns="http://tempuri.org/planarchiveBoxInfo1DatSet.xsd" xmlns="http://tempuri.org/planarchiveBoxInfo1DatSet.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections>
+          <Connection AppSettingsObjectName="Web.config" AppSettingsPropertyName="UrbanConConnectionString" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="UrbanConConnectionString (Web.config)" ParameterPrefix="@" PropertyReference="AppConfig.System.Configuration.ConfigurationManager.0.ConnectionStrings.UrbanConConnectionString.ConnectionString" Provider="System.Data.SqlClient" />
+        </Connections>
+        <Tables>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="vw_planarchiveBoxInfo1TableAdapter" GeneratorDataComponentClassName="vw_planarchiveBoxInfo1TableAdapter" Name="vw_planarchiveBoxInfo1" UserDataComponentName="vw_planarchiveBoxInfo1TableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="UrbanConConnectionString (Web.config)" DbObjectName="UrbanCon.dbo.vw_planarchiveBoxInfo1" DbObjectType="View" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>SELECT securityName, retentionPeriodName, seqNo1, archiveTitle, bianzhiUnit, boxNo, classifyName, securityID, retentionPeriodID, retentionPeriodNo, Expr1, classifyID, Expr2 FROM dbo.vw_planarchiveBoxInfo1</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="securityName" DataSetColumn="securityName" />
+              <Mapping SourceColumn="retentionPeriodName" DataSetColumn="retentionPeriodName" />
+              <Mapping SourceColumn="seqNo1" DataSetColumn="seqNo1" />
+              <Mapping SourceColumn="archiveTitle" DataSetColumn="archiveTitle" />
+              <Mapping SourceColumn="bianzhiUnit" DataSetColumn="bianzhiUnit" />
+              <Mapping SourceColumn="boxNo" DataSetColumn="boxNo" />
+              <Mapping SourceColumn="classifyName" DataSetColumn="classifyName" />
+              <Mapping SourceColumn="securityID" DataSetColumn="securityID" />
+              <Mapping SourceColumn="retentionPeriodID" DataSetColumn="retentionPeriodID" />
+              <Mapping SourceColumn="retentionPeriodNo" DataSetColumn="retentionPeriodNo" />
+              <Mapping SourceColumn="Expr1" DataSetColumn="Expr1" />
+              <Mapping SourceColumn="classifyID" DataSetColumn="classifyID" />
+              <Mapping SourceColumn="Expr2" DataSetColumn="Expr2" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+        </Tables>
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="planarchiveBoxInfo1DatSet" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="True" msprop:Generator_DataSetName="planarchiveBoxInfo1DatSet" msprop:Generator_UserDSName="planarchiveBoxInfo1DatSet">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="vw_planarchiveBoxInfo1" msprop:Generator_TableClassName="vw_planarchiveBoxInfo1DataTable" msprop:Generator_TableVarName="tablevw_planarchiveBoxInfo1" msprop:Generator_TablePropName="vw_planarchiveBoxInfo1" msprop:Generator_RowDeletingName="vw_planarchiveBoxInfo1RowDeleting" msprop:Generator_RowChangingName="vw_planarchiveBoxInfo1RowChanging" msprop:Generator_RowEvHandlerName="vw_planarchiveBoxInfo1RowChangeEventHandler" msprop:Generator_RowDeletedName="vw_planarchiveBoxInfo1RowDeleted" msprop:Generator_UserTableName="vw_planarchiveBoxInfo1" msprop:Generator_RowChangedName="vw_planarchiveBoxInfo1RowChanged" msprop:Generator_RowEvArgName="vw_planarchiveBoxInfo1RowChangeEvent" msprop:Generator_RowClassName="vw_planarchiveBoxInfo1Row">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="securityName" msprop:Generator_ColumnVarNameInTable="columnsecurityName" msprop:Generator_ColumnPropNameInRow="securityName" msprop:Generator_ColumnPropNameInTable="securityNameColumn" msprop:Generator_UserColumnName="securityName">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="10" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="retentionPeriodName" msprop:Generator_ColumnVarNameInTable="columnretentionPeriodName" msprop:Generator_ColumnPropNameInRow="retentionPeriodName" msprop:Generator_ColumnPropNameInTable="retentionPeriodNameColumn" msprop:Generator_UserColumnName="retentionPeriodName">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="10" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="seqNo1" msprop:Generator_ColumnVarNameInTable="columnseqNo1" msprop:Generator_ColumnPropNameInRow="seqNo1" msprop:Generator_ColumnPropNameInTable="seqNo1Column" msprop:Generator_UserColumnName="seqNo1" type="xs:int" minOccurs="0" />
+              <xs:element name="archiveTitle" msprop:Generator_ColumnVarNameInTable="columnarchiveTitle" msprop:Generator_ColumnPropNameInRow="archiveTitle" msprop:Generator_ColumnPropNameInTable="archiveTitleColumn" msprop:Generator_UserColumnName="archiveTitle" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="2147483647" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="bianzhiUnit" msprop:Generator_ColumnVarNameInTable="columnbianzhiUnit" msprop:Generator_ColumnPropNameInRow="bianzhiUnit" msprop:Generator_ColumnPropNameInTable="bianzhiUnitColumn" msprop:Generator_UserColumnName="bianzhiUnit" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="100" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="boxNo" msprop:Generator_ColumnVarNameInTable="columnboxNo" msprop:Generator_ColumnPropNameInRow="boxNo" msprop:Generator_ColumnPropNameInTable="boxNoColumn" msprop:Generator_UserColumnName="boxNo" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="500" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="classifyName" msprop:Generator_ColumnVarNameInTable="columnclassifyName" msprop:Generator_ColumnPropNameInRow="classifyName" msprop:Generator_ColumnPropNameInTable="classifyNameColumn" msprop:Generator_UserColumnName="classifyName" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="20" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="securityID" msprop:Generator_ColumnVarNameInTable="columnsecurityID" msprop:Generator_ColumnPropNameInRow="securityID" msprop:Generator_ColumnPropNameInTable="securityIDColumn" msprop:Generator_UserColumnName="securityID" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="1" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="retentionPeriodID" msprop:Generator_ColumnVarNameInTable="columnretentionPeriodID" msprop:Generator_ColumnPropNameInRow="retentionPeriodID" msprop:Generator_ColumnPropNameInTable="retentionPeriodIDColumn" msprop:Generator_UserColumnName="retentionPeriodID" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="1" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="retentionPeriodNo" msprop:Generator_ColumnVarNameInTable="columnretentionPeriodNo" msprop:Generator_ColumnPropNameInRow="retentionPeriodNo" msprop:Generator_ColumnPropNameInTable="retentionPeriodNoColumn" msprop:Generator_UserColumnName="retentionPeriodNo">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="1" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Expr1" msprop:Generator_ColumnVarNameInTable="columnExpr1" msprop:Generator_ColumnPropNameInRow="Expr1" msprop:Generator_ColumnPropNameInTable="Expr1Column" msprop:Generator_UserColumnName="Expr1">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="1" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="classifyID" msprop:Generator_ColumnVarNameInTable="columnclassifyID" msprop:Generator_ColumnPropNameInRow="classifyID" msprop:Generator_ColumnPropNameInTable="classifyIDColumn" msprop:Generator_UserColumnName="classifyID" type="xs:int" />
+              <xs:element name="Expr2" msprop:Generator_ColumnVarNameInTable="columnExpr2" msprop:Generator_ColumnPropNameInRow="Expr2" msprop:Generator_ColumnPropNameInTable="Expr2Column" msprop:Generator_UserColumnName="Expr2" type="xs:int" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

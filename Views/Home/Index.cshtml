@@ -1,0 +1,297 @@
+﻿@using Microsoft.AspNet.Identity
+@{
+    ViewBag.Title = "Home Page";
+}
+@{ 
+    Layout = null;
+}
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>青岛市多维城市建设档案数字化管理系统</title>
+    <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+        @*@Styles.Render("~/Content/css")*@
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+    <link href="~/Content/Site.css" rel="stylesheet" />
+    @*<link href='http://fonts.useso.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>*@
+    @*<link href="~/Content/lib/font-awesome/css/font-awesome.css" rel="stylesheet" />*@
+    <link href="~/Content/font-awesome-4.7.0/css/font-awesome.css" rel="stylesheet" />
+    <link href="~/Content/new.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/stylesheets/theme.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/stylesheets/premium.css" rel="stylesheet" />
+    @*<link href="~/Content/AdminLTE-2.3.7/dist/css/AdminLTE.min.css" rel="stylesheet" />
+    <link href="~/Content/AdminLTE-2.3.7/dist/css/skins/_all-skins.min.css" rel="stylesheet" />*@
+    <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <!-- Le fav and touch icons -->
+    <link rel="shortcut icon" href="../assets/ico/favicon.ico">
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="../assets/ico/apple-touch-icon-144-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="../assets/ico/apple-touch-icon-114-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="../assets/ico/apple-touch-icon-72-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" href="../assets/ico/apple-touch-icon-57-precomposed.png">
+    <!--[if lt IE 7 ]> <body class="ie ie6"> <![endif]-->
+    <!--[if IE 7 ]> <body class="ie ie7 "> <![endif]-->
+    <!--[if IE 8 ]> <body class="ie ie8 "> <![endif]-->
+    <!--[if IE 9 ]> <body class="ie ie9 "> <![endif]-->
+    <!--[if (gt IE 9)|!(IE)]><!-->
+    <!--<![endif]-->
+    <style type="text/css">
+        #line-chart {
+            height: 300px;
+            width: 800px;
+            margin: 0px auto;
+            margin-top: 1em;
+        }
+
+        .navbar-default .navbar-brand, .navbar-default .navbar-brand:hover {
+            color: #fff;
+        }
+    </style>
+
+    
+    <script src="~/Scripts/jquery-2.1.1.min.js"></script>
+    <script src="/Content/lib/bootstrap/js/bootstrap.js"></script>
+    @*<script type="text/javascript">
+        $(function() {
+            var match = document.cookie.match(new RegExp('color=([^;]+)'));
+            if(match) var color = match[1];
+            if(color) {
+                $('body').removeClass(function (index, css) {
+                    return (css.match (/\btheme-\S+/g) || []).join(' ')
+                })
+                $('body').addClass('theme-' + color);
+            }
+
+
+        });
+    </script>*@
+   <script type="text/javascript">
+        $(function() {
+            var uls = $('.sidebar-nav > ul > *').clone();
+            uls.addClass('visible-xs');
+            $('#main-menu').append(uls.clone());
+        });
+    </script>
+   <script type="text/javascript">
+        $("[rel=tooltip]").tooltip();
+        $(function() {
+            $('.demo-cancel-click').click(function(){return false;});
+        });
+    </script>
+    @*<script>
+        var buttons = $(':button');
+        buttons.on('click', function () {
+            buttons.css('background-color', 'white');
+            $(this).css('background-color', 'yellow');
+        });
+    </script>*@
+    
+    
+    <script type="text/javascript">
+        var a;
+        $(document).ready(function () {
+            var height = $(window).height();   // 浏览器的高度
+            a = height - 110;
+            $(".box").height(a)
+
+        })
+        $(window).resize(function () {   //窗口大小变化自动执行
+            var height = $(window).height();   // 浏览器的高度
+             a = height - 110;
+            $(".box").height(a)
+        });
+    </script>
+    <script>
+    $(document).ready(function () {
+        
+        $('#menu').menuToggle({
+            'ctrlBtn': 'ctrl-btn-2',
+            'speed': 10,
+            'width': 240,
+            //'openText': '展开>>',
+            //'closeText': '<<关闭',
+        });
+
+        
+    });
+    (function($){
+        $.fn.extend({'menuToggle':
+            function(options){
+                //self变量，用于函数内部调用插件参数
+                var self = this;
+                //默认参数
+                this._default = {
+                    'ctrlBtn':null,            //关闭&展开按钮id
+                    'speed':400,            //展开速度
+                    'width':240,            //展开菜单宽度
+                    //'height':1000,            //展开菜单高度
+                    //'openText':'展开>>',    //展开前文本
+                    //'closeText':'<<关闭',    //展开后文本
+                    'type':'width'            //width表示按宽度伸展，height表示按高度伸展
+                };
+                //插件初始化函数
+                this.init = function(options){
+                    //配置参数格式有误则提示并返回
+                    if(typeof options != 'object') {
+                        self.error('Options is not object Error!');
+                        return false;
+                    }
+                    if(typeof options.ctrlBtn == 'undefined') {
+                        self.error('Options ctrlBtn should not be empty!');
+                        return false;
+                    }
+                    //存储自定义参数
+                    self._default.ctrlBtn = options.ctrlBtn;
+                    if(typeof options.type != 'undefined')         self._default.type = options.type;
+                    if(typeof options.width != 'undefined')     self._default.width = options.width;
+                    if(typeof options.height != 'undefined')     self._default.height = options.height;
+                    if(typeof options.speed != 'undefined')     self._default.speed = options.speed;
+                    if(typeof options.openText != 'undefined')     self._default.openText = options.openText;
+                    if(typeof options.closeText != 'undefined') self._default.closeText = options.closeText;
+                    if(self._default.type == 'width') {
+                        self._default.expandOpen     = {width: self._default.width};
+                        self._default.expandClose     = {width: 0};
+                    }else {
+                        self._default.expandOpen     = {height: self._default.height};
+                        self._default.expandClose     = {height: 0};
+                    }
+                };
+                this.run = function(){
+                    $("#"+self._default.ctrlBtn).click(function () {
+                        if ($(this).hasClass('closed')) {        //有closed类，表示已关闭，现在展开
+                            var obj = document.getElementById("content");
+                            obj.style.cssText = "margin-left:240px;height:100%;"
+
+                            $(this).removeClass('closed').html(self._default.closeText);     
+                            $(self).show().animate(self._default.expandOpen, self._default.speed);
+                            
+
+                        } else {
+                            var obj = document.getElementById("content");
+                            obj.style.cssText = "margin-left:0px;height:100%;"
+                            $(this).addClass('closed').html(self._default.openText);                           
+
+                            $(self).animate(self._default.expandClose, self._default.speed,function(){
+                                $(this).hide();
+                            });
+                            
+                        }
+                    });
+                };
+                this.error = function(msg){
+                    //没有错误提示DIV则自动添加
+                    if(!$("#menuToggleErrorTips").size()){
+                        $("<div id='menuToggleErrorTips'><h2>Error</h2><div class='tips'></div></div>").appendTo($("body")).hide();
+                        $("#menuToggleErrorTips").css({
+                            position:'absolute',
+                            left: $("body").width()/3,
+                            top: 100,
+                            width:240,
+                            //height:100%,
+                            'z-index': 9999999,
+                            'border': '1px solid #000',
+                            'background-color': '#ABC',
+                            'color': '#CC0000',
+                            'text-align': 'center'
+                        });
+                    }
+                    //显示错误提示信息
+                    $("#menuToggleErrorTips").show().children('.tips').html(msg);
+                }
+                //Init
+                this.init(options);
+                this.run();
+            }
+        });
+    })(jQuery);
+    </script>
+    <style type="text/css">
+        /* 公用 */
+        
+
+
+        .ctrl-btn {
+            /*border: 1px solid;*/
+            float: left;
+            padding: 10px;
+            position: relative;
+            /*top: 10px;*/
+            cursor: pointer;
+        }
+        .ctrl-btn:hover{
+            background-color:#367fa9;
+        }
+       
+    </style>
+
+
+</head>
+
+
+<body style="overflow:hidden;" onload="document.getElementById('menu').focus()">
+    <div style="height:70px;font-family:YouYuan;" class="navbar navbar-default" role="navigation">
+        <div class="navbar-header" style="font-weight:bolder;">
+            <span class="navbar-brand-1"><img src="~/Content/images/logo.png" height="32" /></span>
+            <span class="navbar-brand-1">青岛市多维城市建设档案数字化管理系统</span>
+        </div>
+        <div class="navbar-collapse collapse" style="font-size:20px;">
+            @Html.Partial("_LoginPartial")
+        </div>
+    </div>
+    <div class="box">
+        <div id="menu"  class="hide-menu box sidebar-nav" style="font-family:YouYuan;overflow-y:scroll;overflow-x:hidden;background-color:rgba(255,255,255,0.2);">
+            @Html.Partial("_LoginPartial2")     
+        </div>        
+        <div  id="content" class="content" style="overflow:hidden;height:100%;padding:0px" >
+            @*@RenderBody()*@
+            @if (HttpContext.Current.User.IsInRole("业务科"))
+            {<iframe name="mainFrame" src="/Home/yewuke" style="width:100%;height:100%;border:none;"></iframe> }
+            @if (HttpContext.Current.User.IsInRole("办公室"))
+            {<iframe name="mainFrame" src="/Home/bangongshi" style="width:100%;height:100%;border:none;"></iframe> }
+            @if (HttpContext.Current.User.IsInRole("声像科"))
+            {<iframe name="mainFrame" src="/Home/shengxiang" style="width:100%;height:100%;border:none;"></iframe> }
+            @if (HttpContext.Current.User.IsInRole("管理科") && HttpContext.Current.User.IsInRole("借阅用户"))
+            {<iframe name="mainFrame" src="/Home/jieyue" style="width:100%;height:100%;border:none;"></iframe>}
+            @if (HttpContext.Current.User.IsInRole("管理科") && HttpContext.Current.User.IsInRole("管理员"))
+            {<iframe name="mainFrame" src="/Home/administrator" style="width:100%;height:100%;border:none;"></iframe>}
+            @if((HttpContext.Current.User.IsInRole("管理科") && HttpContext.Current.User.IsInRole("科长")) || (HttpContext.Current.User.IsInRole("管理科") && HttpContext.Current.User.IsInRole("高级用户")) || (HttpContext.Current.User.IsInRole("管理科") && HttpContext.Current.User.IsInRole("科员")))
+            {<iframe name="mainFrame" src="/Home/guanlike" style="width:100%;height:100%;border:none;"></iframe>}
+
+            @if (HttpContext.Current.User.IsInRole("编研科"))
+            {<iframe name="mainFrame" src="/Home/bianyanke" style="width:100%;height:100%;border:none;"></iframe> }
+            @if (HttpContext.Current.User.IsInRole("财务科"))
+            {<iframe name="mainFrame" src="/Home/caiwushi" style="width:100%;height:100%;border:none;"></iframe> }
+            @if (HttpContext.Current.User.IsInRole("复印室"))
+            {<iframe name="mainFrame" src="/Home/fuyinshi" style="width:100%;height:100%;border:none;"></iframe> }
+            @if (HttpContext.Current.User.IsInRole("馆长"))
+            {<iframe name="mainFrame" src="/Home/guanzhang" style="width:100%;height:100%;border:none;"></iframe> }
+            @if (HttpContext.Current.User.IsInRole("管线科"))
+            {<iframe name="mainFrame" src="/Home/guanxianke" style="width:100%;height:100%;border:none;"></iframe> }
+        </div>
+     
+    </div>
+    <div style="height:40px;" class="navbar navbar-default">
+        <div class="navbar-header" style="width:100%;">
+            <div class="navbar-brand" style="float:left;margin-right:25px;">
+                <span class="glyphicon glyphicon-user padding-right-small" style="top:0px;bottom:1px;font-size:18px;"></span>@Html.Partial("_LoginPartial3")
+            </div>
+            @*<div id="ctrl-btn-2" class="ctrl-btn">&lt;&lt;关闭</div>*@
+            
+            <div id="ctrl-btn-2" class="ctrl-btn"><i class="fa fa-bars" aria-hidden="true" style="color:#fff;"></i></div>
+
+            <div class="navbar-brand" style="font-size:17px;float:right;">
+                <span>主办单位:青岛市城市建设档案馆&nbsp&nbsp&nbsp&nbsp技术支持：青岛经纬蓝图信息技术有限公司</span>
+            </div>
+        </div>
+    </div>
+
+    
+</body>
+</html>
+

@@ -1,0 +1,240 @@
+﻿@model urban_archive.Models.VideoContractSheet
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>VideoContractSheet</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.sheetNo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.sheetNo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.contractNo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.contractNo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.developmentOrgnization)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.developmentOrgnization)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.projectName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.projectName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.location)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.location)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.retentionPeriodNo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.retentionPeriodNo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.securityID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.securityID)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.buildingArea)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.buildingArea)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.totalCost)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.totalCost)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.projectResponsible)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.projectResponsible)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.telephoneNo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.telephoneNo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.mobilephoneNo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.mobilephoneNo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.instructor)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.instructor)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.contractTel)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.contractTel)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.contractMobileNo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.contractMobileNo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.address)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.address)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.email)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.email)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.videoResponsible)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.videoResponsible)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.weituoContactNo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.weituoContactNo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.costFee)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.costFee)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.partB)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.partB)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.fillDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.fillDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.introduction)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.introduction)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.isCharge)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.isCharge)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.archiveBoxMaterailFee)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.archiveBoxMaterailFee)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.scanningCopy)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.scanningCopy)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.projectID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.projectID)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

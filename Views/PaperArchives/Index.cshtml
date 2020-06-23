@@ -1,0 +1,531 @@
+﻿@model IEnumerable<urban_archive.Models.PaperArchives>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.projectNo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.firstResponsible)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.responsibleOther)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.submitPerson)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.telphoneSubmitPerson)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.mobilephoneSubmitPerson)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.recipient)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.dateReceived)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.collator)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.collationRequirement)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.qjdyYear)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.qjdyNo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.lqDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.mainCategoryID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.subDictionaryID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.minorDictionaryID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.csyj)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.csyjPerson)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.csyjDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.fzryj)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.fzryjPerson)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.fzryjDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.zgyj)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.zgyjPerson)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.zgyjDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.characterVolumeCount)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.character2cm)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.character3cm)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.character4cm)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.character5cm)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.drawingVolumeCount)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.drawing2cm)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.drawing3cm)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.drawing4cm)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.drawing5cm)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.dateArchive)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.transferPerson)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.transferUnit)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.transferDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.passingDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.archiveCertificateNo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.lqyjsDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.lqperson)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.transferContent)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.projectProfile)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.dateConstructed)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.archivesCount)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.InchCountDetail)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.originalVolumeCount)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.originalInchCount)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.originalMoneyAmount)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.copyInchCount)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.copyMoneyCount)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.totalMoney)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.startArchiveNo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.endArchiveNo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.startPaijiaNo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.endPaijiaNo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.startRegisNo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.endRegisNo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.licenseNo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.licenseDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.jgDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.projectStartDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.projectFinishDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.changeLog)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.keyWords)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.notearea)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.remarks)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.buildingArea)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.height)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.underground)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.overground)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.structureTypeID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.textMaterial)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.drawing)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.paijiaRange)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.prevClassNo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PhotoCount)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.bianhaoTime)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.luruTime)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.shizhengNoStart)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.shizhengNoEnd)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ProjectInfo.projectName)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.projectNo)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.firstResponsible)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.responsibleOther)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.submitPerson)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.telphoneSubmitPerson)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.mobilephoneSubmitPerson)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.recipient)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.dateReceived)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.collator)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.collationRequirement)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.qjdyYear)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.qjdyNo)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.lqDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.mainCategoryID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.subDictionaryID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.minorDictionaryID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.csyj)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.csyjPerson)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.csyjDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.fzryj)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.fzryjPerson)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.fzryjDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.zgyj)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.zgyjPerson)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.zgyjDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.characterVolumeCount)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.character2cm)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.character3cm)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.character4cm)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.character5cm)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.drawingVolumeCount)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.drawing2cm)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.drawing3cm)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.drawing4cm)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.drawing5cm)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.dateArchive)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.transferPerson)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.transferUnit)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.transferDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.passingDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.archiveCertificateNo)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.lqyjsDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.lqperson)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.transferContent)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.projectProfile)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.dateConstructed)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.archivesCount)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.InchCountDetail)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.originalVolumeCount)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.originalInchCount)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.originalMoneyAmount)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.copyInchCount)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.copyMoneyCount)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.totalMoney)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.startArchiveNo)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.endArchiveNo)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.startPaijiaNo)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.endPaijiaNo)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.startRegisNo)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.endRegisNo)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.licenseNo)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.licenseDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.jgDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.projectStartDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.projectFinishDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.changeLog)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.keyWords)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.notearea)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.remarks)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.buildingArea)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.height)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.underground)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.overground)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.structureTypeID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.textMaterial)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.drawing)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.paijiaRange)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.prevClassNo)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PhotoCount)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.bianhaoTime)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.luruTime)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.shizhengNoStart)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.shizhengNoEnd)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ProjectInfo.projectName)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.paperProjectSeqNo }) |
+            @Html.ActionLink("Details", "Details", new { id=item.paperProjectSeqNo }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.paperProjectSeqNo })
+        </td>
+    </tr>
+}
+
+</table>

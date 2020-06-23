@@ -1,0 +1,86 @@
+﻿@{
+    Layout = null;
+    //要使视图不使用布局或模板页，那么需要把Layout赋值为空
+}
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+    <meta http-equiv="X-UA-Compatible" content="IE=10,chrome=1" />
+
+    <title>档案浏览</title>
+    <link href="~/Scripts/zTREE/css/AJAXControlToolKit.css" rel="stylesheet" />
+    <script src="~/Scripts/LoadWebBrowseActiveX.js"></script>
+    <script src="~/Scripts/jquery-2.1.1.min.js" type="text/javascript"></script>
+    <script src="~/Scripts/jquery-ui.min.js"></script>
+    <script src="~/Content/Tabulator/tabulator.js"></script>
+    <meta http-equiv="pragram" content="no-cache" />
+
+
+    <script language="javascript" type="text/javascript">
+        var oldBorder;
+        function SetNewBorder(oSrc) {
+            oldBorder = oSrc.style.border;
+            oSrc.style.border = "1px outset #00FFFF";
+        }
+
+        function SetOldBorder(oSrc) {
+            oSrc.style.border = oldBorder;
+        }
+    </script>
+
+    <script type="text/javascript" language="javascript">
+
+        $(document).ready(function () {
+            var obj = window.dialogArguments;
+
+            var cnt = 0;
+            var arrPath = new Array();
+            var arrName = new Array();
+
+            arrPath[0] = obj.path;
+            arrName[0] = obj.name;
+
+            if (arrPath.length != null) {
+                cnt = arrPath.length;
+            }
+
+
+
+            CreateControl("div_WebBrowse", arrPath, arrName, cnt, "0002");
+
+
+            info = fGetListPaperSizeAll();
+
+
+            window.returnValue = info;
+            window.close();
+        });
+
+
+
+
+
+    </script>
+    <style>
+        .divcss5 {
+            border: 1px solid #F00;
+            width: 0px;
+            height: 0px;
+        }
+    </style>
+
+<body style="text-align: center">
+    <form>
+
+
+        @*<div class="divcss5" id="div_WebBrowse">
+        </div>*@
+        <div id="Loading">
+
+            <img src="~/Content/images/5-121204193R7-51.gif" />
+        </div>
+    </form>
+
+</body>

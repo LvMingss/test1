@@ -1,0 +1,420 @@
+﻿
+@{
+    Layout = null;
+    //要使视图不使用布局或模板页，那么需要把Layout赋值为空
+}
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>@ViewBag.Title - 青岛市多维城市建设档案数字化管理系统</title>
+    <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link href="~/Content/font-awesome-4.7.0/css/font-awesome.css" rel="stylesheet" />
+    <link href="~/Content/new.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/stylesheets/theme.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/stylesheets/premium.css" rel="stylesheet" />
+
+    <style type="text/css">
+        #line-chart {
+            height: 300px;
+            width: 800px;
+            margin: 0px auto;
+            margin-top: 1em;
+        }
+
+        .navbar-default .navbar-brand, .navbar-default .navbar-brand:hover {
+            color: #fff;
+        }
+    </style>
+    <style>
+        .loader {
+            box-sizing: border-box;
+            height: 100%;
+            width: 100%;
+            padding-top: 100px;
+            background-color: #ddd;
+            color: #fff;
+            font-size: 30px;
+            font-weight: bold;
+            text-align: center;
+        }
+
+            .loader i {
+                margin-bottom: 20px;
+                font-size: 60px;
+            }
+    </style>
+
+    <link href="~/Content/AdminLTE-2.3.7/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+
+
+    <link href="~/Content/AdminLTE-2.3.7/dist/css/AdminLTE.min.css" rel="stylesheet" />
+
+    <link href="~/Content/AdminLTE-2.3.7/dist/css/skins/_all-skins.min.css" rel="stylesheet" />
+
+   
+
+    <link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/jquery-ui.theme.css" rel="stylesheet" />
+    <link href="~/Content/Tabulator/version3.0/tabulator.css" rel="stylesheet" />
+
+    <script src="~/Scripts/jquery-ui.min.js"></script>
+    <script src="~/Content/Tabulator/version3.0/tabulator.js"></script>
+
+
+    <script type="text/javascript">
+    var details = function (value, data, cell, row, options) { //plain text value
+        return "<i class='fa fa-search-plus' style='color:#428bca;vertical-align:middle; padding:2px 0;'></i> "
+    };
+   
+
+    var chec=function(value,data,cell,row,options){
+
+        return '<input type="checkbox" name="chec" >';
+
+    };
+    function createIframe0(url) {
+
+
+
+        var selectedData = $("#example-table-2").tabulator("getSelectedData");
+        //var i = document.createElement("iframe");
+        //var ch=document.getElementById("checkname1").value;
+        var ch = selectedData[0].ID;
+        //document.getElementById("checkname1").value=document.getElementById("123").contentWindow.document.getElementById("checkname1").value;
+        //var ch=document.getElementById("checkname1").value;
+
+        document.getElementById("example-table-2").style.display = "none";
+        document.getElementById("CurUser").style.display="none";
+        document.getElementById("NoCurUser").style.display="none";
+        document.getElementById("div-that-holds-the-iframe").style.display="block";
+        document.getElementById('SingleArchiveDetailInfo').style.color="red";
+        document.getElementById('JuanNeiMuLu').style.color="black";
+        document.getElementById('JuanNeiMuLudetail').style.color="black";
+        document.getElementById('ZhiZhaoArchives').style.color="black";
+        document.getElementById('CurUser').style.color="black";
+        document.getElementById('NoCurUser').style.color="black";
+        var i=document.getElementById("123");
+        i.contentWindow.location.href=url+ch;
+        i.scrolling ="auto";
+        i.frameborder ="0";
+        i.width ="100%";
+
+
+
+    };
+    function createIframe(url) {
+
+        var selectedData = $("#example-table-2").tabulator("getSelectedData");
+        //var i = document.createElement("iframe");
+        //var ch=document.getElementById("checkname1").value;
+        var ch=selectedData[0].ID;
+        
+        //var ch=document.getElementById("checkname1").value;
+        //document.getElementById("checkname1").value=document.getElementById("123").contentWindow.document.getElementById("checkname1").value;
+        //var ch=document.getElementById("checkname1").value;
+        document.getElementById("example-table-2").style.display = "none";
+        document.getElementById("CurUser").style.display="none";
+        document.getElementById("NoCurUser").style.display ="none";
+        document.getElementById("div-that-holds-the-iframe").style.display = "block";
+        document.getElementById('CurUser').style.color="black";
+        document.getElementById('NoCurUser').style.color="black";
+        document.getElementById('SingleArchiveDetailInfo').style.color="black";
+        document.getElementById('JuanNeiMuLu').style.color="red";
+        document.getElementById('JuanNeiMuLudetail').style.color="black";
+        document.getElementById('ZhiZhaoArchives').style.color="black";
+
+
+        var i=document.getElementById("123");
+        i.contentWindow.location.href=url+ch;
+        i.scrolling ="auto";
+        i.frameborder ="0";
+        i.width ="100%";
+        document.getElementById("count").innerHTML="共检索到数据:"+document.getElementById("checkname5").value;
+
+
+    };
+    function createIframe1() {
+        if(document.getElementById("example-table-2").style.display =="none")
+        {
+            document.getElementById("example-table-2").style.display = "block";
+        }
+        if(document.getElementById("CurUser").style.display=="none"&&document.getElementById("NoCurUser").style.display =="none")
+        {
+            document.getElementById("CurUser").style.display="block";
+            document.getElementById("NoCurUser").style.display="block";
+        }
+        if( document.getElementById("div-that-holds-the-iframe").style.display=="block")
+        {
+            document.getElementById("div-that-holds-the-iframe").style.display = "none";
+        }
+        var selectedData = $("#example-table-2").tabulator("getSelectedData");
+        document.getElementById("checkname1").value= selectedData[0].f;
+        document.getElementById('JuanNeiMuLu').style.color="black";
+        document.getElementById('SingleArchiveDetailInfo').style.color="black";
+        document.getElementById('JuanNeiMuLudetail').style.color="black";
+        document.getElementById('ZhiZhaoArchives').style.color="red";
+        document.getElementById('CurUser').style.color="black";
+        document.getElementById('NoCurUser').style.color="black";
+        document.getElementById("count").innerHTML="共检索到数据:"+document.getElementById("checkname5").value;
+    };
+
+    function createIframe2(url) {
+
+
+        document.getElementById("checkname2").value=document.getElementById("123").contentWindow.document.getElementById("checkname1").value;
+        var ch=document.getElementById("checkname2").value;
+        
+        document.getElementById("example-table-2").style.display = "none";
+        document.getElementById("CurUser").style.display="none";
+        document.getElementById("NoCurUser").style.display ="none";
+        document.getElementById("div-that-holds-the-iframe").style.display = "block";
+        document.getElementById('CurUser').style.color="black";
+        document.getElementById('NoCurUser').style.color="black";
+        document.getElementById('SingleArchiveDetailInfo').style.color="black";
+        document.getElementById('JuanNeiMuLu').style.color="black";
+        document.getElementById('JuanNeiMuLudetail').style.color="red";
+        document.getElementById('ZhiZhaoArchives').style.color="black";
+
+
+        var i=document.getElementById("123");
+        i.contentWindow.location.href=url+ch;
+        i.scrolling ="auto";
+        i.frameborder ="0";
+        i.width ="100%";
+
+
+
+    };
+    function createIframe3(url) {
+
+
+        document.getElementById("checkname2").value = document.getElementById("123").contentWindow.document.getElementById("checkname1").value;
+        var ch = document.getElementById("checkname2").value;
+        //alert(ch);
+        //var ch=document.getElementById("checkname1").value;
+        //document.getElementById("checkname1").value=document.getElementById("123").contentWindow.document.getElementById("checkname1").value;
+        //var ch=document.getElementById("checkname1").value;
+        document.getElementById("example-table-2").style.display = "none";
+        document.getElementById("CurUser").style.display = "none";
+        document.getElementById("NoCurUser").style.display = "none";
+        document.getElementById("div-that-holds-the-iframe").style.display = "block";
+        document.getElementById('CurUser').style.color = "black";
+        document.getElementById('NoCurUser').style.color = "black";
+        document.getElementById('SingleArchiveDetailInfo').style.color = "black";
+        document.getElementById('JuanNeiMuLu').style.color = "black";
+        document.getElementById('JuanNeiMuLudetail').style.color = "red";
+        document.getElementById('ZhiZhaoArchives').style.color = "black";
+
+
+        var i = document.getElementById("123");
+        i.contentWindow.location.href = url + ch;
+        i.scrolling = "auto";
+        i.frameborder = "0";
+        i.width = "100%";
+
+
+
+    };
+    function createIframe4(url) {
+
+
+        document.getElementById("checkname2").value = document.getElementById("123").contentWindow.document.getElementById("checkname1").value;
+        var ch = document.getElementById("checkname2").value;
+        //alert(ch);
+        //var ch=document.getElementById("checkname1").value;
+        //document.getElementById("checkname1").value=document.getElementById("123").contentWindow.document.getElementById("checkname1").value;
+        //var ch=document.getElementById("checkname1").value;
+        document.getElementById("example-table-2").style.display = "none";
+        document.getElementById("CurUser").style.display = "none";
+        document.getElementById("NoCurUser").style.display = "none";
+        document.getElementById("div-that-holds-the-iframe").style.display = "block";
+        document.getElementById('CurUser').style.color = "black";
+        document.getElementById('NoCurUser').style.color = "black";
+        document.getElementById('SingleArchiveDetailInfo').style.color = "black";
+        document.getElementById('JuanNeiMuLu').style.color = "black";
+        document.getElementById('JuanNeiMuLudetail').style.color = "red";
+        document.getElementById('ZhiZhaoArchives').style.color = "black";
+
+
+        var i = document.getElementById("123");
+        i.contentWindow.location.href = url + ch;
+        i.scrolling = "auto";
+        i.frameborder = "0";
+        i.width = "100%";    
+    };
+    function createIframe6() {
+
+        var selectedData = $("#example-table-2").tabulator("getSelectedData");
+        var name="";
+        document.getElementById('SingleArchiveDetailInfo').style.color="black";
+        document.getElementById('JuanNeiMuLu').style.color="black";
+        document.getElementById('JuanNeiMuLudetail').style.color="black";
+        document.getElementById('ZhiZhaoArchives').style.color="black";
+
+        document.getElementById('NoCurUser').style.color="black";
+        document.getElementById('CurUser').style.color="red";
+        for(var j=0;j<selectedData.length;j++)
+        {
+            name += selectedData[j].ID + "/" + selectedData[j].licenceNo + ",";
+        }
+
+
+        window.open("/ArchiveSearch/CurUserAdd/?id3="+name+"&type=5");
+
+    };
+    function createIframe7()
+    {
+        var selectedData = $("#example-table-2").tabulator("getSelectedData");
+        var name="";
+        document.getElementById('JuanNeiMuLudetail').style.color="black";
+        document.getElementById('NoCurUser').style.color="red";
+        document.getElementById('SingleArchiveDetailInfo').style.color="black";
+        document.getElementById('JuanNeiMuLu').style.color="black";
+        document.getElementById('ZhiZhaoArchives').style.color="black";
+        document.getElementById('CurUser').style.color="black";
+
+        for(var j=0;j<selectedData.length;j++)
+        {
+            name += selectedData[j].ID + "/" + selectedData[j].licenceNo + ",";
+        }
+
+        window.open("/ArchiveSearch/NoCurUser/?id3="+name+"&type=5");
+
+    };
+
+
+
+    $().ready(function () {//在页面加载完成之后用，为了保证js能完整的执行。
+        $(document).ready(function () {
+            document.getElementById('ZhiZhaoArchives').style.color="red";
+            var a = $(window).height();
+            var hh = a-160;
+            $(".box-h").height(hh)  // 高度加在类名为box的DIV 上
+
+        })
+        $("#example-table-2").tabulator({
+            height: "100%",
+            virtualDom:false,
+            selectable:1,
+      
+            fitColumns:true,
+            
+            pagination: "remote",
+            ajaxURL: "/ArchiveSearch2/LookQingArchives_ZhizhaoData/",
+       
+            paginator: function (url, pageNo, pageSize, ajaxParams) {
+
+                var SerachText= document.getElementById("SerachText").value;
+                  
+                Url = url + "?page=" + pageNo + "&SerachText=" + encodeURI(SerachText);
+                    
+
+                return Url; 
+            },
+          
+            rowFormatter:function(row){
+                var data = row.getData();
+                if(data.isNeibu==1){                    
+                    row.getElement().css({"background-color":"yellow","border-bottom":"1px solid #999"});
+
+                }
+                
+            },
+            
+            columns: [
+{
+    title: "查看", field: "ID",width: 50 ,formatter:details,  headerSort: false,sorter: "string", align: "center", cellClick: function (e,cell) {
+       
+
+        $("#checkname1").val(cell.getValue());
+
+    }
+},
+
+
+
+           { title: "执照号", field: "licenceNo", headerSort:false, width: 120 },
+           
+            { title: "扫描件", field:"isImageExist", headerSort: false,width:60 },
+            { title: "申请单位", field:"applyUnit", headerSort: false,width: 450 },
+            { title: "工程内容", field:"projectRange", headerSort: false,width:450 },           
+            { title: "工程地点", field: "location", headerSort: false, width: 450 },
+            { title: "最新工程地点", field: "newLocation", headerSort: false, width: 200 },
+            { title: "地号", field: "landNo", headerSort: false, width: 120 },
+            { title: "年度序号", field: "registrationNo", headerSort: false, width: 120 },
+            { title: "总登记号", field: "classNo", headerSort: false, width: 120 },
+            { title: "区工程顺序号", field: "areaProSeqNo", headerSort: false, width: 200 },
+            
+            
+         
+            //{ title: "存放地点", field:"cunfangLocation", headerSort: false,width: 450 },
+            //{ title: "移交单位", field:"tranferUnit", headerSort: false,width: 450 },
+            //{ title: "ID", field: "ID", headerSort: false, width: 100 },
+        
+            //{ title: "是否内部", field:"isNeibu",headerSort: false,width: 100 ,},
+
+
+            ],
+
+
+           
+        });
+
+       
+
+    });
+    function change() {
+
+        $("#example-table-2").tabulator("setPage", document.getElementById("curruntpage").value);
+    }
+    </script>
+</head>
+    <body style="background:#ecf0f5;padding:15px;padding-bottom:0px;">
+
+
+        <div style="overflow-y:auto;overflow-x:hidden; height:100%;">
+            @*@using (Html.BeginForm())
+            {*@
+                <div class="nav-tabs-custom">
+                    <ul class="nav nav-tabs" style="cursor:pointer;">
+                        <li class="active"><a onclick="return createIframe1()" id="ZhiZhaoArchives" data-toggle="tab">执照档案</a></li>
+                        <li><a onclick="return createIframe0('/ArchiveSearch2/LookQingArchives_Zhizhao_SingleArchiveDetailInfo/?id=')" id="SingleArchiveDetailInfo" data-toggle="tab">单卷案卷详细信息</a></li>
+                        <li><a onclick="return createIframe('/ArchiveSearch2/LookQingArchives_Zhizhao_Index/?archiveID=')" id="JuanNeiMuLu" data-toggle="tab">卷内目录</a></li>
+                        <li><a onclick="return createIframe2('/ArchiveSearch2/LookQingArchives_Zhizhao_JuanNeiMuLu/?id=')" id="JuanNeiMuLudetail" data-toggle="tab">卷内目录详细信息</a></li>
+                        @*<li><a onclick="return createIframe3('/ArchiveSearch2/LookQingArchives_Zhizhao_JuanNeiMuLu/?id=')" id="order" data-toggle="tab">顺序排列</a></li>
+                        <li><a onclick="return createIframe4('/ArchiveSearch2/LookQingArchives_Zhizhao_JuanNeiMuLu/?id=')" id="orderbydesc" data-toggle="tab">倒序排列</a></li>*@
+                        <li><a onclick="return createIframe6()" id="CurUser" data-toggle="tab">当前用户添加</a></li>
+                        <li><a onclick="return createIframe7()" id="NoCurUser" data-toggle="tab">非当前用户添加</a></li>
+                        <li><a id="count" data-toggle="tab" disabled="disabled" style="color:blue;cursor:default;">共检索到数据:@ViewData["count"]</a></li>
+                        <li><a id="count1" style="color:blue;cursor:default;"><input type="text" name="curruntpage" id="curruntpage" onblur="change()" style="width:30px;height:18px;border:0px;">/@ViewData["totalpage"] </a></li>
+                    </ul>
+                    <div class="tab-content">
+                        <input name="SerachText" id="SerachText" value="@ViewData["SerachText"]" hidden="hidden" />
+                        <input name="checkname1" id="checkname1" hidden="hidden">@*记录执照档案ID*@
+                        <input name="checkname2" id="checkname2" hidden="hidden">@*记录卷内目录某卷ID,以便查询卷内目录详细信息*@
+                        <input name="checkname5" id="checkname5" hidden="hidden" value="@ViewData["count"]">@*记录工程条数*@
+                        <div id="example-table-2" class="box-h">
+                            <div class="loader"><i class="fa fa-spinner fa-pulse fa-fw"></i><div>数据加载中...</div></div>
+                        </div>
+                        <div id="div-that-holds-the-iframe" style="display:none;border:0px">
+                            <iframe id="123" name="123"  class="box-h" style="border:2px solid #ddd"></iframe>
+                        </div>
+                    </div>
+                </div>
+
+              
+
+
+        </div>
+    </body>
+</html>
+
+
+
+
+
+

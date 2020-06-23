@@ -1,0 +1,36 @@
+﻿
+@{
+    ViewBag.Title = "打印业务档案工程目录";
+}
+
+<h2><i class="fa fa-tags kongge"></i>打印业务档案工程目录</h2>
+<hr />
+@using (Html.BeginForm())
+{
+    <div class="panel panel-default">
+        <table class="table table-bordered dl-horizontal">
+            <tr>
+                <td style="background-color:#f9f9f9;width:6%;min-width:150px;">
+                    起始项目顺序号
+                </td>
+                <td style="width:44%;">
+                    <input type="text" name="yearS" id="yearS" class="form-control " />
+                </td>
+                <td style="background-color:#f9f9f9;width:6%;min-width:150px;">
+                    终止项目顺序号
+                </td>
+                <td style="width:44%;">
+                    <input type="text" name="yearE" id="yearE" class="form-control " />
+                </td>
+            </tr>
+
+            <tr>
+                <td colspan="4" style="text-align:center;">
+                    <input type="submit" name="action" class="btn btn-default" id="ok" value="打印业务档案工程目录" />
+                    <input type="submit" name="action" class="btn btn-default" id="cancel" value="取消" />
+                </td>
+
+            </tr>
+        </table>
+    </div>
+}

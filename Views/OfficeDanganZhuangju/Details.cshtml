@@ -1,0 +1,279 @@
+﻿@model urban_archive.Models.ArchivesContainer
+
+@{
+    ViewBag.Title = "档案盒具查看";
+    var a = Model.ID;
+}
+
+<h2><i class="fa fa-tags kongge"></i>档案盒具查看</h2>
+<hr />
+<style type="text/css">
+    .jubu {
+        max-width: 100%;
+    }
+</style>
+
+<div class="panel panel-default">
+    <table class="table table-bordered dl-horizontal">
+        <tr>
+            <td style="background-color:#f9f9f9;width:10%;">
+                收费编号
+            </td>
+            <td colspan="4">
+                @Html.DisplayFor(model => model.seqNo)
+            </td>
+        </tr>
+        <tr>
+            <td style="background-color:#f9f9f9;width:10%;">
+                单位名称
+            </td>
+            <td colspan="4">
+                @Html.DisplayFor(model => model.DepartName)                
+            </td>
+        </tr>
+        <tr>
+            <td style="background-color:#f9f9f9;width:10%;" rowspan="2">
+                档案盒：<br />
+                单价（元）：
+                @Html.DisplayFor(model => model.singleBoxFee)                
+            </td>
+            <td style="background-color:#f9f9f9;width:10%;">
+                二厘米（个）
+            </td>
+            <td>
+                @Html.DisplayFor(model => model.twoCentiCnt)
+            </td>
+            <td style="background-color:#f9f9f9;width:10%;">
+                三厘米（个）
+            </td>
+            <td>
+                @Html.DisplayFor(model => model.thrCentiCnt)
+            </td>
+        </tr>
+        <tr>
+
+            <td style="background-color:#f9f9f9;width:10%;">
+                四厘米（个）
+            </td>
+            <td>
+                @Html.DisplayFor(model => model.fourCentiCnt)
+            </td>
+            <td style="background-color:#f9f9f9;width:10%;">
+                五厘米（个）
+            </td>
+            <td>
+                @Html.DisplayFor(model => model.fiveCentiCnt)
+            </td>
+        </tr>
+        <tr>
+            <td style="background-color:#f9f9f9;width:10%;" rowspan="2">
+                档案目录：<br />
+                单价（元）
+                @Html.DisplayFor(model => model.singleCatalogFee)
+            </td>
+            <td style="background-color:#f9f9f9;width:10%;">
+                封面（个）
+            </td>
+            <td>
+                @Html.DisplayFor(model => model.coverCnt)
+            </td>
+            <td style="background-color:#f9f9f9;width:10%;">
+                目录（个）
+            </td>
+            <td>
+                @Html.DisplayFor(model => model.catalogueCnt)
+            </td>
+        </tr>
+        <tr>
+
+            <td style="background-color:#f9f9f9;width:10%;">
+                备考表（个）
+            </td>
+            <td colspan="3">
+                @Html.DisplayFor(model => model.proformaCnt)
+            </td>
+
+        </tr>
+        <tr>
+            <td style="background-color:#f9f9f9;width:10%;" rowspan="2">
+                费用总计：<br />
+                总计（元）
+                @ViewBag.totle                
+            </td>
+            <td style="background-color:#f9f9f9;width:10%;">
+                档案盒费用
+            </td>
+            <td>
+                @Html.DisplayFor(model => model.archiveBoxFee)
+            </td>
+            <td style="background-color:#f9f9f9;width:10%;">
+                档案目录费用
+            </td>
+            <td>
+                @Html.DisplayFor(model => model.archiveCataLogFee)
+            </td>
+        </tr>
+        <tr>
+
+            <td style="background-color:#f9f9f9;width:10%;">
+                日期
+            </td>
+            <td>
+                @Html.DisplayFor(model => model.submitDate)
+            </td>
+            <td style="background-color:#f9f9f9;width:10%;">
+                录入人
+            </td>
+            <td>
+                @Html.DisplayFor(model => model.submitPerson)
+            </td>
+        </tr>
+        </table>
+    </div>
+            @*<div>
+                        <hr />
+                        <dl class="dl-horizontal">
+                            <dt>
+                                收费编号
+                            </dt>
+
+                            <dd>
+                                @Html.DisplayFor(model => model.seqNo)
+                            </dd>
+
+                            <dt>
+                                单位名称
+                            </dt>
+                            <dd>
+                                @Html.DisplayFor(model => model.DepartName)
+                            </dd>
+
+
+
+                            <dt>
+                                档案盒单价（元）
+                            </dt>
+                            <dd>
+                                @Html.DisplayFor(model => model.singleBoxFee)
+                            </dd>
+                            <dt>
+                                两厘米（个）
+                            </dt>
+
+                            <dd>
+                                @Html.DisplayFor(model => model.twoCentiCnt)
+                            </dd>
+
+                            <dt>
+                                三厘米（个）
+                            </dt>
+
+                            <dd>
+                                @Html.DisplayFor(model => model.thrCentiCnt)
+                            </dd>
+
+                            <dt>
+                                四厘米（个）
+                            </dt>
+
+                            <dd>
+                                @Html.DisplayFor(model => model.fourCentiCnt)
+                            </dd>
+
+                            <dt>
+                                五厘米（个）
+                            </dt>
+
+                            <dd>
+                                @Html.DisplayFor(model => model.fiveCentiCnt)
+                            </dd>
+
+                            <dt>
+                                档案目录单价（元）
+                            </dt>
+
+                            <dd>
+                                @Html.DisplayFor(model => model.singleCatalogFee)
+                            </dd>
+                            <dt>
+                                封面（个）
+                            </dt>
+
+                            <dd>
+                                @Html.DisplayFor(model => model.coverCnt)
+                            </dd>
+
+                            <dt>
+                                目录（个）
+                            </dt>
+
+                            <dd>
+                                @Html.DisplayFor(model => model.catalogueCnt)
+                            </dd>
+
+                            <dt>
+                                备考表（个）
+                            </dt>
+
+                            <dd>
+                                @Html.DisplayFor(model => model.proformaCnt)
+                            </dd>
+
+
+                            <dt>
+                                档案盒费用
+                            </dt>
+
+                            <dd>
+                                @Html.DisplayFor(model => model.archiveBoxFee)
+                            </dd>
+
+                            <dt>
+                                档案目录费用
+                            </dt>
+
+                            <dd>
+                                @Html.DisplayFor(model => model.archiveCataLogFee)
+                            </dd>
+
+                            <dt>
+                                费用总计
+                            </dt>
+                            <dd>
+                                @ViewBag.totle
+                            </dd>
+                            <dt>
+                                日期
+                            </dt>
+
+                            <dd>
+                                @Html.DisplayFor(model => model.submitDate)
+                            </dd>
+
+                            <dt>
+                                录入人
+                            </dt>
+
+                            <dd>
+                                @Html.DisplayFor(model => model.submitPerson)
+                            </dd>
+
+
+
+
+
+
+
+                        </dl>
+                    </div>*@
+<div style="text-align:center;">
+    <p>@Html.ActionLink("编辑", "Edit", new { id = Model.ID }, new { @class = "btn btn-default" }) |
+        @*<a href="/OfficeDanganZhuangju/Edit?id=">编辑</a> |*@
+        <a href="/OfficeDanganZhuangju" class="btn btn-default">返回</a>       
+        
+    </p>
+    <div style="height:5px;"></div>
+    
+</div>
+       
+            

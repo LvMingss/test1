@@ -1,0 +1,38 @@
+﻿@{
+    ViewBag.Title = "打印图纸目录";
+}
+
+<h2><i class="fa fa-tags"></i>打印图纸目录</h2>
+<script>
+    function windowquxiao()
+    {
+        window.close();
+    }
+    </script>
+@using (Html.BeginForm())
+{
+    <div class="panel panel-default">
+        <table class="table table-bordered dl-horizontal">
+            <tr>
+                <td style="background-color:#f9f9f9;width:10%;">
+                    起始序号:
+                </td>
+                <td>
+                    <input type="text" name="seqS" id="seqS" class="form-control " />
+                </td>
+                <td style="background-color:#f9f9f9;width:10%;">
+                    终止序号:
+                </td>
+                <td>
+                    <input type="text" name="seqE" id="seqE" class="form-control " />
+                </td>
+            </tr>
+            <tr>
+                <td colspan="4" style="text-align:center;">
+                    <input type="submit" name="action" class="btn btn-default" id="ok" value="打印图纸目录" />
+                    <input type="button" class="btn btn-default" id="cancel" value="取消"onclick="windowquxiao()" />
+                </td>
+            </tr>
+        </table>
+    </div>
+}

@@ -1,0 +1,127 @@
+﻿
+@{
+    ViewBag.Title = "档案类别管理";
+}
+<section>
+    <h2 style="float:left;"><i class="fa fa-tags kongge"></i>档案类别管理</h2>
+    <ol class="breadcrumb">
+        <li class="active">管线档案</li>
+        <li class="active">档案编号</li>
+        <li>分类管理</li>
+    </ol>
+    <div style="clear:both;"></div>
+</section>
+<hr style="margin-top:0px;" />
+    <link type="text/css" rel="stylesheet" herf="~/Scripts/zTree/css/zTreeStyle/zTreeStyle.css">
+    @*<link rel="stylesheet" href="~/Scripts/zTree/css/demo.css" type="text/css">*@
+
+    <script type="text/javascript" src="~/Scripts/zTree/js/jquery-1.4.4.min.js"></script>
+    <script type="text/javascript" src="~/Scripts/zTree/js/jquery.ztree.core-3.5.js"></script>
+    @*<script type="text/javascript" src="~/Scripts/zTree/js/jquery.ztree.excheck.js"></script>
+        <script type="text/javascript" src="~/Scripts/zTree/js/jquery.ztree.exedit.js"></script>*@
+
+    <script type="text/javascript">
+        var t;
+        var setting = {
+            view: {
+                selectedMulti: false,
+                showLine: true,
+                dblClickExpand: true,
+            },
+            data: {
+                simpleData: {
+                    enable: true,
+                    //idKey: "id",
+                    //pIdKey: "pId",
+                    //rootPId: ""
+                }
+            },
+            callback: {
+                onClick: onClick
+            }
+        };
+        $(document).ready(function () {
+            $.ajax({
+                async: false,
+                cache: false,
+                type: 'POST',
+                url: '../../ProjectInfoes/fenleihao',
+                success: function (data) {
+                    //alert(data);
+                    treeNodes = data;
+                    //alert(treeNodes)
+                }
+            });
+            treeObj = $.fn.zTree.init($("#ztree"), setting, treeNodes);
+            //treeObj.expandAll(true);
+            //第一个参数是<ul/>id选择的jquery对象,第二个参数是配置的setting,第三个参数是获取到的数据.
+        })
+        function onClick(e, treeId, treeNode) {
+            var treeObj = $.fn.zTree.getZTreeObj("ztree"),
+            sprName = treeNode.name;//节点name
+            sprID = treeNode.id;//节点ID
+            document.getElementById("choose").value = sprName;
+            document.getElementById("text1").value = sprID;
+        }
+        function del() {
+            var msg = "确认要删除吗?";
+            if (confirm(msg) == true) {
+                return true;
+            } else {
+                return false;
+            }
+        }
+        function add() {
+            var msg = "确认要添加该子类吗吗?";
+            if (confirm(msg) == true) {
+                return true;
+            } else {
+                return false;
+            }
+        }
+
+    </script>
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    <div >
+        <ul id="ztree" class="ztree"></ul>
+    </div>
+    <div class="panel panel-default" >
+        <table class="table table-bordered dl-horizontal" style="background-color:#f9f9f9;">
+            <tr>
+                <td style="background-color:#f9f9f9;width:10%;font-weight:bolder;">
+                    已选择分类：
+                </td>
+                <td>
+                    <input type="text" id="choose" name="choose" class="form-control" style="float:left">
+                    <input type="submit" id="delete" name="action" value="删除"onclick="return del()" class="btn btn-default" style="float:left">
+
+                </td> 
+                <td style="background-color:#f9f9f9;width:10%;font-weight:bolder;">
+                    添加分类：
+                </td>
+                <td>
+                    <input type="text" id="text2" name="text2" class="form-control" style="float:left">
+                    <input type="submit" id="queding" name="action" value="添加子类"onclick="add()" class="btn btn-default" style="float:left">
+                    <input type="text" id="text1" name="text1" style="display:none" class="form-control">
+                </td>               
+            </tr>
+            
+        </table>
+    </div>
+    
+
+            @*<div>
+
+                <label class="form-group">已选择分类：</label>
+                <input type="text" id="choose" name="choose" class="form-control">
+                <input type="submit" id="delete" name="action" value="删除" class="btn btn-default"><br><br>
+            </div>
+            <div>
+                <label class="form-group">添加分类：</label>
+                <input type="text" id="text2" name="text2" class="form-control">
+                <input type="submit" id="queding" name="action" value="添加子类" class="btn btn-default">
+            </div>*@
+            
+            }

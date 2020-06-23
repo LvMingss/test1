@@ -1,0 +1,246 @@
+﻿@model urban_archive.Models.VideoArchives
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2><i class="fa fa-tags kongge"></i>声像工程查看</h2>
+
+<div>
+    @*<h4>VideoArchives</h4>*@
+    <hr />
+    
+        <div class="panel panel-default">
+            <table class="table table-bordered @*table-striped*@" >
+                <tr>
+                    <td style="background-color:#f9f9f9;width:10%;">
+                        项目顺序号
+                    </td>
+                    <td style="width:40%">
+                        @Html.DisplayFor(model => model.videoProjectSeqNo)
+                    </td>
+                    <td style="background-color:#f9f9f9;width:10%;">
+                        档案接收时间
+                    </td>
+                    <td style="width:40%">
+                        @Html.DisplayFor(model => model.dateReceived)
+                    </td>
+
+                </tr>
+                <tr>
+                    <td style="background-color:#f9f9f9;width:10%;">
+                        工程名称
+                    </td>
+                    <td colspan="3">
+                        @Html.DisplayFor(model => model.videoProjectSeqNo)
+                    </td>
+
+                </tr>
+                <tr>
+                    @*<td style="background-color:#f9f9f9;width:10%;">
+                        联系单号
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => model.SheetID)
+                    </td>*@
+                    <td style="background-color:#f9f9f9;" colspan="5",width:10%;">
+                        青建档验（
+                        @Html.DisplayFor(model => model.qjdsyYear)
+                        ）  年
+                        第（
+                        @Html.DisplayFor(model => model.qjdsyNo)
+                        ）号
+                    </td>
+
+                </tr>
+                <tr>
+                    <td style="background-color:#f9f9f9;width:10%;">
+                        工程地点
+                    </td>
+                    <td colspan="3">
+                        @Html.DisplayFor(model => model.location)
+                    </td>
+
+                </tr>
+                <tr>
+                    <td style="background-color:#f9f9f9;width:10%;">
+                        工程地点分区
+                    </td>
+                    <td colspan="3">
+                        @Html.DisplayFor(model => model.constructArea)
+                    </td>
+
+                </tr>
+                <tr>
+                    <td style="background-color:#f9f9f9;width:10%;">
+                        计划开工时间
+                    </td>
+                    <td colspan="3">
+                        @Html.DisplayFor(model => model.planningStartDate)
+                    </td>
+
+                </tr>
+                <tr>
+                    <td style="background-color:#f9f9f9;width:10%;">
+                        计划竣工时间
+                    </td>
+                    <td colspan="3">
+                        @Html.DisplayFor(model => model.planningEndDate)
+                    </td>
+
+                </tr>
+                <tr>
+                    <td style="background-color:#f9f9f9;width:10%;">
+                        声像科责任人
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => model.csyjPerson)
+                    </td>
+                    <td style="background-color:#f9f9f9;width:10%;">
+                        初审日期
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => model.csyjDate)
+                    </td>
+
+                </tr>
+                <tr>
+                    <td style="background-color:#f9f9f9;width:10%;">
+                        初审意见
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => model.csyj)
+                    </td>
+                    @*<td style="background-color:#f9f9f9;width:10%;">
+                        经办人
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => model.operater)
+                    </td>*@
+
+                </tr>
+                <tr>
+                    <td style="background-color:#f9f9f9;width:10%;">
+                        录像带盒数
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => model.videoCassetteBoxCount)
+                    </td>
+                    <td style="background-color:#f9f9f9;width:10%;">
+                        照片盒数
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => model.photoBoxCount)
+                    </td>
+
+                </tr>
+            </table>
+        </div>
+
+
+        @*<dt>
+            项目顺序号
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.videoProjectSeqNo)
+        </dd>
+
+        <dt>
+            档案接收时间(搞个时间控件)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.dateReceived)
+        </dd>
+
+        <dt>
+            工程名称
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.projectName)
+        </dd>
+
+        <dt>
+            工程地点
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.location)
+        </dd>
+
+        <dt>
+            青建档验：（）  年
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.qjdsyYear)
+        </dd>
+
+        <dt>
+            第（）号
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.qjdsyNo)
+        </dd>
+
+        <dt>
+            初审意见
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.csyj)
+        </dd>
+
+        <dt>
+            初审人
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.csyjPerson)
+        </dd>
+
+        <dt>
+            初审日期
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.csyjDate)
+        </dd>
+        <dt>
+            初审日期
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.csyjDate)
+        </dd>
+        <dt>
+            经办人
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.operater)
+        </dd>
+        <dt>
+            联系单号
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SheetID)
+        </dd>
+    </dl>*@
+</div>
+<div style="text-align:center;">
+    <p>
+        @Html.ActionLink("编辑", "Edit", new { id = Model.ID }, new { @class = "btn btn-default" }) 
+        @*@Html.ActionLink("返回", "Index", new { }, new { @class = "btn btn-default" })*@
+    </p>
+    <div style="height:20px;">
+    </div>
+</div>
+@*<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>*@

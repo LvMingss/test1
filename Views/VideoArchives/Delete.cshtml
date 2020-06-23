@@ -1,0 +1,320 @@
+﻿@model urban_archive.Models.VideoArchives
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>VideoArchives</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.videoProjectSeqNo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.videoProjectSeqNo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.dateReceived)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.dateReceived)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.projectName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.projectName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.location)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.location)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.qjdsyYear)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.qjdsyYear)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.qjdsyNo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.qjdsyNo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.csyj)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.csyj)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.csyjPerson)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.csyjPerson)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.csyjDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.csyjDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.fzryj)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.fzryj)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.fzryjPerson)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.fzryjPerson)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.fzryjDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.fzryjDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.zgyj)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.zgyj)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.zgyjPerson)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.zgyjPerson)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.zgyjDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.zgyjDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.operater)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.operater)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.checker)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.checker)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.videoCassetteBoxCount)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.videoCassetteBoxCount)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.photoBoxCount)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.photoBoxCount)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.opticalDiskCount)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.opticalDiskCount)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.constructUnit)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.constructUnit)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.dateConstrcuted)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.dateConstrcuted)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.timeConstrcuted)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.timeConstrcuted)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.startVideoArchivesNo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.startVideoArchivesNo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.endVideoArchivesNo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.endVideoArchivesNo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.startVideoRegisNo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.startVideoRegisNo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.endVideoRegisNo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.endVideoRegisNo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.startVideoPaijiaNo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.startVideoPaijiaNo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.endVideoPaijiaNo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.endVideoPaijiaNo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.startPhotoArchivesNo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.startPhotoArchivesNo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.endPhotoArchivesNo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.endPhotoArchivesNo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.startPhotoRegisNo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.startPhotoRegisNo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.endPhotoRegisNo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.endPhotoRegisNo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.startPhotoPaijiaNo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.startPhotoPaijiaNo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.endPhotoPaijiaNo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.endPhotoPaijiaNo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.videoStatus)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.videoStatus)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.VideoContractSheet.sheetNo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.VideoContractSheet.sheetNo)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

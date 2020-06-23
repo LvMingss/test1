@@ -1,0 +1,192 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="GuiHuaAnJuanMuLuDataSet" targetNamespace="http://tempuri.org/GuiHuaAnJuanMuLuDataSet.xsd" xmlns:mstns="http://tempuri.org/GuiHuaAnJuanMuLuDataSet.xsd" xmlns="http://tempuri.org/GuiHuaAnJuanMuLuDataSet.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections>
+          <Connection AppSettingsObjectName="Web.config" AppSettingsPropertyName="UrbanConConnectionString" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="UrbanConConnectionString (Web.config)" ParameterPrefix="@" PropertyReference="AppConfig.System.Configuration.ConfigurationManager.0.ConnectionStrings.UrbanConConnectionString.ConnectionString" Provider="System.Data.SqlClient" />
+        </Connections>
+        <Tables>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="vw_planarchiveBoxInfoTableAdapter" GeneratorDataComponentClassName="vw_planarchiveBoxInfoTableAdapter" Name="vw_planarchiveBoxInfo" UserDataComponentName="vw_planarchiveBoxInfoTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="UrbanConConnectionString (Web.config)" DbObjectName="UrbanCon.dbo.vw_planarchiveBoxInfo" DbObjectType="View" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>SELECT boxNo, regisNo, archiveTitle, archiveCode, bianzhiUnit, bianzhiDate, archiveBoxCnt, archiveBoxNo, pageCnt, retentionPeriodName, securityName, seqNo, archiveNo, paijiaNo, inchCnt, classifyID, isArchive, textMatirial, drawing, status, photo, yearNo, classify, boxID, projectCnt, projectNo, ID, ArchiveThick FROM dbo.vw_planarchiveBoxInfo</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="boxNo" DataSetColumn="boxNo" />
+              <Mapping SourceColumn="regisNo" DataSetColumn="regisNo" />
+              <Mapping SourceColumn="archiveTitle" DataSetColumn="archiveTitle" />
+              <Mapping SourceColumn="archiveCode" DataSetColumn="archiveCode" />
+              <Mapping SourceColumn="bianzhiUnit" DataSetColumn="bianzhiUnit" />
+              <Mapping SourceColumn="bianzhiDate" DataSetColumn="bianzhiDate" />
+              <Mapping SourceColumn="archiveBoxCnt" DataSetColumn="archiveBoxCnt" />
+              <Mapping SourceColumn="archiveBoxNo" DataSetColumn="archiveBoxNo" />
+              <Mapping SourceColumn="pageCnt" DataSetColumn="pageCnt" />
+              <Mapping SourceColumn="retentionPeriodName" DataSetColumn="retentionPeriodName" />
+              <Mapping SourceColumn="securityName" DataSetColumn="securityName" />
+              <Mapping SourceColumn="seqNo" DataSetColumn="seqNo" />
+              <Mapping SourceColumn="archiveNo" DataSetColumn="archiveNo" />
+              <Mapping SourceColumn="paijiaNo" DataSetColumn="paijiaNo" />
+              <Mapping SourceColumn="inchCnt" DataSetColumn="inchCnt" />
+              <Mapping SourceColumn="classifyID" DataSetColumn="classifyID" />
+              <Mapping SourceColumn="isArchive" DataSetColumn="isArchive" />
+              <Mapping SourceColumn="textMatirial" DataSetColumn="textMatirial" />
+              <Mapping SourceColumn="drawing" DataSetColumn="drawing" />
+              <Mapping SourceColumn="status" DataSetColumn="status" />
+              <Mapping SourceColumn="photo" DataSetColumn="photo" />
+              <Mapping SourceColumn="yearNo" DataSetColumn="yearNo" />
+              <Mapping SourceColumn="classify" DataSetColumn="classify" />
+              <Mapping SourceColumn="boxID" DataSetColumn="boxID" />
+              <Mapping SourceColumn="projectCnt" DataSetColumn="projectCnt" />
+              <Mapping SourceColumn="projectNo" DataSetColumn="projectNo" />
+              <Mapping SourceColumn="ID" DataSetColumn="ID" />
+              <Mapping SourceColumn="ArchiveThick" DataSetColumn="ArchiveThick" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+        </Tables>
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="GuiHuaAnJuanMuLuDataSet" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="True" msprop:Generator_DataSetName="GuiHuaAnJuanMuLuDataSet" msprop:Generator_UserDSName="GuiHuaAnJuanMuLuDataSet">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="vw_planarchiveBoxInfo" msprop:Generator_TableClassName="vw_planarchiveBoxInfoDataTable" msprop:Generator_TableVarName="tablevw_planarchiveBoxInfo" msprop:Generator_TablePropName="vw_planarchiveBoxInfo" msprop:Generator_RowDeletingName="vw_planarchiveBoxInfoRowDeleting" msprop:Generator_RowChangingName="vw_planarchiveBoxInfoRowChanging" msprop:Generator_RowEvHandlerName="vw_planarchiveBoxInfoRowChangeEventHandler" msprop:Generator_RowDeletedName="vw_planarchiveBoxInfoRowDeleted" msprop:Generator_UserTableName="vw_planarchiveBoxInfo" msprop:Generator_RowChangedName="vw_planarchiveBoxInfoRowChanged" msprop:Generator_RowEvArgName="vw_planarchiveBoxInfoRowChangeEvent" msprop:Generator_RowClassName="vw_planarchiveBoxInfoRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="boxNo" msprop:Generator_ColumnVarNameInTable="columnboxNo" msprop:Generator_ColumnPropNameInRow="boxNo" msprop:Generator_ColumnPropNameInTable="boxNoColumn" msprop:Generator_UserColumnName="boxNo" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="100" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="regisNo" msprop:Generator_ColumnVarNameInTable="columnregisNo" msprop:Generator_ColumnPropNameInRow="regisNo" msprop:Generator_ColumnPropNameInTable="regisNoColumn" msprop:Generator_UserColumnName="regisNo" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="20" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="archiveTitle" msprop:Generator_ColumnVarNameInTable="columnarchiveTitle" msprop:Generator_ColumnPropNameInRow="archiveTitle" msprop:Generator_ColumnPropNameInTable="archiveTitleColumn" msprop:Generator_UserColumnName="archiveTitle" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="300" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="archiveCode" msprop:Generator_ColumnVarNameInTable="columnarchiveCode" msprop:Generator_ColumnPropNameInRow="archiveCode" msprop:Generator_ColumnPropNameInTable="archiveCodeColumn" msprop:Generator_UserColumnName="archiveCode" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="10" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="bianzhiUnit" msprop:Generator_ColumnVarNameInTable="columnbianzhiUnit" msprop:Generator_ColumnPropNameInRow="bianzhiUnit" msprop:Generator_ColumnPropNameInTable="bianzhiUnitColumn" msprop:Generator_UserColumnName="bianzhiUnit" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="bianzhiDate" msprop:Generator_ColumnVarNameInTable="columnbianzhiDate" msprop:Generator_ColumnPropNameInRow="bianzhiDate" msprop:Generator_ColumnPropNameInTable="bianzhiDateColumn" msprop:Generator_UserColumnName="bianzhiDate" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="archiveBoxCnt" msprop:Generator_ColumnVarNameInTable="columnarchiveBoxCnt" msprop:Generator_ColumnPropNameInRow="archiveBoxCnt" msprop:Generator_ColumnPropNameInTable="archiveBoxCntColumn" msprop:Generator_UserColumnName="archiveBoxCnt" type="xs:int" minOccurs="0" />
+              <xs:element name="archiveBoxNo" msprop:Generator_ColumnVarNameInTable="columnarchiveBoxNo" msprop:Generator_ColumnPropNameInRow="archiveBoxNo" msprop:Generator_ColumnPropNameInTable="archiveBoxNoColumn" msprop:Generator_UserColumnName="archiveBoxNo" type="xs:int" minOccurs="0" />
+              <xs:element name="pageCnt" msprop:Generator_ColumnVarNameInTable="columnpageCnt" msprop:Generator_ColumnPropNameInRow="pageCnt" msprop:Generator_ColumnPropNameInTable="pageCntColumn" msprop:Generator_UserColumnName="pageCnt" type="xs:int" minOccurs="0" />
+              <xs:element name="retentionPeriodName" msprop:Generator_ColumnVarNameInTable="columnretentionPeriodName" msprop:Generator_ColumnPropNameInRow="retentionPeriodName" msprop:Generator_ColumnPropNameInTable="retentionPeriodNameColumn" msprop:Generator_UserColumnName="retentionPeriodName">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="10" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="securityName" msprop:Generator_ColumnVarNameInTable="columnsecurityName" msprop:Generator_ColumnPropNameInRow="securityName" msprop:Generator_ColumnPropNameInTable="securityNameColumn" msprop:Generator_UserColumnName="securityName">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="10" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="seqNo" msprop:Generator_ColumnVarNameInTable="columnseqNo" msprop:Generator_ColumnPropNameInRow="seqNo" msprop:Generator_ColumnPropNameInTable="seqNoColumn" msprop:Generator_UserColumnName="seqNo" type="xs:int" minOccurs="0" />
+              <xs:element name="archiveNo" msprop:Generator_ColumnVarNameInTable="columnarchiveNo" msprop:Generator_ColumnPropNameInRow="archiveNo" msprop:Generator_ColumnPropNameInTable="archiveNoColumn" msprop:Generator_UserColumnName="archiveNo" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="paijiaNo" msprop:Generator_ColumnVarNameInTable="columnpaijiaNo" msprop:Generator_ColumnPropNameInRow="paijiaNo" msprop:Generator_ColumnPropNameInTable="paijiaNoColumn" msprop:Generator_UserColumnName="paijiaNo" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="15" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="inchCnt" msprop:Generator_ColumnVarNameInTable="columninchCnt" msprop:Generator_ColumnPropNameInRow="inchCnt" msprop:Generator_ColumnPropNameInTable="inchCntColumn" msprop:Generator_UserColumnName="inchCnt" type="xs:int" minOccurs="0" />
+              <xs:element name="classifyID" msprop:Generator_ColumnVarNameInTable="columnclassifyID" msprop:Generator_ColumnPropNameInRow="classifyID" msprop:Generator_ColumnPropNameInTable="classifyIDColumn" msprop:Generator_UserColumnName="classifyID" type="xs:int" minOccurs="0" />
+              <xs:element name="isArchive" msprop:Generator_ColumnVarNameInTable="columnisArchive" msprop:Generator_ColumnPropNameInRow="isArchive" msprop:Generator_ColumnPropNameInTable="isArchiveColumn" msprop:Generator_UserColumnName="isArchive" type="xs:boolean" minOccurs="0" />
+              <xs:element name="textMatirial" msprop:Generator_ColumnVarNameInTable="columntextMatirial" msprop:Generator_ColumnPropNameInRow="textMatirial" msprop:Generator_ColumnPropNameInTable="textMatirialColumn" msprop:Generator_UserColumnName="textMatirial" type="xs:int" minOccurs="0" />
+              <xs:element name="drawing" msprop:Generator_ColumnVarNameInTable="columndrawing" msprop:Generator_ColumnPropNameInRow="drawing" msprop:Generator_ColumnPropNameInTable="drawingColumn" msprop:Generator_UserColumnName="drawing" type="xs:int" minOccurs="0" />
+              <xs:element name="status" msprop:Generator_ColumnVarNameInTable="columnstatus" msprop:Generator_ColumnPropNameInRow="status" msprop:Generator_ColumnPropNameInTable="statusColumn" msprop:Generator_UserColumnName="status" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="10" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="photo" msprop:Generator_ColumnVarNameInTable="columnphoto" msprop:Generator_ColumnPropNameInRow="photo" msprop:Generator_ColumnPropNameInTable="photoColumn" msprop:Generator_UserColumnName="photo" type="xs:int" minOccurs="0" />
+              <xs:element name="yearNo" msprop:Generator_ColumnVarNameInTable="columnyearNo" msprop:Generator_ColumnPropNameInRow="yearNo" msprop:Generator_ColumnPropNameInTable="yearNoColumn" msprop:Generator_UserColumnName="yearNo" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="4" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="classify" msprop:Generator_ColumnVarNameInTable="columnclassify" msprop:Generator_ColumnPropNameInRow="classify" msprop:Generator_ColumnPropNameInTable="classifyColumn" msprop:Generator_UserColumnName="classify" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="16" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="boxID" msprop:Generator_ColumnVarNameInTable="columnboxID" msprop:Generator_ColumnPropNameInRow="boxID" msprop:Generator_ColumnPropNameInTable="boxIDColumn" msprop:Generator_UserColumnName="boxID" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="100" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="projectCnt" msprop:Generator_ColumnVarNameInTable="columnprojectCnt" msprop:Generator_ColumnPropNameInRow="projectCnt" msprop:Generator_ColumnPropNameInTable="projectCntColumn" msprop:Generator_UserColumnName="projectCnt" type="xs:int" minOccurs="0" />
+              <xs:element name="projectNo" msprop:Generator_ColumnVarNameInTable="columnprojectNo" msprop:Generator_ColumnPropNameInRow="projectNo" msprop:Generator_ColumnPropNameInTable="projectNoColumn" msprop:Generator_UserColumnName="projectNo" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="10" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="ID" msprop:Generator_ColumnVarNameInTable="columnID" msprop:Generator_ColumnPropNameInRow="ID" msprop:Generator_ColumnPropNameInTable="IDColumn" msprop:Generator_UserColumnName="ID" type="xs:int" />
+              <xs:element name="ArchiveThick" msprop:Generator_ColumnVarNameInTable="columnArchiveThick" msprop:Generator_ColumnPropNameInRow="ArchiveThick" msprop:Generator_ColumnPropNameInTable="ArchiveThickColumn" msprop:Generator_UserColumnName="ArchiveThick" type="xs:int" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+    <xs:unique name="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:vw_planarchiveBoxInfo" />
+      <xs:field xpath="mstns:ID" />
+    </xs:unique>
+  </xs:element>
+</xs:schema>

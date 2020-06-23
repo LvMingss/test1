@@ -1,0 +1,106 @@
+﻿
+<link href="~/Content/Tabulator/version3.0/tabulator.css" rel="stylesheet" />
+
+<link type="text/css" rel="stylesheet" href="~/Scripts/jquery/jquery-ui.css">
+<script src="~/Scripts/jquery-2.1.1.min.js" type="text/javascript"></script>
+<script type="text/javascript" src="~/Scripts/jquery/jquery-1.8.3.js"></script>
+
+<script src="~/Scripts/jquery-ui.min.js"></script>
+
+<script type="text/javascript" src="~/Scripts/jquery/jquery.ui.core.js"></script>
+<script type="text/javascript" src="~/Scripts/jquery/jquery.ui.datepicker.js"></script>
+<script type="text/javascript" src="~/Scripts/jquery/jquery.ui.widget.js"></script>
+<script type="text/javascript" src="~/Scripts/jquery/jquery-ui-timepicker-addon.js"></script> 
+<script src="~/Content/Tabulator/version3.0/tabulator.js"></script>
+
+<script src="~/Scripts/xlsx.full.min.js"></script>
+
+
+<script type="text/javascript">
+        var details = function (value, data, cell, row, options) { //plain text value
+            return "<i class='fa fa-search-plus' style='color:#428bca;vertical-align:middle; padding:2px 0;'></i> "
+        };
+        var edit = function (value, data, cell, row, options) { //plain text value
+            return "<i class='fa fa-pencil-square-o' style='color:#428bca;vertical-align:middle; padding:2px 0;'></i> "
+        };
+        var luru = function (value, data, cell, row, options) { //plain text value
+            return "<i class='fa fa-download' style='color:#428bca;vertical-align:middle; padding:2px 0;'></i> "
+        };
+        var chushenyijian = function (value, data, cell, row, options) { //plain text value
+            return "<i class='fa fa-print' style='color:#428bca;vertical-align:middle; padding:2px 0;'></i> "
+        };
+        var hegezhengming = function (value, data, cell, row, options) { //plain text value
+            return "<i class='fa fa-print' style='color:#428bca;vertical-align:middle; padding:2px 0;'></i> "
+        };
+        var hegezhengqianfa = function (value, data, cell, row, options) { //plain text value
+            return "<i class='fa fa-print' style='color:#428bca;vertical-align:middle; padding:2px 0;'></i> "
+        };
+        $().ready(function () {//在页面加载完成之后用，为了保证js能完整的执行。
+            $(document).ready(function () {
+                var a = $(window).height();
+                var hh = a-160;
+                $(".box-h").height(hh)  // 高度加在类名为box的DIV 上
+
+            })
+            $("#example-table-2").tabulator({
+                height:"100%",
+                virtualDom:false,
+
+                //columnMinWidth:100,
+                //minWidth
+                fitColumns:true,
+                selectable:true, //make rows selectable
+                pagination:"local",
+                paginationSize:50,
+                columns: [
+               
+                { title: "登录用户", field: "j",headerSort: false, width: 200 },
+                { title: "登陆IP", field: "k", headerSort: false,width: 300 },
+                { title: "编号时间", field: "l", headerSort: false,width: 200 },
+                { title: "工程名称", field: "a", headerSort: false,width: 250 },
+                { title: "工程地点", field: "b",headerSort: false, width: 200 },
+                { title: "建设单位", field: "c",headerSort: false, width: 200 },
+                { title: "工程序号", field: "d",headerSort: false, width: 80 },
+                { title: "工程顺序号", field: "e",headerSort: false, width:80 },
+                { title: "档号范围", field: "f",headerSort: false, width: 150 },
+                { title: "总登记号范围", field: "g",headerSort: false, width: 150},
+                { title: "总卷数", field: "h",headerSort: false, width: 80 },
+                { title: "公分明细数", field: "i",headerSort: false, width: 150 },
+               
+                
+                ],
+            });
+
+            var temp = new Array();
+            var data=@(new HtmlString(@ViewBag.result));
+            for (var i = 0; i < data.length;i++) {
+                temp.push({ "id": i + 1, "a": data[i].ProjectName,"b": data[i].ProjectLocation, "c": data[i].DevelopmentOrginisation,  "d": data[i].ProjectNo,"e": data[i].ProjectSeqNo,"f": data[i].ArchiveNoRange,"g": data[i].RegistrationNoRange,"h": data[i].ArchiveCount,"i": data[i].InchDetail,"j": data[i].UserName,"k": data[i].IP,"l": data[i].BianHaoTime });
+            }
+
+            $("#example-table-2").tabulator("setData", temp);
+            $(window).resize(function () {
+                var a = $(window).height();
+                var hh = a-160;
+                $(".box-h").height(hh)  // 高度加在类名为box的DIV 上
+                $("#example-table-2").tabulator("redraw",true);
+            });
+            $("#download-xlsx").click(function(){
+   
+                $("#example-table-2").tabulator("download", "xlsx", "data.xlsx");
+            }); 
+        });
+       
+</script>
+<h2 @*style="float:left;"*@><i class="fa fa-tags kongge"></i>编号日志</h2>
+<hr />
+@*<section>
+    <ol class="breadcrumb">
+        <li>竣工档案</li>
+        <li>工程接收</li>
+        <li class="active">工程管理与打印</li>
+    </ol>
+    <div style="clear:both;"></div>
+</section>*@
+
+<div id="example-table-2" class="box-h"> </div>
+<div style="text-align:center;margin-top:5px;"><button id="download-xlsx" class="btn btn-default">导出数据</button></div>

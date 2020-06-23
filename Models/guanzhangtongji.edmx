@@ -1,0 +1,186 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="guanzhangtongji.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="ArchiveCertificate">
+          <Key>
+            <PropertyRef Name="archiveCertificateNo" />
+          </Key>
+          <Property Name="projectName" Type="varchar" MaxLength="500" />
+          <Property Name="location" Type="varchar" MaxLength="100" />
+          <Property Name="developmentOrganization" Type="varchar" MaxLength="100" />
+          <Property Name="dateArchive" Type="datetime" />
+          <Property Name="projectStartDate" Type="varchar" MaxLength="50" />
+          <Property Name="projectFinishDate" Type="varchar" MaxLength="50" />
+          <Property Name="submitPerson" Type="varchar" MaxLength="10" />
+          <Property Name="telphoneSubmitPerson" Type="char" MaxLength="12" />
+          <Property Name="recipient" Type="varchar" MaxLength="50" />
+          <Property Name="archiveCertificateNo" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="projectID" Type="bigint" />
+          <Property Name="datebianhao" Type="datetime" />
+        </EntityType>
+        <!--生成过程中发现错误:
+警告 6002: 表/视图“UrbanCon.dbo.vw_printTongji”未定义主键。已推断出该键，并将定义创建为只读的表/视图。-->
+        <EntityType Name="vw_printTongji">
+          <Key>
+            <PropertyRef Name="paperProjectSeqNo" />
+          </Key>
+          <Property Name="projectName" Type="varchar" MaxLength="100" />
+          <Property Name="developmentOrganization" Type="varchar" MaxLength="100" />
+          <Property Name="paperProjectSeqNo" Type="bigint" Nullable="false" />
+          <Property Name="recipient" Type="varchar" MaxLength="50" />
+          <Property Name="dateReceived" Type="datetime" />
+          <Property Name="totalExpense" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="buildingArea" Type="float" />
+          <Property Name="isCharge" Type="bit" />
+          <Property Name="centiCnt" Type="float" />
+          <Property Name="constructionOrganization" Type="varchar" MaxLength="100" />
+          <Property Name="jianliUnit" Type="varchar" MaxLength="100" />
+          <Property Name="projectNo" Type="bigint" />
+          <Property Name="theoryExpense" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="seqNo" Type="char" MaxLength="11" />
+          <Property Name="searchNo" Type="bigint" />
+          <Property Name="chargeExtra" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityContainer Name="guanzhangtongjiStoreContainer">
+          <EntitySet Name="ArchiveCertificate" EntityType="Self.ArchiveCertificate" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="vw_printTongji" EntityType="Self.vw_printTongji" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [vw_printTongji].[projectName] AS [projectName], 
+    [vw_printTongji].[developmentOrganization] AS [developmentOrganization], 
+    [vw_printTongji].[paperProjectSeqNo] AS [paperProjectSeqNo], 
+    [vw_printTongji].[recipient] AS [recipient], 
+    [vw_printTongji].[dateReceived] AS [dateReceived], 
+    [vw_printTongji].[totalExpense] AS [totalExpense], 
+    [vw_printTongji].[buildingArea] AS [buildingArea], 
+    [vw_printTongji].[isCharge] AS [isCharge], 
+    [vw_printTongji].[centiCnt] AS [centiCnt], 
+    [vw_printTongji].[constructionOrganization] AS [constructionOrganization], 
+    [vw_printTongji].[jianliUnit] AS [jianliUnit], 
+    [vw_printTongji].[projectNo] AS [projectNo], 
+    [vw_printTongji].[theoryExpense] AS [theoryExpense], 
+    [vw_printTongji].[seqNo] AS [seqNo], 
+    [vw_printTongji].[searchNo] AS [searchNo], 
+    [vw_printTongji].[chargeExtra] AS [chargeExtra]
+    FROM [dbo].[vw_printTongji] AS [vw_printTongji]</DefiningQuery>
+          </EntitySet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="guanzhangtongji" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="vw_printTongji">
+          <Key>
+            <PropertyRef Name="paperProjectSeqNo" />
+          </Key>
+          <Property Name="projectName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="developmentOrganization" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="paperProjectSeqNo" Type="Int64" Nullable="false" />
+          <Property Name="recipient" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="dateReceived" Type="DateTime" Precision="3" />
+          <Property Name="totalExpense" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="buildingArea" Type="Double" />
+          <Property Name="isCharge" Type="Boolean" />
+          <Property Name="centiCnt" Type="Double" />
+          <Property Name="constructionOrganization" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="jianliUnit" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="projectNo" Type="Int64" />
+          <Property Name="theoryExpense" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="seqNo" Type="String" MaxLength="11" FixedLength="true" Unicode="false" />
+          <Property Name="searchNo" Type="Int64" />
+          <Property Name="chargeExtra" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityContainer Name="guanzhangtongjiEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="vw_printTongji" EntityType="Self.vw_printTongji" />
+          <EntitySet Name="ArchiveCertificate" EntityType="guanzhangtongji.ArchiveCertificate" />
+        </EntityContainer>
+        <EntityType Name="ArchiveCertificate">
+          <Key>
+            <PropertyRef Name="archiveCertificateNo" />
+          </Key>
+          <Property Name="projectName" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="location" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="developmentOrganization" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="dateArchive" Type="DateTime" Precision="3" />
+          <Property Name="projectStartDate" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="projectFinishDate" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="submitPerson" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="telphoneSubmitPerson" Type="String" MaxLength="12" FixedLength="true" Unicode="false" />
+          <Property Name="recipient" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="archiveCertificateNo" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="projectID" Type="Int64" />
+          <Property Name="datebianhao" Type="DateTime" Precision="3" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="guanzhangtongjiStoreContainer" CdmEntityContainer="guanzhangtongjiEntities">
+          <EntitySetMapping Name="vw_printTongji">
+            <EntityTypeMapping TypeName="guanzhangtongji.vw_printTongji">
+              <MappingFragment StoreEntitySet="vw_printTongji">
+                <ScalarProperty Name="projectName" ColumnName="projectName" />
+                <ScalarProperty Name="developmentOrganization" ColumnName="developmentOrganization" />
+                <ScalarProperty Name="paperProjectSeqNo" ColumnName="paperProjectSeqNo" />
+                <ScalarProperty Name="recipient" ColumnName="recipient" />
+                <ScalarProperty Name="dateReceived" ColumnName="dateReceived" />
+                <ScalarProperty Name="totalExpense" ColumnName="totalExpense" />
+                <ScalarProperty Name="buildingArea" ColumnName="buildingArea" />
+                <ScalarProperty Name="isCharge" ColumnName="isCharge" />
+                <ScalarProperty Name="centiCnt" ColumnName="centiCnt" />
+                <ScalarProperty Name="constructionOrganization" ColumnName="constructionOrganization" />
+                <ScalarProperty Name="jianliUnit" ColumnName="jianliUnit" />
+                <ScalarProperty Name="projectNo" ColumnName="projectNo" />
+                <ScalarProperty Name="theoryExpense" ColumnName="theoryExpense" />
+                <ScalarProperty Name="seqNo" ColumnName="seqNo" />
+                <ScalarProperty Name="searchNo" ColumnName="searchNo" />
+                <ScalarProperty Name="chargeExtra" ColumnName="chargeExtra" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ArchiveCertificate">
+            <EntityTypeMapping TypeName="guanzhangtongji.ArchiveCertificate">
+              <MappingFragment StoreEntitySet="ArchiveCertificate">
+                <ScalarProperty Name="datebianhao" ColumnName="datebianhao" />
+                <ScalarProperty Name="projectID" ColumnName="projectID" />
+                <ScalarProperty Name="archiveCertificateNo" ColumnName="archiveCertificateNo" />
+                <ScalarProperty Name="recipient" ColumnName="recipient" />
+                <ScalarProperty Name="telphoneSubmitPerson" ColumnName="telphoneSubmitPerson" />
+                <ScalarProperty Name="submitPerson" ColumnName="submitPerson" />
+                <ScalarProperty Name="projectFinishDate" ColumnName="projectFinishDate" />
+                <ScalarProperty Name="projectStartDate" ColumnName="projectStartDate" />
+                <ScalarProperty Name="dateArchive" ColumnName="dateArchive" />
+                <ScalarProperty Name="developmentOrganization" ColumnName="developmentOrganization" />
+                <ScalarProperty Name="location" ColumnName="location" />
+                <ScalarProperty Name="projectName" ColumnName="projectName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="无" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
